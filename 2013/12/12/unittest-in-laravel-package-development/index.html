@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>開發 Laravel 套件時的單元測試 | 網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在官方手上的有關開發 Laravel 4 套件的章節，內容其實寫得滿詳盡了。只是它缺少了有關單元測試的說明，以下我將介紹一些自己的做法和經驗。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="開發 Laravel 套件時的單元測試">
+<meta property="og:url" content="http://www.jaceju.net/blog/2013/12/12/unittest-in-laravel-package-development/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="在官方手上的有關開發 Laravel 4 套件的章節，內容其實寫得滿詳盡了。只是它缺少了有關單元測試的說明，以下我將介紹一些自己的做法和經驗。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="開發 Laravel 套件時的單元測試">
+<meta name="twitter:description" content="在官方手上的有關開發 Laravel 4 套件的章節，內容其實寫得滿詳盡了。只是它缺少了有關單元測試的說明，以下我將介紹一些自己的做法和經驗。">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-unittest-in-laravel-package-development" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2013/12/12/unittest-in-laravel-package-development/" class="article-date">
+  <time datetime="2013-12-12T14:51:00.000Z" itemprop="datePublished">2013-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      開發 Laravel 套件時的單元測試
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在官方手上的<a href="http://laravel.com/docs/packages" target="_blank" rel="external">有關開發 Laravel 4 套件的章節</a>，內容其實寫得滿詳盡了。只是它缺少了有關單元測試的說明，以下我將介紹一些自己的做法和經驗。</p>
+<a id="more"></a>
+<h2 id="前置作業">前置作業</h2><p>我們可以用以下指令來建立一個新的 Laravel 套件：</p>
+<pre><code>php artisan workbench <span class="comment">--resource vendor/name</span>
+</code></pre><p>然後在專案目錄下的 <code>workbench/vendor/name</code> 路徑下找到我們的專案原始檔。</p>
+<p>註： <code>vendor</code> 可以是公司名稱或開發者的名字，而 <code>name</code> 則是套件名稱。這裡雖然直接以這個名稱當範例，但實務上請不要這麼設定。</p>
+<p>我們會看到目錄結構如下：</p>
+<pre><code>.
+├── composer<span class="class">.json</span>
+├── phpunit<span class="class">.xml</span>
+├── public
+├── src
+│   ├── Vendor
+│   │   └── Name
+│   │       └── NameServiceProvider<span class="class">.php</span>
+│   ├── config
+│   ├── controllers
+│   ├── lang
+│   ├── migrations
+│   └── views
+└── tests
+</code></pre><p>接下來不特別說明的話，所有操作都是在上述的路徑裡。</p>
+<h2 id="Composer_設定">Composer 設定</h2><p>我們假設套件會用到資料庫，所以第一步是把 <code>illuminate/database</code> 這個套件加進 <code>composer.json</code> 的 <code>require</code> 區段設定內：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"require"</span>: &#123;</span><br><span class="line">    <span class="attribute">...</span></span><br><span class="line">    <span class="string">"illuminate/database"</span>: <span class="string">"4.0.x"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接著是 PHPUnit ，要將它寫在 <code>require-dev</code> 區段設定中：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"require-dev"</span>: &#123;</span><br><span class="line">    <span class="attribute">...</span></span><br><span class="line">    <span class="string">"phpunit/phpunit"</span>: <span class="string">"&gt;=3.7.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然後執行 <code>composer update --prefer-dist</code> ，以安裝資料庫套件。</p>
+<h2 id="Model_類別基本結構">Model 類別基本結構</h2><p>這邊假設我們的 model 名稱為 <code>Ranger</code> ，它只有 <code>id</code> 和 <code>name</code> 兩個屬性。請在 <code>src/Vendor/Name</code> 這個路徑下建立一個 <code>Ranger.php</code> ，然後輸入以下內容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Vendor</span>\<span class="title">Name</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Database</span>\<span class="title">Eloquent</span>\<span class="title">Model</span> <span class="title">as</span> <span class="title">Eloquent</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Database</span>\<span class="title">Schema</span>\<span class="title">Blueprint</span> <span class="title">as</span> <span class="title">Table</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ranger</span> <span class="keyword">extends</span> <span class="title">Eloquent</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="variable">$tableName</span> = <span class="string">'rangers'</span>; <span class="comment">// 自行加入的屬性</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$guarded</span> = <span class="keyword">array</span>(); <span class="comment">// 視需求更改</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     *<span class="phpdoc"> @return</span> callable</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getBlueprint</span><span class="params">()</span> // 自行加入的方法</span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(Table <span class="variable">$table</span>)</span> </span>&#123;</span><br><span class="line">            <span class="variable">$table</span>-&gt;increments(<span class="string">'id'</span>);</span><br><span class="line">            <span class="variable">$table</span>-&gt;string(<span class="string">'name'</span>, <span class="number">100</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Laravel 的 Model 預設會自行找出類別名稱與資料表名稱的對應，然後將它設定在 <code>$table</code> 這個屬性中；不過為了稍後在做 migration 和單元測試時的需求，我自行加了一個 static 變數： <code>$tableName</code> 。</p>
+<p>另一個 static 方法 <code>getBlueprint</code> 是回傳一個 <code>callback</code> 給 Schema Builder 使用，在後面我們會在製作 migration 與單元測試時會用到。</p>
+<h2 id="單元測試">單元測試</h2><p>基本上單元測試的設定檔， Laravel 已經幫我們產生好了。我們只需要建立 model 對應的測試即可。</p>
+<p>在 <code>tests</code> 目錄下再建立一個子資料夾 <code>NameTest</code> ，其中 <code>Name</code> 就是對應到我們的套件名稱。</p>
+<p>然後在 <code>composer.json</code> 的 <code>psr-0</code> 區段中加入：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"psr-0"</span>: &#123;</span><br><span class="line">    <span class="attribute">...</span></span><br><span class="line">    <span class="string">"Vendor\\NameTest"</span>: <span class="string">"tests/"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這會讓 composer 的自動載入找到我們的測試類別。</p>
+<p>接著在 <code>NameTest</code> 資料夾中再建立一個 PHP 檔案 <code>RangerTest.php</code> ，內容如下：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace <span class="type">Vendor</span>\<span class="type">NameTest</span>;</span><br><span class="line"></span><br><span class="line">use <span class="type">Vendor</span>\<span class="type">Name</span>\<span class="type">Ranger</span>;</span><br><span class="line">use <span class="type">Illuminate</span>\<span class="type">Database</span>\<span class="type">Capsule</span>\<span class="type">Manager</span> as <span class="type">DB</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RangerTest</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">\PHPUnit_Framework_TestCase</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這邊比較關鍵的部份的是把 <code>Illuminate\Database\Capsule\Manager</code> 載入後，取別名為 <code>DB</code> 方便後續操作。</p>
+<p>另外因為套件並沒辦法使用到 Laravel 在 application 中的 Facade 機制，所以直接用 <code>\PHPUnit_Framework_TestCase</code> 類別，而不是 Laravel 內建的 <code>TestCase</code> 類別。</p>
+<h2 id="資料庫與資料表設定">資料庫與資料表設定</h2><p>在測試中，通常較為麻煩的是測試 Model 與資料庫之間的溝通。其實我們可以直接提供一個測試用的資料庫讓測試使用。</p>
+<p>測試用的資料庫可以是 Laravel 所支援的任一類型關連式資料庫，這裡我們選用 sqlite 。</p>
+<p>接著在 <code>RangerTest</code> 類別中加入以下程式碼：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="variable">$db</span> = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">setUpBeforeClass</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span>::connectTestDb();</span><br><span class="line">        <span class="keyword">static</span>::initTables();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">connectTestDb</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span>::<span class="variable">$db</span> = <span class="keyword">new</span> DB();</span><br><span class="line">        <span class="keyword">static</span>::<span class="variable">$db</span>-&gt;addConnection(<span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'driver'</span>    =&gt; <span class="string">'sqlite'</span>,</span><br><span class="line">            <span class="string">'database'</span>  =&gt; <span class="string">':memory:'</span>,</span><br><span class="line">            <span class="string">'prefix'</span>    =&gt; <span class="string">''</span>,</span><br><span class="line">        ));</span><br><span class="line">        <span class="keyword">static</span>::<span class="variable">$db</span>-&gt;setAsGlobal();</span><br><span class="line">        <span class="keyword">static</span>::<span class="variable">$db</span>-&gt;bootEloquent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">initTables</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$conn</span> = <span class="keyword">static</span>::<span class="variable">$db</span>-&gt;getConnection();</span><br><span class="line">        <span class="variable">$builder</span> = <span class="variable">$conn</span>-&gt;getSchemaBuilder();</span><br><span class="line"></span><br><span class="line">        <span class="variable">$builder</span>-&gt;dropIfExists(Ranger::<span class="variable">$tableName</span>);</span><br><span class="line">        <span class="variable">$builder</span>-&gt;create(Ranger::<span class="variable">$tableName</span>, Ranger::getBlueprint());</span><br><span class="line">    &#125;</span></span><br></pre></td></tr></table></figure>
+<p>在 PHPUnit 中提供了 <code>setUpBeforeClass</code> 這個方法，主要是在所有測試開始前要先做的動作；我們利用它來初始化資料庫連線及產生我們需要資料表。</p>
+<p>註： <code>setUp</code> 是在每個 test case 啟動前做。</p>
+<p><code>connectTestDb</code> 方法是對資料庫連線，讓接下來的 Model 可以直接操作，而不需要處理連線問題。這裡我們可以直接使用 sqlite 配合 <code>:memory:</code> 來使用記憶體當做測試資料庫，或是在 MySQL 或其他與正式機相同規格的資料庫伺服器上建立測試用的資料庫。</p>
+<p><code>initTables</code> 用來建立資料表，由於我們在 model 的 <code>getBlueprint</code> 中會回傳 Schema 的資訊，所以就直接利用它來建資料表。</p>
+<h2 id="開始測試">開始測試</h2><p>現在我們可以撰寫測試案例了，舉例如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testFind</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        DB::table(<span class="string">'rangers'</span>)-&gt;insert(<span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'name'</span> =&gt; <span class="string">'Jace Ju'</span>,</span><br><span class="line">        ));</span><br><span class="line">        <span class="variable">$ranger</span> = Ranger::find(<span class="number">1</span>);</span><br><span class="line">        <span class="variable">$this</span>-&gt;assertEquals(<span class="string">'Jace Ju'</span>, <span class="variable">$ranger</span>-&gt;name);</span><br><span class="line">    &#125;</span></span><br></pre></td></tr></table></figure>
+<p>接著開啟終端機，切換到 <code>workbench/vendor/name</code> 目錄下，執行：</p>
+<pre><code>phpunit
+</code></pre><p>就可以看到測試結果了。</p>
+<h2 id="多個測試類別共用同一資料連線">多個測試類別共用同一資料連線</h2><p>目前我們是在 <code>RangerTest</code> 類別中連結資料庫，但通常我們會有很多 Model 需要被測試，所以需要共用上述的資料庫連結的部份。</p>
+<p>先建立一個 <code>TestCase</code> 類別，它與 <code>RangerTest</code> 放在同一個目錄下。</p>
+<p>再將先前的資料庫連結的部份複製到新的 <code>TestCase</code> 類別裡，成果如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Vendor</span>\<span class="title">NameTest</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Database</span>\<span class="title">Capsule</span>\<span class="title">Manager</span> <span class="title">as</span> <span class="title">DB</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestCase</span> <span class="keyword">extends</span> \<span class="title">PHPUnit_Framework_TestCase</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="variable">$db</span> = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">setUpBeforeClass</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span>::connectTestDb();</span><br><span class="line">        <span class="keyword">static</span>::initTables();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">connectTestDb</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ... 同上</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">initTables</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ... 同上</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>在 <code>initTables</code> 方法中，可以初始化所有會用到的資料表。</p>
+<p>然後回到 <code>RangerTest</code> 類別，將連結資料庫的部份移除，並改為繼承 <code>TestCase</code> ：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace <span class="type">Vendor</span>\<span class="type">NameTest</span>;</span><br><span class="line"></span><br><span class="line">use <span class="type">Illuminate</span>\<span class="type">Database</span>\<span class="type">Capsule</span>\<span class="type">Manager</span> as <span class="type">DB</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RangerTest</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">TestCase</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這時候如果執行 <code>phpunit</code> 的話，會發現找不到 <code>TestCase</code> 這個類別。</p>
+<p>解決方法是在 <code>composer.json</code> 裡面告訴 composer 要去哪裡找這個類別檔案：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"classmap"</span>: [</span><br><span class="line">    <span class="string">"tests/NameTest/TestCase.php"</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<p>這麼一來， Model 與資料庫的測試就容易許多了。</p>
+<h2 id="Migration">Migration</h2><p>雖然我們可以測試 model 了，但實際作業還是需要把資料表建立在正式資料庫上。這裡就要透過 Laravel 的 migration 機制。</p>
+<p>這裡就簡單說明一下剛剛在 <code>Ranger</code> 類別建立的 callback 如何使用：</p>
+<p>首先要為 workbench 中 package 建立 migrations 資料夾：</p>
+<pre><code>mkdir workbench<span class="regexp">/vendor/</span>name<span class="regexp">/src/mig</span>rations
+</code></pre><p>然後我們要為 package 建立一個 migration ：</p>
+<pre><code>php artisan migrate:make create_rangers_table <span class="comment">--bench=vendor/name</span>
+</code></pre><p>這會建立 <code>workbench/vendor/name/src/migrations/xxxx_xx_xx_xxxxxx_create_rangers_table.php</code> 這個檔案 (xx 會視建立時間而有所不同) ，其類別名稱為 <code>CreateRangersTable</code> 。</p>
+<p>在 <code>CreateRangersTable</code> 中，我們可以直接利用先前在 <code>Ranger</code> 類別中定義的 <code>$tableName</code> 與 <code>getBlueprint</code> 來完成 migration 的 <code>up</code> 及 <code>down</code> ：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Database</span>\<span class="title">Migrations</span>\<span class="title">Migration</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Vendor</span>\<span class="title">Name</span>\<span class="title">Ranger</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreateRangersTable</span> <span class="keyword">extends</span> <span class="title">Migration</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">up</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        Schema::create(Ranger::<span class="variable">$tableName</span>, Ranger::getBlueprint());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">down</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        Schema::drop(Ranger::<span class="variable">$tableName</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>這麼一來就不需要重複定義 schema 的程式碼了。</p>
+<h2 id="總結">總結</h2><p>最後歸納幾個重點：</p>
+<ol>
+<li><p>將 Schema Builder 需要的 callback 放在 Model 中，讓測試與 migration 可以共用同一個 schema 。</p>
+</li>
+<li><p>利用 sqlite 的 <code>:memory:</code> 來做為測試資料庫是非常方便的。</p>
+</li>
+<li><p>將資料庫連結的程式碼移到共用類別中。</p>
+</li>
+<li><p>利用在 model 定義的 <code>$tableName</code> 與 <code>getBlueprint</code> 來完成 table migration 。</p>
+</li>
+</ol>
+<p>歡迎指正或提供更好的建議。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2013/12/12/unittest-in-laravel-package-development/" data-id="ci9ji3c19001815byjgznafyj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Laravel/">Laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/單元測試/">單元測試</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2014/02/21/about-scrollspy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ScrollSpy 簡介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2013/04/26/2013-04-27-php-mongodb/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP + MongoDB 設定心得</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/blog/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/blog/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/blog/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/blog/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/blog/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/blog/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/blog/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/blog/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/blog/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/blog/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/blog/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/blog/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/blog/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/blog/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/blog/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/blog/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/blog/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/blog/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/blog/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/blog/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/blog/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/blog/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/blog/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/blog/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/blog/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/blog/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/blog/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/blog/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/blog/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/blog/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/blog/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/blog/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/blog/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/blog/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/blog/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/blog/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/blog/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/blog/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/blog/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/blog/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/blog/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/blog/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/blog/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/blog/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/blog/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/blog/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/07/">July 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/03/">March 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/02/">February 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/01/">January 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/12/">December 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/10/">October 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/09/">September 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/08/">August 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/07/">July 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/06/">June 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/05/">May 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/04/">April 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/03/">March 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/02/">February 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/01/">January 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/12/">December 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/11/">November 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/10/">October 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/09/">September 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/07/">July 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/06/">June 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/05/">May 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/04/">April 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/03/">March 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/02/">February 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/01/">January 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/12/">December 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/11/">November 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/10/">October 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/09/">September 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/08/">August 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/07/">July 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/06/">June 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/05/">May 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/04/">April 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/03/">March 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/02/">February 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/01/">January 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/12/">December 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/11/">November 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/10/">October 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/09/">September 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/08/">August 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/07/">July 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/06/">June 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/05/">May 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/04/">April 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/03/">March 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/02/">February 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/01/">January 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/12/">December 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/11/">November 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/10/">October 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/09/">September 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/08/">August 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/07/">July 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/06/">June 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/05/">May 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/04/">April 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/03/">March 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/02/">February 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/01/">January 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/12/">December 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/11/">November 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/10/">October 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/09/">September 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/08/">August 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/07/">July 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/06/">June 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/05/">May 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/04/">April 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

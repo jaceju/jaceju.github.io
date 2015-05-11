@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在 Windows 上使用 Trac on Apache - 安裝與設定篇 | 網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="說明最近公司的伙伴們變多了，專案的控管也變得越來越重要；原來的 Trac/Subversion 獨立伺服器在權限控制方面也變得有點礙手礙腳，所以這次我決定改以 Apache 為基礎伺服器的方式來安裝 Trac/Subversion 。
+我打算把此系列文章分成三個部份：
+
+第一部份是第一次的伺服器程式安裝步驟，及相關的 Trac 模組與 Subversion 的安裝。
+
+第二部份是每次新建立一個專案">
+<meta property="og:type" content="website">
+<meta property="og:title" content="在 Windows 上使用 Trac on Apache - 安裝與設定篇">
+<meta property="og:url" content="http://www.jaceju.net/blog/2007/02/06//blog/archives/156/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="說明最近公司的伙伴們變多了，專案的控管也變得越來越重要；原來的 Trac/Subversion 獨立伺服器在權限控制方面也變得有點礙手礙腳，所以這次我決定改以 Apache 為基礎伺服器的方式來安裝 Trac/Subversion 。
+我打算把此系列文章分成三個部份：
+
+第一部份是第一次的伺服器程式安裝步驟，及相關的 Trac 模組與 Subversion 的安裝。
+
+第二部份是每次新建立一個專案">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Windows 上使用 Trac on Apache - 安裝與設定篇">
+<meta name="twitter:description" content="說明最近公司的伙伴們變多了，專案的控管也變得越來越重要；原來的 Trac/Subversion 獨立伺服器在權限控制方面也變得有點礙手礙腳，所以這次我決定改以 Apache 為基礎伺服器的方式來安裝 Trac/Subversion 。
+我打算把此系列文章分成三個部份：
+
+第一部份是第一次的伺服器程式安裝步驟，及相關的 Trac 模組與 Subversion 的安裝。
+
+第二部份是每次新建立一個專案">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-/blog/archives/156" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/02/06//blog/archives/156/" class="article-date">
+  <time datetime="2007-02-05T16:00:00.000Z" itemprop="datePublished">2007-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在 Windows 上使用 Trac on Apache - 安裝與設定篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="說明">說明</h2><p>最近公司的伙伴們變多了，專案的控管也變得越來越重要；原來的 Trac/Subversion 獨立伺服器在權限控制方面也變得有點礙手礙腳，所以這次我決定改以 Apache 為基礎伺服器的方式來安裝 Trac/Subversion 。</p>
+<p>我打算把此系列文章分成三個部份：</p>
+<ul>
+<li><p>第一部份是第一次的伺服器程式安裝步驟，及相關的 Trac 模組與 Subversion 的安裝。</p>
+</li>
+<li><p>第二部份是每次新建立一個專案時所必要的設定。</p>
+</li>
+<li><p>第三部份是 Trac 的使用方式。 </p>
+</li>
+</ul>
+<p>以下先來看看如何安裝及設定。</p>
+<a id="more"></a>
+<h2 id="檔案下載">檔案下載</h2><ul>
+<li><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">Apache 2.0</a>(apache_2.0.59-win32-x86-no_ssl.msi)</li>
+</ul>
+<ul>
+<li>我們用它來當做伺服器，這裡一定要用 2.0.x 版。 </li>
+</ul>
+<ul>
+<li><a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=91" target="_blank" rel="external">Subversion</a> (svn-win32-1.4.3.zip)</li>
+</ul>
+<ul>
+<li>基本上只要抓最新的 1.4.x 版 </li>
+</ul>
+<ul>
+<li><a href="http://www.python.org/download/releases/2.4.4/" target="_blank" rel="external">Python</a> (python-2.4.4.msi)</li>
+</ul>
+<ul>
+<li>一定要用 2.4.x 版，因為相關套件的整合度較高。 </li>
+</ul>
+<ul>
+<li><a href="http://apache.stu.edu.tw/httpd/modpython/win/3.2.10/" target="_blank" rel="external">mod_python</a> (mod_python-3.2.10.win32-py2.4-apache2.0.exe)</li>
+</ul>
+<ul>
+<li>請配合上面的 Apache 及 Python 版本，並抓取最新版。 </li>
+</ul>
+<ul>
+<li><a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=91&amp;filter=py" target="_blank" rel="external">Python bindings for Subversion</a> (svn-python-1.4.3.win32-py2.4.exe)</li>
+</ul>
+<ul>
+<li>這個可以讓我們透過 Python 操控 SVN ，要配合 Python 的版本抓取最新版。 </li>
+</ul>
+<ul>
+<li><a href="http://pysqlite.org/" target="_blank" rel="external">pysqlite</a> (pysqlite-2.3.3.win32-py2.4.exe)</li>
+</ul>
+<ul>
+<li>這個可以讓我們透過 Python 操控 Sqlite ，要配合 Python 的版本抓取最新版。</li>
+</ul>
+<ul>
+<li><a href="http://clearsilver.yi.org/" target="_blank" rel="external">ClearSilver</a> (clearsilver-0.9.14.win32-py2.4.exe)</li>
+</ul>
+<ul>
+<li>這個是一個樣版引擎，要配合 Python 的版本抓取最新版。</li>
+</ul>
+<ul>
+<li><a href="http://sourceforge.net/projects/silvercity/" target="_blank" rel="external">SilverCity</a> (SilverCity-0.9.6.win32-py2.4.exe)</li>
+</ul>
+<ul>
+<li>這個是一個程式碼上色模組，要配合 Python 的版本抓取最新版。</li>
+</ul>
+<ul>
+<li><a href="http://peak.telecommunity.com/DevCenter/setuptools" target="_blank" rel="external">setuptools</a>   (ez_setup.py)</li>
+</ul>
+<ul>
+<li>這個是方便我們安裝 Python 模組用的， Trac 的模組會用到。 </li>
+</ul>
+<ul>
+<li><a href="http://trac.edgewall.org/wiki/TracDownload" target="_blank" rel="external">Trac</a>  (trac-0.10.3.win32.exe)</li>
+</ul>
+<ul>
+<li>這個就是用 Python 開發的 Trac 主程式了。 </li>
+</ul>
+<ul>
+<li><a href="http://tortoisesvn.net/downloads" target="_blank" rel="external">TortoiseSVN</a> (TortoiseSVN-1.4.3.8645-win32-svn-1.4.3.msi)</li>
+</ul>
+<ul>
+<li>Windows 上的 Subversion 視覺化用戶端，找最新的就對了。</li>
+</ul>
+<ul>
+<li><a href="http://tortoisesvn.net/downloads" target="_blank" rel="external">TortoiseSVN Language Pack</a> (LanguagePack-1.4.3.8645-win32-zh_TW.exe)</li>
+</ul>
+<ul>
+<li>TortoiseSVN 的正體中文語言套件，要配合上面的 TortoiseSVN 版本。</li>
+</ul>
+<ul>
+<li><a href="http://www.cosmo-system.jp/iwasa/svn2clwin.html" target="_blank" rel="external">svn2cl for win32</a> (svn2cl-0.7-win2.zip)</li>
+</ul>
+<ul>
+<li>將 SVN 的記錄轉換成 ChangeLog 的工具 (Optional) 。</li>
+</ul>
+<h2 id="安排目錄結構">安排目錄結構</h2><p>和之前一樣，我打算把相關的程式放在 D:\AppServ 底下，而檔案庫則放在 D:\Repository 底下。以下是我所規劃的目錄結構：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">D:</span><br><span class="line"><span class="string">|</span></span><br><span class="line"><span class="string">|- AppServ (伺服器相關程式)</span></span><br><span class="line"><span class="string">|  |</span></span><br><span class="line"><span class="string">|  |- Apache2 ( Apache 的主要程式檔)</span></span><br><span class="line"><span class="string">|  |</span></span><br><span class="line"><span class="string">|  |- python ( Python 的主要程式檔)</span></span><br><span class="line"><span class="string">|  |</span></span><br><span class="line"><span class="string">|  |- svn ( Subversion 的主要程式檔)</span></span><br><span class="line"><span class="string">|  |</span></span><br><span class="line"><span class="string">|  |- trac ( Trac 的相關批次程式檔)</span></span><br><span class="line"><span class="string">|</span></span><br><span class="line"><span class="string">|- Repository (檔案庫)</span></span><br><span class="line"><span class="string">|</span></span><br><span class="line"><span class="string">|- svn</span></span><br><span class="line"><span class="string">|</span></span><br><span class="line"><span class="string">|- trac</span></span><br></pre></td></tr></table></figure>
+<p>繼續往下以前，請先按照上面的結構把目錄建立好。</p>
+<p>註：放在 D: (或其他非 C: 分割區) 的好處是不用擔心重灌後，資料及相關設定會消失。</p>
+<h2 id="安裝_Apache_2">安裝 Apache 2</h2><h3 id="第一次安裝">第一次安裝</h3><p>如果有使用 IIS 的話，請先把 IIS 停掉。然後執行 apache_2.0.59-win32-x86-no_ssl.msi 。 </p>
+<p>然後要注意的是安裝位置，這裡我會把它安裝在 D:\AppServ\Apache2 下，方法如下：</p>
+<ul>
+<li><p>安裝到 Setup Type 時選 Custom ，並按 Next 。</p>
+</li>
+<li><p>把 Apache HTTP Server 2.0.xx 的 Install to 改到 D:\AppServ ，這樣下方 Apache Runtime 的 Install to 會自動變成 D:\AppServ\Apache2 。 </p>
+</li>
+</ul>
+<p>至於其他選項就按照當時情況自行決定囉。</p>
+<p>安裝好後，在 D:\AppServ\Apache\conf\httpd.conf 中把 Port 80 改成 Port 8000 (或其他不影響系統運作的數字) ，然後重新啟動 Apache 及 IIS 。</p>
+<p>後面的說明將會以 Port 8000 為主。</p>
+<p>接著把 D:\AppServ\Apache2\bin 加入系統變數 PATH 裡，這樣方便到時候直接使用指令來控制 Apache 。</p>
+<h3 id="重灌系統後的安裝">重灌系統後的安裝</h3><p>假設我們的 D:\AppServ\Apache2 底下已經 Apache 的程式檔，只是重灌後使得系統設定消失。這樣的話，我們要先把D:\AppServ\Apache2\bin 加入系統變數 PATH 裡，接著再用以下方式重新建立服務 (粗體字部份) ：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;<span class="tag">&lt;<span class="title">strong</span>&gt;</span>apache -k install -D Apache2<span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最後用：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;<span class="tag">&lt;<span class="title">strong</span>&gt;</span>apache -k start <span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>來啟動服務。</p>
+<h2 id="安裝_Subversion">安裝 Subversion</h2><h3 id="第一次安裝-1">第一次安裝</h3><ul>
+<li><p>解開 svn-win32-1.4.3.zip ，將 svn-win32-1.4.3 這個資料夾重新命名為 svn (裡面應該有 bin 等資料夾) ，並將它移至 D:\AppServ 下。</p>
+</li>
+<li><p>將 D:\AppServ\svn\mod_authz_svn.so 及 D:\AppServ\svn\mod_dav_svn.so 兩個檔案複製到 D:\AppServ\Apache2\modules 下。</p>
+</li>
+<li><p>將 D:\AppServ\svn\bin 加到 PATH 系統環境變數裡。</p>
+</li>
+<li>在系統環境變數裡加上以下兩個變數：</li>
+</ul>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">APR_ICONV_PATH = D:<span class="command">\AppServ</span><span class="command">\svn</span><span class="command">\iconv</span></span><br><span class="line">SVN_EDITOR = notepad.exe (或其他慣用的文字編輯器執行檔絕對路徑)</span><br></pre></td></tr></table></figure>
+<p>後面會再說明 Apache 部份需要設定的部份。</p>
+<h3 id="更新">更新</h3><p>當 Subversion 推出新版時，一樣是把新版本的壓縮檔下載回來，而更新的步驟跟第一次安裝是一樣的。</p>
+<h2 id="安裝_Python_及_Trac_相關模組">安裝 Python 及 Trac 相關模組</h2><h3 id="Python_主程式">Python 主程式</h3><p>python 的主程式安裝也很簡單，除了安裝位置改在 D:\AppServ\python 底下，其他就使用預設值即可。</p>
+<p>安裝好後，將 D:\AppServ\python 加入 PATH 系統環境變數裡。</p>
+<h3 id="相關模組">相關模組</h3><p>以下的模組直接執行該 exe 檔即可，沒有任何設定需要注意。 </p>
+<ul>
+<li><p>執行 svn-win32-1.4.3_py-2.4.exe ，會在 Python 的安裝目錄中註冊 svn 模組。</p>
+</li>
+<li><p>執行 pysqlite-2.3.3.win32-py2.4.exe ，會在 Python 的安裝目錄中註冊 pysqlite 模組。</p>
+</li>
+<li><p>執行 clearsilver-0.9.14.win32-py2.4.exe ，會在 Python 的安裝目錄中註冊 clearsilver 模組。</p>
+</li>
+<li><p>執行 trac-0.10.3.win32.exe ，會在 Python 的安裝目錄中註冊 trac 模組。</p>
+</li>
+<li><p>執行 SilverCity-0.9.6.win32-py2.4.exe ，會在 Python 的安裝目錄中註冊 SilverCity 模組。</p>
+</li>
+</ul>
+<h3 id="mod_python_模組">mod_python 模組</h3><p>執行 mod_python-3.2.10.win32-py2.4-apache2.0.exe ，一樣是按照預設值安裝；但是當問到「 Where is Apache installed? 」時要選擇「 D:\AppServ\Apache2 」，這時安裝程式會把 mod_python.so 複製到 D:\AppServ\Apache2\modules 底下。</p>
+<p> 後面會再說明 Apache 部份需要設定的部份。</p>
+<h3 id="setuptools_模組">setuptools 模組</h3><p>如果剛剛已經有 Python 的安裝路徑設定在 PATH 系統變數裡的話，那麼直接點兩下 ez_setup.py 執行即可；或是開啟命令提示列視窗，並切換到 ez_setup.py 所存放的路徑下，並用以下指令執行 (粗體字部份) ：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\downloads\python&gt;<span class="tag">&lt;<span class="title">strong</span>&gt;</span>python ez_setup.py<span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這樣 ez_setup.py 會自動從網路下載相關套件，並安裝到 Python 裡。</p>
+<h3 id="更新-1">更新</h3><p>如果上面的任何程式有更新版本的話，也是將個別的檔案下載回來，再按照上面的步驟重新做一次即可。</p>
+<h2 id="安裝_TortoiseSVN">安裝 TortoiseSVN</h2><h3 id="第一次安裝-2">第一次安裝</h3><ul>
+<li><p>執行 TortoiseSVN-1.4.3.8645-win32-svn-1.4.3.msi ，安裝完成後暫時不要重開機。</p>
+</li>
+<li><p>執行 LanguagePack-1.4.3.8645-win32-zh_TW.exe ，這時才需要重開機。</p>
+</li>
+</ul>
+<p>安裝好以後，請參考<a href="http://www.jeffhung.net/blog/articles/jeffhung/758/" target="_blank" rel="external">此篇文章</a>調整 TortoiseSVN 的效能。 </p>
+<h3 id="更新-2">更新</h3><p>當 TortoiseSVN 有更新版本時，要分別下載主程式與對應版本的語言套件。然後直接按照第一次安裝的步驟執行，不必移除舊有版本。</p>
+<h2 id="安裝_Trac_Plugins">安裝 Trac Plugins</h2><p>Trac 0.10.x 預設並沒有安裝管理套件，所以這裡我們要手動為它安裝。</p>
+<p>註：據 Trac 官方指出，在 0.11 版後會內建相關的管理套件。 </p>
+<p>補充：我找到了一篇不錯的 Blog 文章：「<a href="http://b6s.blogspot.com/2006/12/trac-plugin.html" target="_blank" rel="external">Trac 管理小記（一）：安裝 plugin 注意事項</a>」，裡面有介紹 Trac 應該安裝的 Plugins 。 </p>
+<h3 id="安裝_WebAdmin_(for_Trac_0-10-x)">安裝 WebAdmin (for Trac 0.10.x)</h3><p><a href="http://trac.edgewall.org/wiki/WebAdmin" target="_blank" rel="external">WebAdmin</a> 是用來管理 Trac 專案相關設定的套件，安裝步驟如下：</p>
+<p><del>先開啟 DOS 命令列模式視窗，並切換到一個暫時的目錄 (假設是 D:\downloads\trac\plugins ) ，然後輸入以下指令 (粗體字部份) ：</del> </p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;del&gt;D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span>&gt;&lt;strong&gt;mkdir webadmin&lt;/strong&gt;</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span>&gt;&lt;strong&gt;cd webadmin&lt;/strong&gt;</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span><span class="command">\webadmin</span>&gt;&lt;strong&gt;svn co <span class="special">[</span>http://svn.edgewall.com/repos/trac/sandbox/webadmin/<span class="special">]</span>(http://svn.edgewall.com/repos/trac/sandbox/webadmin/) .&lt;/strong&gt; (請注意最後有一個句點)</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span><span class="command">\webadmin</span>&gt;&lt;strong&gt;python setup.py install&lt;/strong&gt;&lt;/del&gt;</span><br></pre></td></tr></table></figure>
+<p>這樣就能將 WebAdmin 安裝到 Trac 裡了，後面會說明如何在專案中啟用它們。</p>
+<h4>補充：</h4>
+
+<p>上面的做法顯示我不曉得 easy_install 可以讓 plugin 的安裝更簡單，在看了 b6s 的介紹後，我才知道可以改用如下的方式。</p>
+<p>先在命令列模式視窗中切換到 D:\AppServ\python 路徑，然後輸入以下指令：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\AppServ\python\Scripts&gt;<span class="xml"><span class="tag">&lt;<span class="title">strong</span>&gt;</span></span>easy_install [<span class="link_label">http://svn.edgewall.com/repos/trac/sandbox/webadmin/</span>](<span class="link_url">http://svn.edgewall.com/repos/trac/sandbox/webadmin/</span>)<span class="xml"><span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>是不是比上面的方式簡單多了？</p>
+<h3 id="安裝_AccountManager_(for_Trac_0-10-x)">安裝 AccountManager (for Trac 0.10.x)</h3><p>AccountManager 是用來管理 Trac 專案的成員帳號，安裝步驟如下： </p>
+<p><del>先開啟 DOS 命令列模式視窗，並切換到一個暫時的目錄 (假設是 D:\downloads\trac\plugins ) ，然後輸入以下指令 (粗體字部份) ：</del> </p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;del&gt;D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span>&gt;&lt;strong&gt;mkdir accountmanager&lt;/strong&gt;</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span>&gt;&lt;strong&gt;cd accountmanager&lt;/strong&gt;</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span><span class="command">\accountmanager</span>&gt;&lt;strong&gt;svn co <span class="special">[</span>http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10<span class="special">]</span>(http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10) .&lt;/strong&gt; (請注意最後有一個句點)</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span><span class="command">\accountmanager</span>&gt;&lt;strong&gt;python setup.py install&lt;/strong&gt;&lt;/del&gt;</span><br></pre></td></tr></table></figure>
+<p>這樣就能將 AccountManager 安裝到 Trac 裡了，後面會說明如何在專案中啟用它們。</p>
+<h4>補充：</h4>
+
+<p>跟 WebAdmin 一樣，我們把安裝方式改為：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\AppServ\python\Scripts&gt;<span class="xml"><span class="tag">&lt;<span class="title">strong</span>&gt;</span></span>easy_install [<span class="link_label">http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10</span>](<span class="link_url">http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10</span>)<span class="xml"><span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="補充：安裝_IniAdmin">補充：安裝 IniAdmin</h3><p>這個 Plugin 是 <a href="http://b6s.blogspot.com/" target="_blank" rel="external">b6s</a> 介紹的，可以讓我們直接在 Web 介面上調整 trac.ini 。安裝方式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&gt;<span class="xml"><span class="tag">&lt;<span class="title">strong</span>&gt;</span></span>easy_install [<span class="link_label">http://trac-hacks.org/svn/iniadminplugin/trunk/</span>](<span class="link_url">http://trac-hacks.org/svn/iniadminplugin/trunk/</span>)<span class="xml"><span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>相關的調整後面會再說明。</p>
+<h3 id="Plugins_的更新">Plugins 的更新</h3><p><del>更新 Plugins 很簡單，只要利用 svn update 把最新版的 Plugins 更新回本地端，然後重新安裝即可。以 WebAdmin 為例，更新方式如下：</del></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;del&gt;D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span>&gt;&lt;strong&gt;cd webadmin&lt;/strong&gt;</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span><span class="command">\webadmin</span>&gt;&lt;strong&gt;svn update&lt;/strong&gt;</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span><span class="command">\webadmin</span>&gt;&lt;strong&gt;python setup.py clean&lt;/strong&gt; (非必要)</span><br><span class="line">D:<span class="command">\downloads</span><span class="command">\trac</span><span class="command">\plugins</span><span class="command">\webadmin</span>&gt;&lt;strong&gt;python setup.py install&lt;/strong&gt;&lt;/del&gt;</span><br></pre></td></tr></table></figure>
+<p><del>這樣就可以了。</del></p>
+<h4>補充：</h4>
+
+<p>更新 Plugin 的方式就是重新執行上面補充的步驟即可。 </p>
+<p>Trac 的 plugins 更新後，一定要重新啟動 Apache 。如果這時有登入 Trac 管理畫面的話，也必須登出再重新登入。</p>
+<h2 id="Apache_設定">Apache 設定</h2><h3 id="設定使用者">設定使用者</h3><p> 我們可以讓 Trac 和 Subversion 的使用者共用同一組帳號，而這些帳號可以由 Apache 的 htpasswd 指令來建立。</p>
+<p>假設我們把帳號密碼檔放置在 D:\Repository\project-users.db 這個文字檔裡，那麼我們可以在命令提示列中輸入以下指令 (粗體字部份) ：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\Repository&gt;<span class="variable">&lt;strong&gt;</span>htpasswd -c project-users.db admin<span class="variable">&lt;/strong&gt;</span></span><br><span class="line">Automatically using MD5 format.</span><br><span class="line">New password: <span class="variable">&lt;strong&gt;</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;/strong&gt;</span></span><br><span class="line">Re-type new password: <span class="variable">&lt;strong&gt;</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;/strong&gt;</span></span><br><span class="line">Adding password for user admin</span><br></pre></td></tr></table></figure>
+<p>上面的指令會先建立一個 <strong>project-users.db</strong> 文字檔，這個就是我們存放帳號密碼的地方；然後我們需要為帳號 admin 設定一組密碼，這樣一來，帳號 admin 將會是往後我們為所有專案所預設的最高管理員。 </p>
+<p>假如開發的是網站專案，會需要自動更新測試環境的檔案時，就需要再建立一個 website 帳號：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\Repository&gt;<span class="variable">&lt;strong&gt;</span>htpasswd project-users.db website<span class="variable">&lt;/strong&gt;</span></span><br><span class="line">Automatically using MD5 format.</span><br><span class="line">New password: <span class="variable">&lt;strong&gt;</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;/strong&gt;</span></span><br><span class="line">Re-type new password: <span class="variable">&lt;strong&gt;</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;/strong&gt;</span></span><br><span class="line">Adding password for user website</span><br></pre></td></tr></table></figure>
+<p>website 帳號的密碼請自行決定。 </p>
+<h3 id="模組設定">模組設定</h3><p>首先要先以文字編輯器開啟 D:\AppServ\Apache2\conf\httpd.conf ，然後搜尋到：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#LoadModule dav_module modules/mod_dav.so</span></span><br></pre></td></tr></table></figure>
+<p>將上面的註解 ( # 字號) 去除，然後在整個 LoadModule 區段的下方加入以下設定：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For Subversion</span></span><br><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> dav_svn_module modules/mod_dav_svn.so</span><br><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> authz_svn_module modules/mod_authz_svn.so</span><br><span class="line"><span class="comment"># For Trac</span></span><br><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> python_module modules/mod_python.so</span><br></pre></td></tr></table></figure>
+<p>這樣 Apache 重新啟動時，就會載入 DAV 、 SVN 和 Python 等模組。 </p>
+<h3 id="SVN_設定">SVN 設定</h3><p>假如希望某專案的 svn 的路徑是長成這樣：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//localhost:8000/svn/projectname</span></span><br></pre></td></tr></table></figure>
+<p>那麼就需要在 httpd.conf 的最後面加上以下設定： </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="constant">Location</span> /svn&gt;</span><br><span class="line"><span class="constant">DAV</span> svn</span><br><span class="line"><span class="constant">SVNParentPath</span> <span class="constant">D</span><span class="symbol">:/Repository/svn</span></span><br><span class="line"><span class="comment">#   &lt;LimitExcept GET PROPFIND OPTIONS REPORT&gt;</span></span><br><span class="line"><span class="constant">AuthType</span> <span class="constant">Basic</span></span><br><span class="line"><span class="constant">AuthName</span> <span class="string">"CompanyName"</span></span><br><span class="line"><span class="constant">AuthUserFile</span> <span class="string">"D:/Repository/project-users.db"</span></span><br><span class="line"><span class="constant">Require</span> valid-user</span><br><span class="line"><span class="comment">#   &lt;/LimitExcept&gt;</span></span><br><span class="line">&lt;<span class="regexp">/Location&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這樣不論任何要存取檔案庫的動作 (例如 Checkout 或 Commit ) ，SVN 用戶端都會詢問帳號和密碼。如果希望 Checkout 時不詢問帳號密碼 (也就是匿名帳號可取得檔案) ，那麼就將 LimitExcept 部份的註解拿掉。 </p>
+<p>註：當然也可以配合 domainname 和 VirtualHost 來設定，不過內部使用的話這樣就夠了；以下的 Trac 設定也是一樣。</p>
+<h3 id="Trac_設定">Trac 設定</h3><p>如果希望用以下網址來連到某專案的 Trac 管理系統：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//localhost:8000/trac/projectname</span></span><br></pre></td></tr></table></figure>
+<p>那麼也是在 httpd.conf 的最後面加上：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="constant">Location</span> /trac&gt;</span><br><span class="line"><span class="constant">SetHandler</span> mod_python</span><br><span class="line"><span class="constant">PythonHandler</span> trac.web.modpython_frontend</span><br><span class="line"><span class="constant">PythonOption</span> <span class="constant">TracEnvParentDir</span> <span class="constant">D</span><span class="symbol">:/Repository/trac</span></span><br><span class="line"><span class="constant">PythonOption</span> <span class="constant">TracUriRoot</span> /trac</span><br><span class="line"><span class="constant">AuthType</span> <span class="constant">Basic</span></span><br><span class="line"><span class="constant">AuthName</span> <span class="string">"CompanyName"</span></span><br><span class="line"><span class="constant">AuthUserFile</span> <span class="string">"D:/Repository/project-users.db"</span></span><br><span class="line"><span class="constant">Require</span> valid-user</span><br><span class="line">&lt;<span class="regexp">/Location&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這樣任何人在連線到該網址時，都會詢問帳號密碼；這樣在權限控管上會較為安全一點。不過這樣會有一個缺點，那就是到時 Trac 的 logout 功能會沒有作用。如果想讓匿名帳號可以先連進來，然後再使用 Trac 的 login 功能來登入的話，可以改成以下方式：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;Location /trac&gt;</span></span><br><span class="line"><span class="keyword"><span class="common">SetHandler</span></span> mod_python</span><br><span class="line"><span class="keyword">PythonHandler</span> trac.web.modpython_frontend</span><br><span class="line"><span class="keyword">PythonOption</span> TracEnvParentDir D:/Repository/trac</span><br><span class="line"><span class="keyword">PythonOption</span> TracUriRoot /trac</span><br><span class="line"><span class="tag">&lt;/Location&gt;</span></span><br><span class="line"><span class="tag">&lt;LocationMatch "/trac/[^/]+/login"&gt;</span></span><br><span class="line"><span class="keyword">AuthType</span> Basic</span><br><span class="line"><span class="keyword">AuthName</span> <span class="string">"CompanyName"</span></span><br><span class="line"><span class="keyword">AuthUserFile</span> <span class="string">"D:/Appserv/project-users.db"</span></span><br><span class="line"><span class="keyword">Require</span> valid-user</span><br><span class="line"><span class="tag">&lt;/LocationMatch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這樣一來，也可以 logout 後重新以另一個帳號登入。 </p>
+<h2 id="總結">總結</h2><p>再把重點提示一次：</p>
+<ul>
+<li><p>下載相關檔案。</p>
+</li>
+<li><p>安裝 Apache 、 Python (Trac) 、 Subversion 。</p>
+</li>
+<li><p>設定 Apache 。 </p>
+</li>
+</ul>
+<p>以上就是 Trac/Subversion on Apache 的安裝與設定，通常只要做一次即可。而如果已經按照上面的說明將環境安裝好，那麼請再看第二篇有關第一次建立專案的說明。</p>
+<p>註：這裡提到的方式也許不是最好的，希望有經驗的前輩能夠提點一下更好的方式。</p>
+<p>下一篇：<a href="http://blog.roodo.com/jaceju/archives/2703935.html" target="_blank" rel="external">在 Windows 上使用 Trac on Apache - 專案建置篇</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/02/06//blog/archives/156/" data-id="ci9ji3cjl00rs15byb9m0p6pe" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2007/02/06//blog/archives/157/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在 Windows 上使用 Trac on Apache - 專案建置篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2007/02/04//blog/archives/154/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP 官方參考手冊更新</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/blog/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/blog/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/blog/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/blog/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/blog/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/blog/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/blog/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/blog/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/blog/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/blog/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/blog/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/blog/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/blog/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/blog/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/blog/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/blog/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/blog/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/blog/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/blog/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/blog/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/blog/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/blog/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/blog/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/blog/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/blog/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/blog/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/blog/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/blog/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/blog/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/blog/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/blog/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/blog/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/blog/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/blog/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/blog/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/blog/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/blog/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/blog/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/blog/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/blog/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/blog/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/blog/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/blog/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/blog/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/blog/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/blog/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/07/">July 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/03/">March 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/02/">February 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/01/">January 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/12/">December 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/10/">October 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/09/">September 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/08/">August 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/07/">July 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/06/">June 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/05/">May 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/04/">April 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/03/">March 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/02/">February 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/01/">January 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/12/">December 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/11/">November 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/10/">October 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/09/">September 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/07/">July 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/06/">June 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/05/">May 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/04/">April 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/03/">March 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/02/">February 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/01/">January 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/12/">December 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/11/">November 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/10/">October 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/09/">September 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/08/">August 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/07/">July 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/06/">June 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/05/">May 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/04/">April 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/03/">March 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/02/">February 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/01/">January 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/12/">December 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/11/">November 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/10/">October 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/09/">September 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/08/">August 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/07/">July 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/06/">June 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/05/">May 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/04/">April 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/03/">March 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/02/">February 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/01/">January 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/12/">December 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/11/">November 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/10/">October 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/09/">September 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/08/">August 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/07/">July 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/06/">June 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/05/">May 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/04/">April 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/03/">March 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/02/">February 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/01/">January 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/12/">December 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/11/">November 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/10/">October 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/09/">September 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/08/">August 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/07/">July 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/06/">June 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/05/">May 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/04/">April 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

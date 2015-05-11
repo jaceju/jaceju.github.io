@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Zend Framework Testing 入門 - 測試環境建置篇 | 網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="自 Zend Framework 1.6 之後就提供了 Zend_Test 這個套件，協助我們為 Zend Framework 的 MVC 做單元測試。然而當時也許是因為大家對 Zend Framework 的新架構還不熟悉，加上 Zend_Test 套件有許多小地方還不是很完善，因此就很少有人利用它來做測試。
+而到了 Zend Framework 1.8 版之後， Zend_Test 便修正了許">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zend Framework Testing 入門 - 測試環境建置篇">
+<meta property="og:url" content="http://www.jaceju.net/blog/2010/05/21//blog/archives/1152/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="自 Zend Framework 1.6 之後就提供了 Zend_Test 這個套件，協助我們為 Zend Framework 的 MVC 做單元測試。然而當時也許是因為大家對 Zend Framework 的新架構還不熟悉，加上 Zend_Test 套件有許多小地方還不是很完善，因此就很少有人利用它來做測試。
+而到了 Zend Framework 1.8 版之後， Zend_Test 便修正了許">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/new_php_project.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/location.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/final.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/phpunit_cli.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/create_phpunit_tests.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/select_test_dir.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/run_project_test.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/netbeans_test.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/phpunit_config.png">
+<meta property="og:image" content="/resources/zend_test_with_netbeans/create_test_error.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zend Framework Testing 入門 - 測試環境建置篇">
+<meta name="twitter:description" content="自 Zend Framework 1.6 之後就提供了 Zend_Test 這個套件，協助我們為 Zend Framework 的 MVC 做單元測試。然而當時也許是因為大家對 Zend Framework 的新架構還不熟悉，加上 Zend_Test 套件有許多小地方還不是很完善，因此就很少有人利用它來做測試。
+而到了 Zend Framework 1.8 版之後， Zend_Test 便修正了許">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-/blog/archives/1152" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2010/05/21//blog/archives/1152/" class="article-date">
+  <time datetime="2010-05-20T16:00:00.000Z" itemprop="datePublished">2010-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Zend Framework Testing 入門 - 測試環境建置篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自 Zend Framework 1.6 之後就提供了 Zend_Test 這個套件，協助我們為 Zend Framework 的 MVC 做單元測試。然而當時也許是因為大家對 Zend Framework 的新架構還不熟悉，加上 Zend_Test 套件有許多小地方還不是很完善，因此就很少有人利用它來做測試。</p>
+<p>而到了 Zend Framework 1.8 版之後， Zend_Test 便修正了許多缺點；而且也因為 Zend_Application 套件的引入，讓 Zend_Test 在 Controller 上的測試更加方便，也使得網路上許多高手開始為它編寫教學。</p>
+<p>不過官方的文件並沒有特別告訴我們怎麼去建構 Zend Framework Testing 的環境，所以以下我以 Zend Framework 1.10 再加上 PHPUnit 3.4 為例，帶領大家進入 Zend Framework Testing 的世界。</p>
+<a id="more"></a>
+<h2 id="準備_Zend_Framework_專案">準備 Zend Framework 專案</h2><p>更新：這邊的步驟我獨立成一篇新文章了，請參考「<a href="http://www.jaceju.net/blog/archives/1600" target="_blank" rel="external">建立 Portable 的 ZF 專案</a>」；但請將專案名稱改為 unittest ，其他步驟則相同。</p>
+<h2 id="在_NetBeans_中加入專案">在 NetBeans 中加入專案</h2><p>NetBeans 近來對 PHP 的支援變得非常強大，讓我一用就愛上它。到  6.8 版為止， NetBeans 還沒有正式支援 Zend Framework ，不過這並不影響我們用它來開發以 Zend Framework 為架構的專案。</p>
+<p> 而這裡會提到 NetBeans ，主要是因為它支援了 PHPUnit ！而且還有圖形化介面；這使得我們在對 PHP 專案進行單元測試時更加便利！</p>
+<p>回到剛剛我們建立的 Zend Framework 專案，我們可以在 NetBeans 裡加入一個現成的 PHP 專案。在工具列中，選擇 File &gt; New Project… 後，會出現以下視窗：</p>
+<p><a href="/resources/zend_test_with_netbeans/new_php_project.png"><img src="/resources/zend_test_with_netbeans/new_php_project.png" alt="建立 NetBeans 專案"></a></p>
+<p>然後要選擇現存專案的位置：</p>
+<p><a href="/resources/zend_test_with_netbeans/location.png"><img src="/resources/zend_test_with_netbeans/location.png" alt="選擇專案位置"></a></p>
+<p>最後設定專案執行時的設置：</p>
+<p><a href="/resources/zend_test_with_netbeans/final.png"><img src="/resources/zend_test_with_netbeans/final.png" alt="完成專案其它設定"></a></p>
+<p>這樣一來我們就可以在 NetBeans 裡開發 Zend Framework 的專案了。</p>
+<h2 id="Zend_Test_基礎">Zend_Test 基礎</h2><p>Zend_Test 主要是基於 PHPUnit 這個 PHP 界公認最完善的自動化測試套件所開發的，所以不論是在設置環境或是在撰寫測試上，其實都是以 PHPUnit 的架構去完成。</p>
+<p>為了避免本文內容過於冗長，這裡我已經先行設定好 PHPUnit 的執行環境；因此在繼續以下的步驟前，請大家先確認自己是否可以正確執行 PHPUnit 。</p>
+<p>在 Zend Framework 為我們們準備好的專案目錄架構中，已經事先建立了 tests 這個供我們放置測試的目錄，所以現在我們可以先試試看用 PHPUnit 來執行我們的測試。假設我們目前的工作路徑是 D:\WEB\zf\unittest\ ，我們要先切換到 tests 目錄下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> tests</span><br></pre></td></tr></table></figure>
+<p>然後用 PHPUnit 提供的 Command Line Interface (CLI) 工具 phpunit 來執行測試：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phpunit .</span><br></pre></td></tr></table></figure>
+<p>我們會發現執行的結果出現了以下錯誤：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PHPUnit_Framework_Exception: Could not load "D:<span class="command">\WEB</span><span class="command">\zf</span><span class="command">\unittest</span><span class="command">\tests</span><span class="command">\phpunit</span>.xml".</span><br></pre></td></tr></table></figure>
+<p>原來， phpunit 這個工具在我們對一個目錄進行測試時，會自動去剖析該目錄下的 phpunit.xml 內容；而 phpunit.xml 在 Zend_Tool 產生之後，並沒有任何內容，所以就使得 PHPUnit 丟出了一個異常。</p>
+<p>所以這裡我們先簡單將它變成一個正確的 XML 檔案，在 D:\WEB\zf\unittest\tests\phpunit.xml 中我們加入：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;phpunit&gt;</span><span class="tag">&lt;/phpunit&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然後在 Command Line 環境下再跑一次測試，結果如下：</p>
+<p><a href="/resources/zend_test_with_netbeans/phpunit_cli.png"><img src="/resources/zend_test_with_netbeans/phpunit_cli.png" alt="執行 phpunit"></a></p>
+<p>這表示 PHPUnit 認得我們的測試環境啦！</p>
+<h2 id="建立測試">建立測試</h2><p>其實上面也只是讓 phpunit 能在我們的專案上啟用而已，但我們的測試主角根本還沒出現，所以接下來我們要開始來建立測試了。</p>
+<p>Zend_Tool 建立出來的專案架構，其實有個預設的前置名稱，叫做 Application ；這個 Application 之後都做為專案中 Model 的前置名稱。一般來說，我都會將它改為像是 MyApp 或是 Shop 等等諸如此類符合目前專案性質的名稱。 Zend_Tool 也提供我們修改這個前置名稱的機制：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zf change <span class="type">application</span>.<span class="type">class</span>-<span class="property">name</span>-prefix MyApp</span><br></pre></td></tr></table></figure>
+<p>執行結果如下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Note: <span class="operator">the</span> name provided <span class="string">"MyApp"</span> was altered <span class="built_in">to</span> <span class="string">"MyApp_"</span> <span class="keyword">for</span> correctness.</span><br><span class="line">Note: All existing models will need <span class="built_in">to</span> be altered <span class="built_in">to</span> this <span class="built_in">new</span> namespace <span class="keyword">by</span> hand</span><br><span class="line">application.ini updated <span class="operator">with</span> <span class="built_in">new</span> appnamespace MyApp_</span><br><span class="line">Updating project profile <span class="string">'D:\WEB\zf\unittest/.zfproject.xml'</span></span><br></pre></td></tr></table></figure>
+<p>要注意的是，如果在修改前就已經存在的 Model ，它們的前置名稱就要手動改成新的。</p>
+<h3 id="建立第一個_Model">建立第一個 Model</h3><p>接著我們建立第一個 Model Class ：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zf <span class="built_in">create</span> model MyClass1</span><br></pre></td></tr></table></figure>
+<p>執行結果如下：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Creating a model at D:<span class="command">\WEB</span><span class="command">\zf</span><span class="command">\unittest</span>/application/models/MyClass1.php</span><br><span class="line">Updating project profile 'D:<span class="command">\WEB</span><span class="command">\zf</span><span class="command">\unittest</span>/.zfproject.xml'</span><br></pre></td></tr></table></figure>
+<p>在 D:\WEB\zf\unittest/application/models/MyClass1.php 中就是 MyClass1 的內容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp_Model_MyClass1</span></span><br><span class="line"></span>&#123;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>當然這個檔案目前只有簡單的類別定義而已，其他就是要靠我們自己手動完成。不過由於我們的重點是測試，所以這裡我們就不管 MyClass1 的內容。</p>
+<h3 id="用_NetBeans_產生_Test_Case">用 NetBeans 產生 Test Case</h3><p>前面提到 NetBeans 支援 PHPUnit ，因此這裡我們就直接試著用它來幫我們產生測試檔案。切換到專案目錄的「 Source Files/application/models 」下，在 MyClass1.php 上按下右鍵選擇「工具 / Create PHPUnit tests 」，我們就可以建立針對 MyClass1 類別的 Test Case ：</p>
+<p><a href="/resources/zend_test_with_netbeans/create_phpunit_tests.png"><img src="/resources/zend_test_with_netbeans/create_phpunit_tests.png" alt="產生 Model Test Case"></a></p>
+<p>但因為 NetBeans 還不知道測試目錄的所在位置，因此它會提示我們輸入測試目錄；在這裡，我們當然就是選擇 D:\WEB\zf\unittest\tests ：</p>
+<p><a href="/resources/zend_test_with_netbeans/select_test_dir.png"><img src="/resources/zend_test_with_netbeans/select_test_dir.png" alt="選擇測試目錄"></a></p>
+<p>在按下確定之後， NetBeans 就會自動打開產生好的 Test Case 檔案。在本例中，它的位置就是在 D:\WEB\zf\unittest\tests\application\models\MyApp_Model_MyClass1Test.php 。</p>
+<p>另外 NetBeans 也會把 tests 從原來的 Source Files 中獨立成 Test Files 目錄結構，但別忘了它實際的位置還是在 D:\WEB\zf\unittest\ 下。</p>
+<h3 id="目錄結構對應">目錄結構對應</h3><p>繼續下個步驟之前，我們先來整個專案的目錄結構：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">unittest</span><br><span class="line"> <span class="string">|--application</span></span><br><span class="line"> <span class="string">|   |--models</span></span><br><span class="line"> <span class="string">|       |--MyClass1.php</span></span><br><span class="line"> <span class="string">|--library</span></span><br><span class="line"> <span class="string">|--docs</span></span><br><span class="line"> <span class="string">|--public</span></span><br><span class="line"> <span class="string">|--tests</span></span><br><span class="line"> <span class="string">|   |--application</span></span><br><span class="line"> <span class="string">|       |--models</span></span><br><span class="line"> <span class="string">|           |--MyApp_Model_MyClass1Test.php</span></span><br><span class="line"> <span class="string">|   |--library</span></span><br><span class="line"> <span class="string">|   |--phpunit.xml</span></span><br><span class="line"> <span class="string">|--.zfproject.xml</span></span><br><span class="line"> <span class="string">|--.htaccess</span></span><br><span class="line"> <span class="string">|--index.php</span></span><br></pre></td></tr></table></figure>
+<p>從上面的架構圖可以看到，在這個 tests 目錄下的 application 及 library ，就是對應著我們的專案目錄下的 application 及 library 。換句話說，我們在專案目錄下的 application/models 所建立的 Model Class ，它們的測試程式就可以放在 tests/application/models 下，其他以此類推。</p>
+<h3 id="執行測試類別">執行測試類別</h3><p>在我們建立好 MyApp_Model_MyClass1Test 這個測試類別後，就可以在上面撰寫測試案例了。這裡我們先簡單加入一個空的測試案例，即 testMethod1 方法：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ... 略 ...</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp_Model_MyClass1Test</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">PHPUnit_Framework_TestCase</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ... 略 ...</span></span><br><span class="line">    public function testMethod1()</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接著就可以執行測試了。</p>
+<p>這裡雖然我們可以用 phpunit 來執行測試，不過 NetBeans 也可以幫我們代勞。我們可以在 NetBeans 的 Project 視窗中，對 unittest 專案名稱按下滑鼠右鍵，執行 Test 指令 (或直接按下 Alt + F6 ) ，這樣就會開始執行測試了。</p>
+<p><a href="/resources/zend_test_with_netbeans/run_project_test.png"><img src="/resources/zend_test_with_netbeans/run_project_test.png" alt="執行專案測試"></a></p>
+<p>完成測試後，就會出現下圖中的 Test Results 視窗。</p>
+<p><a href="/resources/zend_test_with_netbeans/netbeans_test.png"><img src="/resources/zend_test_with_netbeans/netbeans_test.png" alt="完成測試的畫面"></a></p>
+<p>這看起來是不是比先前的 Command Line 輸出結果好多了呢？</p>
+<h2 id="測試環境的自動載入">測試環境的自動載入</h2><p>在測試時，其實我希望要測試用的類別能被自動載入，而不需要加入一堆的 require_once 。以往我在舊專案的做法是在每個測試案例之前，引用一個 bootstrap.php 檔，內容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">define(<span class="string">'APP_PATH'</span>, realpath(dirname(<span class="keyword">__FILE__</span>) . <span class="string">'/../app/'</span>));</span><br><span class="line">set_include_path(implode(PATH_SEPARATOR, <span class="keyword">array</span>(</span><br><span class="line">    realpath(APP_PATH . <span class="string">'/lib'</span>),</span><br><span class="line">    realpath(APP_PATH . <span class="string">'/base'</span>),</span><br><span class="line">    realpath(APP_PATH . <span class="string">'/mod/common/models'</span>),</span><br><span class="line">    get_include_path(),</span><br><span class="line">)));</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autoload</span><span class="params">(<span class="variable">$className</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$className</span> = str_replace(<span class="string">'_'</span>, <span class="string">'/'</span>, <span class="variable">$className</span>);</span><br><span class="line">    <span class="keyword">require_once</span> <span class="string">"$className.php"</span>;</span><br><span class="line">&#125;</span><br><span class="line">spl_autoload_register(<span class="string">'autoload'</span>);</span></span><br></pre></td></tr></table></figure>
+<p>而在新架構中， Zend_Tool 很貼心地為我們產生好了這個檔案，也就是 D:\WEB\zf\unittest\tests\application\bootstrap.php 。</p>
+<p>註：不過 D:\WEB\zf\unittest\tests\application\bootstrap.php 裡面的內容是空的，我們得自己把它加入。</p>
+<p>但是每次都要在測試類別檔載入這個 bootstraop.php 也是相當麻煩，還好 PHPUnit 讓我們可以在 phpunit.xml 中去加入對 bootstraop.php 的自動引用。接下來請將 D:\WEB\zf\unittest\tests\phpunit.xml 的內容改為：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">phpunit</span> <span class="attribute">bootstrap</span>=<span class="value">"./application/bootstrap.php"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這麼一來，當我們執行 phpunit 時，就會自動引入 bootstraop.php 了。而這裡要注意的是， ./application/bootstrap.php 這個路徑是相對於 phpunit.xml 的，其他非絕對路徑的設定也是。</p>
+<p>不過上面的  bootstraop.php 寫法在新的 Zend Framework 架構中就不適用了，因為它的自動載入只能應付類別名稱為 Xxx_Yyy_Zzz 並對應到檔名為 Xxx/Yyy/Zzz.php 的模式；而新架構中的 Model 則是位於 application/models 之下，也就是說我們的 MyApp_Model_MyClass1 這個類別的實際位置是 D:\WEB\zf\unittest\application\models\MyApp_Model_MyClass1.php ，因此我們得想辦法讓 bootstrap.php 能自動載入新架構的 Model Class 。</p>
+<p>還好 Zend_Loader 提供了 Zend_Loader_Autoloader_Resource 這個套件，來幫我們載入 Zend Framework MVC 架構下的 Model Class 。所以我們的 bootstrap.php 就可以改成：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">error_reporting(E_ALL | E_STRICT);</span><br><span class="line">date_default_timezone_set(<span class="string">'Asia/Taipei'</span>);</span><br><span class="line">define(<span class="string">'APPLICATION_ENV'</span>, <span class="string">'testing'</span>);</span><br><span class="line">define(<span class="string">'APPLICATION_PATH'</span>, realpath(dirname(<span class="keyword">__FILE__</span>) . <span class="string">'/../../application'</span>));</span><br><span class="line">define(<span class="string">'APPLICATION_CONFIG'</span>, APPLICATION_PATH . <span class="string">'/configs/application.ini'</span>);</span><br><span class="line">set_include_path(implode(PATH_SEPARATOR, <span class="keyword">array</span>(</span><br><span class="line">    realpath(APPLICATION_PATH . <span class="string">'/../library'</span>),</span><br><span class="line">    realpath(APPLICATION_PATH . <span class="string">'/../tests'</span>),</span><br><span class="line">    get_include_path(),</span><br><span class="line">)));</span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'Zend/Loader/Autoloader.php'</span>;</span><br><span class="line"><span class="variable">$autoloader</span> = Zend_Loader_Autoloader::getInstance();</span><br><span class="line"><span class="variable">$resourceLoader</span> = <span class="keyword">new</span> Zend_Loader_Autoloader_Resource(<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'basePath'</span>      =&gt; APPLICATION_PATH,</span><br><span class="line">    <span class="string">'namespace'</span>     =&gt; <span class="string">'MyApp'</span>,</span><br><span class="line">    <span class="string">'resourceTypes'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'model'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'path'</span> =&gt; <span class="string">'models/'</span>,</span><br><span class="line">            <span class="string">'namespace'</span> =&gt; <span class="string">'Model'</span>,</span><br><span class="line">        ),</span><br><span class="line">    ),</span><br><span class="line">));</span><br><span class="line"><span class="variable">$autoloader</span>-&gt;pushAutoloader(<span class="variable">$resourceLoader</span>);</span></span><br></pre></td></tr></table></figure>
+<p>註： Zend_Loader_Autoloader_Resource 的詳細用法請參考官方手冊 <a href="http://zendframework.com/manual/en/zend.loader.autoloader-resource.html" target="_blank" rel="external">Resource Autoloaders</a> 一節的說明。</p>
+<p>現在我們可以試著把 MyApp_Model_MyClass1Test.php 中的 require_once 敘述移除，試試看 phpunit 會不會自動載入。</p>
+<p>不過特別要注意的是， bootstrap.php 只會在 phpunit.xml 被載入時自動被引用，因此我們就一定要透過 phpunit . 這樣的方式來執行測試，不然就會發生找不到 Model Class 檔案的狀況。如果我們只想單獨執行某個測試類別時 (例如 MyApp_Model_MyClass1Test ) ，就必須改用以下的方式執行：  (假設當前工作目錄是在 D:\WEB\zf\unittest\tests ) </p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phpunit <span class="type">application</span>\models\MyApp_Model_MyClass1Test.php <span class="comment">--configuration ./phpunit.xml</span></span><br></pre></td></tr></table></figure>
+<p>而在 NetBeans 中，我們可以在 Project 視窗的 Test Files 上按下滑鼠右鍵選擇 Properties ，就會出現以下視窗：</p>
+<p><a href="/resources/zend_test_with_netbeans/phpunit_config.png"><img src="/resources/zend_test_with_netbeans/phpunit_config.png" alt="NetBeans 中的 PHPUnit 設定"></a></p>
+<p>然後我們再指定 phpunit.xml 的位置，這樣就算只對單一的 Model 進行測試， NetBeans 也會自動幫我們載入 phpunit.xml 了。</p>
+<h2 id="加入更多測試">加入更多測試</h2><p>一個專案裡要測試的 Model 當然不可能只有一個，接著我們再加入新的 Model 。在 D:\WEB\zf\unittest 之下，我們執行：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zf <span class="built_in">create</span> model MyClass2</span><br></pre></td></tr></table></figure>
+<p>然後再透過 NetBeans 的 Create PHPUnit tests ，幫它建立一個測試類別 MyApp_Model_MyClass2Test 。當然也別忘了幫這個測試類別加入測試案例，以免執行測試時會出現沒有測試案例的警告。</p>
+<p>不是只有 Model 可以被測試，在 Zend_Test 裡也提供了測試 Controller 的方法；方法很簡單，以預設的 IndexController 為例，我們一樣也是在 NetBeans 的 Project 視窗中，對 unittest/application/controllers/IndexController.php 執行 Create PHPUnit tests 就可以了。</p>
+<p>但是這樣卻有可能出現以下的錯誤訊息，而無法成功建立 IndexController 的測試類別。</p>
+<p><a href="/resources/zend_test_with_netbeans/create_test_error.png"><img src="/resources/zend_test_with_netbeans/create_test_error.png" alt="建立測試失敗"></a></p>
+<p>而查看輸出視窗 (Ctrl + 4) ，實際的錯誤訊息是：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal <span class="keyword">error</span>: Class 'Zend_Controller_Action' <span class="keyword">not</span> found <span class="keyword">in</span> D:\WEB\zf\unittest\<span class="type">application</span>\controllers\IndexController.php <span class="function_start"><span class="keyword">on</span></span> line <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>這是因為 NetBeans 其實是透過 phpunit —skeleton-test 這個指令來幫助我們建立測試類別，而 —skeleton-test 會利用 PHP 5 的 Reflection 機制幫我們找出類別裡的方法；但 Reflection 也會需要相關引用到的類別的定義 (這裡就是 Zend_Controller_Action ) ，因此在沒有事先定義好的狀況下， phpunit 就會回報錯誤了。</p>
+<p>解決的方法很簡單，我們只要在 IndexController 類別的上方加入：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">require_once</span> <span class="string">'Zend/Controller/Action.php'</span>;</span><br></pre></td></tr></table></figure>
+<p>就可以再執行 Create PHPUnit tests 指令了。</p>
+<p>完成後， NetBeans 就會產生 D:\WEB\zf\unittest\tests\application\controllers\IndexControllerTest.php 這個檔案了。</p>
+<h2 id="測試_Controller">測試 Controller</h2><p>雖然前面我們產生了 IndexControllerTest 這個測試類別，但是它卻不能用來測試 IndexController 的流程。這是因為我們沒有去啟動 Zend_Application 及相關的 Resource ，所以這裡我們要借重 Zend_Test 提供的 Zend_Test_PHPUnit_ControllerTestCase 類別來幫我們進行測試。請將 D:\WEB\zf\unittest\tests\application\controllers\IndexControllerTest.php 的內容改為：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexControllerTest</span> <span class="keyword">extends</span> <span class="title">Zend_Test_PHPUnit_ControllerTestCase</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">setUp</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;bootstrap = <span class="keyword">array</span>(<span class="variable">$this</span>, <span class="string">'appBootstrap'</span>);</span><br><span class="line">        <span class="keyword">parent</span>::setUp();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">appBootstrap</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;application = <span class="keyword">new</span> Zend_Application(APPLICATION_ENV, APPLICATION_CONFIG);</span><br><span class="line">        <span class="variable">$this</span>-&gt;application-&gt;bootstrap();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testHome</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;dispatch(<span class="string">'/'</span>);</span><br><span class="line">        <span class="variable">$this</span>-&gt;assertAction(<span class="string">"index"</span>);</span><br><span class="line">        <span class="variable">$this</span>-&gt;assertController(<span class="string">"index"</span>);</span><br><span class="line">        <span class="variable">$this</span>-&gt;assertResponseCode(<span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>在這裡我們要借重 Zend_Test_PHPUnit_ControllerTestCase 提供的 bootstrap 機制，幫我們處理有關應用程式設定與 Front Controller 等相關資源的啟動；然後我們就可以簡單地透過 Zend_Test_PHPUnit_ControllerTestCase 提供的方法 (例如 dispatch ) ，來幫我們測試 Controller 的流程。</p>
+<p>上面的例子裡我們只很簡單地測試首頁，至於更進階的 Controller 測試，有機會我會再分享給大家。</p>
+<h2 id="進階的_phpunit-xml_設定">進階的 phpunit.xml 設定</h2><p>在 phpunit.xml 中可以設定的項目很多，可以參考<a href="http://www.phpunit.de/manual/current/en/appendixes.configuration.html" target="_blank" rel="external">官方手冊的說明</a>，這邊我們簡單地探討幾個常用的項目。</p>
+<h3 id="testsuite">testsuite</h3><p>testsuite 標籤主要是幫我們透過 PHPUnit_Framework_TestSuite 去組織多個測試類別，例如以下範例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">phpunit</span> <span class="attribute">bootstrap</span>=<span class="value">"./application/bootstrap.php"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">testsuite</span> <span class="attribute">name</span>=<span class="value">"My App"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">directory</span>&gt;</span>./<span class="tag">&lt;/<span class="title">directory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">testsuite</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">phpunit</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先 testsuite 的 name 屬性是讓我們設定 Suite 的名稱，而 directory 標籤則是告訴 phpunit ，這個 Suite 包含了 D:\WEB\zf\unittest\tests 下所有檔名結尾為 Test.php 的測試檔案。</p>
+<p>另外還要注意一點，在還沒加入 testsuite 之前，我們要在 D:\WEB\zf\unittest\tests 用 “phpunit .” 來指定目錄執行測試；而加入 testsuite 標籤後，我們就可以直接在 D:\WEB\zf\unittest\tests 執行 phpunit ，而不用再指定測試的路徑了。</p>
+<h3 id="filter">filter</h3><p>filter 標籤主要是幫我們過濾程式碼涵蓋範圍報告的項目，避免出現過多不相干類別的報告內容。 filter 分為白名單與黑名單兩種，以下我們以白名單為主：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">phpunit</span> <span class="attribute">bootstrap</span>=<span class="value">"./application/bootstrap.php"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 略 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">whitelist</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">directory</span> <span class="attribute">suffix</span>=<span class="value">".php"</span>&gt;</span>../application/<span class="tag">&lt;/<span class="title">directory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">exclude</span>&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="title">file</span>&gt;</span>../application/Bootstrap.php<span class="tag">&lt;/<span class="title">file</span>&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="title">file</span>&gt;</span>../application/controllers/ErrorController.php<span class="tag">&lt;/<span class="title">file</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">directory</span> <span class="attribute">suffix</span>=<span class="value">".phtml"</span>&gt;</span>../application/<span class="tag">&lt;/<span class="title">directory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">exclude</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">whitelist</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">phpunit</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這裡主要是告訴 phpunit 只處理 D:\WEB\zf\unittest\application 下的類別 (注意！不是 tests\application ！) ，但排除掉 D:\WEB\zf\unittest\application\Bootstrap.php 、 D:\WEB\zf\unittest\application\controllers\ErrorController.php 以及 D:\WEB\zf\unittest\application\ 下所有的 .phtml 樣板檔。</p>
+<p>不過 filter 通常會搭配稍後要說明的 logging 標籤一起使用。</p>
+<h3 id="logging">logging</h3><p>logging 標籤主要用來產生測試報告，它支援相當多的格式，以下我們以 HTML 格式為主：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">phpunit</span> <span class="attribute">bootstrap</span>=<span class="value">"./application/bootstrap.php"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 略 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">logging</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">log</span> <span class="attribute">type</span>=<span class="value">"coverage-html"</span> <span class="attribute">target</span>=<span class="value">"./log/report"</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span></span><br><span class="line">            <span class="attribute">yui</span>=<span class="value">"true"</span> <span class="attribute">highlight</span>=<span class="value">"true"</span> <span class="attribute">lowUpperBound</span>=<span class="value">"50"</span> <span class="attribute">highLowerBound</span>=<span class="value">"80"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">log</span> <span class="attribute">type</span>=<span class="value">"testdox-html"</span> <span class="attribute">target</span>=<span class="value">"./log/testdox.html"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">logging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">phpunit</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在執行測試前，別忘了在 D:\WEB\zf\unittest\tests 下建立一個 log 目錄，避免 phpunit 回報錯誤。執行完測試後，就會在 D:\WEB\zf\unittest\tests\log 產生一個 testdox.html 檔案及一個 report 資料夾。</p>
+<p>textdox.html 會以我們在測試類別裡寫的測試案例為名稱來做為驗證項目名稱，例如 testDoSomething 就會變成 Do something 。而用瀏覽器開啟 report/index.html 後，我們就能看到完整的程式碼覆蓋率報告。</p>
+<h2 id="小結">小結</h2><p>最後我們再整理一下重點：</p>
+<ul>
+<li><p>我們可以在專案中建立一個 tests 目錄，供我們放置測試類別。</p>
+</li>
+<li><p>PHPUnit 可以透過 phpunit.xml 及 bootstrap.php 來做自動化的測試環境。</p>
+</li>
+<li><p>phpunit.xml 主要是用來設定 phpunit 執行時的選項。</p>
+</li>
+<li><p>bootstrap.php 主要的工作是設定測試時會用到的環境常數、引入路徑以及類別自動載入機制等。</p>
+</li>
+<li><p>NetBeans 對 PHPUnit 有強大的支援，不論在建立測試及執行測試上，都非常直覺。</p>
+</li>
+<li><p>即便不使用 NetBeans ，我們還是可以透過 phpunit 這個 CLI 工具來完成自動化測試。</p>
+</li>
+</ul>
+<p>雖然這裡我是以 Zend Framework 專案為主，但大家還是可以仿照這樣的機制，在自己的專案裡去建構自動化測試。</p>
+<p>還猶豫什麼？快去試試吧！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2010/05/21//blog/archives/1152/" data-id="ci9ji3cnw00xe15byg1rsu63n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2010/05/23//blog/archives/1175/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [Web] 連結分享
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2010/05/14//blog/archives/1142/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">關於測試這件事</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/blog/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/blog/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/blog/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/blog/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/blog/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/blog/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/blog/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/blog/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/blog/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/blog/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/blog/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/blog/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/blog/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/blog/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/blog/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/blog/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/blog/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/blog/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/blog/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/blog/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/blog/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/blog/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/blog/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/blog/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/blog/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/blog/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/blog/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/blog/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/blog/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/blog/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/blog/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/blog/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/blog/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/blog/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/blog/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/blog/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/blog/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/blog/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/blog/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/blog/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/blog/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/blog/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/blog/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/blog/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/blog/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/blog/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/07/">July 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/03/">March 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/02/">February 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/01/">January 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/12/">December 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/10/">October 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/09/">September 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/08/">August 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/07/">July 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/06/">June 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/05/">May 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/04/">April 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/03/">March 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/02/">February 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/01/">January 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/12/">December 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/11/">November 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/10/">October 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/09/">September 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/07/">July 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/06/">June 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/05/">May 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/04/">April 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/03/">March 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/02/">February 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/01/">January 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/12/">December 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/11/">November 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/10/">October 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/09/">September 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/08/">August 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/07/">July 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/06/">June 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/05/">May 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/04/">April 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/03/">March 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/02/">February 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/01/">January 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/12/">December 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/11/">November 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/10/">October 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/09/">September 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/08/">August 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/07/">July 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/06/">June 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/05/">May 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/04/">April 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/03/">March 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/02/">February 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/01/">January 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/12/">December 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/11/">November 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/10/">October 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/09/">September 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/08/">August 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/07/">July 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/06/">June 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/05/">May 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/04/">April 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/03/">March 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/02/">February 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/01/">January 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/12/">December 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/11/">November 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/10/">October 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/09/">September 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/08/">August 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/07/">July 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/06/">June 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/05/">May 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/04/">April 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

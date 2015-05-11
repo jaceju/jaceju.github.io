@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS3 動畫基礎 | 網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="註：本文為作者發表於 OpenFoundry 之 CSS3 動畫基礎一文的備份。
+
+
+在 JSConf.Asia 2013 ， Lea Verou 介紹了 CSS in the 4th dimension  (影片) ，引發了整個 Web 界對 CSS 動畫的期盼；在 CSS動畫簡介一文也已經把重點整理好了。
+以下我們將會介紹主要兩個 CSS3 在動畫的屬性： Transition 與 Anima">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3 動畫基礎">
+<meta property="og:url" content="http://www.jaceju.net/blog/2014/06/03/css3-animation-notes/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="註：本文為作者發表於 OpenFoundry 之 CSS3 動畫基礎一文的備份。
+
+
+在 JSConf.Asia 2013 ， Lea Verou 介紹了 CSS in the 4th dimension  (影片) ，引發了整個 Web 界對 CSS 動畫的期盼；在 CSS動畫簡介一文也已經把重點整理好了。
+以下我們將會介紹主要兩個 CSS3 在動畫的屬性： Transition 與 Anima">
+<meta property="og:image" content="http://letrainde13h37.fr/wp-content/uploads/2012/09/trTimingFn.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3 動畫基礎">
+<meta name="twitter:description" content="註：本文為作者發表於 OpenFoundry 之 CSS3 動畫基礎一文的備份。
+
+
+在 JSConf.Asia 2013 ， Lea Verou 介紹了 CSS in the 4th dimension  (影片) ，引發了整個 Web 界對 CSS 動畫的期盼；在 CSS動畫簡介一文也已經把重點整理好了。
+以下我們將會介紹主要兩個 CSS3 在動畫的屬性： Transition 與 Anima">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-css3-animation-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2014/06/03/css3-animation-notes/" class="article-date">
+  <time datetime="2014-06-03T02:28:36.000Z" itemprop="datePublished">2014-06-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS3 動畫基礎
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>註：本文為作者發表於 OpenFoundry 之 <a href="http://www.openfoundry.org/en/tech-column/9233-css3-animation" target="_blank" rel="external">CSS3 動畫基礎</a>一文的備份。</p>
+<script async src="//codepen.io/assets/embed/ei.js"></script>
+
+<p>在 JSConf.Asia 2013 ， Lea Verou 介紹了 <a href="http://lea.verou.me/css-4d/#intro" target="_blank" rel="external">CSS in the 4th dimension</a>  (<a href="https://www.youtube.com/watch?v=NTJUFQmHbvc" target="_blank" rel="external">影片</a>) ，引發了整個 Web 界對 CSS 動畫的期盼；在 <a href="http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html" target="_blank" rel="external">CSS動畫簡介</a>一文也已經把重點整理好了。</p>
+<p>以下我們將會介紹主要兩個 CSS3 在動畫的屬性： Transition 與 Animation ，並配合實例來練習這些技術，後面我也會介紹一些不錯的相關開發工具。</p>
+<a id="more"></a>
+<h2 id="Transition">Transition</h2><p>在以往 HTML 元素在兩種外觀之間的變換，只能從一種外觀直接跳到另一種外觀，瀏覽者並沒有辦法感受到這兩種外觀中間平滑的轉換，造成了視覺上的不適。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="gwyao" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/gwyao/" target="_blank" rel="external">例：在滑鼠移過時，方塊的高度和寬度變化。</a></p>
+
+<h3 id="基本的_transition">基本的 transition</h3><p>而 CSS 為了補足這方面的視覺轉換特效，特別加入 <code>transition</code> 屬性。 一個簡易的動畫效果就是在想要變化的狀態上，加入一個 <code>transition</code> 屬性，而其值為變化需歷時的秒數。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">div</span>:<span class="value">hover &#123;</span><br><span class="line">    ...</span><br><span class="line">    transition: <span class="number">1s</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這麼一來， <code>transition</code> 就會自動幫我們補足中間的過場動畫。例如我們希望上面的例子能平順地轉換，歷時一秒：</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="AGiEa" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/AGiEa/" target="_blank" rel="external">例：加入 transition 後的效果</a></p>
+
+<p>我們也可以讓高度以外的屬性有動畫效果，例如顏色：</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="pwgnc" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/pwgnc/" target="_blank" rel="external">例：用 transition 改變顏色</a></p>
+
+<h3 id="transition_屬性詳解"><code>transition</code> 屬性詳解</h3><p><code>transition</code> 屬性其實跟 <code>font</code> 或 <code>background</code> 屬性一樣是簡寫屬性，它是以下四個屬性的總和：</p>
+<ul>
+<li><code>transition-property</code>: 要做變換的 CSS 屬性</li>
+<li><code>transition-duration</code>: 變換需要的時間，單位為 <code>s</code> 或 <code>ms</code></li>
+<li><code>transition-delay</code>: 延遲多久後開始變換，單位為 <code>s</code> 或 <code>ms</code></li>
+<li><code>transition-timing-function</code>: 稱為 Timing Funciton ，用名稱來定義變換時的加速度。</li>
+</ul>
+<p>這些屬性可以分開寫，也可以將它們的值同時寫在 <code>transition</code> 屬性裡；唯一要注意的是 <code>transition-duration</code> 與 <code>transition-delay</code> 的值寫在一起時有前述的順序關係。前面例子中的 <code>transition: 1s</code> ，其 <code>1s</code> 即為 <code>transition-duration</code> 的值。</p>
+<h3 id="transition-property_可使用_transition_的屬性"><code>transition-property</code> 可使用 transition 的屬性</h3><p>不是所有 CSS 屬性都可以使用 <code>transition</code> ，可以參考這篇 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties" target="_blank" rel="external">CSS animated properties</a> 得知有哪些屬性可以使用 <code>transition</code> 。</p>
+<p><code>transition</code> 預設是對所有可套用的屬性做轉場效果，也就是關鍵字 <code>all</code> ；但其實也可以只針對某個屬性做 <code>transition</code> 變化，其他屬性則維持原來的直接變化。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="zpcEG" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/zpcEG/" target="_blank" rel="external">例：只對單一屬性加入 transition</a></p>
+
+<h3 id="針對不同屬性同時做_transition">針對不同屬性同時做 transition</h3><p>如果希望對兩個以上的屬性做 <code>transition</code> ，可是又不希望影響其他屬性時，可以用逗號 <code>,</code> 將要做 transition 的屬性分隔開來。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="ifbIG" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/ifbIG/" target="_blank" rel="external">例：對不同屬性同時做 transition</a></p>
+
+<h3 id="transition-delay_延遲變換"><code>transition-delay</code> 延遲變換</h3><p>有時候我們需要先變換一個屬性，再變換另一個屬性，這時候就需要對後者加入一個延遲時間；它需要加在原先我們定義好的歷時時間之後。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="xneaw" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/xneaw/" target="_blank" rel="external">例：先變換一個屬性，再變換另一個屬性</a></p>
+
+<h3 id="transition-timing-function_Timing_Funciton"><code>transition-timing-function</code> Timing Funciton</h3><p>Timing Funciton 包含數種模式，下圖可以看出它們的加速度曲線。</p>
+<p><img src="http://letrainde13h37.fr/wp-content/uploads/2012/09/trTimingFn.png" alt=""></p>
+<ul>
+<li><code>linear</code>: 匀速</li>
+<li><code>ease</code>: 急加速後減速 (預設值)</li>
+<li><code>ease-in</code>: 加速</li>
+<li><code>ease-out</code>: 减速</li>
+<li><code>ease-in-out</code>: 較平緩的 <code>ease</code></li>
+<li><code>cubic-bezier</code>: 自定義速度模式</li>
+</ul>
+<h3 id="cubic-bezier_函式">cubic-bezier 函式</h3><p>利用貝茲曲線函式來定義加速曲線，可以直接使用線上工具 <a href="http://cubic-bezier.com/" target="_blank">cubic-bezier()</a> 來找出需要的數值。</p>
+<h3 id="雙向的_transition">雙向的 transition</h3><p>Transition 的效果只會作用在有加入 <code>transition</code> 屬性的那個狀態，一旦要回復至原來的狀態時，就會失去 Transition 的平順效果了。這時我們需要對原先的狀態，也加入 <code>transition</code> 。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="JhIux" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/JhIux/" target="_blank" rel="external">例：雙向的 transition</a></p>
+
+<h3 id="Transition_的限制">Transition 的限制</h3><p><code>transition</code> 的開始和結束都必須是具體數值；例如以下的 CSS 屬性值之間是無法被計算的，就無法使用 <code>transition</code> ：</p>
+<ul>
+<li><code>height: auto</code> (不確定的值) 至 <code>height: 100px</code> (具體數值)</li>
+<li><code>display: none</code> 至 <code>display: block</code></li>
+<li><code>background: url(foo.jpg)</code> 至 <code>background: url(bar.jpg)</code></li>
+</ul>
+<p data-height="268" data-theme-id="0" data-slug-hash="DgFKd" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/DgFKd/" target="_blank" rel="external">例： transition 無法作用的狀況</a></p>
+
+<p>另外 <code>transition</code> 需要事件來觸發它的動作，所以沒辦法在一進頁面自動產生效果。所以如果不透過 JavaScript 事件處理的話，就只能配合與事件有關的 Pseudo Classes (偽類別，即 <code>:hover</code> 、 <code>:focus</code> 等) 來呈現效果了。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="jAaxk" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/jAaxk/" target="_blank" rel="external">例：搭配 :focus 偽類別</a></p>
+
+<h3 id="搭配_jQuery">搭配 jQuery</h3><p>如果搭配 jQuery 等可以操作 DOM 元素的 library ，我們就可以做更複雜的操作。</p>
+<p data-height="300" data-theme-id="0" data-slug-hash="lcCHb" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/lcCHb/" target="_blank" rel="external">例：透過切換 class 來做 transition</a></p>
+
+<h3 id="瀏覽器支援">瀏覽器支援</h3><p>目前包含 IE 10+ 的主流瀏覽器都已經支援 <code>transition</code> ，可參考 <a href="http://caniuse.com/#search=transition" target="_blank" rel="external">Can I use</a> 。</p>
+<h2 id="Animation">Animation</h2><p>雖然 <code>transition</code> 屬性簡單易用，但也有上述的侷限。因此就有了 <code>animation</code> 這個屬性來彌補其不足。</p>
+<h3 id="基本的_Animation">基本的 Animation</h3><p>最基本的 <code>animation</code> 要指定動畫持續的時間，還有動畫的名稱。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: <span class="number">1s</span> fat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而動畫的定義則是用 <code>@keyframes</code> 這個屬性，例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> fat </span>&#123;</span><br><span class="line">  0% <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>; &#125;</span></span><br><span class="line">  50% <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">150px</span></span></span>; &#125;</span></span><br><span class="line">  100% <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">200px</span></span></span>; &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>@keyframes</code> 中可以定義多個狀態，範圍可從 <code>0%</code> 至 <code>100%</code> 。另外 <code>0%</code> 可寫成 <code>from</code> ， <code>100%</code> 可寫成 <code>to</code> ，其他狀態還是使用數字百分比。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="pyngJ" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/pyngJ/" target="_blank" rel="external">例：基本的 animation</a></p>
+
+<h3 id="animation_屬性詳解"><code>animation</code> 屬性詳解</h3><p><code>animation</code> 屬性和 <code>transition</code> 屬性一樣，都是簡寫屬性。它代表以下屬性的總和：</p>
+<ul>
+<li><code>animation-name</code>: 動畫名稱</li>
+<li><code>animation-duration</code>: 播放一次動畫需要的時間，單位為 <code>s</code> 或 <code>ms</code></li>
+<li><code>animation-timing-function</code>: 動畫的加速度曲線</li>
+<li><code>animation-delay</code>: 延遲多久後啟始動畫</li>
+<li><code>animation-iteration-count</code>: 動畫播放次數，可用 <code>infinite</code></li>
+<li><code>animation-direction</code>: 動畫播放方向</li>
+<li><code>animation-fill-mode</code>: 指定動畫播放前後的狀態</li>
+<li><code>animation-play-state</code>: 指定動畫播放或暫停</li>
+</ul>
+<p>其中 <code>animation-duration</code> 、 <code>animation-timing-function</code> 、 <code>animation-delay</code> 可參考上面 <code>transition</code> 相似屬性的介紹。</p>
+<h3 id="animation-iteration-count_播放次數"><code>animation-iteration-count</code> 播放次數</h3><p>預設 <code>animation</code> 和 <code>transition</code> 一樣只會動作一次，但我們可以加入數字來指定動畫效果播放的次數。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="lqCjD" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/lqCjD/" target="_blank" rel="external">例：指定 animation 的播放次數</a></p>
+
+<p>或是以 <code>infinite</code> 這個關鍵字來無限次播放。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="fybqJ" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/fybqJ/" target="_blank" rel="external">例：無限次播放 animation</a></p>
+
+<h3 id="animation-direction_播放方向"><code>animation-direction</code> 播放方向</h3><p>所謂的播放方向是指從動畫效果 0% 到 100% 的方向，同時也是預設的 <code>normal</code> 值。可供設定的值如下：</p>
+<ul>
+<li><code>normal</code> ：每次播放都是從 0% 至 100%</li>
+<li><code>reverse</code> ：每次播放都是從 100% 至 0%</li>
+<li><code>alternate</code> ：播放兩次以上的話，會從 0% 至 100% ，再從 100% 回到 0% ，以此類推</li>
+<li><code>alternate-reverse</code> ：跟 <code>alternate</code> 相反，會先從 100% 開始播放</li>
+</ul>
+<p><code>animation-direction: reverse</code> ：</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="vBtAd" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/vBtAd/" target="_blank" rel="external">例：animation 播放方向 reverse</a></p>
+
+<p><code>animation-direction: alternate</code> ：</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="bwkCf" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/bwkCf/" target="_blank" rel="external">例：animation 播放方向 alternate</a></p>
+
+<p><code>animation-direction: alternate-reverse</code> ：</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="kCfAE" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/kCfAE/" target="_blank" rel="external">例：animation 播放方向 alternate-reverse</a></p>
+
+<h3 id="animation-fill-mode_動畫播放前後的狀態"><code>animation-fill-mode</code> 動畫播放前後的狀態</h3><p>如果想要控制動畫播放完後的最終狀態，可以用 <code>animation-fill-mode</code> 屬性，它可設定的值如下：</p>
+<ul>
+<li><code>none</code> ：回到未播放動畫效果前的狀態</li>
+<li><code>forwards</code> ：停在動畫的最後一個狀態上</li>
+<li><code>backwards</code> ：停在動畫的第一個狀態上 (實測不出來)</li>
+<li><code>both</code> ：視 <code>animation-direction</code> 來決定停在哪一個狀態上。</li>
+</ul>
+<p data-height="268" data-theme-id="0" data-slug-hash="fazAe" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/fazAe/" target="_blank" rel="external">例：指定 animation 播放後的狀態 forwards</a></p>
+
+<p>註： <code>backwards</code> 這個值我在 Chrome 和 Firefox 都試不出來。</p>
+<h3 id="animation-play-state_指定動畫播放或暫停"><code>animation-play-state</code> 指定動畫播放或暫停</h3><p><code>animation-play-state</code> 有兩個屬性值： <code>running</code> 及 <code>paused</code> ，其中 <code>running</code> 是預設值。</p>
+<p>這個屬性必須獨立定義，無法被放在 <code>animation</code> 屬性裡。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="HhGqj" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/HhGqj/" target="_blank" rel="external">例：決定 animation 執行或暫停</a></p>
+
+<h3 id="瀏覽器支援-1">瀏覽器支援</h3><p><code>animation</code> 屬性目前在 IE 10+ 以上主流瀏覽器都可以執行，但採用 Webkit 引擎的瀏覽器必須加上 <code>-webkit-</code> 前綴字串。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">div</span>:<span class="value">hover &#123;</span><br><span class="line">  -webkit-animation: <span class="number">1s</span> name</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">animation</span>:<span class="value"> <span class="number">1s</span> name</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="at_rule">@<span class="keyword">-webkit-keyframes</span> name </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> name </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="實例">實例</h2><p>接下來我們用 Animation 搭配 Transform 來做簡單的旋轉動畫。 Transform 是用來讓 HTML 元素變形的屬性，雖然跟動畫沒有直接的關係，但它是可以套用動畫效果的。這邊我不打算詳細介紹它，只會用到旋轉的效果。</p>
+<p>它的語法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotate</span>(θ)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform-origin</span>:<span class="value"> x y</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>rotate(θ)</code> 是指讓指定元素以參考點為中心軸 2D 旋轉 θ 度， <code>transform-origin</code> 會將 <code>(x, y)</code> 設為參考點。當我們把 <code>transform: rotate(θ)</code> 放到 <code>@keyframes</code> 中時， <code>animation</code> 就會改變 <code>θ</code> 值來做出動畫效果。</p>
+<p>以下模擬簡單的太陽、地球、月亮的週期變化。</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="gkdBx" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/gkdBx/" target="_blank" rel="external">範例：模擬太陽、地球、月亮的週期</a></p>
+
+<p>更酷的範例參考：</p>
+<ul>
+<li><a href="http://www.creativebloq.com/css3/animation-with-css3-712437" target="_blank" rel="external">20 stunning examples of CSS3 animation</a></li>
+<li><a href="http://neography.com/experiment/circles/solarsystem/" target="_blank" rel="external">Our Solar System</a></li>
+<li><a href="http://designscrazed.com/css3-animation-examples/" target="_blank" rel="external">30 Best Creative CSS3 Animation Examples</a></li>
+<li><a href="http://goo.gl/SHWmEx" target="_blank" rel="external">Codepen.io CSS Animation</a></li>
+</ul>
+<h2 id="開發工具">開發工具</h2><h3 id="CSS_3-0_Maker">CSS 3.0 Maker</h3><p><a href="http://www.css3maker.com" target="_blank" rel="external">CSS 3.0 Marker</a> 可以讓我們調整 CSS3 相關屬性的參數，並預覽效果。確認後就可以產生對應的 CSS 碼，套用到專案上。</p>
+<h3 id="Animate-css">Animate.css</h3><p><a href="http://daneden.github.io/animate.css/" target="_blank" rel="external">Animate.css</a> 這個 CSS framework 提供很多組已經定義好動畫效果的 CSS class ，讓我們可以直接套在 HTML 元素上，或是搭配 jQuery 來操作 class 來產生動畫效果。</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="pDblC" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/pDblC/" target="_blank" rel="external">範例： Animation.css</a></p>
+
+<h3 id="Animate_Mixin_for_Compass/SASS">Animate Mixin for Compass/SASS</h3><p><a href="http://thecssguru.freeiz.com/animate/" target="_blank" rel="external">Animate Mixin for Compass/SASS</a> 提供了一組很棒的 CSS3 Animation mixins ，讓我們可以直接套用。它其實就是從 Animation.css 移植過來的。</p>
+<h3 id="AniJS">AniJS</h3><p><a href="http://anijs.github.io/" target="_blank" rel="external">AniJS</a> 是一個宣告式的 CSS 動畫 library ，它讓我們可以在 HTML 元素中加入一個 <code>data-anijs</code> 屬性，並用敘述式來定義動作事件、動畫效果、以及要作用在哪個元素上。要特別注意的是，它也必須搭配 Animation.css 使用。</p>
+ <p data-height="268" data-theme-id="0" data-slug-hash="cEqhf" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/cEqhf/" target="_blank" rel="external">範例： AniJS</a></p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2014/06/03/css3-animation-notes/" data-id="ci9ji3c2e002f15bylrao6zq7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2014/07/21/summary-of-common-php-mistakes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          整理一些常見的 PHP 錯誤
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">利用 generator-angular 來建立一個 AngularJS 專案</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/blog/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/blog/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/blog/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/blog/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/blog/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/blog/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/blog/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/blog/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/blog/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/blog/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/blog/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/blog/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/blog/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/blog/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/blog/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/blog/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/blog/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/blog/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/blog/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/blog/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/blog/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/blog/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/blog/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/blog/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/blog/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/blog/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/blog/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/blog/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/blog/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/blog/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/blog/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/blog/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/blog/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/blog/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/blog/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/blog/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/blog/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/blog/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/blog/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/blog/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/blog/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/blog/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/blog/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/blog/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/blog/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/blog/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/07/">July 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/03/">March 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/02/">February 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/01/">January 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/12/">December 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/10/">October 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/09/">September 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/08/">August 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/07/">July 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/06/">June 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/05/">May 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/04/">April 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/03/">March 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/02/">February 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/01/">January 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/12/">December 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/11/">November 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/10/">October 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/09/">September 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/07/">July 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/06/">June 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/05/">May 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/04/">April 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/03/">March 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/02/">February 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/01/">January 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/12/">December 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/11/">November 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/10/">October 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/09/">September 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/08/">August 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/07/">July 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/06/">June 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/05/">May 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/04/">April 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/03/">March 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/02/">February 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/01/">January 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/12/">December 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/11/">November 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/10/">October 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/09/">September 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/08/">August 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/07/">July 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/06/">June 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/05/">May 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/04/">April 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/03/">March 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/02/">February 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/01/">January 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/12/">December 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/11/">November 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/10/">October 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/09/">September 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/08/">August 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/07/">July 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/06/">June 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/05/">May 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/04/">April 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/03/">March 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/02/">February 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/01/">January 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/12/">December 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/11/">November 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/10/">October 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/09/">September 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/08/">August 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/07/">July 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/06/">June 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/05/">May 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/04/">April 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://www.jaceju.net/blog/page/26/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-/blog/archives/330" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/04/18//blog/archives/330/" class="article-date">
+  <time datetime="2008-04-17T16:00:00.000Z" itemprop="datePublished">2008-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/04/18//blog/archives/330/">Bridge 模式的簡單範例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天跟 <a href="http://blog.pixnet.net/HACGIS" target="_blank" rel="external">tokimeki</a> 討論到 Bridge 模式的例子，這裡我做個簡單的記錄。</p>
+<p>假設我們有軟體 (Software) 會透過印表機 (Printer) 做列印輸出，而軟體有文字編輯器 (輸出文字) 與影像編輯器 (輸出影像) ，然後印表機則可分做雷射、噴墨及點陣式。</p>
+<p>在設計上，這兩者分別屬於不同的繼承體系，而 Software 又會利用到 Printer ，因此它們形成了 Bridge 關係，如下圖： </p>
+<p><a href="/resources/bridge/PrinterSample.png"><img src="/resources/bridge/PrinterSample.png" alt="Bridge 範例"></a></p>
+<p>把幾個討論心得整理如下：</p>
+<ul>
+<li><p>由於 Printer 抽象類封裝了實作上的不同，因此 Software 的子類別不必瞭解 Printer 的實作，它們只要知道 Printer 提供哪些介面可用。這些子類別會依照自己的需要來組合這些介面，就算用不到也沒關係。</p>
+</li>
+<li><p>在 Software 的子類別可以加入屬於自己的特殊方法，因為它們通常會依場合直接被調用，所以這裡並不需要遵守 LSP 原則。</p>
+</li>
+<li><p>對 Printer 體系來說，它不需要知道誰來用它；但反過來 Software 體系因為需要 Printer 體系的支援，所以形成了單向耦合。</p>
+</li>
+<li><p>對 Software 體系來說，只要它需要新的功能，而且這些功能所需要的實作也在 Printer 抽象類支援的範圍之內，那麼它就可以直接調用 Printer 物件的方法，而不會影響 Printer 體系。</p>
+</li>
+<li><p>如果 Software 體系需要的新功能是 Printer 抽象類所沒有的，那麼還是可以在 Printer 抽象類裡加入新的方法，而實作則交給 Printer 的子類別完成。這樣的修改完全不會影響 Software 體系。 </p>
+</li>
+</ul>
+<p>更詳細的 Bridge 模式介紹可參考良葛格的「 <a href="http://caterpillar.onlyfun.net/Gossip/DesignPattern/BridgePattern.htm" target="_blank" rel="external">Design Pattern: Bridge 模式</a>」一文。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/04/18//blog/archives/330/" data-id="ci9ji3c9n00dg15byvnu2lwcc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/程式開發/">程式開發</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/329" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/04/17//blog/archives/329/" class="article-date">
+  <time datetime="2008-04-16T16:00:00.000Z" itemprop="datePublished">2008-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/04/17//blog/archives/329/">簡單說明「抽象類」與「介面」</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>繼承抽象類表示類別「是個什麼」，實作介面表示類別「能做什麼」。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/04/17//blog/archives/329/" data-id="ci9ji3c9p00dk15by3qoy16r9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/心得感想/">心得感想</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/328" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/04/15//blog/archives/328/" class="article-date">
+  <time datetime="2008-04-14T16:00:00.000Z" itemprop="datePublished">2008-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/04/15//blog/archives/328/">給 Web 開發者的一句話</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>不管你要做什麼服務，<span style="color:#000;">正妹</span>就是最好的 Interface !!!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/04/15//blog/archives/328/" data-id="ci9ji3c9q00dm15byjqkomdgu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/心得感想/">心得感想</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/327" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/04/14//blog/archives/327/" class="article-date">
+  <time datetime="2008-04-13T16:00:00.000Z" itemprop="datePublished">2008-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/04/14//blog/archives/327/">[PHP] 在 PHP5 中實作 AOP 的概念</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>這篇積在我電腦裡很久了，一直沒公開…這次趁著要幫我的 Library 加料，順便拿出來分享一下心得。 </p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2008/04/14//blog/archives/327/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/04/14//blog/archives/327/" data-id="ci9ji3c9r00do15bylik2omv2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/326" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/04/13//blog/archives/326/" class="article-date">
+  <time datetime="2008-04-12T16:00:00.000Z" itemprop="datePublished">2008-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/04/13//blog/archives/326/">[Web] 連結分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>朋友問我這些連結怎麼看得完？我其實沒有全部看完，只是挑重點看。其他的都是瞄個大概，然後記下先；註解也是看懂大概後寫的 (我的英文閱讀能力普普) ，所以有時候可能會錯，請大家原諒。 &gt;_&lt; </p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2008/04/13//blog/archives/326/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/04/13//blog/archives/326/" data-id="ci9ji3c9s00dq15byu1xm2ijf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/連結分享/">連結分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/325" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/04/10//blog/archives/325/" class="article-date">
+  <time datetime="2008-04-09T16:00:00.000Z" itemprop="datePublished">2008-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/04/10//blog/archives/325/">[Web] 連結分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Accessing-Attributes-and-Cloning-Nodes-with-the-DOM-XML-Extension-in-PHP-5/" target="_blank" rel="external">Accessing Attributes and Cloning Nodes with the DOM XML Extension in PHP 5</a> </li>
+</ul>
+<p>教你用 PHP5 的 DOM 套件存取元素屬性或用來複製節點。 </p>
+<ul>
+<li><a href="http://www.ibuildings.nl/blog/archives/811-Multithreading-in-PHP-with-CURL.html" target="_blank" rel="external">Multithreading in PHP with CURL</a></li>
+</ul>
+<p>用  cURL 在 PHP 中模擬出多執行緒。</p>
+<ul>
+<li><a href="http://devzone.zend.com/article/3336-Reading-and-Writing-Spreadsheets-with-PHP" target="_blank" rel="external">Reading and Writing Spreadsheets with PHP</a> </li>
+</ul>
+<p>用 PHP 讀寫 Excel 。 </p>
+<ul>
+<li><a href="http://devforhire.blogspot.com/2008/03/fluent-interfaces-and-code-readability.html" target="_blank" rel="external">Fluent interfaces and code readability</a></li>
+</ul>
+<p>不要濫用 Fluent Interface ，要顧及程式碼的可讀性。 </p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Creating-an-Error-Handling-Module-for-a-PHP-5-File-Uploader/" target="_blank" rel="external">Creating an Error Handling Module for a PHP 5 File Uploader</a> </li>
+</ul>
+<p>建立一個錯誤處理器，以便在檔案上傳後可以方便處理錯誤。</p>
+<ul>
+<li><a href="http://www.ibm.com/developerworks/edu/os-dw-os-php-ondemvideo1.html?ca=drs-tp1408" target="_blank" rel="external">Setting up your own on-demand video site with PHP, Part 1: Groundwork</a> </li>
+</ul>
+<p>用 PHP 建立一個影像即時播送網站。</p>
+<ul>
+<li><a href="http://verens.com/archives/2008/04/03/translation-in-php/" target="_blank" rel="external">Translation in PHP</a></li>
+</ul>
+<p>教你做一個多國語言的 PHP 應用程式。</p>
+<ul>
+<li><a href="http://blog.pixnet.net/HACGIS/post/16081003" target="_blank" rel="external">名稱空間的注意事項</a></li>
+</ul>
+<p>在 PHP 5.3 裡使用 Namespaces 時要注意的地方。 </p>
+<h3 id="Zend_Framework">Zend Framework</h3><ul>
+<li><a href="http://www.phpchina.com/bbs/thread-56702-1-1.html" target="_blank" rel="external">Zend Framework中Ajax的一個使用技巧</a> </li>
+</ul>
+<p>我的實作也是基於同樣的概念，不過我是聽從 Mark 的建議，改以切換 View Object 來實現。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://devorbit.net/english/css-designs-using-float/" target="_blank" rel="external">CSS designs using float</a></li>
+</ul>
+<p>這篇跟我的「<a href="http://blog.roodo.com/jaceju/archives/152005.html" target="_blank" rel="external">樂多Blog排版入門</a>」很像，有興趣讀英文的朋友不妨參考看看。</p>
+<ul>
+<li><a href="http://bitsonewmedia.com/permalink/the_amazing_li" target="_blank" rel="external">The Amazing LI: Using CSS and Unordered List Items to Do Just About Anything</a> </li>
+</ul>
+<p>教你把無序清單轉換成各種樣式。 </p>
+<ul>
+<li><a href="http://speckyboy.com/2008/03/28/top-12-css-frameworks-and-how-to-understand-them/" target="_blank" rel="external">Top 12 CSS Frameworks and How to Understand Them</a></li>
+</ul>
+<p>將常見的 12 個 CSS Frameworks 整理出來，其中 <a href="http://www.yaml.de/en/" target="_blank" rel="external">YAML</a> 真的是滿強的。 </p>
+<ul>
+<li><a href="http://trevordavis.net/blog/tutorial/the-6-most-important-css-techniques-you-need-to-know/" target="_blank" rel="external">The 6 Most Important CSS Techniques You Need To Know</a> </li>
+</ul>
+<p>6 個滿實用的 CSS 技巧。 </p>
+<ul>
+<li><a href="http://cameronmoll.com/articles/extensible-css/" target="_blank" rel="external">The Highly Extensible CSS Interface</a> </li>
+</ul>
+<p><a href="http://cameronmoll.com/archives/2008/02/the_highly_extensible_css_interface_the_series/" target="_blank" rel="external">該系列</a>的文章教你打造可隨視窗寬度延展的 CSS 樣式。 </p>
+<ul>
+<li><a href="http://meiert.com/en/indices/css-properties/" target="_blank" rel="external">CSS Properties Index</a></li>
+</ul>
+<p>這篇好！幾乎把所有 CSS 屬性都列出來了！ </p>
+<ul>
+<li><a href="http://www.phpied.com/background-repeat-and-css-sprites/" target="_blank" rel="external">Background repeat and CSS sprites</a></li>
+</ul>
+<p>利用 CSS sprite 來製作重複的背景圖。 </p>
+<h2 id="JavaScript">JavaScript</h2><h3 id="jQuery">jQuery</h3><ul>
+<li><a href="http://www.learningjquery.com/2008/03/working-with-events-part-1" target="_blank" rel="external">Working with Events, part 1</a> </li>
+</ul>
+<p>主要是教你如何運用 jQuery 的 event 機制。 </p>
+<ul>
+<li><a href="http://css-tricks.com/revealing-photo-slider/" target="_blank" rel="external">Revealing Photo Slider</a></li>
+</ul>
+<p>教你如何先顯示圖片的某個區域，點選後再顯示完整圖片。</p>
+<ul>
+<li><a href="http://plog.longwin.com.tw/programming/2008/04/02/focus_on_first_form_element_2008" target="_blank" rel="external">用 jQuery Focus Form 的第一個輸入欄位</a> </li>
+</ul>
+<p>常用的技巧！</p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://www.savethedevelopers.org/" target="_blank" rel="external">SaveTheDevelopers.org</a> </li>
+</ul>
+<p>向 IE6 說 No ！這個網站有提供一個 Script 讓使用者在以 IE6 瀏覽你的網站時，會出現一個提示升級的訊息。 </p>
+<ul>
+<li><a href="http://blog.blueshop.com.tw/topcat/archive/2008/04/03/54681.aspx" target="_blank" rel="external">跨網站單一登入(Single Sign On)的作法概念</a></li>
+</ul>
+<p>這個也可能會用到，記下先。</p>
+<h3 id="Browser">Browser</h3><ul>
+<li><a href="http://stylizedweb.com/2008/03/25/browser-testing/" target="_blank" rel="external">Browser testing</a> </li>
+</ul>
+<p>收集了一些測試瀏覽器畫面的服務。</p>
+<h3 id="Design">Design</h3><ul>
+<li><a href="http://blog.yoren.info/2008/04/01/495/" target="_blank" rel="external"> 免費網頁小圖示：Vaga</a></li>
+</ul>
+<p><a href="http://www.tenbytwenty.com/products/icon-sets/vaga" target="_blank" rel="external">Vaga</a> 提供了一堆免費的小圖示。 </p>
+<h2 id="Other">Other</h2><h3 id="Software">Software</h3><ul>
+<li><a href="http://cha.homeip.net/blog/archives/2008/03/mplayerffmpeg.html" target="_blank" rel="external"> mplayer、ffmpeg 指令備忘</a></li>
+</ul>
+<p>也是記下先。</p>
+<h3 id="4月1日(愚人節快樂)">4月1日(愚人節快樂)</h3><ul>
+<li><p><a href="http://www.css3.info/ie9-to-include-alternative-css2012-standard/" target="_blank" rel="external">IE9 to include alternative ‘CSS.2012′ standard</a></p>
+</li>
+<li><p><a href="http://ejohn.org/blog/classy-query/" target="_blank" rel="external">Classy Query</a></p>
+</li>
+<li><p><a href="http://www.robertnyman.com/2008/04/01/microsoft-will-use-gecko-layout-engine-in-ie-8/" target="_blank" rel="external">Microsoft will use Gecko layout engine in IE 8</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/04/10//blog/archives/325/" data-id="ci9ji3c9t00ds15byq8wahig7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/連結分享/">連結分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/324" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/03/31//blog/archives/324/" class="article-date">
+  <time datetime="2008-03-30T16:00:00.000Z" itemprop="datePublished">2008-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/03/31//blog/archives/324/">如何學習 Zend Framework</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天又被問到怎麼開始學 Zend Framework ，我是覺得要上手並不難，但是基礎一定要有。</p>
+<p>那麼哪些東西算是基礎呢？當然 HTML 、 JavaScript (Ajax) 或 CSS 等必備技能就不必多說了；以下我介紹幾個我個人認為滿重要的部份以及學習的次序：</p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2008/03/31//blog/archives/324/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/03/31//blog/archives/324/" data-id="ci9ji3c9u00du15bycxkna7p9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/323" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/03/30//blog/archives/323/" class="article-date">
+  <time datetime="2008-03-29T16:00:00.000Z" itemprop="datePublished">2008-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/03/30//blog/archives/323/">[Web] 連結分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Handling-HTML-Strings-and-Files-with-the-DOM-XML-Extension-in-PHP-5/" target="_blank" rel="external">Handling HTML Strings and Files with the DOM XML Extension in PHP 5</a> </li>
+</ul>
+<p>教你用 PHP5 的 DOM XML 套件來處理 HTML 字串或檔案。 </p>
+<ul>
+<li><a href="http://schlueters.de/blog/archives/68-PHP-5.3-Up-to-30-performance-win.html" target="_blank" rel="external">PHP 5.3: Up to 30% performance win</a></li>
+</ul>
+<p>PHP 5.3 的運行效能又提升了。 </p>
+<ul>
+<li><a href="http://urbanoalvarez.es/blog/2008/03/21/php-logging-class/" target="_blank" rel="external">PHP logging class</a> </li>
+</ul>
+<p>這個簡單好用的 Log 套件拿來給舊專案用還不錯。 </p>
+<ul>
+<li><a href="http://php.dzone.com/news/watch-your-post-save-php-post-" target="_blank" rel="external">Watch Your POST: Save PHP POST Data as XML</a></li>
+</ul>
+<p>這個 function 可以幫你把陣列轉換成 xml 格式。 </p>
+<ul>
+<li><a href="http://blog.maartenballiauw.be/post/2008/03/Reuse-Excel-business-logic-with-PHPExcel.aspx" target="_blank" rel="external">Reuse Excel business logic with PHPExcel</a> </li>
+</ul>
+<p>可以透過 PHPExcel 讀取 Excel 裡的公式所算出來的值，使得資料能與 Excel 檔案同步。 </p>
+<ul>
+<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/2fd89e51bc60e62043a75b4d.html" target="_blank" rel="external">foreach在引用时的陷阱</a></li>
+</ul>
+<p>嚴格來說這個是特性，但還是要注意一下。</p>
+<ul>
+<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/17f882261608c3138b82a12f.html" target="_blank" rel="external">半透明的装饰模式</a></li>
+</ul>
+<p>奇怪的方式…這個再研究看看。</p>
+<h3 id="Zend_Framework">Zend Framework</h3><ul>
+<li><p><a href="http://www.killerphp.com/zend-framework/videos/mvc-zend-part-1.php" target="_blank" rel="external">VIDEO TUTORIAL: SETTING UP AN MVC STRUCTURE WITH THE ZEND FRAMEWORK - PART 1 OF 2</a> </p>
+</li>
+<li><p><a href="http://www.killerphp.com/zend-framework/videos/mvc-zend-part-2.php" target="_blank" rel="external">VIDEO TUTORIAL: SETTING UP AN MVC STRUCTURE WITH THE ZEND FRAMEWORK - PART 2 OF 2</a></p>
+</li>
+</ul>
+<p>這兩個影片教你如何建立 ZF 的 MVC 目錄結構。 </p>
+<ul>
+<li><a href="http://devzone.zend.com/article/3311-Zend_Layout-and-Zend-_View-Enhancements-Webinar" target="_blank" rel="external">Zend_Layout and Zend _View Enhancements Webinar</a></li>
+</ul>
+<p>這個是 Zend_Layout 與 Zend_View 的影片教學。 </p>
+<ul>
+<li><a href="http://www.zendframeworkinaction.com/2008/03/27/zend-framework-151-released/" target="_blank" rel="external">Zend Framework 1.5.1 released</a> </li>
+</ul>
+<p>ZF 1.5.1 釋出，修正一些 Bug 。 </p>
+<ul>
+<li><a href="http://weierophinney.net/matthew/archives/165-Login-and-Authentication-with-Zend-Framework.html" target="_blank" rel="external">Login and Authentication with Zend Framework</a></li>
+</ul>
+<p>登入與身份驗證的教學。</p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.themaninblue.com/experiment/CSSLoveChild/" target="_blank" rel="external">CSS Love Child</a></li>
+</ul>
+<p>這個有趣的網站可以讓你將另一個網站的 CSS 套用到其他網站中。 </p>
+<ul>
+<li><a href="http://www.strictlycss.com/articles/article/40/the-only-css-layout-you-need" target="_blank" rel="external">The only CSS layout you need(?)</a></li>
+</ul>
+<p>列舉出一些常見的 CSS Layout 方式。可以把它們複製回來當範本。</p>
+<ul>
+<li><a href="http://www.456bereastreet.com/archive/200610/useful_tips_for_writing_efficient_css/" target="_blank" rel="external">Useful tips for writing efficient CSS</a></li>
+</ul>
+<p>這篇是作者在看完 <a href="http://www.snook.ca/archives/html_and_css/top_css_tips/" target="_blank" rel="external">Top CSS Tips</a> 的心得。 </p>
+<ul>
+<li><a href="http://css-tricks.com/links-of-interest-23/" target="_blank" rel="external">Links of Interest</a></li>
+</ul>
+<p>這是例行的 CSS 文章整理。 </p>
+<ul>
+<li><a href="http://www.hackszine.com/blog/archive/2008/03/easiest_crossbrowser_css_minhe.html" target="_blank" rel="external">Easiest cross-browser CSS min-height</a> </li>
+</ul>
+<p>如何建立跨瀏覽器的 CSS 最小高度與寬度，超簡單…而且很好用。重點在於那個 auto !important ，而且這三個規則的順序不能亂調。 </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.foo</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">min-height</span>:<span class="value"><span class="number">100px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">height</span>:<span class="value">auto <span class="important">!important</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">100px</span></span></span>; &#125;</span></span><br><span class="line"><span class="class">.bar</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">min-width</span>:<span class="value"><span class="number">100px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value">auto <span class="important">!important</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100px</span></span></span>; &#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="http://css-tricks.com/nine-techniques-for-css-image-replacement/" target="_blank" rel="external">Nine Techniques for CSS Image Replacement</a></li>
+</ul>
+<p>舉出 9 種常見的 CSS 影像代替文字的作法。可惜以現代的瀏覽器支援程度來說，沒有一個作法是完美的，我們只好挑一個較為適合的來用。 </p>
+<ul>
+<li><a href="http://nunos.zi-yu.com/?p=81" target="_blank" rel="external">Divs instead of tables</a></li>
+</ul>
+<p>用範例教你如何將舊的 Table 排版方式改用 CSS + Div 排版。 </p>
+<ul>
+<li><a href="http://snook.ca/archives/html_and_css/content_overlay_css/" target="_blank" rel="external">Content Overlay with CSS</a></li>
+</ul>
+<p>用 CSS 做出當滑鼠移過後，呈現額外內容的效果。 </p>
+<ul>
+<li><a href="http://woork.blogspot.com/2008/03/write-well-structured-css-file-without.html" target="_blank" rel="external"> Write a well structured CSS file without becoming crazy</a></li>
+</ul>
+<p>這篇教你如何寫出有結構且好維護的 CSS 碼，值得一看！ </p>
+<ul>
+<li><a href="http://msdn2.microsoft.com/en-us/library/cc351024(VS.85" target="_blank" rel="external">CSS Compatibility and Internet Explorer</a>.aspx)</li>
+</ul>
+<p>這是微軟 MSDN 提供的 IE 各版本 CSS 相容性一覽。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.thinkingphp.org/2008/03/23/run-intense-js-without-freezing-the-browser/" target="_blank" rel="external">Run intense JS without freezing the browser</a></li>
+</ul>
+<p>因為在頁面初始化時，我們對 HTML 元素繫結了太多事件，造成瀏覽器常有無法回應的狀況。這篇透過 jQuery 教大家如何避免瀏覽器凍住的問題。 </p>
+<ul>
+<li><a href="http://techeyes.blogspot.com/2007/11/making-html-select-readonly.html" target="_blank" rel="external">Making a HTML select readonly</a></li>
+</ul>
+<p>暫時還想不出這個可以用在哪。</p>
+<ul>
+<li><a href="http://www.dtsn.co.uk/2008/03/26/bouncing-javascript-tutorial/" target="_blank" rel="external">Bouncing Javascript</a></li>
+</ul>
+<p>教你做出區塊蹦出與收回的效果。</p>
+<ul>
+<li><a href="http://css-tricks.com/javascript-page-slider-roundup/" target="_blank" rel="external">Javascript Page Slider Roundup</a></li>
+</ul>
+<p>收集了一堆 Slider 效果。 </p>
+<ul>
+<li><a href="http://www.sitepoint.com/blogs/2008/03/19/a-collection-is-not-an-array/" target="_blank" rel="external">A collection is not an array</a> </li>
+</ul>
+<p>請直接參考這篇翻譯： <a href="http://www.hkpug.net/node/244" target="_blank" rel="external">DOM 的集合 (collection) 不等於陣列 (array)</a> 。 </p>
+<h3 id="jQuery">jQuery</h3><ul>
+<li><a href="http://blogs.pathf.com/agileajax/2008/03/jquery-form-and.html" target="_blank" rel="external">jQuery Form and jQuery UI Tabs: Two great tastes that taste great together</a> </li>
+</ul>
+<p>介紹如何整合 jQuery 的 Form 及 UI Tabs 兩個套件。 </p>
+<ul>
+<li><a href="http://webplicity.net/flexigrid/" target="_blank" rel="external">Flexigrid</a></li>
+</ul>
+<p>這個用來做後台列表是很棒的！不僅有分頁，還能調整表格欄位！</p>
+<ul>
+<li><a href="http://www.jondavis.net/blog/post/2008/03/jqalert---The-jQuery-empowered-alert(" target="_blank" rel="external">Introducing jqalert - The jQuery-empowered alert() replacement</a>-replacement.aspx) </li>
+</ul>
+<p>很棒的 alert 替代方案。 </p>
+<ul>
+<li><a href="http://www.webappers.com/2008/03/27/markitup-turns-any-textarea-into-markup-editor-in-jquery/" target="_blank" rel="external">MarkItUp Turns Any Textarea into Markup Editor in jQuery by WebAppers</a> </li>
+</ul>
+<p><a href="http://markitup.jaysalvat.com/" target="_blank" rel="external">markItUp</a> 是一個線上編輯器。它能協助你處理一些 Web 常見的語法，像是 HTML 、 CSS 、 BBCode 等等。 </p>
+<ul>
+<li><a href="http://abeautifulsite.net/notebook.php?article=58" target="_blank" rel="external">jQuery File Tree</a> </li>
+</ul>
+<p>這個也是好物！這個套件可以協助我們呈現檔案目錄結構。</p>
+<ul>
+<li><a href="http://www.noupe.com/jquery/50-amazing-jquery-examples-part1.html" target="_blank" rel="external">50+ Amazing Jquery Examples- Part1</a> </li>
+</ul>
+<p>這篇收集了很多 jQuery 的套件與特效教學。 </p>
+<ul>
+<li><a href="http://www.webdesignerwall.com/tutorials/jquery-tutorials-for-designers/" target="_blank" rel="external">jQuery Tutorials for Designers</a></li>
+</ul>
+<p>這篇主要是為 Designer 介紹 jQuery 的寫法以及一些常見的特效，並配合圖解來說明所需要的 HTML 結構，強烈推薦！ </p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://www.blueidea.com/tech/web/2008/5575.asp" target="_blank" rel="external">二行代码解决全部网页木马</a></li>
+</ul>
+<p>我只是想知道像是 Google Map 這樣的外掛 API 怎麼辦？我個人是認為還需要加入白名單的技巧。 </p>
+<h2 id="Internet">Internet</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2008/03/27/best-of-march-2008/" target="_blank" rel="external">Best Of March 2008</a> </li>
+</ul>
+<p>Smashing Magazine 照例會收集與推薦的網摘介紹。 </p>
+<h3 id="Service">Service</h3><ul>
+<li><a href="http://lab.xms.pl/markup-generator/" target="_blank" rel="external">XHTML/CSS Markup Generator</a> </li>
+</ul>
+<p>這個和 <a href="http://www.accessify.com/tools-and-wizards/developer-tools/markup-maker/" target="_blank" rel="external">Markup Maker</a> 是一樣的，不過語法變化性比較多。主要是透過撰寫簡單的結構，然後快速產生 XHTML/CSS 。 </p>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://lijinjoseji.wordpress.com/2008/03/24/installing-subversion-just-follow-this-7-steps/" target="_blank" rel="external">Installing Subversion? Just follow this 7 Steps</a></li>
+</ul>
+<p>Windows 上安裝 Subversion 的方法。 </p>
+<ul>
+<li><a href="http://www.oodesign.com/design-principles.html" target="_blank" rel="external"> Design Principles</a> </li>
+</ul>
+<p>常見的五個物件導向設計原則。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/03/30//blog/archives/323/" data-id="ci9ji3c9w00dw15byjsmk2yay" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/連結分享/">連結分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/322" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/03/23//blog/archives/322/" class="article-date">
+  <time datetime="2008-03-22T16:00:00.000Z" itemprop="datePublished">2008-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/03/23//blog/archives/322/">[Web] 連結分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>人氣不是我建立這個部落格的重點，我只是希望來這裡的朋友能和我一樣能學到東西。</p>
+<p>所以再強調一次：<strong>我這個壞人只會和「有自己動腦去想過，有自己動手去做過」的同好一起討論問題；那些只是要結果的網友們，請你們去有愛心的地方找食物吧。</strong></p>
+<p>當然打屁聊天也是歡迎啦~</p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2008/03/23//blog/archives/322/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/03/23//blog/archives/322/" data-id="ci9ji3c9x00dy15byvb0qccji" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/連結分享/">連結分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/321" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2008/03/17//blog/archives/321/" class="article-date">
+  <time datetime="2008-03-16T16:00:00.000Z" itemprop="datePublished">2008-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2008/03/17//blog/archives/321/">Zend Framework 1.5 正式推出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Zend Framework 1.5 正式推出了！</p>
+<p>首先<a href="http://framework.zend.com/">官方網站</a>大改版！變得更漂亮了！而且也提供了官方版的<a href="http://framework.zend.com/wiki/display/ZFDEV/Official+ZF+QuickStart">快速入門</a>，讓剛接觸的朋友也能很容易瞭解 ZF 1.5 的能耐。</p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2008/03/17//blog/archives/321/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2008/03/17//blog/archives/321/" data-id="ci9ji3c9y00e015byyigb2k4e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/blog/page/25/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/24/">24</a><a class="page-number" href="/blog/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/blog/page/27/">27</a><a class="page-number" href="/blog/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/58/">58</a><a class="extend next" rel="next" href="/blog/page/27/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/blog/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/blog/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/blog/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/blog/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/blog/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/blog/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/blog/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/blog/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/blog/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/blog/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/blog/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/blog/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/blog/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/blog/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/blog/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/blog/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/blog/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/blog/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/blog/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/blog/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/blog/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/blog/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/blog/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/blog/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/blog/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/blog/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/blog/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/blog/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/blog/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/blog/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/blog/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/blog/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/blog/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/blog/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/blog/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/blog/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/blog/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/blog/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/blog/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/blog/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/blog/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/blog/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/blog/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/blog/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/blog/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/blog/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/07/">July 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/03/">March 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/02/">February 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/01/">January 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/12/">December 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/10/">October 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/09/">September 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/08/">August 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/07/">July 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/06/">June 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/05/">May 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/04/">April 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/03/">March 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/02/">February 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/01/">January 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/12/">December 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/11/">November 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/10/">October 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/09/">September 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/07/">July 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/06/">June 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/05/">May 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/04/">April 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/03/">March 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/02/">February 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/01/">January 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/12/">December 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/11/">November 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/10/">October 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/09/">September 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/08/">August 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/07/">July 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/06/">June 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/05/">May 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/04/">April 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/03/">March 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/02/">February 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/01/">January 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/12/">December 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/11/">November 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/10/">October 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/09/">September 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/08/">August 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/07/">July 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/06/">June 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/05/">May 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/04/">April 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/03/">March 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/02/">February 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/01/">January 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/12/">December 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/11/">November 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/10/">October 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/09/">September 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/08/">August 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/07/">July 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/06/">June 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/05/">May 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/04/">April 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/03/">March 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/02/">February 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/01/">January 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/12/">December 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/11/">November 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/10/">October 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/09/">September 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/08/">August 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/07/">July 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/06/">June 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/05/">May 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/04/">April 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

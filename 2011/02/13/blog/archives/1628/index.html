@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>初探 Zend Framework 的 View 層 | 網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。
+以下我們分四個部份來初步認識 Zend Framework 的 View 層。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="初探 Zend Framework 的 View 層">
+<meta property="og:url" content="http://www.jaceju.net/blog/2011/02/13//blog/archives/1628/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。
+以下我們分四個部份來初步認識 Zend Framework 的 View 層。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初探 Zend Framework 的 View 層">
+<meta name="twitter:description" content="在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。
+以下我們分四個部份來初步認識 Zend Framework 的 View 層。">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-/blog/archives/1628" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2011/02/13//blog/archives/1628/" class="article-date">
+  <time datetime="2011-02-12T16:00:00.000Z" itemprop="datePublished">2011-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初探 Zend Framework 的 View 層
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。</p>
+<p>以下我們分四個部份來初步認識 Zend Framework 的 View 層。</p>
+<a id="more"></a>
+<h2 id="Zend_View_的基礎">Zend_View 的基礎</h2><p>在 Zend Framework 裡，樣版引擎的部份就是由 Zend_View 擔當，基本的樣版引擎功能都可以在 Zend_View 見到。</p>
+<p> Zend_View 是可以單獨使用的，用法也相當簡單。假設我們有個 view_test.php 內容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'Zend/View.php'</span>;</span><br><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(</span><br><span class="line">    <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'author'</span> =&gt; <span class="string">'Jace Ju'</span>,</span><br><span class="line">        <span class="string">'title'</span> =&gt; <span class="string">'PHP Smarty Template Engine'</span>,</span><br><span class="line">    ),</span><br><span class="line">);</span><br><span class="line"><span class="variable">$view</span> = <span class="keyword">new</span> Zend_View();</span><br><span class="line"><span class="variable">$view</span>-&gt;setBasePath(realpath(<span class="string">'.'</span>));</span><br><span class="line"><span class="variable">$view</span>-&gt;books = <span class="variable">$data</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$view</span>-&gt;render(<span class="string">'booklist.php'</span>);</span></span><br></pre></td></tr></table></figure>
+<p>程式一開始除了建立要輸出的 $data 資料外，我們還建立了一個 Zend_View 物件。但其他的程式又分別代表什麼意思呢？以下我們來一一解釋。</p>
+<h3 id="Base_Path">Base Path</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$view</span>-&gt;<span class="built_in">set</span>BasePath(realpath(<span class="string">'.'</span>));</span><br></pre></td></tr></table></figure>
+<p>與大部份樣版引擎相同，我們要先指定 Zend_View 所能讀取的樣版路徑。但我們要先解釋一下 Zend_View 在樣版路徑上的一個設計，請先參考下圖：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Base <span class="built_in">Path</span></span><br><span class="line">   |- filters (Filter <span class="built_in">Path</span>)</span><br><span class="line">   |- helpers (Helper <span class="built_in">Path</span>)</span><br><span class="line">   |- scripts (Script <span class="built_in">Path</span>)</span><br></pre></td></tr></table></figure>
+<p>基本上 Zend_View 需要一個 Base Path 用來放置 filters 、 helpers 及 scripts 等三個目錄，這三個目錄的名稱是固定的。<strong>而 scripts 就是用來放置樣版的目錄</strong>，其他兩個目錄則較少用到，有機會會再為大家介紹。</p>
+<p>一個 Zend_View 物件可以同時擁有多個 Base Paths ，因此在讀取樣版時， Zend_View 會逐一在這些 Base Paths 中尋找樣版。</p>
+<p>設定 Base Path 的方法是 setBasePath() 或 addBasePath() 這兩個方法，一般用途下這兩者並沒有差異。唯一的差異在於 setBasePath() 方法會先清空原先已經設定的 Base Path 組合後，再新增一組新的 Base Path ；而 addBasePath() 方法則是再新增另一組 Base Path 。</p>
+<p>另外透過 addScriptPath() 方法也可以讓我們直接指定 Script Path ，這時 Zend_View 就不受限於 scripts 這個名稱的影響了，例如：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$view</span>-&gt;addScriptPath(realpath(<span class="string">'./tpl'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="指定樣版變數">指定樣版變數</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$view</span>-&gt;books = <span class="variable">$data</span>;</span><br></pre></td></tr></table></figure>
+<p>然後我們可以用設定屬性值的方式，將資料指定成 View 物件的樣版變數 (因為用了 __set() 這個魔術方法) ；或是我們也可以改用 assign() 方法：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$view</span>-&gt;assign(<span class="string">'books'</span>, <span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<p>不論是指定物件屬性或是呼叫 assign() 方法，都是一樣的效果。</p>
+<h3 id="輸出內容">輸出內容</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="variable">$view</span>-&gt;render(<span class="string">'booklist.php'</span>);</span><br></pre></td></tr></table></figure>
+<p>最後我們可以透過 render() 方法來得到最終的結果，再用 echo 來輸出它。這裡 render() 方法中的樣版並不需要給它完整路徑，只要指定相對於 Script Path 的路徑即可。因此這行程式的意思就是找到相對於 view_test.php 的 scripts/booklist.php ，然後在處理完後顯示結果。</p>
+<p>另外要注意的是，獨立運作時的 Zend_View ，其樣版的副檔名是沒有限制的。不過在 Zend Framework 預設 MVC 架構下，副檔名預設會是 phtml ，稍後我們再解釋為什麼。</p>
+<h3 id="樣版內容">樣版內容</h3><p>Zend_View 在樣版的部份一般就是指 HTML ，不過通常我們也可改用其他格式的樣版，例如 XML 。 Zend Framework 將樣版稱為 View Scripts ，基本的語法就是 PHP 本身。</p>
+<p>所以上面的 booklist.php 就是我們的 View Script ，其內容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">foreach</span> (<span class="variable">$this</span>-&gt;books <span class="keyword">as</span> <span class="variable">$book</span>): <span class="preprocessor">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="title">li</span>&gt;</span>Author: <span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$book</span>[<span class="string">'author'</span>]); <span class="preprocessor">?&gt;</span></span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">li</span>&gt;</span>Title: <span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$book</span>[<span class="string">'title'</span>]); <span class="preprocessor">?&gt;</span></span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="preprocessor">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>對 View Script 來說，這裡的 $this 就是我們在 view_test.php 裡所建立的 View 物件；其他敘述的用法也都跟一般寫 PHP 沒什麼兩樣，但建議使用 PHP 的 <a href="http://php.net/manual/en/control-structures.alternative-syntax.php" target="_blank" rel="external">Alternative syntax for control structures</a> ，會讓 View Script 較為容易理解與維護。</p>
+<p>另外很重要的是，當我們在輸出變數的值時，一定要記得用 Zend_View 內建的 escape() 方法來避免被 XSS 攻擊，這是一般初學者最常忽略的地方。</p>
+<p>當然 View Script 還可以使用更多方便的功能，之後會再對這些功能做較為深入的介紹。</p>
+<h2 id="專案架構中的_View_Script">專案架構中的 View Script</h2><p>在 Zend Framework 預設的專案架構中使用 View Script 前，我們要先知道 View Script 的位置是怎麼安排的。</p>
+<p>在預設的專案結構裡， Zend_View 的 Base Path 路徑設定即為 application/views 。參考前面的說明，可以知道預設的 View Script 就會被安排在 application/views/scripts 這個目錄下。</p>
+<p>在 scripts 這個目錄下又會再區分出多個子目錄，每個子目錄其實就是對應一個 Action Controller 。例如 application/views/scripts/index 目錄就是對應 IndexController 這個 Action Controller 類別；同理，如果是 BlogController 這個類別，那邊它就會對應到 application/views/scripts/blog 。</p>
+<p>而子目錄就是存放 View Script 的地方，預設每個 View Script 都對應到一個 Action Controller 的 action 方法。例如 application/views/scripts/index/index.phtml 就是對應 IndexController 類別中的 indexAction 方法；同理 IndexController 類別的 articleAction() 方法就會對應到 application/views/scripts/index/article.phtml 這個 View Script 。</p>
+<p>不過一個 action 還可以對應到好幾個不同格式的 View Script ，這點在另一篇「<a href="http://www.jaceju.net/blog/archives/1188" target="_blank" rel="external">初探 Zend Framework 上的 Context 輸出</a>」有說明，這裡不再詳述。</p>
+<h2 id="Controller_與_View_的溝通方式">Controller 與 View 的溝通方式</h2><p>預設在 Action Controller 中已經預先建立好一個 Zend_View 物件並做好初始化了，我們可以直接使用。</p>
+<p>註：當然除了預設的 Zend_View 之外，我們也可以改用第三方的樣版引擎；例如 Smarty 等知名的樣版引擎，其整合可以參考「 <a href="http://www.jaceju.net/blog/archives/1083" target="_blank" rel="external">Smarty 2 整合到 Zend Framework 1.10 的重點整理</a>」一文。</p>
+<p>我們可以在 Action Controller 裡使用 $this-&gt;view 這個屬性，來直接存取已經初始化好的 Zend_View 物件；例如最上面的例子，我們在 IndexController 類別裡的 indexAction() 中就可以直接這麼寫：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">indexAction</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'author'</span> =&gt; <span class="string">'Jace Ju'</span>,</span><br><span class="line">            <span class="string">'title'</span> =&gt; <span class="string">'PHP Smarty Template Engine'</span>,</span><br><span class="line">        ),</span><br><span class="line">    );</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;books = <span class="variable">$data</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>當然別忘了把 application/views/scripts/index/index.phtml 改成：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">foreach</span> (<span class="variable">$this</span>-&gt;books <span class="keyword">as</span> <span class="variable">$book</span>): <span class="preprocessor">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="title">li</span>&gt;</span>Author: <span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$book</span>[<span class="string">'author'</span>]); <span class="preprocessor">?&gt;</span></span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">li</span>&gt;</span>Title: <span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$book</span>[<span class="string">'title'</span>]); <span class="preprocessor">?&gt;</span></span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="preprocessor">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然後瀏覽專案首頁，就可以看到跟上例一模一樣的效果。</p>
+<p>這裡最酷的地方在於 Action Controller 不需要呼叫 View 物件的 render() 方法來輸出樣版，這件事完全由 Zend Framework 的 MVC 框架自動處理掉了；而在自動處理的過程中， Zend Framework 也會幫我們找出 Action 對應的 View Script 路徑，並以預設的 phtml 為副檔名。因此我們只要專心在怎麼去取得資料，並將資料放到 View 物件裡，其他的事全部會由 Zend Framework 幫我們完成。</p>
+<p>註：自動完成的原理，之後有機會再詳述。</p>
+<h2 id="基本的_View_Helper">基本的 View Helper</h2><p>有如 Smarty 的 Plugin 一般， Zend_View 也支援所謂的 View Helper 。 View Helper 主要是協助我們快速地對樣版上的元素做處理，以下介紹兩個剛開始就會用到的 View Helper 。</p>
+<h3 id="BaseUrl">BaseUrl</h3><p>在 Portable ZF 專案中，我們常需要知道目前專案根目錄相對於網站根目錄的路徑，以便取得 CSS 、 JavaScript 或 Image 等公開資源相對於網站根目錄的路徑。這個路徑一般稱為 Base Url ；假設現在我們的 ZF 專案首頁網址為：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//localhost/portable/</span></span><br></pre></td></tr></table></figure>
+<p>那麼 Base Url 就是 /portable 。</p>
+<p>而 <strong>BaseUrl</strong> 這個 View Helper 就是協助我們取得 Base Url 資訊的好幫手，在 View Script 裡面的我們只需要用：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;baseUrl(); <span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>就可以取得 Base Url 了。而 BaseUrl 也接受一個相對路徑的參數，例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;baseUrl(<span class="string">'/css/style.css'</span>); <span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>就會得到 /portable/css/style.css 。</p>
+<h3 id="Url">Url</h3><p>這個 View Helper 會協助我們處理內連網址，例如以 portable 這個專案來說，在 View Script 中如果呼叫了 Url 這個 View Helper ：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;url(<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'controller'</span> =&gt; <span class="string">'index'</span>,</span><br><span class="line">    <span class="string">'action'</span> =&gt; <span class="string">'user'</span>,</span><br><span class="line">), <span class="keyword">null</span>, <span class="keyword">true</span>); <span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>這樣就會輸出 /portable/index/user 這個相對網址。</p>
+<p>各位一定會好奇，那為什麼不直接使用 Base Url 加上 /index/user 就好了呢？原因是為了能讓 View Script 輸出反向編譯後的 Route 網址。假設我們在 application.ini 中有設定以下的 Route ：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resources<span class="class">.router</span><span class="class">.routes</span><span class="class">.author</span><span class="class">.route</span> = <span class="string">"author/:username"</span></span><br><span class="line">resources<span class="class">.router</span><span class="class">.routes</span><span class="class">.author</span><span class="class">.defaults</span><span class="class">.controller</span> = <span class="string">"index"</span></span><br><span class="line">resources<span class="class">.router</span><span class="class">.routes</span><span class="class">.author</span><span class="class">.defaults</span><span class="class">.action</span> = <span class="string">"user"</span></span><br></pre></td></tr></table></figure>
+<p>那麼我們可以直接在網址列輸入：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost/portable</span><span class="regexp">/author/jaceju</span></span><br></pre></td></tr></table></figure>
+<p>這樣的網址會讓程式連到 IndexController 的 userAction() 去執行。反過來如果我們希望在 View Script 中產生這樣的網址，如果不使用 url 的話就是這樣寫：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;baseUrl(<span class="string">'author/jaceju'</span>); <span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>這樣有個缺點，那就是如果 Route 的規則修改了的話，那麼有輸出這種網址的 View Script 全部都要改。但是如果改用 Url 這個 View Helper 的話，就可以避免掉這個問題：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;url(<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'username'</span> =&gt; <span class="string">'jaceju'</span>,</span><br><span class="line">), <span class="string">'author'</span>); <span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>Url View Helper 的第一個參數是告訴 Url 要將 :username 替換成 jaceju 這個值，第二個參數則是告訴 Url 要使用 author 這個 Route 的反向編譯。這麼一來我們就算修改了 author 這個 Route 的規則，也不必再更動所有的 View Scripts 了。</p>
+<p>註： Route 機制有機會的話，會再向大家作介紹。</p>
+<h2 id="小結">小結</h2><p>瞭解 Zend Framework 的 View 層是進入 Zend Framework 世界的基本功夫，學會它的基礎後，我們就可以很容易地處理資料所要呈現的方式。</p>
+<p>本文介紹了 Zend_View 這個套件的基本用法，還有 Action Controller 是如何跟 View 互動的；另外也介紹了兩個最常用的 View Helper ： BaseUrl 及 Url 。這些都是 Zend Framework 入門時需要先瞭解的知識。</p>
+<p>當然 Zend_View 還有其他可以繼續深入研究的功能，往後有機會的話，我會再一一為大家介紹。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2011/02/13//blog/archives/1628/" data-id="ci9ji3cip00ql15byja05ygtt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2011/02/16//blog/archives/1645/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          初探 Zend Framework 如何自動載入類別
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2011/02/12//blog/archives/1619/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Portable ZF 專案會遇到的問題</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/blog/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/blog/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/blog/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/blog/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/blog/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/blog/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/blog/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/blog/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/blog/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/blog/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/blog/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/blog/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/blog/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/blog/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/blog/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/blog/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/blog/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/blog/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/blog/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/blog/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/blog/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/blog/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/blog/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/blog/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/blog/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/blog/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/blog/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/blog/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/blog/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/blog/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/blog/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/blog/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/blog/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/blog/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/blog/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/blog/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/blog/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/blog/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/blog/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/blog/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/blog/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/blog/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/blog/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/blog/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/blog/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/blog/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/07/">July 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/03/">March 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/02/">February 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/01/">January 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/12/">December 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/10/">October 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/09/">September 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/08/">August 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/07/">July 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/06/">June 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/05/">May 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/04/">April 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/03/">March 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/02/">February 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/01/">January 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/12/">December 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/11/">November 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/10/">October 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/09/">September 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/07/">July 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/06/">June 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/05/">May 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/04/">April 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/03/">March 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/02/">February 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/01/">January 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/12/">December 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/11/">November 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/10/">October 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/09/">September 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/08/">August 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/07/">July 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/06/">June 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/05/">May 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/04/">April 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/03/">March 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/02/">February 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/01/">January 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/12/">December 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/11/">November 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/10/">October 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/09/">September 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/08/">August 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/07/">July 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/06/">June 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/05/">May 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/04/">April 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/03/">March 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/02/">February 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/01/">January 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/12/">December 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/11/">November 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/10/">October 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/09/">September 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/08/">August 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/07/">July 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/06/">June 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/05/">May 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/04/">April 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/03/">March 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/02/">February 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/01/">January 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/12/">December 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/11/">November 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/10/">October 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/09/">September 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/08/">August 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/07/">July 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/06/">June 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/05/">May 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/04/">April 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MySQL 中文編碼徹底研究 | 網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="先前提過一篇 A MySQL 4.1 Story ，裡面把 MySQL 4.1的編碼解釋的還滿清楚的；但是我想還是有很多人在使用 MySQL 4.0 (或以下的版本)，因此裡面的解法就不適用了。
+所以這次就來好好做個實驗吧！我將會把我遇到的所有狀況列舉出來，並且提出解決的方法。
+不過往下看之前，請先確定你會使用 PHP 操作 MySQL ，也曉得 MySQL 版本之間的差異；最重要的是，你得知道">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MySQL 中文編碼徹底研究">
+<meta property="og:url" content="http://www.jaceju.net/blog/2006/08/25//blog/archives/116/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="先前提過一篇 A MySQL 4.1 Story ，裡面把 MySQL 4.1的編碼解釋的還滿清楚的；但是我想還是有很多人在使用 MySQL 4.0 (或以下的版本)，因此裡面的解法就不適用了。
+所以這次就來好好做個實驗吧！我將會把我遇到的所有狀況列舉出來，並且提出解決的方法。
+不過往下看之前，請先確定你會使用 PHP 操作 MySQL ，也曉得 MySQL 版本之間的差異；最重要的是，你得知道">
+<meta property="og:image" content="/resources/mysql_escape/1.gif">
+<meta property="og:image" content="/resources/mysql_escape/2.gif">
+<meta property="og:image" content="/resources/mysql_escape/3.gif">
+<meta property="og:image" content="/resources/mysql_escape/4.gif">
+<meta property="og:image" content="/resources/mysql_escape/5.gif">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL 中文編碼徹底研究">
+<meta name="twitter:description" content="先前提過一篇 A MySQL 4.1 Story ，裡面把 MySQL 4.1的編碼解釋的還滿清楚的；但是我想還是有很多人在使用 MySQL 4.0 (或以下的版本)，因此裡面的解法就不適用了。
+所以這次就來好好做個實驗吧！我將會把我遇到的所有狀況列舉出來，並且提出解決的方法。
+不過往下看之前，請先確定你會使用 PHP 操作 MySQL ，也曉得 MySQL 版本之間的差異；最重要的是，你得知道">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-/blog/archives/116" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2006/08/25//blog/archives/116/" class="article-date">
+  <time datetime="2006-08-24T16:00:00.000Z" itemprop="datePublished">2006-08-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL 中文編碼徹底研究
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先前提過一篇 <a href="http://jjgod.3322.org/2005/07/31/a-mysql-41-story/" target="_blank" rel="external">A MySQL 4.1 Story</a> ，裡面把 MySQL 4.1的編碼解釋的還滿清楚的；但是我想還是有很多人在使用 MySQL 4.0 (或以下的版本)，因此裡面的解法就不適用了。</p>
+<p>所以這次就來好好做個實驗吧！我將會把我遇到的所有狀況列舉出來，並且提出解決的方法。</p>
+<p>不過往下看之前，請先確定你會使用 PHP 操作 MySQL ，也曉得 MySQL 版本之間的差異；最重要的是，你得知道 big5 、 latin1 及 utf8 是什麼東西。 </p>
+<a id="more"></a>
+<h2 id="topic-exp-env">實驗環境</h2>
+
+<p>在這之前，我當然要先把我實驗的環境列出來。由於我個人是在 Windows 上開發的，因此所有相關的模組都是 Win32 平台；至於其他平台的看倌們請自行舉一反三，也歡迎指正我有疏漏的地方。</p>
+<ul>
+<li>作業系統： Windows XP SP2</li>
+<li>MySQL ： 4.0 、 4.1 及 5.0</li>
+<li>PHP ： 5.1.4</li>
+<li>phpMyAdmin ： 2.8.2</li>
+</ul>
+<h2 id="topic-a-story">一個小故事的啟發</h2>
+
+<p>我自己剛用 MySQL 4.1 時，因為預設字集的關係，活得非常快樂，殊不知這小小幸福的背後竟隱藏了莫大的陷阱。</p>
+<p>有一次我在公司安裝好的 MySQL 4.1 測試「 PHP Smarty 樣版引擎」一書裡的程式，發現我輸入著名的許功蓋時， MySQL 一直回報錯誤訊息；這讓我非常訝異，因為我在家裡測試這個程式時是 OK 的 (也是 MySQL 4.1) 。後來我不死心，又跑到另一台安裝有 MySQL 4.0 執行這個程式，一樣還是不行；但是我一樣在家裡用 MySQL 4.0 測試卻又很正常。</p>
+<p>這問題困擾了我很久，直到我的老大告訴我，因為以前他們開發程式的經驗，所以曾在這兩部機器的 my.ini 中將其中一個 default-character-set 參數設為 big5 。而這個參數在 MySQL 3.x 以前就有了，設成 big5 就可以避免掉很多 MySQL 處理字元上的問題。</p>
+<p>原來如此！可是這到底和我的程式有什麼關係呢？而我的老大又是怎麼讓公司的程式順利在這些環境上運作呢？雖然知道了原因，但我卻沒有什麼好的解決方案；苦於截稿的壓力，我只好迂迴前進，用了一些特別的方法來解決問題。</p>
+<p>後來還是有些讀者詢問了資料庫的問題，我那時便下定決心要好好研究 MySQL 各版本之間的差異，後來就找到 <a href="http://jjgod.3322.org/2005/07/31/a-mysql-41-story/" target="_blank" rel="external">A MySQL 4.1 Story</a> 這篇文章，也介紹給大家。可是雖然知道 MySQL 4.1 的解法，但總覺得還是不夠踏實，畢竟 MySQL 4.0 的問題還沒解決；也因此我才發現，我自己對 MySQL 的編碼還是一知半解！ </p>
+<h2 id="topic-default-character-set">預設字集的麻煩</h2>
+
+<p>我想大部份的開發者都知道， MySQL 在 4.1 以後就引進了非常先進 (也很麻煩) 的字集 (character set) 及校對 (collation) 。很多人都在這裡栽了個大跟斗，使得 MySQL 4.1 剛推出時無法受到一般開發者的重視，他們寧可回去使用 MySQL 4.0 以下的版本。</p>
+<p>不過字集的概念在 MySQL 4.0 以前其實就已經出現了，我們可以為 MySQL 設定預設字集 (就是上面說的 default-character-set) 來控制 MySQL 在輸入輸出時的資料編碼。只是在 MySQL 4.0 以前支援的編碼型態不多，而且大多數人在安裝時也不會特意去設定它，也因此大家就忽略了這個問題。</p>
+<p>註：我們可以用 SHOW  VARIABLES  LIKE  ‘character_sets’ 這段 SQL 語法來查詢 MySQL 4.0 所支援的編碼型態。</p>
+<p>其實忽略了也好，日子可以過得很快樂。因為大部份的用戶端工具，都是以安裝後的預設字集在處理 MySQL 的資料；也因此我們只要善用這些工具，事情通常不會太大條。</p>
+<p>可是很抱歉，凡事都會有例外！只要你把預設字集設為 big5 ，那麼麻煩就跟著來了。因為在 big5 碼在編碼時沒有把 ASCII 的控制碼排除在外，使得我們在處理某些字 (例如著名的「許功蓋」) 時，就會出現問題！</p>
+<p>註：簡單來說，就是「許功蓋」這些字的第二個字元碼是一個反斜線 () ，它屬於 ASCII 的控制碼。可參考<a href="http://osc.kmd.com.tw/" target="_blank" rel="external">網路甘仔店</a> - <a href="http://osc.kmd.com.tw/article5.html" target="_blank" rel="external">淺談許蓋功</a>這篇文章，裡面有更詳盡的解說。</p>
+<p>因此，以下的解決方案是以 big5 為主，以符合我工作的環境；不過我還是會把 latin1 及 utf8 考慮進去，畢竟還是有大部份開發者是採用這樣的環境的。</p>
+<p>說了半天，到底 MySQL 如何指定預設字集呢？其實指定 MySQL 預設字集的方法有很多，在 Windows 平台下，最快的方式就是修改 my.ini ： </p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="atom">mysqld</span>]</span><br><span class="line">...</span><br><span class="line"><span class="atom">default</span>-<span class="atom">character</span>-<span class="atom">set</span> = <span class="atom">big5</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>也就是在 mysqld 區段下，加上一行 default-character-set 的設定。</p>
+<p>重新啟動 MySQL 後，我們就能將 MySQL 的預設字集改為 big5 。</p>
+<p>註： MySQL 4.1 以後應改用 character-set-server ，但 default-character-set 因為相容性的目的還是保留使用。 </p>
+<h2 id="topic-client">用戶端</h2>
+
+<p>所謂用戶端其實是指下達指令給 MySQL 的程式，像是 MySQL 內建的 mysql 或 mysqladmin 等指令，也可以是 PHP 所建構的 Web 應用程式 (如 phpMyAdmin) ，當然也包含我們自行開發的網站等。諸如此類的程式，都會透過一個通訊管道來和 MySQL 內部做溝通。而在這個管道之內所傳送的資料編碼格式是否有經過正確的處理，往往就是影響 SQL 指令能不能成功執行的重要因素。</p>
+<p>接下來我用 PHP 來做說明，先讓大家瞭解用戶端應該要注意什麼東西。</p>
+<h3 id="HTML_頁面的編碼">HTML 頁面的編碼</h3><p>我相信大家都知道以下的 HTML 標籤所代表的意義：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="variable">http-equiv=</span><span class="string">"Content-Type"</span> <span class="variable">content=</span><span class="string">"text/html; charset=utf-8"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>然而很多人總是會有一種誤解，那就是這個標籤代表的就是這頁面的編碼，也就是 utf8 。不對嗎？其實只對了一半。如果要讓頁面輸出正確的文字內容，那麼HTML 文件儲存的編碼也得是 utf8 才行。</p>
+<p>怎麼說呢？你可以用PSPad (或其他支援 utf8 的文字編輯器) 打開你正在編輯的 HTML 文件，你應該可以看到下方狀態列上的代碼頁是 UTF-8 ：</p>
+<p><img src="/resources/mysql_escape/1.gif" alt=""></p>
+<p>也就是說這兩者的格式要一致，這樣頁面的顯示才會是正確的 utf8 編碼。</p>
+<p>不過如果頁面檔案都符合上面的要求，但實際上用瀏覽器觀看時，還是變成亂碼該怎麼辦呢？</p>
+<p><img src="/resources/mysql_escape/2.gif" alt=""></p>
+<p>這時有幾個地方要檢查：</p>
+<ul>
+<li>PHP 中是否有使用 header 函式送出了錯誤的編碼？例如：</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">header('Content-Type</span>: <span class="string">text/html; charset=iso-8859-1');</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>PHP.INI 中，是否有把 default_charset 註解掉？例如：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># default_charset = <span class="title">"iso-8859-1"</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果是使用 Apache 做為 Web Server 時，要在 httpd.conf (或 .htaccess) 中，把 AddDefaultCharset 設為 Off 。</li>
+</ul>
+<p>這時就可以用頁面屬性來確定編碼是否正確，以 Firefox 為例：</p>
+<p><img src="/resources/mysql_escape/3.gif" alt=""></p>
+<p>有了正確的頁面編碼後，我們才能確保送給 MySQL 的資料是正確的編碼格式。例如，在 MySQL 預設字集是 big5 時，丟給 MySQL 的資料就應該是 big5 編碼；反過來說， MySQL 如果存的是 big5 編碼，那麼它丟出資料來時，我們也應該要用正確的 big5 頁面編碼去接收這些資料。當然 utf8 也是一樣，雖然我們可以用 iconv 去轉換資料的編碼，但是我還是建議大家儘量使用正確的用戶端編碼，以節省轉換的時間。</p>
+<p>後面我們會再提到 MySQL 不同的版本如何傳遞這些資料，那裡才是 MySQL 存取資料的真正關鍵所在。 </p>
+<h3 id="去除_Magic_Quotes_的影響">去除 Magic Quotes 的影響</h3><p>輸入資料最大的一個重點就是：使用者輸入什麼，資料庫就要存入什麼。當 HTML 頁面傳回表單資料時，我們就會將它們存入資料庫，這時常會使用 PHP 來完成這項工作。不過很多人在透過 PHP 操作 MySQL 時，常會忽略掉一個問題，那就是在 PHP.INI 裡的 magic_quotes_gpc 這個選項。</p>
+<p>當 magic_quotes_gpc 設為 Off 時，使用者如果輸入「許功蓋」的話，那麼 PHP 從 HTML 表單上接收到的字就是「許功蓋」這三個完整的原始資料 (Raw Data) 。但是有時候，某些伺服器的 magic_quotes_gpc 是設為 On 的，那麼 PHP 就會對這些特殊字做脫逸 (Escape) 的動作，使它們變成「許\功\蓋\」；換句話說，使用者輸入的值就已經不是原始資料了。</p>
+<p>我在寫程式時，常會堅守一個原則：「除非必要，否則就不要過度依賴系統設定值。」因此我希望程式所取得的是使用者輸入的原始資料，然後必要時再加以處理。</p>
+<p>那麼怎麼不讓 magic_quotes_gpc 影響使用者輸入的資料呢？我通常會在程式一開始，用以下片段來實作：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 去除 Magic Quotes 的影響</span></span><br><span class="line"><span class="keyword">if</span> (get_magic_quotes_gpc()) &#123;</span><br><span class="line">    <span class="variable">$_GET</span> <span class="subst">=</span> array_map(<span class="string">'stripslashes'</span>, <span class="variable">$_GET</span>);</span><br><span class="line">    <span class="variable">$_POST</span> <span class="subst">=</span> array_map(<span class="string">'stripslashes'</span>, <span class="variable">$_POST</span>);</span><br><span class="line">    <span class="variable">$_COOKIE</span> <span class="subst">=</span> array_map(<span class="string">'stripslashes'</span>, <span class="variable">$_COOKIE</span>);</span><br><span class="line">    <span class="variable">$_REQUEST</span> <span class="subst">=</span> array_map(<span class="string">'stripslashes'</span>, <span class="variable">$_REQUEST</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>註：其實這裡我將會用一個 Request 類別來包裝它們，所以上面的程式只是示意而已。</p>
+<p>事實上，後面要談的東西已經跟 PHP 沒有太大的關係。只是這裡我將會繼續使用 PHP 來示範，所以取得使用者輸入的原始資料就變得非常重要了。</p>
+<h2 id="topic-sql-statement">SQL 語法 (insert, update and select)</h2>
+
+<p>SQL 語法常用的就是 INSERT, UPDATE 及 SELECT 了，不過其實它們並不會影響我們所用的編碼。真正令我們困擾的，就是「許功蓋」這類的 big5 編碼中文字。</p>
+<p>我剛剛說過，用戶端傳來的資料編碼格式其實意義不大，重要的是我們有沒有正確依照 MySQL 中所設定的字集去處理這些內容。以下我會告訴大家，什麼樣的編碼格式需要什麼樣的處理方式。</p>
+<h3 id="組合正確_BIG5_編碼的_SQL_語法">組合正確 BIG5 編碼的 SQL 語法</h3><p>之前在書裡面，我用 iconv 來解決輸入許功蓋的問題，但是這並不是個好方法 (而且也不適用於預設字集為 big5 的 MySQL 4.0) 。其實不管在 MySQL 的哪一個版本，當我們把預設字集設為 big5 時， MySQL 就會認得 SQL 語法裡面的中文字。舉個例子來說，假設我們要把「許功蓋」這三個字存入某個資料表中時，在預設字集為 latin1 時，語法如下：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name <span class="list">(<span class="keyword">field_name</span>)</span> VALUES <span class="list">('許\功\蓋\')</span></span><br></pre></td></tr></table></figure>
+<p>這是因為 latin1 不認識許功蓋這三個字，而是把它看成 6 個 ASCII 碼 (0xB3 0x5C 0xA5 0x5C 0xBB 0x5C)；所以我們得將許功蓋這三個字後面都加上一個反斜線 (0x5C) ，以避免它們被視為控制字元。</p>
+<p>但在 big5 時，語法就要變成： </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (field_name) <span class="keyword">VALUES</span> (<span class="string">'許功蓋'</span>)</span></span><br></pre></td></tr></table></figure>
+<p>因為這時候 MySQL 已經能夠分辨許功蓋三個中文字了，所以就不用加上反斜線了。</p>
+<p>註： utf8 就沒那麼麻煩了，因為它在編碼時已經考慮了 ASCII 控制碼，所以基本上不會造成什麼問題。</p>
+<p>或許大家有查過 PHP 手冊，知道 PHP 有提供一個 mysql_real_escape_string 的函式；它會依照目前的資料庫連線字集來處理字串，似乎是我們要的？</p>
+<p>但是很可惜，它還是會有一些中文字 (像上面說的許功蓋) 與反斜線及單引號的組合無法正確處理。所以底下我將會一一解釋這些有問題的組合，應該用什麼方式來解決。 </p>
+<h3 id="單引號_(‘)_問題">單引號 (‘) 問題</h3><p>我想大家應該都很瞭解 SQL Injection 所帶來的災難，而大部份的 PHP 開發者都依賴開啟 Magic Quotes 來幫他們解決這個問題。但如同我前面所強調的，不要去依賴系統的設定，因此自行處理這些有問題的資料就變得很重要了。</p>
+<p>在預設字集為 latin1 的情況下，不論在哪個 MySQL 版本，你可以用 addslashes 這個 PHP 函數將單引號變成「\’」，這樣一來就能正確寫入。但是在 big5 (或 utf8 ) 的環境下，我們最好改用兩個單引號 (‘’) 來過濾 (latin1 反而不行) ；不過這樣一來，我們就會有其他需要脫逸的字元沒有處理到，因此我就要先用 addslashes 來過濾控制字元： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$output</span> = addslashes(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<p>然後如果發現伺服端的預設字集不是 latin1 的話，將單引號換成兩個單引號</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$search =<span class="instruction"> array </span>('/<span class="keyword">[</span>\x5c](\x27<span class="function">)</span>/'<span class="function">)</span>;</span><br><span class="line">$replace =<span class="instruction"> array </span>(<span class="string">"''"</span><span class="function">)</span>;</span><br><span class="line">$output =<span class="function"> preg_replace(</span>$search, $replace, $output<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
+<p>註：事實上單引號用反斜線脫逸是可行的，但是我在 big5 或 utf8 測試的結果，有時會出現 SQL 語法錯誤的問題；因此我個人傾向將它換成兩個單引號。 </p>
+<h3 id="反斜線_()_問題">反斜線 () 問題</h3><p>剛剛提到 big5 的「許功蓋」因為包含了反斜線 () ，而使得它們放到預設字集為 latin1 的 SQL 語法時需要先脫逸。反過來如果預設字集為 big5 時，就不用脫逸了。不過世事難料，如果今天使用者輸入的 Raw Data 就是「許\功\蓋\」時怎麼辦？</p>
+<p>不論對何種字集來說，反斜線等控制字元還是要脫逸的；只是 big5 中的「許功蓋」等字並不需要，因為它們是一個獨立的個體。可是 PHP 的 addslashes 並不曉得「許功蓋」這些字屬於完整的中文字，它還是會把「許\功\蓋\」變成「許\\功\\蓋\\」。可是預設字集為 big5 的 MySQL 只會接受「許\功\蓋\」，也就是「許」字後面不再接上一個反斜線。因此如果直接把 addslashes 的回傳值塞入預設字集為 big5  MySQL 的話，就會出現問題了。 </p>
+<p>解決的方式很簡單，那就是在 addslashes 之後將「許\」變成「許」。因為 big5 編碼的第一個位元組範圍是 0xA1 到 0xF9 ，所以當我們遇到字元碼範圍在 0xA1 到 0xF9 ，而第二個字元碼為 0x5C 時，就可以把它當成是中文字，進而過濾掉它： </p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$search =<span class="instruction"> array </span>('/(<span class="keyword">[</span>\xa1-\xf9](\x5c<span class="function">)</span><span class="function">)</span><span class="keyword">[</span>\x5c]/'<span class="function">)</span>;</span><br><span class="line">$replace =<span class="instruction"> array </span>('\1'<span class="function">)</span>;</span><br><span class="line">$output =<span class="function"> preg_replace(</span>$search, $replace, $output<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
+<p>註： big5 編碼的說明請參考：<a href="http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut/big5.html" target="_blank" rel="external">http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut/big5.html</a> 。 </p>
+<p>不過這樣會造成另一個問題，那就是第二個位元組的編碼有時會落在第一個位元組的編碼範圍裡。例如「天夫」這類的字，它們的第二個位元組編碼分別是 0xD1 及 0xD2 ，剛好在  0xA1 到 0xF9 間。如果我們輸入的原始資料是「天\夫\」時，用上面的程式過濾後反而就會變成「天夫」，那就不是我們要的資料了。所以我們必須在上面的程式中，先對這樣的字做處理：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$search = array ('/([<span class="link_label">\xa1-\xf9</span>](<span class="link_url">\xa1-\xf9</span>)[<span class="link_label">\x5c</span>])/', '/([<span class="link_label">\xa1-\xf9</span>](<span class="link_url">\x5c</span>))[\x5c]/');</span><br><span class="line">$replace = array ('\1\\', '\1');</span><br><span class="line">$output = preg_replace($search, $replace, $output);</span><br></pre></td></tr></table></figure>
+<p>方法就是在遇到「天\夫\」這樣的資料時，在 addslashes 完成後加上一個反斜線 (在單引號字串內，兩個反斜線會被解釋成一個反斜線) ，變成「天\\夫\\」 (addslashes 一個，正規式一個，共兩個反斜線) ，然後再讓第二個正規式去過濾成「天\夫\」即可。</p>
+<p>註：反過來先濾再加的話，是會有問題的，不信大家可以試試看。</p>
+<h3 id="MySQL_版本問題">MySQL 版本問題</h3><p>上面的理論，雖然不論在哪一個 MySQL 版本都適用，但是在 MySQL 4.1 以上時卻要特別注意一件事：連線校對 (connection collation) 的編碼。</p>
+<p>註：「連線校對」這個譯詞是從 phpMyAdmin 借用的。 </p>
+<p>對 MySQL 4.0 而言，它不會去管資料是什麼編碼，只要丟過來的 SQL 語法能被伺服端的預設字集所接受，那麼它就會把它寫入資料表。換句話說，使用者如果在 MySQL 4.0 中要透過 SQL 語法寫入或讀出資料，其編碼都是由伺服端來主導。</p>
+<p>可是大家都知道 MySQL 在 4.1 以後，在核心架構上有了很大的改變。我們可以針對資料庫、資料表甚至是資料欄位設定不同的校對 (collation) 編碼，而它們會繼承預設字集所設定的值，除非我們分開設定它們。所以在預設字集改為 big5後，我們之後所建立的資料表的儲存方式也會變為 big5   (當然也可以設定為 utf8 ) 。</p>
+<p>當 MySQL 要寫入資料或讀出資料時，它無法確定這些資料的格式是不是符合使用者的要求。這時候我們就得自行指定正確的編碼，讓 MySQL 自動轉換這些資料。因此，在對 MySQL 4.1 以後的版本下達 INSERT, UPDATE 及 SELECT 指令之前，都應該要先用以下指令來指定正確的連線校對：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SET</span> <span class="keyword">NAMES</span> big5 (或 <span class="keyword">SET</span> <span class="keyword">NAMES</span> <span class="string">'big5'</span>)</span></span><br></pre></td></tr></table></figure>
+<p>也就是說在 MySQL 4.1 以後，就算我們把預設字集設為 big5 或 utf8 ，事實上還是得看資料庫或資料表實際所設定的校對編碼 (除非建立時採用繼承值) 。所以 SET NAMES 只會影響 MySQL 伺服端和 PHP 程式之間的通訊編碼格式，跟預設字集沒有太大關係。詳細的過程我不多加說明了，請自行參考 <a href="http://jjgod.3322.org/2005/07/31/a-mysql-41-story/" target="_blank" rel="external">A MySQL 4.1 Story</a> 。 </p>
+<p>那我們能不能讓程式自動決定 MySQL 的版本呢？當然可以，透過 PHP 的 mysql_get_server_info 函式就能做到了：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$this</span>-&gt;<span class="constant">_version </span>= (float) mysql_get_server_info(<span class="variable">$this</span>-&gt;connection); <span class="regexp">//</span> <span class="number">4</span> <span class="keyword">or</span> <span class="number">4.1</span> <span class="keyword">or</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h3 id="決定是否脫逸">決定是否脫逸</h3><p>當然在預設字集為 big5 時，我們可以用上面的方式進行脫逸；但是我得考慮到大部份環境下 big5 並非預設字集，因此我必須在連接資料庫時，就要偵測伺服器的預設字集，以決定是不是要對 big5 進行特別處理。</p>
+<p>剛剛提到，在 MySQL 4.0 以前我們是由伺服器來決定通訊的編碼方式，而 MySQL 4.1 以後則由我們自己來決定。因此以下的程式片段就是用來偵測是不是要啟用中文字脫逸：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$this</span>-&gt;_version &gt; <span class="number">4</span>) &#123; <span class="comment">// 當 MySQL 版本在 4.1 以上</span></span><br><span class="line">    <span class="comment">// 伺服端預設字集變數名稱</span></span><br><span class="line">    <span class="variable">$variables_name</span> = <span class="string">'character_set_server'</span>;</span><br><span class="line">    <span class="comment">// 指定連線用的字集</span></span><br><span class="line">    mysql_query(<span class="string">"SET NAMES "</span> . <span class="variable">$this</span>-&gt;_client_character_set, <span class="variable">$this</span>-&gt;connection);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123; <span class="comment">// 當 MySQL 版本在 4.0 以下</span></span><br><span class="line">    <span class="comment">// 伺服端預設字集變數名稱</span></span><br><span class="line">    <span class="variable">$variables_name</span> = <span class="string">'character_set'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 取得伺服端所設定的預設字集</span></span><br><span class="line"><span class="variable">$result</span> = mysql_query(<span class="string">"SHOW VARIABLES LIKE '$variables_name'"</span>, <span class="variable">$this</span>-&gt;connection);</span><br><span class="line"><span class="variable">$row</span> = mysql_fetch_assoc(<span class="variable">$result</span>);</span><br><span class="line"><span class="variable">$this</span>-&gt;_server_character_set = strtolower(<span class="variable">$row</span>[<span class="string">'Value'</span>]);</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$this</span>-&gt;_version &gt; <span class="number">4</span>) &#123; <span class="comment">// 當 MySQL 版本在 4.1 以上</span></span><br><span class="line">    <span class="comment">// 當用戶端字集為 big5 時，就要脫逸特別字</span></span><br><span class="line">    <span class="variable">$this</span>-&gt;_is_escape = (bool) (<span class="string">'big5'</span> == <span class="variable">$this</span>-&gt;_client_character_set);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123; <span class="comment">// 當 MySQL 版本在 4.0 以下</span></span><br><span class="line">    <span class="comment">// 當伺服端字集為 big5 時，就要脫逸特別字</span></span><br><span class="line">    <span class="variable">$this</span>-&gt;_is_escape = (bool) (<span class="string">'big5'</span> == <span class="variable">$this</span>-&gt;_server_character_set);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重點在 MySQL 4.0 要看的是 $this-&gt;_server_character_set ，這是從伺服器變數中取得的；而 MySQL 4.1 則是看 $this-&gt;_client_character_set ，它由程式開發者自行決定的。</p>
+<h3 id="脫逸函式">脫逸函式</h3><p>綜合以上的說明，也方便後面繼續解說，我先把將我自行建立的 MySQL 類別會部份用到脫逸的程式列舉如下；至於什麼時候要做些什麼事情，請大家自行看看裡面的註解吧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySQL</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">MySQL</span><span class="params">(<span class="variable">$host</span>, <span class="variable">$user</span>, <span class="variable">$password</span>, <span class="variable">$dbname</span>, <span class="variable">$charset</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;connection = mysql_connect(<span class="variable">$host</span>, <span class="variable">$user</span>, <span class="variable">$password</span>);</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="variable">$this</span>-&gt;_version = (float) mysql_get_server_info(<span class="variable">$this</span>-&gt;connection);</span><br><span class="line">        <span class="variable">$this</span>-&gt;_client_character_set = strtolower(<span class="variable">$charset</span>);</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$this</span>-&gt;_version &gt; <span class="number">4</span>) &#123; <span class="comment">// 當 MySQL 版本在 4.1 以上</span></span><br><span class="line">        <span class="comment">// 伺服端預設字集變數名稱</span></span><br><span class="line">        <span class="variable">$variables_name</span> = <span class="string">'character_set_server'</span>;</span><br><span class="line">        <span class="comment">// 指定連線用的字集</span></span><br><span class="line">        mysql_query(<span class="string">"SET NAMES "</span> . <span class="variable">$this</span>-&gt;_client_character_set, <span class="variable">$this</span>-&gt;connection);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 當 MySQL 版本在 4.0 以下</span></span><br><span class="line">            <span class="comment">// 伺服端預設字集變數名稱</span></span><br><span class="line">            <span class="variable">$variables_name</span> = <span class="string">'character_set'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 取得伺服端所設定的預設字集</span></span><br><span class="line">        <span class="variable">$result</span> = mysql_query(<span class="string">"SHOW VARIABLES LIKE '$variables_name'"</span>, <span class="variable">$this</span>-&gt;connection);</span><br><span class="line">        <span class="variable">$row</span> = mysql_fetch_assoc(<span class="variable">$result</span>);</span><br><span class="line">        <span class="variable">$this</span>-&gt;_server_character_set = strtolower(<span class="variable">$row</span>[<span class="string">'Value'</span>]);</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$this</span>-&gt;_version &gt; <span class="number">4</span>) &#123; <span class="comment">// 當 MySQL 版本在 4.1 以上</span></span><br><span class="line">            <span class="comment">// 當用戶端字集為 big5 時，就要脫逸特別字</span></span><br><span class="line">            <span class="variable">$this</span>-&gt;_is_escape = (bool) (<span class="string">'big5'</span> == <span class="variable">$this</span>-&gt;_client_character_set);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 當 MySQL 版本在 4.0 以下</span></span><br><span class="line">            <span class="comment">// 當伺服端字集為 big5 時，就要脫逸特別字</span></span><br><span class="line">            <span class="variable">$this</span>-&gt;_is_escape = (bool) (<span class="string">'big5'</span> == <span class="variable">$this</span>-&gt;_server_character_set);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(<span class="variable">$data</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// 不論何種編碼，都用 addslashes 先過濾</span></span><br><span class="line">        <span class="variable">$output</span> = addslashes(<span class="variable">$data</span>);</span><br><span class="line">        <span class="comment">// 如果伺服端的預設字集不是 latin1 的話，將單引號換成兩個單引號</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">'latin1'</span> != <span class="variable">$this</span>-&gt;_server_character_set) &#123;</span><br><span class="line">            <span class="variable">$search</span> = <span class="keyword">array</span> (<span class="string">'/[\x5c](\x27)/'</span>);</span><br><span class="line">            <span class="variable">$replace</span> = <span class="keyword">array</span> (<span class="string">"''"</span>);</span><br><span class="line">            <span class="variable">$output</span> = preg_replace(<span class="variable">$search</span>, <span class="variable">$replace</span>, <span class="variable">$output</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果需要脫逸特別字，將「許\」這類的 pattern 換為「許」</span></span><br><span class="line">        <span class="comment">// 因為在預設字集為 big5 時，「許、功、蓋」這類的字會被視為是一個完整中文字</span></span><br><span class="line">        <span class="comment">// 而不必再使用反斜線脫逸</span></span><br><span class="line">        <span class="comment">// 但是如果該中文字的高位元剛好在 BIG5 碼的低位元範圍內時，就要針對這種字先把反斜線加上去</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$this</span>-&gt;_is_escape) &#123;</span><br><span class="line">            <span class="variable">$search</span> = <span class="keyword">array</span> (<span class="string">'/([\xa1-\xf9](\xa1-\xf9)[\x5c])/'</span>, <span class="string">'/([\xa1-\xf9](\x5c))[\x5c]/'</span>);</span><br><span class="line">            <span class="variable">$replace</span> = <span class="keyword">array</span> (<span class="string">'\1\\'</span>, <span class="string">'\1'</span>);</span><br><span class="line">            <span class="variable">$output</span> = preg_replace(<span class="variable">$search</span>, <span class="variable">$replace</span>, <span class="variable">$output</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$output</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然後 INSERT 資料時，就可以用以下程式完成：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$insert</span> = sprintf(<span class="string">"INSERT INTO table_name (field_name) VALUES ('%s')"</span>, <span class="variable">$db</span>-&gt;escape(<span class="variable">$data</span>));</span><br><span class="line"><span class="variable">$db</span>-&gt;query(<span class="variable">$insert</span>);</span><br></pre></td></tr></table></figure>
+<p>完整的程式請參考後面的程式下載。</p>
+<h2 id="topic-search">搜尋 (search)</h2>
+
+<p>前面提過了，使用者輸入什麼樣的資料，我們就要存入什麼資料。那麼使用者如果輸入一個關鍵字要找資料的時候，我們能不能正確地比對出他所需要的內容呢？<br>這裡我簡單用完整比對 (=) 及部份比對 (LIKE) 來說明，至於全文檢索我還在研究中，暫時略過不提。</p>
+<h3 id="完整比對">完整比對</h3><p>一個簡單的完整比對 SQL 語法如下：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> field_name = <span class="string">'keyword'</span></span><br></pre></td></tr></table></figure>
+<p>這種語法常會用在使用者權限的比對上，像是登入表單。而且不用我說，大家應該都知道 keyword 的部份就是造成 SQL Injection 的關鍵點。所以在將 Keyword 放入 SQL 語法中時，就要先行脫逸。</p>
+<p>那麼脫逸的規則是什麼呢？沒錯，就是上面新增資料時的規則。例如：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$query = sprintf(<span class="string">"SELECT * FROM table_name WHERE field_name = '%s'"</span>, $db-&gt;escape($keyword));</span><br><span class="line">$<span class="literal">result</span> = $db-&gt;query($query);</span><br></pre></td></tr></table></figure>
+<p>簡單又輕鬆。</p>
+<h3 id="部份比對">部份比對</h3><p>部份比對的 SQL 語法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> field_name <span class="keyword">LIKE</span> <span class="string">'%keyword%'</span></span></span><br></pre></td></tr></table></figure>
+<p>這種語法大部份是用在搜尋上，像是商品資料搜尋等。依照剛剛的慣例，我們大概會寫出以下的程式：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = sprintf(<span class="string">"SELECT * FROM table_name WHERE field_name LIKE '%s'"</span>, <span class="string">'%'</span> . <span class="variable">$db</span>-&gt;escape(<span class="variable">$keyword</span>) . <span class="string">'%'</span>);</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$db</span>-&gt;query(<span class="variable">$query</span>);</span><br></pre></td></tr></table></figure>
+<p>註：我把 LIKE 要用的 % 符號拿到 SQL 語法外面，這是因為後面程式要共用的關係。 </p>
+<p>一般狀況下，大部份中文字都能被找到，所以這裡也常被大家忽略，以為只要用 escape 就萬事 OK 了。可是如果你要找內容是包含「許\」的話，我想你應該是找不出任何東西來 (如果有人已經做到了，請受小弟我一拜) 。</p>
+<p>在用 LIKE 比對時，我們並不能使用上面的脫逸規則。因為這時候單引號不能換成兩個單引號，而且反斜線要再脫逸一次。至於是為什麼？我想這應該是和 MySQL 的 LIKE 查詢方式有關係，這點還請高人指點一二。</p>
+<p>總之結合上面的說明，我重新改寫了 escape 方法，並加入一個 searchEscape 方法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(<span class="variable">$data</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// 不論何種編碼，都用 addslashes 先過濾</span></span><br><span class="line">    <span class="variable">$output</span> = addslashes(<span class="variable">$data</span>);</span><br><span class="line">    <span class="comment">// 如果伺服端的預設字集不是 latin1 的話，將單引號換成兩個單引號</span></span><br><span class="line">    <span class="comment">// 但是如果使用 SELECT...LIKE 的話，就不能使用兩個單引號來代替</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">'latin1'</span> != <span class="variable">$this</span>-&gt;_server_character_set &amp;amp;&amp;amp; !<span class="variable">$this</span>-&gt;_is_like_search) &#123;</span><br><span class="line">        <span class="variable">$search</span> = <span class="keyword">array</span> (<span class="string">'/[\x5c](\x27)/'</span>);</span><br><span class="line">        <span class="variable">$replace</span> = <span class="keyword">array</span> (<span class="string">"''"</span>);</span><br><span class="line">        <span class="variable">$output</span> = preg_replace(<span class="variable">$search</span>, <span class="variable">$replace</span>, <span class="variable">$output</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果需要脫逸特別字，將「許\」這類的 pattern 換為「許」</span></span><br><span class="line">    <span class="comment">// 因為在預設字集為 big5 時，「許、功、蓋」這類的字會被視為是一個完整中文字</span></span><br><span class="line">    <span class="comment">// 而不必再使用反斜線脫逸</span></span><br><span class="line">    <span class="comment">// 但是如果該中文字的高位元剛好在 BIG5 碼的低位元範圍內時，就要針對這種字先把反斜線加上去</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$this</span>-&gt;_is_escape) &#123;</span><br><span class="line">        <span class="variable">$search</span> = <span class="keyword">array</span> (<span class="string">'/([\xa1-\xf9](\xa1-\xf9)[\x5c])/'</span>, <span class="string">'/([\xa1-\xf9](\x5c))[\x5c]/'</span>);</span><br><span class="line">        <span class="variable">$replace</span> = <span class="keyword">array</span> (<span class="string">'\1\\'</span>, <span class="string">'\1'</span>);</span><br><span class="line">        <span class="variable">$output</span> = preg_replace(<span class="variable">$search</span>, <span class="variable">$replace</span>, <span class="variable">$output</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$output</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchEscape</span><span class="params">(<span class="variable">$str</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$this</span>-&gt;_is_like_search = <span class="keyword">TRUE</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$this</span>-&gt;escape(<span class="variable">$str</span>));</span><br><span class="line">    <span class="variable">$this</span>-&gt;_is_like_search = <span class="keyword">FALSE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>換句話說，除了單引號不用兩個單引號來過濾外，我們還得用兩次脫逸來進行 LIKE 比對。使用範例如下： </p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = sprintf(<span class="string">"SELECT * FROM table_name WHERE field_name LIKE '%s'"</span>, <span class="string">'%'</span> . <span class="variable">$db</span>-&gt;searchEscape(<span class="variable">$keyword</span>) . <span class="string">'%'</span>);</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$db</span>-&gt;query(<span class="variable">$query</span>);</span><br></pre></td></tr></table></figure>
+<p>透過以上的程式來搜尋「許\」這個關鍵字時，得到的 SQL 語法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> field_name <span class="keyword">LIKE</span> <span class="string">'%許\\\\%'</span></span></span><br></pre></td></tr></table></figure>
+<p>我們可以看到，一個反斜線變成了四個反斜線；這樣一來，我們才能在預設字集為 big5 的 MySQL 資料表裡，查詢到包含「許\」的資料列。 </p>
+<p>註： latin1 和 utf8 也是一樣的做法，只是 latin1 會把「許」變成「許\\」 (記住一個反斜線要變成四個反斜線) 。 </p>
+<h2 id="topic-charlength">預設字集對資料欄位長度的影響</h2>
+
+<p>在 MySQL 4.0 裡，如果我們用 varchar(10) 來儲存 big5 中文的話，那麼一個中文字就會被計算為 2 個位元組；就算我們設定預設字集為 big5 ，也不會影響 MySQL 計算中文字的方式；換句話說， varchar(10) 只能存 5 個 big5 中文字。</p>
+<p>但是在 MySQL 4.1 以後就不一樣了，如果資料表的校對編碼設為 big5 ，那麼中文字就會被當成一個字元來計算。所以 varchar(10) 可以儲存 10 個英數字，也可以儲存 10 個中文字。當然 utf8 也是一樣的，雖然 utf8 實際會佔用 1 到 3 個位元組，但在校對編碼是 utf8 的情況下，varchar 還是能儲存 10 個字 (包含英數字或中文字等) 。也就是說， varchar(10) 算的是字數，而非位元組的長度。 </p>
+<p>註：可參考此篇討論：<a href="http://phorum.study-area.org/viewtopic.php?t=40293" target="_blank" rel="external">MySQL超出欄位長度後仍能儲存</a>。 </p>
+<h2 id="程式庫_(mysql,_PEAR::DB)">程式庫 (mysql, PEAR::DB)</h2><p>我已經幫大家把上面的規則整理成 PHP 的類別 (Class) ，各位只要把它們拿來研究一下，應該就能瞭解 MySQL 在處理 big5 中文字時所要注意的事情。這裡我分為兩個部份來談，一個是傳統 PHP 所內建的 mysql 函式，另一個則是我常用的 PEAR::DB 。其他程式庫例如 PDO 、 ADOdb 或 mysqli 等，就留給大家自行練習吧。  </p>
+<h3 id="內建的_mysql_函式">內建的 mysql 函式</h3><p>我把內建的 mysql_* 函式包裝如下：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/<span class="class"><span class="keyword">class</span>/<span class="title">MySQL</span>.<span class="title">php</span></span></span><br><span class="line">/<span class="class"><span class="keyword">class</span>/<span class="title">MySQLResult</span>.<span class="title">php</span></span></span><br></pre></td></tr></table></figure>
+<p>這兩個類別的用法如下：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">require_once 'config.php';</span><br><span class="line">require_once 'class/<span class="type">MySQL</span>.php';</span><br><span class="line">$db = <span class="type">MySQL</span>::connect(<span class="type">DB_HOST</span>, <span class="type">DB_USER</span>, <span class="type">DB_PASS</span>, <span class="type">DB_NAME</span>, <span class="type">DB_CHAR_SET</span>);</span><br><span class="line">$<span class="literal">result</span> = $db-&gt;query($sql);</span><br><span class="line"><span class="keyword">while</span> ($row = $<span class="literal">result</span>-&gt;fetchAssoc()) &#123;</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line">$<span class="literal">result</span>-&gt;free();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>我們可以使用 MySQL::connect 方法來建立一個 db 物件，這個方法是使用 PHP4 的 Singleton 模式。其中<br>DB_CHAR_SET  就是我們指定的編碼，它在 MySQL 4.0 以前的版本會被自動忽略，而在 MySQL 4.1 以後的版本它就是 SET NAMES 會用到的編碼格式。 </p>
+<p>當建立好 db 物件後，我們就可以用 query 方法來執行 SQL 語法。如果 query 是執行 SELECT 語法，那麼就會回傳一個 result 物件，這個物件的型態就是 MySQLResult 。而 result 物件支援一個方法，就是 fetchAssoc ，它其實只是包裝了 mysql_fetch_row 這個函式而已。 </p>
+<p>註： MySQL.php 會自動把 MySQLResult.php 包含進來。 </p>
+<p>當然這兩個類別程式還不是很完善，而且沒有錯誤機制處理。因為它們只是我用來測試編碼問題所暫時開發的工具而已，如果大家有需要可以自行改寫它們 (不限用途) 。</p>
+<p>詳細的程式請直接下載後面的範例參考。 </p>
+<h3 id="PEAR::DB">PEAR::DB</h3><p>我們公司在連接資料庫的函式庫中選擇了 PEAR::DB ，而且它也是我書中所採用的資料抽象層。因此如何把上面的規則融入 PEAR::DB 中，對我來說是一件很重要的事情。</p>
+<p>當然我不可能去修改 PEAR::DB 的程式碼，因為 PEAR::DB 雖然已不再更新，但是還是有持續在修正 Bug 。所以我的目標是儘可能不要動到程式原來的核心，然後把前面的規則加進去。</p>
+<p>怎麼做呢？這時我們就會用到一個設計模式： Decorator 。</p>
+<p>首先我用一個新的類別 PEARDBWraper 繼承 DB_mysql (PEAR::DB 中的 MySQL Driver) ，這樣 PEARDBWraper 就會繼承 PEAR::DB 的所有方法與屬性。然後我先用 PEAR::DB 的 connect 函式來建立一個 db 物件，再把它用 PEARDBWraper 包起來：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$db</span> <span class="subst">=</span> <span class="subst">&amp;</span>amp;DB<span class="tag">::connect</span>(DB_DSN);</span><br><span class="line"><span class="keyword">if</span> (DB<span class="tag">::isError</span>(<span class="variable">$db</span>)) &#123;</span><br><span class="line">    <span class="keyword">header</span>(<span class="string">"Content-Type: text/html; charset=big5"</span>);</span><br><span class="line">    die (<span class="variable">$db</span><span class="subst">-&gt;</span>getDebugInfo());</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$db</span> <span class="subst">=</span> <span class="literal">new</span> PEARDBWrapper(<span class="variable">$db</span>, DB_CHAR_SET);</span><br><span class="line"><span class="variable">$db</span><span class="subst">-&gt;</span>setFetchMode(DB_FETCHMODE_ASSOC);</span><br></pre></td></tr></table></figure>
+<p>其中 DB_CHAR_SET 和前面的 MySQL 類別提到的說明是一樣的。</p>
+<p>在包裝起來之後， PEARDBWraper 會自動取代 $db 的建構函式及 escapeSimple 方法的實作，並加入一個 searchEscape 方法。這樣一來我們就可以不用在修改太多程式的狀況下，順利解決 big5 編碼的問題。</p>
+<p>註：嚴格來說，我的做法不是標準的 Decorator 模式，只是它的目的很像，所以我就借用了這個名詞。 </p>
+<p>怎麼用呢？只要配合 PEAR::DB 的 prepare 及 execute 即可：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$insert</span> <span class="subst">=</span> <span class="string">"INSERT INTO table_name (field_name) VALUES (?)"</span>;</span><br><span class="line"><span class="variable">$sth</span> <span class="subst">=</span> <span class="subst">&amp;</span>amp;<span class="variable">$db</span><span class="subst">-&gt;</span>prepare(<span class="variable">$insert</span>);</span><br><span class="line"><span class="variable">$result</span> <span class="subst">=</span> <span class="subst">&amp;</span>amp;<span class="variable">$db</span><span class="subst">-&gt;</span>execute(<span class="variable">$sth</span>, <span class="built_in">array</span> (<span class="variable">$data</span>));</span><br></pre></td></tr></table></figure>
+<p>如果是要完整比對，也是直接使用 getAll 方法 (或其他對等的 get* 方法) ：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> <span class="subst">=</span> <span class="string">"SELECT * FROM table_name WHERE field_name = ?"</span>;</span><br><span class="line"><span class="variable">$recordset</span> <span class="subst">=</span> <span class="subst">&amp;</span>amp;<span class="variable">$db</span><span class="subst">-&gt;</span>getAll(<span class="variable">$query</span>, <span class="built_in">array</span>(<span class="variable">$keyword</span>));</span><br></pre></td></tr></table></figure>
+<p>而部份比對就要借助 searchEscape 了： </p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> <span class="subst">=</span> <span class="string">"SELECT * FROM table_name WHERE field_name LIKE ?"</span>;</span><br><span class="line"><span class="variable">$recordset</span> <span class="subst">=</span> <span class="subst">&amp;</span>amp;<span class="variable">$db</span><span class="subst">-&gt;</span>getAll(<span class="variable">$query</span>, <span class="built_in">array</span>(<span class="string">'%'</span> <span class="built_in">. </span><span class="variable">$db</span><span class="subst">-&gt;</span>searchEscape(<span class="variable">$keyword</span>) <span class="built_in">. </span><span class="string">'%'</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="topic-dump-import">資料的匯出與匯入</h2>
+
+<p>接下來要談談如何匯出與匯入正確編碼的 SQL 指令備份檔，我想這些大概會是很多人想要搞清楚的地方 (其實我之前也是) 。在我仔細研讀了 <a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=9575279085&amp;sid=30707" target="_blank" rel="external">MySQL 5 徹底研究 (第三版)</a>，並實驗了一陣子之後，終於有了以下的心得。 </p>
+<h3 id="匯出_(mysqldump)">匯出 (mysqldump)</h3><p>在 MySQL 底下要匯出資料的最快方式為：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysqldump -u root -<span class="tag">p</span> --add-drop-<span class="tag">table</span> db_name &gt; db_name.sql</span><br></pre></td></tr></table></figure>
+<p>不過這個匯出方式所產生的 SQL 語法會因為預設字集而有所不同。舉例來說，如果資料裡面有「許功蓋」三個字，那麼預設字集為 latin1 時，所匯出的結果會是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name <span class="keyword">VALUES</span> (<span class="string">'許\功\蓋\');</span></span></span><br></pre></td></tr></table></figure>
+<p>而預設字集為 big5 時：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name <span class="keyword">VALUES</span> (<span class="string">'許功蓋'</span>);</span></span><br></pre></td></tr></table></figure>
+<p>換句話說，在匯出資料時如果預設字集是 big5 ，那麼「許功蓋」就會被視為是完整的中文字。</p>
+<p>不過在 MySQL 4.1 以後，資料匯出的編碼就會依照我們所設定的資料欄校對來決定了。也就是說，如果在建立資料庫或資料表時，使用的校對是 big5 ，而且資料欄位是繼承資料表的設定時，那麼匯出來的「許功蓋」就不會被加上反斜線。</p>
+<p>註：還有一點要注意，那就是在 MySQL 4.0 以前，預設是用 ASCII 的編碼來匯出 SQL ；而 MySQL 4.1 以後，則是用 UTF8 編碼來匯出 SQL 。</p>
+<h3 id="匯入">匯入</h3><p>那麼怎麼把上面產生出來的 SQL 檔案再匯進去呢？可以用以下的語法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql -u root -<span class="tag">p</span> db_name &lt; db_name.sql</span><br></pre></td></tr></table></figure>
+<p>在 MySQL 4.0 以前，如果我們是在預設字集為 big5 的環境下執行匯出動作，那麼匯入的指令要改成：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql -u root -p --<span class="keyword">default</span>-character-<span class="keyword">set</span>=big5 db_name &lt; db_name.sql</span><br></pre></td></tr></table></figure>
+<p>這樣 mysql 指令才會以正確的 big5 編碼來匯入 SQL 檔案，這時候 MySQL 4.0 的預設字集是不是 big5 都沒關係。 </p>
+<p>至於 MySQL 4.1 以後，就會自行依照資料表的校對編碼來匯入資料了。</p>
+<h3 id="匯出_MySQL_4-0_的資料並匯入_MySQL_4-1_裡">匯出  MySQL 4.0 的資料並匯入 MySQL 4.1 裡</h3><p>剛剛說的匯出匯入都是在同一個版本下操作，可是如果今天我們將 MySQL 版本升級為 4.1 或 5.0 ，但備份的資料卻是 4.0 的版本時，該怎麼辦呢？</p>
+<p>例如現在我們已經從預設字集為 big5 的 MySQL 4.0 中匯出了一個 db_name.sql 檔，內容如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> table_name;</span></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">field_name <span class="built_in">text</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">) TYPE=MyISAM;</span></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name <span class="keyword">VALUES</span> (<span class="string">'許功蓋'</span>);</span></span><br></pre></td></tr></table></figure>
+<p>然後我們要將它匯入 MySQL 4.1 (或 5.0) 伺服器的 db_name 這個資料庫上。請依照以下步驟執行：</p>
+<p>首先要確定 db_name 的校對編碼是 big5_chinese_ci (可以用 phpMyAdmin 來確定) ，因為 MySQL 4.0 所產生出來的 SQL 並不會包含字集的設定；如果直接執行這個 SQL 檔的話，那建立出來的資料表就會繼承 db_name 這個資料庫的校對編碼。而這時候如果 db_name 這個資料庫的校對編碼不是 big5 時，那匯進去的資料就會變成亂碼了。 </p>
+<p>接著我們再用以下指令匯入：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql -u root -p --<span class="keyword">default</span>-character-<span class="keyword">set</span>=big5 db_name &lt; db_name.sql</span><br></pre></td></tr></table></figure>
+<p>如果是在預設字集為 latin1 的 MySQL 4.0 中，用 mysqldump 或者是用 phpMyAdmin 匯出的資料，其格式都會是 latin1  (也就是「許功蓋」會變成「許\功\蓋\」) 。這時我們不能用 latin1 來將資料匯入 MySQL 4.1 裡，否則資料會變成亂碼。應該要改用 binary 來匯入：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql -u root -p --<span class="keyword">default</span>-character-<span class="built_in">set</span>=<span class="built_in">binary</span> db_name &lt; db_name.sql</span><br></pre></td></tr></table></figure>
+<p>因為這時候 mysql 會用原始格式 (binary) 來讀取 db_name.sql ，且不會用任何編碼格式來解釋中文字，而是直接存入資料庫裡。這就是之前我提到的<a href="http://blog.roodo.com/jaceju/archives/946844.html" target="_blank" rel="external">將 MySQL 4.0 的資料轉至 MySQL 5.0</a> 時所描述的狀況。</p>
+<h3 id="匯出_MySQL_4-1_的資料並匯入_MySQL_4-0_裡">匯出  MySQL 4.1 的資料並匯入 MySQL 4.0 裡</h3><p>如果很不幸地，我們需要將新版的 MySQL 4.1 資料匯回 MySQL 4.0 裡時怎麼辦呢？</p>
+<p>首先我們要先在 MySQL 4.1 的伺服器上，用以下指令把資料表匯出：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysqldump -u root -p --compatible=mysql40 --<span class="keyword">default</span>-character-<span class="keyword">set</span>=big5 db_name &gt; db_name.sql</span><br></pre></td></tr></table></figure>
+<p>也就是說，在 MySQL 4.1 的 mysqldump 中，我們可以用 —compatible=mysql40 來產生相容於 MySQL 4.0 的 SQL 指令檔；然後在匯出 SQL 時指定正確的字集。接著再到 MySQL 4.0 的伺服器上，用以下指令把資料表匯入：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql -u root -p --<span class="keyword">default</span>-character-<span class="keyword">set</span>=big5 db_name &lt; db_name.sql</span><br></pre></td></tr></table></figure>
+<p>指令和上面 MySQL 4.0 的匯入方式是一樣的。</p>
+<h2 id="topic-phpmyadmin">phpMyAdmin</h2>
+
+<p>我想應該大部份開發 PHP 的朋友們都是使用 phpMyAdmin 來管理 MySQL ，但是也有很多朋友常會遇到 phpMyAdmin 在顯示資料時出現亂碼的問題。其實這就和前面我所提到的用戶端頁面編碼有關，只要選擇了正確的頁面編碼，就應該能看到正確的資料。</p>
+<p>而新版的 phpMyAdmin 會自行因應 MySQL 版本的不同，而有不同的語言選項。以下我會用 phpMyAdmin 2.8.x 的版本，來說明如何正確選擇這些語言，讓 phpMyAdmin 在呈現資料時，不致於出現亂碼。 </p>
+<p>註：在 phpMyAdmin 2.7.0 版以前，我想也許是因為 MySQL 4.1 採用的編碼方式讓 phpMyAdmin 的開發團隊有點混亂，而多少有一些操作上的問題。 </p>
+<h3 id="MySQL_4-0_以前">MySQL 4.0 以前</h3><p>如果用 phpMyAdmin 連接 MySQL 4.0 時，我們會看到以下的主畫面：</p>
+<p><img src="/resources/mysql_escape/4.gif" alt=""></p>
+<p>注意 Language 的部份，這裡就是能否正確輸入及顯示資料的關鍵所在。怎麼說呢？</p>
+<p>舉個例子，如果大家有用 Wordpress 或 LifeType 這一類的 Web 套裝程式，預設會是使用 utf8 來做為頁面的編碼以及資料的儲存。這時如果用 Language 為 big5 的選項來查看 Wordpress 所建立的資料時，就會發現呈現的結果竟然是亂碼。也就是說，雖然一樣在 Wordpress 裡是用中文撰寫內容，但實際上這些中文的編碼是 utf8 格式，而非 big5 。 </p>
+<p>那麼要怎麼查看正確的資料呢？在 Language 的下拉選單裡，其中「中文 - Chinese traditional 」分為 big5 和 utf8 ，這些選項會影響目前 phpMyAdmin 所產生的頁面編碼。換句話說，如果要查看 Wordpress 等採用 utf8 編碼所儲存的資料，就要用「中文 - Chinese traditional (utf8) 」；而其他我們自行開發，採用 big5 編碼所儲存的資料，就應該用「中文 - Chinese traditional (big5) 」。 </p>
+<p>註：實際上 MySQL 4.0 並不認識 utf8 ，所以實際上它還是會用目前的預設字集去處理 utf8 的資料。</p>
+<p>除了會影響 phpMyAdmin 呈現資料的編碼格式之外， Language 選項也會影響 phpMyAdmin 在匯出 SQL 備份檔時的檔案編碼。也就是說如果是在  Language 中選擇「中文 - Chinese traditional (utf8) 」的話，那麼用 phpMyAdmin 的輸出功能所產生的 SQL 備份檔也會是 utf8 編碼 (可以用 PSPad 查看其下方狀態列上的代碼頁) 。</p>
+<p>不過有個 phpMyAdmin 還是有個問題，那就是在預設字集為 big5 時，它還是會用 latin1 的格式來輸出 SQL 備份檔。但是 MySQL 4.0 並不支援上面提到的 binary 編碼，所以我們就沒辦法在預設字集為 big5 的狀況下，還原 phpMyAdmin 所產生出來的備份檔；因此還是建議大家在預設字集為 big5 時，使用 mysqldump 來做備份。 </p>
+<h3 id="MySQL_4-1_以後">MySQL 4.1 以後</h3><p>如果用 phpMyAdmin 連接 MySQL 4.1 或 5.0 時，我們會看到以下的主畫面：</p>
+<p><img src="/resources/mysql_escape/5.gif" alt=""></p>
+<p>這時 Language 選項在正體中文的部份只會有「中文 - Chinese traditional 」一個選項，而不再有 big5 與 utf8 之分。這是因為 phpMyAdmin 對 MySQL 4.1 所有資料一律以 utf8 來呈現的關係。</p>
+<p> 至於 MySQL 連線校對的地方，就像是告知 phpMyAdmin 向 MySQL 下達「 SET NAMES 」指令一樣。換句話說，如果我們是要在校對編碼是 utf8 的資料表新增資料時，就要將 MySQL 連線校對設定為 utf8 。 </p>
+<p>但是如果在 phpMyAdmin 中新增 big5 所沒有的字 (例如「堃」) 時，有兩種情況會使得我們無法順利把這些字存進去。第一種狀況就是當我們是用 big5 來做 MySQL 連線校對，第二種狀況就是如果資料表的校對編碼是 big5 的話 (例如 big5_chinese_ci ，而文字格式的資料欄是繼承此值) 。 </p>
+<p>註：在 big5 中存入「堃」的正確方法是用 &amp;#22531; 來儲存。 </p>
+<p>因為這時候 phpMyAdmin 的頁面編碼一律都是 utf8 ，所以 HTML 送過來的 Raw Data 會是「堃」而不是「&amp;#22531;」；因此 phpMyAdmin 無法將此字由 utf8 轉換為 big5 ，結果「堃」字就會被改存成問號 (?) 。</p>
+<p>所以當我們使用用 big5 來資料表的校對編碼時，用戶端的頁面編碼就一定要是 big5 ，這樣瀏覽器傳送過來的非 big5 編碼資料就會被轉換為 &amp;#xxxx; 此類的編碼格式 (<a href="http://en.wikipedia.org/wiki/Numeric_character_reference" target="_blank" rel="external">Numeric character reference</a>) ，這時候才能正確存入資料表中。 </p>
+<h3 id="不知名的語言:_zh-tw">不知名的語言: zh-tw</h3><p>如果你是從 phpMyAdmin 2.6.0 以前的版本升級到 2.7.0 以後的版本時，就有可能會出現一個錯誤：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">不知名的語言: <span class="built_in">zh</span>-tw.</span><br></pre></td></tr></table></figure>
+<p>這是因為 2.6.x 先前版本會在瀏覽器裡寫入語言選項的 cookie ，但是此 cookie 值不相容於 2.7.x 以後的版本，因而造成 2.7.x 以後的版本在切換其他語言選項時會解讀錯誤。解決的方法很簡單：移除瀏覽器的 Cookie 後，再重新讀取 phpMyAdmin 的主畫面即可。</p>
+<p>註：確切的版本我不是很確定，如果有哪位朋友清楚的話，還望不吝告知。 </p>
+<h2 id="topic-conclusion">總結</h2>
+
+<p>MySQL 4.0 以前的版本和 MySQL 4.1 以後的版本，在資料儲存的方式上有很大的差異，這也是造成很多人困惑的地方。這裡我再歸納本文的幾個重點：</p>
+<ul>
+<li>用戶端呈現與輸入的所採用編碼最好和目前 MySQL 所用的字集一致。</li>
+<li>MySQL 的預設字集在 4.0 以前影響較大，在 4.1 以後會依照資料庫或資料表上所設定的字集為主。</li>
+<li>我們必須依照正確的字集來組合正確的 SQL 語法，這個工作是由用戶端 (這裡是 PHP) 來完成的。</li>
+<li>目前的 DB 程式庫，對預設字集為 big5 的 MySQL 支援性較差；因此在組合 SQL 語法時，我們需要有特殊的處理方式。</li>
+<li>在 MySQL 4.0 以前的版本匯入或匯出資料時，要注意預設字集的問題。</li>
+<li>用最新版的 phpMyAdmin ，可以有效處理字集的問題；但是目前的 phpMyAdmin 在處理 MySQL 4.1 上的 big5 編碼內容時，還是會有一些小問題。 </li>
+</ul>
+<p>我想我在這裡用文字說明的方式，一定還是有遺漏之處。不過如果大家能配合後面的程式來實地演練一番的話，應該就能對 MySQL 各版本在字集的處理方式有較深入的瞭解。 </p>
+<h2 id="topic-download">程式下載</h2>
+
+<p>這裡我提供上面提到的程式庫，它們都是我自行開發的，所以說不定會有一些 Bug 存在。所以裡面我也提供了一些測試用的範例，大家可以自行參考說明檔，安裝在自己的機器上做測試。</p>
+<p>程式下載：<a href="/resources/mysql_escape/escape.zip">escape.zip</a> </p>
+<h2 id="topic-afterword">後記</h2>
+
+<p>為什麼網路上有一堆處理 big5 的函式，我還要自己搞一個呢？原因很簡單：懶。</p>
+<p>其實很多東西我都希望程式能自動幫我處理好，而大部份我在網路找到的函式庫都得將我目前的程式改動不少地方。當然不是說這些函式庫不好，只是對一個龐大的程式來說，面對這樣的修改，我得有非常強健的心臟及 24 小時不眠不休的體力。 </p>
+<p>最後要感謝我公司的同事，以及<a href="http://blog.v-dark.net/" target="_blank" rel="external">丫凱兄</a>。因為他們的測試，我才能確定我的程式適用在大部份的狀況 (及極特別的狀況) 。不過這樣的處理方式我想一定還不是百分之百可行，如果大家有發現任何不正確的觀念或實作方式，都歡迎在這裡通知我。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2006/08/25//blog/archives/116/" data-id="ci9ji3cnv00xc15bygsmxww1i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/MySQL/">MySQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2006/08/28//blog/archives/117/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript 小陷阱 (4) - location.reload()
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2006/08/23//blog/archives/115/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[好文] Building a simple MVC system with PHP5</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/blog/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/blog/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/blog/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/blog/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/blog/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/blog/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/blog/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/blog/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/blog/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/blog/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/blog/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/blog/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/blog/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/blog/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/blog/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/blog/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/blog/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/blog/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/blog/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/blog/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/blog/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/blog/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/blog/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/blog/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/blog/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/blog/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/blog/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/blog/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/blog/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/blog/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/blog/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/blog/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/blog/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/blog/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/blog/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/blog/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/blog/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/blog/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/blog/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/blog/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/blog/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/blog/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/blog/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/blog/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/blog/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/blog/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/07/">July 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/03/">March 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/02/">February 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/01/">January 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/12/">December 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/10/">October 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/09/">September 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/08/">August 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/07/">July 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/06/">June 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/05/">May 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/04/">April 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/03/">March 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/02/">February 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/01/">January 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/12/">December 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/11/">November 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/10/">October 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/09/">September 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/07/">July 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/06/">June 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/05/">May 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/04/">April 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/03/">March 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/02/">February 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/01/">January 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/12/">December 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/11/">November 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/10/">October 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/09/">September 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/08/">August 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/07/">July 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/06/">June 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/05/">May 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/04/">April 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/03/">March 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/02/">February 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/01/">January 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/12/">December 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/11/">November 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/10/">October 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/09/">September 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/08/">August 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/07/">July 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/06/">June 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/05/">May 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/04/">April 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/03/">March 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/02/">February 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/01/">January 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/12/">December 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/11/">November 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/10/">October 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/09/">September 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/08/">August 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/07/">July 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/06/">June 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/05/">May 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/04/">April 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/03/">March 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/02/">February 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/01/">January 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/12/">December 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/11/">November 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/10/">October 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/09/">September 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/08/">August 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/07/">July 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/06/">June 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/05/">May 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/04/">April 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

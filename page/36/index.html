@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://www.jaceju.net/blog/page/36/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-/blog/archives/229" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/20//blog/archives/229/" class="article-date">
+  <time datetime="2007-08-19T16:00:00.000Z" itemprop="datePublished">2007-08-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/20//blog/archives/229/">[SQL] 如何計算紀錄總數並更新到另一個表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 MySQL 4.1 以上版本怎麼把某個 table 的 COUNT 總數複製到另一個 table 對應的欄位裡呢？ </p>
+<p>假設這裡有 a 和 b 兩個 table ，其中 b 表有一個欄位 a_id 對應到 a 表的 id 主鍵，而 a 表有個欄位 total 要記錄在 b 表中屬於 a 表的記錄總共有多少筆。一直記得 SQL 可以很簡單做到，可以一下子就是想不起來。 </p>
+<p>感謝 Neo 一語驚醒夢中人，用 Sub Query 就搞定了：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">strong</span>&gt;UPDATE&lt;/<span class="keyword">strong</span>&gt; a, (&lt;<span class="keyword">strong</span>&gt;<span class="keyword">SELECT</span>&lt;/<span class="keyword">strong</span>&gt; a_id, &lt;<span class="keyword">strong</span>&gt;COUNT&lt;/<span class="keyword">strong</span>&gt;(*) &lt;<span class="keyword">strong</span>&gt;AS&lt;/<span class="keyword">strong</span>&gt; total</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;FROM&lt;/<span class="keyword">strong</span>&gt; b</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;<span class="keyword">GROUP</span>&lt;/<span class="keyword">strong</span>&gt; &lt;<span class="keyword">strong</span>&gt;BY&lt;/<span class="keyword">strong</span>&gt; a_id) &lt;<span class="keyword">strong</span>&gt;AS&lt;/<span class="keyword">strong</span>&gt; c</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;SET&lt;/<span class="keyword">strong</span>&gt; a.total = c.total</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;WHERE&lt;/<span class="keyword">strong</span>&gt; a.id = c.a_id;</span><br></pre></td></tr></table></figure>
+<p>這裡記下來先，不然到時候又忘了；可能有更好的方法，不過目前先完成工作要緊。 :) </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/20//blog/archives/229/" data-id="ci9ji3cdn00jp15by9g40o1pv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/資料庫/">資料庫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/227" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/18//blog/archives/227/" class="article-date">
+  <time datetime="2007-08-17T16:00:00.000Z" itemprop="datePublished">2007-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/18//blog/archives/227/">[PHP] 幾篇不錯的文章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<ul>
+<li><a href="http://greg.chiaraquartet.net/archives/16-Incredible-Zend-ZDE-debugging-trick-for-debugging-CLI-apps.html" target="_blank" rel="external">Incredible Zend ZDE debugging trick for debugging CLI apps</a></li>
+</ul>
+<p>用以下方式來 Debug PHP CLI 應用程式，我只能說作者真的很天才。</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">C:</span>\&gt; <span class="keyword">set</span> <span class="string">"QUERY_STRING=start_debug=1&amp;amp;debug_host=192.168.0.102&amp;amp;debug_port=10000&amp;amp;debug_stop=1"</span></span><br></pre></td></tr></table></figure>
+<p>有機會應該來試試看才對。</p>
+<ul>
+<li><a href="http://pixelated-dreams.com/archives/313-AJAX-and-PHP-End-to-End-Debugging.html" target="_blank" rel="external">AJAX and PHP End-to-End Debugging</a></li>
+</ul>
+<p>參考上一篇文章的方式，這次用來 Debug Ajax ；也就是把上面的 QUERY_STRING 系統變數當做 Ajax 的 GET 參數。 </p>
+<ul>
+<li><a href="http://www.rooftopsolutions.nl/article/148" target="_blank" rel="external">PHP: Arrays vs. Objects</a></li>
+</ul>
+<p>又是一篇比較 PHP 陣列和物件效率的文章，我個人是認為效率相差不大的狀況下，應該挑選適合程序的方式來用，而不是固執於一種形式。</p>
+<ul>
+<li><a href="http://blog.agoraproduction.com/index.php?/archives/47-PHP-Namespaces-Part-1-Basic-usage-gotchas.html" target="_blank" rel="external">PHP Namespaces (Part 1: Basic usage &amp; gotchas)</a></li>
+</ul>
+<p>這篇告訴你為什麼要用 Namespaces ，而 Mark 在中文化 dotProject 時也遇過同樣的問題。 </p>
+<li><br><br><a href="http://php100.wordpress.com/2007/08/17/namespaces-faq/" target="_blank" rel="external">Namespaces FAQ</a><br><br>經典：<br><blockquote><br><br> Q: PHP 為什麼需要 Namespaces ？<br><br>A: 因為 PEAR_Form_Loader_Validate_Table_Element_Validator_Exception 實在是太 TMD 長了。 (嗯…這句是我瞎掰的 XD)<br></blockquote><br></li>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/18//blog/archives/227/" data-id="ci9ji3cdq00jt15by4xor1vd4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/224" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/16//blog/archives/224/" class="article-date">
+  <time datetime="2007-08-15T16:00:00.000Z" itemprop="datePublished">2007-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/16//blog/archives/224/">[轉載] Scraping Links With PHP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>剛剛看到一篇很有用的 PHP 技巧整理，主要在說明如何結合 cURL 和 DOM 來解析網頁中的連結：</p>
+<p><a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/" target="_blank" rel="external">Scraping Links With PHP</a></p>
+<p>節錄如下：</p>
+<blockquote><br><br>### What You’ll Learn<br><br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#curl_content" target="_blank" rel="external">How to use cURL</a> to get the content from a website (URL).
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#php_dom" target="_blank" rel="external">Call PHP DOM functions</a> to parse the HTML so you can extract links.<br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#xpath_easy" target="_blank" rel="external">Use XPath to grab links</a> from specific parts of a page.
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#store_links" target="_blank" rel="external">Store the scraped links</a> in a MySQL database.<br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#put_together" target="_blank" rel="external">Put it all together into a link scraper.</a>
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#more_uses" target="_blank" rel="external">What else you could use a scraper for.</a><br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#legal_issues" target="_blank" rel="external">Legal issues</a> associated with scraping content.<br><br><br>### What You Will Need
+
+</em> Basic knowledge of <a href="http://php.net/" target="_blank" rel="external">PHP</a> and <a href="http://dev.mysql.com/doc/refman/5.0/en/" target="_blank" rel="external">MySQL</a>.<br><em> A web server running PHP 5.
+</em> The <a href="http://us.php.net/curl" target="_blank" rel="external">cURL</a> extension for PHP.<br>* MySQL - if you want to store the links.<br><br></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/16//blog/archives/224/" data-id="ci9ji3cdv00jz15bykt8bj0qe" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/225" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/16//blog/archives/225/" class="article-date">
+  <time datetime="2007-08-15T16:00:00.000Z" itemprop="datePublished">2007-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/16//blog/archives/225/">ZF 和 SEO</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>老實說，我不是很懂 SEO 。</p>
+<p>之所以喜歡 <a href="http://framework.zend.com/" target="_blank" rel="external">Zend Framewrok</a> 的 Url Router 倒也不是因為 SEO ，而是因為自己寫一個是件很麻煩的事情。不過以下幾個連結可以讓對 Zend 加 SEO 有興趣的朋友參考看看：</p>
+<ul>
+<li><a href="http://devzone.zend.com/article/949-Search-Engine-Friendly-Websites-with-the-Zend-Framework" target="_blank" rel="external">Search Engine Friendly Websites with the Zend Framework</a></li>
+<li><a href="http://blog.calevans.com/2007/07/29/just-say-no-to-seo/" target="_blank" rel="external">Just Say No to SEO</a></li>
+<li><a href="http://www.wormus.com/aaron/stories/2007/08/16/zf-and-seo.html" target="_blank" rel="external">ZF and SEO</a></li>
+</ul>
+<p>不過這年頭為什麼對機器好比對人好重要呀？大概是人比較難搞的關係吧？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/16//blog/archives/225/" data-id="ci9ji3cdt00jx15byivjpyzqo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/226" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/16//blog/archives/226/" class="article-date">
+  <time datetime="2007-08-15T16:00:00.000Z" itemprop="datePublished">2007-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/16//blog/archives/226/">[JavaScript] 相關連結</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript 越來越神奇了，從大家都認為只是小玩意的技術，搖身一變成為高手們競相研究的對象。</p>
+<p>以下兩個連結就可以看出 JavaScript 真的是非常有趣的一門語言：</p>
+<ul>
+<li><a href="http://osteele.com/archives/2006/04/javascript-memoization" target="_blank" rel="external">One-Line JavaScript Memoization</a></li>
+<li><a href="http://peter.michaux.ca/article/3556" target="_blank" rel="external">Lazy Function Definition Pattern</a> (<a href="http://realazy.org/blog/2007/08/16/lazy-function-definition-pattern/" target="_blank" rel="external">簡體中文版</a> by <a href="http://realazy.org/blog/" target="_blank" rel="external">Realazy</a>)</li>
+</ul>
+<p>順便附上幾個 JavaScript 相關技術的文章：</p>
+<ul>
+<li><a href="http://yuiblog.com/blog/2007/06/12/module-pattern/" target="_blank" rel="external">A JavaScript Module Pattern</a></li>
+<li><a href="http://www.jibbering.com/faq/faq_notes/not_browser_detect.html" target="_blank" rel="external">Browser Detecting (and what to do Instead)</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/16//blog/archives/226/" data-id="ci9ji3cdr00jv15bydss786ue" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/221" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/15//blog/archives/221/" class="article-date">
+  <time datetime="2007-08-14T16:00:00.000Z" itemprop="datePublished">2007-08-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/15//blog/archives/221/">[PHP] Smarty 入門文章更新</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>感謝 <a href="http://www.php5.idv.tw/" target="_blank" rel="external">PHP 5知識交換中心</a>的總理大臣長久以來提供空間讓我存放 Smarty 入門，不過因為部份內容有所變動，所以我決定把它放回來自己的 Blog 。</p>
+<p>主要是有幾個改變：</p>
+<ul>
+<li>因為之前用的資料庫是自己寫的 DB 類別，不過這會讓一般 PHPer 看不懂我在寫什麼；所以這裡我改用 MySQLi 來存取資料庫。</li><li>把原來的 &lt;{ 和 }&gt; 標示符號改成預設的 { 和 } 。</li>
+<li>提供範例下載，但不含資料庫 Schema 。 </li>
+</ul>
+<p>沒買過書的朋友，可以先看看再決定要不要學 Smarty 。</p>
+<p>再強調一次：<strong>學 PHP 不是非學 Smarty 不可，它只是一個工具，請確認它對你的工作有幫助再使用它；也請不要隨意評斷別人的技術是玩具或垃圾，它並不會因為你的批評而從這世界上消失。</strong> </p>
+<p><a href="http://www.jaceju.net/blog/archives/23" target="_blank" rel="external">Smarty 入門文章連結</a> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/15//blog/archives/221/" data-id="ci9ji3ce100k515byucgshbz9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Smarty/">Smarty</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/222" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/15//blog/archives/222/" class="article-date">
+  <time datetime="2007-08-14T16:00:00.000Z" itemprop="datePublished">2007-08-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/15//blog/archives/222/">[JavaScript] 有關 jQuery</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>steve 網友問到了 jQuery 有什麼特點，其實我才疏學淺，沒能給什麼好建議。</p>
+<p>不過剛剛恰好看到一篇 <a href="http://simonwillison.net/2007/Aug/15/jquery/" target="_blank" rel="external">jQuery for JavaScript programmers</a> ，這裡推薦給對 jQuery 有興趣的朋友參考看看。</p>
+<p>順便整理一下一些有關 jQuery 的連結：</p>
+<ul>
+<li><a href="http://jquery.com" target="_blank" rel="external">jQuery</a></li>
+</ul>
+<p>官方網站</p>
+<li>
+
+<p><a href="http://www.learningjquery.com/" target="_blank" rel="external">Learning jQuery</a>::<a href="http://www.learningjquery.com/2007/08/what-is-this" rel="external" title="Permanent Link: What is <em>this</em>?" target="_blank">What is <em>this</em>?</a></p>
+<p>簡單的 jQuery 介紹。<br></p></li><p></p>
+<ul>
+<li><a href="http://jquery.bassistance.de/api-browser/" target="_blank" rel="external">jQuery API Browser (for jQuery 1.1.2)</a> </li>
+</ul>
+<p>API 查詢，也有提供範例。</p>
+<ul>
+<li><a href="http://visualjquery.com/" target="_blank" rel="external">Visual jQuery (for jQuery 1.1.2)</a></li>
+</ul>
+<p>和上面一樣也是 API 查詢，只是介面不同。</p>
+<ul>
+<li><a href="http://www.n-bp.com/jquery_cheat_sheet/v11_catalog_extra/" target="_blank" rel="external">jQuery.com 1.1 - Cheat Sheet</a></li>
+</ul>
+<p>作弊小抄….啊，不是，是速查表。不過我還是喜歡上面的 API Browser ，比 cheat sheet 方便。</p>
+<p>不過基本上我都是看官方網站找 plugins ，然後查一下 API Browser 而已。比較深入研究的話，就要找<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>，他是個 JavaScript 高手。 :) </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/15//blog/archives/222/" data-id="ci9ji3ce000k315by3s9pk8k1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/223" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/15//blog/archives/223/" class="article-date">
+  <time datetime="2007-08-14T16:00:00.000Z" itemprop="datePublished">2007-08-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/15//blog/archives/223/">[CSS] 多種分頁樣式範例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前陣子看到一篇分頁樣式的文章，趁最近在寫文件時順便整理一下：</p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2007/08/15//blog/archives/223/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/15//blog/archives/223/" data-id="ci9ji3cdz00k115by78ryvc8j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/220" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/14//blog/archives/220/" class="article-date">
+  <time datetime="2007-08-13T16:00:00.000Z" itemprop="datePublished">2007-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/14//blog/archives/220/">[好站] 分析網站是由哪些技術組成的</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>剛剛看到一個還不錯的網站：<a href="http://builtwith.com/" target="_blank" rel="external">BuiltWith</a> 。 </p>
+<p>它可以分析包含 JavaScript 、 Server Language 等等技術，同時也會統計目前已查詢過的網站中，這些技術所佔的比重。</p>
+<p>舉 <a href="http://builtwith.com/default.aspx?cakephp.org" target="_blank" rel="external">CakePHP.org</a> 為例：</p>
+<h4>Javascript Libraries</h4>
+
+<ul>
+<li>PNG Fix (嗯，很常見) </li>
+</ul>
+<h4>Frameworks</h4>
+
+<ul>
+<li>PHP (沒錯， PHP 本身也是個 Framework) </li>
+<li>CakePHP (喔，雖然是預料之中，但是這個也能判斷出來還不錯) </li>
+</ul>
+<h4>Payment Services</h4>
+
+<ul>
+<li>PayPal (是會自己去看貼紙嗎？ XD)</li>
+</ul>
+<h4>Document Information</h4>
+
+<ul>
+<li>XHTML Transitional (慢慢成為趨勢了) </li>
+<li>Conditional Comments (就是 IE 獨創的條件式註解)</li>
+<li>Cascading Style Sheets (這也很流行) </li>
+<li>Javascript (沒它的話網站就不好玩了) </li>
+</ul>
+<h4>Encoding</h4>
+
+<ul>
+<li>UTF-8 (這也是趨勢) </li>
+</ul>
+<p>另外右邊是 Server 的資訊，CakePHP 用的是 Apache ，這裡就不詳列了。 </p>
+<p>再來看看 <a href="http://builtwith.com/default.aspx?framework.zend.com" target="_blank" rel="external">Zend Framework</a> 的官方網站：</p>
+<h4>Javascript Libraries</h4>
+
+<ul>
+<li>JQuery (嗯，跟我選的一樣)</li>
+</ul>
+<h4> Frameworks</h4>
+
+<ul>
+<li>ASP.NET (啊，這是什麼碗糕！？ )</li>
+</ul>
+<p>再看一下右邊的 Web Server ，是 Apache ！ </p>
+<p>為什麼 Zend Framework 官方網站會是用 Apache + ASP.NET 搭的呀！？ XD</p>
+<p>註：當然這不是什麼奇怪的事，很多網站會利用 HTTP 的 Header 來改掉自己網站輸出的資訊，以免成為惡意程式用在攻擊上的判斷依據。例如我們可以用 X-Powered-By 來設定使用的伺服端技術，而 framework.zend.com 就是改成了 ASP.NET 。只是這也改得太大了吧？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/14//blog/archives/220/" data-id="ci9ji3ce200k715byse67im5l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-/blog/archives/219" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2007/08/14//blog/archives/219/" class="article-date">
+  <time datetime="2007-08-13T16:00:00.000Z" itemprop="datePublished">2007-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2007/08/14//blog/archives/219/">[Web] 連結分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近沒空寫東西了，光文件就快讓我忙不過來了。</p>
+<p>再搜集幾個連結，有些是從 Neo 的「<a href="http://www.neo.com.tw/archives/001088.html" target="_blank" rel="external">用 PHP 實作 ActiveRecord</a> 」那邊看來的：</p>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.advogato.org/article/470.html" target="_blank" rel="external">Mixins in PHP</a></li>
+</ul>
+<p>和我的<a href="http://www.jaceju.net/blog/archives/163" target="_blank" rel="external">實作</a>滿像的，不過有用到 <a href="http://tw.php.net/manual/en/language.oop5.reflection.php" target="_blank" rel="external">Reflection API</a> 。另外看了人家的程式後，我發現我的實作忘了要 return 結果。</p>
+<ul>
+<li><a href="http://www.scriptorama.nl/tips-tricks/re-mixins-in-php" target="_blank" rel="external">Re: mixins in PHP</a></li>
+</ul>
+<p>這個有用到 <a href="http://tw.php.net/manual/en/ref.runkit.php" target="_blank" rel="external">runkit</a> 。</p>
+<ul>
+<li><a href="http://www.actsasflinn.com/articles/2007/08/08/php-and-activerecord" target="_blank" rel="external">PHP and ActiveRecord</a></li>
+</ul>
+<p>解釋了為什麼 Ruby 適合實作 ActiveRecord ，但是 PHP 則很難實現。不過 PHP 不好做的話也別氣餒， Zend Framework 的 <a href="http://framework.zend.com/manual/en/zend.db.table.html" target="_blank" rel="external">Table Data Gateway</a> 和 <a href="http://framework.zend.com/manual/en/zend.db.table.row.html" target="_blank" rel="external">Row Data Gateway</a> 就是一種不錯的實作了。</p>
+<ul>
+<li><a href="http://blog.adaniels.nl/?p=40" target="_blank" rel="external">PHP != Ruby (and why PHP needs more advanced OO stuff)</a></li>
+</ul>
+<p>從上一篇延伸而來的，作者解釋可以用 runkit 來實現很多 PHP 原來做不到的事情，用排序來做為範例。</p>
+<ul>
+<li><a href="http://www.actsasflinn.com/articles/2007/08/10/php-and-activerecord-continued" target="_blank" rel="external">PHP and ActiveRecord (continued)</a></li>
+</ul>
+<p>PHP and ActiveRecord 的作者又根據上篇文章回應了，他是希望 PHP6 可以加入一些真正有用的功能。可以參考：<a href="http://livepipe.net/blog/programming/what_php6_actually_needs" target="_blank" rel="external">What PHP6 Actually Needs</a> 。</p>
+<ul>
+<li><a href="http://www.sitepoint.com/blogs/2007/08/13/ptest-php-unit-tester-in-9-lines-of-code/" target="_blank" rel="external">pTest: PHP Unit Tester in 9 Lines Of Code</a></li>
+</ul>
+<p>九行實作一個測試用的 assertTrue 函式。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* pTest - PHP Unit Tester</span><br><span class="line">*<span class="phpdoc"> @param</span> mixed $test Condition to test, evaluated as boolean</span><br><span class="line">*<span class="phpdoc"> @param</span> string $message Descriptive message to output upon test</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertTrue</span><span class="params">(<span class="variable">$test</span>, <span class="variable">$message</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">static</span> <span class="variable">$count</span>;</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$count</span>)) <span class="variable">$count</span> = <span class="keyword">array</span>(<span class="string">'pass'</span>=&gt;<span class="number">0</span>, <span class="string">'fail'</span>=&gt;<span class="number">0</span>, <span class="string">'total'</span>=&gt;<span class="number">0</span>);</span><br><span class="line"><span class="variable">$mode</span> = <span class="variable">$test</span> ? <span class="string">'pass'</span> : <span class="string">'fail'</span>;</span><br><span class="line">printf(<span class="string">"%s: %s (%d of %d tests run so far have %sed)\n"</span>,</span><br><span class="line">strtoupper(<span class="variable">$mode</span>), <span class="variable">$message</span>, ++<span class="variable">$count</span>[<span class="variable">$mode</span>], ++<span class="variable">$count</span>[<span class="string">'total'</span>], <span class="variable">$mode</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><a href="http://devzone.zend.com/article/2442-PHP-and-RIA" target="_blank" rel="external">PHP and RIA</a></p>
+</li>
+</ul>
+<p>介紹一些 Zend Framework 和 Ajax 的結合，有範例可以下載參考。</p>
+<ul>
+<li><p><a href="http://devzone.zend.com/node/view/id/1234" target="_blank" rel="external">Part 1: Introduction, The Zend Framework</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1280" target="_blank" rel="external">Part 2:Prototype, Scriptaculous, Application HTML</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1326" target="_blank" rel="external">Part 3:Storage Medium, XML and the Message Process</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1387" target="_blank" rel="external">Part 4: IndexController MessageAction() and JSON Encoding</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1407" target="_blank" rel="external">Part 5: The Javascript, Sending Chat Messages, Screen Name Changes</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1532" target="_blank" rel="external">Part 6: Updating the User List</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1580" target="_blank" rel="external">Part 7: Usability Improvements</a></p>
+</li>
+</ul>
+<ul>
+<li><a href="http://www.rooftopsolutions.nl/article/145" target="_blank" rel="external">PHPRPC and PHP frameworks</a><br>把 PHPRPC 提交到目前作者認為是 PHP 主流的框架與類庫裡。這個 PHPRPC 好像跟對岸 <a href="http://www.coolcode.cn/author/andot/" target="_blank" rel="external">andot</a> 開發的 <a href="http://www.coolcode.cn/andot/phprpc-11-protocol/107" target="_blank" rel="external">PHPRPC</a> 兩者是不一樣的東西？</li>
+</ul>
+<p>註： <a href="http://www.coolcode.cn/author/andot/" target="_blank" rel="external">andot</a> 的 <a href="http://www.phprpc.org/" target="_blank" rel="external">PHPRPC</a> 已經搞到其他開發環境裡了，簡單來說就是「撈過界」了啦。 XD</p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.hedgerwow.com/360/dhtml/css-menu-separator.html" target="_blank" rel="external">Menu Separators 101</a></li>
+</ul>
+<p>如何在不使用 first class 或 CSS pseudo selector 的情況下，把第一個元素的背景隱藏起來。</p>
+<ul>
+<li><a href="http://www.hedgerwow.com/360/dhtml/css-flex-input-boxes.html" target="_blank" rel="external">Flex input box layout</a></li>
+</ul>
+<p>如果常常煩惱怎麼讓輸入欄位的寬度自動符合視窗寬度的話，這篇可以參考看看。</p>
+<h2 id="Windows">Windows</h2><ul>
+<li><a href="http://www.alexatnet.com/node/54" target="_blank" rel="external">Create and delete users using windows scripting host (jscript)</a></li>
+</ul>
+<p>用 Windows Scripting Host (JScript) 來新增、刪除 Windows 使用者。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/blog/2007/08/14//blog/archives/219/" data-id="ci9ji3ce500kb15byvartm5vx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/連結分享/">連結分享</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/blog/page/35/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/34/">34</a><a class="page-number" href="/blog/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/blog/page/37/">37</a><a class="page-number" href="/blog/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/58/">58</a><a class="extend next" rel="next" href="/blog/page/37/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/blog/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/blog/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/blog/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/blog/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/blog/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/blog/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/blog/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/blog/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/blog/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/blog/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/blog/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/blog/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/blog/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/blog/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/blog/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/blog/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/blog/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/blog/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/blog/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/blog/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/blog/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/blog/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/blog/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/blog/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/blog/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/blog/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/blog/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/blog/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/blog/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/blog/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/blog/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/blog/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/blog/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/blog/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/blog/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/blog/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/blog/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/blog/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/blog/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/blog/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/blog/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/blog/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/blog/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/blog/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/blog/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/blog/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/07/">July 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/03/">March 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/02/">February 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/01/">January 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/12/">December 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/10/">October 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/09/">September 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/08/">August 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/07/">July 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/06/">June 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/05/">May 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/04/">April 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/03/">March 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/02/">February 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2010/01/">January 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/12/">December 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/11/">November 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/10/">October 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/09/">September 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/07/">July 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/06/">June 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/05/">May 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/04/">April 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/03/">March 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/02/">February 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2009/01/">January 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/12/">December 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/11/">November 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/10/">October 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/09/">September 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/08/">August 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/07/">July 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/06/">June 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/05/">May 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/04/">April 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/03/">March 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/02/">February 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2008/01/">January 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/12/">December 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/11/">November 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/10/">October 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/09/">September 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/08/">August 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/07/">July 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/06/">June 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/05/">May 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/04/">April 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/03/">March 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/02/">February 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2007/01/">January 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/12/">December 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/11/">November 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/10/">October 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/09/">September 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/08/">August 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/07/">July 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/06/">June 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/05/">May 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/04/">April 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/03/">March 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/02/">February 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2006/01/">January 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/12/">December 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/11/">November 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/10/">October 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/09/">September 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/08/">August 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/07/">July 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/06/">June 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/05/">May 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2005/04/">April 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
