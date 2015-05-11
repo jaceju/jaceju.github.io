@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>測試用</title>
+<link href="position_no.css" rel="stylesheet" type="text/css" id="css-file" />
+<link href="common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+<!--
+function changeStyle(sFile) {
+	document.getElementById('css-file').href = sFile;
+	return false;
+}
+//-->
+</script>
+</head>
+<body>
+<div id="test-position"><a href="#" onclick="return changeStyle('position_no.css');">未套用 position 屬性前</a> <a href="#" onclick="return changeStyle('position_yes.css');">套用 position 屬性後</a></div>
+<p>說明：因為淺綠色的 content 區塊已經設定為 position: relative ，且置中。所以裡面所有元素的位置 (除了 position: fixed 以外) ，都會以它為基準。</p>
+<div class="content">
+    <div class="position-absolute">
+        <div>測試 position: absolute;</div>
+        <div>測試 position: absolute;</div>
+        <div>測試 position: absolute;</div>
+        <div>測試 position: absolute;</div>
+    </div>
+    <div class="position-static">
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <div>測試 position: static;</div>
+        <a href="#" class="link-relative">連結 - position: relative; display: block;</a> </div>
+    <div class="position-relative">
+        <div>測試 position: relative;</div>
+        <div>測試 position: relative;</div>
+        <div>測試 position: relative;</div>
+        <div>測試 position: relative;</div>
+        <a href="#" class="link-static">連結 - position: static; (預設)</a> </div>
+    <div class="position-fixed">
+        <div>測試 position: fixed;</div>
+        <div>測試 position: fixed;</div>
+        <div>測試 position: fixed;</div>
+        <div>測試 position: fixed;</div>
+        <div>IE 上， position: fixed 無法作用</div>
+    </div>
+</div>
+
+</body>
+</html>
