@@ -3,7 +3,6 @@ layout: post
 title: "[PHPConf.TW] Beginning PHPUnit 簡報花絮"
 date: 2011-11-14 23:59
 wordpress_id: 1977
-permalink: /blog/archives/secret-of-beginning-phpunit
 comments: true
 tags: ["PHP", "PHPConf.TW"]
 ---

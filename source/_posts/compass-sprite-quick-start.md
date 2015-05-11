@@ -2,7 +2,6 @@
 layout: post
 title: "Compass Sprite Quick Start"
 date: 2011-11-16 16:53
-permalink: /blog/archives/compass-sprite-quick-start
 comments: true
 tags: Compass
 ---

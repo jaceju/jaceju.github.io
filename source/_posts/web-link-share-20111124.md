@@ -3,7 +3,6 @@ layout: post
 title: "[Web] 連結分享"
 date: 2011-11-24 10:09
 comments: true
-permalink: /blog/archives/web-link-share-20111124
 tags: ["連結分享"]
 ---
 <!-- more -->

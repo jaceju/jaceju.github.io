@@ -3,7 +3,6 @@ layout: post
 title: "Beginning Backbone.JS X CoffeeScript"
 date: 2011-11-22 22:28
 comments: true
-permalink: /blog/archives/beginning-backbone-coffeescript
 tags: ["CoffeeScript", "Backbone.js"]
 ---
 因為想同時練習 Backbone.JS 和 CoffeeScript 這兩個熱門的技術，所以在網路上找了一下，剛好看到這篇 [CoffeeScript with Backbone.js Example](http://sunilarora.org/coffeescript-with-backbonejs-example) ，所以快速做個筆記。
