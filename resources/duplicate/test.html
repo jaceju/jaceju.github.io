@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>���X���ƭ�</title>
+<script type="text/javascript" src="prototypes.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+<!-- <![CDATA[
+function checkForm() {
+  // ���o�Ҧ��W�� sid �����r����
+  var grp_sid = document.getElementsByName('sid');
+  // �إߤ@���ˬd�Ϊ��Ű}�C
+  var chk_sid = new Array();
+  // �N���r�����}�C���ȩ����ˬd�Ϊ��}�C
+  for (var i = 0; i < grp_sid.length; i ++)
+    chk_sid.push(grp_sid[i].value.trim());
+  // �Q�� slice �禡�����O�_�����ƭ�
+  for (var i = 0; i < chk_sid.length; i ++) {
+    if ('' != chk_sid[i]) {
+      if (i > 0 && chk_sid.slice(0, i).exists(chk_sid[i])) {
+        alert('�Фŭ��п��J�ۦP���ȡI');
+        // �X�{���ƭȮɡA���d�b���������r�����W
+        grp_sid[i].focus();
+        return false;
+      }
+    }
+  }
+  return false;
+}
+// ]]> -->
+</script>
+<form name="form1" method="post" action="" onsubmit="return checkForm();">
+<input type="text" name="sid" id="sid_1"><br>
+<input type="text" name="sid" id="sid_2"><br>
+<input type="text" name="sid" id="sid_3"><br>
+<input type="text" name="sid" id="sid_4"><br>
+<input type="text" name="sid" id="sid_5"><br>
+<input type="submit" value="�ˬd">
+</form>
+</body>
+</html>
+
+
