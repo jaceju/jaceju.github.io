@@ -49,6 +49,45 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-03-04T16:00:00.000Z"><a href="/2007/03/05/160/">2007-03-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/03/05/160/">JavaScript 小陷阱 (5) - window.onload()</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>我常會在頁面載入完成時，利用 window.load 來執行一些動作。基本的方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// Do something...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>特別注意一點：如果直接把新動作附在 window.onload 的話，是會把前一個 window.onload 的動作給蓋掉的。</p>
+<p>不過如果現在有兩個動作都需要用到 window.onload ，而且其中一個我不想改動時該怎麼辦呢？ (例如是第三方函式庫裡的程式) </p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2007/03/05/160/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-02-25T16:00:00.000Z"><a href="/2007/02/26/158/">2007-02-26</a></time>
       
       
@@ -413,40 +452,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2006-11-29T16:00:00.000Z"><a href="/2006/11/30/149/">2006-11-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2006/11/30/149/">樂多網誌網域名稱更換之四 - 更換 RSS</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>有鑑於這次事件，我想我還是從善如流，把 RSS 換到 <a href="">FeedBurner</a> 去好了。</p>
-<p>請大家以後用這個來訂閱我的網誌：<br><a href="http://feeds.feedburner.com/jaceju" target="_blank" rel="external">網站製作學習誌永久 RSS / ATOM 網址</a> 。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -550,7 +555,7 @@
   
     <li><a href="/tags/持續整合/">持續整合</a><small>2</small></li>
   
-    <li><a href="/tags/未分類/">未分類</a><small>4</small></li>
+    <li><a href="/tags/未分類/">未分類</a><small>5</small></li>
   
     <li><a href="/tags/業界資訊/">業界資訊</a><small>5</small></li>
   
