@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Beginning Backbone.JS X CoffeeScript | 網站製作學習誌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="因為想同時練習 Backbone.JS 和 CoffeeScript 這兩個熱門的技術，所以在網路上找了一下，剛好看到這篇 CoffeeScript with Backbone.js Example ，所以快速做個筆記。
+這篇文章的範例主要是讓我們可以同時更改所有方塊的顏色和尺寸，只要在上方的文字欄位中輸入顏色與尺寸值即可。
+以下就針對實做這篇文章時所碰到的一些問題以及實作上的心得，一一做整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beginning Backbone.JS X CoffeeScript">
+<meta property="og:url" content="http://www.jaceju.net/2011/11/22/beginning-backbone-coffeescript/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="因為想同時練習 Backbone.JS 和 CoffeeScript 這兩個熱門的技術，所以在網路上找了一下，剛好看到這篇 CoffeeScript with Backbone.js Example ，所以快速做個筆記。
+這篇文章的範例主要是讓我們可以同時更改所有方塊的顏色和尺寸，只要在上方的文字欄位中輸入顏色與尺寸值即可。
+以下就針對實做這篇文章時所碰到的一些問題以及實作上的心得，一一做整理。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Beginning Backbone.JS X CoffeeScript">
+<meta name="twitter:description" content="因為想同時練習 Backbone.JS 和 CoffeeScript 這兩個熱門的技術，所以在網路上找了一下，剛好看到這篇 CoffeeScript with Backbone.js Example ，所以快速做個筆記。
+這篇文章的範例主要是讓我們可以同時更改所有方塊的顏色和尺寸，只要在上方的文字欄位中輸入顏色與尺寸值即可。
+以下就針對實做這篇文章時所碰到的一些問題以及實作上的心得，一一做整理。">
+  
+    <link rel="alternative" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">網站製作學習誌</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">記錄在開發網站時所學的一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://www.jaceju.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-beginning-backbone-coffeescript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/11/22/beginning-backbone-coffeescript/" class="article-date">
+  <time datetime="2011-11-22T14:28:00.000Z" itemprop="datePublished">2011-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Beginning Backbone.JS X CoffeeScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因為想同時練習 Backbone.JS 和 CoffeeScript 這兩個熱門的技術，所以在網路上找了一下，剛好看到這篇 <a href="http://sunilarora.org/coffeescript-with-backbonejs-example" target="_blank" rel="external">CoffeeScript with Backbone.js Example</a> ，所以快速做個筆記。</p>
+<p>這篇文章的範例主要是讓我們可以同時更改所有方塊的顏色和尺寸，只要在上方的文字欄位中輸入顏色與尺寸值即可。</p>
+<p>以下就針對實做這篇文章時所碰到的一些問題以及實作上的心得，一一做整理。</p>
+<a id="more"></a>
+<h2 id="HTML">HTML</h2><p>首先來看一下 HTML 的組成：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Backbone &amp;amp; CoffeeScript<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Interface --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"config-input"</span> <span class="attribute">style</span>=<span class="value">"padding: 20px;"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">data-role</span>=<span class="value">"fieldcontain"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"text"</span> &gt;</span>Enter Color Value (ex. red, green) :<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"color-input"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">value</span>=<span class="value">"blue"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">data-role</span>=<span class="value">"fieldcontain"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"text"</span> &gt;</span>Enter Width of the box (ex. 50, 70) :<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"width-input"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">value</span>=<span class="value">"100"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"color-boxes"</span> <span class="attribute">style</span>=<span class="value">"display: inline; list-style-type:none;"</span>&gt;</span><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Template --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-jquery-tmpl"</span> <span class="attribute">id</span>=<span class="value">"color-box-template"</span>&gt;</span><span class="nix"></span><br><span class="line">      &lt;div <span class="variable">style=</span><span class="string">"margin: 20px; float: left;height:<span class="subst">$&#123;width&#125;</span>px; width: <span class="subst">$&#123;width&#125;</span>px; background-color: <span class="subst">$&#123;color&#125;</span>; border: 2px solid;"</span>&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Scripts --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/underscore.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/backbone.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/jquery.tmpl.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/app.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在這次的範例裡把 HTML 分成三個部份：輸出入介面、樣版、 JavaScript 。</p>
+<p>介面有輸入用的 <code>#config-input</code> 及輸出用的 <code>#color-boxes</code> ，樣版 <code>#color-box-template</code> 則是用來輸出方塊用。</p>
+<p>JavaScript 的部份有用到：</p>
+<ul>
+<li><a href="http://jquery.com" target="_blank" rel="external">jQuery</a></li>
+<li><a href="http://documentcloud.github.com/underscore/" target="_blank" rel="external">underscore.js</a></li>
+<li><a href="http://documentcloud.github.com/backbone/" target="_blank" rel="external">Backbone.js</a></li>
+<li><a href="http://api.jquery.com/jquery.tmpl/" target="_blank" rel="external">jQuery Template Plugin</a></li>
+<li>app.js (app.coffee) - 就是下面要看的部份。</li>
+</ul>
+<p>接下來就一一來分析 <code>app.coffee</code> 的內容。</p>
+<h2 id="繼承_Backbone_的類別">繼承 Backbone 的類別</h2><p>原本 Backbone 的類別都已經有提供 extend 這個方法，它讓我們用以下的方法來建立我們的類別：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ConfigModel = Backbone.Model.extend</span><br><span class="line">    <span class="attribute">defaults</span>:</span><br><span class="line">    <span class="attribute">initialize</span>: <span class="function">-&gt;</span></span><br><span class="line"></span><br><span class="line">ColorBoxView = Backbone.View.extend</span><br><span class="line">    <span class="attribute">tagName</span>: <span class="string">"li"</span></span><br><span class="line">    <span class="attribute">initialize</span>: <span class="function">-&gt;</span></span><br><span class="line">    <span class="attribute">render</span>: <span class="function">=&gt;</span></span><br></pre></td></tr></table></figure>
+<p>但是它其實跟 CoffeeScript 提供的 <code>extends</code> 敘述做的事是一樣的，所以我們可以將上例改寫成 CoffeeScript 的 class ：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConfigModel</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">Model</span></span></span><br><span class="line">    <span class="attribute">initialize</span>: <span class="function">-&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColorBoxView</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">View</span></span></span><br><span class="line">    <span class="attribute">tagName</span>: <span class="string">"li"</span></span><br><span class="line">    <span class="attribute">initialize</span>: <span class="function">-&gt;</span></span><br><span class="line">    <span class="attribute">render</span>: <span class="function">=&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Model">Model</h2><p>這個範例的 Model 很簡單，就是一個單純的 Value Object ，並在物件初始化時設定初值：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConfigModel</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">Model</span></span></span><br><span class="line">    <span class="attribute">initialize</span>: <span class="function">-&gt;</span></span><br><span class="line">        <span class="property">@set</span> <span class="string">'color'</span>: <span class="string">'blue'</span>, <span class="string">'width'</span>: <span class="string">'100'</span>, <span class="string">'height'</span>: <span class="string">'100'</span></span><br></pre></td></tr></table></figure>
+<p>或是這樣寫也可以：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConfigModel</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">Model</span></span></span><br><span class="line">    <span class="attribute">initialize</span>: <span class="function">-&gt;</span></span><br><span class="line">        <span class="property">@set</span></span><br><span class="line">            <span class="attribute">color</span>: <span class="string">'blue'</span></span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100</span></span><br><span class="line">            <span class="attribute">height</span>: <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p>也可以改用定義 <code>defaults</code> 屬性：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConfigModel</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">Model</span></span></span><br><span class="line">    <span class="attribute">defaults</span>:</span><br><span class="line">        <span class="attribute">color</span>: <span class="string">'blue'</span></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p>註： <code>initialize</code> 及 <code>defaults</code> 是 <code>Backbone.Model</code> 的屬性，不是 CoffeeScript 的語法。</p>
+<p>這裡的 Model 只負責存住值，然後讓 View 可以來更新它的狀態，或是參考它來更新 View 的狀態。</p>
+<h2 id="View">View</h2><p>這個範例有兩個 View ，一個是輸入設定值的介面，一個是用來呈現方塊的結果。</p>
+<p>首先先來看輸入設定值的介面：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConfigInputView</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">View</span></span></span><br><span class="line">    <span class="attribute">events</span>:</span><br><span class="line">        <span class="string">'keyup #color-input'</span>: <span class="string">"updateConfig"</span></span><br><span class="line">        <span class="string">'keyup #width-input'</span>: <span class="string">"updateConfig"</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">updateConfig</span>: <span class="function"><span class="params">(e)</span>=&gt;</span></span><br><span class="line">        <span class="property">@model</span>.set</span><br><span class="line">            <span class="string">'color'</span>: $(<span class="string">'#color-input'</span>).val()</span><br><span class="line">            <span class="string">'width'</span>: $(<span class="string">'#width-input'</span>).val()</span><br><span class="line">            <span class="string">'height'</span>: $(<span class="string">'#width-input'</span>).val()</span><br></pre></td></tr></table></figure>
+<p><code>ConfigInputView</code> 類別定義了兩個 keyup 事件：輸入顏色，以及輸入尺寸；當這兩個事件觸發時，就會呼叫 <code>updateConfig</code> 這個方法。</p>
+<p>而 <code>updateConfig</code> 方法就是用來更新 model 的狀態，相信程式很容易看懂。</p>
+<p><code>ConfigInputView</code> 所對應的 HTML 為：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"config-input"</span> <span class="attribute">style</span>=<span class="value">"padding: 20px;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">data-role</span>=<span class="value">"fieldcontain"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"text"</span> &gt;</span>Enter Color Value (ex. red, green) :<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"color-input"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">value</span>=<span class="value">"blue"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">data-role</span>=<span class="value">"fieldcontain"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"text"</span> &gt;</span>Enter Width of the box (ex. 50, 70) :<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"width-input"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">value</span>=<span class="value">"100"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在輸出的部份，這裡是定義在 <code>ColorBoxView</code> 這個類別裡。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColorBoxView</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">View</span></span></span><br><span class="line">    <span class="attribute">tagName</span>: <span class="string">'li'</span></span><br><span class="line">    <span class="attribute">initialize</span>: <span class="function">-&gt;</span></span><br><span class="line">        <span class="property">@template</span> = $(<span class="string">'#color-box-template'</span>).template()</span><br><span class="line">        <span class="property">@model</span>.bind <span class="string">'change'</span>, <span class="property">@render</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">render</span>: <span class="function">=&gt;</span></span><br><span class="line">        $(<span class="property">@el</span>).html $.tmpl <span class="property">@template</span>, <span class="property">@model</span>.toJSON()</span><br><span class="line">        <span class="keyword">return</span> @</span><br></pre></td></tr></table></figure>
+<p><code>tagName</code> 是告訴 View 物件要輸出哪一種 HTML 元素，這裡為 li 。</p>
+<p>而 <code>ColorBoxView</code> 物件在初始化時，會做兩件事：讀取樣版，然後監聽 model 的 <code>change</code> 事件。</p>
+<p>當 model 的 <code>change</code> 事件發生時 (也就是值改變了) ， <code>render</code> 方法就會被呼叫，它會用剛剛讀取進來的樣版來重新繪製新的方塊。</p>
+<p><code>ColorBoxView</code> 所對應的 HTML 為：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"color-boxes"</span> <span class="attribute">style</span>=<span class="value">"display: inline; list-style-type:none;"</span>&gt;</span><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-jquery-tmpl"</span> <span class="attribute">id</span>=<span class="value">"color-box-template"</span>&gt;</span><span class="nix"></span><br><span class="line">  &lt;div <span class="variable">style=</span><span class="string">"margin: 20px; float: left;height:<span class="subst">$&#123;width&#125;</span>px; width: <span class="subst">$&#123;width&#125;</span>px; background-color: <span class="subst">$&#123;color&#125;</span>; border: 2px solid;"</span>&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="No_Controller">No Controller</h2><p>Backbone 在 0.5.0 版後，把 Controller 改名為 Router 了，因此我們不能再使用 <code>Backbone.Controller</code> 這個類別。</p>
+<p>不過這次練習的範例並沒有特別要用到 Router 的功能，因此可以直接建立一個不繼承任何類別的偽 Router 類別，然後在它的 constructor 中初始化我們的 Model 與 View ：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColorBoxRouter</span></span></span><br><span class="line">    <span class="attribute">constructor</span>: <span class="function">-&gt;</span></span><br><span class="line">        model = <span class="keyword">new</span> ConfigModel</span><br><span class="line">        color_input = <span class="keyword">new</span> ConfigInputView</span><br><span class="line">            <span class="string">'el'</span>: $(<span class="string">'#config-input'</span>)</span><br><span class="line">            <span class="string">'model'</span>: model</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">1.</span>.<span class="number">5</span>]</span><br><span class="line">            view = <span class="keyword">new</span> ColorBoxView <span class="attribute">model</span>: model</span><br><span class="line">            $(<span class="string">'#color-boxes'</span>).append view.render().el</span><br></pre></td></tr></table></figure>
+<p>註：不過如果未來有需要用到 Router 的功能時，當然還是可以繼承 <code>Backbone.Router</code> 。</p>
+<p>在初始化 <code>ConfigInputView</code> 物件時，其中 el 就會指向這個 View 所對應的 DOM Tree ，而 model 就是對應到我們已經初始化好的 <code>ConfigModel</code> 物件。</p>
+<p>接著我們建立 5 個方塊，每個方塊都是預設的藍色及 100x100 的尺寸大小；最後把這些方塊一一加到 <code>#color-boxes</code> 這個 UL 元素上。</p>
+<h2 id="Run">Run</h2><p>最後要啟動程式時，只要初始化一個 <code>ColorBoxRouter</code> 物件就可以了：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function">-&gt;</span> cbl = <span class="keyword">new</span> ColorBoxRouter)</span><br></pre></td></tr></table></figure>
+<h2 id="心得">心得</h2><p>Backbone.JS 利用了 Observer 這個 Pattern ，讓我們很容易實作出 Model / View 分離的應用程式。而且在架構上也利用了 MVC 分層，使得程式不會陷在一堆 callback 及 global variables 裡。</p>
+<p>而 CoffeeScript 也讓我們可以用簡潔的語法，來撰寫複雜而強大的 JavaScript 程式碼。這兩者的搭配，真的讓我有重新認識 JavaScript 的感覺。</p>
+<p>能在有生之年，一直學到新東西，真是太棒了！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jaceju.net/2011/11/22/beginning-backbone-coffeescript/" data-id="ci9jjtxes0037jmbyh48ocnta" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backbone-js/">Backbone.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CoffeeScript/">CoffeeScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2011/11/24/web-link-share-20111124/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [Web] 連結分享
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2011/11/16/compass-sprite-quick-start/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Compass Sprite Quick Start</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP/">ASP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone-js/">Backbone.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CoffeeScript/">CoffeeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compass/">Compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Grunt/">Grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE6/">IE6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSDC/">JSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">46</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/">Laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile-開發/">Mobile 開發</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetBeans/">NetBeans</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">112</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPConf-TW/">PHPConf.TW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RequireJS/">RequireJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smarty/">Smarty</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Development/">Software Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-開發/">Web 開發</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebConf/">WebConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebKit/">WebKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Yeoman/">Yeoman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/作品/">作品</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/單元測試/">單元測試</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/好文推薦/">好文推薦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/好書推薦/">好書推薦</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/好站推薦/">好站推薦</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得感想/">心得感想</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持續整合/">持續整合</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/未分類/">未分類</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/業界資訊/">業界資訊</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程式開發/">程式開發</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/網路趣味/">網路趣味</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/設計模式/">設計模式</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/資料庫/">資料庫</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/連結分享/">連結分享</a><span class="tag-list-count">183</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/開發工具/">開發工具</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/電腦知識/">電腦知識</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ASP/" style="font-size: 13.33px;">ASP</a><a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a><a href="/tags/Backbone-js/" style="font-size: 10.56px;">Backbone.js</a><a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a><a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a><a href="/tags/Compass/" style="font-size: 10px;">Compass</a><a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a><a href="/tags/IE6/" style="font-size: 10px;">IE6</a><a href="/tags/JSDC/" style="font-size: 10px;">JSDC</a><a href="/tags/JavaScript/" style="font-size: 18.33px;">JavaScript</a><a href="/tags/Laravel/" style="font-size: 10px;">Laravel</a><a href="/tags/Linux/" style="font-size: 12.22px;">Linux</a><a href="/tags/Mobile-開發/" style="font-size: 10px;">Mobile 開發</a><a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a><a href="/tags/MySQL/" style="font-size: 10.56px;">MySQL</a><a href="/tags/NetBeans/" style="font-size: 10px;">NetBeans</a><a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a><a href="/tags/PHP/" style="font-size: 19.44px;">PHP</a><a href="/tags/PHPConf-TW/" style="font-size: 10px;">PHPConf.TW</a><a href="/tags/RequireJS/" style="font-size: 10.56px;">RequireJS</a><a href="/tags/Smarty/" style="font-size: 15.56px;">Smarty</a><a href="/tags/Software-Development/" style="font-size: 10px;">Software Development</a><a href="/tags/Titanium/" style="font-size: 10px;">Titanium</a><a href="/tags/Web-開發/" style="font-size: 17.22px;">Web 開發</a><a href="/tags/WebConf/" style="font-size: 10px;">WebConf</a><a href="/tags/WebKit/" style="font-size: 10px;">WebKit</a><a href="/tags/Windows/" style="font-size: 14.44px;">Windows</a><a href="/tags/Yeoman/" style="font-size: 10px;">Yeoman</a><a href="/tags/Zend-Framework/" style="font-size: 18.89px;">Zend Framework</a><a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a><a href="/tags/jQuery/" style="font-size: 10.56px;">jQuery</a><a href="/tags/伺服器安裝與設定/" style="font-size: 16.11px;">伺服器安裝與設定</a><a href="/tags/作品/" style="font-size: 14.44px;">作品</a><a href="/tags/單元測試/" style="font-size: 10px;">單元測試</a><a href="/tags/好文推薦/" style="font-size: 10.56px;">好文推薦</a><a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a><a href="/tags/好站推薦/" style="font-size: 13.89px;">好站推薦</a><a href="/tags/心得感想/" style="font-size: 17.78px;">心得感想</a><a href="/tags/持續整合/" style="font-size: 10.56px;">持續整合</a><a href="/tags/未分類/" style="font-size: 11.67px;">未分類</a><a href="/tags/業界資訊/" style="font-size: 12.22px;">業界資訊</a><a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a><a href="/tags/網路趣味/" style="font-size: 11.11px;">網路趣味</a><a href="/tags/設計模式/" style="font-size: 12.78px;">設計模式</a><a href="/tags/資料庫/" style="font-size: 12.22px;">資料庫</a><a href="/tags/連結分享/" style="font-size: 20px;">連結分享</a><a href="/tags/開發工具/" style="font-size: 13.33px;">開發工具</a><a href="/tags/電腦知識/" style="font-size: 12.78px;">電腦知識</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">三月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">十月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">八月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">六月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">五月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">三月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">二月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">一月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">九月 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">七月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">六月 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">五月 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">四月 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">二月 2011</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">一月 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">十二月 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">七月 2010</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">六月 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">五月 2009</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">四月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/12/">十二月 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/11/">十一月 2008</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">十月 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">九月 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">六月 2008</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/12/">十二月 2007</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">十月 2007</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/09/">九月 2007</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/04/">四月 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/02/">二月 2007</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/01/">一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/09/">九月 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/07/">七月 2006</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/06/">六月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/05/">五月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/03/">三月 2006</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/02/">二月 2006</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">一月 2006</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/12/">十二月 2005</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/11/">十一月 2005</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/10/">十月 2005</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/07/">七月 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/06/">六月 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/04/">四月 2005</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/07/27/php-di-container/">理解 Dependency Injection 實作原理</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/21/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/03/css3-animation-notes/">CSS3 動畫基礎</a>
+          </li>
+        
+          <li>
+            <a href="/2014/05/16/create-angularjs-project-with-generator-angular/">利用 generator-angular 來建立一個 AngularJS 專案</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/25/20-docs-guides-front-end-developers/">20 個實用的前端開發參考資訊整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jace Ju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
