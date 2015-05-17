@@ -49,6 +49,73 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-09-09T16:00:00.000Z"><a href="/2007/09/10/250/">2007-09-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/09/10/250/">[Web] 連結分享</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <a id="more"></a>
+<h2 id="PHP">PHP</h2><li>
+
+<p><a href="http://www.colder.ch/news/08-24-2007/28/late-static-bindings-expl.html" target="_blank" rel="external">Late Static Bindings Explained</a></p>
+<p>這個功能會出現在 PHP6 上，不過也可能會在 PHP5 的新版本實作出來。簡單說明一下：</p>
+<p>以往我們在繼承 Class 後，是不可能覆寫 (override) static method 的，例如： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">who</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">self</span>::who();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">who</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">B::test(); <span class="comment">// A</span></span></span><br></pre></td></tr></table></figure>
+<p>在 PHP6 裡提供了一個 static 關鍵字，用來表示繼承後的類別 (self 保留給目前的類別使用) ： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">who</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span>::who();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">who</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">B::test(); <span class="comment">// B</span></span></span><br></pre></td></tr></table></figure>
+<p>看起來相當方便，就是不知道實際用起來如何了。<br></p></li><p></p>
+<ul>
+<li><a href="http://elizabethmariesmith.com/2007/09/08/perverting-windows-with-php/" target="_blank" rel="external">Perverting windows with PHP</a></li>
+</ul>
+<p>介紹一些 PHP 在 Windows 上的 Solution ，也包含 <a href="http://winbinder.org/" target="_blank" rel="external">Winbinder</a> 。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://blog.yoren.info/2007/09/09/475/" target="_blank" rel="external"> [jQuery] 依連結的檔案類型秀出圖示</a></li>
+</ul>
+<p>這也是很常用的功能， <a href="http://blog.yoren.info/" target="_blank" rel="external">yoren</a> 也解釋得很詳細喔。</p>
+<h2 id="SQL">SQL</h2><ul>
+<li><a href="http://www.khankennels.com/blog/index.php/archives/2007/04/20/getting-joins/" target="_blank" rel="external">“Getting” Joins</a></li>
+</ul>
+<p>用圖形來表示 SQL 中的 JOIN 語法，如果搞不清楚 INNER JOIN 、 OUTER JOIN 或 LEFT JOIN 等關係時，不妨參考看看。 </p>
+<ul>
+<li><a href="http://www.databasecolumn.com/" target="_blank" rel="external">The Database Column</a></li>
+</ul>
+<p>一個新的 Blog ，專門介紹 Database 相關資訊。</p>
+<ul>
+<li><a href="http://postgresql-chinese.blogspot.com/" target="_blank" rel="external">PostgreSQL ::國際中文社群網誌::</a></li>
+</ul>
+<p>這個應該不用多說了吧，有用 PostgreSQL 的話應該常逛。 :)</p>
+<h2 id="Other">Other</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2007/09/10/20-alternate-ways-to-focus-on-users/" target="_blank" rel="external">20 (Alternate) Ways to Focus on Users</a></li>
+</ul>
+<p>我覺得這篇文章是「如何設計好網站」的進階濃縮版本。然後我的感想 (也可以說是經驗) 是：如果這個網站連你自己都不想用，那就別指望客戶會掏錢給你。 </p>
+<p>註：不過世事無絕對，就是有那種天兵客戶願意花錢叫你做一些你想砸電腦的功能。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-09-08T16:00:00.000Z"><a href="/2007/09/09/249/">2007-09-09</a></time>
       
       
@@ -486,50 +553,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-08-31T16:00:00.000Z"><a href="/2007/09/01/240/">2007-09-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/09/01/240/">[感想] 技術與現實</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>這篇主要是給 kuni 的一篇回應，雖然我覺得他說的很好，可是畢竟我是活在台灣這個現實社會，所以就有了以下的感想：</p>
-<p>To kuni:</p>
-<p>我覺得你說的很對，學習多種語言是很重要的。不過在現實專案壓力下，在<strong>短期</strong>能這樣做嗎？我抱持著懷疑的態度。</p>
-<p>我的原因主要有兩項：一來我不是主事者，每個專案在成本的考量之下，技術的易用性及維護性是非常顯見的課題；二來成員的能力與經驗也是重點，要大膽採用新技術的話，有誰能保證一定能解決可能發生的問題？</p>
-<p>當然不能排除像你這樣把各項技術都瞭然於胸的開發者，不過在團隊開發中，強者還是得配合其他較為資淺的成員。如果整個團隊能保證在期限內交付給客戶滿意的東西，也能向客戶保證專案後續的可維護性，那麼我想你要採用任何技術都不是問題。</p>
-<p>不過就長期而言，其實我和你抱持的想法是一樣的。一個真正的資深技術人員，不能只因為在某個領域發光發熱，就忽略掉其他有用的技術；然而這還是得看個人對技術的敏感度。</p>
-<p>因為每個人都不可能擁有一樣的智慧，有的人能博學多聞，通曉各種領域的開發方式。有些人可能資質較為駑鈍，只能專研單一領域；他們不是因為學不懂，而是可能學得比較慢。</p>
-<p>我自己應該就是屬於學得慢那一型的，不過我也不會對自己設限。例如未來有機會我應該會重新學習如何利用 C 來寫 PHP 的 extension ，或是拋開對 Ruby 語法的好惡，來好好研究 RoR 更底層的架構，這些對我來說，都是時間與時機的問題。</p>
-<p>另一種狀況是生活的壓力，每個人所面臨的情形都不太一樣。我看過有高手因為來自家庭的壓力而放棄對技術的熱愛，轉而接受一個薪水高卻沒有樂趣可言的工作。 在國外我是不清楚這樣的狀況多不多，不過我的感覺是他們似乎就是能以興趣為職業，而且家人也沒什麼反對意見 (這是個人猜想，也許是錯的) 。</p>
-<p>拉拉雜雜寫了一堆，其實我只想說一個重點：在台灣，除非主事者重視技術也肯付出相對的酬勞，而且你也真的能表現出你真正的價值時，那時候我們技術人員才會有抬頭的一天。</p>
-<p>然而現實真的就是如此…誰不希望薪水能再高一點呢？</p>
-<p>以上一點意見，參考看看就好，因為也許你的狀況會比我們來得好。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -599,6 +622,8 @@
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
+    <li><a href="/tags/TDD/">TDD</a><small>1</small></li>
+  
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
     <li><a href="/tags/Web-開發/">Web 開發</a><small>25</small></li>
@@ -613,15 +638,15 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>1</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>2</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

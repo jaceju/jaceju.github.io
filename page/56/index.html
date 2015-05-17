@@ -49,6 +49,53 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2005-07-14T16:00:00.000Z"><a href="/2005/07/15/28/">2005-07-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2005/07/15/28/">PHP 加速器 ： eAccelerator</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://www.eaccelerator.net/" target="_blank" rel="external">eAccelerator</a> 是一個非常好用的 PHP 加速器，目前支援 PHP4 及 PHP5 。而且還提供 PHP 編碼程式，以保護商業智慧。</p>
+<h2 id="Windows_版安裝方式">Windows 版安裝方式</h2><p>先連上<a href="http://www.sitebuddy.com/PHP/Accelerators/eAccelerator_windows_binaries_builds" target="_blank" rel="external">最新版的 eAccelerator for Windows</a> 的下載位址，然後找到和系統 PHP 版本相符的 eAccelerator095_5.2.0.dll ，將它下載到 PHP 安裝目錄 的 ext 子資料夾裡。</p>
+<p>請記得設定 php.ini 的 extension_dir=”c:/php5/ext/“ ；或是把 Windows 的 PATH 系統變數後面加上「 ;c:\php5\ext 」，然後重新啟動電腦。</p>
+<p>註：有時候 Windows 還是不能找到 ext 底下的 dll 檔 (例如 PHP 5.1 就會如此) ，這時候只要把 “c:\php5\ext;” 改加在 PATH 變數之前就行了。例如：</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c:\php<span class="number">5</span>;c:\php<span class="number">5</span>\ext;<span class="preprocessor">%</span>SystemRoot<span class="preprocessor">%</span>\syste<span class="title">m32</span>;<span class="preprocessor">%</span>SystemRoot<span class="preprocessor">%</span>;<span class="preprocessor">%</span>SystemRoot<span class="preprocessor">%</span>\Syste<span class="title">m32</span>\Wbem</span><br></pre></td></tr></table></figure>
+<p>接著在 php.ini 中加入：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[eAccelerator]</span><br><span class="line"><span class="variable">zend_extension_ts=</span>eAccelerator095_5.<span class="number">2.0</span>.dll</span><br><span class="line">eaccelerator.<span class="variable">shm_size=</span><span class="string">"64"</span></span><br><span class="line">eaccelerator.<span class="variable">cache_dir=</span><span class="string">"D:/TEMP/eAccelerator"</span></span><br><span class="line">eaccelerator.<span class="variable">enable=</span><span class="string">"1"</span></span><br><span class="line">eaccelerator.<span class="variable">optimizer=</span><span class="string">"1"</span></span><br><span class="line">eaccelerator.<span class="variable">debug=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">check_mtime=</span><span class="string">"1"</span></span><br><span class="line">eaccelerator.<span class="variable">filter=</span><span class="string">""</span></span><br><span class="line">eaccelerator.<span class="variable">shm_max=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">shm_ttl=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">shm_prune_period=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">shm_only=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">compress=</span><span class="string">"1"</span></span><br><span class="line">eaccelerator.<span class="variable">compress_level=</span><span class="string">"9"</span></span><br><span class="line">eaccelerator.<span class="variable">keys=</span><span class="string">"shm_and_disk"</span></span><br><span class="line">eaccelerator.<span class="variable">sessions=</span><span class="string">"shm_and_disk"</span></span><br><span class="line">eaccelerator.<span class="variable">content=</span><span class="string">"shm_and_disk"</span></span><br></pre></td></tr></table></figure>
+<p>最後重新啟動 Apache ，用 phpinfo() 查看是否安裝正確。</p>
+<p><img src="/resources/xdebug/01.gif" alt=""></p>
+<h2 id="安裝_PHP_編碼程式">安裝 PHP 編碼程式</h2><p>連到<a href="http://www.arnot.info/eaccelerator/" target="_blank" rel="external">這個位址</a>，下載 phpcoder-multiencoder-x.x.x.zip 。然後把所有檔案解壓縮至可執行 PHP 的資料夾裡。</p>
+<p>接著修改其中的 index.php ，找到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$coder</span> = &amp;amp;NewEncoder(<span class="string">"mmcache"</span>);</span><br></pre></td></tr></table></figure>
+<p>改成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$coder</span> = &amp;amp;NewEncoder(<span class="string">"eAccelerator"</span>);</span><br></pre></td></tr></table></figure>
+<p>存檔後便可試著執行看看；使用方法就請自行嘗試了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2005-06-28T16:00:00.000Z"><a href="/2005/06/29/27/">2005-06-29</a></time>
       
       
@@ -555,42 +602,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2005-05-12T16:00:00.000Z"><a href="/2005/05/13/18/">2005-05-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2005/05/13/18/">CSS 排版觀念：Float</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>如果說浮動 (float) 是 CSS 排版的重要技巧之一，實在一點也不為過；很多著名的 CSS 版型都會用到浮動技巧。本文就來介紹浮動所需要注意的地方，以及可能會碰到的問題。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2005/05/13/18/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -660,6 +671,8 @@
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
+    <li><a href="/tags/TDD/">TDD</a><small>1</small></li>
+  
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
     <li><a href="/tags/Web-開發/">Web 開發</a><small>25</small></li>
@@ -674,15 +687,15 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>1</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>2</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   
