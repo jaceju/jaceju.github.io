@@ -49,6 +49,44 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2006-11-06T16:00:00.000Z"><a href="/2006/11/07/142/">2006-11-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2006/11/07/142/">PHP 5.2.0 Win32 的 go-pear.phar 無法運作</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>話說我在安裝 <a href="http://www.php.net/downloads.php" target="_blank" rel="external">PHP 5.2.0 Win32</a> 版後，想試著重新安裝 <a href="http://pear.php.net" target="_blank" rel="external">PEAR</a> ，但是失敗了。出現的錯誤訊息如下：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: Cannot use a scalar value as an<span class="instruction"> array </span>in phar://go-pear.phar/PEAR/Comma nd.php on line 268</span><br></pre></td></tr></table></figure>
+<p>但那時候為了要處理其他事情，就暫時把這件事擱置下來。</p>
+<p>今天看到了 <a href="http://www.phpwomen.org/" target="_blank" rel="external">PHPWoman</a> 上發表了一篇 <a href="http://www.phpwomen.org/wordpress/2006/11/06/bundled-go-pearphar-broken-in-52-windows-releases/" target="_blank" rel="external">Bundled go-pear.phar broken in 5.2 windows releases</a> ，大意是說 <a href="http://greg.chiaraquartet.net/" target="_blank" rel="external">Greg Beaver</a> (PEAR Installer 的作者) 已經立刻修復這個錯誤，但是卻沒有把它併到 PHP 5.2.0 Win32 的釋出版本裡。</p>
+<p>解決的方法是自己到 <a href="http://go-pear.org/" target="_blank" rel="external">http://go-pear.org/</a> 去抓最新版的 go-pear.phar (把首頁內容另存新檔即可) ，或到 <a href="http://cvs.php.net/viewvc.cgi/pearweb/public_html/go-pear.phar?view=log" target="_blank" rel="external">cvs</a> 裡去抓也可以 (把第一個 download 連結另存新檔就是了) 。抓回來後放到 PHP 安裝目錄裡的 PEAR 資料夾內即可，然後就可以按照正常程序安裝了。 </p>
+<p>註：這樣下載回來的 go-pear.phar 不包含壓縮過的 PEAR 基本套件，它會直接再從網路上下載。 </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2006-11-05T16:00:00.000Z"><a href="/2006/11/06/140/">2006-11-06</a></time>
       
       
@@ -434,43 +472,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2006-10-17T16:00:00.000Z"><a href="/2006/10/18/131/">2006-10-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2006/10/18/131/">[好書] PHP Design Patterns</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>前陣子就推出了，應該是不錯的書…</p>
-<p>呃…其實我還沒看過，不過有人介紹了：<a href="http://schlitt.info/applications/blog/index.php?/archives/500-Reading-recommendation-PHP-Design-Patterns.html" target="_blank" rel="external">Reading recommendation: PHP Design Patterns</a> 。</p>
-<p>最近被 ASP 搞到快瘋掉，倒不是不會寫，而是看太多亂七八糟的程序性 ASP Code，讓我覺得有頭暈想吐的感覺… (我是男的…)</p>
-<p>一直很想好好用 PHP5 來寫些東西，但是回到家整個人就懶掉了…只能看看書自我安慰一下… (看程式技術的書啦…) </p>
-<p>再等一陣子好了…看看天瓏會不會進… (其實是想等有沒有人翻成中文，雖然原文也能接受…)</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -536,11 +537,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>1</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -564,7 +567,7 @@
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>2</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

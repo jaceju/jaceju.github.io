@@ -49,6 +49,55 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-07-01T16:00:00.000Z"><a href="/2007/07/02/202/">2007-07-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/07/02/202/">PHPUnit 3.1.0 釋出</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>這個月 (2007/07) 好像大家都說好了，我所關注的幾個專案都釋出了新版本。剛剛 <a href="http://www.phpunit.de/" target="_blank" rel="external">PHPUnit</a> 也<a href="http://sebastian-bergmann.de/archives/682-PHPUnit-3.1.0.html" target="_blank" rel="external">釋出了 3.1.0 版</a>，主要特色如下：</p>
+<ul>
+<li><p>Improvements to <a href="http://www.phpunit.de/pocket_guide/3.1/en/mock-objects.html" target="_blank" rel="external">Mock Objects</a> include the ability to mock classes and methods that do not exist as  well as mocking static methods. And mocked methods can raise exceptions  now.</p>
+</li>
+<li><p><a href="http://www.phpunit.de/pocket_guide/3.1/en/selenium.html" target="_blank" rel="external">PHPUnit’s Selenium RC extension</a> no longer uses the Testing_Selenium PEAR package but its own implementation of the <a href="http://www.openqa.org/selenium-rc" target="_blank" rel="external">Selenium RC</a> client/server protocol. Among other benefits, this allows for the collection of code coverage data for Selenium tests.</p>
+</li>
+<li><p>PHPUnit can now write test result and code coverage data to a <a href="http://www.phpunit.de/wiki/TestDatabase" target="_blank" rel="external">test database</a>. Several <a href="http://www.phpunit.de/wiki/Ideas" target="_blank" rel="external">ideas for future features</a> depend on this data.</p>
+</li>
+<li><p>New template methods, PHPUnit_Framework_TestCase::sharedAssertions(), PHPUnit_Framework_TestSuite::setUp(), PHPUnit_Framework_TestSuite::tearDown(), and PHPUnit_Extensions_SeleniumTestCase::defaultAssertions(), ease the development of test cases.</p>
+</li>
+<li><p>PHPUnit_Framework_TestCase::assertEquals() can now operate on DOMDocument objects.</p>
+</li>
+<li><p>And lots of smaller improvements all over the place.</p>
+</li>
+</ul>
+<p>沒空翻譯了…請各位朋友自行參考 <a href="http://www.phpunit.de/wiki/ChangeLog#PHPUnit3.1.002-Jul-2007" target="_blank" rel="external">Changelog</a> 。</p>
+<p>時間越來越少，要學的東西越來越多….Orz </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-06-30T16:00:00.000Z"><a href="/2007/07/01/200/">2007-07-01</a></time>
       
       
@@ -398,58 +447,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-05-28T16:00:00.000Z"><a href="/2007/05/29/191/">2007-05-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/05/29/191/">Zend Framework 1.0.0 RC1 釋出</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><a href="http://devzone.zend.com/node/view/id/2082" target="_blank" rel="external">Zend Framework 1.0.0 RC1</a> 終於出來了，這次在 MVC 部份加入了 ViewRenderer 。</p>
-<p>以下是主要的改動：</p>
-<p><ul class="disc"></ul></p>
-<ul>
-<li>Zend_Controller has a new feature called the ViewRenderer, which makes it very easy to design controller actions. See docs for the new usage; there is a section in the Controller Migration section for updating your MVC applications.</li>
-<li>Zend_Gdata has a new object-oriented usage, making this client very similar to the interface of Gdata clients for other programming languages. However, support for Google Calendar is unfinished and remains in the incubator.</li>
-<li>Zend_Db statement classes now have a consistent interface and common classes and exceptions across all database adapters; however, binding query parameters and results to PHP variables by reference has a bug (logged as ZF-1440).</li>
-<li>Zend_Filter_Input is a new class with an old name. This provides a solution for declaring rules to filter and validate groups of data, and it serves as a “cage” from which only values that pass your validation rules can be retrieved.</li>
-<li>Zend_Service_StrikeIron is a new web service client in the incubator.</li>
-</ul>
-<p>簡單介紹一下 ViewRenderer ：</p>
-<p>ViewRender 主要是用來簡化 Action Cotroller 裡調用 View 的動作。舉例來說， 0.9.x 以前我們要在一個 action 裡顯示樣版會這麼做：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooController</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Zend_Controller_Action</span></span><br><span class="line"></span>&#123;</span><br><span class="line">public function barAction()</span><br><span class="line">&#123;</span><br><span class="line">$<span class="keyword">this</span>-&gt;initView();        <span class="comment">// initialize view</span></span><br><span class="line">$<span class="keyword">this</span>-&gt;view-&gt;baz = <span class="symbol">'ba</span>t'; <span class="comment">// set view variable</span></span><br><span class="line">$<span class="keyword">this</span>-&gt;render();          <span class="comment">// render view</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>現在只需要：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooController</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Zend_Controller_Action</span></span><br><span class="line"></span>&#123;</span><br><span class="line">public function barAction()</span><br><span class="line">&#123;</span><br><span class="line">$<span class="keyword">this</span>-&gt;view-&gt;baz = <span class="symbol">'ba</span>t'; <span class="comment">// set view variable</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>這樣就會自動做好初始化及呈現的動作，而舊程式幾乎也不用怎麼改。</p>
-<p>如果有比較特別的情況不想用 ViewRenderer 的時候，就在 Front Controller 加上：</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Assuming $front is your front controller<span class="instruction"> instance</span><br><span class="line"></span>$front<span class="function">-&gt;setParam(</span>'noViewRenderer', true<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
-<p>詳細介紹可以參考： <a href="http://devzone.zend.com/node/view/id/2072" target="_blank" rel="external">Zend Framework’s MVC Introduces the ViewRenderer</a> 。</p>
-<p>註：不過我用的是<a href="http://akrabat.com/2006/12/23/extending-zend_view_interface-for-use-with-smarty/" target="_blank" rel="external">整合 Smarty 的 View</a>，這點引發的問題也許不大。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -515,11 +512,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>1</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -543,7 +542,7 @@
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>2</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

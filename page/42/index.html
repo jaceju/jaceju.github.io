@@ -49,6 +49,67 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-03-21T16:00:00.000Z"><a href="/2007/03/22/171/">2007-03-22</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/03/22/171/">安裝獨立的 IE7 正式中文版</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>目前網路開發界還處於 IE6 、 Firefox 的交戰期，沒想到<a href="http://www.microsoft.com/taiwan/windows/ie/downloads/default.mspx" target="_blank" rel="external">IE7 正式中文版</a>已經悄悄加入戰局了。</p>
+<p>好吧，為了解救我們苦命的工程師還有視覺設計人員，上次提過的 <a href="http://tredosoft.com/IE7_standalone" target="_blank" rel="external">IE7 standalone</a> 再度派上用場。</p>
+<h2 id="安裝步驟">安裝步驟</h2><p>讓我為各位解說一下如何安裝獨立版的 IE7 ：</p>
+<ul>
+<li>第一步當然是先把 <a href="http://download.microsoft.com/download/4/a/5/4a5a86de-af85-432e-979c-fa69e5d781db/IE7-WindowsXP-x86-cht.exe" target="_blank" rel="external">IE 7  for XP SP2 中文版</a>下載回來，檔案名稱為 IE7-WindowsXP-x86-cht.exe ，這裡我將它放到 D:\Software 下 (你可以自行決定儲放的位置) 。</li>
+</ul>
+<li>
+
+<p>進到 DOS 命令列視窗，用以下指令把 IE7-WindowsXP-x86-cht.exe 解開至 D:\Software\IE7 ：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Software&gt;<span class="tag">&lt;<span class="title">strong</span>&gt;</span>IE7-WindowsXP-x86-cht.exe /x<span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p></p></li><p></p>
+<ul>
+<li><p>再下載 <a href="http://tredosoft.com/IE7_standalone" target="_blank" rel="external">IE7 standalone</a> 的 <a href="http://tredosoft.com/files/IE7s/IE7S.zip" target="_blank" rel="external">zip 檔</a>，並將它解開，裡面會有一個 IE7s.exe 和一個 LICENSE.rtf 。 (注意，我們只需要 zip 檔，不要下載到安裝檔了。) </p>
+</li>
+<li><p>把上一步驟的 IE7s.exe 放到 D:\Software\IE7 裡。</p>
+</li>
+<li><p>把整個 D:\Software 的 IE7 資料夾搬到…隨便你放哪…我是擺在 C:\Program Files 下。</p>
+</li>
+<li><p>幫 C:\Program Files\IE7\IE7s.exe 建立一個捷徑，然後把這個捷徑移到桌面上。</p>
+</li>
+<li><p>Update: 執行 C:\Program Files\IE7\update\xmllitesetup.exe ，這樣就能讓 IE7 大部份的功能介面 (包含頁籤) 出現。</p>
+</li>
+</ul>
+<p>就這樣了，現在只要執行剛剛建立的捷徑，你就有獨立執行的 IE7 中文版了。當然你的 IE6 還是乖乖地被綁在 Windows 這個大柱子上任你摧殘… </p>
+<h2 id="補述">補述</h2><p>Dolittle 網友問了一個好問題，那就是為什麼照我上面說的方式裝好 IE7 後，不會出現 IE7 的分頁功能？ (已解決，見下面的補述) 而且一打開後就會出現 JavaScript Error ？</p>
+<p>這個問題很簡單，因為 IE 的核心其實會和系統息息相關，而我上面的做法只啟動了 IE7 的 render 引擎，而沒有把相關功能一起啟用。換句話說，這樣的安裝方式只是我為了檢查目前的網頁是不是能在 IE7 上被正確顯示，至於其他功能 (例如 Tab) 還是必須用正常的安裝方式才能啟用。而 JavaScript Error 也是因為某些元件沒有安裝，而 IE7 預設的啟動畫面裡有用到此功能所導致的。</p>
+<p>有一利必有一弊，所以各位如果真的要使用 IE7 的完整功能，就我所知，只能用完整安裝了。</p>
+<p>註：也許還有比較好的做法，歡迎大家提供。</p>
+<h2 id="再補述">再補述</h2><p>在 <a href="http://plog.longwin.com.tw/news-windows/2006/10/27/windows_multiple_ie_2006" target="_blank" rel="external">Tsung</a> 老大那邊發現要多一個執行 update\xmllitesetup.exe 的步驟，這樣 IE7 的介面才會完整出現。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-03-19T16:00:00.000Z"><a href="/2007/03/20/170/">2007-03-20</a></time>
       
       
@@ -580,45 +641,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-03-07T16:00:00.000Z"><a href="/2007/03/08/161/">2007-03-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/03/08/161/">jQWebExt - jQuery 的簡易 MVC 框架</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><a href="http://racklin.blogspot.com/2007/03/jqwebext-jquery-simple-mvc-and-plugins.html" target="_blank" rel="external">jQWebExt</a> 這個框架是在<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>那裡看到的，是阿土伯眾多 Open Source 專案裡的其中之一。阿土伯是網路界一個很強的 JavaScript 高手，他用 JavaScript 寫了很多有趣的應用，像是「<a href="http://racklin.blogspot.com/2007/03/hemidemi-jsonp.html" target="_blank" rel="external">HEMiDEMi JSONP - 誰收藏/迴響討論本文</a>」。</p>
-<p>jQWebExt 目前主要有以下兩個函式可用：</p>
-<ul>
-<li>register: 用來將 Javascript Function 或 Extension 註冊進 jQWebExt 中，它會在 DOM ready 時呼叫您註冊的 Function , 並把設定 Options 傳給您。</li>
-<li>require: 用來動態載入 third-party 的 javascript .js 檔案，由寫作 Extension 的您來呼叫，網頁設計人員不用去瞭解什麼 javascript 互相關聯要引用載入。</li>
-</ul>
-<p>目前的應用有 <a href="http://code.google.com/p/jqwebext/wiki/ZebraTableExtension" target="_blank" rel="external">ZebraTableExtension</a>  (<a href="http://jqwebext.googlepages.com/test-zebra.html" target="_blank" rel="external">DEMO</a>) 和 <a href="http://code.google.com/p/jqwebext/wiki/jQueryTabsExtension" target="_blank" rel="external">jQueryTabsExtension</a> (<a href="http://jqwebext.googlepages.com/test-tabs.html" target="_blank" rel="external">DEMO</a>) 。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -684,11 +706,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>1</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -712,7 +736,7 @@
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>2</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

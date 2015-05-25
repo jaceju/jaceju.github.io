@@ -49,6 +49,58 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-05-28T16:00:00.000Z"><a href="/2007/05/29/191/">2007-05-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/05/29/191/">Zend Framework 1.0.0 RC1 釋出</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://devzone.zend.com/node/view/id/2082" target="_blank" rel="external">Zend Framework 1.0.0 RC1</a> 終於出來了，這次在 MVC 部份加入了 ViewRenderer 。</p>
+<p>以下是主要的改動：</p>
+<p><ul class="disc"></ul></p>
+<ul>
+<li>Zend_Controller has a new feature called the ViewRenderer, which makes it very easy to design controller actions. See docs for the new usage; there is a section in the Controller Migration section for updating your MVC applications.</li>
+<li>Zend_Gdata has a new object-oriented usage, making this client very similar to the interface of Gdata clients for other programming languages. However, support for Google Calendar is unfinished and remains in the incubator.</li>
+<li>Zend_Db statement classes now have a consistent interface and common classes and exceptions across all database adapters; however, binding query parameters and results to PHP variables by reference has a bug (logged as ZF-1440).</li>
+<li>Zend_Filter_Input is a new class with an old name. This provides a solution for declaring rules to filter and validate groups of data, and it serves as a “cage” from which only values that pass your validation rules can be retrieved.</li>
+<li>Zend_Service_StrikeIron is a new web service client in the incubator.</li>
+</ul>
+<p>簡單介紹一下 ViewRenderer ：</p>
+<p>ViewRender 主要是用來簡化 Action Cotroller 裡調用 View 的動作。舉例來說， 0.9.x 以前我們要在一個 action 裡顯示樣版會這麼做：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooController</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Zend_Controller_Action</span></span><br><span class="line"></span>&#123;</span><br><span class="line">public function barAction()</span><br><span class="line">&#123;</span><br><span class="line">$<span class="keyword">this</span>-&gt;initView();        <span class="comment">// initialize view</span></span><br><span class="line">$<span class="keyword">this</span>-&gt;view-&gt;baz = <span class="symbol">'ba</span>t'; <span class="comment">// set view variable</span></span><br><span class="line">$<span class="keyword">this</span>-&gt;render();          <span class="comment">// render view</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>現在只需要：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooController</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Zend_Controller_Action</span></span><br><span class="line"></span>&#123;</span><br><span class="line">public function barAction()</span><br><span class="line">&#123;</span><br><span class="line">$<span class="keyword">this</span>-&gt;view-&gt;baz = <span class="symbol">'ba</span>t'; <span class="comment">// set view variable</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這樣就會自動做好初始化及呈現的動作，而舊程式幾乎也不用怎麼改。</p>
+<p>如果有比較特別的情況不想用 ViewRenderer 的時候，就在 Front Controller 加上：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Assuming $front is your front controller<span class="instruction"> instance</span><br><span class="line"></span>$front<span class="function">-&gt;setParam(</span>'noViewRenderer', true<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
+<p>詳細介紹可以參考： <a href="http://devzone.zend.com/node/view/id/2072" target="_blank" rel="external">Zend Framework’s MVC Introduces the ViewRenderer</a> 。</p>
+<p>註：不過我用的是<a href="http://akrabat.com/2006/12/23/extending-zend_view_interface-for-use-with-smarty/" target="_blank" rel="external">整合 Smarty 的 View</a>，這點引發的問題也許不大。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-05-27T16:00:00.000Z"><a href="/2007/05/28/189/">2007-05-28</a></time>
       
       
@@ -398,80 +450,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-05-02T16:00:00.000Z"><a href="/2007/05/03/182/">2007-05-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/05/03/182/">簡介 window.onBeforeUnload 事件</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在 Gmail 中如果採用另開視窗模式 (<img src="http://mail.google.com/mail/images/tearoff_icon.gif" alt="另開視窗">) 撰寫信件時，在隨意填寫一些文字後按下視窗右上角的關閉按鈕，會先出現以下警告視窗：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">您的郵件尚未寄出，</span><br><span class="line">您要捨棄此郵件嗎？</span><br></pre></td></tr></table></figure>
-<p>然後按下「取消」後又會出現： </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">你確定要離開此頁面？</span><br><span class="line">按一下「取消」停留在此頁。</span><br><span class="line">按「確定」繼續，或「取消」以停留在此頁面。</span><br></pre></td></tr></table></figure>
-<p>這是利用 onBeforeUnload 事件來完成的，目的在避免使用者操作錯誤時，使得他所輸入的文字付諸流水。</p>
-<p>以下是模擬的方式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"</span><br><span class="line">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>TEST<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="built_in">window</span>.onbeforeunload = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (!confirm(<span class="string">'您的郵件尚未寄出，\n您要捨棄此郵件嗎？'</span>)) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">'按一下「取消」停留在此頁。'</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>目前只有 Firefox 和 IE 支援 onBeforeUnload 事件， Opera 到 9.20 版為止都尚無支援。觸發的時機如下：</p>
-<ul>
-<li>關閉瀏覽器視窗。</li>
-<li>通過網址列或書籤 (我的最愛) 導向其他頁面。</li>
-<li>點選上一頁、下一頁，重新整理，首頁等其中一個功能。</li>
-<li>點選一個前往其他頁面的 URL 連結。</li>
-<li><p>觸發或呼叫以下任意一個事件：</p>
-</li>
-<li><p>onclick</p>
-</li>
-<li>document.write()</li>
-<li>document.open()</li>
-<li>document.close()</li>
-<li>window.close()</li>
-<li>window.navigate()</li>
-<li>window.NavigateAndFind()</li>
-<li>location.replace()</li>
-<li>location.reload()</li>
-<li>form.submit()</li>
-</ul>
-<ul>
-<li>利用 window.open() 打開一個頁面，並把本頁的 window 的名字傳給要打開的頁面。</li>
-<li>重新賦予 location.href 的值。</li>
-<li>透過 input type=”submit” 按鈕提交一個具有指定 action 的表單的時候。</li>
-</ul>
-<p>註：以上改自<a href="http://www.surfchen.org/?p=54" target="_blank" rel="external">陳澤|SurfChen::onbeforeunload 事件</a>。</p>
-<p>如果是使用 <a href="http://tredosoft.com/IE7_standalone" target="_blank" rel="external">IE7s</a> ，那麼在按下 Tab 的 x 鍵時，有可能不會觸發 onBeforeUnload 事件。 </p>
-<h2 id="參考文章">參考文章</h2><p>更詳細的用法可參考以下網址：</p>
-<ul>
-<li><a href="http://www.i-boy.net/boynet/content/view/1296/37/" target="_blank" rel="external">洋蔥圈::如何在用戶關掉 web 瀏覽器窗口前，進行相應的動作</a></li>
-<li><a href="http://www.webreference.com/dhtml/diner/beforeunload/bunload2.html" target="_blank" rel="external">DHTML Lab::The IE onBeforeUnload Event Handler</a></li>
-<li><a href="http://www.surfchen.org/?p=54" target="_blank" rel="external">陳澤|SurfChen::onbeforeunload 事件</a></li>
-<li><a href="http://www.4guysfromrolla.com/webtech/100604-1.shtml" target="_blank" rel="external">4GuysFromRolla.com::Prompting a User to Save When Leaving a Page</a> </li>
-</ul>
-<p>謝謝收看。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -537,11 +515,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>1</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -565,7 +545,7 @@
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>2</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

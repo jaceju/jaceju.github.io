@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>自動測試與 TDD 實務開發 - 上課心得 (中) | 網站製作學習誌</title>
+  <meta name="author" content="Jace Ju">
+  
+  <meta name="description" content="曾經有個工程師對著已經上線的網站說：「別說使用者不曉得這個系統是怎麼運作的，其實已經接手那麼久的我也不知道。」
+如果你對這句話心有戚戚焉的話，那你真的不孤單。其實有很多維護維護前人程式碼的工程師在在接到新的需求而去修改程式碼時，常常是很戰戰競競的，然後辦公室裡就會響起這樣的聲音：
+
+「我記得前一個工程師說這邊加幾行程式碼就可以了，你覺得呢？」「我直覺這樣改會出問題…有環境讓我先測試看看嗎？」「先不管，後天活動要上了，你先改完讓它上線後再說。」「沒有測試的話…」「閉嘴！快去改。」不久後…「慘了！訂單出大問題了！你可以先還原原來的程式碼嗎？」「不對呀！我改這邊怎麼會讓那裡出錯？」又過了一會兒…「你有還原嗎？！整個訂單資料大亂了呀！你一定有動到什麼東西了！」「我全還原了！現在跑的是我沒改過前的版本！」「不管！加班修好它！」「我不就說沒測試的話會有問題嗎！？為什麼不聽！？」「你老闆我老闆？再靠杯試試看！」三天後…「夠了！拎杯走！我不想再改這個系統了！ (摔杯子) 」
+
+假設今天有時間讓你調整這個系統，在不知道線上系統整體如何運作的狀況下，你會怎麼讓它容易被維護與增添新功能呢？所以本週課程的重點就在：如何為已經上線的 legacy code 加上測試。
+為了達成這個目標，講師介紹了兩個招式： Web Testing 與 Refactoring 。以下我就以我的方式來介紹我所學到的心得。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="自動測試與 TDD 實務開發 - 上課心得 (中)"/>
+  <meta property="og:site_name" content="網站製作學習誌"/>
+
+  
+    <meta property="og:image" content="http://i.imgur.com/LmHuRXl.jpg"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">網站製作學習誌</a></h1>
+  <h2><a href="/">記錄在開發網站時所學的一切</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-23T08:19:43.000Z"><a href="/2015/05/23/skilltree-tdd-2/">2015-05-23</a></time>
+      
+      
+  
+    <h1 class="title">自動測試與 TDD 實務開發 - 上課心得 (中)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>曾經有個工程師對著已經上線的網站說：「別說使用者不曉得這個系統是怎麼運作的，其實已經接手那麼久的我也不知道。」</p>
+<p>如果你對這句話心有戚戚焉的話，那你真的不孤單。其實有很多維護維護前人程式碼的工程師在在接到新的需求而去修改程式碼時，常常是很戰戰競競的，然後辦公室裡就會響起這樣的聲音：</p>
+<blockquote>
+<p>「我記得前一個工程師說這邊加幾行程式碼就可以了，你覺得呢？」<br>「我直覺這樣改會出問題…有環境讓我先測試看看嗎？」<br>「先不管，後天活動要上了，你先改完讓它上線後再說。」<br>「沒有測試的話…」<br>「閉嘴！快去改。」<br>不久後…<br>「慘了！訂單出大問題了！你可以先還原原來的程式碼嗎？」<br>「不對呀！我改這邊怎麼會讓那裡出錯？」<br>又過了一會兒…<br>「你有還原嗎？！整個訂單資料大亂了呀！你一定有動到什麼東西了！」<br>「我全還原了！現在跑的是我沒改過前的版本！」<br>「不管！加班修好它！」<br>「我不就說沒測試的話會有問題嗎！？為什麼不聽！？」<br>「你老闆我老闆？再靠杯試試看！」<br>三天後…<br>「夠了！拎杯走！我不想再改這個系統了！ (摔杯子) 」</p>
+</blockquote>
+<p>假設今天有時間讓你調整這個系統，在不知道線上系統整體如何運作的狀況下，你會怎麼讓它容易被維護與增添新功能呢？所以本週課程的重點就在：如何為已經上線的 legacy code 加上測試。</p>
+<p>為了達成這個目標，講師介紹了兩個招式： Web Testing 與 Refactoring 。以下我就以我的方式來介紹我所學到的心得。</p>
+<a id="more"></a>
+<h2 id="Web_Testing">Web Testing</h2><p>看過聖鬥士星矢的話，應該都知道雅典娜說過：「你不是還有生命嗎？」</p>
+<p><img src="/images/athena.jpg" alt="無良老闆雅典娜"></p>
+<p>那麼回到問題點：現行的系統沒有測試怎麼辦？</p>
+<p>對工程師來說，雅典娜的話就變成了：「你不是還有線上功能嗎？」</p>
+<p>是呀！當系統是黑箱作業卻正常運作的時候，我們是從頁面 (介面) 上來確認的。換句話說，既然我們操作的方式是對的，而且畫面所得到結果也是我們所預期的，那麼對外部來說，這個已知功能就應該是正確的。</p>
+<p>所以我們可以先「對所有正確執行的功能建立測試」！只要在修改程式碼後，再跑相同的測試而沒有發生錯誤，就能證明我們的修改沒有影響到舊有程式碼。這實在是太酷了！</p>
+<p>就網站來說，這樣的外部測試方式就稱為 Web Testing 。</p>
+<p>當然所有的測試也是以自動化腳本的形式存在，讓我們每次修改完程式碼後，可以方便地一次全部執行。</p>
+<p>最重要的，就是要有工具能幫我們產生這樣的腳本！這種神一般的工具，就非 Selenium 莫屬了。</p>
+<h3 id="Selenium">Selenium</h3><p>Selenium 是一個讓瀏覽器自動化執行使用者操作流程的工具，通常用來當做測試的用途。它主要原理是利用 Selenium IDE 將使用者操作的過程錄製下來，並透過 Selenium IDE 或 Selenium WebDriver 執行該腳本，讓瀏覽器自動重現使用者操作過程。</p>
+<p>而 Selenium 除了讓使用者操作的流程自動化之外，它厲害的地方是能夠把錄製下來的腳本轉換成不同的程式語言格式，融入到各語言的自動測試框架裡。</p>
+<p>簡單介紹 Selenium 幾個要角：</p>
+<ol>
+<li>Selenium IDE ： Firefox 的 Add-on ，用來錄製使用者在操作頁面時所有的動作與輸入，並且驗證輸出結果是否符合預期。而它的重播功能除了讓開發者快速驗證功能外，用來製作說明文件裡的操作範本也相當適合。</li>
+<li>Selenium WebDriver ：告訴使用者的 IDE (例如 Visual Studio) 或 Selenium Server 如何啟動不同瀏覽器的中介層。常用的 WebDriver 包含了 IE 、 Firefox 、 Chrome 、 PhantomJS 等。 (原名 Selenium Remote Control)</li>
+<li>Selenium Server (選備) ：用 Java 寫的 Daemon 服務；如果你的開發環境和測試用的瀏覽器不在同一台機器上，或是某些無法直接啟動瀏覽器的狀況下，你可能會需要透過 Selenium Server 來協助 WebDriver 啟動測試用的瀏覽器。 (原名 Selenium RC Server)</li>
+</ol>
+<p>註：由於課程是使用 Visual Studio 來做本機開發與測試，所以只要用 Nuget 安裝 Selenium WebDriver 套件即可，不需要 Selenium Server 。</p>
+<p>整個 Selenium 的使用流程如下：</p>
+<ol>
+<li>在 Firefox 上安裝 <a href="http://release.seleniumhq.org/selenium-ide/2.9.0/selenium-ide-2.9.0.xpi" target="_blank" rel="external">Selenium IDE</a> 。</li>
+<li>視開發環境決定是否要啟動 Selenium Server ，或使用整合式的 Selenium WebDriver 。如果是 PHP 的話，不論是不是在本機執行，都一定要啟動 Selenium Server 。</li>
+<li>啟動 Web 服務，讓 Firefox 連上測試網站。</li>
+<li>針對所有功能錄製測試腳本 (包含操作流程與結果驗證) 。</li>
+<li>重跑所有腳本，確認沒有操作上的問題。</li>
+<li>利用 Selenium 的 Formatter 外掛，將 Selenium IDE 腳本轉換成對應的程式語言自動化測試框架的程式碼。</li>
+<li>讓自動化測試框架透過 Selenium WebDriver 來完整執行所有的 Selenium 測試腳本，並確認各瀏覽器有被正常開啟。</li>
+<li>接下來就可以繼續後續程式的新增功能或重構了。</li>
+</ol>
+<p>而 Selenium WebDriver 詳細的使用方式在不同的語言有不同的作法，請分別參考我兩位好友的介紹：</p>
+<ul>
+<li>Vistual Studio 走這邊： <a href="http://goo.gl/uIFwD" target="_blank" rel="external">[30天快速上手TDD]Integration Testing &amp; Web UI Testing by Joey Chen</a> (作者名字很熟對不對？)</li>
+<li>PHP 走這邊：<a href="https://www.youtube.com/watch?v=CtsH1n5-Xcc&amp;hd=1" target="_blank" rel="external">PHP 也有Day #13 - 如何使用 Selenium 搞定前端測試 by Ricky Su</a></li>
+</ul>
+<p>註：之前我也寫過 <a href="http://jaceju.net/2010/07/12/1293/" target="_blank" rel="external">Web UI 測試的好幫手 - Selenium</a> ，雖然內容有點舊，但原理沒差太多。</p>
+<h3 id="常見的問題">常見的問題</h3><p>像 Web Testing 這種由外部建立測試的方法，雖然在遇到大多數沒有撰寫測試的 legacy 系統時非常有用，但也不能說毫無缺點。當系統對環境依賴度相當高時，想重建一個供測試用的系統會變得非常困難，而這通常也是必須先克服的問題之一。</p>
+<p>然後規模稍大，功能點較多的網站就會面臨第二個問題：「誰來錄操作流程？」答案很簡單：當然不是工程師。通常 legacy 系統一定會有瞭解它是如何使用的人，這時候必須借重老闆的影響力，想辦法讓這些人能夠協助列出系統所有的功能流程。</p>
+<p>由於 Selenium IDE 非常易用，可以先花點時間教會這些人學習怎麼錄製操作流程。接下來請他們在邊列功能時，順手將流程錄製起來；這樣一來當功能列完的同時，就有完整的測試可以使用，還順便帶有操作示範呢。</p>
+<p>另外錯誤的操作會讓程式出現錯誤，就應該歸類在原本就有的 bug 。但這也表示我們知道有這個操作流程應該要被避免，因此也要特別為它建立一組測試；一來可以在修改程式後透過這組測試確認程式的修改是正確的，二來也確保未來不會再讓這個錯誤發生。就像「同樣的招式不能對聖鬥士使用第二次」，同樣的 bug 也不該在系統上發生第二次。</p>
+<h3 id="FluentAutomation_從愛開始">FluentAutomation 從愛開始</h3><p>Seleinum WebDriver 程式碼好難看懂怎麼辦？如果未來我加新功能而沒辦法錄製腳本時，要照著這樣寫測試嗎？當然不！我們需要讓測試腳本變得抽象化一些，看起來就像是用人話在描述規格一樣。</p>
+<p>又是借重好用工具的時刻，在 C# 上有個好用的 <a href="http://fluent.stirno.com/" target="_blank" rel="external">FluentAutomation</a> ，就是將 Selenium 測試腳本包裝起來的語義化框架。</p>
+<p>例如我們有這樣的規格：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 登入成功</span></span><br><span class="line">    <span class="comment">// 我打開 Login 的網頁</span></span><br><span class="line">    <span class="comment">// 在 id 裡面輸入 user</span></span><br><span class="line">    <span class="comment">// 在 password 裡面輸入 pass</span></span><br><span class="line">    <span class="comment">// 按下登入</span></span><br><span class="line">    <span class="comment">// 期望應該導到首頁</span></span><br></pre></td></tr></table></figure>
+<p>改用 FluentAutomation 寫法的話，就會是：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">string</span> baseUrl = <span class="string">@"http://localhost:29021/"</span>;</span><br><span class="line"></span><br><span class="line">[TestMethod]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TestLoginSuccess</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    I.Open(baseUrl + <span class="string">"login"</span>)</span><br><span class="line">        .Enter(<span class="string">"user"</span>).In(<span class="string">"#id"</span>)</span><br><span class="line">        .Enter(<span class="string">"pass"</span>).In(<span class="string">"#password"</span>)</span><br><span class="line">        .Click(<span class="string">"input[type=\"submit\"]"</span>)</span><br><span class="line">        .Assert.Url(baseUrl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因為測試的主角是「我」，所以一切從 <code>I</code> 開始；而測試的對象是「網頁」，所以我們會有 <code>Open</code> (開啟網址) / <code>Enter</code> (輸入) / <code>Click</code> (點擊) 等操作方式；最後再使用 <code>Assert</code> 來驗證畫面輸出是否如我們所預期。</p>
+<p>除了語法更為抽象之外， FluentAutomation 執行的結果其實和 Selenium WebDriver 是一樣的。 FluentAutomation 能讓開發者融入測試的情境中，從使用者行為的角度出發去看待系統功能。一切就像用人話在說明功能，看起來就是這麼自然。</p>
+<p>註： FluentAutomation 也<a href="http://fluent.stirno.com/docs/#multi-browser" target="_blank" rel="external">支援多種不同瀏覽器</a>同時測試，相關的說明請參考<a href="http://fluent.stirno.com/docs/" target="_blank" rel="external">官方文件</a>。</p>
+<p>註： PHP 也有類似的框架，是包含在 <a href="http://codeception.com/" target="_blank" rel="external">Codeception</a> 的 <a href="http://codeception.com/docs/modules/WebDriver" target="_blank" rel="external">WebDriver</a> 模組中。</p>
+<h3 id="Page_Objects_Pattern">Page Objects Pattern</h3><p>課程中介紹另一個我覺得很棒的觀念是，雖然功能是一樣的，但如果頁面結構調整了怎麼辦？這時候就要用到物件導向最重要的觀念：封裝變化。</p>
+<p>Page Objects Patterns 把頁面當成是一個物件，只讓它露出必要的行為，讓我們的主要流程只描述如何跟這個頁面互動，而不在乎它頁面上的細節。這樣一來不管頁面結構怎麼變化，只要主要功能不變，我們都只需要修改這個 Page Object 就好。</p>
+<p>Page Objects 在 FluentAutomation 的實作範例可以參考官方說明的 <a href="http://fluent.stirno.com/docs/#pageobjects" target="_blank" rel="external">PageObjects</a> 一節。</p>
+<p>同樣地在 PHP 的 Codeception 也支援 Page Objects Patterns ，請參考 <a href="http://codeception.com/docs/07-AdvancedUsage#PageObjects" target="_blank" rel="external">PageObjects</a> 一節。</p>
+<h2 id="Refactoring">Refactoring</h2><p>假設我們已經有了 Web Testing 來確保我們的功能都經過了外部測試，那麼我們就有機會對它進行重構了。</p>
+<p>課程中的範例可以說是這兩週課程的精華呀，從一個很難憾動的程式碼，一步一步重構成包含了 Web Testing 和單元測試的可維護可擴充架構。</p>
+<p>這裡很難把它用三言兩言完整描述出來，恕我偷懶一下，這裡請直接參考講師以前寫的 30 天快速上手 TDD 之重構系列文章：</p>
+<ul>
+<li><a href="http://goo.gl/59rTl" target="_blank" rel="external">[30天快速上手TDD][Day 9]Refactoring legacy code 簡介</a></li>
+<li><a href="http://goo.gl/4zdts" target="_blank" rel="external">[30天快速上手TDD][Day 10]Refactoring 起手式 - 建立測試</a></li>
+<li><a href="http://goo.gl/LWUDp" target="_blank" rel="external">[30天快速上手TDD][Day 11]Refactoring - 讓程式碼說話</a></li>
+<li><a href="http://goo.gl/U3nvF" target="_blank" rel="external">[30天快速上手TDD][Day 12]Refactoring - 職責分離</a></li>
+<li><a href="http://goo.gl/zRgyy" target="_blank" rel="external">[30天快速上手TDD][Day 13]Refactoring - 告訴我，你要什麼</a></li>
+<li><a href="http://goo.gl/A7EnM" target="_blank" rel="external">[30天快速上手TDD][Day 14]Refactoring - 驗貨</a></li>
+<li><a href="http://goo.gl/xMt7p" target="_blank" rel="external">[30天快速上手TDD][Day 15]Refactoring - 食神歸位</a></li>
+<li><a href="http://goo.gl/gcylXL" target="_blank" rel="external">[30天快速上手TDD][Day 16]Refactoring - 介面導向</a></li>
+<li><a href="http://goo.gl/2THME" target="_blank" rel="external">[30天快速上手TDD][Day 17]Refactoring - Strategy Pattern</a></li>
+<li><a href="http://goo.gl/vyHtI" target="_blank" rel="external">[30天快速上手TDD][Day 18]Refactoring - Factory Pattern</a></li>
+<li><a href="http://goo.gl/yzsQc" target="_blank" rel="external">[30天快速上手TDD][Day 19]Refactoring - The End is the Beginning</a></li>
+</ul>
+<p>簡單說明一下整套重構流程的重點：</p>
+<ol>
+<li>用 Selenium 錄下你的 Web 測試，越完整越好，而且讓它可以隨時執行。</li>
+<li>理解你要重構的 legacy 程式碼意圖，把註解補上去。不用管細節，只要知道某段程式打算做什麼就好。</li>
+<li>重構：想辦法把邏輯和 UI 分離開來，這個可能會因為語言或框架的不同而有不同的做法。要記得跑 Web 測試。</li>
+<li>重構：應用常用的 Extract Method 技巧來將程式碼拆分出易懂的方法。別忘了跑 Web 測試。</li>
+<li>重構：依照職責分離的原則，把剛剛分離出來的方法引到新的類別中。 Web 測試千萬別漏了。</li>
+<li>獨立出類別後，就可以把單元測試補上去了。接著所有測試都跑跑看吧。</li>
+<li>重構：為各相似的類別抽出介面 (Interface) ，讓主程式去依賴介面，而不要依賴剛剛的類別。然後還是要測試呀！</li>
+<li>重構：在抽出介面後，利用 Factory Method 將生成物件 (new) 的職責獨立出去。</li>
+</ol>
+<p>要特別記住：</p>
+<ul>
+<li>每一步重構後只要測試是綠燈，都是應該是能夠上線的狀態。</li>
+<li>只要是綠燈，就把程式碼 commit 到 VCS 裡，別偷懶。</li>
+<li>重構在搬移程式碼時，只修改 context ，而不要修改流程結構。</li>
+<li>修改流程結構 (例如 <code>if</code> 換成 <code>switch</code> ) 要自成一個重構。</li>
+</ul>
+<h3 id="避免增加中介層的獨立測試">避免增加中介層的獨立測試</h3><p>這段是講師的壓箱寶，據說是這次課程才加入的，有聽有賺到。</p>
+<p>這邊我打算用一句話來帶過：懶爸爸有個相依耦和的類別，把它抽出來放到可覆寫的方法中回傳；然後用個笨兒子來繼承懶爸爸，然後為笨兒子注入相依物件的 stub object ；最後改測試笨兒子，結束。</p>
+<p>如果看得懂上面這句，我想就能得到講師這段課程的精髓了。至於這個技巧多有用？如果發現類別中相依耦合度很高，卻又不確定這些類別被哪些程式用到，擔心修改方法簽名就會影響整個系統時，你就會知道這個技巧的威力了。</p>
+<h2 id="心得">心得</h2><p>我必須老實說，不論是補測試或是重構，技術上絕對不是什麼大問題；像這次的課程所介紹的技巧，都沒有什麼非常困難的部份。那麼為什麼很多人不做呢？我想是因為大家都拿「新功能都做不完了，哪來時間做重構？」做為藉口了。但回到最文章最開頭的情境，其實真的花你時間的，反而不是這些測試或重構，而是你跟同事因為系統出問題的爭執。</p>
+<p>如果老闆有心解決舊有系統的問題，就想辦法說服他加上測試並重構吧。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Selenium/">Selenium</a>, <a href="/tags/TDD/">TDD</a>, <a href="/tags/單元測試/">單元測試</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jaceju.net/2015/05/23/skilltree-tdd-2/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="q" value="site:jaceju.net">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ASP/">ASP</a><small>8</small></li>
+  
+    <li><a href="/tags/AngularJS/">AngularJS</a><small>1</small></li>
+  
+    <li><a href="/tags/Backbone-js/">Backbone.js</a><small>2</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>22</small></li>
+  
+    <li><a href="/tags/CoffeeScript/">CoffeeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/Compass/">Compass</a><small>1</small></li>
+  
+    <li><a href="/tags/Grunt/">Grunt</a><small>1</small></li>
+  
+    <li><a href="/tags/IE6/">IE6</a><small>1</small></li>
+  
+    <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+  
+    <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>5</small></li>
+  
+    <li><a href="/tags/Mobile-開發/">Mobile 開發</a><small>1</small></li>
+  
+    <li><a href="/tags/MongoDB/">MongoDB</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>2</small></li>
+  
+    <li><a href="/tags/NetBeans/">NetBeans</a><small>1</small></li>
+  
+    <li><a href="/tags/Octopress/">Octopress</a><small>1</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>112</small></li>
+  
+    <li><a href="/tags/PHPConf-TW/">PHPConf.TW</a><small>1</small></li>
+  
+    <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
+  
+    <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
+  
+    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+  
+    <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
+  
+    <li><a href="/tags/Web-開發/">Web 開發</a><small>25</small></li>
+  
+    <li><a href="/tags/WebConf/">WebConf</a><small>1</small></li>
+  
+    <li><a href="/tags/WebKit/">WebKit</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>13</small></li>
+  
+    <li><a href="/tags/Yeoman/">Yeoman</a><small>1</small></li>
+  
+    <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
+  
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
+  
+    <li><a href="/tags/作品/">作品</a><small>13</small></li>
+  
+    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+  
+    <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
+  
+    <li><a href="/tags/好書推薦/">好書推薦</a><small>14</small></li>
+  
+    <li><a href="/tags/好站推薦/">好站推薦</a><small>11</small></li>
+  
+    <li><a href="/tags/心得感想/">心得感想</a><small>34</small></li>
+  
+    <li><a href="/tags/持續整合/">持續整合</a><small>2</small></li>
+  
+    <li><a href="/tags/未分類/">未分類</a><small>5</small></li>
+  
+    <li><a href="/tags/業界資訊/">業界資訊</a><small>5</small></li>
+  
+    <li><a href="/tags/程式開發/">程式開發</a><small>14</small></li>
+  
+    <li><a href="/tags/網路趣味/">網路趣味</a><small>3</small></li>
+  
+    <li><a href="/tags/設計模式/">設計模式</a><small>7</small></li>
+  
+    <li><a href="/tags/資料庫/">資料庫</a><small>5</small></li>
+  
+    <li><a href="/tags/連結分享/">連結分享</a><small>183</small></li>
+  
+    <li><a href="/tags/開發工具/">開發工具</a><small>8</small></li>
+  
+    <li><a href="/tags/電腦知識/">電腦知識</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Jace Ju
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

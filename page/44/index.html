@@ -49,6 +49,43 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2006-12-07T16:00:00.000Z"><a href="/2006/12/08/151/">2006-12-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2006/12/08/151/">[好站] ogoproject - 統一 PHP 混亂的函式命名</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>長久以來， PHP 混亂的函式命名方式一直為人所詬病。像是 to 這個單字，有些函式是用 2 來代替 (如 deg2rad ) ，有些則是用 <em>to</em> (如 image_type_to_mime_type) ，有些則乾脆不寫 (如 decbin ) 。</p>
+<p>註：相信各位 PHP 開發者為了這個原因，一定都會在手邊準備一個 PHP 的官方參考手冊。畢竟要記住這種混亂的命名，你的腦袋記憶體容量可能要大於常人。</p>
+<p>現在終於有人願意站出來把它統一了，這就是 <a href="http://www.ogoproject.com/" target="_blank" rel="external">ogoproject </a> 要做的事情。它提供了一套<a href="http://www.ogoproject.com/pages/conventions" target="_blank" rel="external">轉換規則</a>，讓大家在使用或撰寫 PHP 函式時，對函式名稱能有一個統一的規則可循。而且將來也會把相關的轉換程式公開讓大家<a href="http://www.ogoproject.com/pages/downloads" target="_blank" rel="external">下載</a>，不必我們自己再做一次。</p>
+<p>大家可以先到<a href="http://www.ogoproject.com/functions/A" target="_blank" rel="external">這裡</a>看看所有 PHP 函式轉換後的名稱，習慣一下這種命名的方式。</p>
+<h3 id="更新">更新</h3><p>看來是雷聲大雨點小，可惜發起者已不見蹤影了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2006-11-30T16:00:00.000Z"><a href="/2006/12/01/150/">2006-12-01</a></time>
       
       
@@ -379,44 +416,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2006-11-06T16:00:00.000Z"><a href="/2006/11/07/142/">2006-11-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2006/11/07/142/">PHP 5.2.0 Win32 的 go-pear.phar 無法運作</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>話說我在安裝 <a href="http://www.php.net/downloads.php" target="_blank" rel="external">PHP 5.2.0 Win32</a> 版後，想試著重新安裝 <a href="http://pear.php.net" target="_blank" rel="external">PEAR</a> ，但是失敗了。出現的錯誤訊息如下：</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: Cannot use a scalar value as an<span class="instruction"> array </span>in phar://go-pear.phar/PEAR/Comma nd.php on line 268</span><br></pre></td></tr></table></figure>
-<p>但那時候為了要處理其他事情，就暫時把這件事擱置下來。</p>
-<p>今天看到了 <a href="http://www.phpwomen.org/" target="_blank" rel="external">PHPWoman</a> 上發表了一篇 <a href="http://www.phpwomen.org/wordpress/2006/11/06/bundled-go-pearphar-broken-in-52-windows-releases/" target="_blank" rel="external">Bundled go-pear.phar broken in 5.2 windows releases</a> ，大意是說 <a href="http://greg.chiaraquartet.net/" target="_blank" rel="external">Greg Beaver</a> (PEAR Installer 的作者) 已經立刻修復這個錯誤，但是卻沒有把它併到 PHP 5.2.0 Win32 的釋出版本裡。</p>
-<p>解決的方法是自己到 <a href="http://go-pear.org/" target="_blank" rel="external">http://go-pear.org/</a> 去抓最新版的 go-pear.phar (把首頁內容另存新檔即可) ，或到 <a href="http://cvs.php.net/viewvc.cgi/pearweb/public_html/go-pear.phar?view=log" target="_blank" rel="external">cvs</a> 裡去抓也可以 (把第一個 download 連結另存新檔就是了) 。抓回來後放到 PHP 安裝目錄裡的 PEAR 資料夾內即可，然後就可以按照正常程序安裝了。 </p>
-<p>註：這樣下載回來的 go-pear.phar 不包含壓縮過的 PEAR 基本套件，它會直接再從網路上下載。 </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -482,11 +481,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>1</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -510,7 +511,7 @@
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>2</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   
