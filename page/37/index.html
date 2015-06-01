@@ -49,6 +49,62 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-08-14T16:00:00.000Z"><a href="/2007/08/15/222/">2007-08-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/08/15/222/">[JavaScript] 有關 jQuery</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>steve 網友問到了 jQuery 有什麼特點，其實我才疏學淺，沒能給什麼好建議。</p>
+<p>不過剛剛恰好看到一篇 <a href="http://simonwillison.net/2007/Aug/15/jquery/" target="_blank" rel="external">jQuery for JavaScript programmers</a> ，這裡推薦給對 jQuery 有興趣的朋友參考看看。</p>
+<p>順便整理一下一些有關 jQuery 的連結：</p>
+<ul>
+<li><a href="http://jquery.com" target="_blank" rel="external">jQuery</a></li>
+</ul>
+<p>官方網站</p>
+<li>
+
+<p><a href="http://www.learningjquery.com/" target="_blank" rel="external">Learning jQuery</a>::<a href="http://www.learningjquery.com/2007/08/what-is-this" rel="external" title="Permanent Link: What is <em>this</em>?" target="_blank">What is <em>this</em>?</a></p>
+<p>簡單的 jQuery 介紹。<br></p></li><p></p>
+<ul>
+<li><a href="http://jquery.bassistance.de/api-browser/" target="_blank" rel="external">jQuery API Browser (for jQuery 1.1.2)</a> </li>
+</ul>
+<p>API 查詢，也有提供範例。</p>
+<ul>
+<li><a href="http://visualjquery.com/" target="_blank" rel="external">Visual jQuery (for jQuery 1.1.2)</a></li>
+</ul>
+<p>和上面一樣也是 API 查詢，只是介面不同。</p>
+<ul>
+<li><a href="http://www.n-bp.com/jquery_cheat_sheet/v11_catalog_extra/" target="_blank" rel="external">jQuery.com 1.1 - Cheat Sheet</a></li>
+</ul>
+<p>作弊小抄….啊，不是，是速查表。不過我還是喜歡上面的 API Browser ，比 cheat sheet 方便。</p>
+<p>不過基本上我都是看官方網站找 plugins ，然後查一下 API Browser 而已。比較深入研究的話，就要找<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>，他是個 JavaScript 高手。 :) </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-08-14T16:00:00.000Z"><a href="/2007/08/15/223/">2007-08-15</a></time>
       
       
@@ -121,7 +177,7 @@
 <li><a href="http://www.sitepoint.com/blogs/2007/08/13/ptest-php-unit-tester-in-9-lines-of-code/" target="_blank" rel="external">pTest: PHP Unit Tester in 9 Lines Of Code</a></li>
 </ul>
 <p>九行實作一個測試用的 assertTrue 函式。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* pTest - PHP Unit Tester</span><br><span class="line">*<span class="phpdoc"> @param</span> mixed $test Condition to test, evaluated as boolean</span><br><span class="line">*<span class="phpdoc"> @param</span> string $message Descriptive message to output upon test</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertTrue</span><span class="params">(<span class="variable">$test</span>, <span class="variable">$message</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">static</span> <span class="variable">$count</span>;</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$count</span>)) <span class="variable">$count</span> = <span class="keyword">array</span>(<span class="string">'pass'</span>=&gt;<span class="number">0</span>, <span class="string">'fail'</span>=&gt;<span class="number">0</span>, <span class="string">'total'</span>=&gt;<span class="number">0</span>);</span><br><span class="line"><span class="variable">$mode</span> = <span class="variable">$test</span> ? <span class="string">'pass'</span> : <span class="string">'fail'</span>;</span><br><span class="line">printf(<span class="string">"%s: %s (%d of %d tests run so far have %sed)\n"</span>,</span><br><span class="line">strtoupper(<span class="variable">$mode</span>), <span class="variable">$message</span>, ++<span class="variable">$count</span>[<span class="variable">$mode</span>], ++<span class="variable">$count</span>[<span class="string">'total'</span>], <span class="variable">$mode</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/**&#10;* pTest - PHP Unit Tester&#10;* @param mixed $test Condition to test, evaluated as boolean&#10;* @param string $message Descriptive message to output upon test&#10;*/&#10;function assertTrue($test, $message)&#10;&#123;&#10;static $count;&#10;if (!isset($count)) $count = array(&#39;pass&#39;=&#62;0, &#39;fail&#39;=&#62;0, &#39;total&#39;=&#62;0);&#10;$mode = $test ? &#39;pass&#39; : &#39;fail&#39;;&#10;printf(&#34;%s: %s (%d of %d tests run so far have %sed)\n&#34;,&#10;strtoupper($mode), $message, ++$count[$mode], ++$count[&#39;total&#39;], $mode);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><a href="http://devzone.zend.com/article/2442-PHP-and-RIA" target="_blank" rel="external">PHP and RIA</a></p>
 </li>
@@ -525,43 +581,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-07-31T16:00:00.000Z"><a href="/2007/08/01/212/">2007-08-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/08/01/212/">Zend Framework 釋出 1.0.1 版</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><a href="http://devzone.zend.com/article/2389-Zend-Framework-1.0.1-Releases" target="_blank" rel="external">Zend Framework 釋出 1.0.1 版了</a>，修正了 33 個 <a href="http://framework.zend.com/changelog" target="_blank" rel="external">issues</a> 。看起來跟我目前開發的專案沒有什麼大衝突，先跑幾天試試看，沒問題的話再更新。</p>
-<p>另外昨天有個網友問了一些有關 ZF 的問題，讓我有個很深的感觸。</p>
-<p>我不禁要問：不熟 PHP 能學好 ZF 嗎？ </p>
-<p>雖然一樣是寫程式，觀念其實也都差不多，但是每種語言的開發環境畢竟還是有所不同。總不能說為什麼 XXX 語言可以這樣做，為什麼 PHP 不行？再者 ZF 是基於 PHP5 開發的，所以 PHP5 的特性以及包含了哪些 library 最好也要搞清楚。而且不論是學習 .NET 或是 Java ，不都是熟悉該語言的基礎後才有辦法去運用它們的框架嗎？ </p>
-<p>牢騷就發到這裡了…睡覺去…</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -605,7 +624,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -627,13 +646,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -649,15 +668,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

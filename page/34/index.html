@@ -49,6 +49,58 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-09-10T16:00:00.000Z"><a href="/2007/09/11/252/">2007-09-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/09/11/252/">[PHP] 連結分享</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <a id="more"></a>
+<ul>
+<li><a href="http://blog.ruckusing.com/index.php/2007/09/03/database-migrations-for-php5/" target="_blank" rel="external">Database Migrations for PHP5</a></li>
+</ul>
+<p>RoR 有很棒的資料庫遷移機制， PHP 高手 <a href="http://blog.ruckusing.com/" target="_blank" rel="external">Cody Caughlan</a> 也不干示弱地寫了一個給 PHP 用，它叫做 <a href="http://code.google.com/p/ruckusing/" target="_blank" rel="external">ruckusing</a> ，真是厲害呀~~</p>
+<p>有關資料庫遷移的觀念可以參考：「<a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=9789861812397&amp;sid=38282" target="_blank" rel="external">碼上就會：Rails敏捷開發網站</a>」第 16 章。 </p>
+<li>
+
+<p><a href="http://www.phpied.com/file_get_contents-for-php4/" target="_blank" rel="external">file_get_contents() for PHP4</a> (作者寫錯標題了，應該是 file_put_contents ) </p>
+<p><a href="http://www.php.net/manual/tw/function.file-put-contents.php" target="_blank" rel="external">file_put_contents</a> 這個函式只有在 PHP5 才提供，如果想要在 PHP4 用的話，可以參考以下方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;if (!function_exists(&#39;file_put_contents&#39;)) &#123;&#10;function file_put_contents($filename, $data) &#123;&#10;$f = @fopen($filename, &#39;w&#39;);&#10;if (!$f) &#123;&#10;return false;&#10;&#125; else &#123;&#10;$bytes = fwrite($f, $data);&#10;fclose($f);&#10;return $bytes;&#10;&#125;&#10;&#125;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>或是如果有用 PEAR 的話，可以安裝 <a href="http://pear.php.net/package/PHP_Compat" target="_blank" rel="external">PHP_Compat</a> 。<br></p></li><p></p>
+<ul>
+<li><a href="http://www.php-learn-it.com/php_cookies.html" target="_blank" rel="external">Cooking Cookies with PHP</a></li>
+</ul>
+<p>簡單的 Cookies 教學。 </p>
+<ul>
+<li><a href="http://blog.adaniels.nl/?p=48" target="_blank" rel="external">Wrong PHP prediction: you don’t need to patch PHP to run multiple versions</a></li>
+</ul>
+<p>上次提到 <a href="http://fosterburgess.com/kimsal/?p=317" target="_blank" rel="external">Michael Kimsals</a> 預言會有一個工具協助我們同時執行 PHP4 和 PHP5 ， <a href="http://blog.adaniels.nl/?author=1" target="_blank" rel="external">Arnold Daniels</a> 提出反駁的論點。 </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-09-09T16:00:00.000Z"><a href="/2007/09/10/251/">2007-09-10</a></time>
       
       
@@ -65,7 +117,7 @@
 <h2 id="PHP">PHP</h2><ul>
 <li><a href="http://fashion.hosmoz.net/post/2007/08/30/Quick-php5-pre-migration-check" target="_blank" rel="external">Quick php5 pre-migration check</a></li>
 </ul>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">"*.php"</span> -<span class="keyword">exec</span> /usr/bin/php5 -l &#123;&#125; \; | <span class="keyword">grep</span> -v <span class="string">'No syntax errors'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &#34;*.php&#34; -exec /usr/bin/php5 -l &#123;&#125; \; | grep -v &#39;No syntax errors&#39;</span><br></pre></td></tr></table></figure>
 <p>酷… PHP 命令列模式其實有很多好玩的東西，再配合 linux 指令就更有趣了。 </p>
 <h2 id="Web">Web</h2><ul>
 <li><a href="http://www.avivadirectory.com/free-online-tests/" target="_blank" rel="external">Grade Your Website: 31 Free Online Tests</a> (簡體中文解釋：<a href="http://zsk.akaka.com.cn/" target="_blank" rel="external">︻┳═一 [zsk.akaka.com.cn]</a>::<a href="http://zsk.akaka.com.cn/2007/06/31-free-tests-online/" target="_blank" rel="external">31 个用来测试你网站各项性能的免费在线工具</a>)</li>
@@ -113,9 +165,9 @@
 <p><a href="http://www.colder.ch/news/08-24-2007/28/late-static-bindings-expl.html" target="_blank" rel="external">Late Static Bindings Explained</a></p>
 <p>這個功能會出現在 PHP6 上，不過也可能會在 PHP5 的新版本實作出來。簡單說明一下：</p>
 <p>以往我們在繼承 Class 後，是不可能覆寫 (override) static method 的，例如： </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">who</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">self</span>::who();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">who</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">B::test(); <span class="comment">// A</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;    public static function test()&#10;    &#123;&#10;        self::who();&#10;    &#125;&#10;&#125;&#10;class B extends A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;&#125;&#10;B::test(); // A</span><br></pre></td></tr></table></figure>
 <p>在 PHP6 裡提供了一個 static 關鍵字，用來表示繼承後的類別 (self 保留給目前的類別使用) ： </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">who</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span>::who();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">who</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">B::test(); <span class="comment">// B</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;    public static function test()&#10;    &#123;&#10;        static::who();&#10;    &#125;&#10;&#125;&#10;class B extends A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;&#125;&#10;B::test(); // B</span><br></pre></td></tr></table></figure>
 <p>看起來相當方便，就是不知道實際用起來如何了。<br></p></li><p></p>
 <ul>
 <li><a href="http://elizabethmariesmith.com/2007/09/08/perverting-windows-with-php/" target="_blank" rel="external">Perverting windows with PHP</a></li>
@@ -436,9 +488,9 @@
       
         <p>原來我一直錯怪樂多…</p>
 <p>之前的搜尋表單值是傳送到：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//cgi.blog.roodo.com/search</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://cgi.blog.roodo.com/search</span><br></pre></td></tr></table></figure>
 <p>因為 mark 和 kuni 說搜尋有錯誤，所以我剛剛又到樂多 Blog 首頁去測了一下，發現正確的位址應該是：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//search.blog.roodo.com/index.php</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://search.blog.roodo.com/index.php</span><br></pre></td></tr></table></figure>
 <p>特此更正一下。</p>
 <p>現在搜尋終於正常了，為我之前的錯誤向各位道歉。 </p>
 
@@ -497,49 +549,12 @@
 
 <p><a href="http://blog.vixual.net/2007/09/firefox-google-reader-rss.html" target="_blank" rel="external">讓 FireFox 可以使用 Google Reader 訂閱 RSS</a></p>
 <p>Google 用 iGoogle 來閱讀 RSS 的這個決定對我來說真的很不好…不過我的 Firefox 裡應該是改：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser<span class="class">.contentHandlers</span><span class="class">.types</span>.&lt;strong&gt;<span class="number">1</span>&lt;/strong&gt;.uri</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.contentHandlers.types.&#60;strong&#62;1&#60;/strong&#62;.uri</span><br></pre></td></tr></table></figure>
 <p>這個設定才對 (就是對應到 Google Reader 那個數字) 。<br></p></li><p></p>
 <ul>
 <li><a href="http://portable.easylife.idv.tw/1058" target="_blank" rel="external">利用 .htacess 達成網頁壓縮。減少流量</a></li>
 </ul>
 <p>如果主機沒辦法掌控的話，這個是個不錯的方式。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-09-02T16:00:00.000Z"><a href="/2007/09/03/242/">2007-09-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/09/03/242/">[PHP] 連結分享</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <ul>
-<li><a href="http://www.ds-o.com/archives/63-PHPUnit-Database-Extension-DBUnit-Port.html" target="_blank" rel="external">PHPUnit Database Extension (DBUnit Port)</a></li>
-</ul>
-<p>好東西！ JUnit 有 DBUnit 這個 extension ，而 PHPUnit 又是參考 JUnit 開發的測試工具，那麼 <a href="http://www.ds-o.com/authors/1-Mike-Lively" target="_blank" rel="external">Mike Lively</a> 就把 DBUnit 也一起搬到了 PHPUnit 裡了。</p>
-<p>而且 Dataset 這個概念，這個和我想做的 Dataset 不謀而合；有空下載回來研究研究。 </p>
 
       
     </div>
@@ -599,7 +614,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -621,13 +636,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -643,15 +658,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

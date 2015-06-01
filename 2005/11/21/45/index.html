@@ -63,12 +63,12 @@
         <p>有讀者詢問我如何設定虛擬主機上的 PHP.INI ，基本上是沒辦法更改的。但是如果虛擬主機使用的是 Apache ，且有開放設定 .htaccess 的權限，那麼我們就能夠透過 .htaccess 來改變 PHP.INI (正確來說是覆寫，而不是改變) 。不過要注意一點：這個改變只會作用在該 PHP 程式所在的資料夾。</p>
 <a id="more"></a>
 <p>首先， Apacle 的 httpd.conf 必須要有以下的設定，這樣 .htaccess 才能有作用：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">Directory</span> "/<span class="attribute">path</span>/<span class="attribute">to</span>/<span class="attribute">wwwroot</span>/"&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="title">strong</span>&gt;</span>AllowOverride All<span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="title">Directory</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;Directory &#34;/path/to/wwwroot/&#34;&#62;&#10;...&#10;&#60;strong&#62;AllowOverride All&#60;/strong&#62;&#10;...&#10;&#60;/Directory&#62;</span><br></pre></td></tr></table></figure>
 <p>(詳細的寫法請參考 Apache 的說明文件。)</p>
 <p>接著假如你的 PHP 程式是放在 /path/to/your/phpapp/wwwroot/ 底下，你可以在上面新增一個 .htaccess (要包含前面那個點) ，然後用以下的格式來更改 PHP.INI 的值：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">strong</span>&gt;</span>php_value<span class="tag">&lt;/<span class="title">strong</span>&gt;</span> <span class="tag">&lt;<span class="title">strong</span>&gt;</span>屬性名稱<span class="tag">&lt;/<span class="title">strong</span>&gt;</span> <span class="tag">&lt;<span class="title">strong</span>&gt;</span>屬性值<span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;strong&#62;php_value&#60;/strong&#62; &#60;strong&#62;&#23660;&#24615;&#21517;&#31281;&#60;/strong&#62; &#60;strong&#62;&#23660;&#24615;&#20540;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>例如我們要修改 include_path 這個屬性的話：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">strong</span>&gt;</span>php_value<span class="tag">&lt;/<span class="title">strong</span>&gt;</span> <span class="tag">&lt;<span class="title">strong</span>&gt;</span>include_path<span class="tag">&lt;/<span class="title">strong</span>&gt;</span> ".<span class="tag">&lt;<span class="title">strong</span>&gt;</span>:<span class="tag">&lt;/<span class="title">strong</span>&gt;</span>/path/to/your/phpapp/wwwroot/class"</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;strong&#62;php_value&#60;/strong&#62; &#60;strong&#62;include_path&#60;/strong&#62; &#34;.&#60;strong&#62;:&#60;/strong&#62;/path/to/your/phpapp/wwwroot/class&#34;</span><br></pre></td></tr></table></figure>
 <p>記住，「:」 (冒號) 是 Unix Like 平台上的分隔符號，「;」 (分號) 是 Windows 平台上的分隔符號。</p>
 <p> (是的，你沒看錯，上面的 .htaccess 裡面就是一行「php_value include_path “.:/path/to/your/phpapp/wwwroot/class”」而已。) </p>
 <p>接著你可以在 /path/to/your/phpapp/wwwroot/ 放一個 phpinfo() 函式來看看 .htaccess 的設定值是否已將 Server 預設的 PHP.INI 設定給覆寫了。 </p>
@@ -167,7 +167,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -189,13 +189,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -211,15 +211,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

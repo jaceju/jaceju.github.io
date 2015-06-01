@@ -92,7 +92,7 @@
 
 <p><a href="http://www.ajaxray.com/blog/2008/02/06/php-uuid-generator-function/" target="_blank" rel="external">PHP UUID generator function</a></p>
 <p>這個很方便，程式碼我記下來：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* Generates an UUID</span><br><span class="line">*</span><br><span class="line">*<span class="phpdoc"> @author</span>     Anis uddin Ahmad &lt;admin@ajaxray.com&gt;</span><br><span class="line">*<span class="phpdoc"> @param</span>      string  an optional prefix</span><br><span class="line">*<span class="phpdoc"> @return</span>     string  the formatted uuid</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uuid</span><span class="params">(<span class="variable">$prefix</span> = ”)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="variable">$chars</span> = md5(uniqid(rand()));</span><br><span class="line"><span class="variable">$uuid</span>  = substr(<span class="variable">$chars</span>,<span class="number">0</span>,<span class="number">8</span>) . ‘-’;</span><br><span class="line"><span class="variable">$uuid</span> .= substr(<span class="variable">$chars</span>,<span class="number">8</span>,<span class="number">4</span>) . ‘-’;</span><br><span class="line"><span class="variable">$uuid</span> .= substr(<span class="variable">$chars</span>,<span class="number">12</span>,<span class="number">4</span>) . ‘-’;</span><br><span class="line"><span class="variable">$uuid</span> .= substr(<span class="variable">$chars</span>,<span class="number">16</span>,<span class="number">4</span>) . ‘-’;</span><br><span class="line"><span class="variable">$uuid</span> .= substr(<span class="variable">$chars</span>,<span class="number">20</span>,<span class="number">12</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="variable">$prefix</span> . <span class="variable">$uuid</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/**&#10;* Generates an UUID&#10;*&#10;* @author     Anis uddin Ahmad &#60;admin@ajaxray.com&#62;&#10;* @param      string  an optional prefix&#10;* @return     string  the formatted uuid&#10;*/&#10;function uuid($prefix = &#8221;)&#10;&#123;&#10;$chars = md5(uniqid(rand()));&#10;$uuid  = substr($chars,0,8) . &#8216;-&#8217;;&#10;$uuid .= substr($chars,8,4) . &#8216;-&#8217;;&#10;$uuid .= substr($chars,12,4) . &#8216;-&#8217;;&#10;$uuid .= substr($chars,16,4) . &#8216;-&#8217;;&#10;$uuid .= substr($chars,20,12);&#10;return $prefix . $uuid;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p></p></li><p></p>
 <ul>
 <li><a href="http://www.prodevtips.com/2008/02/05/why-php-as-a-templating-language-sucks/" target="_blank" rel="external">Why PHP as a templating language sucks</a></li>
@@ -179,7 +179,7 @@
 <li><a href="http://blog.stevenlevithan.com/archives/faster-trim-javascript" target="_blank" rel="external">Faster JavaScript Trim</a></li>
 </ul>
 <p>比較各種 String trim 方法的速度，目前看來是 trim12 最快。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim12</span> <span class="params">(str)</span> &#123;</span></span><br><span class="line">var str = str.replace(/^\s\s*/, <span class="string">''</span>),</span><br><span class="line">ws  = /\s/,</span><br><span class="line"><span class="built_in">i</span>   = str.<span class="built_in">length</span>;</span><br><span class="line"><span class="keyword">while</span> (ws.test(str.charAt(--<span class="built_in">i</span>)));</span><br><span class="line"><span class="keyword">return</span> str.slice(<span class="number">0</span>, <span class="built_in">i</span> + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function trim12 (str) &#123;&#10;var str = str.replace(/^\s\s*/, &#39;&#39;),&#10;ws  = /\s/,&#10;i   = str.length;&#10;while (ws.test(str.charAt(--i)));&#10;return str.slice(0, i + 1);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><a href="http://www.gnucitizen.org/blog/javascript-global-namespace-pollution" target="_blank" rel="external">JavaScript Global Namespace Pollution</a></li>
 </ul>
@@ -340,7 +340,7 @@
 <li><a href="http://www.mysqlperformanceblog.com/2008/02/04/finding-out-largest-tables-on-mysql-server/" target="_blank" rel="external">Finding out largest tables on MySQL Server</a></li>
 </ul>
 <p>跨資料庫找出前十個佔用空間最大的資料表。 </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">concat</span>(table_schema,<span class="string">'.'</span>,table_name),<span class="keyword">concat</span>(<span class="keyword">round</span>(table_rows/<span class="number">1000000</span>,<span class="number">2</span>),<span class="string">'M'</span>) <span class="keyword">rows</span>,<span class="keyword">concat</span>(<span class="keyword">round</span>(data_length/(<span class="number">1024</span>*<span class="number">1024</span>*<span class="number">1024</span>),<span class="number">2</span>),<span class="string">'G'</span>) <span class="keyword">DATA</span>,<span class="keyword">concat</span>(<span class="keyword">round</span>(index_length/(<span class="number">1024</span>*<span class="number">1024</span>*<span class="number">1024</span>),<span class="number">2</span>),<span class="string">'G'</span>) idx,<span class="keyword">concat</span>(<span class="keyword">round</span>((data_length+index_length)/(<span class="number">1024</span>*<span class="number">1024</span>*<span class="number">1024</span>),<span class="number">2</span>),<span class="string">'G'</span>) total_size,<span class="keyword">round</span>(index_length/data_length,<span class="number">2</span>) idxfrac <span class="keyword">FROM</span> information_schema.<span class="keyword">TABLES</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> data_length+index_length <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">10</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT concat(table_schema,&#39;.&#39;,table_name),concat(round(table_rows/1000000,2),&#39;M&#39;) rows,concat(round(data_length/(1024*1024*1024),2),&#39;G&#39;) DATA,concat(round(index_length/(1024*1024*1024),2),&#39;G&#39;) idx,concat(round((data_length+index_length)/(1024*1024*1024),2),&#39;G&#39;) total_size,round(index_length/data_length,2) idxfrac FROM information_schema.TABLES ORDER BY data_length+index_length DESC LIMIT 10;</span><br></pre></td></tr></table></figure>
 <h2 id="Web">Web</h2><ul>
 <li><a href="http://www.prodevtips.com/2007/11/07/ajax-zf-and-smarty-feed-reader-part-1/" target="_blank" rel="external">Ajax, ZF and Smarty feed reader: part 1</a> / <a href="http://www.prodevtips.com/2007/11/10/ajax-zf-and-smarty-feed-reader-part-2/" target="_blank" rel="external">part 2</a> / <a href="http://www.prodevtips.com/2007/11/12/ajax-zf-and-smarty-feed-reader-part-3/" target="_blank" rel="external">part 3</a></li>
 </ul>
@@ -488,7 +488,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -510,13 +510,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -532,15 +532,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

@@ -49,6 +49,39 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2005-12-18T16:00:00.000Z"><a href="/2005/12/19/60/">2005-12-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2005/12/19/60/">Smarty 2.6.11 發佈</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>主要修正一些<a href="http://smarty.php.net/misc/NEWS" target="_blank" rel="external">程式上的問題</a>並且對 PHP 5.1 有更好的相容性，請到<a href="http://smarty.php.net" target="_blank" rel="external">官方網站</a>下載。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2005-12-15T16:00:00.000Z"><a href="/2005/12/16/59/">2005-12-16</a></time>
       
       
@@ -369,48 +402,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2005-11-30T16:00:00.000Z"><a href="/2005/12/01/50/">2005-12-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2005/12/01/50/">PHP 檔案下載 header 設置</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>用以下的方式，可以讓大部份瀏覽器 (主要是 IE) <strong>詢問你是否要下載檔案</strong> (而不是直接開啟) 。 </p>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;span style="color: rgb(0, 0, 0);"&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span><span class="variable">&lt;?php</span><br><span class="line">$&lt;/span&gt;</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;strong&gt;</span>file_name<span class="variable">&lt;/strong&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 0);"&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span> <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>= <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span><span class="string">"file.name"</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>;</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>$<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;strong&gt;</span>file_path<span class="variable">&lt;/strong&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 0);"&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span> <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>= <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span><span class="string">"/path/to/realfile"</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>;</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>$<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;strong&gt;</span>file_size<span class="variable">&lt;/strong&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 0);"&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span> <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>= <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>filesize<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>$<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;strong&gt;</span>file_path<span class="variable">&lt;/strong&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 0);"&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Pragma: public'<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Expires: 0'<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Last-Modified: ' <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>. <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>gmdate<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'D, d M Y H:i '<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>) . <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>' GMT'<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Cache-Control: must-revalidate, post-check=0, pre-check=0'<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Cache-Control: private'<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>, <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>false<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Content-Type: <span class="variable">&lt;strong&gt;</span>application/octet-stream<span class="variable">&lt;/strong&gt;</span>'<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Content-Length: ' <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>. <span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>$<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;strong&gt;</span>file_size<span class="variable">&lt;/strong&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 0);"&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Content-Disposition: attachment; filename=<span class="string">"' &lt;/span&gt;&lt;span style="</span>color: rgb(0, 119, 0);<span class="string">"&gt;. &lt;/span&gt;&lt;span style="</span>color: rgb(0, 0, 187);<span class="string">"&gt;$&lt;/span&gt;&lt;/span&gt;&lt;strong&gt;file_name&lt;/strong&gt;&lt;span style="</span>color: rgb(0, 0, 0);<span class="string">"&gt;&lt;span style="</span>color: rgb(0, 0, 187);<span class="string">"&gt; &lt;/span&gt;&lt;span style="</span>color: rgb(0, 119, 0);<span class="string">"&gt;. &lt;/span&gt;&lt;span style="</span>color: rgb(221, 0, 0);<span class="string">"&gt;'"</span>;'<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>header<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(221, 0, 0);"&gt;</span>'Content-Transfer-Encoding: <span class="variable">&lt;strong&gt;</span>binary'<span class="variable">&lt;/strong&gt;</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>readfile<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>(<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>$<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;strong&gt;</span>file_path<span class="variable">&lt;/strong&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 0);"&gt;</span><span class="variable">&lt;span style="color: rgb(0, 119, 0);"&gt;</span>);</span><br><span class="line"><span class="variable">&lt;/span&gt;</span><span class="variable">&lt;span style="color: rgb(0, 0, 187);"&gt;</span>?&gt;<span class="variable">&lt;/span&gt;</span><span class="variable">&lt;/span&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>補充：</strong></p>
-<p>看到 keisuke 誤會了以上變數的用途，我想我應該解釋一下每個變數的用意：</p>
-<p><li>$file_name: <strong>這是給瀏覽器看的檔案名稱</strong>，也就是下載視窗會出現的那個檔名；<strong>它可以跟實際檔案的名稱不一樣！</strong></li></p>
-<p><li>$file_path: 會連到實際檔案的位置，也就是<strong>該檔案在伺服器上的真實路徑</strong>。</li></p>
-<ul>
-<li>$file_size: 檔案的大小。</li>
-</ul>
-<p>keisuke 誤會的是 $file_name 和 $file_path ，可能是因為他的實際檔案和下載用的 PHP 是擺在同一個位置的關係。 </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -454,7 +445,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -476,13 +467,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -498,15 +489,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

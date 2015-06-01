@@ -100,53 +100,53 @@
 <ul>
 <li>我們先在 D:\Repository 下建立一個名為 test 的 Subversion 專案。當然這邊 test 只是示範，請自行決定專案名稱。</li>
 </ul>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">D</span>:\Repository&gt;svnadmin create <span class="keyword">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Repository&#62;svnadmin create test</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在 D:\Appserv 下建立一個 trac 資料夾。<br></li><li><br>切換到 D:\Appserv\python\Scripts 下，建立一個名為 test 的 trac 專案。</li>
 </ul>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;python trac-admin D:<span class="command">\Appserv</span><span class="command">\trac</span><span class="command">\test</span> initenv</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;python trac-admin D:\Appserv\trac\test initenv</span><br></pre></td></tr></table></figure>
 <p>接著會出現以下提示文字，請依照下面的建議操作：</p>
-<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Project Name [My Project]&gt; &lt;<span class="keyword">strong</span>&gt;test&lt;/<span class="keyword">strong</span>&gt; (輸入專案名稱)</span><br><span class="line">Database connection <span class="typename">string</span> [sqlite:db/trac.db]&gt; (直接按 Enter 使用預設值)</span><br><span class="line">Repository <span class="keyword">type</span> [svn]&gt; (直接按 Enter 使用預設值)</span><br><span class="line">Path <span class="keyword">to</span> repository [/path/<span class="keyword">to</span>/repos]&gt; &lt;<span class="keyword">strong</span>&gt;D:\Repository\test&lt;/<span class="keyword">strong</span>&gt; (輸入 Subversion 專案檔案庫的位置)</span><br><span class="line">Templates directory [D:\Appserv\python\share\trac\templates]&gt; (直接按 Enter 使用預設值)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Project Name [My Project]&#62; &#60;strong&#62;test&#60;/strong&#62; (&#36664;&#20837;&#23560;&#26696;&#21517;&#31281;)&#10;Database connection string [sqlite:db/trac.db]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)&#10;Repository type [svn]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)&#10;Path to repository [/path/to/repos]&#62; &#60;strong&#62;D:\Repository\test&#60;/strong&#62; (&#36664;&#20837; Subversion &#23560;&#26696;&#27284;&#26696;&#24235;&#30340;&#20301;&#32622;)&#10;Templates directory [D:\Appserv\python\share\trac\templates]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)</span><br></pre></td></tr></table></figure>
 <p>記得 test 是專案名稱，不要照抄了。</p>
 <ul>
 <li>我們可以重複前三個步驟來建立其他專案。</li>
 </ul>
 <h2 id="建立帳號">建立帳號</h2><p>這裡的帳號權限僅適用在 Standalone 的 tracd 服務，所以可以的話，請儘量和 Subversion 建立同樣的帳號密碼。</p>
 <p><li><br>接下來要先建立供 trac 使用的帳號，首先請先把以下內容存成 trac-digest.py ，並放到 D:\Appserv\python\Scripts 下。</li></p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">from optparse <span class="built_in">import</span> OptionParser</span><br><span class="line"><span class="built_in">import</span> md5</span><br><span class="line"><span class="comment"># build the options</span></span><br><span class="line"><span class="variable">usage =</span> <span class="string">"usage: %prog [options]"</span></span><br><span class="line"><span class="variable">parser =</span> OptionParser(<span class="variable">usage=</span>usage)</span><br><span class="line">parser.add_option(<span class="string">"-u"</span>, <span class="string">"--username"</span>,<span class="variable">action=</span><span class="string">"store"</span>, <span class="variable">dest=</span><span class="string">"username"</span>, <span class="variable">type =</span> <span class="string">"string"</span>,</span><br><span class="line"><span class="variable">help=</span><span class="string">"the username for whom to generate a password"</span>)</span><br><span class="line">parser.add_option(<span class="string">"-p"</span>, <span class="string">"--password"</span>,<span class="variable">action=</span><span class="string">"store"</span>, <span class="variable">dest=</span><span class="string">"password"</span>, <span class="variable">type =</span> <span class="string">"string"</span>,</span><br><span class="line"><span class="variable">help=</span><span class="string">"the password to use"</span>)</span><br><span class="line">(options, args) = parser.parse_args()</span><br><span class="line"><span class="comment"># check options</span></span><br><span class="line"><span class="keyword">if</span> (options.username is None) <span class="constant">or</span> (options.password is None):</span><br><span class="line">parser.error(<span class="string">"You must supply both the username and password"</span>)</span><br><span class="line"><span class="comment"># Generate the string to enter into the htdigest file</span></span><br><span class="line">&lt;strong&gt;<span class="variable">realm =</span> 'trac'&lt;/strong&gt;</span><br><span class="line"><span class="variable">kd =</span> lambda x: md5.md5(':'.join(x)).hexdigest()</span><br><span class="line">print ':'.join((options.username, realm, kd([options.username, realm, options.password])))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from optparse import OptionParser&#10;import md5&#10;# build the options&#10;usage = &#34;usage: %prog [options]&#34;&#10;parser = OptionParser(usage=usage)&#10;parser.add_option(&#34;-u&#34;, &#34;--username&#34;,action=&#34;store&#34;, dest=&#34;username&#34;, type = &#34;string&#34;,&#10;help=&#34;the username for whom to generate a password&#34;)&#10;parser.add_option(&#34;-p&#34;, &#34;--password&#34;,action=&#34;store&#34;, dest=&#34;password&#34;, type = &#34;string&#34;,&#10;help=&#34;the password to use&#34;)&#10;(options, args) = parser.parse_args()&#10;# check options&#10;if (options.username is None) or (options.password is None):&#10;parser.error(&#34;You must supply both the username and password&#34;)&#10;# Generate the string to enter into the htdigest file&#10;&#60;strong&#62;realm = &#39;trac&#39;&#60;/strong&#62;&#10;kd = lambda x: md5.md5(&#39;:&#39;.join(x)).hexdigest()&#10;print &#39;:&#39;.join((options.username, realm, kd([options.username, realm, options.password])))</span><br></pre></td></tr></table></figure>
 <p>注意這裡的 realm ，雖然我們可以將它換成別的文字，但是後面建立 Serivce 會用到，因此建議不用改。<br></p>
 <p><li><br>現在，我們可以用以下指令來建立新的帳號：</li></p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;python trac-digest.py -u &lt;username&gt; -p &lt;password&gt; &gt;&gt; D:<span class="command">\Appserv</span><span class="command">\trac</span>-user.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;python trac-digest.py -u &#60;username&#62; -p &#60;password&#62; &#62;&#62; D:\Appserv\trac-user.txt</span><br></pre></td></tr></table></figure>
 <p>其中 <username> 和 <password> 請自行決定；執行後，我們就能在 D:\Appserv 多出一個 trac-user.txt ，裡面就有剛剛建好的帳號以及編碼過後的密碼。</password></username></p>
 <ul>
 <li>我們可以重複上面的兩個步驟來加入其他的使用者。</li>
 </ul>
 <h2 id="設定權限">設定權限</h2><p>接下來的步驟都需要用 trac-admin 這個指令檔，並在 Command Line 模式下操作，我們可以用以下指令來查看 trac-admin 的操作方式：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;&lt;strong&gt;python trac-admin help&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin help&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>每個專案預設都有一個 anonymous 的匿名帳號，它已經包含了許多預設的權限。輸入以下指令可以查看它在 test 專案裡所擁有的權限：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;&lt;strong&gt;python trac-admin D:<span class="command">\Appserv</span><span class="command">\trac</span><span class="command">\test</span> permission list anonymous&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission list anonymous&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>而以下指令則可查看所有使用者的權限以及可用的權限選項：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;&lt;strong&gt;python trac-admin D:<span class="command">\Appserv</span><span class="command">\trac</span><span class="command">\test</span> permission list&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission list&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>如果不想讓 anonymous 這個預設帳號擁有所有權限的話，可以一次把它們都拿掉。輸入以下指令：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;&lt;strong&gt;python trac-admin D:<span class="command">\Appserv</span><span class="command">\trac</span><span class="command">\test</span> permission remove anonymous *&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission remove anonymous *&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>假設我們想讓某個帳號同時擁有查看及修改 WIKI 的權限，則可輸入：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;&lt;strong&gt;python trac-admin D:<span class="command">\Appserv</span><span class="command">\trac</span><span class="command">\test</span> permission add &lt;username&gt; WIKI_VIEW WIKI_MODIFY&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission add &#60;username&#62; WIKI_VIEW WIKI_MODIFY&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>註：帳號一定要用小寫，權限則是一定要大寫；更多的權限設定可以參考 <a href="http://trac.edgewall.org/wiki/TracPermissions" target="_blank" rel="external">Trac Permissions</a> 。</p>
 <p>或者我們也可以先將一堆權限指定給一個群組，如下：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;&lt;strong&gt;python trac-admin D:<span class="command">\Appserv</span><span class="command">\trac</span><span class="command">\test</span> permission add &lt;groupname&gt; WIKI_VIEW  WIKI_MODIFY&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission add &#60;groupname&#62; WIKI_VIEW  WIKI_MODIFY&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>其中 <groupname> 就是群組名稱，和帳號一樣一定要用小寫。群組不必真的建立出來，它只會存在於 trac 自己的設定裡。然後我們就可以用以下的指令來把使用者帳號加入群組裡： </groupname></p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span>&gt;&lt;strong&gt;python trac-admin D:<span class="command">\Appserv</span><span class="command">\trac</span><span class="command">\test</span> permission add &lt;username&gt; &lt;groupname&gt;&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission add &#60;username&#62; &#60;groupname&#62;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>註：很麻煩的是 trac-admin 一次只能更改一個使用者 (或群組) 在一個專案上的權限，不曉得有沒有什麼方便的工具可以使用。 </p>
 <h2 id="建立_Service">建立 Service</h2><p>我找到了一篇以 Windows Service 啟動 Python Script 的文章，在實作後是可行的。記錄如下：</p>
 <ul>
 <li>在 Command Line 模式下執行 (注意雙引號也要鍵入) ： </li>
 </ul>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="command">\&gt;</span>instsrv Trac "C:<span class="command">\Program</span> Files<span class="command">\Windows</span> Resource Kits<span class="command">\Tools</span><span class="command">\srvany</span>.exe"</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62;instsrv Trac &#34;C:\Program Files\Windows Resource Kits\Tools\srvany.exe&#34;</span><br></pre></td></tr></table></figure>
 <p>完成後，可以打開服務管理員，裡面應該註冊好一個名為 Trac 的服務。</p>
 <ul>
 <li>在 D:\Appserv 下建立一個 trac.bat ，內容為：</li>
 </ul>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\pythonw</span>.exe D:<span class="command">\Appserv</span><span class="command">\python</span><span class="command">\Scripts</span><span class="command">\tracd</span> --port 8000 --auth *,D:<span class="command">\Appserv</span><span class="command">\trac</span>-user.txt,trac -e D:<span class="command">\Appserv</span><span class="command">\trac</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\pythonw.exe D:\Appserv\python\Scripts\tracd --port 8000 --auth *,D:\Appserv\trac-user.txt,trac -e D:\Appserv\trac</span><br></pre></td></tr></table></figure>
 <ul>
 <li>—port 8000 是指 tracd 監聽的 port 。</li>
 <li>—auth <em>,D:\Appserv\trac-user.txt,trac 是讓所有的專案都擁有同樣的帳號，開頭的 </em> 號是指全部專案，中間的 D:\Appserv\trac-user.txt 是剛剛的帳號檔，最後的 trac 則先前提到的 realm 說明 。</li>
@@ -158,14 +158,14 @@
 <li>接著再點選剛剛的 Parameters 機碼，然後在登錄編輯程式右半邊的空白處按下滑鼠右鍵，新增一個名為 Application 的字串值。</li>
 <li>點兩下剛剛的 Application 字串值，數值資料上填入剛剛 trac.bat 的路徑：</li>
 </ul>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Appserv</span><span class="command">\trac</span>.bat</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\trac.bat</span><br></pre></td></tr></table></figure>
 <p>完成設定後，應如下圖所示：</p>
 <p><img src="/resources/trac/regedit.gif" alt=""></p>
 <ul>
 <li>關掉登錄編輯器，回到服務管理員，就可以啟動 Trac 服務了。</li>
 </ul>
 <h2 id="執行">執行</h2><p>開啟瀏覽器，在網址列上輸入：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//localhost:8000/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8000/</span><br></pre></td></tr></table></figure>
 <p>應該就能看到以下畫面：</p>
 <p><img src="/resources/trac/01.gif" alt=""></p>
 <p><img src="/resources/trac/02.gif" alt=""></p>
@@ -267,7 +267,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -289,13 +289,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -311,15 +311,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

@@ -72,7 +72,7 @@
 <p>如果在初期開發時，我們能夠不必受到不同資料庫系統的限制，而能專注於處理資料上的邏輯，那不是很好嗎？</p>
 <p>所以我們就有了 ADOdb 、 PEAR::DB 或是 PDO 等等資料庫抽象層類庫可使用了。</p>
 <p>以 PDO 為例：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$dsn</span> = <span class="string">'mysql:dbname=testdb;host=127.0.0.1'</span>;</span><br><span class="line"><span class="variable">$user</span> = <span class="string">'dbuser'</span>;</span><br><span class="line"><span class="variable">$password</span> = <span class="string">'dbpass'</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="variable">$dbh</span> = <span class="keyword">new</span> PDO(<span class="variable">$dsn</span>, <span class="variable">$user</span>, <span class="variable">$password</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (PDOException <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'Connection failed: '</span> . <span class="variable">$e</span>-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line">sql = <span class="string">'SELECT ...'</span>;<span class="keyword">foreach</span> (<span class="variable">$dbh</span>-&gt;query(<span class="variable">$sql</span>) <span class="keyword">as</span> <span class="variable">$row</span>) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$dsn = &#39;mysql:dbname=testdb;host=127.0.0.1&#39;;&#10;$user = &#39;dbuser&#39;;&#10;$password = &#39;dbpass&#39;;&#10;try &#123;&#10;    $dbh = new PDO($dsn, $user, $password);&#10;&#125; catch (PDOException $e) &#123;&#10;    echo &#39;Connection failed: &#39; . $e-&#62;getMessage();&#10;&#125;&#10;sql = &#39;SELECT ...&#39;;foreach ($dbh-&#62;query($sql) as $row) &#123;&#10;    // ...&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>在系統底層， $dbh 其實是以 MySQL Driver 在連結 MySQL 資料伺服器。我們只要能夠使用它的 query() 方法，就能夠操作資料，而 $dbh 這個物件到底是怎麼跟 MySQL 溝通的，我們其實不在乎。以下是圖解：</p>
 <p><img src="/resources/abstract/abstract.png" alt="PDO 抽象圖解"></p>
 <p>如果現在要將資料庫系統轉換成 Oracle ，我們只要換掉 DSN 就好了，這樣不是很方便嗎？ </p>
@@ -172,7 +172,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -194,13 +194,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -216,15 +216,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

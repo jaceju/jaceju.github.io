@@ -70,19 +70,19 @@ PHP 能不能寫 Windows 應用程式呢？答案是可以的，像是 PHP-GTK �
 <p>在 0.3x 版時， WinBinder 有公開一些給 PHP 5 用的<a href="http://www.hypervisual.com/winbinder/files/archived/wb_ooi_0.3.zip" target="_blank" rel="external">物件導向 API </a>，不過在 0.4x 版我就沒看到了，必須要到<a href="http://www.hypervisual.com/winbinder/files/archived/" target="_blank" rel="external">舊文件資料堆</a>裡面翻。</p>
 <h3 id="安裝">安裝</h3><p>我下載的是 <a href="http://www.hypervisual.com/winbinder/files/winbinder_setup_0.43.164.exe" target="_blank" rel="external">0.43 (alpha) - build 164 自動安裝檔</a>，用它安裝會方便許多。執行後，安裝程式會幫你下載 Minimal PHP  (最小化的 PHP 執行環境) ；接著進行一連串的複製後，就大功告成了，而且安裝程式也會幫你註冊 .PHPW 的副檔名以對應到 PHP 。</p>
 <p>然後記得開啟檔案總管，由上方的選單上依「工具 / 資料夾選項 / 檔案類型 / PHPW 檔案類型 / 進階 」的順序找到「編輯檔案類型」的對話框。再對「 Open 」指令按下「編輯」，把原來的</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:<span class="command">\WinBinder</span><span class="command">\binaries</span><span class="command">\php</span>5<span class="command">\php</span>-win.exe" "<span class="comment">%1"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34;C:\WinBinder\binaries\php5\php-win.exe&#34; &#34;%1&#34;</span><br></pre></td></tr></table></figure>
 <p>改成</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:<span class="command">\WinBinder</span><span class="command">\binaries</span><span class="command">\php</span>5<span class="command">\php</span>-win.exe" &lt;strong&gt;-c "C:<span class="command">\WinBinder</span><span class="command">\binaries</span><span class="command">\php</span>5<span class="command">\php</span>.ini"&lt;/strong&gt; "<span class="comment">%1"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34;C:\WinBinder\binaries\php5\php-win.exe&#34; &#60;strong&#62;-c &#34;C:\WinBinder\binaries\php5\php.ini&#34;&#60;/strong&#62; &#34;%1&#34;</span><br></pre></td></tr></table></figure>
 <p>這樣才會以 Minimal PHP 的 PHP.INI 設定作為執行環境。</p>
 <p>如果想手動安裝的話，請參考我在 TIM 發表的 <a href="http://timteam.org/?TIM=FORUM&amp;FORUM=84&amp;ShowDocument=13400" target="_blank" rel="external">WinBinder 安裝方法</a> (僅適用於 0.3x 版， 0.4x 版因為目錄結構不同，所以要舉一反三) 。 </p>
 <h3 id="範例">範例</h3><p>我們可以在 C:\WinBinder\phpcode\examples 找到很多 WinBinder 的範例，其中最簡單的是 minimal.phpw ：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">// Code sample: A Windows application with only three lines</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"../include/winbinder.php"</span>;                            <span class="comment">// Include WinBinder library</span></span><br><span class="line">wb_create_window(<span class="keyword">NULL</span>, PopupWindow, <span class="string">"Hello world!"</span>, <span class="number">480</span>, <span class="number">320</span>); <span class="comment">// Create application window</span></span><br><span class="line">wb_main_loop();                                                <span class="comment">// Enter message loop</span></span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;// Code sample: A Windows application with only three lines&#10;include &#34;../include/winbinder.php&#34;;                            // Include WinBinder library&#10;wb_create_window(NULL, PopupWindow, &#34;Hello world!&#34;, 480, 320); // Create application window&#10;wb_main_loop();                                                // Enter message loop&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>首先我們要載入 WinBinder 的函式庫，它幫我們預先了許多建立視窗元件的函式。</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"><span class="keyword">include</span> "../<span class="keyword">include</span>/winbinder.php";</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include &#34;../include/winbinder.php&#34;;</span><br></pre></td></tr></table></figure>
 <p>接著我們用 <a href="http://www.hypervisual.com/winbinder/manual/functions/wb_create_window.html" target="_blank" rel="external">wb_create_window</a> 建立了一個 480x320 的視窗，其標題為「 Hello Word! 」。 </p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wb_create_window<span class="list">(<span class="keyword">NULL</span>, PopupWindow, <span class="string">"Hello world!"</span>, <span class="number">480</span>, <span class="number">320</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wb_create_window(NULL, PopupWindow, &#34;Hello world!&#34;, 480, 320);</span><br></pre></td></tr></table></figure>
 <p>最後用 <a href="http://www.hypervisual.com/winbinder/manual/functions/wb_main_loop.html" target="_blank" rel="external">wb_main_loop</a> 來讓程式等待使用者的操作。</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wb_main_loop<span class="list">()</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wb_main_loop();</span><br></pre></td></tr></table></figure>
 <p>接著點兩下 minimal.phpw ，如果環境設定正確的話，它就會被執行，畫面如下：</p>
 <p><img src="/resources/phpwin/winbinder/01.GIF" alt=""></p>
 <p>這是最簡單的 WinBinder 程式， examples 中還有許多令人激賞的例子可供參考。不過 WinBinder 控制元件大多是利用函式來建立的，這對習慣使用視覺化開發的人，這樣的寫法可能會有點難以接受。</p>
@@ -106,7 +106,7 @@ PHP 能不能寫 Windows 應用程式呢？答案是可以的，像是 PHP-GTK �
 <li>先複製所有檔案到指定目錄，例如「 C:\Program Files\PPForm 」。 </li>
 <li>接著修改 C:\Program Files\PPForm\php.ini ，確定存取路徑正常：</li>
 </ul>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">include_path = "C:<span class="command">\Program</span> Files<span class="command">\PPForm</span><span class="command">\inc</span>;."</span><br><span class="line">extension_dir = "C:<span class="command">\Program</span> Files<span class="command">\PPForm</span><span class="command">\ext</span>"</span><br><span class="line">eaccelerator.cache_dir = "C:<span class="command">\Program</span> Files<span class="command">\PPForm</span><span class="command">\tmp</span><span class="command">\cache</span>"</span><br><span class="line">upload_tmp_dir = "C:<span class="command">\Program</span> Files<span class="command">\PPForm</span><span class="command">\uploadtemp</span>"</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include_path = &#34;C:\Program Files\PPForm\inc;.&#34;&#10;extension_dir = &#34;C:\Program Files\PPForm\ext&#34;&#10;eaccelerator.cache_dir = &#34;C:\Program Files\PPForm\tmp\cache&#34;&#10;upload_tmp_dir = &#34;C:\Program Files\PPForm\uploadtemp&#34;</span><br></pre></td></tr></table></figure>
 <p>所以在沒有安裝程式的情況下，只需修改上述路徑；而目前 PPForm 只用到前二項的設定。</p>
 <ul>
 <li>建立 .pxp 關聯至 mar.exe (Runtime Environment) ，這樣就能直接執行 PPForm 所建立的程式。 </li>
@@ -131,10 +131,10 @@ PHP 能不能寫 Windows 應用程式呢？答案是可以的，像是 PHP-GTK �
 <p>接下來點兩下剛剛的 Button1 元件，我們會跳到程式碼檢視視窗上，而且 PPForm 會像 VB 一樣自動幫我們建立 Button1 Click 事件的處理函式骨架。</p>
 <p><img src="/resources/phpwin/ppform/07.GIF" alt=""></p>
 <p>其實 .pxp 本身是個 PHP 類別檔，其類別名稱為 <strong>PPForm</strong> ，而它繼承自 TPPForm 這個類別。而很重要的一點是，這個 <strong>PPForm</strong> 類別所產生的實體就是我們在執行時期的看到的 Layout 視窗，因此在它上面的元件就會被視為這個類別的屬性。換句話說，我們如果要取得 Button1 這個物件實體，要用以下的方式：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$this</span>-&gt;<span class="constant">Button1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&#62;Button1</span><br></pre></td></tr></table></figure>
 <p>其中 $this 就是指 <strong>PPForm</strong> 這個類別所產生的物件實體。</p>
 <p>現在我們在 Button1Click 中輸入：</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$this</span><span class="subst">-&gt;</span>Button1<span class="subst">-&gt;</span>Caption <span class="subst">=</span> <span class="string">'TEST'</span>;</span><br><span class="line">ShowMessage(<span class="string">'Hello World!'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&#62;Button1-&#62;Caption = &#39;TEST&#39;;&#10;ShowMessage(&#39;Hello World!&#39;);</span><br></pre></td></tr></table></figure>
 <p><img src="/resources/phpwin/ppform/08.GIF" alt=""></p>
 <p>完成後按下 F9 或主要視窗上的三角形執行鈕，就會出現一個應用程式視窗：</p>
 <p><img src="/resources/phpwin/ppform/09.GIF" alt=""></p>
@@ -236,7 +236,7 @@ PHP 能不能寫 Windows 應用程式呢？答案是可以的，像是 PHP-GTK �
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -258,13 +258,13 @@ PHP 能不能寫 Windows 應用程式呢？答案是可以的，像是 PHP-GTK �
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -280,15 +280,13 @@ PHP 能不能寫 Windows 應用程式呢？答案是可以的，像是 PHP-GTK �
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

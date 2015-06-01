@@ -96,11 +96,11 @@
 <p>當然這裡我就選擇 PHP 了， Selenium IDE 就會自動幫我們轉換為 PHPUnit 可以執行的 Test Case 程式碼：</p>
 <p><a href="/resources/selenium/create_phpunit_testcase.png"><img src="/resources/selenium/create_phpunit_testcase.png" alt="輸出成 PHPUnit Test Case"></a></p>
 <p>然後我們把 Source 複製下來，貼到新的檔案上，假設它是 D:\WebTest.php ：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'PHPUnit/Extensions/SeleniumTestCase.php'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">PHPUnit_Extensions_SeleniumTestCase</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">setUp</span><span class="params">()</span></span><br><span class="line">  </span>&#123;</span><br><span class="line">    <span class="variable">$this</span>-&gt;setBrowser(<span class="string">"*chrome"</span>);</span><br><span class="line">    <span class="variable">$this</span>-&gt;setBrowserUrl(<span class="string">"http://change-this-to-the-site-you-are-testing/"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testMyTestCase</span><span class="params">()</span></span><br><span class="line">  </span>&#123;</span><br><span class="line">    <span class="variable">$this</span>-&gt;open(<span class="string">"/"</span>);</span><br><span class="line">    <span class="variable">$this</span>-&gt;type(<span class="string">"q"</span>, <span class="string">"jaceju"</span>);</span><br><span class="line">    <span class="variable">$this</span>-&gt;click(<span class="string">"btnG"</span>);</span><br><span class="line">    <span class="variable">$this</span>-&gt;waitForPageToLoad(<span class="string">"30000"</span>);</span><br><span class="line">    <span class="variable">$this</span>-&gt;assertTrue(<span class="variable">$this</span>-&gt;isTextPresent(<span class="string">"網站製作學習誌"</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;PHPUnit/Extensions/SeleniumTestCase.php&#39;;&#10;class Example extends PHPUnit_Extensions_SeleniumTestCase&#10;&#123;&#10;  protected function setUp()&#10;  &#123;&#10;    $this-&#62;setBrowser(&#34;*chrome&#34;);&#10;    $this-&#62;setBrowserUrl(&#34;http://change-this-to-the-site-you-are-testing/&#34;);&#10;  &#125;&#10;  public function testMyTestCase()&#10;  &#123;&#10;    $this-&#62;open(&#34;/&#34;);&#10;    $this-&#62;type(&#34;q&#34;, &#34;jaceju&#34;);&#10;    $this-&#62;click(&#34;btnG&#34;);&#10;    $this-&#62;waitForPageToLoad(&#34;30000&#34;);&#10;    $this-&#62;assertTrue($this-&#62;isTextPresent(&#34;&#32178;&#31449;&#35069;&#20316;&#23416;&#32722;&#35468;&#34;));&#10;  &#125;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>不過在產生的 Script 中，網址的部份似乎還有 Bug ，因為它不會改寫為我們目前要測試的網址。所以請把：</p>
-<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="char">$t</span>his-&gt;setBrowserUrl(<span class="comment">"http://change-this-to-the-site-you-are-testing/"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&#62;setBrowserUrl(&#34;http://change-this-to-the-site-you-are-testing/&#34;);</span><br></pre></td></tr></table></figure>
 <p>改為：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$this</span>-&gt;<span class="built_in">set</span>BrowserUrl(<span class="string">"http://www.google.com.tw/"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&#62;setBrowserUrl(&#34;http://www.google.com.tw/&#34;);</span><br></pre></td></tr></table></figure>
 <p>另外我們也可以在工具列選單上選擇「檔案 &gt; Export Test Case As 」來輸出其他格式的檔案，省卻複製的這個步驟。</p>
 <p>註：關於 PHPUnit 整合 Selenium 的說明，可以參考 PHPUnit 官方手冊的 <a href="http://www.phpunit.de/manual/current/en/selenium.html" target="_blank" rel="external">PHPUnit and Selenium</a> 一章。</p>
 <p>每個 Test Case 都可以依照這些方式來產生可以用 PHPUnit 測試的 PHP Script 檔，然後將它們放在專案的測試目錄中。</p>
@@ -244,7 +244,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -266,13 +266,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -288,15 +288,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

@@ -91,7 +91,7 @@ Mixins in PHP
 <li><a href="http://www.sitepoint.com/blogs/2007/08/13/ptest-php-unit-tester-in-9-lines-of-code/" target="_blank" rel="external">pTest: PHP Unit Tester in 9 Lines Of Code</a></li>
 </ul>
 <p>九行實作一個測試用的 assertTrue 函式。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* pTest - PHP Unit Tester</span><br><span class="line">*<span class="phpdoc"> @param</span> mixed $test Condition to test, evaluated as boolean</span><br><span class="line">*<span class="phpdoc"> @param</span> string $message Descriptive message to output upon test</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertTrue</span><span class="params">(<span class="variable">$test</span>, <span class="variable">$message</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">static</span> <span class="variable">$count</span>;</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$count</span>)) <span class="variable">$count</span> = <span class="keyword">array</span>(<span class="string">'pass'</span>=&gt;<span class="number">0</span>, <span class="string">'fail'</span>=&gt;<span class="number">0</span>, <span class="string">'total'</span>=&gt;<span class="number">0</span>);</span><br><span class="line"><span class="variable">$mode</span> = <span class="variable">$test</span> ? <span class="string">'pass'</span> : <span class="string">'fail'</span>;</span><br><span class="line">printf(<span class="string">"%s: %s (%d of %d tests run so far have %sed)\n"</span>,</span><br><span class="line">strtoupper(<span class="variable">$mode</span>), <span class="variable">$message</span>, ++<span class="variable">$count</span>[<span class="variable">$mode</span>], ++<span class="variable">$count</span>[<span class="string">'total'</span>], <span class="variable">$mode</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/**&#10;* pTest - PHP Unit Tester&#10;* @param mixed $test Condition to test, evaluated as boolean&#10;* @param string $message Descriptive message to output upon test&#10;*/&#10;function assertTrue($test, $message)&#10;&#123;&#10;static $count;&#10;if (!isset($count)) $count = array(&#39;pass&#39;=&#62;0, &#39;fail&#39;=&#62;0, &#39;total&#39;=&#62;0);&#10;$mode = $test ? &#39;pass&#39; : &#39;fail&#39;;&#10;printf(&#34;%s: %s (%d of %d tests run so far have %sed)\n&#34;,&#10;strtoupper($mode), $message, ++$count[$mode], ++$count[&#39;total&#39;], $mode);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><a href="http://devzone.zend.com/article/2442-PHP-and-RIA" target="_blank" rel="external">PHP and RIA</a></p>
 </li>
@@ -220,7 +220,7 @@ Mixins in PHP
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -242,13 +242,13 @@ Mixins in PHP
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -264,15 +264,13 @@ Mixins in PHP
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

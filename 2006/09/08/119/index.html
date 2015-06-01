@@ -72,7 +72,7 @@
 <li>將 Release_Ts 下的 xcache.ini 裡所有內容複製到 php.ini 的最下方。</li>
 <li>在 php.ini 找到 xcache 的區段，然後按照以下的說明來設定各個項目：</li>
 </ul>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">; 啟用 XCache 模組。</span><br><span class="line"><span class="variable">extension =</span> php_xcache.dll</span><br><span class="line">; XCache 管理介面的使用者帳號。</span><br><span class="line">xcache.admin.<span class="variable">user =</span> <span class="string">"username"</span></span><br><span class="line">; XCache 管理介面的使用者密碼。要用 md5 計算過的結果。</span><br><span class="line">xcache.admin.<span class="variable">pass =</span> <span class="string">"xxxxxxxxxxxxxxxxxxxxxxxxx"</span></span><br><span class="line">; 啟用 Opcode Cache 。</span><br><span class="line">; 小心設得太大或太小都會使 Web 伺服器無法啟動，請自行找到一個適當的值。</span><br><span class="line">xcache.<span class="variable">size =</span> <span class="number">5</span>M</span><br><span class="line">; 啟用 Variable Cache 。</span><br><span class="line">; 小心設得太大或太小都會使 Web 伺服器無法啟動，請自行找到一個適當的值。</span><br><span class="line">xcache.<span class="variable">var_size =</span> <span class="number">5</span>M</span><br><span class="line">; 設定一個有寫入權限的路徑</span><br><span class="line">xcache.<span class="variable">coredump_directory =</span> <span class="string">"D:/Temp/php/xcache"</span></span><br><span class="line">; 設定一個有讀取權限的路徑</span><br><span class="line">xcache.<span class="variable">coveragedump_directory =</span> <span class="string">"D:/Temp/php/xcache"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">; &#21855;&#29992; XCache &#27169;&#32068;&#12290;&#10;extension = php_xcache.dll&#10;; XCache &#31649;&#29702;&#20171;&#38754;&#30340;&#20351;&#29992;&#32773;&#24115;&#34399;&#12290;&#10;xcache.admin.user = &#34;username&#34;&#10;; XCache &#31649;&#29702;&#20171;&#38754;&#30340;&#20351;&#29992;&#32773;&#23494;&#30908;&#12290;&#35201;&#29992; md5 &#35336;&#31639;&#36942;&#30340;&#32080;&#26524;&#12290;&#10;xcache.admin.pass = &#34;xxxxxxxxxxxxxxxxxxxxxxxxx&#34;&#10;; &#21855;&#29992; Opcode Cache &#12290;&#10;; &#23567;&#24515;&#35373;&#24471;&#22826;&#22823;&#25110;&#22826;&#23567;&#37117;&#26371;&#20351; Web &#20282;&#26381;&#22120;&#28961;&#27861;&#21855;&#21205;&#65292;&#35531;&#33258;&#34892;&#25214;&#21040;&#19968;&#20491;&#36969;&#30070;&#30340;&#20540;&#12290;&#10;xcache.size = 5M&#10;; &#21855;&#29992; Variable Cache &#12290;&#10;; &#23567;&#24515;&#35373;&#24471;&#22826;&#22823;&#25110;&#22826;&#23567;&#37117;&#26371;&#20351; Web &#20282;&#26381;&#22120;&#28961;&#27861;&#21855;&#21205;&#65292;&#35531;&#33258;&#34892;&#25214;&#21040;&#19968;&#20491;&#36969;&#30070;&#30340;&#20540;&#12290;&#10;xcache.var_size = 5M&#10;; &#35373;&#23450;&#19968;&#20491;&#26377;&#23531;&#20837;&#27402;&#38480;&#30340;&#36335;&#24465;&#10;xcache.coredump_directory = &#34;D:/Temp/php/xcache&#34;&#10;; &#35373;&#23450;&#19968;&#20491;&#26377;&#35712;&#21462;&#27402;&#38480;&#30340;&#36335;&#24465;&#10;xcache.coveragedump_directory = &#34;D:/Temp/php/xcache&#34;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>重新啟動 Web 伺服器，並查看 phpinfo() 資訊，檢查是否已啟動 XCache 。</li>
 <li>可用 <a href="http://localhost/xcache/admin/" target="_blank" rel="external">http://localhost/xcache/admin/</a> 及 <a href="http://localhost/xcache/coverager/" target="_blank" rel="external">http://localhost/xcache/coverager/</a> 來管理相關的資訊。</li>
@@ -168,7 +168,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -190,13 +190,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -212,15 +212,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

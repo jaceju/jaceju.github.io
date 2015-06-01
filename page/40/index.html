@@ -49,6 +49,48 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-05-30T16:00:00.000Z"><a href="/2007/05/31/192/">2007-05-31</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/05/31/192/">IE7 更新後的 ieframe.dll 問題</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>剛剛遇到 IE7 更新後的一個 ieframe.dll 的 bug ，就是一開 IE 後會出現下載 navcancl 這個檔案，解決方式：</p>
+<p><li>在「開始 / 執行」輸入： <strong>iexplore.exe -nohome -extoff</strong> 。</li></p>
+<ul>
+<li>選取「工具 / 網際網路選項 / 進階 / 安全性 / 網路釣魚篩選工具 / 停用網釣魚篩選工具路」。如果選「開啟」或「關閉」都會造成上述的問題。</li>
+</ul>
+<p>註：另外如果桌面有 IE7 圖示 (非捷徑！) ，按右鍵選「內容」也能跳出網際網路選項視窗。</p>
+<h2 id="參考：">參考：</h2><ul>
+<li><a href="http://www.tabletquestions.com/internet-explorer/112882-windows-update-killed-ie7-navcancl-ieframe-dll-error.html" target="_blank" rel="external">Technology Questions::Windows Update killed IE7! navcancl &amp; ieframe.dll error</a> 。</li>
+<li><a href="http://www.dotnettools.org/Blog/article.asp?id=219" target="_blank" rel="external">ccBoy’s (小气的神) BLOG::解决-Vista的IE7下面出现navcancl错误，导致IE7不能启动</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-05-28T16:00:00.000Z"><a href="/2007/05/29/191/">2007-05-29</a></time>
       
       
@@ -71,12 +113,12 @@
 </ul>
 <p>簡單介紹一下 ViewRenderer ：</p>
 <p>ViewRender 主要是用來簡化 Action Cotroller 裡調用 View 的動作。舉例來說， 0.9.x 以前我們要在一個 action 裡顯示樣版會這麼做：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooController</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Zend_Controller_Action</span></span><br><span class="line"></span>&#123;</span><br><span class="line">public function barAction()</span><br><span class="line">&#123;</span><br><span class="line">$<span class="keyword">this</span>-&gt;initView();        <span class="comment">// initialize view</span></span><br><span class="line">$<span class="keyword">this</span>-&gt;view-&gt;baz = <span class="symbol">'ba</span>t'; <span class="comment">// set view variable</span></span><br><span class="line">$<span class="keyword">this</span>-&gt;render();          <span class="comment">// render view</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class FooController extends Zend_Controller_Action&#10;&#123;&#10;public function barAction()&#10;&#123;&#10;$this-&#62;initView();        // initialize view&#10;$this-&#62;view-&#62;baz = &#39;bat&#39;; // set view variable&#10;$this-&#62;render();          // render view&#10;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>現在只需要：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooController</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Zend_Controller_Action</span></span><br><span class="line"></span>&#123;</span><br><span class="line">public function barAction()</span><br><span class="line">&#123;</span><br><span class="line">$<span class="keyword">this</span>-&gt;view-&gt;baz = <span class="symbol">'ba</span>t'; <span class="comment">// set view variable</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class FooController extends Zend_Controller_Action&#10;&#123;&#10;public function barAction()&#10;&#123;&#10;$this-&#62;view-&#62;baz = &#39;bat&#39;; // set view variable&#10;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這樣就會自動做好初始化及呈現的動作，而舊程式幾乎也不用怎麼改。</p>
 <p>如果有比較特別的情況不想用 ViewRenderer 的時候，就在 Front Controller 加上：</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Assuming $front is your front controller<span class="instruction"> instance</span><br><span class="line"></span>$front<span class="function">-&gt;setParam(</span>'noViewRenderer', true<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// Assuming $front is your front controller instance&#10;$front-&#62;setParam(&#39;noViewRenderer&#39;, true);</span><br></pre></td></tr></table></figure>
 <p>詳細介紹可以參考： <a href="http://devzone.zend.com/node/view/id/2072" target="_blank" rel="external">Zend Framework’s MVC Introduces the ViewRenderer</a> 。</p>
 <p>註：不過我用的是<a href="http://akrabat.com/2006/12/23/extending-zend_view_interface-for-use-with-smarty/" target="_blank" rel="external">整合 Smarty 的 View</a>，這點引發的問題也許不大。</p>
 
@@ -297,7 +339,7 @@
       
         <p>國外最近有一些 PHP 的<a href="http://www.php.net/conferences/" target="_blank" rel="external">技術研討會</a>，其中比較有趣的一項是：<a href="http://devzone.zend.com/node/view/id/2013" target="_blank" rel="external">匿名函式</a> (Anonymous functions) 。</p>
 <p>範例如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 0);"</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>$data <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>= array(<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(221, 0, 0);"</span>&gt;</span>"zoo"<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>, <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(221, 0, 0);"</span>&gt;</span>"orange"<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>, <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(221, 0, 0);"</span>&gt;</span>"car"<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>, <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(221, 0, 0);"</span>&gt;</span>"lemon"<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>, <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(221, 0, 0);"</span>&gt;</span>"apple"<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>);</span><br><span class="line"><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>[usort](/manual/view/page/function.usort.html)<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>(<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>$data<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>, function(<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>$a<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>, <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>$b<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>) &#123; return <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>[strcmp](/manual/view/page/function.strcmp.html)<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>(<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>$a<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>, <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>$b<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>); &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>[var_dump](/manual/view/page/function.var-dump.html)<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>(<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 0, 187);"</span>&gt;</span>$data<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(0, 119, 0);"</span>&gt;</span>); <span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: rgb(255, 128, 0);"</span>&gt;</span># data is sorted alphabetically<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$data &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;= array(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;zoo&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;orange&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;car&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;lemon&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;apple&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;[usort](/manual/view/page/function.usort.html)&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$data&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, function(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$a&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$b&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;) &#123; return &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;[strcmp](/manual/view/page/function.strcmp.html)&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$a&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$b&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;); &#125;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;[var_dump](/manual/view/page/function.var-dump.html)&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$data&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;); &#60;/span&#62;&#60;span style=&#34;color: rgb(255, 128, 0);&#34;&#62;# data is sorted alphabetically&#60;/span&#62;&#60;/span&#62;</span><br></pre></td></tr></table></figure>
 <p>沒錯，看起來就像是 JavaScript 的 function literal 。</p>
 <p>這樣一來我們可以不需要再使用 <a href="http://www.php.net/en/create_function" target="_blank" rel="external">create_function</a> ，也不必撰寫有一堆跳脫字元的醜陋函式字串，而能更直覺地寫出我們所需要的函式。文章裡還有其他關於匿名函式的範例，有興趣的朋友可以自行參考。</p>
 <p>話雖如此，到底哪個版本才會有這麼好用的東西出來呀？我的 mixin 類別正在找尋歸屬說。 </p>
@@ -406,50 +448,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-05-02T16:00:00.000Z"><a href="/2007/05/03/181/">2007-05-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/05/03/181/">關於 HTML label 元素無法作用</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>石頭成老大在我的「<a href="http://blog.roodo.com/jaceju/archives/3091221.html#comment-10126569" target="_blank" rel="external">終於用 jQuery 做了一個有趣的服務</a>」提到了在 IE 裡 label 元素的 for 屬性是有 bug 的，我研究了一下，把心得分享給大家。</p>
-<p>原本我一直以為表單中的 input 元素只要設定 display: none 或是 visibility: hidden 的話，就沒辦法送出；不過 W3C 中在「 17.13.2 Successful controls 」一節中有明確的規範：</p>
-<p><cite>Hidden controls and controls that are not rendered because of style sheet settings may still be successful.</cite></p>
-<p>也就是說不論是 display:none 或是 visibility: hidden ，只要是利用 CSS 來讓 control 消失的，都還是應該把值送給後端。</p>
-<p>我用了以下的程式測試了一下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"</span><br><span class="line">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>TEST<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span><br><span class="line"><span class="class">.hide</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">visibility</span>:<span class="value"> hidden</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.none</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">form</span> <span class="attribute">action</span>=<span class="value">""</span> <span class="attribute">method</span>=<span class="value">"post"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"type1"</span>&gt;</span>Type1<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">class</span>=<span class="value">"hide"</span> <span class="attribute">id</span>=<span class="value">"type1"</span></span><br><span class="line"><span class="attribute">name</span>=<span class="value">"type[]"</span> <span class="attribute">value</span>=<span class="value">"1"</span> <span class="attribute">checked</span>=<span class="value">"checked"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"type2"</span>&gt;</span>Type2<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">class</span>=<span class="value">"none"</span> <span class="attribute">id</span>=<span class="value">"type2"</span></span><br><span class="line"><span class="attribute">name</span>=<span class="value">"type[]"</span> <span class="attribute">value</span>=<span class="value">"2"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"submit"</span> <span class="attribute">value</span>=<span class="value">"送出"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"<span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$_SERVER</span>[<span class="string">'PHP_SELF'</span>]; <span class="preprocessor">?&gt;</span></span>"</span>&gt;</span>重新整理<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span> var_dump(<span class="variable">$_POST</span>); <span class="preprocessor">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">var</span> t2 = <span class="built_in">document</span>.getElementById(<span class="string">'type2'</span>);</span><br><span class="line">t2.focus();</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>結果發現 Firefox 、 Opera 不論有沒有預設的 checked ，在點選 label 後都會正確送出對應的 radio 欄位值。</p>
-<p>而 IE6 、 IE7 事實上也是支援，只是它們僅能送出有預設 checked 的 radio 欄位；如果完全沒有預設 checked 的 radion 欄位時，因為點選 label 仍無法讓 radio 的值改變，因此也無法送出任何 radio 值 (就如石頭成老大所說明的) 。</p>
-<p>所以我原先誤認 IE 不會理會 display: none 或是 visibility: hidden 的元素，其實是 label 無法作用；但更正確的來說，則是因為 <strong>IE 無法接受把 focus 放在不可見的元素上</strong>。</p>
-<p>換句話說，我們<strong>沒辦法在 IE 上 focus 任何被 display: none 或是 visibility: hidden 的元素</strong>；而 label 則是 HTML 用來 focus 對應 input 元素的捷徑，也因此就不會有作用了。</p>
-<p>註：所以我在「<a href="http://blog.roodo.com/jaceju/archives/3091221.html" target="_blank" rel="external">終於用 jQuery 做了一個有趣的服務</a>」裡的作法就是為了避開這個問題。</p>
-<p>最後這是不是 bug 呢？我個人倒覺得像是 IE 開發團隊自己的想法。不過 IE 無視於 W3C 標準也不是第一次了，所以石頭成老大說這是 IE 在 W3C 實作上的 bug 其實也不為過。至於解法，大家可以直接參考石頭成老大的說明，這裡我就不多寫了。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -493,7 +491,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -515,13 +513,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -537,15 +535,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

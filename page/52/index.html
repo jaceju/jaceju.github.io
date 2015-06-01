@@ -49,6 +49,44 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2006-02-05T16:00:00.000Z"><a href="/2006/02/06/70/">2006-02-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2006/02/06/70/">JavaScript 的靜態變數與靜態方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>之前提到 JavaScript 撰寫物件時的寫法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#29289;&#20214;&#39006;&#21029;&#21517;&#31281; = function([&#21443;&#25976;]) &#123;&#10;this.&#23660;&#24615;1 = null;&#10;this.&#23660;&#24615;2 = new Array();&#10;this.&#26041;&#27861;1 = function([&#21443;&#25976;]) &#123;&#10;// &#26041;&#27861;1&#31243;&#24335;&#30908;&#10;this.&#23660;&#24615;1 = &#39;DEF&#39;;&#10;&#125;&#10;this.&#26041;&#27861;2 = function([&#21443;&#25976;]) &#123;&#10;// &#26041;&#27861;2&#31243;&#24335;&#30908;&#10;this.&#23660;&#24615;2 = new Array(4, 5, 6);&#10;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這種方法在有物件實體時才會有作用，如果要像 Java 或 PHP 一樣呼叫靜態方法的話，就要這樣寫：</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2006/02/06/70/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2006-01-21T16:00:00.000Z"><a href="/2006/01/22/69/">2006-01-22</a></time>
       
       
@@ -340,9 +378,9 @@
     <div class="entry">
       
         <p>有時候 PHP 在執行到某個錯誤時，只會丟出一行的訊息，告訴你程式發生錯誤。 例如以下的程式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(<span class="variable">$var</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">   <span class="variable">$var</span>-&gt;display();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$abc</span> = <span class="number">123</span>;</span><br><span class="line">test(<span class="variable">$abc</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;function test($var)&#10;&#123;&#10;   $var-&#62;display();&#10;&#125;&#10;$abc = 123;&#10;test($abc);&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>執行後會出現以下的錯誤：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error:  Call to <span class="tag">a</span> member function <span class="function"><span class="title">display</span><span class="params">()</span></span> on <span class="tag">a</span> non-<span class="tag">object</span> <span class="keyword">in</span> D:\WEB\wwwroot\index<span class="class">.php</span> on line <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error:  Call to a member function display() on a non-object in D:\WEB\wwwroot\index.php on line 4</span><br></pre></td></tr></table></figure>
 <p>我們可以知道在第 4 行的地方因為 test 函式對 $var 呼叫了物件操作函式，卻因為 $var 不是物件而導致錯誤 (Fatal Error) 。但是我們怎麼知道 $var 變數是從那裡來的呢？就上例而言，很明顯地往回推到第 8 行呼叫 test 函式的地方，我們給它的是 $abc 變數，而 $abc 變數存放則是一個數值，也因此造成 test 函式的錯誤。</p>
 <p>當然在程式碼比較短時，我們可以很容易知道整個程式執行的流程動向；不過當我們的程式碼暴漲到上百行或是中間引入不同檔案時，要一下子歸納出它的動線就很不容易了。換句話說，如果第 6 行中我們有上百行的程式碼，那麼我們如何一下子就找到 test 函式的引用點呢？</p>
       
@@ -353,39 +391,6 @@
           <div class="alignleft">
             <a href="/2005/12/19/61/#more" class="more-link">Read More</a>
           </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2005-12-18T16:00:00.000Z"><a href="/2005/12/19/60/">2005-12-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2005/12/19/60/">Smarty 2.6.11 發佈</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>主要修正一些<a href="http://smarty.php.net/misc/NEWS" target="_blank" rel="external">程式上的問題</a>並且對 PHP 5.1 有更好的相容性，請到<a href="http://smarty.php.net" target="_blank" rel="external">官方網站</a>下載。</p>
-
-      
-    </div>
-    <footer>
-      
         
         
       
@@ -440,7 +445,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -462,13 +467,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -484,15 +489,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

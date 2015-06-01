@@ -9,7 +9,7 @@
   <meta name="description" content="昨天凱發現了一個 IE7 的問題，我們兩個做了一個討論後在這裡把結果記錄下來。
 要重現這個問題很簡單，請照著以下的步驟試試看。
 首先在 Windows 的 hosts 檔裡加入粗體部份：
-12127.0.0.1    localhost&amp;lt;strong&amp;gt;127.0.0.1    host_">
+1127.0.0.1    localhost&amp;#10;&amp;#60;strong&amp;#62;127.0.0.1   ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -66,11 +66,11 @@
         <p>昨天<a href="http://blog.darkhero.net/" target="_blank" rel="external">凱</a>發現了一個 IE7 的<a href="http://blog.darkhero.net/articles/view/222" target="_blank" rel="external">問題</a>，我們兩個做了一個討論後在這裡把結果記錄下來。</p>
 <p>要重現這個問題很簡單，請照著以下的步驟試試看。</p>
 <p>首先在 Windows 的 hosts 檔裡加入粗體部份：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1    localhost</span><br><span class="line"><span class="tag">&lt;<span class="title">strong</span>&gt;</span>127.0.0.1    host_name<span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1    localhost&#10;&#60;strong&#62;127.0.0.1    host_name&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>然後在網站根目錄底下建立一個 session.php ，內容如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">session_start();</span><br><span class="line"><span class="variable">$test</span> = (<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">'test'</span>]))</span><br><span class="line">? (int) <span class="variable">$_SESSION</span>[<span class="string">'test'</span>]</span><br><span class="line">: <span class="number">0</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$test</span>;</span><br><span class="line"><span class="variable">$test</span> ++;</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">'test'</span>] = <span class="variable">$test</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;session_start();&#10;$test = (isset($_SESSION[&#39;test&#39;]))&#10;? (int) $_SESSION[&#39;test&#39;]&#10;: 0;&#10;echo $test;&#10;$test ++;&#10;$_SESSION[&#39;test&#39;] = $test;</span><br></pre></td></tr></table></figure>
 <p>然後試試用 IE7 瀏覽以下網址：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//host_name/session.php</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://host_name/session.php</span><br></pre></td></tr></table></figure>
 <p>試試看去重新整理這個頁面，會發現 Session 沒辦法動作。 </p>
 <p>不過同樣的網址在 IE6 和 Firefox 上， Session 都會在每次重新整理時正常加一；但如果把 host_name 換成 localhsot ，則每個瀏覽器都會正常動作。</p>
 <p>一開始我以為是 IE7 有支援 HttpOnly Cookie 的設定，不過這項設定是在 PHP 5.2 以後才會有，而凱用的是 PHP 5.1.6 ；然而 Firefox 也支援 HttpOnly Cookie 卻能正確運作，所以並不是這個問題。</p>
@@ -169,7 +169,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -191,13 +191,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -213,15 +213,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

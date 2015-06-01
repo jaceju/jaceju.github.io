@@ -65,7 +65,7 @@
 <p>我找過 <a href="http://msdn.microsoft.com/library/" target="_blank" rel="external">MSDN</a> 的 <a href="http://msdn.microsoft.com/library/en-us/dnanchor/html/Scriptinga.asp" target="_blank" rel="external">Scripting</a> ，裡面並沒有提到 Me 這個關鍵字，反而是在 VB 6.0 裡找到這個關鍵字的<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbenlr98/html/vakeyme.asp" target="_blank" rel="external">說明</a>。真是神「 Me 」 呀！它在 VB 中的主要用途一為指向類別自己，二為指向 Form 物件。不過 ASP 中應該是沒有 Form 物件可參考 (這裡我保留這樣的想法，也許將來又發現自己錯了) ，所以對我來說這個關鍵字就是用在 Class 上的。 </p>
 <a id="more"></a>
 <h2 id="Me_關鍵字的用法">Me 關鍵字的用法</h2><p>我寫了一個小程式來測試 Me 關鍵字，其實也沒有很複雜，用法和 JavaScript 的 this 關鍵字很像。</p>
-<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="vbscript">&lt;%</span><br><span class="line"><span class="keyword">Class</span> ClassMessage</span><br><span class="line">    <span class="keyword">Private</span> Message</span><br><span class="line"></span><br><span class="line">    <span class="keyword">Private</span> <span class="keyword">Sub</span> <span class="keyword">Class_Initialize</span>()</span><br><span class="line">        <span class="keyword">Me</span>.SetMessage <span class="string">"TEST"</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">Public</span> <span class="keyword">Sub</span> SetDisplay(oDisplay)</span><br><span class="line">        oDisplay.Display <span class="keyword">Me</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">Public</span> <span class="keyword">Sub</span> SetMessage(sMessage)</span><br><span class="line">        Message = sMessage</span><br><span class="line">        <span class="comment">' 不可以寫成：</span></span><br><span class="line">        <span class="comment">' Me.Message = sMessage</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">Public</span> <span class="keyword">Function</span> GetMessage()</span><br><span class="line">        GetMessage = Message</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Class</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Class</span> ClassDisplay</span><br><span class="line">    <span class="keyword">Public</span> <span class="keyword">Sub</span> Display(oMessage)</span><br><span class="line">        <span class="built_in">Response</span>.Write oMessage.GetMessage</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Class</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Dim</span> oMessage : <span class="keyword">Set</span> oMessage = <span class="keyword">New</span> ClassMessage</span><br><span class="line"><span class="keyword">Dim</span> oDisplay : <span class="keyword">Set</span> oDisplay = <span class="keyword">New</span> ClassDisplay</span><br><span class="line"></span><br><span class="line">oMessage.SetDisplay oDisplay</span><br><span class="line"><span class="keyword">Set</span> oMessage = <span class="literal">Nothing</span></span><br><span class="line"><span class="keyword">Set</span> oDisplay = <span class="literal">Nothing</span></span><br><span class="line">%&gt;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;%&#10;Class ClassMessage&#10;    Private Message&#10;&#10;    Private Sub Class_Initialize()&#10;        Me.SetMessage &#34;TEST&#34;&#10;    End Sub&#10;&#10;    Public Sub SetDisplay(oDisplay)&#10;        oDisplay.Display Me&#10;    End Sub&#10;&#10;    Public Sub SetMessage(sMessage)&#10;        Message = sMessage&#10;        &#39; &#19981;&#21487;&#20197;&#23531;&#25104;&#65306;&#10;        &#39; Me.Message = sMessage&#10;    End Sub&#10;&#10;    Public Function GetMessage()&#10;        GetMessage = Message&#10;    End Function&#10;End Class&#10;&#10;Class ClassDisplay&#10;    Public Sub Display(oMessage)&#10;        Response.Write oMessage.GetMessage&#10;    End Sub&#10;End Class&#10;&#10;Dim oMessage : Set oMessage = New ClassMessage&#10;Dim oDisplay : Set oDisplay = New ClassDisplay&#10;&#10;oMessage.SetDisplay oDisplay&#10;Set oMessage = Nothing&#10;Set oDisplay = Nothing&#10;%&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣一來，有很多設計模式可用了，有空可以好好研究一下。</p>
 <p> 不過值得注意的是 Me 關鍵字似乎不能用在屬性上，所以我覺得它更像 PHP 的 self 關鍵字；也就是說 Me 關鍵字在某種程度上來說應該屬於類別層級，而非物件層級。 可是它又可以把自己丟給別的物件參考，和 PHP 的 $this 又有點像，我想這點要特別注意。</p>
 <p>附帶一提， MSDN 最近連結大改，有點難以適應。</p>
@@ -168,7 +168,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -190,13 +190,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -212,15 +212,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

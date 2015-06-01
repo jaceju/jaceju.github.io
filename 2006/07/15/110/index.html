@@ -75,9 +75,9 @@ imageGif 輸出的格式是圖片 (Binary) ，而不是 HTML (Text) 。 &amp;lt;
 </ul>
 <a id="more"></a>
 <p>所以假設我們現在有一個 image.php ，內容為：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">header(<span class="string">"Content-type:&amp;nbsp;image/gif"</span>);</span><br><span class="line"><span class="variable">$im</span>&amp;nbsp;=&amp;nbsp;@imageCreate(<span class="number">100</span>,&amp;nbsp;<span class="number">50</span>)</span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;<span class="keyword">or</span>&amp;nbsp;<span class="keyword">die</span>(<span class="string">"Cannot&amp;nbsp;Initialize&amp;nbsp;new&amp;nbsp;GD&amp;nbsp;image&amp;nbsp;stream"</span>);</span><br><span class="line"><span class="variable">$background_color</span>&amp;nbsp;=&amp;nbsp;imageColorAllocate(<span class="variable">$im</span>,&amp;nbsp;<span class="number">255</span>,&amp;nbsp;<span class="number">255</span>,&amp;nbsp;<span class="number">255</span>);</span><br><span class="line"><span class="variable">$text_color</span>&amp;nbsp;=&amp;nbsp;imageColorAllocate(<span class="variable">$im</span>,&amp;nbsp;<span class="number">233</span>,&amp;nbsp;<span class="number">14</span>,&amp;nbsp;<span class="number">91</span>);</span><br><span class="line">imageString(<span class="variable">$im</span>,&amp;nbsp;<span class="number">2</span>,&amp;nbsp;<span class="number">5</span>,&amp;nbsp;<span class="number">5</span>,&amp;nbsp;&amp;nbsp;<span class="string">"TEST"</span>,&amp;nbsp;<span class="variable">$text_color</span>);</span><br><span class="line">imageGif(<span class="variable">$im</span>);</span><br><span class="line">imageDestroy(<span class="variable">$im</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;header(&#34;Content-type:&#38;nbsp;image/gif&#34;);&#10;$im&#38;nbsp;=&#38;nbsp;@imageCreate(100,&#38;nbsp;50)&#10;&#38;nbsp;&#38;nbsp;&#38;nbsp;or&#38;nbsp;die(&#34;Cannot&#38;nbsp;Initialize&#38;nbsp;new&#38;nbsp;GD&#38;nbsp;image&#38;nbsp;stream&#34;);&#10;$background_color&#38;nbsp;=&#38;nbsp;imageColorAllocate($im,&#38;nbsp;255,&#38;nbsp;255,&#38;nbsp;255);&#10;$text_color&#38;nbsp;=&#38;nbsp;imageColorAllocate($im,&#38;nbsp;233,&#38;nbsp;14,&#38;nbsp;91);&#10;imageString($im,&#38;nbsp;2,&#38;nbsp;5,&#38;nbsp;5,&#38;nbsp;&#38;nbsp;&#34;TEST&#34;,&#38;nbsp;$text_color);&#10;imageGif($im);&#10;imageDestroy($im);&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>它會產生一張圖，但是不 HTML 。所以我們要另外建立一個 HTML 檔案來連結它：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>圖片連結測試<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>圖片連結測試<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a&amp;nbsp;href="javascript:alert('這是連結');"</span>&gt;</span><span class="tag">&lt;<span class="title">img&amp;nbsp;src="image.php"&amp;nbsp;</span>/&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;title&#62;&#22294;&#29255;&#36899;&#32080;&#28204;&#35430;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;h1&#62;&#22294;&#29255;&#36899;&#32080;&#28204;&#35430;&#60;/h1&#62;&#10;&#60;a&#38;nbsp;href=&#34;javascript:alert(&#39;&#36889;&#26159;&#36899;&#32080;&#39;);&#34;&#62;&#60;img&#38;nbsp;src=&#34;image.php&#34;&#38;nbsp;/&#62;&#60;/a&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -169,7 +169,7 @@ imageGif 輸出的格式是圖片 (Binary) ，而不是 HTML (Text) 。 &amp;lt;
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -191,13 +191,13 @@ imageGif 輸出的格式是圖片 (Binary) ，而不是 HTML (Text) 。 &amp;lt;
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -213,15 +213,13 @@ imageGif 輸出的格式是圖片 (Binary) ，而不是 HTML (Text) 。 &amp;lt;
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

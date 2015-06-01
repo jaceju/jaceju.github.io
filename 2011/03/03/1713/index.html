@@ -68,43 +68,43 @@
 <a id="more"></a>
 <h2 id="重建問題">重建問題</h2><p>接著我們來做個小實驗，先依照「<a href="http://www.jaceju.net/blog/archives/1687" target="_blank" rel="external">將 Smarty 3 整合到 Zend Framework 1.11 中</a>」準備好一個已經將 Smarty 整合好的 Zend Framework 專案。</p>
 <p>然後在 application/layouts/scripts/layout.phtml 的 head 標籤內加入以下的 Smarty 語法：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="variable">$this</span>-&gt;headTitle(<span class="string">'Page Title'</span>) %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;% $this-&#62;headTitle(&#39;Page Title&#39;) %&#62;</span><br></pre></td></tr></table></figure>
 <p>接著在 application/views/scripts/index/index.phtml 中加入以下語法：</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% $<span class="keyword">this</span>-&gt;<span class="keyword">partial</span>(<span class="string">'test.phtml'</span>) %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;% $this-&#62;partial(&#39;test.phtml&#39;) %&#62;</span><br></pre></td></tr></table></figure>
 <p>最後再建立一個 application/views/scripts/test.phtml ，內容如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="variable">$this</span>-&gt;url([<span class="string">'param'</span> =&gt; <span class="string">'value'</span>]) %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;% $this-&#62;url([&#39;param&#39; =&#62; &#39;value&#39;]) %&#62;</span><br></pre></td></tr></table></figure>
 <p>現在瀏覽首頁，你會發現程式出現了以下的錯誤： </p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error: Call to <span class="tag">a</span> member function <span class="function"><span class="title">url</span><span class="params">()</span></span> on <span class="tag">a</span> non-<span class="tag">object</span> ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error: Call to a member function url() on a non-object ...</span><br></pre></td></tr></table></figure>
 <p>這是為什麼呢？因為在原生的 Zend_View 樣版中，因為樣版是透過 include 指令來載入並解析的，所以 $this 變數就是 Zend_View 物件本身；但是在 Smarty 底下就不一樣了，在 My_View_Smarty 的建構函式裡，我們透過了以下指令來將 My_View_Smarty 物件本身指定給 Smarty 的 this 樣版變數：</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$this</span><span class="subst">-&gt;</span>_smarty<span class="subst">-&gt;</span>assign(<span class="string">'this'</span>, <span class="variable">$this</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&#62;_smarty-&#62;assign(&#39;this&#39;, $this);</span><br></pre></td></tr></table></figure>
 <p>這樣一來，在 Smarty 樣版的 $this 就是一個樣版變數，而不是 View 物件本身。</p>
 <p>然後問題來了，在 Partial View Helper 執行的過程中，竟然會把 View 物件複製出來後，再清空裡面所有指定好的樣版變數！換句話說，在透過 Partial View Helper 去呼叫的 Smarty 子樣版，會因為所有樣版變數都被清掉的關係而把 $this 當做是 null 值；這下子，對子樣版來說，當然就無法透過 $this 來呼叫 View 物件了。</p>
 <p>而這個問題也會發生在使用 PaginationControl 這個 View Helper 上，因為它就是透過  Partial View Helper 來完成它的工作的。</p>
 <p>該怎麼辦呢？</p>
 <h2 id="解決方案">解決方案</h2><p>答案很簡單，再告訴子樣版 $this 是什麼就好了。怎麼做呢？有兩個方法可以達成。</p>
 <h3 id="解法一">解法一</h3><p>我們可以在  Partial View Helper 的第二個參數重新指定 $this ，如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="variable">$this</span>-&gt;partial(<span class="string">'test.phtml'</span>, [<span class="string">'this'</span> =&gt; <span class="variable">$this</span>]) %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;% $this-&#62;partial(&#39;test.phtml&#39;, [&#39;this&#39; =&#62; $this]) %&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣一來， Partial View Helper 就會把重新把現在 Smarty 主樣版的 $this 再指定給子樣版的 $this ，所以我們就可以在子樣版裡再次利用 $this 來呼叫 View Helper 了。</p>
 <p>而 PaginationControl View Helper 也是同樣的原理：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="variable">$this</span>-&gt;paginationControl(<span class="variable">$paginator</span>, <span class="string">'Sliding'</span>, <span class="string">'pagination.phtml'</span>, [<span class="string">'this'</span> =&gt; <span class="variable">$this</span>]) %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;% $this-&#62;paginationControl($paginator, &#39;Sliding&#39;, &#39;pagination.phtml&#39;, [&#39;this&#39; =&#62; $this]) %&#62;</span><br></pre></td></tr></table></figure>
 <p>不過這個解決方案就得一直在呼叫 Partial View Helper 加上指定 this 的動作，感覺上很麻煩；還好我們有第二種方式來一勞永逸地解決它。</p>
 <h3 id="解法二">解法二</h3><p>第二個方法就是直接讓 Partial View Helper 預先把 $this 變數指向 View 物件就可以了，但我們並不需要修改 Zend Framework 的原始碼， Zend Framework 提供了一個更好的擴充方式。</p>
 <p>首先我們建立 library/My/View/Helper/Partial.php 這個檔案，其內容如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">My_View_Helper_Partial</span> <span class="keyword">extends</span> <span class="title">Zend_View_Helper_Partial</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">cloneView</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$view</span> = <span class="keyword">parent</span>::cloneView();</span><br><span class="line">        <span class="variable">$view</span>-&gt;assign(<span class="string">'this'</span>, <span class="variable">$this</span>-&gt;view); <span class="comment">// 指向原來的 View 物件，而不是 clone 後的 View 物件</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$view</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class My_View_Helper_Partial extends Zend_View_Helper_Partial&#10;&#123;&#10;    public function cloneView()&#10;    &#123;&#10;        $view = parent::cloneView();&#10;        $view-&#62;assign(&#39;this&#39;, $this-&#62;view); // &#25351;&#21521;&#21407;&#20358;&#30340; View &#29289;&#20214;&#65292;&#32780;&#19981;&#26159; clone &#24460;&#30340; View &#29289;&#20214;&#10;        return $view;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>然後在 application.ini 中，指定自訂的 View Helper 位置：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources<span class="class">.view</span><span class="class">.helperPath</span><span class="class">.My_View_Helper</span> = <span class="string">"My/View/Helper"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources.view.helperPath.My_View_Helper = &#34;My/View/Helper&#34;</span><br></pre></td></tr></table></figure>
 <p>這樣一來，我們就可以安心地透過 Smarty 來呼叫 Partial View Helper ，而不必再加上 [‘this’ =&gt; $this] 了。</p>
 <h3 id="解法一與解法二共有的問題">解法一與解法二共有的問題</h3><p>這兩種解法還是有一個問題，那就是在主樣版的變數無法被傳遞到 Partial 樣版中，以下直接用例子來說明。</p>
 <p>假設我們在 IndexController::indexAction() 中加入以下程式碼：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">indexAction</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;data = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'abc'</span> =&gt; <span class="string">'123'</span>,</span><br><span class="line">        <span class="string">'def'</span> =&gt; <span class="string">'456'</span>,</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public function indexAction()&#10;&#123;&#10;    $this-&#62;view-&#62;data = array(&#10;        &#39;abc&#39; =&#62; &#39;123&#39;,&#10;        &#39;def&#39; =&#62; &#39;456&#39;,&#10;    );&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>在 application/views/scripts/test.phtml 中再加入：</p>
-<figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="variable">$data</span>|<span class="variable">@var_dump</span> </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;% $data|@var_dump %&#62;</span><br></pre></td></tr></table></figure>
 <p>你會發現 test.phtml 並沒有辦法正確顯示 $data 的內容。</p>
 <p>因此我們必須把主樣版的變數再複製一份給 Partial 樣版，所以解法一就必須修改成如下程式碼：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="variable">$__vars</span> = array_merge([<span class="string">'this'</span> =&gt; <span class="variable">$this</span>], <span class="variable">$this</span>-&gt;getVars()) %&gt;</span><br><span class="line">&lt;% <span class="variable">$this</span>-&gt;partial(<span class="string">'index/test.phtml'</span>, <span class="variable">$__vars</span>) %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;% $__vars = array_merge([&#39;this&#39; =&#62; $this], $this-&#62;getVars()) %&#62;&#10;&#60;% $this-&#62;partial(&#39;index/test.phtml&#39;, $__vars) %&#62;</span><br></pre></td></tr></table></figure>
 <p>原理就是把原來的樣版變數和 $this 變數合併後再傳給 Partial 樣版。</p>
 <p>至於解法二的修改也是一樣：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">My_View_Helper_Partial</span> <span class="keyword">extends</span> <span class="title">Zend_View_Helper_Partial</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">cloneView</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$view</span> = <span class="keyword">parent</span>::cloneView();</span><br><span class="line">        <span class="variable">$view</span>-&gt;assign(<span class="string">'this'</span>, <span class="variable">$this</span>-&gt;view);</span><br><span class="line">        <span class="variable">$view</span>-&gt;assign(<span class="variable">$this</span>-&gt;view-&gt;getVars()); <span class="comment">// 把原來的樣版變數傳給 Partial 樣版</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$view</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class My_View_Helper_Partial extends Zend_View_Helper_Partial&#10;&#123;&#10;    public function cloneView()&#10;    &#123;&#10;        $view = parent::cloneView();&#10;        $view-&#62;assign(&#39;this&#39;, $this-&#62;view);&#10;        $view-&#62;assign($this-&#62;view-&#62;getVars()); // &#25226;&#21407;&#20358;&#30340;&#27171;&#29256;&#35722;&#25976;&#20659;&#32102; Partial &#27171;&#29256;&#10;        return $view;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這樣一來就沒問題了。</p>
 
       
@@ -197,7 +197,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -219,13 +219,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -241,15 +241,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

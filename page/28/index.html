@@ -49,6 +49,40 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2008-02-13T16:00:00.000Z"><a href="/2008/02/14/313/">2008-02-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2008/02/14/313/">今天不是我的日子</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><img src="http://www.jaceju.net/images/it_is_not_my_day.jpg" alt="宅要認命"></p>
+<p>宅男工程師註定就是要被閃的…</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2008-02-11T16:00:00.000Z"><a href="/2008/02/12/311/">2008-02-12</a></time>
       
       
@@ -777,9 +811,9 @@
 </ul>
 <p>幫你在資料表更換 prefix ，測了一下，在一開始沒有 prefix 的狀況下會有 Bug 。解決方式：</p>
 <p>找到：</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function replace_prefix(<span class="variable">$s</span>, <span class="variable">$prefix</span>) &#123;</span><br><span class="line"><span class="variable">$pos</span> = strpos(<span class="variable">$s</span>, <span class="string">"_"</span>);</span><br><span class="line"><span class="variable">$s</span> = <span class="keyword">substr</span>(<span class="variable">$s</span>, <span class="variable">$pos</span> + <span class="number">1</span>);</span><br><span class="line"><span class="variable">$s</span> = <span class="keyword">sprintf</span>(<span class="string">"<span class="variable">%s_</span><span class="variable">%s</span>"</span>, <span class="variable">$prefix</span>, <span class="variable">$s</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="variable">$s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function replace_prefix($s, $prefix) &#123;&#10;$pos = strpos($s, &#34;_&#34;);&#10;$s = substr($s, $pos + 1);&#10;$s = sprintf(&#34;%s_%s&#34;, $prefix, $s);&#10;return $s;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>改成：</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function replace_prefix(<span class="variable">$s</span>, <span class="variable">$prefix</span>) &#123;</span><br><span class="line"><span class="variable">$pos</span> = (<span class="variable">$pos</span> = strpos(<span class="variable">$s</span>, <span class="string">"_"</span>)) ? <span class="variable">$pos</span> + <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line"><span class="variable">$s</span> = <span class="keyword">substr</span>(<span class="variable">$s</span>, <span class="variable">$pos</span>);</span><br><span class="line"><span class="variable">$s</span> = <span class="keyword">sprintf</span>(<span class="string">"<span class="variable">%s_</span><span class="variable">%s</span>"</span>, <span class="variable">$prefix</span>, <span class="variable">$s</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="variable">$s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function replace_prefix($s, $prefix) &#123;&#10;$pos = ($pos = strpos($s, &#34;_&#34;)) ? $pos + 1 : 0;&#10;$s = substr($s, $pos);&#10;$s = sprintf(&#34;%s_%s&#34;, $prefix, $s);&#10;return $s;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><a href="http://www.rockstarapps.com/wordpress/?p=88" target="_blank" rel="external">How do you store a tree in a database table?</a></li>
 </ul>
@@ -792,40 +826,6 @@
 <li><a href="http://www.javaworld.com.tw/roller/qing/entry/%E9%97%9C%E6%96%BC_java%E5%8D%B3%E5%B0%87%E8%AE%8A%E6%88%90%E5%8F%A6%E4%B8%80%E5%80%8Bcobol_%E9%80%99%E7%AF%87%E6%96%87%E7%AB%A0" target="_blank" rel="external">關於”Java即將變成另一個COBOL”這篇文章</a></li>
 </ul>
 <p>雖然 Java 不是我的飯碗，不過裡面的討論還是值得關注一下。另外後續還有這篇：<a href="http://mmdays.com/2008/01/04/programming-language-version-control" target="_blank" rel="external">版本控制，版本升級是不是個問題？</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-12-30T16:00:00.000Z"><a href="/2007/12/31/302/">2007-12-31</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/12/31/302/">新年快樂~</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><img src="http://www.jaceju.net/images/shin_2008.jpg" alt="新年快樂"></p>
-<p>祝大家 2008 年一切順利~</p>
 
       
     </div>
@@ -885,7 +885,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -907,13 +907,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -929,15 +929,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

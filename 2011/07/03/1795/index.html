@@ -71,32 +71,32 @@ LiveReload 是 Ruby 的一個 gem 套件，使用時必須先安裝好 Ruby 的�
 </code></pre><p>註：以上的版本可能會變，在下載時請多留意。</p>
 <h3 id="安裝_RubyInstaller">安裝 RubyInstaller</h3><p>將 ruby-1.9.2-p180-i386-mingw32.7z 解開至任何你想安裝 Ruby 的路徑下，這裡我將以 D:\AppServ 為例；然後將解開後的 ruby-1.9.2-p180-i386-mingw32 資料夾，更名為 ruby 即可。</p>
 <p>接著在系統環境變數 PATH 前，加入以下路徑：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">D</span>:<span class="value">\AppServ\ruby\bin</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\AppServ\ruby\bin;</span><br></pre></td></tr></table></figure>
 <p>這樣就能在命令列模式下，自動找到 ruby 或 gem 等的相關執行檔。</p>
 <p>註：「修改 Windows 系統環境變數」的方法，請自行上 Google 搜尋。</p>
 <h3 id="安裝_DevKit">安裝 DevKit</h3><p>首先執行自解檔 DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe ，解壓縮的目錄選擇「 D:\AppServ\ruby\devkit 」。</p>
 <p>接著開啟命令列模式視窗 (cmd.exe) ，並執行以下指令來產生 config.yml ：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd D:<span class="command">\AppServ</span><span class="command">\ruby</span><span class="command">\devkit</span></span><br><span class="line">&gt; ruby dk.rb init</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; cd D:\AppServ\ruby\devkit&#10;&#62; ruby dk.rb init</span><br></pre></td></tr></table></figure>
 <p> 註：這裡的 &gt; 符號是提示字元，不必輸入。</p>
 <p>接下來我們要編輯 D:\AppServ\ruby\devkit\config.yml ，請用記事本開啟該檔案後，在最後面加一行：</p>
-<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"> <span class="constant">D</span><span class="symbol">:/AppServ/ruby</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- D:/AppServ/ruby</span><br></pre></td></tr></table></figure>
 <p>註：最前面的 - (dash) 符號也要輸入，它在 YAML 裡是表示陣列元素的意思。</p>
 <p>最後在命令列模式下執行以下指令，就可以在 Ruby 裡安裝 DevKit ：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ruby dk<span class="class">.rb</span> install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; ruby dk.rb install</span><br></pre></td></tr></table></figure>
 <h3 id="測試_DevKit">測試 DevKit</h3><p>安裝 DevKit 的主要目的是讓 Ruby 開發環境可以編譯出  native 的 gem 套件，因此我們來簡單以 rdiscount 這個套件來測試一下 DevKit 是否安裝成功。</p>
 <p>首先在命令列模式下輸入以下指令：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; gem install rdiscount <span class="comment">--platform=ruby</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; gem install rdiscount --platform=ruby</span><br></pre></td></tr></table></figure>
 <p>如果 DevKit 安裝無誤的話，應該會看到以下訊息：</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Temporarily enhancing PATH <span class="keyword">to</span> include DevKit<span class="attribute">...</span></span><br><span class="line">Building native extensions<span class="built_in">.  </span>This could <span class="keyword">take</span> a <span class="keyword">while</span><span class="attribute">...</span></span><br><span class="line">Successfully installed rdiscount<span class="subst">-</span><span class="number">1.6</span><span class="built_in">.8</span></span><br><span class="line"><span class="number">1</span> gem installed</span><br><span class="line">Installing ri documentation for rdiscount<span class="subst">-</span><span class="number">1.6</span><span class="built_in">.8</span><span class="attribute">...</span></span><br><span class="line">Installing RDoc documentation for rdiscount<span class="subst">-</span><span class="number">1.6</span><span class="built_in">.8</span><span class="attribute">...</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Temporarily enhancing PATH to include DevKit...&#10;Building native extensions.  This could take a while...&#10;Successfully installed rdiscount-1.6.8&#10;1 gem installed&#10;Installing ri documentation for rdiscount-1.6.8...&#10;Installing RDoc documentation for rdiscount-1.6.8...</span><br></pre></td></tr></table></figure>
 <p>接著我們用以下指令來測試看看 rdiscount 是否安裝無誤：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ruby -rubygems <span class="operator">-e</span> <span class="string">"require 'rdiscount'; puts RDiscount.new('**Hello RubyInstaller**').to_html"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; ruby -rubygems -e &#34;require &#39;rdiscount&#39;; puts RDiscount.new(&#39;**Hello RubyInstaller**&#39;).to_html&#34;</span><br></pre></td></tr></table></figure>
 <p>出現以下訊息就表示安裝成功了：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span><span class="tag">&lt;<span class="title">strong</span>&gt;</span>Hello RubyInstaller<span class="tag">&lt;/<span class="title">strong</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;p&#62;&#60;strong&#62;Hello RubyInstaller&#60;/strong&#62;&#60;/p&#62;</span><br></pre></td></tr></table></figure>
 <h2 id="安裝_LiveReload">安裝 LiveReload</h2><p>接下來要安裝主角 LiveReload 了。</p>
 <p>這裡我按照官方的安裝方法一直失敗，原因就出在於 eventmachine 這個套件無法編譯成功。因此我們要先執行以下指令來取得最新的 beta 版本編譯：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; gem install eventmachine <span class="comment">--pre</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; gem install eventmachine --pre</span><br></pre></td></tr></table></figure>
 <p>編譯並安裝好 eventmachine 後，就可以執行以下指令來安裝 LiveReload 了：</p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; gem install eventmachine-win32 win32-changenotify win32-<span class="keyword">event</span> livereload --<span class="keyword">platform</span>=ruby</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; gem install eventmachine-win32 win32-changenotify win32-event livereload --platform=ruby</span><br></pre></td></tr></table></figure>
 <h2 id="安裝_Browser_Extension/Add-on">安裝 Browser Extension/Add-on</h2><p>建置好 LiveReload 的環境後，當然還需要瀏覽器配合才行，目前在 Chrome/Firefox/Safari 都已經有對應的套件可以使用了：</p>
 <pre><code><span class="bullet">* </span>Chrome - [<span class="link_label">https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei</span>](<span class="link_url">https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei</span>)
 <span class="bullet">* </span>Firefox - [<span class="link_label">https://addons.mozilla.org/zh-TW/firefox/addon/livereload/</span>](<span class="link_url">https://addons.mozilla.org/zh-TW/firefox/addon/livereload/</span>)
@@ -104,14 +104,14 @@ LiveReload 是 Ruby 的一個 gem 套件，使用時必須先安裝好 Ruby 的�
 </code></pre><p>請直接以對應的瀏覽器下載安裝即可。</p>
 <h2 id="使用_LiveReload">使用 LiveReload</h2><p>LiveReload 會監控我們網站檔案的變化，然後通知瀏覽器來更新頁面；以下就是 LiveReload 的使用介紹：</p>
 <h3 id="啟用_LiveReload_監控">啟用 LiveReload 監控</h3><p>首先在命令列模式下，切換到想監控的網站所在的路徑後，再輸入以下指令：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="blockquote">&gt; livereload</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; livereload</span><br></pre></td></tr></table></figure>
 <p>這時會出現以下訊息：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Version:  <span class="number">1.6</span>  (compatible with browser extension versions <span class="number">1.6</span>.x)</span><br><span class="line">Port:     <span class="number">35729</span></span><br><span class="line">Watching: D:/Web/wwwroot/sass</span><br><span class="line">  - extensions: <span class="class">.html</span> <span class="class">.css</span> <span class="class">.js</span> <span class="class">.png</span> <span class="class">.gif</span> <span class="class">.jpg</span> <span class="class">.php</span> <span class="class">.php5</span> <span class="class">.py</span> <span class="class">.rb</span> <span class="class">.erb</span></span><br><span class="line">  - live refreshing disabled <span class="keyword">for</span> <span class="class">.js</span>: will reload the whole page when <span class="class">.js</span> is changed</span><br><span class="line">  - excluding changes <span class="keyword">in</span>: */.git<span class="comment">/* */</span>.svn<span class="comment">/* */</span>.hg<span class="comment">/*</span><br><span class="line">  - with a grace period of 0.05 sec after each change</span><br><span class="line">LiveReload is waiting for browser to connect.</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Version:  1.6  (compatible with browser extension versions 1.6.x)&#10;Port:     35729&#10;Watching: D:/Web/wwwroot/sass&#10;  - extensions: .html .css .js .png .gif .jpg .php .php5 .py .rb .erb&#10;  - live refreshing disabled for .js: will reload the whole page when .js is changed&#10;  - excluding changes in: */.git/* */.svn/* */.hg/*&#10;  - with a grace period of 0.05 sec after each change&#10;LiveReload is waiting for browser to connect.</span><br></pre></td></tr></table></figure>
 <p>這樣就表示 LiveReload 已經開始工作了。</p>
 <p>或是我們也可以同時監控多個路徑：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; livereload <span class="regexp">/path/</span>to<span class="regexp">/dir1 /</span>path<span class="regexp">/to/</span>dir2 <span class="regexp">/path/</span>to<span class="regexp">/dir3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; livereload /path/to/dir1 /path/to/dir2 /path/to/dir3</span><br></pre></td></tr></table></figure>
 <h3 id="啟用瀏覽器的_LiveReload_功能">啟用瀏覽器的 LiveReload 功能</h3><p>接著在瀏覽器打開要測試的網址，例如：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//localhost/livereload-test/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/livereload-test/</span><br></pre></td></tr></table></figure>
 <p>然後啟用 LiveReload 功能，各瀏覽器啟用方法如下：</p>
 <pre><code><span class="bullet">* </span>Chrome
 </code></pre><p>按下工具列的 LR 按鈕即可，按鈕的圖示會變成淺綠色。</p>
@@ -119,18 +119,18 @@ LiveReload 是 Ruby 的一個 gem 套件，使用時必須先安裝好 Ruby 的�
 </code></pre><p>在畫面的滑鼠右鍵選單中，選擇「 Enable LiveReload 」。</p>
 <pre><code><span class="bullet">* </span>Firefox
 </code></pre><p>按下瀏覽器下方狀態列的 LR 圖示即可，這時圖示會變成淺綠色。</p>
-<blockquote><br><br>如果在 Firefox 啟用 LiveReload 時，跳出以下訊息：<br><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LiveReload failed <span class="keyword">to</span> establish connection: WebSocket <span class="keyword">is</span> disabled.</span><br><span class="line">To turn <span class="keyword">it</span> <span class="function_start"><span class="keyword">on</span></span>, open <span class="keyword">about</span>:config <span class="keyword">and</span> <span class="keyword">set</span> network.websocket.override-security-block <span class="keyword">to</span> <span class="constant">true</span>.</span><br></pre></td></tr></table></figure><br><br>那麼就在網址列輸入 about:config 來打開 Firefox 的選項設定視窗，並在篩選條件輸入：<br><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">network<span class="class">.websocket</span><span class="class">.override-security-block</span></span><br></pre></td></tr></table></figure><br><br>這樣就會找到 network.websocket.override-security-block 這個設定值，接著雙擊它，讓它的設定值為 true 即可。<br></blockquote>
+<blockquote><br><br>如果在 Firefox 啟用 LiveReload 時，跳出以下訊息：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LiveReload failed to establish connection: WebSocket is disabled.&#10;To turn it on, open about:config and set network.websocket.override-security-block to true.</span><br></pre></td></tr></table></figure><br><br>那麼就在網址列輸入 about:config 來打開 Firefox 的選項設定視窗，並在篩選條件輸入：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">network.websocket.override-security-block</span><br></pre></td></tr></table></figure><br><br>這樣就會找到 network.websocket.override-security-block 這個設定值，接著雙擊它，讓它的設定值為 true 即可。<br></blockquote>
 
 <p>啟用瀏覽器的 LiveReload 功能後，應該就會在剛剛的命令列模式下，看到以下 log 資訊：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Browser connected.</span><br><span class="line">Browser <span class="string">URL:</span> <span class="string">http:</span><span class="comment">//localhost/livereload-test/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Browser connected.&#10;Browser URL: http://localhost/livereload-test/</span><br></pre></td></tr></table></figure>
 <p>這樣就表示瀏覽器已經開始執行 LiveReload 的功能；而且我們也可以同時開啟 Chrome 、 Firefox 及 Safari 的 LiveReload ，這樣就可以一次看到三種瀏覽器呈現的效果了。</p>
 <h3 id="實例說明">實例說明</h3><p>假設現在 LiveReload 監控的路徑為 D:\wwwroot\livereload-test ，在這個資料夾下我們有 index.html 及 css/style.css 這兩個檔案。</p>
 <p>index.html</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">title</span>&gt;</span>LiveReload Test<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"css/style.css"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"navbar"</span>&gt;</span>TODO write content<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;meta charset=&#34;UTF-8&#34;/&#62;&#10;        &#60;title&#62;LiveReload Test&#60;/title&#62;&#10;        &#60;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;css/style.css&#34; /&#62;&#10;    &#60;/head&#62;&#10;    &#60;body&#62;&#10;        &#60;div id=&#34;navbar&#34;&#62;TODO write content&#60;/div&#62;&#10;    &#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>style.css</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#300</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#FFF</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body &#123;&#10;background: #300;&#10;color: #FFF;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>請利用編輯器修改 css/style.css 的 body background 值，再看看瀏覽器是否有即時產生變化。而在命令列模式執行的 livereload 指令，同時也會顯示修改了哪些檔案：</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Modified</span>: <span class="string">index.html</span></span><br><span class="line"><span class="attribute">Modified</span>: <span class="string">css/style.css</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Modified: index.html&#10;Modified: css/style.css</span><br></pre></td></tr></table></figure>
 <p>是不是很酷呢？</p>
 <h2 id="心得">心得</h2><p>LiveReload 真的是一個很棒的想法，它節省了很多切換到瀏覽器畫面後重整頁面的時間，讓我們可以真的做到隨打隨看，即時調整網頁呈現的效果。</p>
 <p>真的不得不佩服想出這些開發工具的高手們，他們偉大的工作成果造福了我們這些 Web 開發者，也使得我們能有更多時間去處理其他的需求。</p>
@@ -226,7 +226,7 @@ LiveReload 是 Ruby 的一個 gem 套件，使用時必須先安裝好 Ruby 的�
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -248,13 +248,13 @@ LiveReload 是 Ruby 的一個 gem 套件，使用時必須先安裝好 Ruby 的�
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -270,15 +270,13 @@ LiveReload 是 Ruby 的一個 gem 套件，使用時必須先安裝好 Ruby 的�
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

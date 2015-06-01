@@ -70,7 +70,7 @@
 <a id="more"></a>
 <p>如果要使用 MySQL 的話，我們可以利用 <a href="http://www.php.net/manual/en/function.session-set-save-handler.php" target="_blank" rel="external">session_set_save_handler</a> 來建立資料庫連線並存取 Session 資料。</p>
 <p>而使用 memcache 的話，可以參考 PHP 官方提供的<a href="http://www.php.net/manual/en/memcache.examples.php" target="_blank" rel="external">方法</a>，程式如下： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="variable">$host</span> = <span class="string">'localhost'</span>;</span><br><span class="line"><span class="variable">$port</span> = <span class="string">'11211'</span>;</span><br><span class="line"><span class="variable">$session_save_path</span> = <span class="string">"tcp://<span class="variable">$host</span>:<span class="variable">$port</span>?persistent=1&amp;amp;weight=2&amp;amp;timeout=2&amp;amp;retry_interval=10,  ,tcp://<span class="variable">$host</span>:<span class="variable">$port</span>  "</span>;</span><br><span class="line">ini_<span class="built_in">set</span>(<span class="string">'session.save_handler'</span>, <span class="string">'memcache'</span>);</span><br><span class="line">ini_<span class="built_in">set</span>(<span class="string">'session.save_path'</span>, <span class="variable">$session_save_path</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$host = &#39;localhost&#39;;&#10;$port = &#39;11211&#39;;&#10;$session_save_path&#160;=&#160;&#34;tcp://$host:$port?persistent=1&#38;amp;weight=2&#38;amp;timeout=2&#38;amp;retry_interval=10,&#160;&#160;,tcp://$host:$port&#160;&#160;&#34;;&#10;ini_set(&#39;session.save_handler&#39;,&#160;&#39;memcache&#39;);&#10;ini_set(&#39;session.save_path&#39;,&#160;$session_save_path);</span><br></pre></td></tr></table></figure>
 <p>希望以上的資訊能提供大家對 PHP 處理 Session 有更進一步的瞭解。 </p>
 
       
@@ -163,7 +163,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -185,13 +185,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -207,15 +207,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

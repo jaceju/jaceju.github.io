@@ -76,7 +76,7 @@
 <h3 id="Xdebug">Xdebug</h3><p>這是開發 PHP 時很好用的除錯工具，可以從以下的網址下載： </p>
 <p><a href="http://pecl4win.php.net/ext.php/php_xdebug.dll" target="_blank" rel="external">http://pecl4win.php.net/ext.php/php_xdebug.dll</a> (別在意 PHP 實際的版本，只要抓對應 5_2 版的即可)</p>
 <h2 id="安排目錄結構">安排目錄結構</h2><p>和之前一樣，我打算把相關的程式放在 D:\Appserv 底下，而檔案庫則放在 D:\Repository 底下。以下是我所規劃的目錄結構：</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">D:</span><br><span class="line"><span class="string">|</span></span><br><span class="line"><span class="string">|- Appserv (伺服器相關程式)</span></span><br><span class="line"><span class="string">|  |</span></span><br><span class="line"><span class="string">|  |- Apache2 ( Apache 的主要程式檔)</span></span><br><span class="line"><span class="string">|  |</span></span><br><span class="line"><span class="string">|  |- php ( PHP 的主要程式檔)</span></span><br><span class="line"><span class="string">|  |</span></span><br><span class="line"><span class="string">|  |- mysql ( MySQL 的主要程式檔及資料檔)</span></span><br><span class="line"><span class="string">|</span></span><br><span class="line"><span class="string">|- WEB</span></span><br><span class="line"><span class="string">|  |</span></span><br><span class="line"><span class="string">|  |- wwwroot (預設網站的主要根目錄)</span></span><br><span class="line"><span class="string">|</span></span><br><span class="line"><span class="string">|- Temp</span></span><br><span class="line">   <span class="string">|</span></span><br><span class="line">   <span class="string">|- php (讓 PHP 存放暫存檔案的地方)</span></span><br><span class="line">   <span class="string">|</span></span><br><span class="line">   <span class="string">|- upload (上傳檔案的暫存位置)</span></span><br><span class="line">   <span class="string">|</span></span><br><span class="line">   <span class="string">|- session ( Session 檔的暫存位置)</span></span><br><span class="line">   <span class="string">|</span></span><br><span class="line">   <span class="string">|- xdebug ( Xdebug 分析檔的存放位置)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:&#10;|&#10;|- Appserv (&#20282;&#26381;&#22120;&#30456;&#38364;&#31243;&#24335;)&#10;|  |&#10;|  |- Apache2 ( Apache &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- php ( PHP &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- mysql ( MySQL &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;&#21450;&#36039;&#26009;&#27284;)&#10;|&#10;|- WEB&#10;|  |&#10;|  |- wwwroot (&#38928;&#35373;&#32178;&#31449;&#30340;&#20027;&#35201;&#26681;&#30446;&#37636;)&#10;|&#10;|- Temp&#10;   |&#10;   |- php (&#35731; PHP &#23384;&#25918;&#26283;&#23384;&#27284;&#26696;&#30340;&#22320;&#26041;)&#10;   |&#10;   |- upload (&#19978;&#20659;&#27284;&#26696;&#30340;&#26283;&#23384;&#20301;&#32622;)&#10;   |&#10;   |- session ( Session &#27284;&#30340;&#26283;&#23384;&#20301;&#32622;)&#10;   |&#10;   |- xdebug ( Xdebug &#20998;&#26512;&#27284;&#30340;&#23384;&#25918;&#20301;&#32622;)</span><br></pre></td></tr></table></figure>
 <p>這裡我會把預設網站的根目錄放在 D:\WEB\wwwroot ，各位可以依自己的喜好決定它的位置。</p>
 <p>註：放在 D: (或其他非 C: 分割區) 的好處是不用擔心重灌後，資料及相關設定會消失。</p>
 <h2 id="安裝_Apache_2-0">安裝 Apache 2.0</h2><p>這邊基本上可以參考我的「<a href="http://www.jaceju.net/blog/archives/157" target="_blank" rel="external">在 Windows 上使用 Trac on Apache - 安裝與設定篇</a>」裡的安裝方式，節錄如下：</p>
@@ -92,9 +92,9 @@
 <p>接著把 D:\Appserv\Apache2\bin 加入系統變數 PATH 裡，這樣方便到時候直接使用指令來控制 Apache 。</p>
 <p>至於 Apache 的設定部份，我們在完成安裝 PHP 後再一起修改。 </p>
 <h3 id="重灌系統後的安裝">重灌系統後的安裝</h3><p>假設我們的 D:\Appserv\Apache2 底下已經 Apache 的程式檔，只是重灌後使得系統設定消失。這樣的話，我們要先把D:\Appserv\Apache2\bin 加入系統變數 PATH 裡，接著再用以下方式重新建立服務 (粗體字部份) ：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">C</span>:\&gt;apache -k install -<span class="keyword">D</span> Apache2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62;apache -k install -D Apache2</span><br></pre></td></tr></table></figure>
 <p>最後用：</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">C:</span>\&gt;apache -k start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62;apache -k start</span><br></pre></td></tr></table></figure>
 <p>來啟動服務。</p>
 <h2 id="安裝_MySQL_5-0">安裝 MySQL 5.0</h2><p>這裡是參考我的「<a href="http://www.jaceju.net/blog/archives/125" target="_blank" rel="external">在 Windows 上安裝測試用的 MySQL 伺服器</a>」裡的安裝方式，節錄如下：</p>
 <ul>
@@ -104,15 +104,15 @@
 </li>
 </ul>
 <p>然後找到 my.ini 裡的：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/tmp/my</span>sql.sock</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/tmp/mysql.sock</span><br></pre></td></tr></table></figure>
 <p>改為：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">D</span><span class="symbol">:/Temp/mysql</span>.sock</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:/Temp/mysql.sock</span><br></pre></td></tr></table></figure>
 <p>註：在 [client] 和 [mysqld] 區段裡各有一個，都要改。</p>
 <p>Temp 路徑請自行決定。</p>
 <ul>
 <li>然後在 [mysqld] 下一行加入：</li>
 </ul>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basedir = D:<span class="command">\Appserv</span><span class="command">\mysql</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basedir = D:\Appserv\mysql</span><br></pre></td></tr></table></figure>
 <p>以設定 MySQL 的執行路徑。</p>
 <ul>
 <li><p>把 D:\Appserv\mysql\bin 加到 PATH 系統變數裡。</p>
@@ -120,17 +120,17 @@
 <li><p>接著在 DOS 命令列下執行：</p>
 </li>
 </ul>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="command">\&gt;</span>mysqld-nt --install MySQL --defaults-file=D:<span class="command">\Appserv</span><span class="command">\my</span>.ini</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62;mysqld-nt --install MySQL --defaults-file=D:\Appserv\my.ini</span><br></pre></td></tr></table></figure>
 <p>—defaults-file 的用意是強制指定 my.ini 的位置，否則就需要把 my.ini 放到 C:\Windows 底下 (個人不建議) 。</p>
 <ul>
 <li>然後再執行：</li>
 </ul>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">C:</span>\&gt;NET START MYSQL</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62;NET START MYSQL</span><br></pre></td></tr></table></figure>
 <p>或用服務管理員來啟動 MySQL</p>
 <ul>
 <li>如果要移除服務，就用：</li>
 </ul>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;mysqld-nt <span class="comment">--remove</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62;mysqld-nt --remove</span><br></pre></td></tr></table></figure>
 <p>這樣就能完成 MySQL 的安裝了。</p>
 <p>註：這裡不再採用預設字集為 big5 的安裝方式。</p>
 <h2 id="安裝_PHP_5-2">安裝 PHP 5.2</h2><h3 id="安裝程式部份">安裝程式部份</h3><ul>
@@ -141,7 +141,7 @@
 <li><p>把 D:\Appserv\php 和 D:\Appserv\php\ext 加在系統變數 PATH 的最前面，如下：</p>
 </li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">D</span>:<span class="value">\Appserv\php</span></span>;<span class="rule"><span class="attribute">D</span>:<span class="value">\Appserv\php\ext</span></span>;%<span class="tag">SystemRoot</span>%....</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\php;D:\Appserv\php\ext;%SystemRoot%....</span><br></pre></td></tr></table></figure>
 <p>這是為了讓我們能在 DOS 模式下直接執行 php.exe ，而且也不用把 libmysql.dll 這些 DLL 檔放到 C:\Windows\system32 底下。</p>
 <ul>
 <li><p>把 D:\Appserv\php\php.ini-recommended 複製成 php.ini ，然後將它放到 D:\Appserv 底下。</p>
@@ -149,40 +149,40 @@
 <li><p>將以下內容存成 IniFilePath.reg ，然後執行：</p>
 </li>
 </ul>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"><span class="special">[</span>HKEY_LOCAL_MACHINE<span class="command">\SOFTWARE</span><span class="command">\PHP</span><span class="special">]</span></span><br><span class="line">"IniFilePath"="D:<span class="command">\\</span>Appserv<span class="command">\\</span>"</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\PHP]&#10;&#34;IniFilePath&#34;=&#34;D:\\Appserv\\&#34;</span><br></pre></td></tr></table></figure>
 <p>這會讓 PHP.exe 在執行時，知道要到哪裡去找 php.ini 。請參考：<a href="http://www.jaceju.net/blog/archives/37" target="_blank" rel="external">變更 Windows 平台上的 PHP.INI 位置</a>。</p>
 <h3 id="修改_php-ini">修改 php.ini</h3><p>因為我們要建立開發環境，所以像錯誤訊息、 Xdebug 等相關偵錯用的機制都要打開，請修改以下的設定 (粗體字即修改後的值) ：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">display_errors = <span class="value"><span class="keyword">On</span></span></span></span><br><span class="line"><span class="setting">display_startup_errors = <span class="value"><span class="keyword">On</span></span></span></span><br><span class="line"><span class="setting">track_errors = <span class="value"><span class="keyword">On</span></span></span></span><br><span class="line"><span class="setting">error_log = <span class="value"><span class="string">"D:/Temp/php/error.log"</span> (要記得拿掉前面的分號註解)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display_errors = On&#10;display_startup_errors = On&#10;track_errors = On&#10;error_log = &#34;D:/Temp/php/error.log&#34; (&#35201;&#35352;&#24471;&#25343;&#25481;&#21069;&#38754;&#30340;&#20998;&#34399;&#35387;&#35299;)</span><br></pre></td></tr></table></figure>
 <p>另外一些上傳的設定也要一起修改：</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post_max_size = <span class="number">100</span>M <span class="comment">(這裡請自行決定大小)</span></span><br><span class="line">upload_max_filesize = <span class="number">50</span>M <span class="comment">(通常會比 post_max_size 小)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_max_size = 100M (&#36889;&#35041;&#35531;&#33258;&#34892;&#27770;&#23450;&#22823;&#23567;)&#10;upload_max_filesize = 50M (&#36890;&#24120;&#26371;&#27604; post_max_size &#23567;)</span><br></pre></td></tr></table></figure>
 <p>接下來是相關的路徑：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">upload_tmp_dir = "D:<span class="command">\Temp</span><span class="command">\php</span><span class="command">\upload</span>" (上傳暫存路徑)</span><br><span class="line">include_path=".;d:<span class="command">\Appserv</span><span class="command">\php</span><span class="command">\pear</span>" (加入 PEAR 的引用路徑)</span><br><span class="line">session.save_path = "D:<span class="command">\Temp</span><span class="command">\php</span><span class="command">\session</span>" ( Session 暫存路徑)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upload_tmp_dir = &#34;D:\Temp\php\upload&#34; (&#19978;&#20659;&#26283;&#23384;&#36335;&#24465;)&#10;include_path=&#34;.;d:\Appserv\php\pear&#34; (&#21152;&#20837; PEAR &#30340;&#24341;&#29992;&#36335;&#24465;)&#10;session.save_path = &#34;D:\Temp\php\session&#34; ( Session &#26283;&#23384;&#36335;&#24465;)</span><br></pre></td></tr></table></figure>
 <p>註：也許有人會問為什麼不改 extension_dir ，這是因為前面我們有把 D:\Appserv\php\ext 加入系統變數 PATH 裡，所以 php 會自動去找。 </p>
 <p>然後是常會用到的延伸套件的部份 (把前面的分號註解去掉即可) ：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">extension=php_gd2<span class="class">.dll</span></span><br><span class="line">extension=php_mbstring<span class="class">.dll</span></span><br><span class="line">extension=php_mysql<span class="class">.dll</span></span><br><span class="line">extension=php_mysqli<span class="class">.dll</span></span><br><span class="line">extension=php_pdo<span class="class">.dll</span> ( Zend Framework 建議使用 PDO)</span><br><span class="line">extension=php_pdo_mysql<span class="class">.dll</span></span><br><span class="line">extension=php_pdo_sqlite.dll</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=php_gd2.dll&#10;extension=php_mbstring.dll&#10;extension=php_mysql.dll&#10;extension=php_mysqli.dll&#10;extension=php_pdo.dll ( Zend Framework &#24314;&#35696;&#20351;&#29992; PDO)&#10;extension=php_pdo_mysql.dll&#10;extension=php_pdo_sqlite.dll</span><br></pre></td></tr></table></figure>
 <p>其他套件則視狀況加入。</p>
 <p>最後我們要把 Xdebug 加入，也就是在 php.ini 的最後加入以下設定：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Xdebug]</span><br><span class="line">zend_extension_ts=php_xdebug.dll</span><br><span class="line">xdebug.profiler_enable=<span class="function_start"><span class="keyword">on</span></span></span><br><span class="line">;xdebug.show_exception_trace=<span class="function_start"><span class="keyword">on</span></span></span><br><span class="line">xdebug.show_local_vars=<span class="function_start"><span class="keyword">on</span></span></span><br><span class="line">xdebug.trace_output_dir=<span class="string">"D:/TEMP/php/xdebug"</span></span><br><span class="line">xdebug.profiler_output_dir=<span class="string">"D:/TEMP/php/xdebug"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Xdebug]&#10;zend_extension_ts=php_xdebug.dll&#10;xdebug.profiler_enable=on&#10;;xdebug.show_exception_trace=on&#10;xdebug.show_local_vars=on&#10;xdebug.trace_output_dir=&#34;D:/TEMP/php/xdebug&#34;&#10;xdebug.profiler_output_dir=&#34;D:/TEMP/php/xdebug&#34;</span><br></pre></td></tr></table></figure>
 <h2 id="修改_httpd-conf">修改 httpd.conf</h2><h3 id="讓_Apache_認識_PHP">讓 Apache 認識 PHP</h3><p>上面雖然安裝好了 PHP ，但是 Apache 還不認得 PHP 長什麼樣子，以下我們要修改 D:\Appserv\Apache2\conf\httpd.conf 來讓 PHP 變成 Apache 的模組。</p>
 <p>把以下設定加到 httpd.conf 的最後面：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">LoadModule</span> php5_module <span class="constant">D</span><span class="symbol">:/Appserv/php/php5apache2</span>.dll</span><br><span class="line"><span class="constant">AddType</span> application/x-httpd-php .php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php5_module D:/Appserv/php/php5apache2.dll&#10;AddType application/x-httpd-php .php</span><br></pre></td></tr></table></figure>
 <p>或是分別放在 LoadModule 及 AddType 區段 (用搜尋即可找到) 。</p>
 <p>然後修改 DirectoryIndex ，加入粗體字部份：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DirectoryIndex index<span class="class">.html</span> index<span class="class">.html</span><span class="class">.var</span> index<span class="class">.htm</span> index.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DirectoryIndex index.html index.html.var index.htm index.php</span><br></pre></td></tr></table></figure>
 <p>這樣 Apache 2 就會以 Module 模式來執行 PHP 了。</p>
 <h3 id="其他設定">其他設定</h3><p>接著有些設定要修改，首先是加入 mod_rewrite 模組 (去掉井字號註解即可) ：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> rewrite_module modules/mod_rewrite.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule rewrite_module modules/mod_rewrite.so</span><br></pre></td></tr></table></figure>
 <p>然後修改預設網站的根目錄，也就是把：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">D</span><span class="symbol">:/Appserv/Apache2/htdocs</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:/Appserv/Apache2/htdocs</span><br></pre></td></tr></table></figure>
 <p>全部改成：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">D</span><span class="symbol">:/WEB/wwwroot</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:/WEB/wwwroot</span><br></pre></td></tr></table></figure>
 <p>最後要啟用 .htaccess ，找到：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">Directory</span> /&gt;</span><br><span class="line"><span class="keyword">Options</span> FollowSymLinks</span><br><span class="line">AllowOverride <span class="keyword">None</span></span><br><span class="line">&lt;/<span class="keyword">Directory</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;Directory /&#62;&#10;Options FollowSymLinks&#10;AllowOverride None&#10;&#60;/Directory&#62;</span><br></pre></td></tr></table></figure>
 <p>把 None 改成 All 。</p>
 <p>而 <directory "d:="" web="" wwwroot"=""> 區段裡的 AllowOverride None 的 None 也改成 All 。 </directory></p>
 <h2 id="測試">測試</h2><p>測試前請先重新開機，讓所有的設定能生效。</p>
 <p>測試有沒有安裝成功的方式很簡單，只要在 D:\WEB\wwwroot 下建立一個 index.php 檔，然後寫入以下內容：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">phpinfo();</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;phpinfo();</span><br></pre></td></tr></table></figure>
 <p>然後用瀏覽器查看 <a href="http://localhost/" target="_blank" rel="external">http://localhost/</a> ，如果有顯示 PHP 的相關設定資訊就算成功了。</p>
 <p>當然我們也能透過 phpinfo() 查看相關 PHP 套件是不是有安裝成功，如果沒有的話，請看下面的常見問題。</p>
 <h2 id="常見問題">常見問題</h2><ul>
@@ -201,12 +201,12 @@
 <li>問：為什麼不在 httpd.conf 裡加入「PHPIniDir “D:/Appserv/“」來指定 php.ini 的位置？</li>
 </ul>
 <p>答：當然也可以採用這樣的方式來指定 php.ini 的位置，只是這裡我為了在 DOS 模式下也可以使用 D:\Appserv\php.ini ，所以才會利用 Registry 的方式。不然我們也可以在每次執行 DOS 底下的 PHP 時，使用以下指令：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="command">\&gt;</span> php -c d:<span class="command">\Appserv</span><span class="command">\ </span>test.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62; php -c d:\Appserv\ test.php</span><br></pre></td></tr></table></figure>
 <ul>
 <li>問：我用的是 Apache 2.2 ，照你的方法卻沒辦法安裝 PHP5 ？</li>
 </ul>
 <p>答： PHP 5.2 版以後有另外提供一個 php5apache2_2.dll 給 Apache 2.2 用，所以請將 LoadModule 部份改成：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">LoadModule</span> php5_module <span class="constant">D</span><span class="symbol">:/Appserv/php/php5apache2_2</span>.dll</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php5_module D:/Appserv/php/php5apache2_2.dll</span><br></pre></td></tr></table></figure>
 <p>如果是 PHP 5.1 以前的版本，請 &nbsp;Google 一下，有很多文件提到怎麼把 PHP 5.1 裝到 Apache 2.2 上。 </p>
 
       
@@ -299,7 +299,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -321,13 +321,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -343,15 +343,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

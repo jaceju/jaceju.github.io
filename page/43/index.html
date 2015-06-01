@@ -49,6 +49,43 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-03-09T16:00:00.000Z"><a href="/2007/03/10/163/">2007-03-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/03/10/163/">我也來實作 PHP mix-in 的概念</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>之前提過一篇 <a href="http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/">Prototype-based programming in PHP</a> ，後來在<a href="http://blog.roodo.com/rocksaying">石頭閒語</a>那裡也看到 <a href="http://blog.roodo.com/rocksaying/archives/2817003.html">PHP 實踐 mix-in 概念之可行性</a>，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限制就像石頭成所說的，所以我也不多提了。還是等 PHP7 的規格出來，看它會不會<a href="http://javaworld.com.tw/roller/page/ingramchen?entry=2007_1_1_WhyAddClosureInJava7">支援 closure</a> 好了  (要跟隨 Java 7 嗎？ XD) 。</p>
+<p>註： PHP 6 可能會實現的東西請參考 <a href="http://www.corephp.co.uk/archives/19-Prepare-for-PHP-6.html">Prepare for PHP 6</a> 。 </p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2007/03/10/163/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-03-07T16:00:00.000Z"><a href="/2007/03/08/161/">2007-03-08</a></time>
       
       
@@ -145,7 +182,7 @@
     <div class="entry">
       
         <p>我常會在頁面載入完成時，利用 window.load 來執行一些動作。基本的方式如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// Do something...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function ()&#10;&#123;&#10;    // Do something...&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>特別注意一點：如果直接把新動作附在 window.onload 的話，是會把前一個 window.onload 的動作給蓋掉的。</p>
 <p>不過如果現在有兩個動作都需要用到 window.onload ，而且其中一個我不想改動時該怎麼辦呢？ (例如是第三方函式庫裡的程式) </p>
       
@@ -346,7 +383,7 @@
     <div class="entry">
       
         <p>最近在一些維護一些舊專案裡的頁面，它們都已經採用了 XHTML 1.0 Transitional 。一個正確的 XHTML 1.0 Transitional 頁面的範例如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=big5"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>Page Title<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;Page Title&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;...&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>當然大部份頁面是符合的，不過我還是發現了一些問題；在這裡我把它們記下來，供往後開發時參考。</p>
       
     </div>
@@ -387,66 +424,6 @@
 <p>最近忙到不行，連寫點東西的時間都沒有…|||orz</p>
 <p>不過這邊推薦一篇由 <a href="http://www.ur-solution.com/" target="_blank" rel="external">shanchieh</a> 寫的文章，裡面詳細提到如何在 Debian (Linux) 安裝 Smarty ，比起我書裡面寫得還要深入，值得各位朋友參考。</p>
 <p>文章網址：<a href="http://www.ur-solution.com/?p=62" target="_blank" rel="external">安裝 Smarty 樣版引擎</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-01-02T16:00:00.000Z"><a href="/2007/01/03/152/">2007-01-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/01/03/152/">將資料和程式分離</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>有位 jocosn 網友問了一個我覺得很棒的問題，我把我的觀點提出來供大家參考。</p>
-<p>註：以下我會以引用區塊的方式來標示該網友的問題，然後以回答該問題的語氣說明。且基於本人龜毛的個性，也會把內容稍作排版。</p>
-<blockquote><br><br>如果我有一個 welcome.php，它的樣版檔是 welcome.tpl.htm，但是兩個檔案的編碼不相同，也就是 php 使用 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> ， tpl.htm 使用 <meta http-equiv="Content-Type" content="text/html; charset=big5">，結果螢幕顯示時會以  utf-8 編碼格式顯示 tpl.htm 檔案，必須再手動挑選 big5，請問這種情況有辦法解決嗎？還是程式這種架構有問題？<br><br>使用 big5 是因為 tpl.htm 檔案有用到 mailto，像這樣：<br><br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href='mailto:h...@yahoo.com.tw?subject=其他問題&amp;amp;body=問題描述：<span class="envvar">%0A%</span><span class="number">0</span>A<span class="envvar">%0A%</span><span class="number">0</span>A聯絡方式<span class="envvar">%0A地址：%</span><span class="number">0</span>A電話：<span class="envvar">%0A聯絡人：%</span><span class="number">0</span>A'&gt;寫信連絡&lt;/a&gt;</span><br></pre></td></tr></table></figure><br><br>如果改用 utf8，點下 mailto 開啟 outlook 6 會出現亂碼。所以採用 big5 才會正常顯示中文字。但是 php 檔案因有些部份未使用樣板處理一些簡單的小訊息 (如顯示”檔案建立成功”) ，所以採用 utf8，以免顯示中文像「功」字會出現問題。<br><br>像這種情況下，請問該怎麼處理，或是有更好的解決方式嗎？<br></blockquote>
-
-<p>事實上你的 template 還是可以用 utf-8 的，只不過有些地方要做一些手腳。</p>
-<p>在這之前，先給你一個觀念：把資料和程式分離。怎麼說呢？直接給你看例子好了：</p>
-<p>首先我把 mailto 會用到的中文字另存成一個 ini 檔：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="special">[</span>mailto<span class="special">]</span></span><br><span class="line">subject = "其他問題"</span><br><span class="line">body = "問題描述：<span class="command">\n</span><span class="command">\n</span><span class="command">\n</span><span class="command">\n</span>聯絡方式<span class="command">\n</span>地址：<span class="command">\n</span>電話：<span class="command">\n</span>聯絡人：<span class="command">\n</span>"</span><br></pre></td></tr></table></figure>
-<p>特別要注意的是，這個 ini 檔是用 <strong>big5</strong> 來存檔的。</p>
-<p>然後我在 index.php 裡把它載入：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$mailto</span> = parse_ini_file(<span class="string">'mailto.ini'</span>);</span><br><span class="line"><span class="variable">$subject</span> = urlencode(<span class="variable">$mailto</span>[<span class="string">'subject'</span>]);</span><br><span class="line"><span class="variable">$body</span> = str_replace(<span class="string">'%250A'</span>, <span class="string">'%0A'</span>, urlencode(str_replace(<span class="string">'\n'</span>, <span class="string">'%0A'</span>,  <span class="variable">$mailto</span>[<span class="string">'body'</span>])));</span><br><span class="line"><span class="keyword">include</span>(<span class="string">'template.php'</span>);</span></span><br></pre></td></tr></table></figure>
-<p>這邊要特別注意的是 php 檔是用 <strong>utf-8</strong> 來存檔 (事實上你也可以用 ANSI 來存) 。</p>
-<p>最後來看看 template.php ：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>測試 mailto<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"mailto:jxxxxxxxxx@gmail.com?subject=<span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$subject</span>; <span class="preprocessor">?&gt;</span></span>&amp;amp;body=<span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$body</span>; <span class="preprocessor">?&gt;</span></span>"</span>&gt;</span>寫信連絡<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>這裡一樣也是用 <strong>utf-8</strong> 存檔。</p>
-<p>執行它看看，跑出來的結果是不是符合你的需要呢？</p>
-<p>這裡就導出一個觀念了：<strong> PHP 在處理資料時，其程式檔案的編碼是不會影響資料本身的編碼的。</strong></p>
-<p>在上面的例子裡， parse_ini_file 取得的資料就是 mailto.ini 本身的編碼 (也就是 big5) ，而 PHP 也不會因為自己的檔案編碼是 utf-8 而改變 parse_ini_file 所取得的資料編碼。因此這時候的「其他問題」和「問題描述…」都能夠用在 template 上…</p>
-<p>不過等一下，如果你直接把 $mailto[‘subject’] 和 $mailto[‘body’] 套入 template.php 的話，那就慘了。為什麼呢？因為 big5 編碼的內容在 utf-8 編碼的網頁裡，瀏覽器不知道該怎麼解釋它們 (也就是一堆亂碼啦) 。所以這裡我們要利用 urlencode 這個函式，來將 big5 的文字做 URL 編碼。</p>
-<p>至於 \n 的部份只是個表示方式，實際上我們還是要手動將它換成 %0A (雖然我換的方式還滿醜的) 。</p>
-<p>當然不只是文字檔案，就連資料庫中取出的資料也是相同的道理。這點你可以參考我先前寫的 <a href="http://www.jaceju.net/blog/archives/116" target="_blank" rel="external">MySQL 中文編碼徹底研究</a>，裡面有詳細的內容。</p>
-<blockquote><br><br>再請問，如果用 smarty 時，php 檔案是不是應該儘量只有 php 程式碼？<br></blockquote>
-
-<p>依照上面的觀念，你認為我這裡會給什麼樣的答案呢？想想看吧 :)</p>
-<blockquote><br><br>另外 php 檔案存成 utf-8 或 big5 有差嗎？還是說網頁儘量不要存成 big5，以免特殊中文字會出現錯誤？<br><br>例如 php 檔案中像這樣 $mysmarty-&gt;assign(‘myVar1’,’許蓋功’) ，存成 big5，我在測試時，就會出現錯誤 Parse error: parse error, unexpected T_STRING<br></blockquote>
-
-<p>PHP 引擎會對 &lt;?php ?&gt; 裡面的特殊字元很敏感，所以上面的觀念一樣適用在這裡；當然如果是在 &lt;?php ?&gt; 外的話 (通常是 HTML ) 就沒問題了。</p>
-<p>希望上面的說明能讓你清楚相關的觀念 :)</p>
 
       
     </div>
@@ -506,7 +483,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -528,13 +505,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -550,15 +527,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

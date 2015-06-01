@@ -8,7 +8,7 @@
   
   <meta name="description" content="問題剛剛被問了一個 Cookie 的觀念，這邊簡單分享給大家。
 先來看以下這個程式，請問它第一次執行時結果是什麼？
-12setcookie(&#39;test&#39;, &#39;abc&#39;);var_dump($_COOKIE);
+1setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COOKIE);
 如果你回答的是空陣列的話，那就表示你瞭解 Cookie 的作用了。">
   
   
@@ -65,14 +65,14 @@
       
         <h2 id="問題">問題</h2><p>剛剛被問了一個 Cookie 的觀念，這邊簡單分享給大家。</p>
 <p>先來看以下這個程式，請問它第一次執行時結果是什麼？</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setcookie<span class="list">(<span class="quoted">'test</span>', <span class="quoted">'abc</span>')</span><span class="comment">;</span></span><br><span class="line">var_dump<span class="list">($_COOKIE)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setcookie(&#39;test&#39;, &#39;abc&#39;);&#10;var_dump($_COOKIE);</span><br></pre></td></tr></table></figure>
 <p>如果你回答的是空陣列的話，那就表示你瞭解 Cookie 的作用了。</p>
 <a id="more"></a>
 <h2 id="說明">說明</h2><p>當我們在使用 setcookie 這個函式時，其實是在告訴瀏覽器： <strong>Server 要在它身上註冊一個 cookie 變數，這個變數會在下次瀏覽器連到同一個網站時，被送到 Server 上。</strong></p>
 <p>所以第一次我們傾印 $_COOKIE 這個超全域陣列時是抓不到值的 (注意這個動作是在 Server 端) ，因為這時瀏覽器才剛認識 setcookie 丟出來的 test 變數。</p>
 <p>當第二次瀏覽同一個網站時，瀏覽器就會把記在自己身上的 cookie 丟回 Server (就像 POST 一樣) ，這時 Server (PHP) 才會知道 cookie 的內容，將它塞到 $_COOKIE 陣列裡。</p>
 <p>如果想要第一次執行就取得 $_COOKIE 的值，那麼就得利用 redirect 的方式來處理，如下：</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setcookie<span class="list">(<span class="quoted">'test</span>', <span class="quoted">'abc</span>')</span><span class="comment">;</span></span><br><span class="line">if <span class="list">(<span class="keyword">empty</span><span class="list">($_COOKIE)</span>)</span> header<span class="list">(<span class="quoted">'Location</span>: ./')</span><span class="comment">;</span></span><br><span class="line">var_dump<span class="list">($_COOKIE)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setcookie(&#39;test&#39;, &#39;abc&#39;);&#10;if (empty($_COOKIE)) header(&#39;Location: ./&#39;);&#10;var_dump($_COOKIE);</span><br></pre></td></tr></table></figure>
 <p>雖然這只是個小觀念，但希望能對大家在使用 Cookie 有進一步的瞭解。</p>
 
       
@@ -165,7 +165,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -187,13 +187,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -209,15 +209,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

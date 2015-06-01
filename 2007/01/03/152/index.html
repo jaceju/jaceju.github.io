@@ -64,18 +64,18 @@
       
         <p>有位 jocosn 網友問了一個我覺得很棒的問題，我把我的觀點提出來供大家參考。</p>
 <p>註：以下我會以引用區塊的方式來標示該網友的問題，然後以回答該問題的語氣說明。且基於本人龜毛的個性，也會把內容稍作排版。</p>
-<blockquote><br><br>如果我有一個 welcome.php，它的樣版檔是 welcome.tpl.htm，但是兩個檔案的編碼不相同，也就是 php 使用 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> ， tpl.htm 使用 <meta http-equiv="Content-Type" content="text/html; charset=big5">，結果螢幕顯示時會以  utf-8 編碼格式顯示 tpl.htm 檔案，必須再手動挑選 big5，請問這種情況有辦法解決嗎？還是程式這種架構有問題？<br><br>使用 big5 是因為 tpl.htm 檔案有用到 mailto，像這樣：<br><br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href='mailto:h...@yahoo.com.tw?subject=其他問題&amp;amp;body=問題描述：<span class="envvar">%0A%</span><span class="number">0</span>A<span class="envvar">%0A%</span><span class="number">0</span>A聯絡方式<span class="envvar">%0A地址：%</span><span class="number">0</span>A電話：<span class="envvar">%0A聯絡人：%</span><span class="number">0</span>A'&gt;寫信連絡&lt;/a&gt;</span><br></pre></td></tr></table></figure><br><br>如果改用 utf8，點下 mailto 開啟 outlook 6 會出現亂碼。所以採用 big5 才會正常顯示中文字。但是 php 檔案因有些部份未使用樣板處理一些簡單的小訊息 (如顯示”檔案建立成功”) ，所以採用 utf8，以免顯示中文像「功」字會出現問題。<br><br>像這種情況下，請問該怎麼處理，或是有更好的解決方式嗎？<br></blockquote>
+<blockquote><br><br>如果我有一個 welcome.php，它的樣版檔是 welcome.tpl.htm，但是兩個檔案的編碼不相同，也就是 php 使用 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> ， tpl.htm 使用 <meta http-equiv="Content-Type" content="text/html; charset=big5">，結果螢幕顯示時會以  utf-8 編碼格式顯示 tpl.htm 檔案，必須再手動挑選 big5，請問這種情況有辦法解決嗎？還是程式這種架構有問題？<br><br>使用 big5 是因為 tpl.htm 檔案有用到 mailto，像這樣：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;a href=&#39;mailto:h...@yahoo.com.tw?subject=&#20854;&#20182;&#21839;&#38988;&#38;amp;body=&#21839;&#38988;&#25551;&#36848;&#65306;%0A%0A%0A%0A&#32879;&#32097;&#26041;&#24335;%0A&#22320;&#22336;&#65306;%0A&#38651;&#35441;&#65306;%0A&#32879;&#32097;&#20154;&#65306;%0A&#39;&#62;&#23531;&#20449;&#36899;&#32097;&#60;/a&#62;</span><br></pre></td></tr></table></figure><br><br>如果改用 utf8，點下 mailto 開啟 outlook 6 會出現亂碼。所以採用 big5 才會正常顯示中文字。但是 php 檔案因有些部份未使用樣板處理一些簡單的小訊息 (如顯示”檔案建立成功”) ，所以採用 utf8，以免顯示中文像「功」字會出現問題。<br><br>像這種情況下，請問該怎麼處理，或是有更好的解決方式嗎？<br></blockquote>
 
 <p>事實上你的 template 還是可以用 utf-8 的，只不過有些地方要做一些手腳。</p>
 <p>在這之前，先給你一個觀念：把資料和程式分離。怎麼說呢？直接給你看例子好了：</p>
 <p>首先我把 mailto 會用到的中文字另存成一個 ini 檔：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="special">[</span>mailto<span class="special">]</span></span><br><span class="line">subject = "其他問題"</span><br><span class="line">body = "問題描述：<span class="command">\n</span><span class="command">\n</span><span class="command">\n</span><span class="command">\n</span>聯絡方式<span class="command">\n</span>地址：<span class="command">\n</span>電話：<span class="command">\n</span>聯絡人：<span class="command">\n</span>"</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[mailto]&#10;subject = &#34;&#20854;&#20182;&#21839;&#38988;&#34;&#10;body = &#34;&#21839;&#38988;&#25551;&#36848;&#65306;\n\n\n\n&#32879;&#32097;&#26041;&#24335;\n&#22320;&#22336;&#65306;\n&#38651;&#35441;&#65306;\n&#32879;&#32097;&#20154;&#65306;\n&#34;</span><br></pre></td></tr></table></figure>
 <p>特別要注意的是，這個 ini 檔是用 <strong>big5</strong> 來存檔的。</p>
 <p>然後我在 index.php 裡把它載入：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$mailto</span> = parse_ini_file(<span class="string">'mailto.ini'</span>);</span><br><span class="line"><span class="variable">$subject</span> = urlencode(<span class="variable">$mailto</span>[<span class="string">'subject'</span>]);</span><br><span class="line"><span class="variable">$body</span> = str_replace(<span class="string">'%250A'</span>, <span class="string">'%0A'</span>, urlencode(str_replace(<span class="string">'\n'</span>, <span class="string">'%0A'</span>,  <span class="variable">$mailto</span>[<span class="string">'body'</span>])));</span><br><span class="line"><span class="keyword">include</span>(<span class="string">'template.php'</span>);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$mailto = parse_ini_file(&#39;mailto.ini&#39;);&#10;$subject = urlencode($mailto[&#39;subject&#39;]);&#10;$body = str_replace(&#39;%250A&#39;, &#39;%0A&#39;, urlencode(str_replace(&#39;\n&#39;, &#39;%0A&#39;,  $mailto[&#39;body&#39;])));&#10;include(&#39;template.php&#39;);</span><br></pre></td></tr></table></figure>
 <p>這邊要特別注意的是 php 檔是用 <strong>utf-8</strong> 來存檔 (事實上你也可以用 ANSI 來存) 。</p>
 <p>最後來看看 template.php ：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>測試 mailto<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"mailto:jxxxxxxxxx@gmail.com?subject=<span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$subject</span>; <span class="preprocessor">?&gt;</span></span>&amp;amp;body=<span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$body</span>; <span class="preprocessor">?&gt;</span></span>"</span>&gt;</span>寫信連絡<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;&#28204;&#35430; mailto&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;mailto:jxxxxxxxxx@gmail.com?subject=&#60;?php echo $subject; ?&#62;&#38;amp;body=&#60;?php echo $body; ?&#62;&#34;&#62;&#23531;&#20449;&#36899;&#32097;&#60;/a&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>這裡一樣也是用 <strong>utf-8</strong> 存檔。</p>
 <p>執行它看看，跑出來的結果是不是符合你的需要呢？</p>
 <p>這裡就導出一個觀念了：<strong> PHP 在處理資料時，其程式檔案的編碼是不會影響資料本身的編碼的。</strong></p>
@@ -181,7 +181,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -203,13 +203,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -225,15 +225,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

@@ -68,18 +68,18 @@
 <a id="more"></a>
 <p>當然，問題並沒有這麼複雜，我們幾個決定暫時先冷靜下來，從最簡單的地方開始找起。</p>
 <p>結果我們看到了以下的 HTML 與 JavaScript ：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkForm</span> <span class="params">(fm)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ... 略</span></span><br><span class="line">    fm.submit();</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">form</span> <span class="attribute">name</span>=<span class="value">"form1"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">action</span>=<span class="value">"process.php"</span> <span class="attribute">onsubmit</span>=<span class="value">"checkForm(this);"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 略 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"submit"</span> <span class="attribute">value</span>=<span class="value">"送出"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;function checkForm (fm) &#123;&#10;    // ... &#30053;&#10;    fm.submit();&#10;    return false;&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;form name=&#34;form1&#34; method=&#34;post&#34; action=&#34;process.php&#34; onsubmit=&#34;checkForm(this);&#34;&#62;&#10;&#60;!-- &#30053; --&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;</span><br></pre></td></tr></table></figure>
 <p>不曉得大家看出什麼端倪沒有？答案就在 fm.submit 和 onsubmit 上面。</p>
 <p>問題有兩個：</p>
 <ul>
 <li>在 check function 裡，其實不應該去執行 submit 的動作，我們要很單純地回傳 true 或 false 值即可。</li>
 <li>在函式會回傳 true 或 false 值時， onsubmit 要做接收的動作，也就是以下這樣才是正確的寫法：</li>
 </ul>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">onsubmit=<span class="value"><span class="string">"return checkForm(this);"</span></span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onsubmit=&#34;return checkForm(this);&#34;</span><br></pre></td></tr></table></figure>
 <p>在 onsubmit 事件接收到 false 值之後，就會取消 submit 的動作，所以表單也就不會被送出。</p>
 <p>而原來的做法，因為 onsubmit 沒有收到函式的回傳的 false 值，因此它還是會乖乖的送出表單資料。但是在 checkForm 函式已經先行送出一次了，伺服端就會先執行一次新增的動作；所以第二次送出的資料就會造成重複的問題。</p>
 <p>有些人習慣在按下 submit button 去驗證表單資料，<del>這也沒什麼不可以，只要記住上面的原則即可。</del>例如：</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="variable">type=</span><span class="string">"submit"</span> <span class="variable">value=</span><span class="string">"送出"</span> <span class="variable">onclick=</span><span class="string">"return checkForm(this.form);"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; onclick=&#34;return checkForm(this.form);&#34; /&#62;</span><br></pre></td></tr></table></figure>
 <p><del>我們可以利用 this.form 來取得 submit button 所屬的表單，這樣一來按下送出鍵時，就會和上面的 onsubmit 做一樣的檢查動作。</del></p>
 <p><del>不過千萬不要在 form 標籤的 onsubmit 再做一次 checkForm ，那是沒有必要的。</del></p>
 <p>不過ㄚ凱幫我想到一件事：如果有人按下 Enter 鍵送出表單，利用 submit button 來檢驗表單的動作就沒用了。因此還是改用上面的 onsubmit 會比較好一點。</p>
@@ -174,7 +174,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -196,13 +196,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -218,15 +218,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

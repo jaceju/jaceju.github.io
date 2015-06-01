@@ -8,7 +8,7 @@
   
   <meta name="description" content="如果臨時想讓各家瀏覽器都能處理 DOM 事件，又不想寫太多跨瀏覽器事件處理程式或使用額外的 JS 框架時，以下的程式碼可以參考看看。
 註：這個方法是為了某些簡單的活動頁寫的，我想如果要做較為複雜的效果時，還是使用別人已經包裝好的函式庫比較好。
-1234567891011121314151617181">
+1&amp;#60;!DOCTYPE html PUBLIC &amp;">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -64,7 +64,7 @@
       
         <p>如果臨時想讓各家瀏覽器都能處理 DOM 事件，又不想寫太多跨瀏覽器事件處理程式或使用額外的 JS 框架時，以下的程式碼可以參考看看。</p>
 <p>註：這個方法是為了某些簡單的活動頁寫的，我想如果要做較為複雜的效果時，還是使用別人已經包裝好的函式庫比較好。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"</span><br><span class="line">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>Event Testing<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="cs"></span><br><span class="line">&lt;!-- &lt;![CDATA[</span><br><span class="line"><span class="function">function <span class="title">someHandler</span><span class="params">(e, t, arg1, arg2)</span> </span>&#123;</span><br><span class="line"><span class="keyword">var</span> event_info = document.getElementById(<span class="string">'event_info'</span>);</span><br><span class="line"><span class="keyword">var</span> dom_info = document.getElementById(<span class="string">'dom_info'</span>);</span><br><span class="line"><span class="keyword">var</span> <span class="keyword">params</span> = document.getElementById(<span class="string">'params'</span>);</span><br><span class="line">event_info.innerHTML = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> n <span class="keyword">in</span> e) &#123;</span><br><span class="line">event_info.innerHTML += <span class="string">'&lt;p&gt;&lt;strong&gt;'</span> + n +</span><br><span class="line"><span class="string">':&lt;'</span> + <span class="string">'/strong&gt; '</span> + e[n] + <span class="string">'&lt;'</span> + <span class="string">'/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line">dom_info.innerHTML = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> n <span class="keyword">in</span> t) &#123;</span><br><span class="line">dom_info.innerHTML += <span class="string">'&lt;p&gt;&lt;strong&gt;'</span> + n +</span><br><span class="line"><span class="string">':&lt;'</span> + <span class="string">'/strong&gt; '</span> + t[n] + <span class="string">'&lt;'</span> + <span class="string">'/p&gt;'</span>;    &#125;</span><br><span class="line"><span class="keyword">params</span>.innerHTML = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">params</span>.innerHTML += <span class="string">'&lt;p&gt;&lt;strong&gt;arg1:&lt;'</span> +</span><br><span class="line"><span class="string">'/strong&gt; '</span> + arg1 + <span class="string">'&lt;'</span> + <span class="string">'/p&gt;'</span>;</span><br><span class="line"><span class="keyword">params</span>.innerHTML += <span class="string">'&lt;p&gt;&lt;strong&gt;arg2:&lt;'</span> +</span><br><span class="line"><span class="string">'/strong&gt; '</span> + arg2 + <span class="string">'&lt;'</span> + <span class="string">'/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ]]&gt; --&gt;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"someHandler(event, this, 'param1', 'param2');</span><br><span class="line">return false;"</span>&gt;</span>Show the info by eventhanlder.<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h2</span>&gt;</span>Info of Event Object<span class="tag">&lt;/<span class="title">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"event_info"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h2</span>&gt;</span>The Params<span class="tag">&lt;/<span class="title">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"params"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;Event Testing&#60;/title&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!-- &#60;![CDATA[&#10;function someHandler(e, t, arg1, arg2) &#123;&#10;var event_info = document.getElementById(&#39;event_info&#39;);&#10;var dom_info = document.getElementById(&#39;dom_info&#39;);&#10;var params = document.getElementById(&#39;params&#39;);&#10;event_info.innerHTML = &#39;&#39;;&#10;for (var n in e) &#123;&#10;event_info.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;&#39; + n +&#10;&#39;:&#60;&#39; + &#39;/strong&#62; &#39; + e[n] + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;&#125;&#10;dom_info.innerHTML = &#39;&#39;;&#10;for (var n in t) &#123;&#10;dom_info.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;&#39; + n +&#10;&#39;:&#60;&#39; + &#39;/strong&#62; &#39; + t[n] + &#39;&#60;&#39; + &#39;/p&#62;&#39;;    &#125;&#10;params.innerHTML = &#39;&#39;;&#10;params.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;arg1:&#60;&#39; +&#10;&#39;/strong&#62; &#39; + arg1 + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;params.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;arg2:&#60;&#39; +&#10;&#39;/strong&#62; &#39; + arg2 + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;&#125;&#10;// ]]&#62; --&#62;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;#&#34; onclick=&#34;someHandler(event, this, &#39;param1&#39;, &#39;param2&#39;);&#10;return false;&#34;&#62;Show the info by eventhanlder.&#60;/a&#62;&#10;&#60;h2&#62;Info of Event Object&#60;/h2&#62;&#10;&#60;div id=&#34;event_info&#34;&#62;&#60;/div&#62;&#10;&#60;h2&#62;The Params&#60;/h2&#62;&#10;&#60;div id=&#34;params&#34;&#62;&#60;/div&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>主要的原理在於 HTML Tag 中 onxxxx 的屬性可以接受 event 這個關鍵字，而它就是瀏覽器的 Event 物件。所以我們就可以將 event 當做參數，傳給相關的 Event Handler 。</p>
 <p>另外這裡也利用 this 讓 Event Handler 可以知道是哪個 DOM 節點呼叫了它。 </p>
 <p>目前 W3C 標準與各家瀏覽器在 Event 物件上共同有的屬性如下：</p>
@@ -171,7 +171,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -193,13 +193,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -215,15 +215,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

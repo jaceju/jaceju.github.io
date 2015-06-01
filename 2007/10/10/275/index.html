@@ -9,8 +9,7 @@
   <meta name="description" content="遇到了一個 Subversion 的問題，記下來免得以後忘記。
 問題說明現在我有一個專案用到了 Zend Framework 和我自己維護的一個 MyLib 類別庫，而我想要讓它們都維持與官方 SVN 同步時怎麼做呢？
 假設專案目錄結構如下：
-1234app/lib/Zend/MyLib/
-現在我要">
+1app/&amp;#10;lib/&amp;#10;Zend/&amp;#10">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -67,13 +66,13 @@
         <p>遇到了一個 Subversion 的問題，記下來免得以後忘記。</p>
 <h2 id="問題說明">問題說明</h2><p>現在我有一個專案用到了 Zend Framework 和我自己維護的一個 MyLib 類別庫，而我想要讓它們都維持與官方 SVN 同步時怎麼做呢？</p>
 <p>假設專案目錄結構如下：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">app</span>/</span><br><span class="line">lib/</span><br><span class="line">Zend/</span><br><span class="line">MyLib/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/&#10;lib/&#10;Zend/&#10;MyLib/</span><br></pre></td></tr></table></figure>
 <p>現在我要讓 Zend 這個資料夾與 <a href="http://framework.zend.com/svn/framework/trunk/library/Zend" target="_blank" rel="external">http://framework.zend.com/svn/framework/trunk/library/Zend</a> 同步，而 MyLib 則是與 <a href="http://localhost/svn/mylib/trunk" target="_blank" rel="external">http://localhost/svn/mylib/trunk</a> 同步。</p>
 <h2 id="解決方案">解決方案</h2><p>Subversion 有個很用好的屬性稱為 svn:externals ，它可以用來指定讓某個目錄與外部的 SVN 同步，只是我之前僅會用到一個目錄的同步而已。例如我可以在 lib 目錄按下滑鼠右鍵，選擇 TortoiseSVN 的性質；然後在性質視窗建立一個 svn:externals 屬性，其值為： </p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;strong&gt;<span class="constant">Zend</span>&lt;<span class="regexp">/strong&gt; http:/</span><span class="regexp">/framework.zend.com/svn</span><span class="regexp">/framework/trunk</span><span class="regexp">/library/</span><span class="constant">Zend</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;strong&#62;Zend&#60;/strong&#62; http://framework.zend.com/svn/framework/trunk/library/Zend</span><br></pre></td></tr></table></figure>
 <p>粗體字即為目錄名稱，然後空一格後面接著外部 SVN 的位置。</p>
 <p>那麼如果要再多一個外部 SVN 的時候怎麼辦呢？我們只要在編輯原來的 svn:externals 屬性，並在原值的下方再加入新的設定值，也就是： </p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Zend </span><span class="symbol">http:</span>/<span class="regexp">/framework.zend.com/svn</span><span class="regexp">/framework/trunk</span><span class="regexp">/library/</span><span class="constant">Zend </span>(換行)</span><br><span class="line">&lt;strong&gt;<span class="constant">MyLib </span><span class="symbol">http:</span>/<span class="regexp">/localhost/svn</span><span class="regexp">/mylib/trunk</span> &lt;<span class="regexp">/strong&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Zend http://framework.zend.com/svn/framework/trunk/library/Zend (&#25563;&#34892;)&#10;&#60;strong&#62;MyLib http://localhost/svn/mylib/trunk &#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>即新增粗體字的部份即可。</p>
 <p>最後再利用 svn 更新一次，這樣就會讓 Zend 和 MyLib 資料夾和外部 SVN 同步了。 </p>
 
@@ -167,7 +166,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -189,13 +188,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -211,15 +210,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

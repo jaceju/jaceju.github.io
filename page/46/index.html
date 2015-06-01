@@ -49,6 +49,41 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2006-10-18T16:00:00.000Z"><a href="/2006/10/19/132/">2006-10-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2006/10/19/132/">IE7 for XP 釋出了</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>IE7 最終版本終於釋出了，不久後大概也會在 Windows Update 強迫大家安裝。</p>
+<p>文章網址：<a href="http://blogs.msdn.com/ie/archive/2006/10/18/internet-explorer-7-for-windows-xp-available-now.aspx" target="_blank" rel="external">Internet Explorer 7 for Windows XP Available Now</a></p>
+<p>不知這是令人高興還是悲哀的消息…</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2006-10-17T16:00:00.000Z"><a href="/2006/10/18/131/">2006-10-18</a></time>
       
       
@@ -137,11 +172,11 @@
 <p><img src="/resources/smarty_book/install_001.gif" alt=""></p>
 <p>這是因為 PHP 在 5.1 以後有個時區的設定 (date.timezone) ，會預設為美國時區。所以當我們的程式在執行時，就會出現上面的錯誤。</p>
 <p>正確的解決方式是在 PHP.INI 中指定正確的時區  (<a href="http://www.php.net/manual/en/timezones.php" target="_blank" rel="external">參考</a>) ，如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date<span class="class">.timezone</span> = Asia/Taipei</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date.timezone = Asia/Taipei</span><br></pre></td></tr></table></figure>
 <p>也可以在 ch03 目錄下放置一個 .htaccess ，內容如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value date<span class="class">.timezone</span> Asia/Taipei</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value date.timezone Asia/Taipei</span><br></pre></td></tr></table></figure>
 <p>或是在建立 Smarty 物件前，直接用 <a href="http://www.php.net/manual/en/function.date-default-timezone-set.php" target="_blank" rel="external">date_default_timezone_set()</a> 在程式直接指定時區： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date_default_timezone_<span class="built_in">set</span>(<span class="string">'Asia/Taipei'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date_default_timezone_set(&#39;Asia/Taipei&#39;);</span><br></pre></td></tr></table></figure>
 <p>然後 giorno 又發現一個<a href="http://blog.roodo.com/jaceju/archives/2237311.html#comment-3266913" target="_blank" rel="external">問題</a>，雖然我不太瞭解他的意思，不過為什麼在他回復程式後，第二次又可以執行這點我倒是可以解釋一下。</p>
 <p>這是因為第一次正常執行後， Smarty 就會在 templates_c 裡建立一個供 testSmartyInstall.php 用的暫存檔，所以第二次執行時，只要 testSmartyInstall.tpl.htm 沒有任何更動，那麼 Smarty 就會使用該暫存檔來執行。</p>
 <p>註：相關的運作流程可以查看拙作的第 2-3 頁。 </p>
@@ -391,46 +426,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2006-09-13T16:00:00.000Z"><a href="/2006/09/14/121/">2006-09-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2006/09/14/121/">[好站] IE7 RC1 in standalone mode</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>開發網站的我一直想試試 IE7 ，又擔心它還不穩定，而且也還不能把 IE6 移除，怎麼辦呢？</p>
-<p>在 <a href="http://www.simplebits.com/" target="_blank" rel="external">SimpleBits</a> 看到的 IE7 RC1 in standalone mode 可以讓我們不必移除 IE6 ，卻可以測試 IE7 的功能。</p>
-<p>網址： <a href="http://tredosoft.com/IE7_standalone" target="_blank" rel="external">IE7 RC1 in standalone mode</a></p>
-<p>連到上面的網頁後，把畫面拉到頁面中間部份，找到 Download Internet Explorer 7.0 RC1 Standalone Installer ( 428 KB + 14.59 MB for IE7) ，把 IE7S-setup.exe 下載回來安裝即可。</p>
-<p>註：安裝好後是英文版本。</p>
-<p>不過因為我把系統的 Theme 關掉了，所以看到的 IE7 實在是…有夠醜的…</p>
-<p><a href="/resources/ie7_standalone/1.jpg"><img src="/resources/ie7_standalone/1.jpg" alt="IE7 Standalone"></a> </p>
-<p>參考看看吧。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -474,7 +469,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -496,13 +491,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -518,15 +513,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

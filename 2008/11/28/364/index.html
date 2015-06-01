@@ -67,7 +67,7 @@
 <p><a href="http://www.fastcgi.com/dist/old/mod_fastcgi-2.4.2-AP20.dll" target="_blank" rel="external">http://www.fastcgi.com/dist/old/mod_fastcgi-2.4.2-AP20.dll</a></p>
 <p>下載回來後儲存到 Apache 安裝目錄的 modules 下。</p>
 <p>然後在 httpd.conf 加入以下設定：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># FastCGI Module</span></span><br><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> fastcgi_module modules/mod_fastcgi-2.4.2-AP20.dll</span><br><span class="line"><span class="tag">&lt;IfModule mod_fastcgi.c&gt;</span></span><br><span class="line"><span class="keyword">FastCgiServer</span> <span class="string">"D:/AppServ/php/php-cgi.exe"</span> -processes 3</span><br><span class="line"><span class="keyword">ScriptAlias</span> <span class="string">"/fcgi-bin/"</span> <span class="string">"D:/AppServ/php/"</span></span><br><span class="line"><span class="keyword">Action</span> php-fastcgi <span class="string">"/fcgi-bin/php-cgi.exe"</span></span><br><span class="line"><span class="keyword">AddType</span> application/x-httpd-php .php</span><br><span class="line"><span class="tag">&lt;/IfModule&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># FastCGI Module&#10;LoadModule fastcgi_module modules/mod_fastcgi-2.4.2-AP20.dll&#10;&#60;IfModule mod_fastcgi.c&#62;&#10;FastCgiServer &#34;D:/AppServ/php/php-cgi.exe&#34; -processes 3&#10;ScriptAlias &#34;/fcgi-bin/&#34; &#34;D:/AppServ/php/&#34;&#10;Action php-fastcgi &#34;/fcgi-bin/php-cgi.exe&#34;&#10;AddType application/x-httpd-php .php&#10;&#60;/IfModule&#62;</span><br></pre></td></tr></table></figure>
 <p>最後重新啟動 Apache 就可以了。</p>
 <p>經測試的結果，在 Virtual Host 也能正常動作。</p>
 <h2 id="各項設定簡單說明">各項設定簡單說明</h2><ul>
@@ -179,7 +179,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -201,13 +201,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -223,15 +223,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

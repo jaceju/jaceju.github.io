@@ -65,31 +65,31 @@
 <p>雖然筆者在《PHP Smarty 樣版引擎》中已經盡了最大的努力，但是難免還是會有疏漏之處。以下提供本書第一刷的勘誤修正表：</p>
 <a id="more"></a>
 <h3 id="封面及頁_2-3_第_1_行">封面及頁 2-3 第 1 行</h3><p>osCommerce 並沒有採用 Smarty ，應更正為 XT-Commerce 。 (感謝 domecc 讀者提供)</p>
-<h3 id="頁_2-6_第_15_行">頁 2-6 第 15 行</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">...</span>在第 <span class="number">6</span> 章將<span class="attribute">...</span></span><br></pre></td></tr></table></figure>
+<h3 id="頁_2-6_第_15_行">頁 2-6 第 15 行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...&#22312;&#31532; 6 &#31456;&#23559;...</span><br></pre></td></tr></table></figure>
 <p>應改為</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">...</span>在第 <span class="number">10</span> 章將<span class="attribute">...</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...&#22312;&#31532; 10 &#31456;&#23559;...</span><br></pre></td></tr></table></figure>
 <h3 id="頁_3-7_架構圖">頁 3-7 架構圖</h3><p>少了一層 Project ，正確如下： (感謝 yaue 讀者提供)</p>
 <p><img src="/resources/smarty_book/03-003.gif" alt="Smarty 類別架構圖"></p>
-<h3 id="頁_3-13_第_13_行">頁 3-13 第 13 行</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$tpl</span> <span class="subst">=</span> <span class="literal">new</span> Smarty();</span><br></pre></td></tr></table></figure>
+<h3 id="頁_3-13_第_13_行">頁 3-13 第 13 行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$tpl = new Smarty();</span><br></pre></td></tr></table></figure>
 <p>應改為</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$smarty</span> <span class="subst">=</span> <span class="literal">new</span> Smarty();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$smarty = new Smarty();</span><br></pre></td></tr></table></figure>
 <p>(感謝 chihwen 讀者提供)</p>
-<h3 id="頁_5-14_倒數第_4_行">頁 5-14 倒數第 4 行</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smarty_sample<span class="command">\templates</span><span class="command">\ch</span>05\07.htm</span><br></pre></td></tr></table></figure>
+<h3 id="頁_5-14_倒數第_4_行">頁 5-14 倒數第 4 行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smarty_sample\templates\ch05\07.htm</span><br></pre></td></tr></table></figure>
 <p>應加入 .tpl ：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smarty_sample\templates\ch05\<span class="number">07</span><span class="class">.tpl</span><span class="class">.htm</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smarty_sample\templates\ch05\07.tpl.htm</span><br></pre></td></tr></table></figure>
 <p>(感謝 domecc 讀者提供)</p>
 <h3 id="頁_5-16_第_5_行">頁 5-16 第 5 行</h3><p>如果找不到 plugin 時就會在 PHP 內建的函式尋找是否有定義該函式，但是這個規則對陣列則是例外。</p>
 <p>因為 Smarty 在處理陣列時，會另外用 _run_mod_handler 方法來處理，因此陣列相關函式就不適用以上的規則。</p>
 <p>但是我們還是可以透過 @ 這個操作符號來直接對陣列使用 PHP 內建的函式，如下：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="variable">$array</span>|<span class="variable">@count</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$array|@count&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="頁_6-2_下半頁_~_6-3_上半頁">頁 6-2 下半頁 ~ 6-3 上半頁</h3><p>if 標籤判斷式所支援修飾字的表格說明對應錯亂，正確如下：</p>
 <table class="list" cellspace="0" summary="if 標籤判斷式所支援修飾字的表格說明" width="100%"><br><tr><br><th>修飾字</th><br><th>替代語法</th><br><th>範例</th><br><th>語意</th><br><th>PHP 同等語法</th><br></tr><br><tr><br><td>==</td><br><td>eq</td><br><td>$a eq $b</td><br><td>等於</td><br><td>==</td><br></tr><br><tr><br><td>!=</td><br><td>ne, neq</td><br><td>$a neq $b</td><br><td>不等於</td><br><td>!=</td><br></tr><br><tr><br><td>&gt;</td><br><td>gt</td><br><td>$a gt $b</td><br><td>大於</td><br><td>&gt;</td><br></tr><br><tr><br><td>&lt;</td><br><td>lt</td><br><td>$a lt $b</td><br><td>小於</td><br><td>&lt;</td><br></tr><br><tr><br><td>&gt;=</td><br><td>gte, ge</td><br><td>$a ge $b</td><br><td>大於或等於</td><br><td>&gt;=</td><br></tr><br><tr><br><td>&lt;=</td><br><td>lte, le</td><br><td>$a le $b</td><br><td>小於或等於</td><br><td>&lt;=</td><br></tr><br><tr><br><td>===</td><br><td>$a === 0</td><br><td style="background: #CCC;">&nbsp;</td><br><td>值與型態皆相等</td><br><td>===</td><br></tr><br><tr><br><td>!</td><br><td>not</td><br><td>not $a</td><br><td>否定</td><br><td>!</td><br></tr><br><tr><br><td>%</td><br><td>mod</td><br><td>$a mod $b</td><br><td>取 $a 除以 $b 的餘數</td><br><td>%</td><br></tr><br><tr><br><td>is [not] div by</td><br><td>$a is not div by $b</td><br><td style="background: #CCC;">&nbsp;</td><br><td>$a 是否能被 $b 整除</td><br><td>$a % $b == 0</td><br></tr><br><tr><br><td>is [not] even</td><br><td>$a is not even</td><br><td style="background: #CCC;">&nbsp;</td><br><td>$a [非]偶數</td><br><td>$a % 2 == 0</td><br></tr><br><tr><br><td>is [not] odd</td><br><td>$a is not odd</td><br><td style="background: #CCC;">&nbsp;</td><br><td>$a [非]單數</td><br><td>$a % 2 != 0</td><br></tr><br><tr><br><td>is [not] even by</td><br><td>$a is not even by $b</td><br><td style="background: #CCC;">&nbsp;</td><br><td><em>註解</em></td><br><td>($a / $b) % 2 == 0</td><br></tr><br><tr><br><td>is [not] odd by</td><br><td>$a is not odd by $b</td><br><td style="background: #CCC;">&nbsp;</td><br><td>註解</td><br><td>($a / $b) % 2 != 0</td><br></tr><br></table>
 
 <p>(感謝 chihwen 讀者提供)</p>
 <h3 id="頁_7-12_第_3_行">頁 7-12 第 3 行</h3><p>第 3 行並非程式內容，而是檔案路徑名稱。</p>
-<h3 id="頁_11-3_第_18_行">頁 11-3 第 18 行</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">...</span>不過有幾種類型的 Pluging 則要透過<span class="attribute">...</span></span><br></pre></td></tr></table></figure>
+<h3 id="頁_11-3_第_18_行">頁 11-3 第 18 行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...&#19981;&#36942;&#26377;&#24190;&#31278;&#39006;&#22411;&#30340; Pluging &#21063;&#35201;&#36879;&#36942;...</span><br></pre></td></tr></table></figure>
 <p>應改為</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">...</span>不過有幾種類型的 Plugins 則要透過<span class="attribute">...</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...&#19981;&#36942;&#26377;&#24190;&#31278;&#39006;&#22411;&#30340; Plugins &#21063;&#35201;&#36879;&#36942;...</span><br></pre></td></tr></table></figure>
 <h3 id="頁_13-11_架構圖">頁 13-11 架構圖</h3><p>少了 plugins 資料夾，正確應為：</p>
 <p><img src="/resources/smarty_book/13-007.gif" alt="Smarty Blog 架構圖"></p>
 <h3 id="頁_17-33">頁 17-33</h3><p>MVC 的圖解錯誤，下圖為正確圖解：</p>
@@ -188,7 +188,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -210,13 +210,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -232,15 +232,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

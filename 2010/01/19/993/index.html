@@ -63,23 +63,23 @@
         <p>前陣子請同事教大家 JavaScript 物件導向的基礎，但講到存取 JavaScript 物件屬性的方式時，卻很可惜地沒有把它交代清楚，因此這裡我再自己做個補充。</p>
 <a id="more"></a>
 <h2 id="存取物件屬性方式">存取物件屬性方式</h2><p>JavaScript 有兩種方式可以用來存取物件屬性，假設我們有以下這個物件：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">   att1: <span class="string">'123'</span>,</span><br><span class="line">   att2: <span class="string">'456'</span>,</span><br><span class="line">   func1: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;&#125;,</span><br><span class="line">   func2: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var myObject = &#123;&#10;   att1: &#39;123&#39;,&#10;   att2: &#39;456&#39;,&#10;   func1: function () &#123;&#125;,&#10;   func2: function () &#123;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>第一種存取的方法是用 JavaScript 的物件屬性存取子「句點 (.) 」：</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert<span class="comment">(myObject.attr1)</span>;</span><br><span class="line">alert<span class="comment">(myObject.attr2)</span>;</span><br><span class="line">myObject.fu<span class="label">nc1</span><span class="comment">()</span>;</span><br><span class="line">myObject.fu<span class="label">nc2</span><span class="comment">()</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(myObject.attr1);&#10;alert(myObject.attr2);&#10;myObject.func1();&#10;myObject.func2();</span><br></pre></td></tr></table></figure>
 <p>第二種方法是利用關聯索引來存取：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(myObject['attr1']);</span><br><span class="line">alert(myObject['attr2']);</span><br><span class="line">myObject[<span class="link_label">'func1'</span>](<span class="link_url"></span>);</span><br><span class="line">myObject[<span class="link_label">'func2'</span>](<span class="link_url"></span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(myObject[&#39;attr1&#39;]);&#10;alert(myObject[&#39;attr2&#39;]);&#10;myObject[&#39;func1&#39;]();&#10;myObject[&#39;func2&#39;]();</span><br></pre></td></tr></table></figure>
 <p>然後我問同事，為什麼要有第二種方法？他卻沒辦法回答，著實讓我嚇了一跳。</p>
 <h2 id="動態存取">動態存取</h2><p>假設今天我們要依序找出 myObject 物件裡的各項屬性，可以用以下的方法：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> attrName <span class="keyword">in</span> myObject) &#123;</span><br><span class="line">    alert(attrName + <span class="string">':'</span> + 每個項目的值);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (var attrName in myObject) &#123;&#10;    alert(attrName + &#39;:&#39; + &#27599;&#20491;&#38917;&#30446;&#30340;&#20540;);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這裡 attrName 會依序是 attr1, attr2, func1, func2 ，那麼我們怎麼抓到每個項目的值呢？</p>
 <p>聰明的你應該想到了，就是用第二種方法：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> attrName <span class="keyword">in</span> myObject) &#123;</span><br><span class="line">    alert(attrName + <span class="string">':'</span> + myObject[attrName]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (var attrName in myObject) &#123;&#10;    alert(attrName + &#39;:&#39; + myObject[attrName]);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>在這裡 attrName 會自動轉型成字串，用來當做關聯索引的值，也讓我們能夠存取到 myObject 物件裡對應的資訊。</p>
 <p>那為什麼不能用第一種方法呢？</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> attrName <span class="keyword">in</span> myObject) &#123;</span><br><span class="line">    alert(attrName + <span class="string">':'</span> + myObject.attrName); <span class="comment">// myObject.attrName 可以嗎？</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (var attrName in myObject) &#123;&#10;    alert(attrName + &#39;:&#39; + myObject.attrName); // myObject.attrName &#21487;&#20197;&#21966;&#65311;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>因為 JavaScript 規定在句點後面不能接上一個變數，所以如果我們用 myObject.attrName 的話，會被 JavaScript 解釋成要存取 myObject 的 attrName 屬性。</p>
 <h2 id="儘可能別用_eval">儘可能別用 eval</h2><p>在同事似懂非懂後，他反問我，為什麼不用 eval ：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> attrName <span class="keyword">in</span> myObject) &#123;</span><br><span class="line">    alert(attrName + <span class="string">':'</span> + <span class="built_in">eval</span>(<span class="string">'myObject.'</span> + attrName));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (var attrName in myObject) &#123;&#10;    alert(attrName + &#39;:&#39; + eval(&#39;myObject.&#39; + attrName));&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>其實原因很簡單：一來 eval 會拖慢速度，寫起來也不方便；二來既然 JavaScript 已經提供關聯索引的方式，就不需要再用 eval 這種 evil 的函式了。</p>
 <h2 id="心得">心得</h2><p>在上完課之後，同事又問我：他不懂，為什麼要技術要這麼地深入？不是夠用就好了嗎？</p>
 <p>我回答他：如果我們一輩子想當個半調子的程式設計師，的確是不用學這麼多。但優秀的開發者都應該思考怎麼讓自己的技術更加精進，瞭解並善用自己手邊的工具。</p>
@@ -177,7 +177,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -199,13 +199,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -221,15 +221,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

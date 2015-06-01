@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>自動測試與 TDD 實務開發 - 上課心得 (下) | 網站製作學習誌</title>
+  <meta name="author" content="Jace Ju">
+  
+  <meta name="description" content="第三週是這門課程的最後一堂課，上完課的我心裡其實有很大的衝擊，一直不知道該怎麼整理這最後的心得；就好像美妙的音樂感動了你的心靈，但自己一時之間卻很難重現那樣的弦律。
+前兩週講師介紹了單元測試基礎以及如何重構舊有程式之後，但我們依舊面臨了一個很大的問題，那就是：「我們寫出來的程式，不見得就是我們所想的；而就算符合我們想的，也不見得是需求要的。」
+1&amp;#12300;&amp;#22079;&amp;#65281;&amp;#20320;&amp;#27794;&amp;#30561;&amp;#22909;&amp;#21966;&amp;#65311;&amp;#19978;&amp;#26143;&amp;#26399;&amp;#25552;&amp;#30340;&amp;#25628;&amp;#23563;&amp;#21151;&amp;#33021;&amp;#20320;&amp;#25033;&amp;#35442;&amp;#23436;&amp;#25104;&amp;#20102;&amp;#21543;&amp;#65311;&amp;#12301;&amp;#10;&amp;#12300;&amp;#21999;&amp;#65292;&amp;#25105;&amp;#26152;&amp;#22825;&amp;#21152;&amp;#29677;&amp;#23436;&amp;#25104;&amp;#20102;&amp;#65292;&amp;#36996;&amp;#21152;&amp;#19978;&amp;#20102;&amp;#28204;&amp;#35430;&amp;#65292;&amp;#25033;&amp;#35442;&amp;#24456;&amp;#23436;&amp;#32654;&amp;#65292;&amp;#20320;&amp;#35430;&amp;#35430;&amp;#12290;&amp;#12301;&amp;#10;&amp;#10;&amp;#19981;&amp;#20037;&amp;#24460;...&amp;#10;&amp;#10;&amp;#12300;&amp;#24590;&amp;#40636;&amp;#25105;&amp;#25628;&amp;#23563;&amp;#12302;&amp;#29305;&amp;#20729;&amp;#12303;&amp;#36889;&amp;#20491;&amp;#23383;&amp;#65292;&amp;#27794;&amp;#26377;&amp;#20986;&amp;#29694;&amp;#29305;&amp;#20729;&amp;#21830;&amp;#21697;&amp;#30340;&amp;#39006;&amp;#21029;&amp;#38913;&amp;#65311;&amp;#12301;&amp;#10;&amp;#12300;&amp;#19981;&amp;#26159;&amp;#21543;&amp;#65311;&amp;#25628;&amp;#23563;&amp;#32080;&amp;#26524;&amp;#25033;&amp;#35442;&amp;#26159;&amp;#29544;&amp;#31435;&amp;#30340;&amp;#25628;&amp;#23563;&amp;#21015;&amp;#34920;&amp;#21568;&amp;#65281;&amp;#36889;&amp;#19981;&amp;#26159; common sense &amp;#21966;&amp;#65311;&amp;#12301;&amp;#10;&amp;#12300;&amp;#19981;&amp;#23565;&amp;#19981;&amp;#23565;&amp;#65292;&amp;#20320;&amp;#25033;&amp;#35442;&amp;#22312;&amp;#25105;&amp;#25628;&amp;#23563;&amp;#12302;&amp;#29305;&amp;#20729;&amp;#12303;&amp;#30340;&amp;#26178;&amp;#20505;&amp;#65292;&amp;#30452;&amp;#25509;&amp;#23566;&amp;#21040;&amp;#29305;&amp;#20729;&amp;#21830;&amp;#21697;&amp;#38913;&amp;#23601;&amp;#22909;&amp;#20102;&amp;#12290;&amp;#12301;&amp;#10;&amp;#12300;&amp;#38752;&amp;#65281;&amp;#36889;&amp;#20841;&amp;#22238;&amp;#20107;&amp;#21543;&amp;#65311;&amp;#32780;&amp;#19988;&amp;#20320;&amp;#32102;&amp;#30340;&amp;#30340;&amp;#38656;&amp;#27714;&amp;#21482;&amp;#26377;&amp;#25628;&amp;#23563;&amp;#21830;&amp;#21697;&amp;#32780;&amp;#24050;&amp;#65292;&amp;#21097;&amp;#19979;&amp;#30340;&amp;#35201;&amp;#25105;&amp;#33258;&amp;#24049;&amp;#33126;&amp;#35036;&amp;#21908;&amp;#65311;&amp;#12301;
+如果這種戲碼常常在辦公室上演的話，浪費的可不只是開發人員的時間呀！面對不清不楚的需求，或是雙方對需求的認知上有所誤解，甚至開發人員「善意地」加入根本不在需求裡的程式碼，這些問題都將可能拖垮整個專案的進度！
+所以最後一週，講師為我們帶來了整套課程的高潮：不僅僅是以規格來完成程式碼，更能用規格來自動驗證你的程式碼！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="自動測試與 TDD 實務開發 - 上課心得 (下)"/>
+  <meta property="og:site_name" content="網站製作學習誌"/>
+
+  
+    <meta property="og:image" content="http://i.imgur.com/LmHuRXl.jpg"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">網站製作學習誌</a></h1>
+  <h2><a href="/">記錄在開發網站時所學的一切</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-31T02:10:10.000Z"><a href="/2015/05/31/skilltree-tdd-3/">2015-05-31</a></time>
+      
+      
+  
+    <h1 class="title">自動測試與 TDD 實務開發 - 上課心得 (下)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>第三週是這門課程的最後一堂課，上完課的我心裡其實有很大的衝擊，一直不知道該怎麼整理這最後的心得；就好像美妙的音樂感動了你的心靈，但自己一時之間卻很難重現那樣的弦律。</p>
+<p>前兩週講師介紹了<a href="http://jaceju.net/2015/05/17/skilltree-tdd/">單元測試基礎</a>以及<a href="http://jaceju.net/2015/05/23/skilltree-tdd-2/">如何重構舊有程式</a>之後，但我們依舊面臨了一個很大的問題，那就是：「我們寫出來的程式，不見得就是我們所想的；而就算符合我們想的，也不見得是需求要的。」</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#12300;&#22079;&#65281;&#20320;&#27794;&#30561;&#22909;&#21966;&#65311;&#19978;&#26143;&#26399;&#25552;&#30340;&#25628;&#23563;&#21151;&#33021;&#20320;&#25033;&#35442;&#23436;&#25104;&#20102;&#21543;&#65311;&#12301;&#10;&#12300;&#21999;&#65292;&#25105;&#26152;&#22825;&#21152;&#29677;&#23436;&#25104;&#20102;&#65292;&#36996;&#21152;&#19978;&#20102;&#28204;&#35430;&#65292;&#25033;&#35442;&#24456;&#23436;&#32654;&#65292;&#20320;&#35430;&#35430;&#12290;&#12301;&#10;&#10;&#19981;&#20037;&#24460;...&#10;&#10;&#12300;&#24590;&#40636;&#25105;&#25628;&#23563;&#12302;&#29305;&#20729;&#12303;&#36889;&#20491;&#23383;&#65292;&#27794;&#26377;&#20986;&#29694;&#29305;&#20729;&#21830;&#21697;&#30340;&#39006;&#21029;&#38913;&#65311;&#12301;&#10;&#12300;&#19981;&#26159;&#21543;&#65311;&#25628;&#23563;&#32080;&#26524;&#25033;&#35442;&#26159;&#29544;&#31435;&#30340;&#25628;&#23563;&#21015;&#34920;&#21568;&#65281;&#36889;&#19981;&#26159; common sense &#21966;&#65311;&#12301;&#10;&#12300;&#19981;&#23565;&#19981;&#23565;&#65292;&#20320;&#25033;&#35442;&#22312;&#25105;&#25628;&#23563;&#12302;&#29305;&#20729;&#12303;&#30340;&#26178;&#20505;&#65292;&#30452;&#25509;&#23566;&#21040;&#29305;&#20729;&#21830;&#21697;&#38913;&#23601;&#22909;&#20102;&#12290;&#12301;&#10;&#12300;&#38752;&#65281;&#36889;&#20841;&#22238;&#20107;&#21543;&#65311;&#32780;&#19988;&#20320;&#32102;&#30340;&#30340;&#38656;&#27714;&#21482;&#26377;&#25628;&#23563;&#21830;&#21697;&#32780;&#24050;&#65292;&#21097;&#19979;&#30340;&#35201;&#25105;&#33258;&#24049;&#33126;&#35036;&#21908;&#65311;&#12301;</span><br></pre></td></tr></table></figure>
+<p>如果這種戲碼常常在辦公室上演的話，浪費的可不只是開發人員的時間呀！面對不清不楚的需求，或是雙方對需求的認知上有所誤解，甚至開發人員「善意地」加入根本不在需求裡的程式碼，這些問題都將可能拖垮整個專案的進度！</p>
+<p>所以最後一週，講師為我們帶來了整套課程的高潮：不僅僅是以規格來完成程式碼，更能<strong>用規格來自動驗證你的程式碼！</strong></p>
+<a id="more"></a>
+<h2 id="測試驅動了開發，那什麼驅動了測試？">測試驅動了開發，那什麼驅動了測試？</h2><p>自從大師們對 TDD 進行一場論戰後，很多人發現自己誤解了 TDD 的真義，那就是：所謂的測試驅動從來不是為了「讓系統因為有寫測試而顯得專業」或是「儘可能寫出完美而獨立的測試程式」，而是「從有目標的測試中來完成程式碼」。</p>
+<p>TDD 雖然能驅動著開發者專注在測試所在乎的目標上，讓程式碼不會有過度設計的問題；但當目標錯誤的話，即便測試寫得再完整也是白搭。然而測試的目標到底是什麼呢？想當然爾就是我們的需求規格；不過這兩者之間還是存在著巨大的門檻，所以我們要面對的問題是：到底要怎麼讓需求轉換成測試的目標？而且隨著需求不斷地成長，也要能驅動我們的測試持續演進？</p>
+<h2 id="需求該如何描述？">需求該如何描述？</h2><p>「網站這麼大，使用者很難一下子就找到他們要的商品，我們是不是應該有個搜尋商品的功能？」當客戶提出這樣的需求時，他們通常不明白也不需要明白程式是怎麼做的 (他們只知道這樣的描述可以讓工程師累垮) 。為了避免客戶與工程師之間有認知上的落差，專案負責人 (PO, Product Owner) 可能就會想辦法生出一大堆文件，來描述詳細的系統規格。</p>
+<p>然而我們都知道在大環境的變化下，需求可能會被改得面目全非，先前寫好的文件已然成為一堆廢紙。為了不要大家做白工，敏捷開發提出了 User Stories 這個方式，讓真正有價值的需求能被先簡約地描述出來，而不是一開始就陷在文件地獄裡。</p>
+<p>通常一個 User Story 可以用以下的格式來描述：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">As a &#60;role&#62;, I want to &#60;action&#62; because of &#60;business value&#62;.&#10;(&#12300;&#26576;&#20491;&#35282;&#33394;&#12301;&#21487;&#20197;&#12300;&#20570;&#26576;&#20214;&#20107;&#12301;&#20358;&#24471;&#21040;&#12300;&#26377;&#21830;&#26989;&#20729;&#20540;&#30340;&#32080;&#26524;&#12301;)</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#12300;&#20351;&#29992;&#32773;&#12301;&#21487;&#20197;&#12300;&#36664;&#20837;&#38364;&#37749;&#23383;&#12301;&#20358;&#12300;&#25214;&#20986;&#31449;&#20839;&#30340;&#21830;&#21697;&#12301;</span><br></pre></td></tr></table></figure>
+<p>這樣就是一個 User Story ，它明白地指出需求的目標是什麼，而不會包含技術細節。基本上，我們可以把 User Story 想成是用來確認產品功能的大綱，實作細節可以在之後補上，就不會因為需求的變化而浪費大家的時間。更詳細的 User Story 介紹可以參考以下文章：</p>
+<ul>
+<li><a href="https://ihower.tw/blog/archives/2090" target="_blank" rel="external">User Stories (1) 什麼是 User Story? by ihower</a> (結果這系列好像富奸在 2010 年了…)</li>
+<li><a href="http://kojenchieh.pixnet.net/blog/post/386322818" target="_blank" rel="external">撰寫使用者故事常見的問題 by David Ko</a></li>
+</ul>
+<p>當然只靠 User Story 的描述對開發者來說是不友善的，所以我們需要靠一些方法讓 User Story 和我們的程式有所繫結；也就是說我們要從 User Story 中找出更詳細的規格，進而整合到前面 TDD 的測試目標裡。當通過了以規格所建立出來的測試，我們的程式碼也才真正地符合需求。</p>
+<p>為了能達到開發、測試與需求三位一體的目標，所以 <a href="http://goo.gl/gyuAWY" target="_blank" rel="external">BDD - Behavior Driven Development (行為驅動開發)</a> 就誕生了。</p>
+<h2 id="告訴我，這個功能會怎麼被使用">告訴我，這個功能會怎麼被使用</h2><p>BDD 定義了需求方如何撰寫 User Story ，以及開發人員如何把 User Story 轉換成測試；所以 BDD 的重點並不是測試，而是在定義需求的規格。 BDD 在不同的程式語言中都有實作，例如：</p>
+<ul>
+<li><a href="http://jbehave.org/" target="_blank" rel="external">JBehave</a> - Java 上的 BDD 框架，同時也是最早的 BDD 框架。</li>
+<li><a href="http://rspec.info/" target="_blank" rel="external">RSpec</a> - Ruby 上的 BDD 框架，使用 ruby 來直接描述規格。</li>
+<li><a href="http://www.phpspec.net/" target="_blank" rel="external">PHPSpec</a> - PHP 上的 BDD 框架，使用 php 來直接描述規格。</li>
+<li><a href="https://cucumber.io/" target="_blank" rel="external">Cucumber</a> - 一個用 Ruby 寫的 BDD 框架，後來因為推出 Cucumber-JVM 後，讓其他 JVM-based 語言也可以使用。它的特色是用文字格式的規格檔案來執行測試，後來就變成了一個業界非成文的標準，後來有<a href="https://cucumber.io/docs#cucumber-implementations" target="_blank" rel="external">很多 BDD 框架</a>就參考它的運作方式來實作了。</li>
+<li><a href="http://www.specflow.org/" target="_blank" rel="external">SpecFlow</a> - .Net 上的 Cucumber 實作，同時也是這次上課所使用的框架。</li>
+<li><a href="http://behat.org/" target="_blank" rel="external">Behat</a> - PHP 上的 Cucumber 實作。</li>
+</ul>
+<p>Cucumber 利用 <a href="https://github.com/cucumber/cucumber/wiki/Gherkin" target="_blank" rel="external">Gherkin</a> 語法來描述需求規格，所以前面的 User Story 就會變成一個 feature 檔：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># features/products_searching&#10;&#10;Feature: &#20351;&#29992;&#32773;&#21487;&#20197;&#36664;&#20837;&#38364;&#37749;&#23383;&#20358;&#25214;&#20986;&#31449;&#20839;&#30340;&#21830;&#21697;&#10;    In order to &#25214;&#20986;&#25351;&#23450;&#30340;&#21830;&#21697;&#10;    As a &#20351;&#29992;&#32773;&#10;    I want to &#36664;&#20837;&#38364;&#37749;&#23383;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>註：這裡我不會用課程裡的範例，一是我希望自己是真的理解了 BDD ，所以自己試著如何去應用；二是課程裡的範例更加有挑戰性，我不想破了講師的哏。</li>
+</ul>
+<p>接著要定義出這個需求的使用場景，也就是更明確地說明這個需求的功能「要怎麼被使用」，我們稱為 Scenario 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scenario: &#25628;&#23563; &#34;iphone&#34; &#65292;&#25214;&#20986;&#30340;&#21830;&#21697;&#21253;&#21547;&#20102; 5 &#20491;&#21517;&#31281;&#20013;&#31526;&#21512; &#34;iphone&#34; &#30340;&#21830;&#21697;&#10;    Given &#22312;&#25628;&#23563;&#36664;&#20837;&#26694;&#20013;&#36664;&#20837; &#34;iphone&#34;&#10;    When &#25105;&#25353;&#19979;&#25628;&#23563;&#25353;&#37397;&#10;    Then &#22312;&#25628;&#23563;&#38913;&#24471;&#21040; 5 &#20491;&#21517;&#31281;&#20013;&#31526;&#21512; &#34;iphone&#34; &#30340;&#21830;&#21697;&#10;&#10;Scenario: &#25628;&#23563; &#34;&#29305;&#20729;&#34; &#65292;&#26371;&#23566;&#21521;&#29305;&#20729;&#21830;&#21697;&#27963;&#21205;&#38913;&#10;    Given &#22312;&#25628;&#23563;&#36664;&#20837;&#26694;&#20013;&#36664;&#20837; &#34;&#29305;&#20729;&#34;&#10;    When &#25105;&#25353;&#19979;&#25628;&#23563;&#25353;&#37397;&#10;    Then &#23566;&#21521;&#29305;&#20729;&#21830;&#21697;&#27963;&#21205;&#38913;</span><br></pre></td></tr></table></figure>
+<p>每個 Scenario 都是一條完整的功能執行路徑，只要有路徑分叉 (例如 <code>if</code> 判斷) 的話，就要有不同的 Scenario 。其中 Given-When-Then 就是用來描述一個 Scenario 的三要角，它們組合起來的意思是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20551;&#23450; (Given) &#22312;&#26576;&#20491;&#26781;&#20214;&#19979;&#65292;&#30070; (When) &#25105;&#20570;&#20102;&#26576;&#20491;&#21205;&#20316;&#65292;&#28982;&#24460; (Then) &#23601;&#26371;&#30332;&#29983;&#20160;&#40636;&#32080;&#26524;&#12290;</span><br></pre></td></tr></table></figure>
+<p>是不是有種既視感？沒錯！ Given-When-Then 剛好對應到 3A 原則的： Arrange-Act-Assert ，所以 Scenario 可以被轉換成測試！</p>
+<h3 id="我想用中文">我想用中文</h3><p>前面在 feature 檔案保留英文單字，是為了讓 Gherkin 的語法解釋器能夠辨別；如果不喜歡這種寫法，也可以用中文，只要在檔案開頭加上 <code># language: zh-TW</code> 就可以。</p>
+<p>然後原來的 feature 檔就可以改成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># features/product_searching.feature&#10;# language: zh-TW&#10;&#10;&#21151;&#33021;: &#20351;&#29992;&#32773;&#21487;&#20197;&#36664;&#20837;&#38364;&#37749;&#23383;&#20358;&#25214;&#20986;&#31449;&#20839;&#30340;&#21830;&#21697;&#10;    &#28858;&#20102; &#25214;&#20986;&#25351;&#23450;&#30340;&#21830;&#21697;&#10;    &#36523;&#28858; &#34;&#20351;&#29992;&#32773;&#34;  # &#35387;&#65306;&#36889;&#35041;&#20197;&#12300;&#32773;&#12301;&#32080;&#23614;&#30340;&#35441;&#22312; behat &#35041;&#26371;&#35722;&#20098;&#30908;&#65292;&#25152;&#20197;&#29305;&#21029;&#34389;&#29702;&#10;    &#25105;&#35201; &#36664;&#20837;&#38364;&#37749;&#23383;&#10;&#10;&#22580;&#26223;: &#25628;&#23563; &#34;iphone&#34; &#65292;&#25214;&#20986;&#30340;&#21830;&#21697;&#21253;&#21547;&#20102; 5 &#20491;&#21517;&#31281;&#20013;&#31526;&#21512; &#34;iphone&#34; &#30340;&#21830;&#21697;&#10;    &#20551;&#23450; &#22312;&#25628;&#23563;&#36664;&#20837;&#26694;&#20013;&#36664;&#20837; &#34;iphone&#34;&#10;    &#30070; &#25105;&#25353;&#19979;&#25628;&#23563;&#25353;&#37397;&#10;    &#37027;&#40636; &#22312;&#25628;&#23563;&#38913;&#24471;&#21040; 5 &#20491;&#21517;&#31281;&#20013;&#31526;&#21512; &#34;iphone&#34; &#30340;&#21830;&#21697;&#10;&#10;&#22580;&#26223;: &#25628;&#23563; &#34;&#29305;&#20729;&#34; &#65292;&#26371;&#23566;&#21521;&#29305;&#20729;&#21830;&#21697;&#27963;&#21205;&#38913;&#10;    &#20551;&#23450; &#22312;&#25628;&#23563;&#36664;&#20837;&#26694;&#20013;&#36664;&#20837; &#34;&#29305;&#20729;&#34;&#10;    &#30070; &#25105;&#25353;&#19979;&#25628;&#23563;&#25353;&#37397;&#10;    &#37027;&#40636; &#23566;&#21521;&#29305;&#20729;&#21830;&#21697;&#27963;&#21205;&#38913;</span><br></pre></td></tr></table></figure>
+<p>註：這裡因為我是用 Behat ，所以關鍵字的部份是採用 Behat 的語法 (可以用 <code>behat --story-syntax --lang zh-TW</code> 看到範例) 。</p>
+<h2 id="讓測試程式跟著需求跑">讓測試程式跟著需求跑</h2><p>課程裡是使用 SpecFlow ，這裡我改用 Behat 來練習。先在專案裡面初始化 Behat 的執行環境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">behat --init</span><br></pre></td></tr></table></figure>
+<p>它會產生一個 <code>features/bootstrap/FeatureContext.php</code> ，而它就是連繫 feature 和測試的關鍵。</p>
+<p>建立一個 <code>features/products_searching.feature</code> 檔，然後把前面定義的 featrue 內容貼上去，接著再執行 <code>behat</code> 指令就會得到以下輸出內容：</p>
+<p><img src="/resources/skilltree-tdd/behat-01.png" alt="Behat 執行結果"></p>
+<p>可以看到 Behat 把 feature 檔裡的 Given-When-Then 都變成了方法，它們稱為 Step Definition 。 Step Definition 是可以被重複使用的，所以可以看到兩個 Scenario 共用了其中兩個方法。不過因為 PHP 不支援用中文當做方法名稱，因此 Behat 幫我們用很奇怪的拼音組成方法名稱。</p>
+<p>把 Behat 產生的方法複製到 <code>FeatureContext.php</code> 裡，然後把方法名稱改成易懂的英文，例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ... 略 ...</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FeatureContext</span> <span class="keyword">implements</span> <span class="title">Context</span>, <span class="title">SnippetAcceptingContext</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@Given</span> 在搜尋輸入框中輸入 :arg1</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">typingInSearchField</span><span class="params">(<span class="variable">$arg1</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> PendingException();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@When</span> 我按下搜尋按鈕</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">iEnterSearchButton</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> PendingException();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@Then</span> 在搜尋頁得到 :arg2 個名稱中符合 :arg1 的商品</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getProductsThatIncludeInNameOnResultPage</span><span class="params">(<span class="variable">$arg1</span>, <span class="variable">$arg2</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> PendingException();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@Then</span> 導向特價商品活動頁</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">redirectToPageOfSpecialOffer</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> PendingException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下來再執行一次 <code>behat</code> ，就會看到 Behat 要我們一步一步完成測試碼：</p>
+<p><img src="/resources/skilltree-tdd/behat-02.png" alt="Behat 執行結果"></p>
+<p>這實在是太酷了！現在我們已經讓測試跟規格文件繫結在一起，想要增加需求或修改需求，就是更改測試步驟。而且 Scenario 之間通常只是一兩個步驟的變化，所有已經測試過的步驟都可以重覆利用；而我們要做的就是隨著增長的規格，補上新增的 Step Definition 就可以！</p>
+<p>至於怎麼寫測試呢？其實就和單元測試很像，只不過換了一種寫法，前兩週學的都可以應用在這裡面！這樣的開發方式真叫人欲罷不能！</p>
+<p>註：心得不打算介紹太多實作，有機會我再補充 Behat 的做法。</p>
+<h2 id="不再是對立，而是能一起驗收需求">不再是對立，而是能一起驗收需求</h2><p>定義好了 feature 檔，我們只要把一個個的 Scenario 完成；就像雕刻一樣，一刀一刀切，最後就會看到完整的成品。而 PO (Product Owner ，產品負責人) 驗收專案時只需要對照 feature 所對應的測試是否為綠燈，只要通過了，也就是符合需求！</p>
+<p>這樣一來辦公室就再也不會有劍拔弩張的氣氛了，</p>
+<h2 id="讓文件活下去">讓文件活下去</h2><p>Developer 通常很討厭：</p>
+<ul>
+<li>寫文件</li>
+<li>寫註解</li>
+<li>寫測試</li>
+</ul>
+<p>但是更討厭：</p>
+<ul>
+<li>別的 Developer 都不寫文件</li>
+<li>別的 Developer 都不寫註解</li>
+<li>別的 Developer 都不寫測試</li>
+</ul>
+<p>現在有了 feature 檔，也就同時有了文件和測試，更酷的是這兩者是隨著程式碼一起成長的！</p>
+<p>而這門課最有價值的一節，就是教你如何把 feature 執行的結果轉換成 HTML 及 Word 文件，這樣一來只要搭配 CI 就可以讓所有作業一氣呵成！這樣的快感，是工程師夢寐以求的呀！</p>
+<p>詳細方法當然還是上課才有的福利囉，至於 PHP 的方法我還在找尋中，這時就不得不說學 .Net 的朋友真是幸福。</p>
+<h2 id="總結">總結</h2><p>不要一直想著要寫出完美的測試，因為那通常已經偏離了真正的需求。讓程式符合需求才是開發者的最終目標，只是完整而詳細的需求卻不會自己長腳跑來。</p>
+<p>讓真正瞭解需求的人協助你一起完成規格，讓這些規格協助你建立測試，而且執行測試。最後我們唯一要關注的，就是如何去滿足這些測試的目標。對整個團隊來說，真的能改善不少浪費的問題。</p>
+<p>如果有機會再開課的話，我強烈推薦大家報名參加呀！趕快關注「<a href="http://skilltree.my/events/ebg" target="_blank" rel="external">自動測試與 TDD 實務開發</a>」的下一梯課程吧！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Selenium/">Selenium</a>, <a href="/tags/TDD/">TDD</a>, <a href="/tags/單元測試/">單元測試</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jaceju.net/2015/05/31/skilltree-tdd-3/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="q" value="site:jaceju.net">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ASP/">ASP</a><small>8</small></li>
+  
+    <li><a href="/tags/AngularJS/">AngularJS</a><small>1</small></li>
+  
+    <li><a href="/tags/Backbone-js/">Backbone.js</a><small>2</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>22</small></li>
+  
+    <li><a href="/tags/CoffeeScript/">CoffeeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/Compass/">Compass</a><small>1</small></li>
+  
+    <li><a href="/tags/Grunt/">Grunt</a><small>1</small></li>
+  
+    <li><a href="/tags/IE6/">IE6</a><small>1</small></li>
+  
+    <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+  
+    <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>5</small></li>
+  
+    <li><a href="/tags/Mobile-開發/">Mobile 開發</a><small>1</small></li>
+  
+    <li><a href="/tags/MongoDB/">MongoDB</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>2</small></li>
+  
+    <li><a href="/tags/NetBeans/">NetBeans</a><small>1</small></li>
+  
+    <li><a href="/tags/Octopress/">Octopress</a><small>1</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>112</small></li>
+  
+    <li><a href="/tags/PHPConf-TW/">PHPConf.TW</a><small>1</small></li>
+  
+    <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
+  
+    <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
+  
+    <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
+  
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
+  
+    <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
+  
+    <li><a href="/tags/Web-開發/">Web 開發</a><small>25</small></li>
+  
+    <li><a href="/tags/WebConf/">WebConf</a><small>1</small></li>
+  
+    <li><a href="/tags/WebKit/">WebKit</a><small>1</small></li>
+  
+    <li><a href="/tags/Windows/">Windows</a><small>13</small></li>
+  
+    <li><a href="/tags/Yeoman/">Yeoman</a><small>1</small></li>
+  
+    <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
+  
+    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
+  
+    <li><a href="/tags/作品/">作品</a><small>13</small></li>
+  
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
+  
+    <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
+  
+    <li><a href="/tags/好書推薦/">好書推薦</a><small>14</small></li>
+  
+    <li><a href="/tags/好站推薦/">好站推薦</a><small>11</small></li>
+  
+    <li><a href="/tags/心得感想/">心得感想</a><small>34</small></li>
+  
+    <li><a href="/tags/持續整合/">持續整合</a><small>2</small></li>
+  
+    <li><a href="/tags/未分類/">未分類</a><small>5</small></li>
+  
+    <li><a href="/tags/業界資訊/">業界資訊</a><small>5</small></li>
+  
+    <li><a href="/tags/程式開發/">程式開發</a><small>14</small></li>
+  
+    <li><a href="/tags/網路趣味/">網路趣味</a><small>3</small></li>
+  
+    <li><a href="/tags/設計模式/">設計模式</a><small>7</small></li>
+  
+    <li><a href="/tags/資料庫/">資料庫</a><small>5</small></li>
+  
+    <li><a href="/tags/連結分享/">連結分享</a><small>183</small></li>
+  
+    <li><a href="/tags/開發工具/">開發工具</a><small>8</small></li>
+  
+    <li><a href="/tags/電腦知識/">電腦知識</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Jace Ju
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

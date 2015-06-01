@@ -63,24 +63,24 @@
     <div class="entry">
       
         <p>我們在撰寫 PHP 函式 (或類別的方法) 時，多少都會帶入一些參數，例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myfunc</span><span class="params">(<span class="variable">$arg1</span>, <span class="variable">$arg2</span>, ...)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function myfunc($arg1, $arg2, ...) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>一般常見的函式，它們的參數數量大多只會兩三個，但如果有參數的數量很多時該怎麼辦？</p>
 <a id="more"></a>
 <h2 id="多參數的困擾">多參數的困擾</h2><p>當一個 PHP 函式的參數多於三個以上時，其實就會浮現一些讓程式開發人員困擾的問題。</p>
 <h3 id="順序不易記憶">順序不易記憶</h3><p>當函式名稱語意不明時，加上如果沒有 IDE 的協助，你會很難瞭解參數的先後順序。</p>
 <p>像我自己就很常搞錯 iconv 的參數順序：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">iconv</span><span class="params">(<span class="variable">$in_charset</span>, <span class="variable">$out_charset</span>, <span class="variable">$str</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv($in_charset, $out_charset, $str)</span><br></pre></td></tr></table></figure>
 <p>每次使用時，我都要回去看看官方手冊，才會記得第一個參數是輸入編碼而不是要轉換的字串。</p>
 <h3 id="預設值">預設值</h3><p>還有一個狀況是參數如果有預設值時，一定是將它放在最右邊的參數。例如 htmlspecialchars 這個函式：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">htmlspecialchars</span><span class="params">(<span class="variable">$string</span>[, <span class="variable">$quote_style</span> = ENT_COMPAT[, <span class="variable">$charset</span> = <span class="string">'ISO-8859-1'</span>[, <span class="variable">$double_encode</span> = true]]])</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">htmlspecialchars($string[, $quote_style = ENT_COMPAT[, $charset = &#39;ISO-8859-1&#39;[, $double_encode = true]]])</span><br></pre></td></tr></table></figure>
 <p>如果今天我們只想要載入第一個參數 (要轉換的字串) 和第三個參數 (編碼) ，這是做不到的；我們不得不把第二個參數 (引號型態) 也一併代入，即便我們不想更改它的預設值。</p>
 <h2 id="解決方式">解決方式</h2><p>我們可以用關聯式陣列來解決前述的問題，也就是把多個參數變成一個陣列。</p>
 <p>例如以前面的 iconv 為例，我們自己定義了一個函式將它包裝起來，然後把原來的三個參數變成一個參數陣列：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定義</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">my_iconv</span><span class="params">(<span class="variable">$options</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> iconv(<span class="variable">$options</span>[<span class="string">'inputCharset'</span>], <span class="variable">$options</span>[<span class="string">'outputCharset'</span>], <span class="variable">$options</span>[<span class="string">'convertString'</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用法</span></span><br><span class="line"><span class="keyword">echo</span> my_iconv(<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'convertString'</span> =&gt; <span class="string">'test'</span>,</span><br><span class="line">    <span class="string">'inputCharset'</span> =&gt; <span class="string">'BIG5'</span>,</span><br><span class="line">    <span class="string">'outputCharset'</span> =&gt; <span class="string">'UTF-8'</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#23450;&#32681;&#10;function my_iconv($options)&#10;&#123;&#10;    return iconv($options[&#39;inputCharset&#39;], $options[&#39;outputCharset&#39;], $options[&#39;convertString&#39;]);&#10;&#125;&#10;&#10;//&#29992;&#27861;&#10;echo my_iconv(array(&#10;    &#39;convertString&#39; =&#62; &#39;test&#39;,&#10;    &#39;inputCharset&#39; =&#62; &#39;BIG5&#39;,&#10;    &#39;outputCharset&#39; =&#62; &#39;UTF-8&#39;,&#10;));</span><br></pre></td></tr></table></figure>
 <p>這樣一來，不僅我們不用擔心參數順序的問題，還可以很容易地分辨出每個參數值所代表的意義。 </p>
 <p>註：這種作法在一些 JavaScript Library 裡也常見到，像是 jQuery 很多方法都是以物件來當做參數組代入。</p>
 <h3 id="考慮預設值">考慮預設值</h3><p>那麼如果參數需要預設值時該怎麼做呢？這時候我們可以在函式裡預先放置一個含有預設值的陣列，來跟使用者傳入的陣列做合併的動作。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">my_htmlspecialchars</span><span class="params">(<span class="variable">$str</span>, <span class="variable">$options</span> = array<span class="params">()</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$options</span> = (<span class="keyword">array</span>) <span class="variable">$options</span>;</span><br><span class="line">    <span class="variable">$options</span> += <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'quoteStyle'</span> =&gt; ENT_COMPAT,</span><br><span class="line">        <span class="string">'charset'</span> =&gt; <span class="string">'ISO-8859-1'</span>,</span><br><span class="line">        <span class="string">'doubleEncode'</span> =&gt; <span class="keyword">true</span>,</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span> htmlspecialchars(</span><br><span class="line">        <span class="variable">$str</span>,</span><br><span class="line">        <span class="variable">$options</span>[<span class="string">'quoteStyle'</span>],</span><br><span class="line">        <span class="variable">$options</span>[<span class="string">'charset'</span>],</span><br><span class="line">        <span class="variable">$options</span>[<span class="string">'doubleEncode'</span>]</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> my_htmlspecialchars(<span class="string">'&lt;test&gt;測試&lt;/test&gt;'</span>, <span class="keyword">array</span>(<span class="string">'charset'</span> =&gt; <span class="string">'UTF-8'</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function my_htmlspecialchars($str, $options = array())&#10;&#123;&#10;    $options = (array) $options;&#10;    $options += array(&#10;        &#39;quoteStyle&#39; =&#62; ENT_COMPAT,&#10;        &#39;charset&#39; =&#62; &#39;ISO-8859-1&#39;,&#10;        &#39;doubleEncode&#39; =&#62; true,&#10;    );&#10;    return htmlspecialchars(&#10;        $str,&#10;        $options[&#39;quoteStyle&#39;],&#10;        $options[&#39;charset&#39;],&#10;        $options[&#39;doubleEncode&#39;]&#10;    );&#10;&#125;&#10;&#10;echo my_htmlspecialchars(&#39;&#60;test&#62;&#28204;&#35430;&#60;/test&#62;&#39;, array(&#39;charset&#39; =&#62; &#39;UTF-8&#39;));</span><br></pre></td></tr></table></figure>
 <p>這裡我用了「 + 」這個可以用來合併陣列的操作符，它會以左邊陣列裡的值為主，然後將右邊的值合併進來。</p>
 <p>這樣一來，右邊的陣列裡我們可以放置預設的參數值，而不必擔心使用者沒有帶入中間必要的參數。</p>
 <p>註：你也許會發現我沒有把 $str 放到 $options 裡，這是因為它本身就是必要的參數。</p>
@@ -184,7 +184,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -206,13 +206,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -228,15 +228,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

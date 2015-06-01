@@ -93,15 +93,15 @@
 <ul>
 <li>加入 apt-key ：</li>
 </ul>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O /tmp/<span class="variable">key</span> http:<span class="comment">//hudson-ci.org/debian/hudson-ci.org.key</span></span><br><span class="line">sudo apt-<span class="variable">key</span> <span class="built_in">add</span> /tmp/<span class="variable">key</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /tmp/key http://hudson-ci.org/debian/hudson-ci.org.key&#10;sudo apt-key add /tmp/key</span><br></pre></td></tr></table></figure>
 <ul>
 <li>安裝最新版本的 hudson package ：</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O <span class="regexp">/tmp/</span>hudson.deb <span class="string">http:</span><span class="comment">//hudson-ci.org/latest/debian/hudson.deb</span></span><br><span class="line">sudo dpkg --install <span class="regexp">/tmp/</span>hudson.deb</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /tmp/hudson.deb http://hudson-ci.org/latest/debian/hudson.deb&#10;sudo dpkg --install /tmp/hudson.deb</span><br></pre></td></tr></table></figure>
 <p>這樣就能把 hudson 的服務安裝在伺服器上了。</p>
 <p>和上一個方法不同，我們直接瀏覽 <a href="http://127.0.0.1:8080/" target="_blank" rel="external">http://127.0.0.1:8080/</a> 就可以看到 Hudson 的起始畫面了。</p>
 <h3 id="三、_Windows_系統安裝">三、 Windows 系統安裝</h3><p>在 Windows 上安裝好 JDK 後 (別忘記<a href="http://confluence.atlassian.com/display/DOC/Setting+the+JAVA_HOME+Variable+in+Windows" target="_blank" rel="external">設定 JAVA_HOME 系統變數</a>) ，就可以透過命令列的 java 指令來執行 Hudson ：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">java</span> -jar hudson.war</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar hudson.war</span><br></pre></td></tr></table></figure>
 <p>這時一樣瀏覽 <a href="http://127.0.0.1:8080/" target="_blank" rel="external">http://127.0.0.1:8080/</a> 就能看到 Hudson 的起始畫面。</p>
 <p>當然這個方法必須得開啟一個命令列視窗，相當不方便。我們可以透過 Hudson 提供的功能，來將它註冊為 Windows 服務。</p>
 <p>在 Hudson 的起始畫面左方選單選擇「 Manage Hudson (管理Hudson) 」，然後再選擇「 Install as Windows Service 」；接著在「 Installation Directory 」的部份輸入要安裝的路徑，例如 C:\hudson ，最後按下「 Install 」。</p>
@@ -135,9 +135,9 @@
 <h4>安裝 Phing</h4>
 
 <p>Phing 有兩種安裝方式，一種就是直接透過 PEAR 安裝：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pear channel-discover pear<span class="class">.phing</span><span class="class">.info</span></span><br><span class="line">pear install phing/phing</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear channel-discover pear.phing.info&#10;pear install phing/phing</span><br></pre></td></tr></table></figure>
 <p>另一種則是下載 package 檔手動安裝：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">http:</span><span class="comment">//www.phing.info/get/phing-2.4.4.tgz</span></span><br><span class="line">unzip phing-<span class="number">2.4</span>.4.tgz -d <span class="regexp">/opt/</span></span><br><span class="line">ln -s <span class="regexp">/opt/</span>phing-<span class="number">2.4</span>.4 <span class="regexp">/opt/</span>phing</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.phing.info/get/phing-2.4.4.tgz&#10;unzip phing-2.4.4.tgz -d /opt/&#10;ln -s /opt/phing-2.4.4 /opt/phing</span><br></pre></td></tr></table></figure>
 <h4>設定 Hudson 對 Phing 的支援</h4>
 
 <p>如果 Phing 是用 PEAR 安裝的話，基本上可以不需要對 Hudson 做任何設定。但如果是手動安裝的話，就要在 Hudson 中設定 Phing 的執行位置。</p>
@@ -145,7 +145,7 @@
 <p>按下「 Phing installation 」後面的「新增」鈕，在「 name 」後面輸入「 Phing 2.4.4 」 (視前面手動安裝的版本而定) ；在「 PHING_HOME 」後面輸入「 /opt/phing 」，也就是 Phing 安裝的目錄；最後在「 PHP Command 」後面輸入 php 的執行檔路徑，例如「 /usr/bin/php 」 (Windows 的話就是 php.exe 的所在路徑) 。</p>
 <h3 id="測試框架">測試框架</h3><p>持續整合最重要的一環就是做自動化測試，在 PHP 上當然首推 PHPUnit 這個自動化測試框架。</p>
 <p>而 PHPUnit 也一樣透過 PEAR 就可以安裝：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pear channel-discover pear<span class="class">.symfony-project</span><span class="class">.com</span></span><br><span class="line">pear install symfony/YAML</span><br><span class="line">pear channel-discover pear<span class="class">.phpunit</span><span class="class">.de</span></span><br><span class="line">pear channel-discover components<span class="class">.ez</span><span class="class">.no</span></span><br><span class="line">pear install -o phpunit/phpunit</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear channel-discover pear.symfony-project.com&#10;pear install symfony/YAML&#10;pear channel-discover pear.phpunit.de&#10;pear channel-discover components.ez.no&#10;pear install -o phpunit/phpunit</span><br></pre></td></tr></table></figure>
 <h3 id="程式碼分析工具">程式碼分析工具</h3><p>除了自動化測試之外，程式碼分析也是持續整合很重要的一環。這裡有三種工具可以幫我們分析 PHP 程式碼：</p>
 <ul>
 <li><p><a href="http://pear.php.net/package/PHP_CodeSniffer/" target="_blank" rel="external"> PHP_CodeSniffer</a></p>
@@ -156,13 +156,13 @@
 </li>
 </ul>
 <p>PHP_CodeSniffer 主要是幫我們檢查程式碼的 Coding Style ，安裝方法如下：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear <span class="keyword">install</span> PHP_CodeSniffer</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear install PHP_CodeSniffer</span><br></pre></td></tr></table></figure>
 <p>PHP Copy/Paste Detector 顧名思義就是用來檢查程式裡有沒有透過複製貼上所產生的重複程式碼，安裝方法如下 (要先安裝好 PHPUnit ) ：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear <span class="keyword">install</span> phpunit/phpcpd</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear install phpunit/phpcpd</span><br></pre></td></tr></table></figure>
 <p>PHP Depend 則是用來檢查類別相依性的工具，安裝方法如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pear channel-discover pear<span class="class">.pdepend</span><span class="class">.org</span></span><br><span class="line">pear install pdepend/PHP_Depend-beta</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear channel-discover pear.pdepend.org&#10;pear install pdepend/PHP_Depend-beta</span><br></pre></td></tr></table></figure>
 <h3 id="API_文件產生工具">API 文件產生工具</h3><p>在 PHP 中，當然就是透過 PHPDocumentor 來產生 API 文件 (當然我們的註解也要以 PHPDoc 格式來撰寫) ，其安裝方法如下：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear <span class="keyword">install</span> PhpDocumentor</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear install PhpDocumentor</span><br></pre></td></tr></table></figure>
 <p>這樣一來，我們就完成了基本的系統建置。當然持續整合可以使用的工具不只這些而已，但在剛接觸的前提下，我們就以這些工具為優先學習的對象吧。</p>
 <p><a href="http://www.jaceju.net/blog/archives/1543" target="_blank" rel="external">下一篇</a>我們將介紹如何建立一個建置工作。</p>
 
@@ -256,7 +256,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -278,13 +278,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -300,15 +300,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

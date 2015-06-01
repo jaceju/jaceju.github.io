@@ -63,7 +63,7 @@
         <p>有時候顯示過長的程式碼時，在 IE 上面會很討厭地把我們的版面撐開，造成 CSS 版型顯示不正確。不過我一直執著於標準化的方式，而忽略掉一些方法。它們雖然都不能夠有效地完整解決這個問題，至少對 IE 而言已經足夠了。</p>
 <a id="more"></a>
 <p>利用以下的 CSS 屬性，能讓已經預先格式化的文字在視窗的邊緣換行：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span><br><span class="line"><span class="comment">/*&lt;![CDATA[*/</span></span><br><span class="line"><span class="class">.precode</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">white-space</span>:<span class="value"> -moz-pre-wrap</span></span>; <span class="comment">/* Mozilla */</span></span><br><span class="line"><span class="rule"><span class="attribute">white-space</span>:<span class="value"> pre-wrap</span></span>; <span class="comment">/* CSS 2.1 */</span></span><br><span class="line">&#125;</span></span><br><span class="line"><span class="comment">/*]]&gt;*/</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE]&gt;</span><br><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">/*&lt;![CDATA[*/</span><br><span class="line">.precode &#123;</span><br><span class="line">white-space: pre; /* CSS2 */</span><br><span class="line">word-wrap: break-word; /* IE */</span><br><span class="line">&#125;</span><br><span class="line">/*]]&gt;*/</span><br><span class="line">&lt;/style&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;style type=&#34;text/css&#34;&#62;&#10;/*&#60;![CDATA[*/&#10;.precode &#123;&#10;display: block;&#10;white-space: -moz-pre-wrap; /* Mozilla */&#10;white-space: pre-wrap; /* CSS 2.1 */&#10;&#125;&#10;/*]]&#62;*/&#10;&#60;/style&#62;&#10;&#60;!--[if IE]&#62;&#10;&#60;style type=&#34;text/css&#34;&#62;&#10;/*&#60;![CDATA[*/&#10;.precode &#123;&#10;white-space: pre; /* CSS2 */&#10;word-wrap: break-word; /* IE */&#10;&#125;&#10;/*]]&#62;*/&#10;&#60;/style&#62;</span><br></pre></td></tr></table></figure>
 <p>說明如下：</p>
 <li><span>word-wrap: break-word; </span> - 視窗邊界換行，僅 IE 支援。也可以用 <span>word-brak: break-all;</span> 但不會保持英文單字的完整性。</li><br><li><span>white-space: pre; </span> -  對某標籤作預先格式化，所有標準瀏覽器皆支援。</li><br><li><span>white-space: -moz-pre-wrap;</span> - 預先格式化，但在元素邊界換行，僅 Mozilla (Firefox) 支援。</li><br><li><span>white-space: pre-wrap;</span> - 預先格式化，但在元素邊界換行，僅 Opera 支援。</li>
 
@@ -161,7 +161,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -183,13 +183,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -205,15 +205,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

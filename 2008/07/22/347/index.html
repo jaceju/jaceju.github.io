@@ -67,18 +67,18 @@ PHP 5.3 將有可能會有 Lambda (黏巴達？) 和 closure ，來源為 Reques
 <p>註：所以 <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> 剛剛跟我說 PHP 快變四不像了。</p>
 <a id="more"></a>
 <p>Lambda 語法如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> &amp;<span class="title">amp</span>; <span class="params">(parameters)</span> <span class="title">use</span> <span class="params">(lexical vars)</span> </span>&#123; body &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function &#38;amp; (parameters) use (lexical vars) &#123; body &#125;</span><br></pre></td></tr></table></figure>
 <p>範例：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$lambda</span> = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123; <span class="keyword">echo</span> <span class="string">"Hello World!\n"</span>; &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$lambda = function () &#123; echo &#34;Hello World!\n&#34;; &#125;;</span><br></pre></td></tr></table></figure>
 <p>可以這樣用：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$lambda</span> ();</span><br><span class="line"><span class="function">call_user_func</span>(<span class="variable">$lambda</span>);</span><br><span class="line"><span class="function">call_user_func_array</span>(<span class="variable">$lambda</span>, <span class="function">array</span>());</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$lambda ();&#10;call_user_func($lambda);&#10;call_user_func_array($lambda, array());</span><br></pre></td></tr></table></figure>
 <p>所以 call_user_func 系列函式就可以用 Lambda 了。 </p>
 <p>進階的 Lambda 範例：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">replace_spaces</span> <span class="params">(<span class="variable">$text</span>)</span> </span>&#123;</span><br><span class="line">    <span class="variable">$replacement</span> = <span class="function"><span class="keyword">function</span> <span class="params">(<span class="variable">$matches</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> str_replace (<span class="variable">$matches</span>[<span class="number">1</span>], <span class="string">' '</span>, <span class="string">'&amp;amp;nbsp;'</span>).<span class="string">' '</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> preg_replace_callback (<span class="string">'/( +) /'</span>, <span class="variable">$replacement</span>, <span class="variable">$text</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function replace_spaces ($text) &#123;&#10;    $replacement = function ($matches) &#123;&#10;        return str_replace ($matches[1], &#39; &#39;, &#39;&#38;amp;nbsp;&#39;).&#39; &#39;;&#10;    &#125;;&#10;    return preg_replace_callback (&#39;/( +) /&#39;, $replacement, $text);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>Closure 語法：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">(normal parameters)</span> <span class="title">use</span> <span class="params">(<span class="variable">$var1</span>, <span class="variable">$var2</span>, &amp;amp;<span class="variable">$refvar</span>)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function (normal parameters) use ($var1, $var2, &#38;amp;$refvar) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>範例：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">replace_in_array</span> <span class="params">(<span class="variable">$search</span>, <span class="variable">$replacement</span>, <span class="variable">$array</span>)</span> </span>&#123;</span><br><span class="line">    <span class="variable">$map</span> = <span class="function"><span class="keyword">function</span> <span class="params">(<span class="variable">$text</span>)</span> <span class="title">use</span> <span class="params">(<span class="variable">$search</span>, <span class="variable">$replacement</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (strpos (<span class="variable">$text</span>, <span class="variable">$search</span>) &gt; <span class="number">50</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> str_replace(<span class="variable">$search</span>, <span class="variable">$replacement</span>, <span class="variable">$text</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$text</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> array_map(<span class="variable">$map</span>, <span class="variable">$array</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function replace_in_array ($search, $replacement, $array) &#123;&#10;    $map = function ($text) use ($search, $replacement) &#123;&#10;        if (strpos ($text, $search) &#62; 50) &#123;&#10;            return str_replace($search, $replacement, $text);&#10;        &#125; else &#123;&#10;            return $text;&#10;        &#125;&#10;    &#125;;&#10;    return array_map($map, $array);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到原來可以用 callback 的函式，應該都能接受 closure 。 </p>
 <p>其他就請參考來源文章囉。</p>
 <h2 id="相關文章">相關文章</h2><ul>
@@ -176,7 +176,7 @@ PHP 5.3 將有可能會有 Lambda (黏巴達？) 和 closure ，來源為 Reques
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -198,13 +198,13 @@ PHP 5.3 將有可能會有 Lambda (黏巴達？) 和 closure ，來源為 Reques
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -220,15 +220,13 @@ PHP 5.3 將有可能會有 Lambda (黏巴達？) 和 closure ，來源為 Reques
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

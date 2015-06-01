@@ -65,7 +65,7 @@
 <h2 id="原理">原理</h2><p>首先，我們來看一個很常見的登入流程。</p>
 <p><a href="/resources/zf_auth_acl/flow.png"><img class="aligncenter" src="/resources/zf_auth_acl/flow-s.png" alt="登入流程" width="300" height="247"></a><br>如果我們要存取一個需要權限的頁面，一般會需要登入才能使用。因此 Zend_Auth 會協助我們判斷使用者是否已經登入。在 Wacow Framework (一套建構在 Zend Framework 上的簡易框架) 裡，這個判斷是寫在 Wacow_Controller_Plugin_Auth::dispatchLoopStartup() 裡面，這樣就能提早改變 $request 物件的 dispatch 內容，讓它執行登入畫面的流程。</p>
 <h3 id="使用者驗證">使用者驗證</h3><p>登入畫面實際上是由 UserController::loginAction() 產生，不過瀏覽器的網址列上我們還是會看到剛剛輸入的網址；這是因為我們動態改變了 $request 物件所要 dispatch 的 module 、 controller 及 action 。<br>在登入畫面中輸入帳號及密碼後，我們可以將 request 送給 loginAction() 本身，然後用 Wacow Action Controller 中的 isPost() 方法來判斷是不是表單內容回送給自己。接著我們可以透過兩種方式來判斷是否有找到對應的使用者：自行處理驗證方式或是透過上述 Zend_Auth 所提供多種驗證方式來驗證使用者。<br>自行處理驗證方式這部份程式碼的話，自由度比較大，適合用在客戶要求的登入程序比較複雜的系統。而使用 Zend_Auth 的驗證機制時，則會提供以下數種結果讓我們參考：</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">Zend_Auth_Result::</span>SUCCESS</span><br><span class="line"><span class="label">Zend_Auth_Result::</span>FAILURE</span><br><span class="line"><span class="label">Zend_Auth_Result::</span>FAILURE_IDENTITY_NOT_FOUND</span><br><span class="line"><span class="label">Zend_Auth_Result::</span>FAILURE_IDENTITY_AMBIGUOUS</span><br><span class="line"><span class="label">Zend_Auth_Result::</span>FAILURE_CREDENTIAL_INVALID</span><br><span class="line"><span class="label">Zend_Auth_Result::</span>FAILURE_UNCATEGORIZED</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Zend_Auth_Result::SUCCESS&#10;Zend_Auth_Result::FAILURE&#10;Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND&#10;Zend_Auth_Result::FAILURE_IDENTITY_AMBIGUOUS&#10;Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID&#10;Zend_Auth_Result::FAILURE_UNCATEGORIZED</span><br></pre></td></tr></table></figure>
 <p>一般只要判斷 SUCCESS 狀態即可，其他都是驗證失敗。<br>在驗證成功後，我們可以透過 Zend_Auth 所提供的 Storage 物件來存放使用者資料，最常用的 Storage 就是 Session 。接著我們就可以在 loginAction() 中，將頁面導回原來的要存取的網址；如果是使用 Ajax 來輸入帳號密碼，那麼成功後也可以用 location.reload() 的方式直接重載頁面即可。</p>
 <h3 id="權限判斷">權限判斷</h3><p>Zend_Acl 需要註冊「資源 (resource) 」和「角色 (role) 」這兩種物件，然後再利用 allow() 及 deny() 兩個方法來建構整個存取控制清單 (ACL, Access Controll List) 。所以系統一開始就會先將 ACL  透過 Zend_Acl 設定好。<br>所以回到原來的網址時，因為這時我們已經登入並取得該帳號的角色了，因此就可以利用存取清單來判斷我們是不是能存取這個頁面；如果可以就執行該頁面，不行的話就改變 $request 物件的 dispatch 內容，讓它導向顯示「權限不足」的畫面。<br>一般來說， ACL 可以從資料庫取得，也可以寫死在繼承自 Zend_Acl 的類別中。如果從資料庫取得的話，除了使用者資料表外，我們會需要以下其他幾個資料表：角色 (roles) 、資源 (resources) 及權限 (permissions) ；其中權限資料表記錄的就是角色與資源的對應關係。</p>
 <h2 id="感想">感想</h2><p>先前我在開發 Zend Framework 專案時，都是參考別人寫的程式碼。雖然可以照抄後稍加修改，但有時還是不甚瞭解為什麼要這樣做。像 Zend_Auth 和 Zend_Acl 都是寫完程式很久後，才慢慢瞭解它們運作上的觀念。希望這次將 Zend_Auth 和 Zend_Acl 運作的觀念整理出來，能對剛入門的朋友有些許的幫助。</p>
@@ -160,7 +160,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -182,13 +182,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -204,15 +204,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

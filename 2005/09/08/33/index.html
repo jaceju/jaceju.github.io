@@ -63,7 +63,7 @@
         <p>前面介紹過 callback 虛擬型態，但不限於 PHP 內建函式，我們也可以在函式中自行處理 callback 虛擬型態的參數。</p>
 <a id="more"></a>
 <p>例如 PHP 內建了一個 array_map 函式，但是無法處理多階陣列。我們可以自行建立一個 array_map_recursive 函式來使用，當然其介面也得和 array_map 一樣：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * 用法：</span><br><span class="line"> * $a = <span class="type">array</span> (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"> * $a = array_map_recursive('function_name', $a); // callback function</span><br><span class="line"> * $a = array_map_recursive(<span class="type">array</span> ('class_name', 'class_method'), $a); // callback <span class="keyword">static</span> class <span class="keyword">method</span></span><br><span class="line"> * $a = array_map_recursive(<span class="type">array</span> (&amp;amp; $<span class="keyword">object</span>, 'object_method'), $a); // callback <span class="keyword">object</span> <span class="keyword">method</span></span><br><span class="line"> */</span><br><span class="line">function array_map_recursive($func, $arr)</span><br><span class="line">&#123;</span><br><span class="line">    $<span class="literal">result</span> = <span class="type">array</span>();</span><br><span class="line">    foreach ($arr <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">        <span class="keyword">if</span> (is_array($value)) &#123;</span><br><span class="line">            $<span class="literal">result</span>[$key] = array_map_recursive($func, $value);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (is_array($func)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (is_object($func[<span class="number">0</span>]))</span><br><span class="line">                    $<span class="literal">result</span>[$key] = $func[<span class="number">0</span>]-&gt;$func[<span class="number">1</span>]($value);</span><br><span class="line">                <span class="keyword">if</span> (is_string($func[<span class="number">0</span>]))</span><br><span class="line">                    eval('$<span class="literal">result</span>[$key] = ' . $func[<span class="number">0</span>] . '::' . $func[<span class="number">1</span>] . '($value);');</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $<span class="literal">result</span>[$key] = $func($value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $<span class="literal">result</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * &#29992;&#27861;&#65306;&#10; * $a = array (1, 2, 3, 4, 5);&#10; * $a = array_map_recursive(&#39;function_name&#39;, $a); // callback function&#10; * $a = array_map_recursive(array (&#39;class_name&#39;, &#39;class_method&#39;), $a); // callback static class method&#10; * $a = array_map_recursive(array (&#38;amp; $object, &#39;object_method&#39;), $a); // callback object method&#10; */&#10;function array_map_recursive($func, $arr)&#10;&#123;&#10;    $result = array();&#10;    foreach ($arr as $key =&#62; $value) &#123;&#10;        if (is_array($value)) &#123;&#10;            $result[$key] = array_map_recursive($func, $value);&#10;        &#125; else &#123;&#10;            if (is_array($func)) &#123;&#10;                if (is_object($func[0]))&#10;                    $result[$key] = $func[0]-&#62;$func[1]($value);&#10;                if (is_string($func[0]))&#10;                    eval(&#39;$result[$key] = &#39; . $func[0] . &#39;::&#39; . $func[1] . &#39;($value);&#39;);&#10;            &#125; else &#123;&#10;                $result[$key] = $func($value);&#10;            &#125;&#10;        &#125;&#10;    &#125;&#10;    return $result;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>其中 $func 參數就是 callback 虛擬型態。</p>
 
       
@@ -156,7 +156,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -178,13 +178,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -200,15 +200,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

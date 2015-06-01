@@ -63,13 +63,13 @@
         <p>對 JavaScript 而言，我們可以把 Function 看成是一種物件類別。這裡介紹一個簡單的方法，來建立自己的類別。</p>
 <a id="more"></a>
 <p>以下是一個自訂的 JavaScript 物件類別的建構函式，我們稱之為 constructor 。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ClassName = <span class="function"><span class="keyword">function</span><span class="params">([args])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.attr1 = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.attr2 = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">    <span class="keyword">this</span>.method1 = <span class="function"><span class="keyword">function</span><span class="params">([args])</span> </span>&#123;</span><br><span class="line">        <span class="comment">// method1程式碼</span></span><br><span class="line">        <span class="keyword">this</span>.attr1 = <span class="string">'DEF'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.method2 = <span class="function"><span class="keyword">function</span><span class="params">([args])</span> </span>&#123;</span><br><span class="line">        <span class="comment">// method2程式碼</span></span><br><span class="line">        <span class="keyword">this</span>.attr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ClassName = <span class="function"><span class="keyword">function</span>(<span class="params">[args]</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.attr1 = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.attr2 = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">    <span class="keyword">this</span>.method1 = <span class="function"><span class="keyword">function</span>(<span class="params">[args]</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// method1程式碼</span></span><br><span class="line">        <span class="keyword">this</span>.attr1 = <span class="string">'DEF'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.method2 = <span class="function"><span class="keyword">function</span>(<span class="params">[args]</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// method2程式碼</span></span><br><span class="line">        <span class="keyword">this</span>.attr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在 Function 的 constructor 以及屬於這個物件類別的方法函式中，我們可以把 <code>this</code> 當成是這個物件類別自己。不過有一種狀況是例外的，以後再說。</p>
 <p>我們在 Function 的 constructor 一開始建立的屬性，可以給它們預設值；這樣在 new 這個物件類別時，這些屬性就會自動指定成這些預設值。要注意一點的是，這些預設值會保留到你去變更它們或是這個網頁被關閉後才會消失。</p>
 <p>我們也可以在 Function 的 constructor 外，利用 JavaScript 內建的 <code>prototype</code> 屬性來動態加入物件類別的屬性：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassName.prototype.attr3 = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
 <p>或是動態新增方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newMethod</span><span class="params">(args1)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.attr4 = args1;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">ClassName.prototype.method3 = newMethod;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newMethod</span>(<span class="params">args1</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.attr4 = args1;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">ClassName.prototype.method3 = newMethod;</span><br></pre></td></tr></table></figure>
 <p>接下來我們來看看如何使用這個物件類別：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> ClassName();</span><br><span class="line">obj.attr1 = <span class="string">'ABC'</span>;</span><br><span class="line">obj.attr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">obj.attr3 = <span class="number">123</span>;</span><br><span class="line">obj.method1();</span><br><span class="line">obj.method2();</span><br><span class="line">obj.method3(<span class="number">999</span>);</span><br></pre></td></tr></table></figure>
 <p>如同操作網頁 DOM 物件一樣，我們也可以很輕易地操作我們自訂的物件類別了。</p>
@@ -164,7 +164,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -186,13 +186,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -208,15 +208,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

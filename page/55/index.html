@@ -49,6 +49,43 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2005-11-07T16:00:00.000Z"><a href="/2005/11/08/40/">2005-11-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2005/11/08/40/">[作品] 《PHP Smarty 樣版引擎》勘誤表</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>給各位讀者：</p>
+<p>雖然筆者在《PHP Smarty 樣版引擎》中已經盡了最大的努力，但是難免還是會有疏漏之處。以下提供本書第一刷的勘誤修正表：</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2005/11/08/40/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2005-10-31T16:00:00.000Z"><a href="/2005/11/01/39/">2005-11-01</a></time>
       
       
@@ -172,12 +209,12 @@
         <p>前陣子看到 <a href="http://www.mysql.com" target="_blank" rel="external">MySQL 5</a> 已經正式推出了，支援 Stored Procedures 、 Functions 、 Views 、 Triggers 等。</p>
 <p>目前 phpMyAdmin 2.6.4 好像還不支援這些新特色 (View 可以看得到，但是沒有建立的介面？) ，不過 MySQL 官方自己推了一個 <a href="http://dev.mysql.com/downloads/query-browser/1.1.html" target="_blank" rel="external">MySQL Query Browser</a> ，還不錯用， 缺點是中文的支援性不佳 (輸入中文時會怪怪的) 。</p>
 <p>小試了一下用 MySQL Query Browser 寫一個 Stored Procedure ：</p>
-<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">strong</span>&gt;DELIMITER $$&lt;/<span class="keyword">strong</span>&gt;</span><br><span class="line">DROP <span class="keyword">PROCEDURE</span> <span class="keyword">IF</span> EXISTS `spTest` $$</span><br><span class="line">CREATE <span class="keyword">PROCEDURE</span> `spTest`(p_title VARCHAR(<span class="number">200</span>), p_description TEXT)</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;DETERMINISTIC&lt;/<span class="keyword">strong</span>&gt;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">INSERT INTO category (title, description)</span><br><span class="line">VALUES (p_title, p_description);</span><br><span class="line"><span class="keyword">END</span> $$</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;DELIMITER ;&lt;/<span class="keyword">strong</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;strong&#62;DELIMITER $$&#60;/strong&#62;&#10;DROP PROCEDURE IF EXISTS `spTest` $$&#10;CREATE PROCEDURE `spTest`(p_title VARCHAR(200), p_description TEXT)&#10;&#60;strong&#62;DETERMINISTIC&#60;/strong&#62;&#10;BEGIN&#10;INSERT INTO category (title, description)&#10;VALUES (p_title, p_description);&#10;END $$&#10;&#60;strong&#62;DELIMITER ;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>其中 DELIMITER 是用來決定 SQL 分隔符號的，在寫 Stored Procedure 前，要先把預設的分號換掉，不然按下 MySQL Query Browser 的 Execute 按鈕時，會真的去跑裡面的 INSERT 指令。寫完 Stored Procedure 的 routine_body 後，再回復成預設的分號。</p>
 <p>另外我在寫這個 Stored Procedurce 時，發現一定要加上 characteristic 才行，也就是上面的 DETERMINISTIC 。可是官方手冊明明寫可略過，這我就沒時間研究為什麼了。</p>
 <p>另外就是參數的名稱， MySQL 5 不像 MSSQL 是用 @param 來表示 Stored Procedure 的參數？這樣有點難以分辨參數及資料表欄位，不過也不是不能解決。</p>
 <p>執行這個 Stored Procedure 的方法是用 CALL：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CALL</span> spTest <span class="string">'TEST'</span>, <span class="string">'ABC'</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CALL spTest &#39;TEST&#39;, &#39;ABC&#39;;</span><br></pre></td></tr></table></figure>
 <p>當然語法不同，就會造成寫 PHP 程式的不方便，改天來找找看有沒有比較好的抽象層資料庫存取介面 (就是像 PEAR::DB 或 ADOdb 之類的物件類別庫) ，可以支援不同類型資料庫的 Stored Procedure 。</p>
 <p>Stored Procedure 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html</a></p>
 <p>Trigger 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/triggers.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/triggers.html</a></p>
@@ -216,11 +253,11 @@
       
         <p>我在 <a href="http://www.twbb.org/?topic=4673.0" target="_blank" rel="external">PHP Twbb 台灣論壇資源網</a>回答一個多型的問題：以下有三種不同的多型實作方式，有什麼不同呢？</p>
 <p>我的見解如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">shape</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">niceDrawing</span><span class="params">(<span class="variable">$temp</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="variable">$temp</span>-&gt;draw();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="comment">//do nothing;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'circle'</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'rec'</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$board</span> = <span class="keyword">new</span> shape();</span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> Circle();</span><br><span class="line"><span class="variable">$obj2</span> = <span class="keyword">new</span> Rectangle();</span><br><span class="line"><span class="variable">$board</span>-&gt;niceDrawing(<span class="variable">$obj</span>); <span class="comment">//will call the draw method of Circle.</span></span><br><span class="line"><span class="variable">$board</span>-&gt;niceDrawing(<span class="variable">$obj2</span>); <span class="comment">//will call the draw method of Rectangle.</span></span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class shape&#10;&#123;&#10;function niceDrawing($temp)&#10;&#123;&#10;$temp-&#62;draw();&#10;&#125;&#10;function draw()&#10;&#123;&#10;//do nothing;&#10;&#125;&#10;&#125;&#10;class Circle&#10;&#123;&#10;function draw()&#10;&#123;&#10;echo &#39;circle&#39;;&#10;&#125;&#10;&#125;&#10;class Rectangle&#10;&#123;&#10;function draw()&#10;&#123;&#10;echo &#39;rec&#39;;&#10;&#125;&#10;&#125;&#10;$board = new shape();&#10;$obj = new Circle();&#10;$obj2 = new Rectangle();&#10;$board-&#62;niceDrawing($obj); //will call the draw method of Circle.&#10;$board-&#62;niceDrawing($obj2); //will call the draw method of Rectangle.&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>第 1 種方式沒有用到繼承，只是很單純的委託別的類別來處理事情。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">shape</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">var</span> <span class="variable">$temp</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">niceDrawing</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="variable">$this</span>-&gt;draw();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="comment">//do nothing;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Circle</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">shape::niceDrawing();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'circle'</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">shape::niceDrawing();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'rec'</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> Circle();</span><br><span class="line"><span class="variable">$obj2</span> = <span class="keyword">new</span> Rectangle();</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class shape&#10;&#123;&#10;var $temp;&#10;function niceDrawing()&#10;&#123;&#10;$this-&#62;draw();&#10;&#125;&#10;function draw()&#10;&#123;&#10;//do nothing;&#10;&#125;&#10;&#125;&#10;class Circle&#10;&#123;&#10;function Circle()&#10;&#123;&#10;shape::niceDrawing();&#10;&#125;&#10;function draw()&#10;&#123;&#10;echo &#39;circle&#39;;&#10;&#125;&#10;&#125;&#10;class Rectangle&#10;&#123;&#10;function Rectangle()&#10;&#123;&#10;shape::niceDrawing();&#10;&#125;&#10;function draw()&#10;&#123;&#10;echo &#39;rec&#39;;&#10;&#125;&#10;&#125;&#10;$obj = new Circle();&#10;$obj2 = new Rectangle();&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p> 第 2 種方式也是一樣，只不過採用呼叫 shape 的靜態方法，使物件在初始化時就開始動作。 </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</span><br><span class="line"><span class="keyword">var</span> <span class="variable">$message</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setMessage</span><span class="params">(<span class="variable">$message</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="variable">$this</span>-&gt;message = <span class="variable">$message</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMessage</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="variable">$this</span>-&gt;message;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PoliteMessage</span> <span class="keyword">extends</span> <span class="title">Message</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PoliteMessage</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="variable">$this</span>-&gt;setMessage(<span class="string">'How are you today?'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TerseMessage</span> <span class="keyword">extends</span> <span class="title">Message</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TerseMessage</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="variable">$this</span>-&gt;setMessage(<span class="string">'Howzit?'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RudeMessage</span> <span class="keyword">extends</span> <span class="title">Message</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">RudeMessage</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="variable">$this</span>-&gt;setMessage(<span class="string">'You look like *%&amp;amp;* today!'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MessageReader</span> </span>&#123;</span><br><span class="line"><span class="keyword">var</span> <span class="variable">$messages</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MessageReader</span><span class="params">(&amp;amp;<span class="variable">$messages</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="variable">$this</span>-&gt;messages = &amp;amp;<span class="variable">$messages</span>;</span><br><span class="line"><span class="variable">$this</span>-&gt;readMessages();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readMessages</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$this</span>-&gt;messages <span class="keyword">as</span> <span class="variable">$message</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (is_a(<span class="variable">$message</span>, <span class="string">'Message'</span>))</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$message</span>-&gt;getMessage() . <span class="string">'&lt;br /&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$classNames</span> = <span class="keyword">array</span>(<span class="string">'PoliteMessage'</span>, <span class="string">'TerseMessage'</span>, <span class="string">'RudeMessage'</span>);</span><br><span class="line"><span class="variable">$messages</span> = <span class="keyword">array</span>();</span><br><span class="line">srand((float)microtime() * <span class="number">1000000</span>); <span class="comment">// Prepares random shuffle</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="number">10</span>; <span class="variable">$i</span>++)</span><br><span class="line">&#123;</span><br><span class="line">shuffle(<span class="variable">$classNames</span>);</span><br><span class="line"><span class="variable">$messages</span>[] = <span class="keyword">new</span> <span class="variable">$classNames</span>[<span class="number">0</span>]();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$messageReader</span> = <span class="keyword">new</span> MessageReader(<span class="variable">$messages</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class Message &#123;&#10;var $message;&#10;function setMessage($message)&#10;&#123;&#10;$this-&#62;message = $message;&#10;&#125;&#10;function getMessage()&#10;&#123;&#10;return $this-&#62;message;&#10;&#125;&#10;&#125;&#10;class PoliteMessage extends Message &#123;&#10;function PoliteMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;How are you today?&#39;);&#10;&#125;&#10;&#125;&#10;class TerseMessage extends Message &#123;&#10;function TerseMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;Howzit?&#39;);&#10;&#125;&#10;&#125;&#10;class RudeMessage extends Message &#123;&#10;function RudeMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;You look like *%&#38;amp;* today!&#39;);&#10;&#125;&#10;&#125;&#10;class MessageReader &#123;&#10;var $messages;&#10;function MessageReader(&#38;amp;$messages)&#10;&#123;&#10;$this-&#62;messages = &#38;amp;$messages;&#10;$this-&#62;readMessages();&#10;&#125;&#10;function readMessages()&#10;&#123;&#10;foreach ($this-&#62;messages as $message)&#10;&#123;&#10;if (is_a($message, &#39;Message&#39;))&#10;echo $message-&#62;getMessage() . &#39;&#60;br /&#62;&#39;;&#10;&#125;&#10;&#125;&#10;&#125;&#10;$classNames = array(&#39;PoliteMessage&#39;, &#39;TerseMessage&#39;, &#39;RudeMessage&#39;);&#10;$messages = array();&#10;srand((float)microtime() * 1000000); // Prepares random shuffle&#10;for ($i = 0; $i &#60; 10; $i++)&#10;&#123;&#10;shuffle($classNames);&#10;$messages[] = new $classNames[0]();&#10;&#125;&#10;$messageReader = new MessageReader($messages);&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>第 3 種方式用到了繼承，這是常見的多形技巧。 MessageReader 能接受一個 Message 類別所產生的物件，當然 Message 的子類別也同樣地能被 MessageReader 接受。對 MessageReader 來說， &#036;messages 陣列裡所有的類別都繼承於 Message 類別，但因為它們在實作方法上有所不同，故在執行期間能夠產生不同的動作，所以能夠被稱之為多型。</p>
 <p> 第 3 種方式從比較廣義的角度來說，可以稱為「策略模式」。 MessageReader 在執行期間，不必在乎 &#036;messages 陣列裡的物件的實作 (也就是演算法) ，只要這些物件屬於 Message 類別，那麼它就能呼叫 Message 類別中的 getMessage 方法。</p>
 <p> 不過實際上， PHP4 並沒有比較漂亮的辦法在傳入參數時就分別出 &#036;messages 陣列中的物件是否真的屬於 Message 類別 (只能在函式中用 is_a ) ，在 PHP5 就能夠用 Type Hinting 來辨認。</p>
@@ -385,45 +422,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2005-08-10T16:00:00.000Z"><a href="/2005/08/11/30/">2005-08-11</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2005/08/11/30/">關於 Magic Quotes</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>「許功蓋」的問題一直困擾著許多程式設計師，原因和 magic quotes 有非常大的關係。以下介紹個可行的解決方案，請自行參考運用。</p>
-<p>在 PHP5 裡，預設是不開啟 magic quotes 的，如果開啟的話，系統就會幫你的特殊字元加入 ‘\’ 。</p>
-<p>但是這樣會造成程式裡處理的困擾，畢竟我們不希望時時刻刻地去想什麼時候用 addslashes ，什麼時候用 stripslashes 。</p>
-<p>所以如果有已經打開了 magic quotes ，可參考 <a href="http://www.php.net/manual/en/function.get-magic-quotes-gpc.php" target="_blank" rel="external"> http://www.php.net/manual/en/function.get-magic-quotes-gpc.php </a>的第一篇 User Contributed Notes，把相關的系統變數回復為沒有開啟 magic quotes 的狀態，然後在程式必要的地方再自行處理。</p>
-<p>你也可以在程式的最開頭，直接用以下這個簡單的程式片段來處理 GPC 變數：</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 去除 Magic Quotes 的影響</span></span><br><span class="line"><span class="keyword">if</span> (get_magic_quotes_gpc()) &#123;</span><br><span class="line">    <span class="variable">$_GET</span> <span class="subst">=</span> array_map(<span class="string">'stripslashes'</span>, <span class="variable">$_GET</span>);</span><br><span class="line">    <span class="variable">$_POST</span> <span class="subst">=</span> array_map(<span class="string">'stripslashes'</span>, <span class="variable">$_POST</span>);</span><br><span class="line">    <span class="variable">$_COOKIE</span> <span class="subst">=</span> array_map(<span class="string">'stripslashes'</span>, <span class="variable">$_COOKIE</span>);</span><br><span class="line">    <span class="variable">$_REQUEST</span> <span class="subst">=</span> array_map(<span class="string">'stripslashes'</span>, <span class="variable">$_REQUEST</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>假如程式裡用到了 <a href="http://pear.php.net/manual/en/package.database.db.php" target="_blank" rel="external">PEAR::DB</a> 加上 MySQL  4.0 或是 MSSQL 的話，那麼可以使用 <a href="http://pear.php.net/manual/en/package.database.db.intro-execute.php" target="_blank" rel="external">prepare  及 execute</a> 方法來協助你處理這些特殊字元。它會判斷資料庫的型態，自行呼叫相關的函式來幫你解決 magic quotes 的問題。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -467,7 +465,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -489,13 +487,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -511,15 +509,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

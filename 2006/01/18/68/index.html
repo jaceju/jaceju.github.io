@@ -63,20 +63,20 @@
         <p>最近做一個電子報排程的程式，原本是在 PHP 5 上開發，後來轉到安裝 PHP 4 的正式機上時發生了一些問題。以下是我的記錄：</p>
 <a id="more"></a>
 <h3 id="file_put_contents_函式">file_put_contents 函式</h3><p>我使用 file_put_contents 函式去寫一個暫存檔，在測試機上時一切正常，但是換到正式機上時就一直無法寫入。結果原因是豬頭的我在查閱 PHP 手冊時，沒注意到 file_put_contents 是 PHP 5 才有的函式。解決的辦法很簡單，利用 PEAR 的 PHP_Compat 類別就能解決：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">&lt;strong&gt;<span class="keyword">require_once</span> (<span class="string">'PHP/Compat.php'</span>);&lt;/strong&gt;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;strong&gt;PHP_Compat::loadFunction(<span class="string">'file_put_contents'</span>);&lt;/strong&gt;</span><br><span class="line">file_put_contents(<span class="variable">$file_path</span>, <span class="variable">$content</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#60;strong&#62;require_once (&#39;PHP/Compat.php&#39;);&#60;/strong&#62;&#10;//...&#10;&#60;strong&#62;PHP_Compat::loadFunction(&#39;file_put_contents&#39;);&#60;/strong&#62;&#10;file_put_contents($file_path, $content);&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <h3 id="別名參數">別名參數</h3><p>另外一個問題要看以下的函式：</p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(&lt;<span class="keyword">strong</span>&gt;&amp;amp;$test = NULL&lt;/<span class="keyword">strong</span>&gt;)</span> <span class="comment">&#123;&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function test(&#60;strong&#62;&#38;amp;$test = NULL&#60;/strong&#62;) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>在 PHP 5 底下，上面這段程式是 OK 的；不過一換到 PHP 4 馬上就出問題了。這是因為 PHP 5 可以接受對一個別名參數 (&amp;) 設定預設值，但 PHP 4 不行。</p>
 <p>不過如果改成這樣：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(&amp;amp;<span class="variable">$test</span>)</span> </span>&#123;&#125;</span><br><span class="line">&lt;strong&gt;test(<span class="keyword">NULL</span>);&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function test(&#38;amp;$test) &#123;&#125;&#10;&#60;strong&#62;test(NULL);&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣肯定也會掛點，因為不能直接把 NULL 丟給別名參數。要改成這樣：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(&amp;amp;<span class="variable">$test</span>)</span> </span>&#123;&#125;</span><br><span class="line">&lt;strong&gt;<span class="variable">$a</span> = <span class="keyword">NULL</span>;&lt;/strong&gt;</span><br><span class="line">test(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function test(&#38;amp;$test) &#123;&#125;&#10;&#60;strong&#62;$a = NULL;&#60;/strong&#62;&#10;test($a);</span><br></pre></td></tr></table></figure>
 <h3 id="路徑問題">路徑問題</h3><p>我用 Linux 的排程去執行 PHP 程式時， require_once 會發生找不到引入檔，但是 PEAR 等第三方類別庫卻可以載入的問題。雖然我在 Windows 的測試環境下是可以的，但 Linux 總是無法正常動作。</p>
 <p>require_once (‘class/MyClass.php’); </p>
 <p>不過還是有解決的方法，那就是強迫 require<em>once 從目前程式所在路徑去尋找要引入的檔案。利用 dirname(<em>_FILE</em></em>) 就能達到這個目的：</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require_once <span class="list">(<span class="keyword">&lt;strong&gt;dirname</span><span class="list">(<span class="keyword">__FILE__</span>)</span>&lt;/strong&gt; . <span class="quoted">'/class/MyClass</span>.php')</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require_once (&#60;strong&#62;dirname(__FILE__)&#60;/strong&#62; . &#39;/class/MyClass.php&#39;);</span><br></pre></td></tr></table></figure>
 <p>如果很龜毛的話，也可以這樣寫：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;strong&gt;<span class="variable">$current_path</span> = str_replace(<span class="string">'\\'</span>, <span class="string">'/'</span>, dirname(<span class="keyword">__FILE__</span>));&lt;/strong&gt;</span><br><span class="line"><span class="keyword">require_once</span> (&lt;strong&gt;<span class="variable">$current_path</span>&lt;/strong&gt; . <span class="string">'/class/MyClass.php'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;strong&#62;$current_path = str_replace(&#39;\\&#39;, &#39;/&#39;, dirname(__FILE__));&#60;/strong&#62;&#10;require_once (&#60;strong&#62;$current_path&#60;/strong&#62; . &#39;/class/MyClass.php&#39;);</span><br></pre></td></tr></table></figure>
 <p>這樣就能保證被排程的 PHP 程式能引入正確的檔案了。</p>
 
       
@@ -169,7 +169,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -191,13 +191,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -213,15 +213,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

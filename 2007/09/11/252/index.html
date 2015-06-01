@@ -73,7 +73,7 @@ RoR 有很棒的資料庫遷移機制， PHP 高手 Cody Caughlan 也不干示�
 
 <p><a href="http://www.phpied.com/file_get_contents-for-php4/" target="_blank" rel="external">file_get_contents() for PHP4</a> (作者寫錯標題了，應該是 file_put_contents ) </p>
 <p><a href="http://www.php.net/manual/tw/function.file-put-contents.php" target="_blank" rel="external">file_put_contents</a> 這個函式只有在 PHP5 才提供，如果想要在 PHP4 用的話，可以參考以下方式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'file_put_contents'</span>)) &#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">file_put_contents</span><span class="params">(<span class="variable">$filename</span>, <span class="variable">$data</span>)</span> </span>&#123;</span><br><span class="line"><span class="variable">$f</span> = @fopen(<span class="variable">$filename</span>, <span class="string">'w'</span>);</span><br><span class="line"><span class="keyword">if</span> (!<span class="variable">$f</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="variable">$bytes</span> = fwrite(<span class="variable">$f</span>, <span class="variable">$data</span>);</span><br><span class="line">fclose(<span class="variable">$f</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="variable">$bytes</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;if (!function_exists(&#39;file_put_contents&#39;)) &#123;&#10;function file_put_contents($filename, $data) &#123;&#10;$f = @fopen($filename, &#39;w&#39;);&#10;if (!$f) &#123;&#10;return false;&#10;&#125; else &#123;&#10;$bytes = fwrite($f, $data);&#10;fclose($f);&#10;return $bytes;&#10;&#125;&#10;&#125;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>或是如果有用 PEAR 的話，可以安裝 <a href="http://pear.php.net/package/PHP_Compat" target="_blank" rel="external">PHP_Compat</a> 。<br></p></li><p></p>
 <ul>
 <li><a href="http://www.php-learn-it.com/php_cookies.html" target="_blank" rel="external">Cooking Cookies with PHP</a></li>
@@ -174,7 +174,7 @@ RoR 有很棒的資料庫遷移機制， PHP 高手 Cody Caughlan 也不干示�
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -196,13 +196,13 @@ RoR 有很棒的資料庫遷移機制， PHP 高手 Cody Caughlan 也不干示�
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -218,15 +218,13 @@ RoR 有很棒的資料庫遷移機制， PHP 高手 Cody Caughlan 也不干示�
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

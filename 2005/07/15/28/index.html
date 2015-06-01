@@ -65,16 +65,16 @@ Windows 版安裝方式先連上最新版的 eAccelerator for Windows 的下載�
 <h2 id="Windows_版安裝方式">Windows 版安裝方式</h2><p>先連上<a href="http://www.sitebuddy.com/PHP/Accelerators/eAccelerator_windows_binaries_builds" target="_blank" rel="external">最新版的 eAccelerator for Windows</a> 的下載位址，然後找到和系統 PHP 版本相符的 eAccelerator095_5.2.0.dll ，將它下載到 PHP 安裝目錄 的 ext 子資料夾裡。</p>
 <p>請記得設定 php.ini 的 extension_dir=”c:/php5/ext/“ ；或是把 Windows 的 PATH 系統變數後面加上「 ;c:\php5\ext 」，然後重新啟動電腦。</p>
 <p>註：有時候 Windows 還是不能找到 ext 底下的 dll 檔 (例如 PHP 5.1 就會如此) ，這時候只要把 “c:\php5\ext;” 改加在 PATH 變數之前就行了。例如：</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c:\php<span class="number">5</span>;c:\php<span class="number">5</span>\ext;<span class="preprocessor">%</span>SystemRoot<span class="preprocessor">%</span>\syste<span class="title">m32</span>;<span class="preprocessor">%</span>SystemRoot<span class="preprocessor">%</span>;<span class="preprocessor">%</span>SystemRoot<span class="preprocessor">%</span>\Syste<span class="title">m32</span>\Wbem</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c:\php5;c:\php5\ext;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem</span><br></pre></td></tr></table></figure>
 <p>接著在 php.ini 中加入：</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[eAccelerator]</span><br><span class="line"><span class="variable">zend_extension_ts=</span>eAccelerator095_5.<span class="number">2.0</span>.dll</span><br><span class="line">eaccelerator.<span class="variable">shm_size=</span><span class="string">"64"</span></span><br><span class="line">eaccelerator.<span class="variable">cache_dir=</span><span class="string">"D:/TEMP/eAccelerator"</span></span><br><span class="line">eaccelerator.<span class="variable">enable=</span><span class="string">"1"</span></span><br><span class="line">eaccelerator.<span class="variable">optimizer=</span><span class="string">"1"</span></span><br><span class="line">eaccelerator.<span class="variable">debug=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">check_mtime=</span><span class="string">"1"</span></span><br><span class="line">eaccelerator.<span class="variable">filter=</span><span class="string">""</span></span><br><span class="line">eaccelerator.<span class="variable">shm_max=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">shm_ttl=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">shm_prune_period=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">shm_only=</span><span class="string">"0"</span></span><br><span class="line">eaccelerator.<span class="variable">compress=</span><span class="string">"1"</span></span><br><span class="line">eaccelerator.<span class="variable">compress_level=</span><span class="string">"9"</span></span><br><span class="line">eaccelerator.<span class="variable">keys=</span><span class="string">"shm_and_disk"</span></span><br><span class="line">eaccelerator.<span class="variable">sessions=</span><span class="string">"shm_and_disk"</span></span><br><span class="line">eaccelerator.<span class="variable">content=</span><span class="string">"shm_and_disk"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[eAccelerator]&#10;zend_extension_ts=eAccelerator095_5.2.0.dll&#10;eaccelerator.shm_size=&#34;64&#34;&#10;eaccelerator.cache_dir=&#34;D:/TEMP/eAccelerator&#34;&#10;eaccelerator.enable=&#34;1&#34;&#10;eaccelerator.optimizer=&#34;1&#34;&#10;eaccelerator.debug=&#34;0&#34;&#10;eaccelerator.check_mtime=&#34;1&#34;&#10;eaccelerator.filter=&#34;&#34;&#10;eaccelerator.shm_max=&#34;0&#34;&#10;eaccelerator.shm_ttl=&#34;0&#34;&#10;eaccelerator.shm_prune_period=&#34;0&#34;&#10;eaccelerator.shm_only=&#34;0&#34;&#10;eaccelerator.compress=&#34;1&#34;&#10;eaccelerator.compress_level=&#34;9&#34;&#10;eaccelerator.keys=&#34;shm_and_disk&#34;&#10;eaccelerator.sessions=&#34;shm_and_disk&#34;&#10;eaccelerator.content=&#34;shm_and_disk&#34;</span><br></pre></td></tr></table></figure>
 <p>最後重新啟動 Apache ，用 phpinfo() 查看是否安裝正確。</p>
 <p><img src="/resources/xdebug/01.gif" alt=""></p>
 <h2 id="安裝_PHP_編碼程式">安裝 PHP 編碼程式</h2><p>連到<a href="http://www.arnot.info/eaccelerator/" target="_blank" rel="external">這個位址</a>，下載 phpcoder-multiencoder-x.x.x.zip 。然後把所有檔案解壓縮至可執行 PHP 的資料夾裡。</p>
 <p>接著修改其中的 index.php ，找到：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$coder</span> = &amp;amp;NewEncoder(<span class="string">"mmcache"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$coder = &#38;amp;NewEncoder(&#34;mmcache&#34;);</span><br></pre></td></tr></table></figure>
 <p>改成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$coder</span> = &amp;amp;NewEncoder(<span class="string">"eAccelerator"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$coder = &#38;amp;NewEncoder(&#34;eAccelerator&#34;);</span><br></pre></td></tr></table></figure>
 <p>存檔後便可試著執行看看；使用方法就請自行嘗試了。</p>
 
       
@@ -167,7 +167,7 @@ Windows 版安裝方式先連上最新版的 eAccelerator for Windows 的下載�
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -189,13 +189,13 @@ Windows 版安裝方式先連上最新版的 eAccelerator for Windows 的下載�
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -211,15 +211,13 @@ Windows 版安裝方式先連上最新版的 eAccelerator for Windows 的下載�
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

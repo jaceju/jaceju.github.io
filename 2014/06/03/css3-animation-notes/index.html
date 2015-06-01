@@ -74,7 +74,7 @@
 <p data-height="268" data-theme-id="0" data-slug-hash="gwyao" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/gwyao/" target="_blank" rel="external">例：在滑鼠移過時，方塊的高度和寬度變化。</a></p>
 
 <h3 id="基本的_transition">基本的 transition</h3><p>而 CSS 為了補足這方面的視覺轉換特效，特別加入 <code>transition</code> 屬性。 一個簡易的動畫效果就是在想要變化的狀態上，加入一個 <code>transition</code> 屬性，而其值為變化需歷時的秒數。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">div</span>:<span class="value">hover &#123;</span><br><span class="line">    ...</span><br><span class="line">    transition: <span class="number">1s</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div:hover &#123;&#10;    ...&#10;    transition: 1s;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這麼一來， <code>transition</code> 就會自動幫我們補足中間的過場動畫。例如我們希望上面的例子能平順地轉換，歷時一秒：</p>
 <p data-height="268" data-theme-id="0" data-slug-hash="AGiEa" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/AGiEa/" target="_blank" rel="external">例：加入 transition 後的效果</a></p>
 
@@ -130,9 +130,9 @@
 <h3 id="瀏覽器支援">瀏覽器支援</h3><p>目前包含 IE 10+ 的主流瀏覽器都已經支援 <code>transition</code> ，可參考 <a href="http://caniuse.com/#search=transition" target="_blank" rel="external">Can I use</a> 。</p>
 <h2 id="Animation">Animation</h2><p>雖然 <code>transition</code> 屬性簡單易用，但也有上述的侷限。因此就有了 <code>animation</code> 這個屬性來彌補其不足。</p>
 <h3 id="基本的_Animation">基本的 Animation</h3><p>最基本的 <code>animation</code> 要指定動畫持續的時間，還有動畫的名稱。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: <span class="number">1s</span> fat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div:hover &#123;&#10;  animation: 1s fat;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>而動畫的定義則是用 <code>@keyframes</code> 這個屬性，例如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> fat </span>&#123;</span><br><span class="line">  0% <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>; &#125;</span></span><br><span class="line">  50% <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">150px</span></span></span>; &#125;</span></span><br><span class="line">  100% <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">200px</span></span></span>; &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@keyframes fat &#123;&#10;  0% &#123; width: 100px; &#125;&#10;  50% &#123; width: 150px; &#125;&#10;  100% &#123; width: 200px; &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>在 <code>@keyframes</code> 中可以定義多個狀態，範圍可從 <code>0%</code> 至 <code>100%</code> 。另外 <code>0%</code> 可寫成 <code>from</code> ， <code>100%</code> 可寫成 <code>to</code> ，其他狀態還是使用數字百分比。</p>
 <p data-height="268" data-theme-id="0" data-slug-hash="pyngJ" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/pyngJ/" target="_blank" rel="external">例：基本的 animation</a></p>
 
@@ -185,10 +185,10 @@
 <p data-height="268" data-theme-id="0" data-slug-hash="HhGqj" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/HhGqj/" target="_blank" rel="external">例：決定 animation 執行或暫停</a></p>
 
 <h3 id="瀏覽器支援-1">瀏覽器支援</h3><p><code>animation</code> 屬性目前在 IE 10+ 以上主流瀏覽器都可以執行，但採用 Webkit 引擎的瀏覽器必須加上 <code>-webkit-</code> 前綴字串。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">div</span>:<span class="value">hover &#123;</span><br><span class="line">  -webkit-animation: <span class="number">1s</span> name</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">animation</span>:<span class="value"> <span class="number">1s</span> name</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="at_rule">@<span class="keyword">-webkit-keyframes</span> name </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> name </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div:hover &#123;&#10;  -webkit-animation: 1s name;&#10;  animation: 1s name;&#10;&#125;&#10;&#10;@-webkit-keyframes name &#123;&#10;    ...&#10;&#125;&#10;&#10;@keyframes name &#123;&#10;    ...&#10;&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="實例">實例</h2><p>接下來我們用 Animation 搭配 Transform 來做簡單的旋轉動畫。 Transform 是用來讓 HTML 元素變形的屬性，雖然跟動畫沒有直接的關係，但它是可以套用動畫效果的。這邊我不打算詳細介紹它，只會用到旋轉的效果。</p>
 <p>它的語法如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotate</span>(θ)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">transform-origin</span>:<span class="value"> x y</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div &#123;&#10;    transform: rotate(&#952;);&#10;    transform-origin: x y;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p><code>rotate(θ)</code> 是指讓指定元素以參考點為中心軸 2D 旋轉 θ 度， <code>transform-origin</code> 會將 <code>(x, y)</code> 設為參考點。當我們把 <code>transform: rotate(θ)</code> 放到 <code>@keyframes</code> 中時， <code>animation</code> 就會改變 <code>θ</code> 值來做出動畫效果。</p>
 <p>以下模擬簡單的太陽、地球、月亮的週期變化。</p>
 <p data-height="600" data-theme-id="0" data-slug-hash="gkdBx" data-default-tab="result" class="codepen"><a href="http://codepen.io/jaceju/pen/gkdBx/" target="_blank" rel="external">範例：模擬太陽、地球、月亮的週期</a></p>
@@ -297,7 +297,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -319,13 +319,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -341,15 +341,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

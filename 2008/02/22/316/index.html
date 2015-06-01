@@ -65,28 +65,28 @@
 <p>呃…不知道的朋友也不用煩惱，我來解釋一下。</p>
 <a id="more"></a>
 <p>如何回傳資料呢？假設現在有個 php 檔叫做 config.php ，內容如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'123'</span>, <span class="string">'456'</span>);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;return array(&#39;123&#39;, &#39;456&#39;);</span><br></pre></td></tr></table></figure>
 <p>咦？那邊有人說 return 放錯地方了？不不不， PHP 能接受這樣的寫法。</p>
 <p>好，現在我們來證明 include 或 require 能取得 config.php 所 return 回來的資料。請建立一支 test.php ，其內容是：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$config</span> = <span class="keyword">require</span> <span class="string">'config.php'</span>;</span><br><span class="line">var_dump(<span class="variable">$config</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$config = require &#39;config.php&#39;;&#10;var_dump($config);</span><br></pre></td></tr></table></figure>
 <p>執行看看，是不是可以跑呀？</p>
 <p>所以我們可以在某支 PHP 程式中 return 一個資料 (任何型態) ，然後在另一支 PHP 程式中用 include 或 require 來取得這個資料。 </p>
 <h2 id="把_require_放在參數裡">把 require 放在參數裡</h2><p>什麼？這不是密技？不不不，密技在底下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(<span class="variable">$config</span>)</span> </span>&#123;</span><br><span class="line">    var_dump(<span class="variable">$config</span>);</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="keyword">require</span> <span class="string">'config.php'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function test($config) &#123;&#10;    var_dump($config);&#10;&#125;&#10;test(require &#39;config.php&#39;);</span><br></pre></td></tr></table></figure>
 <p>對！你沒看錯！直接把 require 放在函式的參數裡！</p>
 <p>還沒完呢，再看：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(<span class="variable">$config</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        var_dump(<span class="variable">$config</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> Test(<span class="keyword">require</span> <span class="string">'config.php'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Test&#10;&#123;&#10;    public function __construct($config)&#10;    &#123;&#10;        var_dump($config);&#10;    &#125;&#10;&#125;&#10;$a = new Test(require &#39;config.php&#39;);</span><br></pre></td></tr></table></figure>
 <p>連 new 建構子的參數都可以接受 require ！</p>
 <p>所以只要能放變數的地方，都可以放 include 或 require ，例如：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">require</span> <span class="string">'config.php'</span>) &#123;</span><br><span class="line">    var_dump(<span class="keyword">require</span> <span class="string">'config.php'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$config</span> = <span class="keyword">require</span> <span class="string">'config.php'</span>) &#123;</span><br><span class="line">    var_dump(<span class="variable">$config</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (require &#39;config.php&#39;) &#123;&#10;    var_dump(require &#39;config.php&#39;);&#10;&#125;&#10;if ($config = require &#39;config.php&#39;) &#123;&#10;    var_dump($config);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>而且不僅是 include 及 require ，連 include_once 和 require_once 都可以這麼做。</p>
 <p>我在<a href="http://blog.astrumfutura.com/archives/340-The-Zend-Framework,-Dependency-Injection-and-Zend_Di.html" target="_blank" rel="external">某篇文章</a>發現這個密技以後，分享給辦公室裡的同事們；沒想到玩了 PHP 這麼多年的他們也沒看過這個方法，看來大家對 PHP 的瞭解需要更深入一點囉！</p>
 <h2 id="Scope_的問題">Scope 的問題</h2><p>接著我同事問了我一個問題：如果在參數使用 require 敘述，而且被 require 的 PHP 程式裡如果有定義全域變數的話，那麼這個變數在執行的 PHP 程式裡，它的 scope 在哪裡呢？</p>
 <p>答案是：它還是全域。</p>
 <p>怎麼說呢？現在我們在剛剛的 config.php 的 return 敘述前加上一行程式，如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">'789'</span>; <span class="comment">// 加上這行</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'123'</span>, <span class="string">'456'</span>);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$data = &#39;789&#39;; // &#21152;&#19978;&#36889;&#34892;&#10;return array(&#39;123&#39;, &#39;456&#39;);</span><br></pre></td></tr></table></figure>
 <p>然後在 test.php 裡的 Global 部份 (也就是不在函式或類別定義裡) 的任意處加入：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">var_dump</span>($<span class="typedef"><span class="keyword">data</span>);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var_dump($data);</span><br></pre></td></tr></table></figure>
 <p>是不是也可以正確顯示 config.php 中 $data 變數所指定的內容呢？這就表示在參數中使用 require 不會影響全域變數的 scope 。</p>
 <p>還有其他 include 或 require 的密技嗎？歡迎大家一起討論囉~</p>
 
@@ -180,7 +180,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -202,13 +202,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -224,15 +224,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

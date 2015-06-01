@@ -63,12 +63,12 @@
         <p>前陣子 <a href="http://www.plurk.com/pct" target="_blank" rel="external">pct</a> 用 PHP 5.3 實驗 Zend Framework 1.9.5 的 Zend_Tool 功能時，產生了一堆 Warning 。</p>
 <a id="more"></a>
 <p>因為我一直都是用 PHP 5.2 ，所以沒有出現這個問題。因此趁著假日空閒時間，我特地在 CentOS 上裝了 PHP 5.3 來測試，結果一測馬上就遇到了：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># zf</span></span><br><span class="line">(略)</span><br><span class="line">Warning: include_once(/path-<span class="built_in">to</span>): failed <span class="built_in">to</span> <span class="built_in">open</span> stream: No such <span class="built_in">file</span> <span class="operator">or</span> <span class="built_in">directory</span> <span class="operator">in</span> /path-<span class="built_in">to</span>/library/Zend/Tool/Framework/Loader/Abstract.php <span class="command"><span class="keyword">on</span> <span class="title">line</span> <span class="title">90</span></span></span><br><span class="line">  PHP Warning:  include_once(): Failed opening <span class="string">'/path-to'</span> <span class="keyword">for</span> inclusion (include_path=<span class="string">'.:/path-to/library'</span>) <span class="operator">in</span> /path-<span class="built_in">to</span>/library/Zend/Tool/Framework/Loader/Abstract.php <span class="command"><span class="keyword">on</span> <span class="title">line</span> <span class="title">90</span></span></span><br><span class="line">Warning: include_once(): Failed opening <span class="string">'/path-to'</span> <span class="keyword">for</span> inclusion (include_path=<span class="string">'.:/path-to/library'</span>) <span class="operator">in</span> /path-<span class="built_in">to</span>/library/Zend/Tool/Framework/Loader/Abstract.php <span class="command"><span class="keyword">on</span> <span class="title">line</span> <span class="title">90</span></span></span><br><span class="line">  An Error Has Occurred</span><br><span class="line">  An action <span class="operator">and</span> provider is required.</span><br><span class="line">Zend Framework Command Line Console Tool v1.9.5</span><br><span class="line">  Usage:</span><br><span class="line">  zf [<span class="comment">--global-opts] action-name [--action-opts] provider-name [--provider-opts] [provider parameters ...]</span></span><br><span class="line">  Note: You may use <span class="string">"?"</span> <span class="operator">in</span> <span class="keyword">any</span> place <span class="operator">of</span> <span class="operator">the</span> above usage <span class="keyword">string</span> <span class="built_in">to</span> ask <span class="keyword">for</span> more specific help information.</span><br><span class="line">  Example: <span class="string">"zf ? version"</span> will list all available actions <span class="keyword">for</span> <span class="operator">the</span> <span class="built_in">version</span> provider.</span><br><span class="line">Providers <span class="operator">and</span> their actions:</span><br><span class="line">  ProjectProvider</span><br><span class="line">  zf <span class="built_in">create</span> project-provider name actions</span><br><span class="line"> Profile</span><br><span class="line">  zf show profile</span><br><span class="line">(略)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># zf&#10;(&#30053;)&#10;Warning: include_once(/path-to): failed to open stream: No such file or directory in /path-to/library/Zend/Tool/Framework/Loader/Abstract.php on line 90&#10;  PHP Warning:  include_once(): Failed opening &#39;/path-to&#39; for inclusion (include_path=&#39;.:/path-to/library&#39;) in /path-to/library/Zend/Tool/Framework/Loader/Abstract.php on line 90&#10;Warning: include_once(): Failed opening &#39;/path-to&#39; for inclusion (include_path=&#39;.:/path-to/library&#39;) in /path-to/library/Zend/Tool/Framework/Loader/Abstract.php on line 90&#10;  An Error Has Occurred&#10;  An action and provider is required.&#10;Zend Framework Command Line Console Tool v1.9.5&#10;  Usage:&#10;  zf [--global-opts] action-name [--action-opts] provider-name [--provider-opts] [provider parameters ...]&#10;  Note: You may use &#34;?&#34; in any place of the above usage string to ask for more specific help information.&#10;  Example: &#34;zf ? version&#34; will list all available actions for the version provider.&#10;Providers and their actions:&#10;  ProjectProvider&#10;  zf create project-provider name actions&#10; Profile&#10;  zf show profile&#10;(&#30053;)</span><br></pre></td></tr></table></figure>
 <p>上網 Google 了一下，找到<a href="http://www.zfbrasil.com/forum/zf-sh-44-php-not-found-t510.html" target="_blank" rel="external">這篇</a>看不懂語言的討論文，但裡面提供了一段看得懂的程式碼… (XD)</p>
 <p>把 /library/Zend/Tool/Framework/Loader/Abstract.php 第 90 行的：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">include_once</span> <span class="variable">$file</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include_once $file;</span><br></pre></td></tr></table></figure>
 <p>改成：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">if</span> (preg_match(<span class="string">'/\.php$/'</span>, <span class="variable">$file</span>)) &#123;</span><br><span class="line">    <span class="title">include_once</span> <span class="variable">$file</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (preg_match(&#39;/\.php$/&#39;, $file)) &#123;&#10;    include_once $file;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>就可以啦~</p>
 <p>這是因為 Zend_Tool 會去掃目錄 (要找尋 Provider 的關係)，結果把不是 .php 的 dir 也 include 進來…解法就是判斷該 file 是不是 .php 結尾，不是的話就排除掉~</p>
 <p>另外<a href="http://n4.nabble.com/Getting-Started-Issues-on-CentOS-td663571.html#a663571" target="_blank" rel="external">這篇討論文</a>有提到 ZF 1.10 時會修掉這個 Bug 。</p>
@@ -163,7 +163,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -185,13 +185,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -207,15 +207,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

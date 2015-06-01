@@ -77,26 +77,26 @@ require_once
 <p>那麼它們是怎麼決定引入檔案的路徑呢？</p>
 <a id="more"></a>
 <h2 id="絕對路徑">絕對路徑</h2><p>絕對路徑就是指檔案在作業系統中所存放的路徑，例如：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/var/</span>lib<span class="regexp">/php/</span>library<span class="regexp">/Zend/</span>Loader.php (在 Unix like 環境)</span><br><span class="line"><span class="string">D:</span>\php\library\PEAR.php (在 Windows 環境)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/php/library/Zend/Loader.php (&#22312; Unix like &#29872;&#22659;)&#10;D:\php\library\PEAR.php (&#22312; Windows &#29872;&#22659;)</span><br></pre></td></tr></table></figure>
 <p>所以我們可以在 include 及 require 裡直接引入這樣的檔案：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">require_once</span> <span class="string">'/var/lib/php/library/Zend/Loader.php'</span>;</span><br><span class="line"><span class="title">include</span> <span class="string">'D:\php\library\PEAR.php'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require_once &#39;/var/lib/php/library/Zend/Loader.php&#39;;&#10;include &#39;D:\php\library\PEAR.php&#39;;</span><br></pre></td></tr></table></figure>
 <h2 id="相對路徑">相對路徑</h2><p>相對路徑看起來比較麻煩一點，這裡也常常是 PHP 開發者一開始容易搞混的地方。</p>
 <p>不過只要掌握住幾個重點，那麼引入相對路徑的檔案其實也沒有想像中那麼困難。</p>
 <h3 id="相對於目前檔案所在路徑">相對於目前檔案所在路徑</h3><p>在 PHP 預設的環境設定下，我們可以引用相對於目前這支程式的其他檔案，例如我們有一支程式 “D:\WEB\wwwroot\index.php” ，其內容如下：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">'library/Zend/Loader.php'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require &#39;library/Zend/Loader.php&#39;;</span><br></pre></td></tr></table></figure>
 <p>那麼 require 實際引入的檔案就會是 “D:\WEB\wwwroot\library\Zend\Loader.php” 。</p>
 <p>不過為了確保程式不會因為環境的改變而無法正確引入檔案 (稍後會提到怎麼改變) ，我們還可以用以下方式來確保引入的檔案確實是 “D:\WEB\wwwroot\library\Zend\Loader.php” 這支程式：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> dirname(<span class="keyword">__FILE__</span>) . <span class="string">'/library/Zend/Loader.php'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require dirname(__FILE__) . &#39;/library/Zend/Loader.php&#39;;</span><br></pre></td></tr></table></figure>
 <p>從上面的例子可以看出，我們利用 dirname(<strong>FILE</strong>) 來取得目前檔案的實際所在資料夾的完整路徑 (也就是 “D:\WEB\wwwroot” ) ，然後再引入相對於這個檔案的 “/library/Zend/Loader.php” 。</p>
 <h3 id="相對於_include_path_所設定的路徑">相對於 include_path 所設定的路徑</h3><p>前面我們提到 include 和 require 預設可以引入相對於目前檔案路徑的程式，其實這是定義在 php.ini 裡的 include_path 這個設定值：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">; <span class="string">UNIX:</span> <span class="string">"/path1:/path2"</span></span><br><span class="line">;include_path = <span class="string">".:/php/includes"</span></span><br><span class="line">;</span><br><span class="line">; <span class="string">Windows:</span> <span class="string">"\path1;\path2"</span></span><br><span class="line">include_path = <span class="string">".;c:\php\includes"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">; UNIX: &#34;/path1:/path2&#34;&#10;;include_path = &#34;.:/php/includes&#34;&#10;;&#10;; Windows: &#34;\path1;\path2&#34;&#10;include_path = &#34;.;c:\php\includes&#34;</span><br></pre></td></tr></table></figure>
 <p>可以發現 php.ini 會把「 . 」 (也就是當前目錄) 做為預設的引入路徑。而在「 . 」這個路徑後面，我們也可以加入自訂的引入位置，像是 “c:\php\include” 等等。</p>
 <p>註：目錄前的分隔符號，在 Unix 和 Windows 是不同的 (分別是「 : (冒號) 」及「; (分號) 」) 。在 PHP 程式裡，我們可以用 PATH_SEPARATOR 這個預定義常數來表示。</p>
 <p>因此如果在程式裡不指定前面的路徑位置時， PHP 程式就會依照 include_path 所設定的路徑一一去尋找符合的檔案 (有找到就不會再往下找了) 。</p>
 <p>例如我們的 include_path 內容為：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include_path = ".;c:<span class="command">\php</span>5<span class="command">\PEAR</span>;c:<span class="command">\php</span>5<span class="command">\library</span>"</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include_path = &#34;.;c:\php5\PEAR;c:\php5\library&#34;</span><br></pre></td></tr></table></figure>
 <p>那麼如果我們在 “D:\WEB\wwwroot\index.php” 引入：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">'Zend/Loader.php'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require &#39;Zend/Loader.php&#39;;</span><br></pre></td></tr></table></figure>
 <p>那麼 PHP 就會依照以下順序尋找 “Zend/Loader.php” ：</p>
 <ul>
 <li>“D:\WEB\wwwroot\Zend\Loader.php”</li>
@@ -201,7 +201,7 @@ require_once
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -223,13 +223,13 @@ require_once
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -245,15 +245,13 @@ require_once
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

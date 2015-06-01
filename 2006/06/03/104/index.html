@@ -66,18 +66,18 @@
 <a id="more"></a>
 <p>註：以下程式取自 <a href="http://dean.edwards.name/weblog/2006/06/levels/" target="_blank" rel="external">Levels of JavaScript Knowledge</a> 。 </p>
 <p>等級一：會使用內建的函式，如 alert 。例如：</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert<span class="list">(<span class="string">"Hello World"</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(&#34;Hello World&#34;);</span><br></pre></td></tr></table></figure>
 <p>等級二：會使用自訂的 function 。 </p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> WORLD = <span class="string">"World"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">(who)</span> </span>&#123;</span><br><span class="line">alert(<span class="string">"Hello "</span> + who);</span><br><span class="line">&#125;;</span><br><span class="line">hello(WORLD);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var WORLD = &#34;World&#34;;&#10;function hello(who) &#123;&#10;alert(&#34;Hello &#34; + who);&#10;&#125;;&#10;hello(WORLD);</span><br></pre></td></tr></table></figure>
 <p>等級三：會在 HTML 標籤內使用 onxxxx 事件來呼叫 JavaScript。 </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">onclick</span>=<span class="value">"hello(WORLD)"</span>&gt;</span>Say Hello<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;button onclick=&#34;hello(WORLD)&#34;&#62;Say Hello&#60;/button&#62;</span><br></pre></td></tr></table></figure>
 <p>等級四：會使用微軟自訂的 document.all 來撰寫 DHTML 。 </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"hello"</span>&gt;</span>Say Hello<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.all.hello;</span><br><span class="line">button.onclick = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">hello(WORLD);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;button id=&#34;hello&#34;&#62;Say Hello&#60;/button&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var button = document.all.hello;&#10;button.onclick = function() &#123;&#10;hello(WORLD);&#10;&#125;;</span><br></pre></td></tr></table></figure>
 <p>等級五：會使用標準的 DOM 加上事件 (Event) 來撰寫 DHTML 。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"hello"</span>);</span><br><span class="line">button.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>&#123;</span><br><span class="line">hello(WORLD);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var button = document.getElementById(&#34;hello&#34;);&#10;button.addEventListener(&#34;click&#34;, function(event) &#123;&#10;hello(WORLD);&#10;&#125;, false);</span><br></pre></td></tr></table></figure>
 <p>等級六：回歸到 Object Base 的 JavaScript 的設計方式。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Hello = <span class="keyword">new</span> Binding(&#123;</span><br><span class="line">greet: <span class="function"><span class="keyword">function</span><span class="params">(who)</span> </span>&#123;</span><br><span class="line">alert(<span class="string">"Hello "</span> + who);</span><br><span class="line">&#125;,</span><br><span class="line">onclick: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.greet(Hello.WORLD)</span><br><span class="line">&#125;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">WORLD: <span class="string">"World"</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">document</span>.bind(<span class="string">"#hello"</span>, Hello);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Hello = new Binding(&#123;&#10;greet: function(who) &#123;&#10;alert(&#34;Hello &#34; + who);&#10;&#125;,&#10;onclick: function() &#123;&#10;this.greet(Hello.WORLD)&#10;&#125;&#10;&#125;, &#123;&#10;WORLD: &#34;World&#34;&#10;&#125;);&#10;document.bind(&#34;#hello&#34;, Hello);</span><br></pre></td></tr></table></figure>
 <p>當然不是說使用等級低的技巧就是落伍，它們可是你學習 JavaScript 的必經過程。</p>
 
       
@@ -170,7 +170,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -192,13 +192,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -214,15 +214,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

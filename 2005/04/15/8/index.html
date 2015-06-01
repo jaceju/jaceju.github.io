@@ -75,7 +75,7 @@
 <p>在 <code>link</code> 標籤中，我們用 <code>href=&quot;xxx&quot;</code> 來代表屬性；而在 JavaScript 裡，我們則是在物件名稱後面用句點加上屬性名稱來取得或修改物件的屬性。</p>
 <p>另外，我用了一個陣列來存放多個 CSS 檔案位置，然後我在 <code>a</code> 標籤裡放了一個 JavaScript 事件 <code>onclick</code> 。當我按下連結時， <code>onclick</code> 事件會呼叫一個 <code>chageTheme</code> 函式，並傳入一個索引值，如此一來就能更換不同的版型了。</p>
 <p>完整的程式碼如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="keyword">var</span> sCSSFileURL = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>);</span><br><span class="line">sCSSFileURL[<span class="number">0</span>] = <span class="string">'http://www.mosu.com.tw/temp/mycss.php?css_url=http://homepage13.seed.net.tw/web@3/jaceju/theme/css1/theme1.css'</span>;</span><br><span class="line">sCSSFileURL[<span class="number">1</span>] = <span class="string">'http://www.mosu.com.tw/temp/mycss.php?css_url=http://homepage19.seed.net.tw/web@3/jaceju/theme/css2/theme2.css'</span>;</span><br><span class="line">sCSSFileURL[<span class="number">2</span>] = <span class="string">'http://blog.roodo.com/jaceju/71049e1a.css'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeTheme</span><span class="params">(iCSSFileURLIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> oLink = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'link'</span>)[<span class="number">0</span>];</span><br><span class="line">    oLink.href = sCSSFileURL[iCSSFileURLIndex];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"return changeTheme(0);"</span>&gt;</span>置中兩欄版型<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"return changeTheme(1);"</span>&gt;</span>全版面兩欄版型<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"return changeTheme(2);"</span>&gt;</span>全版面兩欄版型<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="keyword">var</span> sCSSFileURL = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>);</span><br><span class="line">sCSSFileURL[<span class="number">0</span>] = <span class="string">'http://www.mosu.com.tw/temp/mycss.php?css_url=http://homepage13.seed.net.tw/web@3/jaceju/theme/css1/theme1.css'</span>;</span><br><span class="line">sCSSFileURL[<span class="number">1</span>] = <span class="string">'http://www.mosu.com.tw/temp/mycss.php?css_url=http://homepage19.seed.net.tw/web@3/jaceju/theme/css2/theme2.css'</span>;</span><br><span class="line">sCSSFileURL[<span class="number">2</span>] = <span class="string">'http://blog.roodo.com/jaceju/71049e1a.css'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeTheme</span>(<span class="params">iCSSFileURLIndex</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> oLink = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'link'</span>)[<span class="number">0</span>];</span><br><span class="line">    oLink.href = sCSSFileURL[iCSSFileURLIndex];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"return changeTheme(0);"</span>&gt;</span>置中兩欄版型<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"return changeTheme(1);"</span>&gt;</span>全版面兩欄版型<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"return changeTheme(2);"</span>&gt;</span>全版面兩欄版型<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>原本在我把 CSS 檔案放到我的 SEEDNET 網頁空間，並在 Internet Explorer 上測試正常後，就該告一段落。但是當我用 FireFox 觀看時，卻發現 CSS 因為 mime-type 錯誤而無法載入。原來 Seednet 在輸出 CSS 檔案的時候，並沒有輸出正確的 mime-type: <code>text/css</code> 。</p>
 <p>怎麼辦呢？當然我們不可能去設定 Seednet 的伺服器上的 MIME-Type 設定檔，所以我用了兩種方式來解決這個問題：</p>
 <ul>
@@ -175,7 +175,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -197,13 +197,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -219,15 +219,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

@@ -105,7 +105,7 @@
 <h2 id="下載與安裝">下載與安裝</h2><p>首先連到官方下載頁面，下載最新版的 Zend Framework (直接下載連結在最底下) ；如果不需要 Dojo 的話，下載 minimal 版本就可以了。</p>
 <p>下載回來解開放到任一資料夾 (假設是在 C:\ZF ) ，裡面應該會有 bin 和 library 兩個資料夾。將 C:\ZF\bin 加入系統路徑變數中，讓系統在命令列模式中可以直接找到底下的 zf.bat 檔。</p>
 <h2 id="建立專案">建立專案</h2><p>接下來進入命令列模式，並將工作路徑切換到 Web 根目錄 (假設為 D:\WEB ) 下；然後輸入：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\WEB\&gt;&lt;strong&gt;zf <span class="built_in">create</span> project <span class="keyword">first</span>&lt;/strong&gt;</span><br><span class="line">Creating project <span class="keyword">at</span> D:/WEB/<span class="keyword">first</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\WEB\&#62;&#60;strong&#62;zf create project first&#60;/strong&#62;&#10;Creating project at D:/WEB/first</span><br></pre></td></tr></table></figure>
 <p>其中 first 就是專案名稱， Zend Framework 也會用它當做專案的資料夾名稱。透過這行指令，我們就完成了 Zend Framework 專案的建立。</p>
 <p>現在連上本地端的 Web Server 瀏覽剛建立好的網站 (<a href="http://localhost/first/public/" target="_blank" rel="external">http://localhost/first/public/</a>) ，你就能看到：</p>
 <p><img src="/resources/zf_180/init.gif" alt="初始畫面"></p>
@@ -116,10 +116,10 @@
 <p><img src="/resources/zf_180/directory_structure.gif" alt="目錄結構"></p>
 <p>這個目錄結構是 Zend Framework 預設的，我目前還沒研究出可以改變它的方法。而 .zfproject.xml 則是記錄該專案相關資訊的 XML 檔案，接下來要進行的操作都是依賴這個 XML 檔案，所以請不要刪掉它。</p>
 <h2 id="建立_Controller_及_Action">建立 Controller 及 Action</h2><p>請將工作目錄切換到剛剛建立好的 D:\WEB\first 下，如果要建立 Controller (例如 blog ) 則可以輸入：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">D:\<span class="type">WEB</span>\first&gt;&lt;strong&gt;zf create controller blog&lt;/strong&gt;</span><br><span class="line"><span class="type">Creating</span> a controller at D:\<span class="type">WEB</span>\first/application/controllers/<span class="type">BlogController</span>.php</span><br><span class="line"><span class="type">Creating</span> an index action <span class="keyword">method</span> <span class="keyword">in</span> controller blog</span><br><span class="line"><span class="type">Creating</span> a view script <span class="keyword">for</span> the index action <span class="keyword">method</span> at D:\<span class="type">WEB</span>\first/application/views/scripts/blog/index.phtml</span><br><span class="line"><span class="type">Creating</span> a controller test file at D:\<span class="type">WEB</span>\first/tests/application/controllers/<span class="type">BlogControllerTest</span>.php</span><br><span class="line"><span class="type">Updating</span> project profile 'D:\<span class="type">WEB</span>\first/.zfproject.xml'</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\WEB\first&#62;&#60;strong&#62;zf create controller blog&#60;/strong&#62;&#10;Creating a controller at D:\WEB\first/application/controllers/BlogController.php&#10;Creating an index action method in controller blog&#10;Creating a view script for the index action method at D:\WEB\first/application/views/scripts/blog/index.phtml&#10;Creating a controller test file at D:\WEB\first/tests/application/controllers/BlogControllerTest.php&#10;Updating project profile &#39;D:\WEB\first/.zfproject.xml&#39;</span><br></pre></td></tr></table></figure>
 <p>這樣就會在 application/controllers 目錄下建立一個 BlogController.php 。</p>
 <p>如果要在 BlogController.php 中加入一個名為 add 的 Action ，則可以輸入：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\WEB\<span class="keyword">first</span>&gt;&lt;strong&gt;zf <span class="built_in">create</span> action <span class="built_in">add</span> blog&lt;/strong&gt;Creating <span class="operator">an</span> action named <span class="built_in">add</span> inside controller <span class="keyword">at</span> D:\WEB\<span class="keyword">first</span>/application/controllers/BlogController.phpUpdating project profile <span class="string">'D:\WEB\first/.zfproject.xml'</span>Creating <span class="operator">a</span> view script <span class="keyword">for</span> <span class="operator">the</span> <span class="built_in">add</span> action method <span class="keyword">at</span> D:\WEB\<span class="keyword">first</span>/application/views/scripts/blog/<span class="built_in">add</span>.phtml</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\WEB\first&#62;&#60;strong&#62;zf create action add blog&#60;/strong&#62;Creating an action named add inside controller at D:\WEB\first/application/controllers/BlogController.phpUpdating project profile &#39;D:\WEB\first/.zfproject.xml&#39;Creating a view script for the add action method at D:\WEB\first/application/views/scripts/blog/add.phtml</span><br></pre></td></tr></table></figure>
 <p>這樣 Zend Framework 會自動幫我們在 BlogController.php 中加入一個 addAction 方法，並在對應的 views/scripts/blog 目錄下建立一個 add.phtml 樣版檔。</p>
 <p>註： create view 指令經測試還有問題，看來還是得等下一個版本。</p>
 <h2 id="心得">心得</h2><p>透過命令列來建立或設定專案，好像已經是各家 Framework 必備的功能了。雖然 Zend Framework 在這方面起步較晚，但總算是聊勝於無。</p>
@@ -215,7 +215,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -237,13 +237,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -259,15 +259,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

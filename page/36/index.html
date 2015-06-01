@@ -49,6 +49,46 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-08-20T16:00:00.000Z"><a href="/2007/08/21/232/">2007-08-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/08/21/232/">[PHP] 連結分享</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li><a href="http://framework.zend.com/wiki/display/ZFPROP/Zend_Application+-+Bill+Karwin" target="_blank" rel="external">Zend Framework: Zend_Application Component Proposal</a></li>
+</ul>
+<p>這個和我目前做的 Application 類別有異曲同工之妙，不過既然是官方的 Solution ，那麼我想我應該參考看看。</p>
+<ul>
+<li><a href="http://sebastian-bergmann.de/archives/692-SeleniumTestCase-Improvements-in-PHPUnit-3.2.html" target="_blank" rel="external">SeleniumTestCase Improvements in PHPUnit 3.2</a></li>
+</ul>
+<p>有空要回頭<a href="http://www.phpunit.de/pocket_guide/" target="_blank" rel="external">溫習</a>一下 <a href="http://www.phpunit.de/" target="_blank" rel="external">PHPUnit</a> 了，我現在的開發方式幾乎沒有做單元測試，枉費我之前的研究，真糟糕。 </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-08-20T16:00:00.000Z"><a href="/2007/08/21/231/">2007-08-21</a></time>
       
       
@@ -214,7 +254,7 @@
         <p>在 MySQL 4.1 以上版本怎麼把某個 table 的 COUNT 總數複製到另一個 table 對應的欄位裡呢？ </p>
 <p>假設這裡有 a 和 b 兩個 table ，其中 b 表有一個欄位 a_id 對應到 a 表的 id 主鍵，而 a 表有個欄位 total 要記錄在 b 表中屬於 a 表的記錄總共有多少筆。一直記得 SQL 可以很簡單做到，可以一下子就是想不起來。 </p>
 <p>感謝 Neo 一語驚醒夢中人，用 Sub Query 就搞定了：</p>
-<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">strong</span>&gt;UPDATE&lt;/<span class="keyword">strong</span>&gt; a, (&lt;<span class="keyword">strong</span>&gt;<span class="keyword">SELECT</span>&lt;/<span class="keyword">strong</span>&gt; a_id, &lt;<span class="keyword">strong</span>&gt;COUNT&lt;/<span class="keyword">strong</span>&gt;(*) &lt;<span class="keyword">strong</span>&gt;AS&lt;/<span class="keyword">strong</span>&gt; total</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;FROM&lt;/<span class="keyword">strong</span>&gt; b</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;<span class="keyword">GROUP</span>&lt;/<span class="keyword">strong</span>&gt; &lt;<span class="keyword">strong</span>&gt;BY&lt;/<span class="keyword">strong</span>&gt; a_id) &lt;<span class="keyword">strong</span>&gt;AS&lt;/<span class="keyword">strong</span>&gt; c</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;SET&lt;/<span class="keyword">strong</span>&gt; a.total = c.total</span><br><span class="line">&lt;<span class="keyword">strong</span>&gt;WHERE&lt;/<span class="keyword">strong</span>&gt; a.id = c.a_id;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;strong&#62;UPDATE&#60;/strong&#62; a, (&#60;strong&#62;SELECT&#60;/strong&#62; a_id, &#60;strong&#62;COUNT&#60;/strong&#62;(*) &#60;strong&#62;AS&#60;/strong&#62; total&#10;&#60;strong&#62;FROM&#60;/strong&#62; b&#10;&#60;strong&#62;GROUP&#60;/strong&#62; &#60;strong&#62;BY&#60;/strong&#62; a_id) &#60;strong&#62;AS&#60;/strong&#62; c&#10;&#60;strong&#62;SET&#60;/strong&#62; a.total = c.total&#10;&#60;strong&#62;WHERE&#60;/strong&#62; a.id = c.a_id;</span><br></pre></td></tr></table></figure>
 <p>這裡記下來先，不然到時候又忘了；可能有更好的方法，不過目前先完成工作要緊。 :) </p>
 
       
@@ -253,7 +293,7 @@
 <li><a href="http://greg.chiaraquartet.net/archives/16-Incredible-Zend-ZDE-debugging-trick-for-debugging-CLI-apps.html" target="_blank" rel="external">Incredible Zend ZDE debugging trick for debugging CLI apps</a></li>
 </ul>
 <p>用以下方式來 Debug PHP CLI 應用程式，我只能說作者真的很天才。</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">C:</span>\&gt; <span class="keyword">set</span> <span class="string">"QUERY_STRING=start_debug=1&amp;amp;debug_host=192.168.0.102&amp;amp;debug_port=10000&amp;amp;debug_stop=1"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62; set &#34;QUERY_STRING=start_debug=1&#38;amp;debug_host=192.168.0.102&#38;amp;debug_port=10000&#38;amp;debug_stop=1&#34;</span><br></pre></td></tr></table></figure>
 <p>有機會應該來試試看才對。</p>
 <ul>
 <li><a href="http://pixelated-dreams.com/archives/313-AJAX-and-PHP-End-to-End-Debugging.html" target="_blank" rel="external">AJAX and PHP End-to-End Debugging</a></li>
@@ -451,62 +491,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-08-14T16:00:00.000Z"><a href="/2007/08/15/222/">2007-08-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/08/15/222/">[JavaScript] 有關 jQuery</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>steve 網友問到了 jQuery 有什麼特點，其實我才疏學淺，沒能給什麼好建議。</p>
-<p>不過剛剛恰好看到一篇 <a href="http://simonwillison.net/2007/Aug/15/jquery/" target="_blank" rel="external">jQuery for JavaScript programmers</a> ，這裡推薦給對 jQuery 有興趣的朋友參考看看。</p>
-<p>順便整理一下一些有關 jQuery 的連結：</p>
-<ul>
-<li><a href="http://jquery.com" target="_blank" rel="external">jQuery</a></li>
-</ul>
-<p>官方網站</p>
-<li>
-
-<p><a href="http://www.learningjquery.com/" target="_blank" rel="external">Learning jQuery</a>::<a href="http://www.learningjquery.com/2007/08/what-is-this" rel="external" title="Permanent Link: What is <em>this</em>?" target="_blank">What is <em>this</em>?</a></p>
-<p>簡單的 jQuery 介紹。<br></p></li><p></p>
-<ul>
-<li><a href="http://jquery.bassistance.de/api-browser/" target="_blank" rel="external">jQuery API Browser (for jQuery 1.1.2)</a> </li>
-</ul>
-<p>API 查詢，也有提供範例。</p>
-<ul>
-<li><a href="http://visualjquery.com/" target="_blank" rel="external">Visual jQuery (for jQuery 1.1.2)</a></li>
-</ul>
-<p>和上面一樣也是 API 查詢，只是介面不同。</p>
-<ul>
-<li><a href="http://www.n-bp.com/jquery_cheat_sheet/v11_catalog_extra/" target="_blank" rel="external">jQuery.com 1.1 - Cheat Sheet</a></li>
-</ul>
-<p>作弊小抄….啊，不是，是速查表。不過我還是喜歡上面的 API Browser ，比 cheat sheet 方便。</p>
-<p>不過基本上我都是看官方網站找 plugins ，然後查一下 API Browser 而已。比較深入研究的話，就要找<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>，他是個 JavaScript 高手。 :) </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -550,7 +534,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -572,13 +556,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -594,15 +578,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   

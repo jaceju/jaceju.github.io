@@ -67,7 +67,7 @@
 <p>我開發 <a href="http://code.google.com/p/sweetplurk/" target="_blank" rel="external">SweetPlurk!</a> 的目的很簡單，就是讓 PHP 開發者可以在自己的應用程式上加上 Plurk 的服務，所以也是儘可能讓它保持簡單易用。</p>
 <p>註：說穿了， SweetPlurk! 也只是利用 cURL 來完成對官方 API 的溝通，稍有網路基礎的 PHP 開發者其實都可以自己做得到。</p>
 <p><a href="http://code.google.com/p/sweetplurk/" target="_blank" rel="external">SweetPlurk!</a> 的用法很簡單，目前提供讓使用者登入、發噗及回噗。例如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'SweetPlurk/Go.php'</span>;</span><br><span class="line">define(<span class="string">'APP_ROOT_PATH'</span>, dirname(<span class="keyword">__FILE__</span>));</span><br><span class="line"><span class="variable">$apiKey</span> = <span class="string">'your_api_key'</span>;</span><br><span class="line">SweetPlurk_Go::init(<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'apiKey'</span> =&gt; <span class="variable">$apiKey</span>, <span class="comment">// 你申請的 API Key</span></span><br><span class="line">    <span class="string">'cookiePath'</span> =&gt; APP_ROOT_PATH . <span class="string">"/tmp/$apiKey.txt"</span>, <span class="comment">// 你的 Cookie 存放位置</span></span><br><span class="line">))</span><br><span class="line">    -&gt;login(<span class="string">'user1'</span>, <span class="string">'pass1$'</span>) <span class="comment">// 登入第一個帳號</span></span><br><span class="line">    -&gt;addPlurk(<span class="string">'message 1'</span>)</span><br><span class="line">    -&gt;addResponse(<span class="string">'response 1'</span>)</span><br><span class="line">    -&gt;login(<span class="string">'user2'</span>, <span class="string">'pass2$'</span>) <span class="comment">// 登入第二個帳號</span></span><br><span class="line">    -&gt;addPlurk(<span class="string">'message 2'</span>)</span><br><span class="line">    -&gt;addResponse(<span class="string">'response 2'</span>);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;SweetPlurk/Go.php&#39;;&#10;define(&#39;APP_ROOT_PATH&#39;, dirname(__FILE__));&#10;$apiKey = &#39;your_api_key&#39;;&#10;SweetPlurk_Go::init(array(&#10;&#160; &#160; &#39;apiKey&#39; =&#62; $apiKey, // &#20320;&#30003;&#35531;&#30340; API Key&#10;&#160; &#160; &#39;cookiePath&#39; =&#62; APP_ROOT_PATH . &#34;/tmp/$apiKey.txt&#34;, // &#20320;&#30340; Cookie &#23384;&#25918;&#20301;&#32622;&#10;))&#10;&#160; &#160; -&#62;login(&#39;user1&#39;, &#39;pass1$&#39;) // &#30331;&#20837;&#31532;&#19968;&#20491;&#24115;&#34399;&#10;&#160; &#160; -&#62;addPlurk(&#39;message 1&#39;)&#10;&#160; &#160; -&#62;addResponse(&#39;response 1&#39;)&#10;&#160; &#160; -&#62;login(&#39;user2&#39;, &#39;pass2$&#39;) // &#30331;&#20837;&#31532;&#20108;&#20491;&#24115;&#34399;&#10;&#160; &#160; -&#62;addPlurk(&#39;message 2&#39;)&#10;&#160; &#160; -&#62;addResponse(&#39;response 2&#39;);</span><br></pre></td></tr></table></figure>
 <p>未來還會再繼續把官方 API 有的部份加上去，像是圖檔上傳、朋友列表等等。</p>
 <p>當然，因為 <a href="http://code.google.com/p/sweetplurk/" target="_blank" rel="external">SweetPlurk!</a> 剛寫出來不久，很多功能都需要再多加琢磨，希望大家能多給我一些意見。</p>
 <p>已使用 SweetPlurk! 的服務：</p>
@@ -165,7 +165,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -187,13 +187,13 @@
   
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
-    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
   
     <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
   
     <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
   
-    <li><a href="/tags/TDD/">TDD</a><small>2</small></li>
+    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
   
     <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
   
@@ -209,15 +209,13 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>3</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   
