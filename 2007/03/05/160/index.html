@@ -7,7 +7,7 @@
   <meta name="author" content="Jace Ju">
   
   <meta name="description" content="我常會在頁面載入完成時，利用 window.load 來執行一些動作。基本的方式如下：
-1window.onload = function ()&amp;#10;&amp;#123;&amp;#10;    // Do something...&amp;#10;&amp;#125;
+window.onload = function ()&amp;#10;&amp;#123;&amp;#10;    // Do something...&amp;#10;&amp;#125;
 特別注意一點：如果直接把新動作附在 window.onload 的話，是會把前一個 window.onload 的動作給蓋掉的。
 不過如果現在有兩個動作都需要用到 window.onload ，而且其中一個我不想改動時該怎麼辦呢？ (例如是第三方函式庫裡的程式)">
   
@@ -64,16 +64,16 @@
     <div class="entry">
       
         <p>我常會在頁面載入完成時，利用 window.load 來執行一些動作。基本的方式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function ()&#10;&#123;&#10;    // Do something...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">window.onload = function ()&#10;&#123;&#10;    // Do something...&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>特別注意一點：如果直接把新動作附在 window.onload 的話，是會把前一個 window.onload 的動作給蓋掉的。</p>
 <p>不過如果現在有兩個動作都需要用到 window.onload ，而且其中一個我不想改動時該怎麼辦呢？ (例如是第三方函式庫裡的程式) </p>
 <a id="more"></a>
 <p>這時可以改用以下的方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var oldOnload = window.onload || function () &#123;&#125;;&#10;window.onload = function ()&#10;&#123;&#10;    oldOnload();&#10;    // Do Something...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var oldOnload = window.onload || function () &#123;&#125;;&#10;window.onload = function ()&#10;&#123;&#10;    oldOnload();&#10;    // Do Something...&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>換句話說，就是先把舊的 window.onload 放在一個變數裡，然後在新的 window.onload 裡呼叫它。</p>
 <p>很重要的一點是，一定要加上「 || function () {} 」！這樣做的目的，是怕如果在此之前沒有指定 window.onload (也就是 undefined) 時，瀏覽器會出現 JavaScript 錯誤。</p>
 <p>依照同樣的方式，我們可以讓多個 window.onload 動作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var beforeAction1 = window.onload || function () &#123;&#125;;&#10;window.onload = function () // Functin A&#10;&#123;&#10;    beforeAction1();&#10;    alert(&#39;Action 1&#39;);&#10;&#125;&#10;var afterAction2 = window.onload || function () &#123;&#125;;&#10;window.onload = function () // Functin B&#10;&#123;&#10;    alert(&#39;Action 2&#39;);&#10;    afterAction2();&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var beforeAction1 = window.onload || function () &#123;&#125;;&#10;window.onload = function () // Functin A&#10;&#123;&#10;    beforeAction1();&#10;    alert(&#39;Action 1&#39;);&#10;&#125;&#10;var afterAction2 = window.onload || function () &#123;&#125;;&#10;window.onload = function () // Functin B&#10;&#123;&#10;    alert(&#39;Action 2&#39;);&#10;    afterAction2();&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>注意 after 及 before 的命名方式，如果我希望舊的 window.onload 在我目前的動作之前執行，用 before 會比較好；反之就可以用 after 。 </p>
 
       
@@ -166,7 +166,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -210,7 +210,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

@@ -69,17 +69,17 @@ PHP Wiki 介紹了很多 PHP 的資料與教學，我想對 PHP 玩家來說是�
 <p>以下我節錄 <a href="http://wiki.cc/php/DirectoryIterator" target="_blank" rel="external">DirectoryIterator</a> 的用法，其他的範例請大家自行到 <a href="http://wiki.cc/php/" target="_blank" rel="external">PHP Wiki</a> 去看看。</p>
 <p>註：以下都是使用 Windows XP 加上 PHP 5.1 以後的版本。 </p>
 <p>假設現在我們想要列舉目前工作路徑的資料夾與檔案，我們可以先用 <a href="http://wiki.cc/php/DirectoryIterator" target="_blank" rel="external">DirectoryIterator</a> 來建立這個物件： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$dir = new DirectoryIterator(getcwd());</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$dir = new DirectoryIterator(getcwd());</span><br></pre></td></tr></table></figure>
 <p>現在我們已經有個 $dir 物件了，由於 DirectoryIterator 實作了 <a href="http://www.php.net/~helly/php/ext/spl/" target="_blank" rel="external">Iterator</a> 介面，所以我們可以用以下程式來列舉出所有資料夾及檔案：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$dir-&#62;rewind();&#10;while ($dir-&#62;valid())&#10;&#123;&#10;echo $dir-&#62;current(), &#34;\n&#34;;&#10;$dir-&#62;next();&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$dir-&#62;rewind();&#10;while ($dir-&#62;valid())&#10;&#123;&#10;echo $dir-&#62;current(), &#34;\n&#34;;&#10;$dir-&#62;next();&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>當然，如果 PHP5 的 Iterator 能耐只有這樣的話，那就太遜了。我們可以改用 foreach 來取代剛剛的程式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foreach ($dir as $entry)&#10;&#123;&#10;echo $entry . &#34;\n&#34;;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">foreach ($dir as $entry)&#10;&#123;&#10;echo $entry . &#34;\n&#34;;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>有沒有一種簡單到想打人的感覺？</p>
 <p>那如果我想一次把該路徑下的子目錄也一起列舉出來呢？那麼就要改用 <a href="http://wiki.cc/php/RecursiveDirectoryIterator" target="_blank" rel="external">RecursiveDirectoryIterator</a> 。 </p>
 <p>我們一樣也是先建立一個 $dir 物件，只是這次是用 <a href="http://wiki.cc/php/RecursiveDirectoryIterator" target="_blank" rel="external">RecursiveDirectoryIterator</a> ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$dir = new RecursiveDirectoryIterator(getcwd());</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$dir = new RecursiveDirectoryIterator(getcwd());</span><br></pre></td></tr></table></figure>
 <p>然後我們會用到一個特別的用法，在 foreach 中再用 <a href="http://www.php.net/~helly/php/ext/spl/classRecursiveIteratorIterator.html" target="_blank" rel="external">RecursiveIteratorIterator</a> 去包住 $dir 物件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foreach (new RecursiveIteratorIterator($dir) as $entry)&#10;&#123;&#10;echo &#34;$entry\n&#34;;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">foreach (new RecursiveIteratorIterator($dir) as $entry)&#10;&#123;&#10;echo &#34;$entry\n&#34;;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這樣就能一次遞迴顯示當前工作路徑下所有子目錄及檔案了。</p>
 <p>其他還有一些不錯的 SPL 資源：</p>
 <ul>
@@ -180,7 +180,7 @@ PHP Wiki 介紹了很多 PHP 的資料與教學，我想對 PHP 玩家來說是�
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -224,7 +224,7 @@ PHP Wiki 介紹了很多 PHP 的資料與教學，我想對 PHP 玩家來說是�
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

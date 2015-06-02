@@ -70,13 +70,13 @@
 <p>所以我就想找找看網路上有沒有純 CSS 解法，沒想到就找到了這篇： <a href="http://tagsoup.com/cookbook/css/fixed/" target="_blank" rel="external">Fixing position:fixed for Windows Internet Explorer</a> 。</p>
 <p>直接來看<a href="/resources/pure_css_position_fixed/fixed.html">範例</a>：</p>
 <p>fixed.html</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;Position:fixed on pure css&#60;/title&#62;&#10;&#60;link href=&#34;fixed.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;    &#60;div id=&#34;wrapper&#34;&#62;&#10;        &#60;p&#62;TEST LINE &#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        ...&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;    &#60;/div&#62;&#10;    &#60;div id=&#34;fixed&#34;&#62;&#10;        &#60;ul&#62;&#10;            * ITEM 1&#10;            * ITEM 2&#10;            * ITEM 3&#10;            * ITEM 4&#10;            * ITEM 5&#10;        &#60;/ul&#62;&#10;    &#60;/div&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;Position:fixed on pure css&#60;/title&#62;&#10;&#60;link href=&#34;fixed.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;    &#60;div id=&#34;wrapper&#34;&#62;&#10;        &#60;p&#62;TEST LINE &#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        ...&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;        &#60;p&#62;TEST LINE&#60;/p&#62;&#10;    &#60;/div&#62;&#10;    &#60;div id=&#34;fixed&#34;&#62;&#10;        &#60;ul&#62;&#10;            * ITEM 1&#10;            * ITEM 2&#10;            * ITEM 3&#10;            * ITEM 4&#10;            * ITEM 5&#10;        &#60;/ul&#62;&#10;    &#60;/div&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>首先我們先把要捲動的部份用 div#wrapper 包起來，要固定的部份 (div#fixed) 則排除在 div#wrapper 之外；然後先對有支援 position:fixed 的瀏覽器做處理，也就是直接利用 position:fixed 來將 div#fixed 定位。</p>
 <p><img src="/resources/pure_css_position_fixed/fixed_scrollable.png" alt="fixed and scrollable"></p>
 <p>再來是 CSS 的部份：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html, body&#123;&#10;margin:0;&#10;padding:0;&#10;&#125;&#10;#fixed &#123;&#10;position:fixed;&#10;width:380px;&#10;top:0px;&#10;right:100px;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">html, body&#123;&#10;margin:0;&#10;padding:0;&#10;&#125;&#10;#fixed &#123;&#10;position:fixed;&#10;width:380px;&#10;top:0px;&#10;right:100px;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>接下來我們再針對 IE6 做處理，也就是用 * html 這個 hack ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* html &#123;&#10;overflow: hidden;&#10;&#125;&#10;* html body,&#10;* html #wrapper &#123;&#10;position:relative;&#10;width:100%;&#10;height:100%;&#10;overflow:auto;&#10;&#125;&#10;* html #fixed &#123;&#10;position:absolute;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* html &#123;&#10;overflow: hidden;&#10;&#125;&#10;* html body,&#10;* html #wrapper &#123;&#10;position:relative;&#10;width:100%;&#10;height:100%;&#10;overflow:auto;&#10;&#125;&#10;* html #fixed &#123;&#10;position:absolute;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這裡的原理很簡單，就是將 div#wrapper 的高度設為與 body 同高， overflow 設為 auto 即可。</p>
 <p>註：上面那篇參考文章裡只提到 body 要設為高度 100% 和 overflow 為 auto ，但我實驗的結果是連 div#wrapper 也要設成一樣，才會正常動作。</p>
 <p>最後把固定的部份用 position:absolute 定住，這樣就完成讓 IE6 模擬 position:fixed 的效果啦~</p>
@@ -171,7 +171,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -215,7 +215,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

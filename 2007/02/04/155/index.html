@@ -7,7 +7,7 @@
   <meta name="author" content="Jace Ju">
   
   <meta name="description" content="最近在一些維護一些舊專案裡的頁面，它們都已經採用了 XHTML 1.0 Transitional 。一個正確的 XHTML 1.0 Transitional 頁面的範例如下：
-1&amp;#60;!DOCTYPE html PUBLIC &amp;#34;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;#34; &amp;#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&amp;#34;&amp;#62;&amp;#10;&amp;#60;html xmlns=&amp;#34;http://www.w3.org/1999/xhtml&amp;#34;&amp;#62;&amp;#10;&amp;#60;head&amp;#62;&amp;#10;&amp;#60;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=big5&amp;#34; /&amp;#62;&amp;#10;&amp;#60;title&amp;#62;Page Title&amp;#60;/title&amp;#62;&amp;#10;&amp;#60;/head&amp;#62;&amp;#10;&amp;#60;body&amp;#62;&amp;#10;...&amp;#10;&amp;#60;/body&amp;#62;&amp;#10;&amp;#60;/html&amp;#62;
+&amp;#60;!DOCTYPE html PUBLIC &amp;#34;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;#34; &amp;#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&amp;#34;&amp;#62;&amp;#10;&amp;#60;html xmlns=&amp;#34;http://www.w3.org/1999/xhtml&amp;#34;&amp;#62;&amp;#10;&amp;#60;head&amp;#62;&amp;#10;&amp;#60;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=big5&amp;#34; /&amp;#62;&amp;#10;&amp;#60;title&amp;#62;Page Title&amp;#60;/title&amp;#62;&amp;#10;&amp;#60;/head&amp;#62;&amp;#10;&amp;#60;body&amp;#62;&amp;#10;...&amp;#10;&amp;#60;/body&amp;#62;&amp;#10;&amp;#60;/html&amp;#62;
 當然大部份頁面是符合的，不過我還是發現了一些問題；在這裡我把它們記下來，供往後開發時參考。">
   
   
@@ -63,7 +63,7 @@
     <div class="entry">
       
         <p>最近在一些維護一些舊專案裡的頁面，它們都已經採用了 XHTML 1.0 Transitional 。一個正確的 XHTML 1.0 Transitional 頁面的範例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;Page Title&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;...&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;Page Title&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;...&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>當然大部份頁面是符合的，不過我還是發現了一些問題；在這裡我把它們記下來，供往後開發時參考。</p>
 <a id="more"></a>
 <h2 id="XML_宣告">XML 宣告</h2><p>其實 XHTML 是屬於 XML 的子集，所以正確來說應該要加入以下這行：</p>
@@ -76,30 +76,30 @@
 </ul>
 <p>不過幸好不加 prolog 也能夠使得 XHTML 被正確的驗證，所以這裡建議不要使用 prolog 。</p>
 <h2 id="標籤屬性">標籤屬性</h2><p>以下的 HTML 碼，常在大量使用 JavaScript 的頁面上可以看得到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;select name=&#34;xxxx&#34; &#60;strong&#62;onChange&#60;/strong&#62;=&#34;xxxx&#34;&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;select name=&#34;xxxx&#34; &#60;strong&#62;onChange&#60;/strong&#62;=&#34;xxxx&#34;&#62;</span><br></pre></td></tr></table></figure>
 <p>事實上 XHTML 建議標籤名稱及其屬性全部使用小寫，所以 onChange 的寫法是不對的，應該使用 onchange 。當然其他 onxxxx 也是，這點有使用 Dreamweaver 的人要特別注意。</p>
 <p>還有一種標籤屬性的問題很常見，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;option value=&#34;xxx&#34; &#60;strong&#62;selected&#60;/strong&#62;&#62;xxx&#60;/option&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;option value=&#34;xxx&#34; &#60;strong&#62;selected&#60;/strong&#62;&#62;xxx&#60;/option&#62;</span><br></pre></td></tr></table></figure>
 <p>或是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;input type=&#34;checkbox&#34; name=&#34;xxx&#34; value=&#34;xxx&#34; &#60;strong&#62;checked&#60;/strong&#62; /&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;input type=&#34;checkbox&#34; name=&#34;xxx&#34; value=&#34;xxx&#34; &#60;strong&#62;checked&#60;/strong&#62; /&#62;</span><br></pre></td></tr></table></figure>
 <p>XHTML 規定所有的屬性都要有屬性值，而 selected 和 checked 這類的屬性值就是屬性名稱，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;option value=&#34;xxx&#34; &#60;strong&#62;selected=&#34;selected&#34;&#60;/strong&#62;&#62;xxx&#60;/option&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;option value=&#34;xxx&#34; &#60;strong&#62;selected=&#34;selected&#34;&#60;/strong&#62;&#62;xxx&#60;/option&#62;</span><br></pre></td></tr></table></figure>
 <p>及</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;input type=&#34;checkbox&#34; name=&#34;xxx&#34; value=&#34;xxx&#34; &#60;strong&#62;checked=&#34;checked&#34;&#60;/strong&#62; /&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;input type=&#34;checkbox&#34; name=&#34;xxx&#34; value=&#34;xxx&#34; &#60;strong&#62;checked=&#34;checked&#34;&#60;/strong&#62; /&#62;</span><br></pre></td></tr></table></figure>
 <p>其他還有 nowarp 、 noshade 等。 </p>
 <h2 id="script_標籤">script 標籤</h2><p>script 標籤可以放在 head 區及 body 標籤區裡，但是絕不能放在這兩者之外。還有我也常看到以下寫法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script &#60;strong&#62;language=&#34;javascript&#34;&#60;/strong&#62; type=&#34;text/javascript&#34;&#62;// &#31243;&#24335;&#23531;&#22312;&#36889;&#35041;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script &#60;strong&#62;language=&#34;javascript&#34;&#60;/strong&#62; type=&#34;text/javascript&#34;&#62;// &#31243;&#24335;&#23531;&#22312;&#36889;&#35041;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
 <p>但事實上 script 標籤的 language 屬性已經從 HTML 4.01 規格中被廢除，建議改用 type 屬性來代替就好。所以正確標記如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script &#60;strong&#62;type=&#34;text/javascript&#34;&#60;/strong&#62;&#62;&#10;// &#31243;&#24335;&#23531;&#22312;&#36889;&#35041;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script &#60;strong&#62;type=&#34;text/javascript&#34;&#60;/strong&#62;&#62;&#10;// &#31243;&#24335;&#23531;&#22312;&#36889;&#35041;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
 <p>另外有人主張用 <!-- --> 去隱藏 Script 標籤裡的程式碼，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!-- //&#10;// &#31243;&#24335;&#23531;&#22312;&#36889;&#35041;&#10;// --&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!-- //&#10;// &#31243;&#24335;&#23531;&#22312;&#36889;&#35041;&#10;// --&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
 <p>不過用這個方式時，要小心不要在 script 標籤的程式裡出現 &lt; 這個字元，或是 &lt;/ 這個組合，否則就會導致 XHTML 驗證失敗。 </p>
 <p>我個人是用以下的方式，這樣可以避免掉驗證時的問題：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!-- &#60;![CDTA[&#10;var abc = &#34;&#60;&#34; + &#34;/&#34;;&#10;alert(abc + &#34;script&#62;&#34;);&#10;// ]]&#62; --&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!-- &#60;![CDTA[&#10;var abc = &#34;&#60;&#34; + &#34;/&#34;;&#10;alert(abc + &#34;script&#62;&#34;);&#10;// ]]&#62; --&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
 <p>重點在 script 標籤裡的內容是屬於 CDATA 格式，只要讓驗證器知道這件事後，它就不會管 script 標籤裡是什麼了 (不過 &lt;/ 這個組合還是要避免) 。</p>
 <p>註：我找到了一篇文章： <a href="http://javascript.about.com/library/blxhtml.htm" target="_blank" rel="external">Javascript and XHTML</a> ，有興趣的話可以參考看看。</p>
 <h2 id="style_標籤">style 標籤</h2><p>style 標籤只能放在 head 標籤區內，而不能放在 body 區。而且 style 標籤一定要加上 type 屬性，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;....&#10;&#60;strong&#62;&#60;style type=&#34;text/css&#34;&#62;&#10;CSS &#20839;&#23481;&#25918;&#36889;&#35041;&#10;&#60;/style&#62;&#60;/strong&#62;&#10;....&#10;&#60;/head&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;....&#10;&#60;strong&#62;&#60;style type=&#34;text/css&#34;&#62;&#10;CSS &#20839;&#23481;&#25918;&#36889;&#35041;&#10;&#60;/style&#62;&#60;/strong&#62;&#10;....&#10;&#60;/head&#62;</span><br></pre></td></tr></table></figure>
 <h2 id="img_標籤的_alt_屬性">img 標籤的 alt 屬性</h2><p>img 的 alt 屬性是當 src 屬性所指向的圖檔不存在時，用來代替顯示的文字。我在舊專案裡遇到 XHTML 無法正確驗證的原因，絕大部份是 img 標籤缺少 alt 屬性。因此無論如何我們都應該要在 img 標籤裡加上 alt 屬性，不僅能通過驗證，使用者也能在沒看到圖片的情況下，知道這張圖片的用途。</p>
 <p>不過有一些 img 標籤是用來撐開版面用的 (Dreamweaver 的餘毒) ，這時我們只好給它們一個空的 alt 屬性。</p>
 <h2 id="結論">結論</h2><p>當然以上只是舊專案頁面問題的冰山一角，不過卻是非常常見的錯誤。我個人是習慣把它們銘記在心，並配合 W3C 的驗證服務來找出這些問題。而處理頁面時只要多花一點點時間把它們做好，便能夠透過這樣的方式來訓練自己朝 Web 標準及無障礙瀏覽之路前進。 </p>
@@ -194,7 +194,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -238,7 +238,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

@@ -65,11 +65,11 @@
 <p>接著我們來簡單做個小實驗，看看這問題實際發生的狀況為何。</p>
 <a id="more"></a>
 <h2 id="實驗">實驗</h2><p>請先建立好一個新的 ZF 專案，並切換到 development 模式下，然後在 IndexController::indexAction() 中加入以下的程式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    public function indexAction()&#10;    &#123;&#10;        trigger_error(&#39;TEST&#39;, E_USER_ERROR); // &#21152;&#20837;&#27492;&#34892;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    public function indexAction()&#10;    &#123;&#10;        trigger_error(&#39;TEST&#39;, E_USER_ERROR); // &#21152;&#20837;&#27492;&#34892;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>瀏覽專案首頁執行的結果會是一個 Fatal error ，並且會讓程式停止；如果是 production 模式下，那麼畫面將會是一片空白。</p>
 <p>怎麼解決它呢？在「<a href="http://www.jaceju.net/blog/archives/1121" target="_blank" rel="external">如何在 PHP 中平順地處理 Error 及 Exception ？</a>」一文裡，我曾經介紹過使用 PHP 內建的 ErrorException 來將 Error 視做 Exception 處理；所以在 ZF 中我也沿用相同的觀念來將 Error 做適當的處理。</p>
 <h2 id="加入_Error_處理">加入 Error 處理</h2><p>方法很簡單，只要我們在 index.php (入口) 建立 Zend_Application 物件前加入以下程式碼即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// ... &#30053; ...&#10;// Set Error Handler&#10;set_error_handler(&#39;errorExceptionHandler&#39;);&#10;function errorExceptionHandler($errNo, $errMsg, $errFile, $errLine)&#10;&#123;&#10;    if (in_array($errNo, array(E_USER_ERROR, E_ERROR))) &#123;&#10;        throw new ErrorException($errMsg, 0, $errNo, $errFile, $errLine);&#10;    &#125;&#10;    return false; // &#22238;&#24489;&#28858;&#38928;&#35373;&#30340;&#37679;&#35492;&#34389;&#29702;&#27231;&#21046;&#10;&#125;&#10;// &#21152;&#20837;&#20197;&#19978;&#30340;&#31243;&#24335;&#30908;&#10;/** Zend_Application */&#10;require_once &#39;Zend/Application.php&#39;;&#10;// ... &#30053; ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// ... &#30053; ...&#10;// Set Error Handler&#10;set_error_handler(&#39;errorExceptionHandler&#39;);&#10;function errorExceptionHandler($errNo, $errMsg, $errFile, $errLine)&#10;&#123;&#10;    if (in_array($errNo, array(E_USER_ERROR, E_ERROR))) &#123;&#10;        throw new ErrorException($errMsg, 0, $errNo, $errFile, $errLine);&#10;    &#125;&#10;    return false; // &#22238;&#24489;&#28858;&#38928;&#35373;&#30340;&#37679;&#35492;&#34389;&#29702;&#27231;&#21046;&#10;&#125;&#10;// &#21152;&#20837;&#20197;&#19978;&#30340;&#31243;&#24335;&#30908;&#10;/** Zend_Application */&#10;require_once &#39;Zend/Application.php&#39;;&#10;// ... &#30053; ...</span><br></pre></td></tr></table></figure>
 <p>這樣一來，在發生嚴重錯誤時，就會讓 Zend Framework 切換到預設的 error 頁面去顯示 Exception 了。</p>
 <h2 id="有_Layout_時的處理方式">有 Layout 時的處理方式</h2><p>在專案啟用 Layout 後，通常會把頁面的天跟地放在 application/layout/layout.phtml 裡，而把 body 標籤內的部份挖空留給 Action Controller 所輸出的內容；但是預設的 application/views/scripts/error/error.phtml 已經是一個完整的 HTML 頁面了，所以會在輸出 Exception 畫面時造成兩次的 html 標籤宣告。這時候有兩種處理方式：</p>
 <ul>
@@ -79,7 +79,7 @@
 </li>
 </ul>
 <p>那麼要怎麼關掉 ErrorController 的 layout 呢？方法很簡單，只要在 ErrorHandler 裡加入以下程式即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class ErrorController extends Zend_Controller_Action&#10;&#123;&#10;    // &#21152;&#20837;&#27492;&#26041;&#27861;&#10;    public function init()&#10;    &#123;&#10;        $this-&#62;_helper-&#62;layout()-&#62;disableLayout();&#10;    &#125;&#10;    // ... &#30053; ...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ErrorController extends Zend_Controller_Action&#10;&#123;&#10;    // &#21152;&#20837;&#27492;&#26041;&#27861;&#10;    public function init()&#10;    &#123;&#10;        $this-&#62;_helper-&#62;layout()-&#62;disableLayout();&#10;    &#125;&#10;    // ... &#30053; ...&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>當然可能還有其他可以處理錯誤的方式，但基本原理大致上就是如此了，提供給大家參考。</p>
 
       
@@ -172,7 +172,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -216,7 +216,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

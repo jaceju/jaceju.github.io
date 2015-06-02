@@ -82,16 +82,16 @@
 <h2 id="margin">margin</h2><p><code>margin</code> 的意義就是該元素與其他元素間的邊界距離，它的應用大概也算是 CSS 排版很重要的技術之一。所以我打算多花一點時間解釋它。</p>
 <p>我們可以分以下兩種狀況解釋：「元素與相鄰元素的距離」及「元素與父元素間的距離」。</p>
 <p>「元素與相鄰元素的距離」指得是元素間是緊鄰的 (不論是區塊顯示元素或行內顯示元素) ，而沒有階層關係。例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"i1"</span>&gt;</span>行內顯示元素1<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"i2"</span>&gt;</span>行內顯示元素2<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"i1"</span>&gt;</span>行內顯示元素1<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"i2"</span>&gt;</span>行內顯示元素2<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>這兩個 <code>span</code> 標籤就是緊鄰關係。而 <code>span</code> 標籤預設屬於行內顯示元素 (<code>display: inline</code>) ，因此它們的邊界距離就是 <code>i1</code> 的 <code>margin-right</code> 加上 <code>i2</code> 的 <code>margin-left</code> ，如下圖。</p>
 <p><img src="/resources/css_boxmodel/margin1.png" alt="行內 margin"></p>
 <p>另一種緊鄰關係是區塊顯示元素，例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b1"</span>&gt;</span>區塊顯示元素1<span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b2"</span>&gt;</span>區塊顯示元素2<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b1"</span>&gt;</span>區塊顯示元素1<span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b2"</span>&gt;</span>區塊顯示元素2<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><code>div</code> 標籤預設屬於區塊顯示元素，也就是在它的前後會加入換行的控制。要注意的是，區塊顯示元素它們的邊界距離是重疊的！而當 <code>b1</code> 的 <code>margin-bottom</code> 大於 <code>b2</code> 的 <code>margin-top</code> 時， <code>b1</code> 和 <code>b2</code> 實際的距離就以 <code>b1</code> 的 <code>margin-bottom</code> 為準，如下圖。</p>
 <p><img src="/resources/css_boxmodel/margin2.png" alt="區塊 margin"></p>
 <p>還有一種緊鄰關係是浮動元素，基本上它會是個區塊顯示元素，但 <code>margin</code> 的呈現關係和行內顯示元素是很像的，這我會在介紹浮動元素時再加以說明。</p>
 <p>「元素與父元素間的距離」就是指元素之間有階層關係時的邊界距離。例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b3"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b4"</span>&gt;</span>內部區塊<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b3"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b4"</span>&gt;</span>內部區塊<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其中 b3 就是父元素， b4 則是子元素。 它們的邊界關係如下圖：</p>
 <p><img src="/resources/css_boxmodel/margin3.png" alt="父子元素 margin"></p>
 <p>我們可以看到，子元素的邊界起始會以父元素的 Content 區為基準。</p>
@@ -196,7 +196,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -240,7 +240,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

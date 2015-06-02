@@ -254,7 +254,7 @@
         <p>在 MySQL 4.1 以上版本怎麼把某個 table 的 COUNT 總數複製到另一個 table 對應的欄位裡呢？ </p>
 <p>假設這裡有 a 和 b 兩個 table ，其中 b 表有一個欄位 a_id 對應到 a 表的 id 主鍵，而 a 表有個欄位 total 要記錄在 b 表中屬於 a 表的記錄總共有多少筆。一直記得 SQL 可以很簡單做到，可以一下子就是想不起來。 </p>
 <p>感謝 Neo 一語驚醒夢中人，用 Sub Query 就搞定了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;strong&#62;UPDATE&#60;/strong&#62; a, (&#60;strong&#62;SELECT&#60;/strong&#62; a_id, &#60;strong&#62;COUNT&#60;/strong&#62;(*) &#60;strong&#62;AS&#60;/strong&#62; total&#10;&#60;strong&#62;FROM&#60;/strong&#62; b&#10;&#60;strong&#62;GROUP&#60;/strong&#62; &#60;strong&#62;BY&#60;/strong&#62; a_id) &#60;strong&#62;AS&#60;/strong&#62; c&#10;&#60;strong&#62;SET&#60;/strong&#62; a.total = c.total&#10;&#60;strong&#62;WHERE&#60;/strong&#62; a.id = c.a_id;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;UPDATE&#60;/strong&#62; a, (&#60;strong&#62;SELECT&#60;/strong&#62; a_id, &#60;strong&#62;COUNT&#60;/strong&#62;(*) &#60;strong&#62;AS&#60;/strong&#62; total&#10;&#60;strong&#62;FROM&#60;/strong&#62; b&#10;&#60;strong&#62;GROUP&#60;/strong&#62; &#60;strong&#62;BY&#60;/strong&#62; a_id) &#60;strong&#62;AS&#60;/strong&#62; c&#10;&#60;strong&#62;SET&#60;/strong&#62; a.total = c.total&#10;&#60;strong&#62;WHERE&#60;/strong&#62; a.id = c.a_id;</span><br></pre></td></tr></table></figure>
 <p>這裡記下來先，不然到時候又忘了；可能有更好的方法，不過目前先完成工作要緊。 :) </p>
 
       
@@ -293,7 +293,7 @@
 <li><a href="http://greg.chiaraquartet.net/archives/16-Incredible-Zend-ZDE-debugging-trick-for-debugging-CLI-apps.html" target="_blank" rel="external">Incredible Zend ZDE debugging trick for debugging CLI apps</a></li>
 </ul>
 <p>用以下方式來 Debug PHP CLI 應用程式，我只能說作者真的很天才。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62; set &#34;QUERY_STRING=start_debug=1&#38;amp;debug_host=192.168.0.102&#38;amp;debug_port=10000&#38;amp;debug_stop=1&#34;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62; set &#34;QUERY_STRING=start_debug=1&#38;amp;debug_host=192.168.0.102&#38;amp;debug_port=10000&#38;amp;debug_stop=1&#34;</span><br></pre></td></tr></table></figure>
 <p>有機會應該來試試看才對。</p>
 <ul>
 <li><a href="http://pixelated-dreams.com/archives/313-AJAX-and-PHP-End-to-End-Debugging.html" target="_blank" rel="external">AJAX and PHP End-to-End Debugging</a></li>
@@ -534,7 +534,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -578,7 +578,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

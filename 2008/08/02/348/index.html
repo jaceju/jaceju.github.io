@@ -69,7 +69,7 @@
 <p>可是這時候問題就來啦，如果數量要 10 個的話就要連續按 10 次「 + 」，也會連續發送 10 次的 Ajax Request ；這樣不但會浪費珍貴的網路頻寬，更不用說會造成後端系統的負擔。 </p>
 <a id="more"></a>
 <p>怎麼解決呢？其實方法很多，而這裡我採用最簡單的 setTimeout 和 clearTimeout 。程式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var sending = null;&#10;var _formSubmit = function () &#123;&#10;    alert(&#39;Form submited!&#39;);&#10;&#125;;&#10;var _doAjaxPost = function () &#123;&#10;    if (sending !== null) &#123;&#10;        clearTimeout(sending);&#10;        sending = null;&#10;    &#125;&#10;    sending = setTimeout(_formSubmit, 1000);&#10;&#125;;&#10;var plusQuantity = function () &#123;&#10;    // ... &#22519;&#34892;&#22686;&#21152;&#25976;&#37327;&#30340;&#21205;&#20316; ...&#10;    _doAjaxPost();&#10;    return false;&#10;&#125;;&#10;var minusQuantity = function () &#123;&#10;    // ... &#22519;&#34892;&#28187;&#23569;&#25976;&#37327;&#30340;&#21205;&#20316; ...&#10;    _doAjaxPost();&#10;    return false;&#10;&#125;;&#10;$(function () &#123;&#10;    // &#22686;&#21152;&#25976;&#37327;&#10;    $(&#39;a.plus&#39;).click(plusQuantity);&#10;    // &#28187;&#23569;&#25976;&#37327;&#10;    $(&#39;a.minus&#39;).click(minusQuantity);&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var sending = null;&#10;var _formSubmit = function () &#123;&#10;    alert(&#39;Form submited!&#39;);&#10;&#125;;&#10;var _doAjaxPost = function () &#123;&#10;    if (sending !== null) &#123;&#10;        clearTimeout(sending);&#10;        sending = null;&#10;    &#125;&#10;    sending = setTimeout(_formSubmit, 1000);&#10;&#125;;&#10;var plusQuantity = function () &#123;&#10;    // ... &#22519;&#34892;&#22686;&#21152;&#25976;&#37327;&#30340;&#21205;&#20316; ...&#10;    _doAjaxPost();&#10;    return false;&#10;&#125;;&#10;var minusQuantity = function () &#123;&#10;    // ... &#22519;&#34892;&#28187;&#23569;&#25976;&#37327;&#30340;&#21205;&#20316; ...&#10;    _doAjaxPost();&#10;    return false;&#10;&#125;;&#10;$(function () &#123;&#10;    // &#22686;&#21152;&#25976;&#37327;&#10;    $(&#39;a.plus&#39;).click(plusQuantity);&#10;    // &#28187;&#23569;&#25976;&#37327;&#10;    $(&#39;a.minus&#39;).click(minusQuantity);&#10;&#125;);</span><br></pre></td></tr></table></figure>
 <p>註：這裡我大量使用了 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a> 的功能。 </p>
 <p>想法很簡單，就是當我們按下「 + 」 或「 - 」時，要隔一秒才會送出 Ajax Request ；而在這一秒內如果再次按下「 + 」 或「 - 」，那麼就重新計時。 </p>
 <p>因此程式的主要重點在 _doAjaxPost 這個函式以及全域變數： sending ；當第一次呼叫 _doAjaxPost 時 sending 還是 null ，這時我們利用 setTimeout 開始計時，並將計時器指定給 sending 這個變數。而當第二次呼叫時， sending 變數已經不為空值，因此我們再利用 clearTimeout 將它清除，並重設為 null 以達到重新計時的目的。</p>
@@ -166,7 +166,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -210,7 +210,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

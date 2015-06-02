@@ -161,7 +161,7 @@
 <li>將 SVN 的記錄轉換成 ChangeLog 的工具 (Optional) 。</li>
 </ul>
 <h2 id="安排目錄結構">安排目錄結構</h2><p>和之前一樣，我打算把相關的程式放在 D:\AppServ 底下，而檔案庫則放在 D:\Repository 底下。以下是我所規劃的目錄結構：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:&#10;|&#10;|- AppServ (&#20282;&#26381;&#22120;&#30456;&#38364;&#31243;&#24335;)&#10;|  |&#10;|  |- Apache2 ( Apache &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- python ( Python &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- svn ( Subversion &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- trac ( Trac &#30340;&#30456;&#38364;&#25209;&#27425;&#31243;&#24335;&#27284;)&#10;|&#10;|- Repository (&#27284;&#26696;&#24235;)&#10;|&#10;|- svn&#10;|&#10;|- trac</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:&#10;|&#10;|- AppServ (&#20282;&#26381;&#22120;&#30456;&#38364;&#31243;&#24335;)&#10;|  |&#10;|  |- Apache2 ( Apache &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- python ( Python &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- svn ( Subversion &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- trac ( Trac &#30340;&#30456;&#38364;&#25209;&#27425;&#31243;&#24335;&#27284;)&#10;|&#10;|- Repository (&#27284;&#26696;&#24235;)&#10;|&#10;|- svn&#10;|&#10;|- trac</span><br></pre></td></tr></table></figure>
 <p>繼續往下以前，請先按照上面的結構把目錄建立好。</p>
 <p>註：放在 D: (或其他非 C: 分割區) 的好處是不用擔心重灌後，資料及相關設定會消失。</p>
 <h2 id="安裝_Apache_2">安裝 Apache 2</h2><h3 id="第一次安裝">第一次安裝</h3><p>如果有使用 IIS 的話，請先把 IIS 停掉。然後執行 apache_2.0.59-win32-x86-no_ssl.msi 。 </p>
@@ -177,9 +177,9 @@
 <p>後面的說明將會以 Port 8000 為主。</p>
 <p>接著把 D:\AppServ\Apache2\bin 加入系統變數 PATH 裡，這樣方便到時候直接使用指令來控制 Apache 。</p>
 <h3 id="重灌系統後的安裝">重灌系統後的安裝</h3><p>假設我們的 D:\AppServ\Apache2 底下已經 Apache 的程式檔，只是重灌後使得系統設定消失。這樣的話，我們要先把D:\AppServ\Apache2\bin 加入系統變數 PATH 裡，接著再用以下方式重新建立服務 (粗體字部份) ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62;&#60;strong&#62;apache -k install -D Apache2&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;&#60;strong&#62;apache -k install -D Apache2&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>最後用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&#62;&#60;strong&#62;apache -k start &#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;&#60;strong&#62;apache -k start &#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>來啟動服務。</p>
 <h2 id="安裝_Subversion">安裝 Subversion</h2><h3 id="第一次安裝-1">第一次安裝</h3><ul>
 <li><p>解開 svn-win32-1.4.3.zip ，將 svn-win32-1.4.3 這個資料夾重新命名為 svn (裡面應該有 bin 等資料夾) ，並將它移至 D:\AppServ 下。</p>
@@ -190,7 +190,7 @@
 </li>
 <li>在系統環境變數裡加上以下兩個變數：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">APR_ICONV_PATH = D:\AppServ\svn\iconv&#10;SVN_EDITOR = notepad.exe (&#25110;&#20854;&#20182;&#24931;&#29992;&#30340;&#25991;&#23383;&#32232;&#36655;&#22120;&#22519;&#34892;&#27284;&#32085;&#23565;&#36335;&#24465;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">APR_ICONV_PATH = D:\AppServ\svn\iconv&#10;SVN_EDITOR = notepad.exe (&#25110;&#20854;&#20182;&#24931;&#29992;&#30340;&#25991;&#23383;&#32232;&#36655;&#22120;&#22519;&#34892;&#27284;&#32085;&#23565;&#36335;&#24465;)</span><br></pre></td></tr></table></figure>
 <p>後面會再說明 Apache 部份需要設定的部份。</p>
 <h3 id="更新">更新</h3><p>當 Subversion 推出新版時，一樣是把新版本的壓縮檔下載回來，而更新的步驟跟第一次安裝是一樣的。</p>
 <h2 id="安裝_Python_及_Trac_相關模組">安裝 Python 及 Trac 相關模組</h2><h3 id="Python_主程式">Python 主程式</h3><p>python 的主程式安裝也很簡單，除了安裝位置改在 D:\AppServ\python 底下，其他就使用預設值即可。</p>
@@ -211,7 +211,7 @@
 <h3 id="mod_python_模組">mod_python 模組</h3><p>執行 mod_python-3.2.10.win32-py2.4-apache2.0.exe ，一樣是按照預設值安裝；但是當問到「 Where is Apache installed? 」時要選擇「 D:\AppServ\Apache2 」，這時安裝程式會把 mod_python.so 複製到 D:\AppServ\Apache2\modules 底下。</p>
 <p> 後面會再說明 Apache 部份需要設定的部份。</p>
 <h3 id="setuptools_模組">setuptools 模組</h3><p>如果剛剛已經有 Python 的安裝路徑設定在 PATH 系統變數裡的話，那麼直接點兩下 ez_setup.py 執行即可；或是開啟命令提示列視窗，並切換到 ez_setup.py 所存放的路徑下，並用以下指令執行 (粗體字部份) ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\downloads\python&#62;&#60;strong&#62;python ez_setup.py&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\downloads\python&#62;&#60;strong&#62;python ez_setup.py&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣 ez_setup.py 會自動從網路下載相關套件，並安裝到 Python 裡。</p>
 <h3 id="更新-1">更新</h3><p>如果上面的任何程式有更新版本的話，也是將個別的檔案下載回來，再按照上面的步驟重新做一次即可。</p>
 <h2 id="安裝_TortoiseSVN">安裝 TortoiseSVN</h2><h3 id="第一次安裝-2">第一次安裝</h3><ul>
@@ -227,27 +227,27 @@
 <p>補充：我找到了一篇不錯的 Blog 文章：「<a href="http://b6s.blogspot.com/2006/12/trac-plugin.html" target="_blank" rel="external">Trac 管理小記（一）：安裝 plugin 注意事項</a>」，裡面有介紹 Trac 應該安裝的 Plugins 。 </p>
 <h3 id="安裝_WebAdmin_(for_Trac_0-10-x)">安裝 WebAdmin (for Trac 0.10.x)</h3><p><a href="http://trac.edgewall.org/wiki/WebAdmin" target="_blank" rel="external">WebAdmin</a> 是用來管理 Trac 專案相關設定的套件，安裝步驟如下：</p>
 <p><del>先開啟 DOS 命令列模式視窗，並切換到一個暫時的目錄 (假設是 D:\downloads\trac\plugins ) ，然後輸入以下指令 (粗體字部份) ：</del> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;del&#62;D:\downloads\trac\plugins&#62;&#60;strong&#62;mkdir webadmin&#60;/strong&#62;&#10;D:\downloads\trac\plugins&#62;&#60;strong&#62;cd webadmin&#60;/strong&#62;&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;svn co [http://svn.edgewall.com/repos/trac/sandbox/webadmin/](http://svn.edgewall.com/repos/trac/sandbox/webadmin/) .&#60;/strong&#62; (&#35531;&#27880;&#24847;&#26368;&#24460;&#26377;&#19968;&#20491;&#21477;&#40670;)&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;python setup.py install&#60;/strong&#62;&#60;/del&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;del&#62;D:\downloads\trac\plugins&#62;&#60;strong&#62;mkdir webadmin&#60;/strong&#62;&#10;D:\downloads\trac\plugins&#62;&#60;strong&#62;cd webadmin&#60;/strong&#62;&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;svn co [http://svn.edgewall.com/repos/trac/sandbox/webadmin/](http://svn.edgewall.com/repos/trac/sandbox/webadmin/) .&#60;/strong&#62; (&#35531;&#27880;&#24847;&#26368;&#24460;&#26377;&#19968;&#20491;&#21477;&#40670;)&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;python setup.py install&#60;/strong&#62;&#60;/del&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣就能將 WebAdmin 安裝到 Trac 裡了，後面會說明如何在專案中啟用它們。</p>
 <h4>補充：</h4>
 
 <p>上面的做法顯示我不曉得 easy_install 可以讓 plugin 的安裝更簡單，在看了 b6s 的介紹後，我才知道可以改用如下的方式。</p>
 <p>先在命令列模式視窗中切換到 D:\AppServ\python 路徑，然後輸入以下指令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\AppServ\python\Scripts&#62;&#60;strong&#62;easy_install [http://svn.edgewall.com/repos/trac/sandbox/webadmin/](http://svn.edgewall.com/repos/trac/sandbox/webadmin/)&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\AppServ\python\Scripts&#62;&#60;strong&#62;easy_install [http://svn.edgewall.com/repos/trac/sandbox/webadmin/](http://svn.edgewall.com/repos/trac/sandbox/webadmin/)&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>是不是比上面的方式簡單多了？</p>
 <h3 id="安裝_AccountManager_(for_Trac_0-10-x)">安裝 AccountManager (for Trac 0.10.x)</h3><p>AccountManager 是用來管理 Trac 專案的成員帳號，安裝步驟如下： </p>
 <p><del>先開啟 DOS 命令列模式視窗，並切換到一個暫時的目錄 (假設是 D:\downloads\trac\plugins ) ，然後輸入以下指令 (粗體字部份) ：</del> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;del&#62;D:\downloads\trac\plugins&#62;&#60;strong&#62;mkdir accountmanager&#60;/strong&#62;&#10;D:\downloads\trac\plugins&#62;&#60;strong&#62;cd accountmanager&#60;/strong&#62;&#10;D:\downloads\trac\plugins\accountmanager&#62;&#60;strong&#62;svn co [http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10](http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10) .&#60;/strong&#62; (&#35531;&#27880;&#24847;&#26368;&#24460;&#26377;&#19968;&#20491;&#21477;&#40670;)&#10;D:\downloads\trac\plugins\accountmanager&#62;&#60;strong&#62;python setup.py install&#60;/strong&#62;&#60;/del&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;del&#62;D:\downloads\trac\plugins&#62;&#60;strong&#62;mkdir accountmanager&#60;/strong&#62;&#10;D:\downloads\trac\plugins&#62;&#60;strong&#62;cd accountmanager&#60;/strong&#62;&#10;D:\downloads\trac\plugins\accountmanager&#62;&#60;strong&#62;svn co [http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10](http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10) .&#60;/strong&#62; (&#35531;&#27880;&#24847;&#26368;&#24460;&#26377;&#19968;&#20491;&#21477;&#40670;)&#10;D:\downloads\trac\plugins\accountmanager&#62;&#60;strong&#62;python setup.py install&#60;/strong&#62;&#60;/del&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣就能將 AccountManager 安裝到 Trac 裡了，後面會說明如何在專案中啟用它們。</p>
 <h4>補充：</h4>
 
 <p>跟 WebAdmin 一樣，我們把安裝方式改為：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\AppServ\python\Scripts&#62;&#60;strong&#62;easy_install [http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10](http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10)&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\AppServ\python\Scripts&#62;&#60;strong&#62;easy_install [http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10](http://trac-hacks.swapoff.org/svn/accountmanagerplugin/0.10)&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <h3 id="補充：安裝_IniAdmin">補充：安裝 IniAdmin</h3><p>這個 Plugin 是 <a href="http://b6s.blogspot.com/" target="_blank" rel="external">b6s</a> 介紹的，可以讓我們直接在 Web 介面上調整 trac.ini 。安裝方式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;easy_install [http://trac-hacks.org/svn/iniadminplugin/trunk/](http://trac-hacks.org/svn/iniadminplugin/trunk/)&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;easy_install [http://trac-hacks.org/svn/iniadminplugin/trunk/](http://trac-hacks.org/svn/iniadminplugin/trunk/)&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>相關的調整後面會再說明。</p>
 <h3 id="Plugins_的更新">Plugins 的更新</h3><p><del>更新 Plugins 很簡單，只要利用 svn update 把最新版的 Plugins 更新回本地端，然後重新安裝即可。以 WebAdmin 為例，更新方式如下：</del></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;del&#62;D:\downloads\trac\plugins&#62;&#60;strong&#62;cd webadmin&#60;/strong&#62;&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;svn update&#60;/strong&#62;&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;python setup.py clean&#60;/strong&#62; (&#38750;&#24517;&#35201;)&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;python setup.py install&#60;/strong&#62;&#60;/del&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;del&#62;D:\downloads\trac\plugins&#62;&#60;strong&#62;cd webadmin&#60;/strong&#62;&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;svn update&#60;/strong&#62;&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;python setup.py clean&#60;/strong&#62; (&#38750;&#24517;&#35201;)&#10;D:\downloads\trac\plugins\webadmin&#62;&#60;strong&#62;python setup.py install&#60;/strong&#62;&#60;/del&#62;</span><br></pre></td></tr></table></figure>
 <p><del>這樣就可以了。</del></p>
 <h4>補充：</h4>
 
@@ -255,28 +255,28 @@
 <p>Trac 的 plugins 更新後，一定要重新啟動 Apache 。如果這時有登入 Trac 管理畫面的話，也必須登出再重新登入。</p>
 <h2 id="Apache_設定">Apache 設定</h2><h3 id="設定使用者">設定使用者</h3><p> 我們可以讓 Trac 和 Subversion 的使用者共用同一組帳號，而這些帳號可以由 Apache 的 htpasswd 指令來建立。</p>
 <p>假設我們把帳號密碼檔放置在 D:\Repository\project-users.db 這個文字檔裡，那麼我們可以在命令提示列中輸入以下指令 (粗體字部份) ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Repository&#62;&#60;strong&#62;htpasswd -c project-users.db admin&#60;/strong&#62;&#10;Automatically using MD5 format.&#10;New password: &#60;strong&#62;******&#60;/strong&#62;&#10;Re-type new password: &#60;strong&#62;******&#60;/strong&#62;&#10;Adding password for user admin</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Repository&#62;&#60;strong&#62;htpasswd -c project-users.db admin&#60;/strong&#62;&#10;Automatically using MD5 format.&#10;New password: &#60;strong&#62;******&#60;/strong&#62;&#10;Re-type new password: &#60;strong&#62;******&#60;/strong&#62;&#10;Adding password for user admin</span><br></pre></td></tr></table></figure>
 <p>上面的指令會先建立一個 <strong>project-users.db</strong> 文字檔，這個就是我們存放帳號密碼的地方；然後我們需要為帳號 admin 設定一組密碼，這樣一來，帳號 admin 將會是往後我們為所有專案所預設的最高管理員。 </p>
 <p>假如開發的是網站專案，會需要自動更新測試環境的檔案時，就需要再建立一個 website 帳號：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Repository&#62;&#60;strong&#62;htpasswd project-users.db website&#60;/strong&#62;&#10;Automatically using MD5 format.&#10;New password: &#60;strong&#62;******&#60;/strong&#62;&#10;Re-type new password: &#60;strong&#62;******&#60;/strong&#62;&#10;Adding password for user website</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Repository&#62;&#60;strong&#62;htpasswd project-users.db website&#60;/strong&#62;&#10;Automatically using MD5 format.&#10;New password: &#60;strong&#62;******&#60;/strong&#62;&#10;Re-type new password: &#60;strong&#62;******&#60;/strong&#62;&#10;Adding password for user website</span><br></pre></td></tr></table></figure>
 <p>website 帳號的密碼請自行決定。 </p>
 <h3 id="模組設定">模組設定</h3><p>首先要先以文字編輯器開啟 D:\AppServ\Apache2\conf\httpd.conf ，然後搜尋到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#LoadModule dav_module modules/mod_dav.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#LoadModule dav_module modules/mod_dav.so</span><br></pre></td></tr></table></figure>
 <p>將上面的註解 ( # 字號) 去除，然後在整個 LoadModule 區段的下方加入以下設定：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># For Subversion&#10;LoadModule dav_svn_module modules/mod_dav_svn.so&#10;LoadModule authz_svn_module modules/mod_authz_svn.so&#10;# For Trac&#10;LoadModule python_module modules/mod_python.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># For Subversion&#10;LoadModule dav_svn_module modules/mod_dav_svn.so&#10;LoadModule authz_svn_module modules/mod_authz_svn.so&#10;# For Trac&#10;LoadModule python_module modules/mod_python.so</span><br></pre></td></tr></table></figure>
 <p>這樣 Apache 重新啟動時，就會載入 DAV 、 SVN 和 Python 等模組。 </p>
 <h3 id="SVN_設定">SVN 設定</h3><p>假如希望某專案的 svn 的路徑是長成這樣：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8000/svn/projectname</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://localhost:8000/svn/projectname</span><br></pre></td></tr></table></figure>
 <p>那麼就需要在 httpd.conf 的最後面加上以下設定： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;Location /svn&#62;&#10;DAV svn&#10;SVNParentPath D:/Repository/svn&#10;#   &#60;LimitExcept GET PROPFIND OPTIONS REPORT&#62;&#10;AuthType Basic&#10;AuthName &#34;CompanyName&#34;&#10;AuthUserFile &#34;D:/Repository/project-users.db&#34;&#10;Require valid-user&#10;#   &#60;/LimitExcept&#62;&#10;&#60;/Location&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;Location /svn&#62;&#10;DAV svn&#10;SVNParentPath D:/Repository/svn&#10;#   &#60;LimitExcept GET PROPFIND OPTIONS REPORT&#62;&#10;AuthType Basic&#10;AuthName &#34;CompanyName&#34;&#10;AuthUserFile &#34;D:/Repository/project-users.db&#34;&#10;Require valid-user&#10;#   &#60;/LimitExcept&#62;&#10;&#60;/Location&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣不論任何要存取檔案庫的動作 (例如 Checkout 或 Commit ) ，SVN 用戶端都會詢問帳號和密碼。如果希望 Checkout 時不詢問帳號密碼 (也就是匿名帳號可取得檔案) ，那麼就將 LimitExcept 部份的註解拿掉。 </p>
 <p>註：當然也可以配合 domainname 和 VirtualHost 來設定，不過內部使用的話這樣就夠了；以下的 Trac 設定也是一樣。</p>
 <h3 id="Trac_設定">Trac 設定</h3><p>如果希望用以下網址來連到某專案的 Trac 管理系統：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8000/trac/projectname</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://localhost:8000/trac/projectname</span><br></pre></td></tr></table></figure>
 <p>那麼也是在 httpd.conf 的最後面加上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;Location /trac&#62;&#10;SetHandler mod_python&#10;PythonHandler trac.web.modpython_frontend&#10;PythonOption TracEnvParentDir D:/Repository/trac&#10;PythonOption TracUriRoot /trac&#10;AuthType Basic&#10;AuthName &#34;CompanyName&#34;&#10;AuthUserFile &#34;D:/Repository/project-users.db&#34;&#10;Require valid-user&#10;&#60;/Location&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;Location /trac&#62;&#10;SetHandler mod_python&#10;PythonHandler trac.web.modpython_frontend&#10;PythonOption TracEnvParentDir D:/Repository/trac&#10;PythonOption TracUriRoot /trac&#10;AuthType Basic&#10;AuthName &#34;CompanyName&#34;&#10;AuthUserFile &#34;D:/Repository/project-users.db&#34;&#10;Require valid-user&#10;&#60;/Location&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣任何人在連線到該網址時，都會詢問帳號密碼；這樣在權限控管上會較為安全一點。不過這樣會有一個缺點，那就是到時 Trac 的 logout 功能會沒有作用。如果想讓匿名帳號可以先連進來，然後再使用 Trac 的 login 功能來登入的話，可以改成以下方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;Location /trac&#62;&#10;SetHandler mod_python&#10;PythonHandler trac.web.modpython_frontend&#10;PythonOption TracEnvParentDir D:/Repository/trac&#10;PythonOption TracUriRoot /trac&#10;&#60;/Location&#62;&#10;&#60;LocationMatch &#34;/trac/[^/]+/login&#34;&#62;&#10;AuthType Basic&#10;AuthName &#34;CompanyName&#34;&#10;AuthUserFile &#34;D:/Appserv/project-users.db&#34;&#10;Require valid-user&#10;&#60;/LocationMatch&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;Location /trac&#62;&#10;SetHandler mod_python&#10;PythonHandler trac.web.modpython_frontend&#10;PythonOption TracEnvParentDir D:/Repository/trac&#10;PythonOption TracUriRoot /trac&#10;&#60;/Location&#62;&#10;&#60;LocationMatch &#34;/trac/[^/]+/login&#34;&#62;&#10;AuthType Basic&#10;AuthName &#34;CompanyName&#34;&#10;AuthUserFile &#34;D:/Appserv/project-users.db&#34;&#10;Require valid-user&#10;&#60;/LocationMatch&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣一來，也可以 logout 後重新以另一個帳號登入。 </p>
 <h2 id="總結">總結</h2><p>再把重點提示一次：</p>
 <ul>
@@ -381,7 +381,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -425,7 +425,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

@@ -75,7 +75,7 @@
 <p>一般來說，需要修改 httpd.conf 權限的目錄結構類型，我們可以放在檔案系統的任何地方，並確定它能讓 Apache 正確存取與執行。而不需要修改 httpd.conf 的類型，通常是為了因應專案的可攜性或是開發者缺少系統管理權；這時專案目錄就要放在 Apache 預設提供可以存取的位置，例如 /home/username/htdocs 。 </p>
 <h2 id="常見的目錄結構">常見的目錄結構</h2><p>以下我們來看看幾個常見的目錄結構。</p>
 <h3 id="類型一：官方手冊的版本">類型一：官方手冊的版本</h3><p>官方手冊的「 <a href="http://framework.zend.com/manual/en/zend.controller.html#zend.controller.quickstart" target="_blank" rel="external">7.1. Zend_Controller Quick Start</a> 」一節裡提供了一個參考用的 Directory Layout ，我稍微做了一些修改，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">application/&#10;  controllers/&#10;    IndexController.php&#10;    ErrorController.php&#10;  models/&#10;  views/&#10;    scripts/&#10;      index/&#10;        index.phtml&#10;      error/&#10;        error.phtml&#10;    helpers/&#10;    filters/&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;html/&#10;  scripts/&#10;  images/&#10;  styles/&#10;  .htaccess (&#23566;&#21521; index.php)&#10;  index.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">application/&#10;  controllers/&#10;    IndexController.php&#10;    ErrorController.php&#10;  models/&#10;  views/&#10;    scripts/&#10;      index/&#10;        index.phtml&#10;      error/&#10;        error.phtml&#10;    helpers/&#10;    filters/&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;html/&#10;  scripts/&#10;  images/&#10;  styles/&#10;  .htaccess (&#23566;&#21521; index.php)&#10;  index.php</span><br></pre></td></tr></table></figure>
 <h4>說明</h4>
 
 <p>這是一個需要修改 httpd.conf 的目錄結構，也僅適用於單一功能的應用程式 (也就是單一模組) 。在安裝時我們必須修改 httpd.conf ，將專案的 Document Root 指向 html 這個目錄。 html 目錄除了做為 Document Root 外，其目地就是存放可公開的檔案，像是圖片、 JavaScript 或樣式表等等。而 application 目錄即為預設的模組，存放著 MVC 等三種類型的檔案 (即 controllers 、 models 及 views 等三個目錄) 。至於 library 目錄就比較隨意，我們只要確定它的執行權限，並且讓 PHP 能夠找到裡面所需要的類別即可。 </p>
@@ -83,14 +83,14 @@
 <p>這裡要特別說明 application/views 這個目錄，其中還區分成 scripts 、 helpers 及 filters 三個目錄。 scripts 主要放的就是 templates ，底下可以用小寫的 controller name 做為資料夾名稱以做為區別；而 helpers 和 filters 其實在實際應用上比較少用，所以通常我會把它們從結構中拿掉。</p>
 <p>註：為了節省篇幅，在呈現目錄結構時，預設模組的相關必要檔案我會略掉，但實際應用時請記得加回去。 </p>
 <p>另外 .htaccess (導向 index.php) 的實際內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine on&#10;RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php&#10;php_flag magic_quotes_gpc off&#10;php_flag register_globals off</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteEngine on&#10;RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php&#10;php_flag magic_quotes_gpc off&#10;php_flag register_globals off</span><br></pre></td></tr></table></figure>
 <p>在 .htaccess 的第一行中，由於 Zend Framework 支援自訂網址的功能，所以我們啟用了 RewriteEngine ，也就是設定為 on 。接著第二行我們加入一個 RewriteRule ，讓 index.php 處理所有非公開資源的 request 。</p>
 <p>註：不過 Zend Framework 也支援沒有 mod_rewrite 的環境，我們只要在 Front Controller 中將 baseUrl 設定好就沒問題了，這點有機會再探討。</p>
 <p>剩下兩行是 PHP 的設定，這邊就不再加以說明。</p>
 <p>這種目錄結構最大的特色是將 index.php 放在 html 目錄下， 這樣的好處在於能提高對 application 目錄的安全掌控度，因為 application 目錄並不會直接曝露給外部的瀏覽者。但是這樣的結構也有一個很大的缺點，那就是可攜性很差！換句話說如果在測試環境所使用的網址是 <a href="http://localhost/myproject/" target="_blank" rel="external">http://localhost/myproject/</a> ，而正式上線的環境卻是 <a href="http://www.myproject.com/" target="_blank" rel="external">http://www.myproject.com/</a> ，那麼就要修改 httpd.conf 讓 html 目錄對應到正確的網址，這樣才有辦法讓程式正確執行。 </p>
 <h3 id="類型二：_Rob_Allen_的版本">類型二： Rob Allen 的版本</h3><p>在 Rob 的 <a href="http://akrabat.com/zend-framework-tutorial/" target="_blank" rel="external">Getting Started with the Zend Framework</a> 一文中，他採用了和官方不同的目錄結構：</p>
 <p>註： Rob Allen 新版本的目錄結構已經跟官方網站一樣了，所以以下的解說請當做參考即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">application/&#10;  .htaccess (deny from all)&#10;  controllers/&#10;  models/&#10;  views/&#10;    filters/&#10;    helpers/&#10;    scripts/&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;  .htaccess (deny from all)&#10;public/&#10;  .htaccess (RewriteEngine off)&#10;  images/&#10;  scripts/&#10;  styles/&#10;.htaccess (&#23566;&#21521; index.php)&#10;index.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">application/&#10;  .htaccess (deny from all)&#10;  controllers/&#10;  models/&#10;  views/&#10;    filters/&#10;    helpers/&#10;    scripts/&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;  .htaccess (deny from all)&#10;public/&#10;  .htaccess (RewriteEngine off)&#10;  images/&#10;  scripts/&#10;  styles/&#10;.htaccess (&#23566;&#21521; index.php)&#10;index.php</span><br></pre></td></tr></table></figure>
 <h4>說明</h4>
 
 <p>這種目錄結構也是屬於單一功能 (模組) 的類型，它的特色是不必在 httpd.conf 中指定 Document Root 。這種目錄結構將 application 、 library 、 public (即第一種版本的 html) 以及 index.php 放在同一層的專案根目錄下，再利用 .htaccess 去控制每個目錄結構的存取權。 </p>
@@ -99,14 +99,14 @@
 <p>這種目錄結構剛好和官方版本相反，它非常俱有可攜性，也是一般開發 Zend Framework 專案常用的目錄結構型態。不過它也有很大的缺點，那就是當 mod_rewrite 被關閉或是 .htaccess 不被解析時，這種目錄會將 application 及 library 兩個目錄曝露出來，在安全性上就大打折扣；不過通常這樣的 httpd.conf 設定比較少見，也因此一般開發 Zend Framework 專案時，大多都會採用這種目錄結構。 </p>
 <h3 id="類型三：_Gavin_Vess_的_Conventional_Modular_版本">類型三： Gavin Vess 的 Conventional Modular 版本</h3><p>前面兩種版本都是單一功能 (模組) ，不過如果專案需要前後台或多種功能時，通常就會使用模組機制。Zend Framework 支援了模組機制，因此在目錄結構上也需要做一些改變。</p>
 <p>有一篇 Gavin Vess 所寫的 <a href="http://framework.zend.com/wiki/display/ZFDEV/Choosing+Your+Application%27s+Directory+Layout" target="_blank" rel="external">Choosing Your Application’s Directory Layout</a> 也討論到了有關 Zend Framework 在模組上的目錄結構安排。文章中有個 Conventional Modular 版本，我也做稍做了修改，如下： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">application/&#10;  config/ (&#38750;&#24517;&#35201;)&#10;  default/&#10;    config/ (&#38750;&#24517;&#35201;)&#10;    controllers/&#10;    models/&#10;    views/&#10;  (module 1)/&#10;    controllers/&#10;    models/&#10;    views/&#10;  (module 2)/&#10;    controllers/&#10;    models/&#10;    views/&#10;htdocs/&#10;  images/&#10;  scripts/&#10;  styles/&#10;  .htaccess (&#23566;&#21521; index.php)&#10;  index.php&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;tmp/&#10;  sessions/&#10;  cache/&#10;  view_compiles/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">application/&#10;  config/ (&#38750;&#24517;&#35201;)&#10;  default/&#10;    config/ (&#38750;&#24517;&#35201;)&#10;    controllers/&#10;    models/&#10;    views/&#10;  (module 1)/&#10;    controllers/&#10;    models/&#10;    views/&#10;  (module 2)/&#10;    controllers/&#10;    models/&#10;    views/&#10;htdocs/&#10;  images/&#10;  scripts/&#10;  styles/&#10;  .htaccess (&#23566;&#21521; index.php)&#10;  index.php&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;tmp/&#10;  sessions/&#10;  cache/&#10;  view_compiles/</span><br></pre></td></tr></table></figure>
 <h4>說明</h4>
 
 <p>很明顯地，這個版本是從官方版本演化而來的；它的主要特色是將原來 application 中的 MVC 三個目錄拿掉了，取而代之的是 default 、 module1 、 module2 等 MVC 模組。 </p>
 <p>前面兩個版本都是以 application 為預設模組，因此我們不必在程式裡特別設定。但是在多模組的狀況下，我們需要指定 application 下的某個模組為預設模組；這部份的程式碼可以參考我在 「<a href="http://blog.roodo.com/jaceju/archives/5602901.html" target="_blank" rel="external">Front Controller 的基本應用技</a>」一文中所提到的「進階的 Front Controller 用法」。 </p>
 <p>其他的目錄也都能望名生義，這裡不再解說。</p>
 <h3 id="類型四：我的版本">類型四：我的版本</h3><p>最後介紹我自己所採用的版本 (Wacow Framework 2.2) 。基本上它可以算是模組化的 Rob 版本，只是我為了專案開發需求，又再加入一些特別的目錄結構。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/&#10;  .htaccess (deny from all)&#10;  cron/&#10;  etc/&#10;  lib/&#10;    App/&#10;    Zend/&#10;  tmp/&#10;    cache/&#10;  mod/&#10;    common/&#10;      controllers/&#10;      models/&#10;      views/&#10;    default/&#10;      controllers/&#10;      views/&#10;    (other module)/&#10;      controllers/&#10;      views/&#10;pub/&#10;  .htaccess (RewriteEngine off)&#10;  img/&#10;  js/&#10;  css/&#10;.htaccess (&#23566;&#21521; index.php)&#10;index.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">app/&#10;  .htaccess (deny from all)&#10;  cron/&#10;  etc/&#10;  lib/&#10;    App/&#10;    Zend/&#10;  tmp/&#10;    cache/&#10;  mod/&#10;    common/&#10;      controllers/&#10;      models/&#10;      views/&#10;    default/&#10;      controllers/&#10;      views/&#10;    (other module)/&#10;      controllers/&#10;      views/&#10;pub/&#10;  .htaccess (RewriteEngine off)&#10;  img/&#10;  js/&#10;  css/&#10;.htaccess (&#23566;&#21521; index.php)&#10;index.php</span><br></pre></td></tr></table></figure>
 <h4>說明</h4>
 
 <p>首先我將 application 及 public 的名稱分別縮短為 app 及 pub ，其它目錄名稱也改為較短的名稱。而所有的 .htaccess 則和 Rob 版的相同，因此也會有同樣的限制。 </p>
@@ -211,7 +211,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -255,7 +255,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

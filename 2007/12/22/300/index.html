@@ -215,7 +215,7 @@ Developing Desktop App">
 <li><a href="http://www.wowbox.com.tw/blog/article.asp?id=2378" target="_blank" rel="external">Flash時鐘日曆代碼</a></li>
 </ul>
 <p>和上一篇一樣，不過這些是時鐘及日曆等素材。但是以上都沒有 fla 檔？我不確定能不能改來用。 </p>
-<h2 id="Database">Database</h2><li><br><br><a href="http://blog.adaniels.nl/articles/getting-the-first-5-records-of-type-x-in-mysql/" target="_blank" rel="external">Getting the first 5 records of type X in MySQL</a><br><br>可以抓前 5 筆特定型態記錄的 SQL 指令？寫法值得研究。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET @a=0; SET @b=&#34;&#34;;&#10;SELECT Name, Continent FROM (SELECT @a:=IF(@b=Continent, @a+1, 0) AS a, Name, @b:=Continent AS Continent FROM Country ORDER BY Continent) AS t WHERE a &#60; 5;</span><br></pre></td></tr></table></figure><br><br></li>
+<h2 id="Database">Database</h2><li><br><br><a href="http://blog.adaniels.nl/articles/getting-the-first-5-records-of-type-x-in-mysql/" target="_blank" rel="external">Getting the first 5 records of type X in MySQL</a><br><br>可以抓前 5 筆特定型態記錄的 SQL 指令？寫法值得研究。<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SET @a=0; SET @b=&#34;&#34;;&#10;SELECT Name, Continent FROM (SELECT @a:=IF(@b=Continent, @a+1, 0) AS a, Name, @b:=Continent AS Continent FROM Country ORDER BY Continent) AS t WHERE a &#60; 5;</span><br></pre></td></tr></table></figure><br><br></li>
 
 
 <h2 id="Programming">Programming</h2><ul>
@@ -325,7 +325,7 @@ Developing Desktop App">
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -369,7 +369,7 @@ Developing Desktop App">
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

@@ -83,46 +83,46 @@
 └── tests
 </code></pre><p>接下來不特別說明的話，所有操作都是在上述的路徑裡。</p>
 <h2 id="Composer_設定">Composer 設定</h2><p>我們假設套件會用到資料庫，所以第一步是把 <code>illuminate/database</code> 這個套件加進 <code>composer.json</code> 的 <code>require</code> 區段設定內：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34;require&#34;: &#123;&#10;    ...&#10;    &#34;illuminate/database&#34;: &#34;4.0.x&#34;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#34;require&#34;: &#123;&#10;    ...&#10;    &#34;illuminate/database&#34;: &#34;4.0.x&#34;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>接著是 PHPUnit ，要將它寫在 <code>require-dev</code> 區段設定中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34;require-dev&#34;: &#123;&#10;    ...&#10;    &#34;phpunit/phpunit&#34;: &#34;&#62;=3.7.0&#34;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#34;require-dev&#34;: &#123;&#10;    ...&#10;    &#34;phpunit/phpunit&#34;: &#34;&#62;=3.7.0&#34;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>然後執行 <code>composer update --prefer-dist</code> ，以安裝資料庫套件。</p>
 <h2 id="Model_類別基本結構">Model 類別基本結構</h2><p>這邊假設我們的 model 名稱為 <code>Ranger</code> ，它只有 <code>id</code> 和 <code>name</code> 兩個屬性。請在 <code>src/Vendor/Name</code> 這個路徑下建立一個 <code>Ranger.php</code> ，然後輸入以下內容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#10;namespace Vendor\Name;&#10;&#10;use Illuminate\Database\Eloquent\Model as Eloquent;&#10;use Illuminate\Database\Schema\Blueprint as Table;&#10;&#10;class Ranger extends Eloquent&#10;&#123;&#10;    public static $tableName = &#39;rangers&#39;; // &#33258;&#34892;&#21152;&#20837;&#30340;&#23660;&#24615;&#10;&#10;    protected $guarded = array(); // &#35222;&#38656;&#27714;&#26356;&#25913;&#10;&#10;    /**&#10;     * @return callable&#10;     */&#10;    public static function getBlueprint() // &#33258;&#34892;&#21152;&#20837;&#30340;&#26041;&#27861;&#10;    &#123;&#10;        return function (Table $table) &#123;&#10;            $table-&#62;increments(&#39;id&#39;);&#10;            $table-&#62;string(&#39;name&#39;, 100);&#10;        &#125;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;&#10;namespace Vendor\Name;&#10;&#10;use Illuminate\Database\Eloquent\Model as Eloquent;&#10;use Illuminate\Database\Schema\Blueprint as Table;&#10;&#10;class Ranger extends Eloquent&#10;&#123;&#10;    public static $tableName = &#39;rangers&#39;; // &#33258;&#34892;&#21152;&#20837;&#30340;&#23660;&#24615;&#10;&#10;    protected $guarded = array(); // &#35222;&#38656;&#27714;&#26356;&#25913;&#10;&#10;    /**&#10;     * @return callable&#10;     */&#10;    public static function getBlueprint() // &#33258;&#34892;&#21152;&#20837;&#30340;&#26041;&#27861;&#10;    &#123;&#10;        return function (Table $table) &#123;&#10;            $table-&#62;increments(&#39;id&#39;);&#10;            $table-&#62;string(&#39;name&#39;, 100);&#10;        &#125;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>Laravel 的 Model 預設會自行找出類別名稱與資料表名稱的對應，然後將它設定在 <code>$table</code> 這個屬性中；不過為了稍後在做 migration 和單元測試時的需求，我自行加了一個 static 變數： <code>$tableName</code> 。</p>
 <p>另一個 static 方法 <code>getBlueprint</code> 是回傳一個 <code>callback</code> 給 Schema Builder 使用，在後面我們會在製作 migration 與單元測試時會用到。</p>
 <h2 id="單元測試">單元測試</h2><p>基本上單元測試的設定檔， Laravel 已經幫我們產生好了。我們只需要建立 model 對應的測試即可。</p>
 <p>在 <code>tests</code> 目錄下再建立一個子資料夾 <code>NameTest</code> ，其中 <code>Name</code> 就是對應到我們的套件名稱。</p>
 <p>然後在 <code>composer.json</code> 的 <code>psr-0</code> 區段中加入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34;psr-0&#34;: &#123;&#10;    ...&#10;    &#34;Vendor\\NameTest&#34;: &#34;tests/&#34;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#34;psr-0&#34;: &#123;&#10;    ...&#10;    &#34;Vendor\\NameTest&#34;: &#34;tests/&#34;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這會讓 composer 的自動載入找到我們的測試類別。</p>
 <p>接著在 <code>NameTest</code> 資料夾中再建立一個 PHP 檔案 <code>RangerTest.php</code> ，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#10;namespace Vendor\NameTest;&#10;&#10;use Vendor\Name\Ranger;&#10;use Illuminate\Database\Capsule\Manager as DB;&#10;&#10;class RangerTest extends \PHPUnit_Framework_TestCase&#10;&#123;&#10;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;&#10;namespace Vendor\NameTest;&#10;&#10;use Vendor\Name\Ranger;&#10;use Illuminate\Database\Capsule\Manager as DB;&#10;&#10;class RangerTest extends \PHPUnit_Framework_TestCase&#10;&#123;&#10;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這邊比較關鍵的部份的是把 <code>Illuminate\Database\Capsule\Manager</code> 載入後，取別名為 <code>DB</code> 方便後續操作。</p>
 <p>另外因為套件並沒辦法使用到 Laravel 在 application 中的 Facade 機制，所以直接用 <code>\PHPUnit_Framework_TestCase</code> 類別，而不是 Laravel 內建的 <code>TestCase</code> 類別。</p>
 <h2 id="資料庫與資料表設定">資料庫與資料表設定</h2><p>在測試中，通常較為麻煩的是測試 Model 與資料庫之間的溝通。其實我們可以直接提供一個測試用的資料庫讓測試使用。</p>
 <p>測試用的資料庫可以是 Laravel 所支援的任一類型關連式資料庫，這裡我們選用 sqlite 。</p>
 <p>接著在 <code>RangerTest</code> 類別中加入以下程式碼：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;...&#10;&#10;    protected static $db = null;&#10;&#10;    public static function setUpBeforeClass()&#10;    &#123;&#10;        static::connectTestDb();&#10;        static::initTables();&#10;    &#125;&#10;&#10;    protected static function connectTestDb()&#10;    &#123;&#10;        static::$db = new DB();&#10;        static::$db-&#62;addConnection(array(&#10;            &#39;driver&#39;    =&#62; &#39;sqlite&#39;,&#10;            &#39;database&#39;  =&#62; &#39;:memory:&#39;,&#10;            &#39;prefix&#39;    =&#62; &#39;&#39;,&#10;        ));&#10;        static::$db-&#62;setAsGlobal();&#10;        static::$db-&#62;bootEloquent();&#10;    &#125;&#10;&#10;    protected static function initTables()&#10;    &#123;&#10;        $conn = static::$db-&#62;getConnection();&#10;        $builder = $conn-&#62;getSchemaBuilder();&#10;&#10;        $builder-&#62;dropIfExists(Ranger::$tableName);&#10;        $builder-&#62;create(Ranger::$tableName, Ranger::getBlueprint());&#10;    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;...&#10;&#10;    protected static $db = null;&#10;&#10;    public static function setUpBeforeClass()&#10;    &#123;&#10;        static::connectTestDb();&#10;        static::initTables();&#10;    &#125;&#10;&#10;    protected static function connectTestDb()&#10;    &#123;&#10;        static::$db = new DB();&#10;        static::$db-&#62;addConnection(array(&#10;            &#39;driver&#39;    =&#62; &#39;sqlite&#39;,&#10;            &#39;database&#39;  =&#62; &#39;:memory:&#39;,&#10;            &#39;prefix&#39;    =&#62; &#39;&#39;,&#10;        ));&#10;        static::$db-&#62;setAsGlobal();&#10;        static::$db-&#62;bootEloquent();&#10;    &#125;&#10;&#10;    protected static function initTables()&#10;    &#123;&#10;        $conn = static::$db-&#62;getConnection();&#10;        $builder = $conn-&#62;getSchemaBuilder();&#10;&#10;        $builder-&#62;dropIfExists(Ranger::$tableName);&#10;        $builder-&#62;create(Ranger::$tableName, Ranger::getBlueprint());&#10;    &#125;</span><br></pre></td></tr></table></figure>
 <p>在 PHPUnit 中提供了 <code>setUpBeforeClass</code> 這個方法，主要是在所有測試開始前要先做的動作；我們利用它來初始化資料庫連線及產生我們需要資料表。</p>
 <p>註： <code>setUp</code> 是在每個 test case 啟動前做。</p>
 <p><code>connectTestDb</code> 方法是對資料庫連線，讓接下來的 Model 可以直接操作，而不需要處理連線問題。這裡我們可以直接使用 sqlite 配合 <code>:memory:</code> 來使用記憶體當做測試資料庫，或是在 MySQL 或其他與正式機相同規格的資料庫伺服器上建立測試用的資料庫。</p>
 <p><code>initTables</code> 用來建立資料表，由於我們在 model 的 <code>getBlueprint</code> 中會回傳 Schema 的資訊，所以就直接利用它來建資料表。</p>
 <h2 id="開始測試">開始測試</h2><p>現在我們可以撰寫測試案例了，舉例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;...&#10;&#10;    public function testFind()&#10;    &#123;&#10;        DB::table(&#39;rangers&#39;)-&#62;insert(array(&#10;            &#39;name&#39; =&#62; &#39;Jace Ju&#39;,&#10;        ));&#10;        $ranger = Ranger::find(1);&#10;        $this-&#62;assertEquals(&#39;Jace Ju&#39;, $ranger-&#62;name);&#10;    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;...&#10;&#10;    public function testFind()&#10;    &#123;&#10;        DB::table(&#39;rangers&#39;)-&#62;insert(array(&#10;            &#39;name&#39; =&#62; &#39;Jace Ju&#39;,&#10;        ));&#10;        $ranger = Ranger::find(1);&#10;        $this-&#62;assertEquals(&#39;Jace Ju&#39;, $ranger-&#62;name);&#10;    &#125;</span><br></pre></td></tr></table></figure>
 <p>接著開啟終端機，切換到 <code>workbench/vendor/name</code> 目錄下，執行：</p>
 <pre><code>phpunit
 </code></pre><p>就可以看到測試結果了。</p>
 <h2 id="多個測試類別共用同一資料連線">多個測試類別共用同一資料連線</h2><p>目前我們是在 <code>RangerTest</code> 類別中連結資料庫，但通常我們會有很多 Model 需要被測試，所以需要共用上述的資料庫連結的部份。</p>
 <p>先建立一個 <code>TestCase</code> 類別，它與 <code>RangerTest</code> 放在同一個目錄下。</p>
 <p>再將先前的資料庫連結的部份複製到新的 <code>TestCase</code> 類別裡，成果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#10;namespace Vendor\NameTest;&#10;&#10;use Illuminate\Database\Capsule\Manager as DB;&#10;&#10;class TestCase extends \PHPUnit_Framework_TestCase&#10;&#123;&#10;    protected static $db = null;&#10;&#10;    public static function setUpBeforeClass()&#10;    &#123;&#10;        static::connectTestDb();&#10;        static::initTables();&#10;    &#125;&#10;&#10;    protected static function connectTestDb()&#10;    &#123;&#10;        // ... &#21516;&#19978;&#10;    &#125;&#10;&#10;    protected static function initTables()&#10;    &#123;&#10;        // ... &#21516;&#19978;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;&#10;namespace Vendor\NameTest;&#10;&#10;use Illuminate\Database\Capsule\Manager as DB;&#10;&#10;class TestCase extends \PHPUnit_Framework_TestCase&#10;&#123;&#10;    protected static $db = null;&#10;&#10;    public static function setUpBeforeClass()&#10;    &#123;&#10;        static::connectTestDb();&#10;        static::initTables();&#10;    &#125;&#10;&#10;    protected static function connectTestDb()&#10;    &#123;&#10;        // ... &#21516;&#19978;&#10;    &#125;&#10;&#10;    protected static function initTables()&#10;    &#123;&#10;        // ... &#21516;&#19978;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>在 <code>initTables</code> 方法中，可以初始化所有會用到的資料表。</p>
 <p>然後回到 <code>RangerTest</code> 類別，將連結資料庫的部份移除，並改為繼承 <code>TestCase</code> ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#10;namespace Vendor\NameTest;&#10;&#10;use Illuminate\Database\Capsule\Manager as DB;&#10;&#10;class RangerTest extends TestCase&#10;&#123;&#10;    // ...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;&#10;namespace Vendor\NameTest;&#10;&#10;use Illuminate\Database\Capsule\Manager as DB;&#10;&#10;class RangerTest extends TestCase&#10;&#123;&#10;    // ...&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這時候如果執行 <code>phpunit</code> 的話，會發現找不到 <code>TestCase</code> 這個類別。</p>
 <p>解決方法是在 <code>composer.json</code> 裡面告訴 composer 要去哪裡找這個類別檔案：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34;classmap&#34;: [&#10;    &#34;tests/NameTest/TestCase.php&#34;&#10;],</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#34;classmap&#34;: [&#10;    &#34;tests/NameTest/TestCase.php&#34;&#10;],</span><br></pre></td></tr></table></figure>
 <p>這麼一來， Model 與資料庫的測試就容易許多了。</p>
 <h2 id="Migration">Migration</h2><p>雖然我們可以測試 model 了，但實際作業還是需要把資料表建立在正式資料庫上。這裡就要透過 Laravel 的 migration 機制。</p>
 <p>這裡就簡單說明一下剛剛在 <code>Ranger</code> 類別建立的 callback 如何使用：</p>
@@ -132,7 +132,7 @@
 <pre><code>php artisan migrate:make create_rangers_table <span class="comment">--bench=vendor/name</span>
 </code></pre><p>這會建立 <code>workbench/vendor/name/src/migrations/xxxx_xx_xx_xxxxxx_create_rangers_table.php</code> 這個檔案 (xx 會視建立時間而有所不同) ，其類別名稱為 <code>CreateRangersTable</code> 。</p>
 <p>在 <code>CreateRangersTable</code> 中，我們可以直接利用先前在 <code>Ranger</code> 類別中定義的 <code>$tableName</code> 與 <code>getBlueprint</code> 來完成 migration 的 <code>up</code> 及 <code>down</code> ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#10;use Illuminate\Database\Migrations\Migration;&#10;use Vendor\Name\Ranger;&#10;&#10;class CreateRangersTable extends Migration&#10;&#123;&#10;    public function up()&#10;    &#123;&#10;        Schema::create(Ranger::$tableName, Ranger::getBlueprint());&#10;    &#125;&#10;&#10;    public function down()&#10;    &#123;&#10;        Schema::drop(Ranger::$tableName);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;&#10;use Illuminate\Database\Migrations\Migration;&#10;use Vendor\Name\Ranger;&#10;&#10;class CreateRangersTable extends Migration&#10;&#123;&#10;    public function up()&#10;    &#123;&#10;        Schema::create(Ranger::$tableName, Ranger::getBlueprint());&#10;    &#125;&#10;&#10;    public function down()&#10;    &#123;&#10;        Schema::drop(Ranger::$tableName);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這麼一來就不需要重複定義 schema 的程式碼了。</p>
 <h2 id="總結">總結</h2><p>最後歸納幾個重點：</p>
 <ol>
@@ -237,7 +237,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -281,7 +281,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

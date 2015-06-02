@@ -67,12 +67,12 @@
 <p>求助 Google 大神的結果，我找到了以下這個網址，它提供了一個解法：</p>
 <p><a href="http://technologyexpert.blogspot.com/2006/06/problems-w-nvidias-9131-drivers.html" target="_blank" rel="external"> Problems w/ nVidia’s 91.31 Drivers</a></p>
 <p>請把以下的內容存成一個 nvidia9131.reg ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak\]&#10;&#34;NvCplEnableMultiGPUConfigurationPage&#34;=dword:00000000&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\MediaCenterTray]&#10;&#34;NvCplDisableBalloonNotifications&#34;=dword:00000001</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak\]&#10;&#34;NvCplEnableMultiGPUConfigurationPage&#34;=dword:00000000&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\MediaCenterTray]&#10;&#34;NvCplDisableBalloonNotifications&#34;=dword:00000001</span><br></pre></td></tr></table></figure>
 <p>接著雙擊這個 reg 檔，將以上的設定匯入系統登錄檔。</p>
 <p>然後執行登錄編輯程式，到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKLM\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HKLM\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
 <p>把以下兩個項目刪除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NvCplDaemon: RUNDLL32.EXE C:\WINDOWS\system32\NvCpl.dll,NvStartup&#10;NvMediaCenter: RunDLL32.exe NvMCTray.dll,NvTaskbarInit</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NvCplDaemon: RUNDLL32.EXE C:\WINDOWS\system32\NvCpl.dll,NvStartup&#10;NvMediaCenter: RunDLL32.exe NvMCTray.dll,NvTaskbarInit</span><br></pre></td></tr></table></figure>
 <p>最後重開機即可解決。</p>
 
       
@@ -165,7 +165,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -209,7 +209,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

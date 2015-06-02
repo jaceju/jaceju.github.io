@@ -67,7 +67,7 @@
 <p><a href="http://www.fastcgi.com/dist/old/mod_fastcgi-2.4.2-AP20.dll" target="_blank" rel="external">http://www.fastcgi.com/dist/old/mod_fastcgi-2.4.2-AP20.dll</a></p>
 <p>下載回來後儲存到 Apache 安裝目錄的 modules 下。</p>
 <p>然後在 httpd.conf 加入以下設定：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># FastCGI Module&#10;LoadModule fastcgi_module modules/mod_fastcgi-2.4.2-AP20.dll&#10;&#60;IfModule mod_fastcgi.c&#62;&#10;FastCgiServer &#34;D:/AppServ/php/php-cgi.exe&#34; -processes 3&#10;ScriptAlias &#34;/fcgi-bin/&#34; &#34;D:/AppServ/php/&#34;&#10;Action php-fastcgi &#34;/fcgi-bin/php-cgi.exe&#34;&#10;AddType application/x-httpd-php .php&#10;&#60;/IfModule&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># FastCGI Module&#10;LoadModule fastcgi_module modules/mod_fastcgi-2.4.2-AP20.dll&#10;&#60;IfModule mod_fastcgi.c&#62;&#10;FastCgiServer &#34;D:/AppServ/php/php-cgi.exe&#34; -processes 3&#10;ScriptAlias &#34;/fcgi-bin/&#34; &#34;D:/AppServ/php/&#34;&#10;Action php-fastcgi &#34;/fcgi-bin/php-cgi.exe&#34;&#10;AddType application/x-httpd-php .php&#10;&#60;/IfModule&#62;</span><br></pre></td></tr></table></figure>
 <p>最後重新啟動 Apache 就可以了。</p>
 <p>經測試的結果，在 Virtual Host 也能正常動作。</p>
 <h2 id="各項設定簡單說明">各項設定簡單說明</h2><ul>
@@ -179,7 +179,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -223,7 +223,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

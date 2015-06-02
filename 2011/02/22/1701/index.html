@@ -67,17 +67,17 @@
 <h2 id="初始化_Resource">初始化 Resource</h2><p>在 Zend_Application 執行的過程中，會透過 Bootstrap 物件來將我們需要的 Application Resources 一一初始化。而初始化 Resource 的方法有兩種，分別介紹如下：</p>
 <h3 id="在_application-ini_中初始化">在 application.ini 中初始化</h3><p>Zend Framework 預設已經幫我們建立好了幾個常用的 Application Resources ，請參考官方手冊的「 <a href="http://framework.zend.com/manual/en/zend.application.available-resources.html" target="_blank" rel="external">Available Resource Plugins</a> 」一節。</p>
 <p>我們可以在 application.ini 中初始化這些有定義好的 Application Resources ，語法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources.&#60;resource_name&#62;.&#60;settings&#62; = &#60;value&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">resources.&#60;resource_name&#62;.&#60;settings&#62; = &#60;value&#62;</span><br></pre></td></tr></table></figure>
 <p>例如我們要初始化單一資料庫，就可以這樣寫：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources.db.adapter = &#34;pdo_mysql&#34;&#10;resources.db.params.host = &#34;localhost&#34;&#10;resources.db.params.username = &#34;username&#34;&#10;resources.db.params.password = &#34;password&#34;&#10;resources.db.params.dbname = &#34;test&#34;&#10;resources.db.isDefaultTableAdapter = true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">resources.db.adapter = &#34;pdo_mysql&#34;&#10;resources.db.params.host = &#34;localhost&#34;&#10;resources.db.params.username = &#34;username&#34;&#10;resources.db.params.password = &#34;password&#34;&#10;resources.db.params.dbname = &#34;test&#34;&#10;resources.db.isDefaultTableAdapter = true</span><br></pre></td></tr></table></figure>
 <p>這個方法要特別注意兩點：</p>
 <pre><code><span class="bullet">* </span>如果沒有對應的 Resource 時，就不可以在 application.ini 加入該 Resource 的設定，否則 Zend<span class="emphasis">_Application 會丟出錯誤。
 
 </span><span class="bullet">* </span>如果該 Resource 沒有特別需要指定的選項時，還是要使用以下方法來初始化，以 Modules 這個 Resource 為例：
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources.modules[] = ; &#36889;&#26159;&#32102;&#19968;&#20491;&#31354;&#38499;&#21015;&#30340;&#24847;&#24605;</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">resources.modules[] = ; &#36889;&#26159;&#32102;&#19968;&#20491;&#31354;&#38499;&#21015;&#30340;&#24847;&#24605;</span><br></pre></td></tr></table></figure>
 <h3 id="在_Bootstrap_中初始化">在 Bootstrap 中初始化</h3><p>除了在 application.ini 設定之外，如果大家不希望某些 Application Resource 的設定可以被修改的話，可以考慮在 Bootstrap.php 中來初始化 Application Resource 。</p>
 <p>方法很簡單，在 application/Bootstrap.php 裡建立 _init<resourcename>() 方法，就可以初始化該 Resource 了。以資料庫為例，我們可以在 Bootstrap 類別裡加入 _initDb() 這個方法：</resourcename></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class Bootstrap extends Zend_Application_Bootstrap_Bootstrap&#10;&#123;&#10;    protected function _initDb()&#10;    &#123;&#10;        $db = Zend_Db::factory(&#39;pdo_mysql&#39;, array(&#10;            &#39;host&#39; =&#62; &#34;localhost&#34;,&#10;            &#39;username&#39; =&#62; &#34;username&#34;,&#10;            &#39;password&#39; =&#62; &#34;password&#34;,&#10;            &#39;dbname&#39; =&#62; &#34;test&#34;,&#10;        ));&#10;        Zend_Db_Table::setDefaultAdapter($db);&#10;        return $db;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Bootstrap extends Zend_Application_Bootstrap_Bootstrap&#10;&#123;&#10;    protected function _initDb()&#10;    &#123;&#10;        $db = Zend_Db::factory(&#39;pdo_mysql&#39;, array(&#10;            &#39;host&#39; =&#62; &#34;localhost&#34;,&#10;            &#39;username&#39; =&#62; &#34;username&#34;,&#10;            &#39;password&#39; =&#62; &#34;password&#34;,&#10;            &#39;dbname&#39; =&#62; &#34;test&#34;,&#10;        ));&#10;        Zend_Db_Table::setDefaultAdapter($db);&#10;        return $db;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>記住要把產生的 Resource 物件用 return 敘述回傳，這樣到時候 Bootstrap 物件才可以在其他取得它。</p>
 <p>另外要特別注意三點：</p>
 <pre><code><span class="keyword">*</span> 如果在 Bootstrap 裡有定義 Resource 的話，那麼在 application.ini 中同名的 Resources 就不會被初始化。
@@ -88,20 +88,20 @@
 </code></pre><p>在 _init<resource>() 方法裡透過 $this-&gt;getOptions() 所取得的設定，會是整個 application.ini 轉換後的陣列，而非該 Resource 的專屬設定。<br>    </resource></p>
 <h2 id="取得_Resource_的方法">取得 Resource 的方法</h2><p>因為所有的 Resource 都是由 Bootstrap 物件所初始化並存在其內部的 Container 中，所以我們就必須透過 Bootstrap 物件來取得 Resource 。</p>
 <p>在 Action Controller 裡可以用以下的方式來取得 Resource ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public function indexAction()&#10;&#123;&#10;    $bootstrap = $this-&#62;getInvokeArg(&#39;bootstrap&#39;);&#10;    if ($bootstrap-&#62;hasResource(&#39;webservice&#39;)) &#123;&#10;        $webservice = $bootstrap-&#62;getResource(&#39;webservice&#39;);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function indexAction()&#10;&#123;&#10;    $bootstrap = $this-&#62;getInvokeArg(&#39;bootstrap&#39;);&#10;    if ($bootstrap-&#62;hasResource(&#39;webservice&#39;)) &#123;&#10;        $webservice = $bootstrap-&#62;getResource(&#39;webservice&#39;);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>其中 Action Controller 的 getInvokeArg(‘bootstrap’) 可以為我們取得已經建立好的 Bootstrap 物件，我們再透過它來取得我們需要的 Resource 。</p>
 <h2 id="自訂_Resource">自訂 Resource</h2><p>如果我們所需要的 Resource 是 Zend Framework 沒有提供的話，該怎麼辦呢？這也不是大問題，我們有兩種方式可以達成。</p>
 <h3 id="在_Bootstrap_中建立">在 Bootstrap 中建立</h3><p>第一種方式也是一樣在 Bootstrap 類別裡定義 _init<customresourcename>() 方法即可。例如我們需要一個名為 Webservice 的 Resource 的話，就可以在 Bootstrap 類別裡加入以下方法：</customresourcename></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected function _initWebservice()&#10;&#123;&#10;    $resource = array(&#10;        &#39;url&#39; = &#34;http://domain.com/webservice&#34;,&#10;        &#39;timeout&#39; = 10,&#10;    );&#10;    return $resource;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function _initWebservice()&#10;&#123;&#10;    $resource = array(&#10;        &#39;url&#39; = &#34;http://domain.com/webservice&#34;,&#10;        &#39;timeout&#39; = 10,&#10;    );&#10;    return $resource;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>不過這樣的方式只能在一個專案中使用，假如我們希望把自訂的 Resource 做成可重覆利用的套件，就可以採用第二種方法。</p>
 <h3 id="使用_Resource_類別">使用 Resource 類別</h3><p>第二種方法主要是透過自訂的 namespace 來將 Resource 載入，這樣的方式可以讓我們擴充 Zend Framework 的很多功能。</p>
 <p>假設我們有一組 My 套件放在專案的 library 下 (或是 include_path 裡) ，其中有一個My/Application/Resource/Webservice.php 檔，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Zend/Application/Resource/ResourceAbstract.php&#39;;&#10;class My_Application_Resource_Webservice&#10;    extends Zend_Application_Resource_ResourceAbstract&#10;&#123;&#10;    public function init()&#10;    &#123;&#10;        $options = $this-&#62;getOptions();&#10;        $resource = array($options);&#10;        return $resource;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Zend/Application/Resource/ResourceAbstract.php&#39;;&#10;class My_Application_Resource_Webservice&#10;    extends Zend_Application_Resource_ResourceAbstract&#10;&#123;&#10;    public function init()&#10;    &#123;&#10;        $options = $this-&#62;getOptions();&#10;        $resource = array($options);&#10;        return $resource;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>那麼我們可以在 application.ini 中加入以下設定：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Autoloadnamspaces[] = &#34;My_&#34;&#10;pluginPaths.My_Application_Resource_ = &#34;My/Application/Resource&#34;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Autoloadnamspaces[] = &#34;My_&#34;&#10;pluginPaths.My_Application_Resource_ = &#34;My/Application/Resource&#34;</span><br></pre></td></tr></table></figure>
 <p>這樣就會讓 Zend Framework 去找尋我們自訂的 Resource 類別檔案。</p>
 <p>不過別忘了要在 application.ini 中指定 resources 的設定，這樣才能初始化 Webservice 這個 Resource 。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources.webservice.url = &#34;http://domain.com/webservice&#34;&#10;resources.webservice.time = 10</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">resources.webservice.url = &#34;http://domain.com/webservice&#34;&#10;resources.webservice.time = 10</span><br></pre></td></tr></table></figure>
 <p>這個方法也可以用來取代原來 Zend Framework 預設好的 Resource 類別，以加強原來預設 Resource 的功能；像是在「<a href="http://www.jaceju.net/blog/archives/1687" target="_blank" rel="external">將 Smarty 3 整合到 Zend Framework 1.11 中</a>」一文裡， My_Application_Resource_View 這個類別就把原有的 View Resource 繼承後再做一些修改，讓專案的 View 可以切換為 Smarty 來使用。</p>
 <h2 id="小結">小結</h2><p>Zend_Application_Resource 是在 Zend Framework MVC 中一個很重要的功能，它不僅能為我們初始化整個專案所需要的資源，同時也幫助我們管理這些資源。這裡我將 Zend_Application_Resource 做了一些粗略的介紹，希望能給大家做為專案開發上的參考。</p>
 <p>下次再見。</p>
@@ -196,7 +196,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -240,7 +240,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

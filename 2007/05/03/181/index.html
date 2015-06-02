@@ -66,7 +66,7 @@
 <p><cite>Hidden controls and controls that are not rendered because of style sheet settings may still be successful.</cite></p>
 <p>也就是說不論是 display:none 或是 visibility: hidden ，只要是利用 CSS 來讓 control 消失的，都還是應該把值送給後端。</p>
 <p>我用了以下的程式測試了一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;style type=&#34;text/css&#34;&#62;&#10;.hide &#123;&#10;visibility: hidden;&#10;&#125;&#10;.none &#123;&#10;display: none;&#10;&#125;&#10;&#60;/style&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#10;&#60;label for=&#34;type1&#34;&#62;Type1&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;hide&#34; id=&#34;type1&#34;&#10;name=&#34;type[]&#34; value=&#34;1&#34; checked=&#34;checked&#34; /&#62;&#10;&#60;label for=&#34;type2&#34;&#62;Type2&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;none&#34; id=&#34;type2&#34;&#10;name=&#34;type[]&#34; value=&#34;2&#34; /&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;&#10;&#60;a href=&#34;&#60;?php echo $_SERVER[&#39;PHP_SELF&#39;]; ?&#62;&#34;&#62;&#37325;&#26032;&#25972;&#29702;&#60;/a&#62;&#10;&#60;?php var_dump($_POST); ?&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onload = function () &#123;&#10;var t2 = document.getElementById(&#39;type2&#39;);&#10;t2.focus();&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;style type=&#34;text/css&#34;&#62;&#10;.hide &#123;&#10;visibility: hidden;&#10;&#125;&#10;.none &#123;&#10;display: none;&#10;&#125;&#10;&#60;/style&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#10;&#60;label for=&#34;type1&#34;&#62;Type1&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;hide&#34; id=&#34;type1&#34;&#10;name=&#34;type[]&#34; value=&#34;1&#34; checked=&#34;checked&#34; /&#62;&#10;&#60;label for=&#34;type2&#34;&#62;Type2&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;none&#34; id=&#34;type2&#34;&#10;name=&#34;type[]&#34; value=&#34;2&#34; /&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;&#10;&#60;a href=&#34;&#60;?php echo $_SERVER[&#39;PHP_SELF&#39;]; ?&#62;&#34;&#62;&#37325;&#26032;&#25972;&#29702;&#60;/a&#62;&#10;&#60;?php var_dump($_POST); ?&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onload = function () &#123;&#10;var t2 = document.getElementById(&#39;type2&#39;);&#10;t2.focus();&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>結果發現 Firefox 、 Opera 不論有沒有預設的 checked ，在點選 label 後都會正確送出對應的 radio 欄位值。</p>
 <p>而 IE6 、 IE7 事實上也是支援，只是它們僅能送出有預設 checked 的 radio 欄位；如果完全沒有預設 checked 的 radion 欄位時，因為點選 label 仍無法讓 radio 的值改變，因此也無法送出任何 radio 值 (就如石頭成老大所說明的) 。</p>
 <p>所以我原先誤認 IE 不會理會 display: none 或是 visibility: hidden 的元素，其實是 label 無法作用；但更正確的來說，則是因為 <strong>IE 無法接受把 focus 放在不可見的元素上</strong>。</p>
@@ -164,7 +164,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -208,7 +208,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

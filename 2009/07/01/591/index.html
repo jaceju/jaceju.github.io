@@ -67,7 +67,7 @@
 <h2 id="基本原理">基本原理</h2><p>機器人的原理很簡單，其實就是透過 cURL 來做登入及貼文的動作。已經有高手 <a href="http://blog.xuite.net/vexed/" target="_blank" rel="external">Vexed</a> 幫我們寫好<a href="http://gist.github.com/53380" target="_blank" rel="external">程式碼</a>啦，我們只要會改帳號密碼及要貼的訊息即可：</p>
 <p>當然在這之前，我們必須先到 Plurk 上為我們的機器人註冊一個帳號。 (這裡假設其帳號密碼為 abc / iamabc) </p>
 <p>註：程式碼並非我個人原創，我僅僅為大家說明觀念而已~:D</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * &#36879;&#36942; PHP + cURL &#30332;&#22103;&#10; *&#10; * @author: Vexed&#10; * @see: http://blog.xuite.net/vexed/tech/22023458&#10; */&#10;define(&#39;NICKNAME&#39;, &#39;abc&#39;); // &#23601;&#26159;&#24115;&#34399;&#10;define(&#39;PASSWORD&#39;, &#39;iamabc&#39;); // &#23601;&#26159;&#23494;&#30908;&#10;define(&#39;USER_ID&#39;, &#39;123456&#39;); // &#30331;&#20837;&#24460;&#65292;&#22312; HTML &#21407;&#22987;&#30908;&#35041;&#25214;&#21040; user_id &#23565;&#25033;&#30340;&#20540;&#10;$message = &#39;&#25105;&#26159;&#29992; PHP + CURL &#23531;&#30340;&#27231;&#22120;&#20154;~&#39;;&#10;$ch = curl_init();&#10;// &#29986;&#29983; Cookie &#65292;&#20197;&#20415;&#35352;&#20303;&#30331;&#20837;&#24460;&#30340; Session&#10;curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);&#10;curl_setopt($ch, CURLOPT_COOKIEJAR, &#39;cookie.txt&#39;);&#10;curl_setopt($ch, CURLOPT_COOKIEFILE, &#39;cookie.txt&#39;);&#10;// &#30331;&#20837;&#10;curl_setopt($ch, CURLOPT_URL, &#39;http://www.plurk.com/Users/login&#39;);&#10;curl_setopt($ch, CURLOPT_POSTFIELDS, &#39;nick_name=&#39; . NICKNAME . &#39;&#38;amp;password=&#39; . PASSWORD);&#10;curl_exec($ch);&#10;// &#36028;&#25991;&#10;curl_setopt($ch, CURLOPT_URL, &#39;http://www.plurk.com/TimeLine/addPlurk&#39;);&#10;curl_setopt($ch, CURLOPT_POSTFIELDS, &#39;qualifier=says&#38;amp;content=&#39; . urlencode($message) . &#39;&#38;amp;lang=tr_ch&#38;amp;no_comments=0&#38;amp;uid=&#39; . USER_ID);&#10;curl_exec($ch);&#10;curl_close($ch);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * &#36879;&#36942; PHP + cURL &#30332;&#22103;&#10; *&#10; * @author: Vexed&#10; * @see: http://blog.xuite.net/vexed/tech/22023458&#10; */&#10;define(&#39;NICKNAME&#39;, &#39;abc&#39;); // &#23601;&#26159;&#24115;&#34399;&#10;define(&#39;PASSWORD&#39;, &#39;iamabc&#39;); // &#23601;&#26159;&#23494;&#30908;&#10;define(&#39;USER_ID&#39;, &#39;123456&#39;); // &#30331;&#20837;&#24460;&#65292;&#22312; HTML &#21407;&#22987;&#30908;&#35041;&#25214;&#21040; user_id &#23565;&#25033;&#30340;&#20540;&#10;$message = &#39;&#25105;&#26159;&#29992; PHP + CURL &#23531;&#30340;&#27231;&#22120;&#20154;~&#39;;&#10;$ch = curl_init();&#10;// &#29986;&#29983; Cookie &#65292;&#20197;&#20415;&#35352;&#20303;&#30331;&#20837;&#24460;&#30340; Session&#10;curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);&#10;curl_setopt($ch, CURLOPT_COOKIEJAR, &#39;cookie.txt&#39;);&#10;curl_setopt($ch, CURLOPT_COOKIEFILE, &#39;cookie.txt&#39;);&#10;// &#30331;&#20837;&#10;curl_setopt($ch, CURLOPT_URL, &#39;http://www.plurk.com/Users/login&#39;);&#10;curl_setopt($ch, CURLOPT_POSTFIELDS, &#39;nick_name=&#39; . NICKNAME . &#39;&#38;amp;password=&#39; . PASSWORD);&#10;curl_exec($ch);&#10;// &#36028;&#25991;&#10;curl_setopt($ch, CURLOPT_URL, &#39;http://www.plurk.com/TimeLine/addPlurk&#39;);&#10;curl_setopt($ch, CURLOPT_POSTFIELDS, &#39;qualifier=says&#38;amp;content=&#39; . urlencode($message) . &#39;&#38;amp;lang=tr_ch&#38;amp;no_comments=0&#38;amp;uid=&#39; . USER_ID);&#10;curl_exec($ch);&#10;curl_close($ch);</span><br></pre></td></tr></table></figure>
 <p>然後就是發揮你的創意去更新 $message 裡的內容囉~</p>
 <h2 id="機器人的類型">機器人的類型</h2><p>機器人目前我知道的有兩種，一種是定時發噗，一種是看發噗者輸入的內容，然後產生一些相關的回噗。</p>
 <p>定時發噗就是利用 crontab (排程執行) ，這個需要自己有伺服器來做這件事。而這種機器人要特別小心，不要一次發出太多訊息，不然會被 Plurk 的防洪機制擋住。</p>
@@ -165,7 +165,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -209,7 +209,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

@@ -63,29 +63,29 @@
         <h2 id="問題">問題</h2><p>目前我們公司是用 Subversion 做為版本控管系統，在 commit 時都會需要把版本更新訊息寄送給相關人員，當然這就會用到 post-commit 這個 hook 指令；而在 post-commit 中，我們可以利用 bash 語法去呼叫寄信程式。</p>
 <a id="more"></a>
 <p>不過預設建立好的 Repository 下的 hooks 目錄並沒有這個檔案，我們可以把預設的 post-commit.tmpl 複製成 post-commit ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cp /path-to-svn-repository/project_name/hooks/post-commit.tmpl /path-to-svn-repository/project_name/hooks/post-commit</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cp /path-to-svn-repository/project_name/hooks/post-commit.tmpl /path-to-svn-repository/project_name/hooks/post-commit</span><br></pre></td></tr></table></figure>
 <p>至於寄信程式的部份，在 Subversion 的 Source code 裡就提供了一個很有用的 mailer.py ，它可以協助我們寄送 commit 後的訊息。</p>
 <p>原來的 post-commit 內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh&#10;# POST-COMMIT HOOK&#10;# (&#30053;)&#10;REPOS=&#34;$1&#34;&#10;REV=&#34;$2&#34;&#10;commit-email.pl &#34;$REPOS&#34; &#34;$REV&#34; commit-watchers@example.org&#10;log-commit.py --repository &#34;$REPOS&#34; --revision &#34;$REV&#34;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/bin/sh&#10;# POST-COMMIT HOOK&#10;# (&#30053;)&#10;REPOS=&#34;$1&#34;&#10;REV=&#34;$2&#34;&#10;commit-email.pl &#34;$REPOS&#34; &#34;$REV&#34; commit-watchers@example.org&#10;log-commit.py --repository &#34;$REPOS&#34; --revision &#34;$REV&#34;</span><br></pre></td></tr></table></figure>
 <p>將它修改為：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh&#10;# POST-COMMIT HOOK&#10;# (&#30053;)&#10;REPOS=&#34;$1&#34;&#10;REV=&#34;$2&#34;&#10;/path-to-subversion-source/tools/hook-scripts/mailer/mailer.py commit &#34;$REPOS&#34; &#34;$REV&#34;&#10;# log-commit.py --repository &#34;$REPOS&#34; --revision &#34;$REV&#34;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/bin/sh&#10;# POST-COMMIT HOOK&#10;# (&#30053;)&#10;REPOS=&#34;$1&#34;&#10;REV=&#34;$2&#34;&#10;/path-to-subversion-source/tools/hook-scripts/mailer/mailer.py commit &#34;$REPOS&#34; &#34;$REV&#34;&#10;# log-commit.py --repository &#34;$REPOS&#34; --revision &#34;$REV&#34;</span><br></pre></td></tr></table></figure>
 <p>不過用原始的 mailer.py 有個缺點，主要是它寄送的訊息主旨範例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r3214 - branches/2.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r3214 - branches/2.0</span><br></pre></td></tr></table></figure>
 <p>這樣在多個專案時，我們就不容易識別這次的更新是哪個專案。</p>
 <p>所以我就想透過修改 mailer.py ，讓它產生如下的主旨：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[project_name] r3214 - branches/2.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[project_name] r3214 - branches/2.0</span><br></pre></td></tr></table></figure>
 <h2 id="修改方式">修改方式</h2><p>改法很簡單，有兩個地方要改： (針對 Subversion 版本 1.4.4 原始檔)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if commondir:&#10;  self.output.subject = &#39;r%d - in %s: %s&#39; % (repos.rev, commondir, dirlist)&#10;else:&#10;  self.output.subject = &#39;r%d - %s&#39; % (repos.rev, dirlist)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if commondir:&#10;  self.output.subject = &#39;r%d - in %s: %s&#39; % (repos.rev, commondir, dirlist)&#10;else:&#10;  self.output.subject = &#39;r%d - %s&#39; % (repos.rev, dirlist)</span><br></pre></td></tr></table></figure>
 <p>改成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if commondir:&#10;  self.output.subject = &#39;[%s] r%d - in %s: %s&#39; % (repos.project_name, repos.rev, commondir, dirlist)&#10;else:&#10;  self.output.subject = &#39;[%s] r%d - %s&#39; % (repos.project_name, repos.rev, dirlist)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if commondir:&#10;  self.output.subject = &#39;[%s] r%d - in %s: %s&#39; % (repos.project_name, repos.rev, commondir, dirlist)&#10;else:&#10;  self.output.subject = &#39;[%s] r%d - %s&#39; % (repos.project_name, repos.rev, dirlist)</span><br></pre></td></tr></table></figure>
 <p>也就是這裡我多加了一個 repos.project_name ，讓信件主旨可以多一個專案名稱。不過 projects_name 並不是 repos 的屬性，所以我們還要再修改一個地方。</p>
 <p>往下找到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.author = self.get_rev_prop(svn.core.SVN_PROP_REVISION_AUTHOR)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">self.author = self.get_rev_prop(svn.core.SVN_PROP_REVISION_AUTHOR)</span><br></pre></td></tr></table></figure>
 <p>然後在底下加入一行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.project_name = repos_dir[10:]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">self.project_name = repos_dir[10:]</span><br></pre></td></tr></table></figure>
 <p>其中 10 這個數字是指 /path-to-svn-repository/ 的長度，因為 repos_dir 的內容會是 /path-to-svn-repository/project-name ，而字串是由 0 開始算起，那麼 project_name 的起始位置就會剛好是 /path-to-svn-repository/ 的長度。 (所以請自行計算並更改之)</p>
 <p>至於為什麼我會知道 repos_dir 的內容，這是因為我在一開始就用了以下的程式去印出它：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open(&#34;mailer.log&#34;, &#39;w&#39;)&#10;f.write(repos_dir)&#10;f.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">f = open(&#34;mailer.log&#34;, &#39;w&#39;)&#10;f.write(repos_dir)&#10;f.close()</span><br></pre></td></tr></table></figure>
 <p>當然這邊要注意縮排。</p>
 <h2 id="結論">結論</h2><p>Python 對我來說，其實是一個不熟悉的語言。不過它的語法也不是那麼難以理解，以我這種三流能力，竟然還能看懂並修改它。</p>
 <p>而 mailer.py 也大量使用了物件導向的寫法，所以未來有機會在開發 Python 程式時，在物件導向的基礎也是不可或缺的。</p>
@@ -181,7 +181,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -225,7 +225,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

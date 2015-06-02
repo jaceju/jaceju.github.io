@@ -66,9 +66,9 @@ BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是�
 <p>那麼為什麼 BOM 會造成影響呢？因為 BOM 對 HTML 來說是屬於字元，所以 include UTF-8 的檔案時，HTML 就會就會認為被 include 的子樣版上方有個字元，因此就會保留一個空間給它了，就是你們看到那個白白的空行。</p>
 <p>補充：這個空白行似乎只有 IE 才會出現。</p>
 <p>這種問題也會發生在 PHP 上面，如果有使用 Session 時，常會見到以下情況：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: session_start() [http://www.php.net/manual/en/function.session-start]:&#10;Cannot send session cookie -&#10;headers already sent by (output started at test.php:1) in test.php on line 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Warning: session_start() [http://www.php.net/manual/en/function.session-start]:&#10;Cannot send session cookie -&#10;headers already sent by (output started at test.php:1) in test.php on line 2</span><br></pre></td></tr></table></figure>
 <p>而這也是 BOM 在做怪，原程式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(BOM&#22312;&#36889;&#35041;&#65292;&#20294;&#20320;&#30475;&#19981;&#35211;&#23427;)&#60;?php&#10;session_start();&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(BOM&#22312;&#36889;&#35041;&#65292;&#20294;&#20320;&#30475;&#19981;&#35211;&#23427;)&#60;?php&#10;session_start();&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>解決的方式可以改用 EditPlus 、 EmEdit 等可支援無 BOM 之 UTF-8 的文字編輯器，如果是 Dreamweaver MX 2004 的話，在編碼方式選成 Unicode (UTF-8) 時就要將取消「包含 Unicode 簽名 (BOM) 」。 </p>
 <p><img src="/resources/bom/dw_bom.gif" alt="Dreamweaver BOM"></p>
 
@@ -162,7 +162,7 @@ BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是�
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -206,7 +206,7 @@ BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是�
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

@@ -63,9 +63,9 @@
         <p>PHP 提供了一種很有趣的虛擬型態 (Pseudo-type) : callback ，它其實是字串或陣列組成。主要用來處理一些有不容易寫死在程式裡的函式名稱。</p>
 <a id="more"></a>
 <p>它可以是以下寫法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#21628;&#21483;&#20989;&#24335;&#65292;&#30456;&#30070;&#26044; functionName();&#10;&#39;functionName&#39;&#10;// &#21628;&#21483;&#39006;&#21029;&#38748;&#24907;&#26041;&#27861;&#65292;&#30456;&#30070;&#26044; className::methodName();&#10;array (&#39;className&#39;, &#39;methodName&#39;);&#10;// &#21628;&#21483;&#29289;&#20214;&#26041;&#27861;&#65292;&#30456;&#30070;&#26044; $object-&#62;methodName();&#10;array ($object, &#39;methodName&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// &#21628;&#21483;&#20989;&#24335;&#65292;&#30456;&#30070;&#26044; functionName();&#10;&#39;functionName&#39;&#10;// &#21628;&#21483;&#39006;&#21029;&#38748;&#24907;&#26041;&#27861;&#65292;&#30456;&#30070;&#26044; className::methodName();&#10;array (&#39;className&#39;, &#39;methodName&#39;);&#10;// &#21628;&#21483;&#29289;&#20214;&#26041;&#27861;&#65292;&#30456;&#30070;&#26044; $object-&#62;methodName();&#10;array ($object, &#39;methodName&#39;);</span><br></pre></td></tr></table></figure>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$ary = array (&#10;    &#39;abc&#39;,&#10;    &#39;def&#39;,&#10;    &#39;ghi&#39;,&#10;    array (&#10;        &#39;123&#39;,&#10;        &#39;456&#39;,&#10;        &#39;789&#39;,&#10;    ),&#10;);&#10;function doSomething(&#38;amp; $v)&#10;&#123;&#10;    $v = &#39;f : &#39; . $v;&#10;&#125;&#10;class TestClass&#10;&#123;&#10;    public function doSomething(&#38;amp; $v)&#10;    &#123;&#10;        $v = &#39;c : &#39; . $v;&#10;    &#125;&#10;&#125;&#10;$test = new TestClass();&#10;var_dump(call_user_func(&#39;doSomething&#39;, 123));&#10;var_dump(call_user_func(array (&#39;TestClass&#39;, &#39;doSomething&#39;), 123));&#10;var_dump(call_user_func(array ($test, &#39;doSomething&#39;), 123));&#10;array_walk_recursive($ary, &#39;doSomething&#39;);&#10;var_dump($ary);&#10;array_walk_recursive($ary, array (&#39;TestClass&#39;, &#39;doSomething&#39;));&#10;var_dump($ary);&#10;array_walk_recursive($ary, array ($test, &#39;doSomething&#39;));&#10;var_dump($ary);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$ary = array (&#10;    &#39;abc&#39;,&#10;    &#39;def&#39;,&#10;    &#39;ghi&#39;,&#10;    array (&#10;        &#39;123&#39;,&#10;        &#39;456&#39;,&#10;        &#39;789&#39;,&#10;    ),&#10;);&#10;function doSomething(&#38;amp; $v)&#10;&#123;&#10;    $v = &#39;f : &#39; . $v;&#10;&#125;&#10;class TestClass&#10;&#123;&#10;    public function doSomething(&#38;amp; $v)&#10;    &#123;&#10;        $v = &#39;c : &#39; . $v;&#10;    &#125;&#10;&#125;&#10;$test = new TestClass();&#10;var_dump(call_user_func(&#39;doSomething&#39;, 123));&#10;var_dump(call_user_func(array (&#39;TestClass&#39;, &#39;doSomething&#39;), 123));&#10;var_dump(call_user_func(array ($test, &#39;doSomething&#39;), 123));&#10;array_walk_recursive($ary, &#39;doSomething&#39;);&#10;var_dump($ary);&#10;array_walk_recursive($ary, array (&#39;TestClass&#39;, &#39;doSomething&#39;));&#10;var_dump($ary);&#10;array_walk_recursive($ary, array ($test, &#39;doSomething&#39;));&#10;var_dump($ary);&#10;?&#62;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -157,7 +157,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -201,7 +201,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

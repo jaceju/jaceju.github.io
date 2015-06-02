@@ -656,38 +656,38 @@
       
         <a id="more"></a>
 <h2 id="模擬_for_迴圈">模擬 for 迴圈</h2><p>在 Smarty 中，我們可以用以下的語法來完成類似 for 迴圈的效果： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;section name=&#34;forLoop&#34; start=1 loop=10&#125;&#10;&#123;/section&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;section name=&#34;forLoop&#34; start=1 loop=10&#125;&#10;&#123;/section&#125;</span><br></pre></td></tr></table></figure>
 <p>其中 start 即為起始值， loop 為小於而不等於的終值。</p>
 <p>如果以 PHP 語法來表示，則如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for ($i = 1; $i &#60; 10; $i ++) &#123;&#10;// ...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for ($i = 1; $i &#60; 10; $i ++) &#123;&#10;// ...&#10;&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="使用無參數原生_PHP_函式">使用無參數原生 PHP 函式</h2><p>我們可以在樣版中使用許多原生的 PHP 函式 (但還是有例外) 來當做變數修飾函式，不過如果有些函式不需要參數時，我們可以用以下語法來呼叫：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#39;&#39;|@time&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#39;&#39;|@time&#125;</span><br></pre></td></tr></table></figure>
 <p>當然這裡的空字串對 time 函式來說是沒有意義的，而在函式前加上 @ 號，表示要直接呼叫原生 PHP 函式。</p>
 <h2 id="在_assign_設定_default_值">在 assign 設定 default 值</h2><p>假設當樣版變數不存在或可轉換為 false 值時，我們會希望顯示一個預設值；而 Smarty 剛好就提供了一個 default 變數修飾函式讓我們使用，語法如下： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$test|default:&#39;NULL&#39;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$test|default:&#39;NULL&#39;&#125;</span><br></pre></td></tr></table></figure>
 <p>而 default 變數修飾函式不僅只有在呈現變數能用，也能在樣版 assign 變數時使用，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;assign var=value2 value=$value1|default:0&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;assign var=value2 value=$value1|default:0&#125;</span><br></pre></td></tr></table></figure>
 <p>註：當然不只有 default ，幾乎所有變數修飾函式都能在 assign 或其他可接受變數的樣版函式裡使用。 </p>
 <h2 id="物件導向語法">物件導向語法</h2><p>Smarty 也支援 PHP 的物件導向語法，例如呼叫某物件函式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$test-&#62;getFakeValue()&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$test-&#62;getFakeValue()&#125;</span><br></pre></td></tr></table></figure>
 <p>我們也能在樣版函式中，使用物件導向語法，而且後面也能串接變數修飾函式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;assign var=nullValue value=$test-&#62;getNullValue()|default:&#39;NULL&#39;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;assign var=nullValue value=$test-&#62;getNullValue()|default:&#39;NULL&#39;&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="利用_config_變數或常數來當做變數修飾函式的參數">利用 config 變數或常數來當做變數修飾函式的參數</h2><p>通常我們會用到設定值來避免重複設定一些常數值，例如用 PHP 陣列的方式指定給 Smarty ： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$config = array(&#10;&#39;date&#39; =&#62; &#39;%Y/%m/%d&#39;,&#10;&#39;time&#39; =&#62; &#39;%H:%M&#39;,&#10;);&#10;$smarty-&#62;assign($config);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$config = array(&#10;&#39;date&#39; =&#62; &#39;%Y/%m/%d&#39;,&#10;&#39;time&#39; =&#62; &#39;%H:%M&#39;,&#10;);&#10;$smarty-&#62;assign($config);</span><br></pre></td></tr></table></figure>
 <p>在樣版裡就可以這樣用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$date|date_format:$config.date&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$date|date_format:$config.date&#125;</span><br></pre></td></tr></table></figure>
 <p>我們也可以利用 PHP 的常數來當做設定，在樣版可以用「 $smarty.const.常數名稱」來取得常數內容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$date|date_format:$smarty.const.DATE_FORMAT&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$date|date_format:$smarty.const.DATE_FORMAT&#125;</span><br></pre></td></tr></table></figure>
 <p>當然，我們也可以透過 Smarty 內建的 config 機制；例如我們有個 config.conf ，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date = &#34;%Y/%m/%d&#34;&#10;time = &#34;%H:%M&#34;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date = &#34;%Y/%m/%d&#34;&#10;time = &#34;%H:%M&#34;</span><br></pre></td></tr></table></figure>
 <p>然後在樣版內改用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;config_load file=&#34;config.conf&#34;&#125;&#10;&#123;$date|date_format:#date#&#125; &#123;$time|date_format:#time#&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;config_load file=&#34;config.conf&#34;&#125;&#10;&#123;$date|date_format:#date#&#125; &#123;$time|date_format:#time#&#125;</span><br></pre></td></tr></table></figure>
 <p>其中 &nbsp;#date# 與 #time# 就是從 config.conf 中讀取的。 </p>
 <p>註：感謝 <a href="http://www.fishbear.idv.tw/babyblog2008/main.php?B_ID=48" target="_blank" rel="external">Smarty 頭號粉絲 - 小魚</a>提供以上技巧。</p>
 <h2 id="用_{cycle}_配合_CSS_來做表格列交替變色">用 {cycle} 配合 CSS 來做表格列交替變色</h2><p>我們可以用 cycle 配合 sction 或 foreach ，來做出交替變色的表格，語法如下： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;secion ....&#125;&#10;.....&#10;&#60;tr class=&#34;&#123;cycle values=&#34;normal,alt&#34;&#125;&#34;&#62;&#10;.....&#10;&#123;/secion&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;secion ....&#125;&#10;.....&#10;&#60;tr class=&#34;&#123;cycle values=&#34;normal,alt&#34;&#125;&#34;&#62;&#10;.....&#10;&#123;/secion&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看出，它比使用 {if} 來得簡潔許多：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;tr class=&#34;&#123;if $smarty.section.forLoop.iteration is odd&#125;normal&#123;else&#125;alt&#123;/if&#125;&#34;&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;tr class=&#34;&#123;if $smarty.section.forLoop.iteration is odd&#125;normal&#123;else&#125;alt&#123;/if&#125;&#34;&#62;</span><br></pre></td></tr></table></figure>
 <p>註：感謝 <a href="http://www.fishbear.idv.tw/babyblog2008/main.php?B_ID=48" target="_blank" rel="external">Smarty 頭號粉絲 - 小魚</a>提供以上技巧。</p>
 <p>如果還有相關技巧的話，將會陸續再更新。</p>
 
@@ -788,7 +788,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -832,7 +832,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

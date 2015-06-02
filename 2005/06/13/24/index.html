@@ -65,14 +65,14 @@
 <p>補充：樂多目前有三欄版型可供選擇，大家可以直接使用它們或修改它們。這篇文章的目的在於記錄我自己在 CSS 三欄式版面的製作心得，大家參考看看就好囉。</p>
 <a id="more"></a>
 <p>首先，我們準備一個 JavaScript 檔，內容為：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.write(&#39;&#60;/div&#62;&#60;div id=&#34;links2&#34;&#62;&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.write(&#39;&#60;/div&#62;&#60;div id=&#34;links2&#34;&#62;&#39;);</span><br></pre></td></tr></table></figure>
 <p>儲存時，命名為 links2.js ，然後將它上傳到樂多的檔案空間，並記下上傳後的 URL。</p>
 <p>接著我們到樂多 Blog 的管理介面，新增一個 JavaScript 型態的插入欄位 (Links2)，URL 就把剛剛記下來的 URL 貼上去。</p>
 <p>然後我們把新增的這個 JavaScript 的插入欄位順序調整到我們想分離的位置之前，如下圖：</p>
 <p><img src="/resources/3fields/01.gif" alt=""></p>
 <p>如此一來，從「版權聲明」以下的插入欄位，都會被歸到 #links2 去了。</p>
 <p>接下來就是我們的重頭戲 - CSS ： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html, body &#123;&#10;margin: 0;&#10;padding: 0;&#10;font-size: 10pt;&#10;&#125;&#10;#container &#123;&#10;position: relative;&#10;left: 50%;&#10;padding-top: 100px;&#10;margin-left: -380px;&#10;width: 760px;&#10;&#125;&#10;#banner &#123;&#10;position: absolute;&#10;top: 0;&#10;left: 0;&#10;height: 100px;&#10;&#125;&#10;#links &#123;&#10;position: relative;&#10;top: 0;&#10;float: left;&#10;width: 150px;&#10;margin-right: -150px;&#10;background-color: Aqua;&#10;&#125;&#10;#links2 &#123;&#10;position: absolute;&#10;width: 150px;&#10;top: 100px;&#10;left: 0px;&#10;background-color: Fuchsia;&#10;&#125;&#10;#content &#123;&#10;position: relative;&#10;top: 0;&#10;padding-left: 150px;&#10;width: 510px;&#10;float: left;&#10;background-color: #FFEBCD;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">html, body &#123;&#10;margin: 0;&#10;padding: 0;&#10;font-size: 10pt;&#10;&#125;&#10;#container &#123;&#10;position: relative;&#10;left: 50%;&#10;padding-top: 100px;&#10;margin-left: -380px;&#10;width: 760px;&#10;&#125;&#10;#banner &#123;&#10;position: absolute;&#10;top: 0;&#10;left: 0;&#10;height: 100px;&#10;&#125;&#10;#links &#123;&#10;position: relative;&#10;top: 0;&#10;float: left;&#10;width: 150px;&#10;margin-right: -150px;&#10;background-color: Aqua;&#10;&#125;&#10;#links2 &#123;&#10;position: absolute;&#10;width: 150px;&#10;top: 100px;&#10;left: 0px;&#10;background-color: Fuchsia;&#10;&#125;&#10;#content &#123;&#10;position: relative;&#10;top: 0;&#10;padding-left: 150px;&#10;width: 510px;&#10;float: left;&#10;background-color: #FFEBCD;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這裡僅大概介紹其設定方式：</p>
 <ul>
 <li>將 #container 置中，並在上面留下 100px 的高度。</li>
@@ -173,7 +173,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -217,7 +217,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

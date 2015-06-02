@@ -7,7 +7,7 @@
   <meta name="author" content="Jace Ju">
   
   <meta name="description" content="說明因為要和客戶的內部網路連線，便透過 PieTTY 的 SSH Tunnels 模式來做 Proxy 。但是這個方式卻讓 Zend Framework 出現了以下的錯誤訊息：
-1An error occurred with this request: Invalid controller specified (http:).
+An error occurred with this request: Invalid controller specified (http:).
 解決方式是修改 Zend Framework 的 Zend_Controller_Request_Http 這個類別。">
   
   
@@ -63,13 +63,13 @@
     <div class="entry">
       
         <h2 id="說明">說明</h2><p>因為要和客戶的內部網路連線，便透過 <a href="http://cha.homeip.net/blog/archives/2006/01/putty_ssh_tunne.html" target="_blank" rel="external">PieTTY 的 SSH Tunnels 模式</a>來做 Proxy 。但是這個方式卻讓 Zend Framework 出現了以下的錯誤訊息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">An error occurred with this request: Invalid controller specified (http:).</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">An error occurred with this request: Invalid controller specified (http:).</span><br></pre></td></tr></table></figure>
 <p>解決方式是修改 Zend Framework 的 Zend_Controller_Request_Http 這個類別。</p>
 <a id="more"></a>
 <p>先開啟 Zend/Controller/Request/Http.php ，並找到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$requestUri = $_SERVER[&#39;REQUEST_URI&#39;];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$requestUri = $_SERVER[&#39;REQUEST_URI&#39;];</span><br></pre></td></tr></table></figure>
 <p>改為：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$requestUri = preg_replace(&#10;    &#39;/^https?:\/\/&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . &#39;/i&#39;,&#10;    &#39;&#39;,&#10;    $_SERVER[&#39;REQUEST_URI&#39;]&#10;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$requestUri = preg_replace(&#10;    &#39;/^https?:\/\/&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . &#39;/i&#39;,&#10;    &#39;&#39;,&#10;    $_SERVER[&#39;REQUEST_URI&#39;]&#10;);</span><br></pre></td></tr></table></figure>
 <p>這樣就能避掉 Proxy 所帶來的問題了。</p>
 <p>註 1 ：這個方法的風險在於會修改原生的 ZF 程式碼，如果會用到 Subversion 來管理程式碼的話，要特別注意未來更新版本時可能會發生衝突的問題。</p>
 <p>註 2 ：未來版本應該會修正這個問題。</p>
@@ -165,7 +165,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -209,7 +209,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

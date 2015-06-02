@@ -64,7 +64,7 @@
 <p><cite>Hidden controls and controls that are not rendered because of style sheet settings may still be successful.</cite></p>
 <p>也就是說不論是 display:none 或是 visibility: hidden ，只要是利用 CSS 來讓 control 消失的，都還是應該把值送給後端。</p>
 <p>我用了以下的程式測試了一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;style type=&#34;text/css&#34;&#62;&#10;.hide &#123;&#10;visibility: hidden;&#10;&#125;&#10;.none &#123;&#10;display: none;&#10;&#125;&#10;&#60;/style&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#10;&#60;label for=&#34;type1&#34;&#62;Type1&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;hide&#34; id=&#34;type1&#34;&#10;name=&#34;type[]&#34; value=&#34;1&#34; checked=&#34;checked&#34; /&#62;&#10;&#60;label for=&#34;type2&#34;&#62;Type2&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;none&#34; id=&#34;type2&#34;&#10;name=&#34;type[]&#34; value=&#34;2&#34; /&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;&#10;&#60;a href=&#34;&#60;?php echo $_SERVER[&#39;PHP_SELF&#39;]; ?&#62;&#34;&#62;&#37325;&#26032;&#25972;&#29702;&#60;/a&#62;&#10;&#60;?php var_dump($_POST); ?&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onload = function () &#123;&#10;var t2 = document.getElementById(&#39;type2&#39;);&#10;t2.focus();&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;style type=&#34;text/css&#34;&#62;&#10;.hide &#123;&#10;visibility: hidden;&#10;&#125;&#10;.none &#123;&#10;display: none;&#10;&#125;&#10;&#60;/style&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#10;&#60;label for=&#34;type1&#34;&#62;Type1&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;hide&#34; id=&#34;type1&#34;&#10;name=&#34;type[]&#34; value=&#34;1&#34; checked=&#34;checked&#34; /&#62;&#10;&#60;label for=&#34;type2&#34;&#62;Type2&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;none&#34; id=&#34;type2&#34;&#10;name=&#34;type[]&#34; value=&#34;2&#34; /&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;&#10;&#60;a href=&#34;&#60;?php echo $_SERVER[&#39;PHP_SELF&#39;]; ?&#62;&#34;&#62;&#37325;&#26032;&#25972;&#29702;&#60;/a&#62;&#10;&#60;?php var_dump($_POST); ?&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onload = function () &#123;&#10;var t2 = document.getElementById(&#39;type2&#39;);&#10;t2.focus();&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>結果發現 Firefox 、 Opera 不論有沒有預設的 checked ，在點選 label 後都會正確送出對應的 radio 欄位值。</p>
 <p>而 IE6 、 IE7 事實上也是支援，只是它們僅能送出有預設 checked 的 radio 欄位；如果完全沒有預設 checked 的 radion 欄位時，因為點選 label 仍無法讓 radio 的值改變，因此也無法送出任何 radio 值 (就如石頭成老大所說明的) 。</p>
 <p>所以我原先誤認 IE 不會理會 display: none 或是 visibility: hidden 的元素，其實是 label 無法作用；但更正確的來說，則是因為 <strong>IE 無法接受把 focus 放在不可見的元素上</strong>。</p>
@@ -104,12 +104,12 @@
     <div class="entry">
       
         <p>在 Gmail 中如果採用另開視窗模式 (<img src="http://mail.google.com/mail/images/tearoff_icon.gif" alt="另開視窗">) 撰寫信件時，在隨意填寫一些文字後按下視窗右上角的關閉按鈕，會先出現以下警告視窗：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#24744;&#30340;&#37109;&#20214;&#23578;&#26410;&#23492;&#20986;&#65292;&#10;&#24744;&#35201;&#25448;&#26820;&#27492;&#37109;&#20214;&#21966;&#65311;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#24744;&#30340;&#37109;&#20214;&#23578;&#26410;&#23492;&#20986;&#65292;&#10;&#24744;&#35201;&#25448;&#26820;&#27492;&#37109;&#20214;&#21966;&#65311;</span><br></pre></td></tr></table></figure>
 <p>然後按下「取消」後又會出現： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20320;&#30906;&#23450;&#35201;&#38626;&#38283;&#27492;&#38913;&#38754;&#65311;&#10;&#25353;&#19968;&#19979;&#12300;&#21462;&#28040;&#12301;&#20572;&#30041;&#22312;&#27492;&#38913;&#12290;&#10;&#25353;&#12300;&#30906;&#23450;&#12301;&#32380;&#32396;&#65292;&#25110;&#12300;&#21462;&#28040;&#12301;&#20197;&#20572;&#30041;&#22312;&#27492;&#38913;&#38754;&#12290;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#20320;&#30906;&#23450;&#35201;&#38626;&#38283;&#27492;&#38913;&#38754;&#65311;&#10;&#25353;&#19968;&#19979;&#12300;&#21462;&#28040;&#12301;&#20572;&#30041;&#22312;&#27492;&#38913;&#12290;&#10;&#25353;&#12300;&#30906;&#23450;&#12301;&#32380;&#32396;&#65292;&#25110;&#12300;&#21462;&#28040;&#12301;&#20197;&#20572;&#30041;&#22312;&#27492;&#38913;&#38754;&#12290;</span><br></pre></td></tr></table></figure>
 <p>這是利用 onBeforeUnload 事件來完成的，目的在避免使用者操作錯誤時，使得他所輸入的文字付諸流水。</p>
 <p>以下是模擬的方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onbeforeunload = function () &#123;&#10;if (!confirm(&#39;&#24744;&#30340;&#37109;&#20214;&#23578;&#26410;&#23492;&#20986;&#65292;\n&#24744;&#35201;&#25448;&#26820;&#27492;&#37109;&#20214;&#21966;&#65311;&#39;)) &#123;&#10;return &#39;&#25353;&#19968;&#19979;&#12300;&#21462;&#28040;&#12301;&#20572;&#30041;&#22312;&#27492;&#38913;&#12290;&#39;;&#10;&#125;&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onbeforeunload = function () &#123;&#10;if (!confirm(&#39;&#24744;&#30340;&#37109;&#20214;&#23578;&#26410;&#23492;&#20986;&#65292;\n&#24744;&#35201;&#25448;&#26820;&#27492;&#37109;&#20214;&#21966;&#65311;&#39;)) &#123;&#10;return &#39;&#25353;&#19968;&#19979;&#12300;&#21462;&#28040;&#12301;&#20572;&#30041;&#22312;&#27492;&#38913;&#12290;&#39;;&#10;&#125;&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>目前只有 Firefox 和 IE 支援 onBeforeUnload 事件， Opera 到 9.20 版為止都尚無支援。觸發的時機如下：</p>
 <ul>
 <li>關閉瀏覽器視窗。</li>
@@ -252,11 +252,11 @@
       
         <p>Neo 老大告知我有個後台的 <a href="http://www.dynarch.com/projects/calendar/" target="_blank" rel="external">JS Calendar</a> 在 IE 上無法開啟，我查了一下，發現是 IE 解釋 JSON 的關係。 </p>
 <p>我所寫的 JSON 格式的<a href="http://blog.roodo.com/jaceju/archives/214716.html" target="_blank" rel="external">物件</a>大致如下： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var options = &#123;&#10;a: 1,&#10;b: 2,&#10;c: 3&#60;strong style=&#34;color: #F00;&#34;&#62;,&#60;/strong&#62;&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var options = &#123;&#10;a: 1,&#10;b: 2,&#10;c: 3&#60;strong style=&#34;color: #F00;&#34;&#62;,&#60;/strong&#62;&#10;&#125;;</span><br></pre></td></tr></table></figure>
 <p>注意 c: 3 後面有個逗號，這樣的物件會被 Firefox 所接受；而最後一個逗號後面的元素，會被 Firefox 視為 null 。 </p>
 <p>註：這是一種便捷寫法，方便我們可以將這些物件成員在程式碼中做搬移的動作；在 PHP 陣列和 CSS 屬性也有類似的寫法。 </p>
 <p>不過這樣的寫法在 IE 和 Opera 上就會有語法錯誤的問題了，因為正式的 JSON <a href="http://www.json.org/" target="_blank" rel="external">規範</a>裡並不能讓我們使用便捷語法。正確的格式應該不可以有最後一個逗號：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var options = &#123;&#10;a: 1,&#10;b: 2,&#10;c: 3&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var options = &#123;&#10;a: 1,&#10;b: 2,&#10;c: 3&#10;&#125;;</span><br></pre></td></tr></table></figure>
 <p>所以撰寫 JSON 格式的物件時，還是要小心不要掉入這種陷阱裡。 </p>
 
       
@@ -293,11 +293,11 @@
         <p>昨天<a href="http://blog.darkhero.net/" target="_blank" rel="external">凱</a>發現了一個 IE7 的<a href="http://blog.darkhero.net/articles/view/222" target="_blank" rel="external">問題</a>，我們兩個做了一個討論後在這裡把結果記錄下來。</p>
 <p>要重現這個問題很簡單，請照著以下的步驟試試看。</p>
 <p>首先在 Windows 的 hosts 檔裡加入粗體部份：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1    localhost&#10;&#60;strong&#62;127.0.0.1    host_name&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1    localhost&#10;&#60;strong&#62;127.0.0.1    host_name&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>然後在網站根目錄底下建立一個 session.php ，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;session_start();&#10;$test = (isset($_SESSION[&#39;test&#39;]))&#10;? (int) $_SESSION[&#39;test&#39;]&#10;: 0;&#10;echo $test;&#10;$test ++;&#10;$_SESSION[&#39;test&#39;] = $test;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;session_start();&#10;$test = (isset($_SESSION[&#39;test&#39;]))&#10;? (int) $_SESSION[&#39;test&#39;]&#10;: 0;&#10;echo $test;&#10;$test ++;&#10;$_SESSION[&#39;test&#39;] = $test;</span><br></pre></td></tr></table></figure>
 <p>然後試試用 IE7 瀏覽以下網址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://host_name/session.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://host_name/session.php</span><br></pre></td></tr></table></figure>
 <p>試試看去重新整理這個頁面，會發現 Session 沒辦法動作。 </p>
 <p>不過同樣的網址在 IE6 和 Firefox 上， Session 都會在每次重新整理時正常加一；但如果把 host_name 換成 localhsot ，則每個瀏覽器都會正常動作。</p>
 <p>一開始我以為是 IE7 有支援 HttpOnly Cookie 的設定，不過這項設定是在 PHP 5.2 以後才會有，而凱用的是 PHP 5.1.6 ；然而 Firefox 也支援 HttpOnly Cookie 卻能正確運作，所以並不是這個問題。</p>
@@ -513,7 +513,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -557,7 +557,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

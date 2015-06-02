@@ -7,9 +7,9 @@
   <meta name="author" content="Jace Ju">
   
   <meta name="description" content="有時候 PHP 在執行到某個錯誤時，只會丟出一行的訊息，告訴你程式發生錯誤。 例如以下的程式：
-1&amp;#60;?php&amp;#10;function test($var)&amp;#10;&amp;#123;&amp;#10;   $var-&amp;#62;display();&amp;#10;&amp;#125;&amp;#10;$abc = 123;&amp;#10;test($abc);&amp;#10;?&amp;#62;
+&amp;#60;?php&amp;#10;function test($var)&amp;#10;&amp;#123;&amp;#10;   $var-&amp;#62;display();&amp;#10;&amp;#125;&amp;#10;$abc = 123;&amp;#10;test($abc);&amp;#10;?&amp;#62;
 執行後會出現以下的錯誤：
-1Fatal error:  Call to a member function display() on a non-object in D:\WEB\wwwroot\index.php on line 4
+Fatal error:  Call to a member function display() on a non-object in D:\WEB\wwwroot\index.php on line 4
 我們可以知道在第 4 行的地方因為 test 函式對 $var 呼叫了物件操作函式，卻因為 $var 不是物件而導致錯誤 (Fatal Error) 。但是我們怎麼知道 $var 變數是從那裡來的呢？就上例而言，很明顯地往回推到第 8 行呼叫 test 函式的地方，我們給它的是 $abc 變數，而 $abc 變數存放則是一個數值，也因此造成 test 函式的錯誤。
 當然在程式碼比較短時，我們可以很容易知道整個程式執行的流程動向；不過當我們的程式碼暴漲到上百行或是中間引入不同檔案時，要一下子歸納出它的動線就很不容易了。換句話說，如果第 6 行中我們有上百行的程式碼，那麼我們如何一下子就找到 test 函式的引用點呢？">
   
@@ -66,9 +66,9 @@
     <div class="entry">
       
         <p>有時候 PHP 在執行到某個錯誤時，只會丟出一行的訊息，告訴你程式發生錯誤。 例如以下的程式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;function test($var)&#10;&#123;&#10;   $var-&#62;display();&#10;&#125;&#10;$abc = 123;&#10;test($abc);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;function test($var)&#10;&#123;&#10;   $var-&#62;display();&#10;&#125;&#10;$abc = 123;&#10;test($abc);&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>執行後會出現以下的錯誤：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error:  Call to a member function display() on a non-object in D:\WEB\wwwroot\index.php on line 4</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Fatal error:  Call to a member function display() on a non-object in D:\WEB\wwwroot\index.php on line 4</span><br></pre></td></tr></table></figure>
 <p>我們可以知道在第 4 行的地方因為 test 函式對 $var 呼叫了物件操作函式，卻因為 $var 不是物件而導致錯誤 (Fatal Error) 。但是我們怎麼知道 $var 變數是從那裡來的呢？就上例而言，很明顯地往回推到第 8 行呼叫 test 函式的地方，我們給它的是 $abc 變數，而 $abc 變數存放則是一個數值，也因此造成 test 函式的錯誤。</p>
 <p>當然在程式碼比較短時，我們可以很容易知道整個程式執行的流程動向；不過當我們的程式碼暴漲到上百行或是中間引入不同檔案時，要一下子歸納出它的動線就很不容易了。換句話說，如果第 6 行中我們有上百行的程式碼，那麼我們如何一下子就找到 test 函式的引用點呢？</p>
 <a id="more"></a>
@@ -77,10 +77,10 @@
 <p><a href="//www.jaceju.net/resources/xdebug_debug/001.png"><img src="//www.jaceju.net/resources/xdebug_debug/001.png" alt="程式一的錯誤畫面"></a></p>
 <p>其中紅色部份就是原來的錯誤訊息，而底下的表格部份就是程式執行的順序 (且已正確執行) 。所以我們能很清楚地知道程式是在第 8 行引用 test 函式後發生了錯誤，這樣一來就能減小我們搜索的範圍。</p>
 <p>不過有種情況 Xdebug 發揮不了作用，那就是 PHP.INI 錯誤回報等級被調整過了。例如以下範例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class test&#10;&#123;&#10;  private $var = &#39;123&#39;;&#10;  public function display()&#10;  &#123;&#10;    echo $this-&#62;varr;&#10;  &#125;&#10;&#125;&#10;function test()&#10;&#123;&#10;  return new test;&#10;&#125;&#10;$abc = test();&#10;$abc-&#62;display();&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class test&#10;&#123;&#10;  private $var = &#39;123&#39;;&#10;  public function display()&#10;  &#123;&#10;    echo $this-&#62;varr;&#10;  &#125;&#10;&#125;&#10;function test()&#10;&#123;&#10;  return new test;&#10;&#125;&#10;$abc = test();&#10;$abc-&#62;display();&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>如果當你執行這段程式時，沒有出現任何錯誤，那麼就表示 PHP.INI 錯誤回報等級沒有對「變數未定義」產生警告 (&nbsp;NOTICE) 。通常這是在上線系統所必須關閉的，因為很多時候我們常會漏掉宣告這些變數 (給初始值) ；如果不關掉的話，頁面就會產生一堆讓使用者費解的訊息。</p>
 <p>試著在 &lt;?php 的下一行加上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(E_ALL);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">error_reporting(E_ALL);</span><br></pre></td></tr></table></figure>
 <p>重新執行後我們就會看到：</p>
 <p><a href="//www.jaceju.net/resources/xdebug_debug/002.png"><img src="//www.jaceju.net/resources/xdebug_debug/002.png" alt="程式二的錯誤畫面"></a></p>
 <p>上面的意思就是未宣告的屬性，回頭看一下類別程式，原來我們多輸入了一個 r 字母 (變成 var<strong>r</strong>) 。這種錯誤也常見於一個較大型的物件類別程式中如果有較長名稱的屬性時，我們很容易寫錯它們的名字 (尤其像英文不好的我) 。</p>
@@ -176,7 +176,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -220,7 +220,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

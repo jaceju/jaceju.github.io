@@ -67,11 +67,11 @@
 <p>但是如果是在 IE 上執行這個動作，那麼後端的 PHP 程式只會收到 text 欄位的值，而不會有 submit 按鈕的值；而其他瀏覽器 (如 Firefox ) 則不會有這個問題。</p>
 <a id="more"></a>
 <p>以下是範例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&#62;&#10;&#60;title&#62;Enter Test&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;?php&#10;var_dump($_POST);&#10;?&#62;&#10;&#60;form method=&#34;POST&#34; action=&#34;?&#34;&#62;&#10;&#60;p&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;T1&#34; size=&#34;20&#34;&#62;&#10;&#60;strong&#62;&#60;input type=&#34;submit&#34; value=&#34;Submit1&#34; name=&#34;B1&#34;&#62;&#60;/strong&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;Submit2&#34; name=&#34;B2&#34;&#62;&#10;&#60;/p&#62;&#10;&#60;/form&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&#62;&#10;&#60;title&#62;Enter Test&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;?php&#10;var_dump($_POST);&#10;?&#62;&#10;&#60;form method=&#34;POST&#34; action=&#34;?&#34;&#62;&#10;&#60;p&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;T1&#34; size=&#34;20&#34;&#62;&#10;&#60;strong&#62;&#60;input type=&#34;submit&#34; value=&#34;Submit1&#34; name=&#34;B1&#34;&#62;&#60;/strong&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;Submit2&#34; name=&#34;B2&#34;&#62;&#10;&#60;/p&#62;&#10;&#60;/form&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>以上程式請存為 iebug.php ，放在網站根目錄下執行。在 IE 執行並在 text 欄位輸入 abc 按下 Enter 鍵後，得到的結果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;b&#62;array&#60;/b&#62;&#10;&#39;T1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;abc&#39; &#60;i&#62;(length=3)&#60;/i&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;b&#62;array&#60;/b&#62;&#10;&#39;T1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;abc&#39; &#60;i&#62;(length=3)&#60;/i&#62;</span><br></pre></td></tr></table></figure>
 <p>而在 Firefox 結果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;b&#62;array&#60;/b&#62;&#10;&#39;T1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;abc&#39; &#60;i&#62;(length=3)&#60;/i&#62;&#10;&#39;B1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;Submit1&#39; &#60;i&#62;(length=7)&#60;/i&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;b&#62;array&#60;/b&#62;&#10;&#39;T1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;abc&#39; &#60;i&#62;(length=3)&#60;/i&#62;&#10;&#39;B1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;Submit1&#39; &#60;i&#62;(length=7)&#60;/i&#62;</span><br></pre></td></tr></table></figure>
 <p>也就是 Firefox 會將<strong>按下 Enter 鍵當做是按下第一個 Submit 鈕</strong>，而 IE 就不把它當做一回事了。 </p>
 <p>我幫小魚查了一下資料，發現國外已經有人提出這個 IE 的特色 (Bug?) 了：</p>
 <ul>
@@ -175,7 +175,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -219,7 +219,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

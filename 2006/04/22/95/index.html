@@ -63,11 +63,11 @@
         <p>這個星期每天都是沒天沒日的趕專案，整個人的精神已經呈現耗弱狀態。然而就在我維護某支程式時，遇到了一個小問題，怎麼看都覺得程式沒寫錯，找了半天才發現原因所在。</p>
 <a id="more"></a>
 <p>先看看以下的程式碼好了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;form name=&#34;testForm&#34; method=&#34;post&#34; action=&#34;&#34;&#62;&#10;&#60;select name=&#34;test1&#34; id=&#34;test&#34; onclick=&#34;this.form.submit();&#34;&#62;&#10;&#60;option value=&#34;0&#34;&#62;0&#60;/option&#62;&#10;&#60;option value=&#34;1&#34;&#62;1&#60;/option&#62;&#10;&#60;option value=&#34;2&#34;&#62;2&#60;/option&#62;&#10;&#60;/select&#62;&#10;...&#10;...&#10;...&#10;...&#10;&#60;input type=&#34;hidden&#34; name=&#34;test2&#34; value=&#34;&#34; /&#62;&#10;&#60;input type=&#34;submit&#34; name=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;input type=&#34;reset&#34; name=&#34;reset&#34; value=&#34;&#37325;&#32622;&#34; /&#62;&#10;&#60;/form&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;form name=&#34;testForm&#34; method=&#34;post&#34; action=&#34;&#34;&#62;&#10;&#60;select name=&#34;test1&#34; id=&#34;test&#34; onclick=&#34;this.form.submit();&#34;&#62;&#10;&#60;option value=&#34;0&#34;&#62;0&#60;/option&#62;&#10;&#60;option value=&#34;1&#34;&#62;1&#60;/option&#62;&#10;&#60;option value=&#34;2&#34;&#62;2&#60;/option&#62;&#10;&#60;/select&#62;&#10;...&#10;...&#10;...&#10;...&#10;&#60;input type=&#34;hidden&#34; name=&#34;test2&#34; value=&#34;&#34; /&#62;&#10;&#60;input type=&#34;submit&#34; name=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;input type=&#34;reset&#34; name=&#34;reset&#34; value=&#34;&#37325;&#32622;&#34; /&#62;&#10;&#60;/form&#62;</span><br></pre></td></tr></table></figure>
 <p>在上面的頁面裡，當我每次更換下拉式選單的選項時，瀏覽器就會出現「物件不支援此屬性或方法 (this.form.submit is not a function) 」。有人可以馬上看出問題在哪嗎？ (我故意用了一些障眼法，以模擬出我在 Debug 時遇到的狀況。)</p>
 <!--more-->
 <p>其實問題出在標示粗體的部份：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;input type=&#34;submit&#34; &#60;strong&#62;name=&#34;submit&#34;&#60;/strong&#62; value=&#34;&#36865;&#20986;&#34; /&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;input type=&#34;submit&#34; &#60;strong&#62;name=&#34;submit&#34;&#60;/strong&#62; value=&#34;&#36865;&#20986;&#34; /&#62;</span><br></pre></td></tr></table></figure>
 <p>有經驗的人應該想到為什麼了吧？原來 this.form.submit() 函式已經被 this.form.submit 這個按鈕元件給遮掩了，我試過 IE 及 Firefox 都會有這種情形。</p>
 <p>解決方法當然就是把送出鈕的 name 給換掉，而且記得別用 form 物件的保留關鍵字 (屬性、函式等) 來當做它的新名稱。</p>
 <p>好啦，解決這個問題以後，上面的程式還是有問題，你能找出來嗎？</p>
@@ -165,7 +165,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -209,7 +209,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

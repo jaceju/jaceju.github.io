@@ -128,7 +128,7 @@
 <blockquote>
 
 <p>這裡提供一個透過TWSMS發送簡訊的小範例，利用Zend Framework所提供的Zend_Http蠻方便的~</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$message = urlencode(&#34;&#28204;&#35430;&#20013;&#25991;&#34;);&#10;$client = new Zend_Http_Client();&#10;$client-&#62;setUri(&#34;http://api.twsms.com/send_sms.php?username=xxxx&#38;amp;password=xxxx&#38;amp;type=now&#38;amp;encoding=big5&#38;amp;mobile=09xxxxxxxx&#38;amp;message=$message&#38;amp;vldtme=3600&#34;);&#10;$client-&#62;setConfig(array(&#10;&#39;maxredirects&#39; =&#62; 0,&#10;&#39;timeout&#39;      =&#62; 30)&#10;);&#10;$client-&#62;setMethod(Zend_Http_Client::GET);&#10;$response = $client-&#62;request();&#10;if ($response-&#62;isError())&#10;&#123;&#10;echo &#34;Server reply was: &#34; . $response-&#62;getStatus() . &#34; &#34; . $response-&#62;getMessage() . &#34;\n&#34;;&#10;&#125;else&#123;&#10;$body = $response-&#62;getBody();&#10;echo $body;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$message = urlencode(&#34;&#28204;&#35430;&#20013;&#25991;&#34;);&#10;$client = new Zend_Http_Client();&#10;$client-&#62;setUri(&#34;http://api.twsms.com/send_sms.php?username=xxxx&#38;amp;password=xxxx&#38;amp;type=now&#38;amp;encoding=big5&#38;amp;mobile=09xxxxxxxx&#38;amp;message=$message&#38;amp;vldtme=3600&#34;);&#10;$client-&#62;setConfig(array(&#10;&#39;maxredirects&#39; =&#62; 0,&#10;&#39;timeout&#39;      =&#62; 30)&#10;);&#10;$client-&#62;setMethod(Zend_Http_Client::GET);&#10;$response = $client-&#62;request();&#10;if ($response-&#62;isError())&#10;&#123;&#10;echo &#34;Server reply was: &#34; . $response-&#62;getStatus() . &#34; &#34; . $response-&#62;getMessage() . &#34;\n&#34;;&#10;&#125;else&#123;&#10;$body = $response-&#62;getBody();&#10;echo $body;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p></p></blockquote><br></li><p></p>
 <ul>
 <li><a href="http://akrabat.com/2007/12/06/zend_view-access-the-view-from-a-view-helper/" target="_blank" rel="external">Zend_View: Access the view from a view helper</a></li>
@@ -439,7 +439,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -483,7 +483,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

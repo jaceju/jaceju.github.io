@@ -77,7 +77,7 @@
 <li>檢查程式中所用的 MongoDB library 是不是符合以上的設定。有些 library 是採用舊版的 mongo driver 寫法，效能會大打折扣。</li>
 </ul>
 <p>其他有關效能的部份，像是 Collection 的 Indexes ，都可以參考<a href="http://docs.mongodb.org/manual/" target="_blank" rel="external">線上手冊</a>的說明。</p>
-<h2 id="範例">範例</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hosts</span> = implode(<span class="string">','</span>, [</span><br><span class="line">    <span class="string">'127.0.0.1:27017'</span>,</span><br><span class="line">    <span class="string">'127.0.0.1:27018'</span>,</span><br><span class="line">    <span class="string">'127.0.0.1:27019'</span>,</span><br><span class="line">]);</span><br><span class="line"><span class="variable">$m</span> = <span class="keyword">new</span> MongoClient(<span class="string">'mongodb://'</span> . <span class="variable">$hosts</span>, [</span><br><span class="line">    <span class="string">'replicaSet'</span>     =&gt; <span class="string">'rsname'</span>,</span><br><span class="line">    <span class="string">'slaveOkay'</span>      =&gt; <span class="keyword">true</span>,</span><br><span class="line">    <span class="string">'readPreference'</span> =&gt; MongoClient::RP_SECONDARY_PREFERRED,</span><br><span class="line">]);</span><br><span class="line"><span class="variable">$db</span> = <span class="variable">$m</span>-&gt;selectDB(<span class="string">"dbname"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="範例">範例</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$hosts</span> = implode(<span class="string">','</span>, [</span><br><span class="line">    <span class="string">'127.0.0.1:27017'</span>,</span><br><span class="line">    <span class="string">'127.0.0.1:27018'</span>,</span><br><span class="line">    <span class="string">'127.0.0.1:27019'</span>,</span><br><span class="line">]);</span><br><span class="line"><span class="variable">$m</span> = <span class="keyword">new</span> MongoClient(<span class="string">'mongodb://'</span> . <span class="variable">$hosts</span>, [</span><br><span class="line">    <span class="string">'replicaSet'</span>     =&gt; <span class="string">'rsname'</span>,</span><br><span class="line">    <span class="string">'slaveOkay'</span>      =&gt; <span class="keyword">true</span>,</span><br><span class="line">    <span class="string">'readPreference'</span> =&gt; MongoClient::RP_SECONDARY_PREFERRED,</span><br><span class="line">]);</span><br><span class="line"><span class="variable">$db</span> = <span class="variable">$m</span>-&gt;selectDB(<span class="string">"dbname"</span>);</span><br></pre></td></tr></table></figure>
 <p>當然這些可能還是有不足的地方，也歡迎大家能分享自己的設定心得。</p>
 
       
@@ -170,7 +170,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -214,7 +214,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

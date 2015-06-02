@@ -64,12 +64,12 @@
         <p>前陣子看到 <a href="http://www.mysql.com" target="_blank" rel="external">MySQL 5</a> 已經正式推出了，支援 Stored Procedures 、 Functions 、 Views 、 Triggers 等。</p>
 <p>目前 phpMyAdmin 2.6.4 好像還不支援這些新特色 (View 可以看得到，但是沒有建立的介面？) ，不過 MySQL 官方自己推了一個 <a href="http://dev.mysql.com/downloads/query-browser/1.1.html" target="_blank" rel="external">MySQL Query Browser</a> ，還不錯用， 缺點是中文的支援性不佳 (輸入中文時會怪怪的) 。</p>
 <p>小試了一下用 MySQL Query Browser 寫一個 Stored Procedure ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;strong&#62;DELIMITER $$&#60;/strong&#62;&#10;DROP PROCEDURE IF EXISTS `spTest` $$&#10;CREATE PROCEDURE `spTest`(p_title VARCHAR(200), p_description TEXT)&#10;&#60;strong&#62;DETERMINISTIC&#60;/strong&#62;&#10;BEGIN&#10;INSERT INTO category (title, description)&#10;VALUES (p_title, p_description);&#10;END $$&#10;&#60;strong&#62;DELIMITER ;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;DELIMITER $$&#60;/strong&#62;&#10;DROP PROCEDURE IF EXISTS `spTest` $$&#10;CREATE PROCEDURE `spTest`(p_title VARCHAR(200), p_description TEXT)&#10;&#60;strong&#62;DETERMINISTIC&#60;/strong&#62;&#10;BEGIN&#10;INSERT INTO category (title, description)&#10;VALUES (p_title, p_description);&#10;END $$&#10;&#60;strong&#62;DELIMITER ;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>其中 DELIMITER 是用來決定 SQL 分隔符號的，在寫 Stored Procedure 前，要先把預設的分號換掉，不然按下 MySQL Query Browser 的 Execute 按鈕時，會真的去跑裡面的 INSERT 指令。寫完 Stored Procedure 的 routine_body 後，再回復成預設的分號。</p>
 <p>另外我在寫這個 Stored Procedurce 時，發現一定要加上 characteristic 才行，也就是上面的 DETERMINISTIC 。可是官方手冊明明寫可略過，這我就沒時間研究為什麼了。</p>
 <p>另外就是參數的名稱， MySQL 5 不像 MSSQL 是用 @param 來表示 Stored Procedure 的參數？這樣有點難以分辨參數及資料表欄位，不過也不是不能解決。</p>
 <p>執行這個 Stored Procedure 的方法是用 CALL：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CALL spTest &#39;TEST&#39;, &#39;ABC&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CALL spTest &#39;TEST&#39;, &#39;ABC&#39;;</span><br></pre></td></tr></table></figure>
 <p>當然語法不同，就會造成寫 PHP 程式的不方便，改天來找找看有沒有比較好的抽象層資料庫存取介面 (就是像 PEAR::DB 或 ADOdb 之類的物件類別庫) ，可以支援不同類型資料庫的 Stored Procedure 。</p>
 <p>Stored Procedure 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html</a></p>
 <p>Trigger 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/triggers.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/triggers.html</a></p>
@@ -165,7 +165,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -209,7 +209,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

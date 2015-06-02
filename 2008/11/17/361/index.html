@@ -69,7 +69,7 @@
 <p>我特地上網找了一下，發現 JavaScript 本身並沒有提供比較方便的 clone 機制，這時我的腦筋就動到 jQuery 上了。 </p>
 <p>不過這裡我可不是說 jQuery 的 clone 方法，而是 extend 方法。 </p>
 <p>先來看看例子好了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;jquery/1.2.6.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;function w(s) &#123;&#10;    document.write(s + &#39;&#60;br /&#62;\n&#39;);&#10;&#125;&#10;function d(o) &#123;&#10;    var s = &#39;&#39;;&#10;    for (var i in o) &#123;&#10;        s += i + &#39;: &#39; + o[i] + &#39;&#60;br /&#62;\n&#39;;&#10;    &#125;&#10;    w(s);&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;var o1 = &#123;&#10;    a1: &#39;123&#39;,&#10;    a2: &#39;456&#39;&#10;&#125;;&#10;var o2 = o1;&#10;$.extend(o2, &#123; a3: &#39;789&#39; &#125;);&#10;var o3 = $.extend(&#123;&#125;, o1);&#10;$.extend(o3, &#123; a4: &#39;000&#39; &#125;);&#10;w(&#39;o1&#39;);&#10;d(o1);&#10;w(&#39;o2&#39;);&#10;d(o2);&#10;w(&#39;o3&#39;);&#10;d(o3);&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;jquery/1.2.6.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;function w(s) &#123;&#10;    document.write(s + &#39;&#60;br /&#62;\n&#39;);&#10;&#125;&#10;function d(o) &#123;&#10;    var s = &#39;&#39;;&#10;    for (var i in o) &#123;&#10;        s += i + &#39;: &#39; + o[i] + &#39;&#60;br /&#62;\n&#39;;&#10;    &#125;&#10;    w(s);&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;var o1 = &#123;&#10;    a1: &#39;123&#39;,&#10;    a2: &#39;456&#39;&#10;&#125;;&#10;var o2 = o1;&#10;$.extend(o2, &#123; a3: &#39;789&#39; &#125;);&#10;var o3 = $.extend(&#123;&#125;, o1);&#10;$.extend(o3, &#123; a4: &#39;000&#39; &#125;);&#10;w(&#39;o1&#39;);&#10;d(o1);&#10;w(&#39;o2&#39;);&#10;d(o2);&#10;w(&#39;o3&#39;);&#10;d(o3);&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>在上面的程式中，請將重點放在我強調的部份。</p>
 <p>這裡我先定義一個自訂物件 o1 ，然後我將 o2 指定為 o1 ；在 JavaScript 的意義裡， o2 就會是 o1 的「別名」，兩個都指到同一個物件。 </p>
 <p>因此接下來我對 o2 進行任何操作，都會影響到 o1 ；也就是說如果我們要複製 o1 的話，就不能用等號 (=) 。 </p>
@@ -168,7 +168,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -212,7 +212,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

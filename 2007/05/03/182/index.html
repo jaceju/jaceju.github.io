@@ -7,7 +7,7 @@
   <meta name="author" content="Jace Ju">
   
   <meta name="description" content="在 Gmail 中如果採用另開視窗模式 () 撰寫信件時，在隨意填寫一些文字後按下視窗右上角的關閉按鈕，會先出現以下警告視窗：
-1&amp;#24744;&amp;#30340;&amp;#37109;&amp;#20214;&amp;#23578;&amp;#26410;&amp;#23492;&amp;#20986;&amp;#65292;&amp;#10;&amp;#24744;">
+&amp;#24744;&amp;#30340;&amp;#37109;&amp;#20214;&amp;#23578;&amp;#26410;&amp;#23492;&amp;#20986;&amp;#65292;&amp;#10;&amp;#24744;&amp;">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -62,12 +62,12 @@
     <div class="entry">
       
         <p>在 Gmail 中如果採用另開視窗模式 (<img src="http://mail.google.com/mail/images/tearoff_icon.gif" alt="另開視窗">) 撰寫信件時，在隨意填寫一些文字後按下視窗右上角的關閉按鈕，會先出現以下警告視窗：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#24744;&#30340;&#37109;&#20214;&#23578;&#26410;&#23492;&#20986;&#65292;&#10;&#24744;&#35201;&#25448;&#26820;&#27492;&#37109;&#20214;&#21966;&#65311;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#24744;&#30340;&#37109;&#20214;&#23578;&#26410;&#23492;&#20986;&#65292;&#10;&#24744;&#35201;&#25448;&#26820;&#27492;&#37109;&#20214;&#21966;&#65311;</span><br></pre></td></tr></table></figure>
 <p>然後按下「取消」後又會出現： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20320;&#30906;&#23450;&#35201;&#38626;&#38283;&#27492;&#38913;&#38754;&#65311;&#10;&#25353;&#19968;&#19979;&#12300;&#21462;&#28040;&#12301;&#20572;&#30041;&#22312;&#27492;&#38913;&#12290;&#10;&#25353;&#12300;&#30906;&#23450;&#12301;&#32380;&#32396;&#65292;&#25110;&#12300;&#21462;&#28040;&#12301;&#20197;&#20572;&#30041;&#22312;&#27492;&#38913;&#38754;&#12290;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#20320;&#30906;&#23450;&#35201;&#38626;&#38283;&#27492;&#38913;&#38754;&#65311;&#10;&#25353;&#19968;&#19979;&#12300;&#21462;&#28040;&#12301;&#20572;&#30041;&#22312;&#27492;&#38913;&#12290;&#10;&#25353;&#12300;&#30906;&#23450;&#12301;&#32380;&#32396;&#65292;&#25110;&#12300;&#21462;&#28040;&#12301;&#20197;&#20572;&#30041;&#22312;&#27492;&#38913;&#38754;&#12290;</span><br></pre></td></tr></table></figure>
 <p>這是利用 onBeforeUnload 事件來完成的，目的在避免使用者操作錯誤時，使得他所輸入的文字付諸流水。</p>
 <p>以下是模擬的方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onbeforeunload = function () &#123;&#10;if (!confirm(&#39;&#24744;&#30340;&#37109;&#20214;&#23578;&#26410;&#23492;&#20986;&#65292;\n&#24744;&#35201;&#25448;&#26820;&#27492;&#37109;&#20214;&#21966;&#65311;&#39;)) &#123;&#10;return &#39;&#25353;&#19968;&#19979;&#12300;&#21462;&#28040;&#12301;&#20572;&#30041;&#22312;&#27492;&#38913;&#12290;&#39;;&#10;&#125;&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onbeforeunload = function () &#123;&#10;if (!confirm(&#39;&#24744;&#30340;&#37109;&#20214;&#23578;&#26410;&#23492;&#20986;&#65292;\n&#24744;&#35201;&#25448;&#26820;&#27492;&#37109;&#20214;&#21966;&#65311;&#39;)) &#123;&#10;return &#39;&#25353;&#19968;&#19979;&#12300;&#21462;&#28040;&#12301;&#20572;&#30041;&#22312;&#27492;&#38913;&#12290;&#39;;&#10;&#125;&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
 <p>目前只有 Firefox 和 IE 支援 onBeforeUnload 事件， Opera 到 9.20 版為止都尚無支援。觸發的時機如下：</p>
 <ul>
 <li>關閉瀏覽器視窗。</li>
@@ -194,7 +194,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -238,7 +238,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

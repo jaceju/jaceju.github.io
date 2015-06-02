@@ -63,33 +63,33 @@
         <h2 id="說明">說明</h2><p>前一篇<a href="http://blog.roodo.com/jaceju/archives/2703934.html" target="_blank" rel="external">安裝與設定篇</a>已經架設好環境了，但是專案才是 Trac/Subversion 的靈魂所在，這一篇就是說明如何建立一個新的 Trac/Subversion 專案。</p>
 <a id="more"></a>
 <h2 id="建立_Subversion_專案">建立 Subversion 專案</h2><h3 id="建立檔案庫">建立檔案庫</h3><p>建立的方式很簡單，假設現在要建立一個名為 projectname 的專案，那麼就在命令提示列視窗中輸入以下指令 (粗體字部份) ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\&#62;&#60;strong&#62;cd Repository\svn&#60;/strong&#62;&#10;D:\Repository\svn&#62;&#60;strong&#62;svnadmin create projectname&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\&#62;&#60;strong&#62;cd Repository\svn&#60;/strong&#62;&#10;D:\Repository\svn&#62;&#60;strong&#62;svnadmin create projectname&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣就能建立出屬於 projectname 這個專案的檔案庫了。</p>
 <p>註：先前提過的權限設定改由 Apache 來控管，因此不用再修改 conf 底下的檔案了。 </p>
 <h3 id="設定_post-commit">設定 post-commit</h3><p>post-commit 簡單來說就是在本地端 Commit 後，會自動執行的 hook 機制；通常是用來記錄更新的 log 或是發送 Email ，這裡則是用來自動更新測試環境的 Web 檔案。其執行的原理暫時略過，這裡先說明如何設定。</p>
 <p>這裡我先假設 D:\wwwroot\projectname 就是我們所要更新的目的地， IIS 是以它做為執行的根目錄；當我們在本地端開發的檔案 Commit 後，就會同步這裡的檔案。</p>
 <p>接下來的設定方式很簡單，只要把以下文字存成 post-commit.bat ： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@ECHO OFF&#10;SET SVN=&#34;D:\\appserv\\svn\\bin\\svn.exe&#34;&#10;SET DIR=&#34;D:\\wwwroot\\projectname\\&#34;&#10;CALL %SVN% update %DIR% --username website --password websitepassword --non-interactive</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ECHO OFF&#10;SET SVN=&#34;D:\\appserv\\svn\\bin\\svn.exe&#34;&#10;SET DIR=&#34;D:\\wwwroot\\projectname\\&#34;&#10;CALL %SVN% update %DIR% --username website --password websitepassword --non-interactive</span><br></pre></td></tr></table></figure>
 <p>然後存到  D:\Repository\svn\projectname\hooks\ 下即可，其中 website 帳號在前一篇說明裡已經建立了。</p>
 <p>註：這裡也可以更新記錄存到 log 檔案裡或是發送 Email 給相關組員，不過這邊暫時不打算弄得太複雜。</p>
 <h2 id="建立_Trac_專案">建立 Trac 專案</h2><p>建立好 SVN 檔案庫以後，接下來就可以建立 Trac 專案了。</p>
 <h3 id="建立資料庫">建立資料庫</h3><p>請切換到 D:\AppServ\python\Scripts 路徑，並在命令提示列視窗中執行以下指令 (粗體字部份) ：</p>
 <p>切換到 D:\Appserv\python\Scripts 下，建立一個名為 projectname 的 trac 專案。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Repository\trac\projectname initenv&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Repository\trac\projectname initenv&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>接著會出現以下提示文字，請依照下面的建議操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Project Name [My Project]&#62; &#60;strong&#62;New Project&#60;/strong&#62; (&#36664;&#20837;&#23560;&#26696;&#21517;&#31281;&#65292;&#19981;&#24517;&#21644;&#30446;&#37636;&#21517;&#31281;&#30456;&#21516;)&#10;Database connection string [sqlite:db/trac.db]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)&#10;Repository type [svn]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)&#10;Path to repository [/path/to/repos]&#62; &#60;strong&#62;D:\Repository\svn\projectname&#60;/strong&#62; (&#36664;&#20837; Subversion &#23560;&#26696;&#27284;&#26696;&#24235;&#30340;&#20301;&#32622;)&#10;Templates directory [D:\Appserv\python\share\trac\templates]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Project Name [My Project]&#62; &#60;strong&#62;New Project&#60;/strong&#62; (&#36664;&#20837;&#23560;&#26696;&#21517;&#31281;&#65292;&#19981;&#24517;&#21644;&#30446;&#37636;&#21517;&#31281;&#30456;&#21516;)&#10;Database connection string [sqlite:db/trac.db]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)&#10;Repository type [svn]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)&#10;Path to repository [/path/to/repos]&#62; &#60;strong&#62;D:\Repository\svn\projectname&#60;/strong&#62; (&#36664;&#20837; Subversion &#23560;&#26696;&#27284;&#26696;&#24235;&#30340;&#20301;&#32622;)&#10;Templates directory [D:\Appserv\python\share\trac\templates]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)</span><br></pre></td></tr></table></figure>
 <p>這樣就建立好 Trac 的資料庫了。</p>
 <h3 id="設定預設使用者">設定預設使用者</h3><p>保留 D:\Appserv\python\Scripts 的執行路徑，並在命令提示列視窗中執行以下指令 (粗體字部份) ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Repository\trac\projectname permission add admin TRAC_ADMIN&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Repository\trac\projectname permission add admin TRAC_ADMIN&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>這樣會將 admin 加入 Trac 專案管理者。</p>
 <p>如果不想讓匿名使用者在 Trac 專案有任何權限的話，就執行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Repository\trac\projectname permission remove anonymous &#39;*&#39;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Repository\trac\projectname permission remove anonymous &#39;*&#39;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>註：之前我測試用 <em> 號可以刪掉所有權限，不曉得什麼時候改成要用單引號把 </em> 號包起來。</p>
 <p>然後我們再建立一個 developer 群組，同時給它需要的權限 (請自行決定相關權限) ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Repository\trac\projectname permission add developer WIKI_VIEW WIKI_CREATE WIKI_MODIFY SEARCH_VIEW TICKET_APPEND TICKET_CREATE TICKET_VIEW TIMELINE_VIEW ROADMAP_VIEW&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Repository\trac\projectname permission add developer WIKI_VIEW WIKI_CREATE WIKI_MODIFY SEARCH_VIEW TICKET_APPEND TICKET_CREATE TICKET_VIEW TIMELINE_VIEW ROADMAP_VIEW&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
 <p>註：如果 developer 沒有對應到 Apache 所建立的帳號時，它對 Trac 而言就是一個群組。 </p>
 <h3 id="相關_Plugins_設定">相關 Plugins 設定</h3><p>建立好 Trac 資料庫後，就要在專案裡啟用 WebAdmin 和 AccountManager 這兩個 Plugins 。請用文字編輯器打開 D:\Repository\trac\projectname\conf\trac.ini ，把以下文字貼到 trac.ini 的最下方：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[account-manager]&#10;password_file = D:\Repository\project-users.db&#10;password_store = HtPasswdStore&#10;[components]&#10;acct_mgr.admin.accountmanageradminpage = enabled&#10;acct_mgr.api.accountmanager = enabled&#10;acct_mgr.htfile.htpasswdstore = enabled&#10;acct_mgr.web_ui.accountmodule = enabled&#10;acct_mgr.web_ui.loginmodule = enabled&#10;acct_mgr.web_ui.registrationmodule = enabled&#10;trac.web.auth.loginmodule = enabled&#10;iniadmin.iniadmin.iniadminplugin = enabled&#10;webadmin.* = enabled</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[account-manager]&#10;password_file = D:\Repository\project-users.db&#10;password_store = HtPasswdStore&#10;[components]&#10;acct_mgr.admin.accountmanageradminpage = enabled&#10;acct_mgr.api.accountmanager = enabled&#10;acct_mgr.htfile.htpasswdstore = enabled&#10;acct_mgr.web_ui.accountmodule = enabled&#10;acct_mgr.web_ui.loginmodule = enabled&#10;acct_mgr.web_ui.registrationmodule = enabled&#10;trac.web.auth.loginmodule = enabled&#10;iniadmin.iniadmin.iniadminplugin = enabled&#10;webadmin.* = enabled</span><br></pre></td></tr></table></figure>
 <p>這樣到時候用 admin 登入專案時，就能夠使用 Admin 功能了 (包含 WebAdmin 、 AccountManager 和 IniAdmin ) 。</p>
 <p>補充：如果用 admin 登入後，還是看不到 Admin 功能的話，請重新啟動 Apache 。</p>
 <p>註：這時的 logout 功能因為前面 httpd.conf 設定的關係，所以只有重新載入 Trac 的動作而無法真正登出。</p>
@@ -195,7 +195,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -239,7 +239,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

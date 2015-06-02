@@ -64,19 +64,19 @@
 <a id="more"></a>
 <h2 id="jQuery_Form_(with_AJAX)_and_TinyMCE">jQuery Form (with AJAX) and TinyMCE</h2><p>目前在頁面上如果有表單要採用 AJAX 送出資料時，我採用的是 jQuery 的 <a href="http://www.malsup.com/jquery/form/" target="_blank" rel="external">Form plugin (with AJAX)</a> 這個官方 plugin 。</p>
 <p>Form plugin 使用 AJAX 來 Submit 的用法如下： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;myForm&#39;).submit(function () &#123;&#10;    $(this).ajaxSubmit();&#10;    return false; // &#36889;&#34892;&#24456;&#37325;&#35201;&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;myForm&#39;).submit(function () &#123;&#10;    $(this).ajaxSubmit();&#10;    return false; // &#36889;&#34892;&#24456;&#37325;&#35201;&#10;&#125;);</span><br></pre></td></tr></table></figure>
 <p>可是當表單中有 TinyMCE 時，我發現接收的 PHP 程式一直收不到 TinyMCE 所轉換出來的 textarea 內容。</p>
 <p>大致追了一下 TinyMCE 的原始碼，發現它其實先置換 form 的 submit 方法，在 submit 前先把 iframe 的內容複製到 textarea 中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tinyMCE.formSubmit(this, true);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tinyMCE.formSubmit(this, true);</span><br></pre></td></tr></table></figure>
 <p>而 formSubmit 方法的第二個參數是指要不要呼叫原來的 submit 。瞭解這個關係以後，我就把原來的 submit 改造了一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;myForm&#39;).submit(function () &#123;&#10;    // &#35731; TinyMCE &#21644;&#33287; Form plugin &#19968;&#36215;&#36939;&#20316;&#30340;&#38364;&#37749;&#10;    tinyMCE.formSubmit(this, false);&#10;    $(this).ajaxSubmit();&#10;    return false;&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;myForm&#39;).submit(function () &#123;&#10;    // &#35731; TinyMCE &#21644;&#33287; Form plugin &#19968;&#36215;&#36939;&#20316;&#30340;&#38364;&#37749;&#10;    tinyMCE.formSubmit(this, false);&#10;    $(this).ajaxSubmit();&#10;    return false;&#10;&#125;);</span><br></pre></td></tr></table></figure>
 <p>我先透過 TinyMCE 的 formSubmit 把值複製到 textarea 裡，不過不直接 submit ，而是改由後面的 ajaxSubmit 來完成送出表單的工作。</p>
 <p>案例一結束。 </p>
 <h2 id="Dynamic_Textarea_Content_with_TinyMCE">Dynamic Textarea Content with TinyMCE</h2><p>有時候我會需要在前端動態更新 Textarea 的內容，在 jQuery 下有個簡單的方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;textarea.mceEditor&#39;).val(&#39;&#60;p&#62;Updated html content.&#60;/p&#62;&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;textarea.mceEditor&#39;).val(&#39;&#60;p&#62;Updated html content.&#60;/p&#62;&#39;);</span><br></pre></td></tr></table></figure>
 <p>這樣就能對 class 為 mceEditor 的 textarea 做內容的更新；不過很可惜，這個更新並不會立刻反應到 TinyMCE 的介面上。</p>
 <p>怎麼辦呢？還好 TinyMCE 有提供 updateContent 這個方法，我只要在更新完 textarea 的內容後加上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#27599;&#20491;&#26377;&#29992;&#21040; TinyMCE &#30340; textarea &#37117;&#35201;&#26356;&#26032;&#10;$(&#39;textarea.mceEditor&#39;).each(updateTinyMCE);&#10;var updateTinyMCE = function () &#123;&#10;    // &#27880;&#24847;&#65292;&#22240;&#28858; TinyMCE &#19968;&#23450;&#35201;&#20351;&#29992; id&#10;    // &#25152;&#20197; textarea &#19968;&#23450;&#35201;&#35373;&#23450; id &#23660;&#24615;&#10;    tinyMCE.updateContent(this.id);&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// &#27599;&#20491;&#26377;&#29992;&#21040; TinyMCE &#30340; textarea &#37117;&#35201;&#26356;&#26032;&#10;$(&#39;textarea.mceEditor&#39;).each(updateTinyMCE);&#10;var updateTinyMCE = function () &#123;&#10;    // &#27880;&#24847;&#65292;&#22240;&#28858; TinyMCE &#19968;&#23450;&#35201;&#20351;&#29992; id&#10;    // &#25152;&#20197; textarea &#19968;&#23450;&#35201;&#35373;&#23450; id &#23660;&#24615;&#10;    tinyMCE.updateContent(this.id);&#10;&#125;;</span><br></pre></td></tr></table></figure>
 <p>這樣就能結束案例二了。</p>
 <p>註：以上只是概念程式，實務上要配合現有的架構做相關的調整。</p>
 
@@ -170,7 +170,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -214,7 +214,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

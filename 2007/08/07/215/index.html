@@ -67,10 +67,10 @@
 <h2 id="步驟_2">步驟 2</h2><p>下載 <a href="http://www.microsoft.com/downloads/info.aspx?na=22&amp;p=1&amp;SrcDisplayLang=en&amp;SrcCategoryId=&amp;SrcFamilyId=&amp;u=/downloads/details.aspx?FamilyID=00535334-c8a6-452f-9aa0-d597d16580cc&amp;DisplayLang=en" target="_blank" rel="external">HTML Help Workshop</a> ，並安裝它。</p>
 <h2 id="步驟_3">步驟 3</h2><p>執行 cygwin ，以初始化 cygwin 環境，然後輸入 exit 離開。這時候 d:\cygwin\home 會多出一個資料夾，名稱即為你目前登入 Windows 的使用者名稱，這裡我假設為 username 。</p>
 <h2 id="步驟_4">步驟 4</h2><p>在 d:\cygwin\home\username 下執行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ svn co http://framework.zend.com/svn/framework/trunk/documentation/manual/en</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ svn co http://framework.zend.com/svn/framework/trunk/documentation/manual/en</span><br></pre></td></tr></table></figure>
 <p>當然也可以用 <a href="http://tortoisesvn.tigris.org/" target="_blank" rel="external">TortoiseSVN</a> 來取出。</p>
 <h2 id="步驟_5">步驟 5</h2><p> 再執行一次 cygwin ，這時候家目錄就是在 /home/username 底下。進入 en 資料夾開始編譯：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd en&#10;$ autoconf&#10;$ ./configure&#10;$ make</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd en&#10;$ autoconf&#10;$ ./configure&#10;$ make</span><br></pre></td></tr></table></figure>
 <p>這樣就會在 d:\cygwin\home\username\en\html\ 底下產生所有 chm 會用到的檔案。</p>
 <h2 id="步驟_6">步驟 6</h2><p>用 PSPad 的多重取代功能，把 d:\cygwin\home\username\en\html\ 底下的 html 檔裡面的 UTF-8 的空白字元代換成 ASCII 的空白字元，以免在 chm 搜尋時會看到亂碼。 (感謝 Mark 協助)</p>
 <p>註：新的 SVN 裡已經不用再做此步驟。</p>
@@ -171,7 +171,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -215,7 +215,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

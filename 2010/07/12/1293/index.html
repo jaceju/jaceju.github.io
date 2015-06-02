@@ -96,11 +96,11 @@
 <p>當然這裡我就選擇 PHP 了， Selenium IDE 就會自動幫我們轉換為 PHPUnit 可以執行的 Test Case 程式碼：</p>
 <p><a href="/resources/selenium/create_phpunit_testcase.png"><img src="/resources/selenium/create_phpunit_testcase.png" alt="輸出成 PHPUnit Test Case"></a></p>
 <p>然後我們把 Source 複製下來，貼到新的檔案上，假設它是 D:\WebTest.php ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;PHPUnit/Extensions/SeleniumTestCase.php&#39;;&#10;class Example extends PHPUnit_Extensions_SeleniumTestCase&#10;&#123;&#10;  protected function setUp()&#10;  &#123;&#10;    $this-&#62;setBrowser(&#34;*chrome&#34;);&#10;    $this-&#62;setBrowserUrl(&#34;http://change-this-to-the-site-you-are-testing/&#34;);&#10;  &#125;&#10;  public function testMyTestCase()&#10;  &#123;&#10;    $this-&#62;open(&#34;/&#34;);&#10;    $this-&#62;type(&#34;q&#34;, &#34;jaceju&#34;);&#10;    $this-&#62;click(&#34;btnG&#34;);&#10;    $this-&#62;waitForPageToLoad(&#34;30000&#34;);&#10;    $this-&#62;assertTrue($this-&#62;isTextPresent(&#34;&#32178;&#31449;&#35069;&#20316;&#23416;&#32722;&#35468;&#34;));&#10;  &#125;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;PHPUnit/Extensions/SeleniumTestCase.php&#39;;&#10;class Example extends PHPUnit_Extensions_SeleniumTestCase&#10;&#123;&#10;  protected function setUp()&#10;  &#123;&#10;    $this-&#62;setBrowser(&#34;*chrome&#34;);&#10;    $this-&#62;setBrowserUrl(&#34;http://change-this-to-the-site-you-are-testing/&#34;);&#10;  &#125;&#10;  public function testMyTestCase()&#10;  &#123;&#10;    $this-&#62;open(&#34;/&#34;);&#10;    $this-&#62;type(&#34;q&#34;, &#34;jaceju&#34;);&#10;    $this-&#62;click(&#34;btnG&#34;);&#10;    $this-&#62;waitForPageToLoad(&#34;30000&#34;);&#10;    $this-&#62;assertTrue($this-&#62;isTextPresent(&#34;&#32178;&#31449;&#35069;&#20316;&#23416;&#32722;&#35468;&#34;));&#10;  &#125;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
 <p>不過在產生的 Script 中，網址的部份似乎還有 Bug ，因為它不會改寫為我們目前要測試的網址。所以請把：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&#62;setBrowserUrl(&#34;http://change-this-to-the-site-you-are-testing/&#34;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;setBrowserUrl(&#34;http://change-this-to-the-site-you-are-testing/&#34;);</span><br></pre></td></tr></table></figure>
 <p>改為：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&#62;setBrowserUrl(&#34;http://www.google.com.tw/&#34;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;setBrowserUrl(&#34;http://www.google.com.tw/&#34;);</span><br></pre></td></tr></table></figure>
 <p>另外我們也可以在工具列選單上選擇「檔案 &gt; Export Test Case As 」來輸出其他格式的檔案，省卻複製的這個步驟。</p>
 <p>註：關於 PHPUnit 整合 Selenium 的說明，可以參考 PHPUnit 官方手冊的 <a href="http://www.phpunit.de/manual/current/en/selenium.html" target="_blank" rel="external">PHPUnit and Selenium</a> 一章。</p>
 <p>每個 Test Case 都可以依照這些方式來產生可以用 PHPUnit 測試的 PHP Script 檔，然後將它們放在專案的測試目錄中。</p>
@@ -244,7 +244,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -288,7 +288,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

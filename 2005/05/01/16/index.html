@@ -70,7 +70,7 @@ mod_gzip 可以將 Apache 輸">
 <p>當然，首先我們得先安裝好 Apache2(win32) ，這我就不多提了。然後我們連到上述的網址後，找到 Apache 2.0 webserver -&gt; Win32 -&gt; modules 的連結。點選後，在新頁面找到 <code>mod_gzip-2.0.xx-w32.zip</code> 並下載它。</p>
 <p>解開 <code>mod_gzip-2.0.xx-w32.zip</code> 後，找到 <code>Release</code> 資料夾下的 <code>mod_gzip.so</code> 檔；接著將它複製到 Apache2 安裝目錄下的 <code>modules</code> 資料夾下。</p>
 <p>再來我們在 Apache2 安裝目錄下的 conf 資料夾內，用文字編輯器開啟 <code>httpd.conf</code> ，找到 LoadModule 區；然後加入此行：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> gzip_module modules/mod_gzip.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> gzip_module modules/mod_gzip.so</span><br></pre></td></tr></table></figure>
 <p>最後儲存 <code>httpd.conf</code> ，再重新啟動 Apache ，然後試試看頁面瀏覽的速度有沒有變快。</p>
 <h2 id="補充">補充</h2><p>果然網路上高手眾多，有網友推薦使用 Apache2 內建的 mod_deflate ，它和 mod_gzip 同樣是用來壓縮傳輸內容的。</p>
 <p>我找到了一篇還不錯的介紹，所以這裡就不寫了：<a href="http://ying.homedns.org/wp/archives/2005/08/13/21/28/00/" target="_blank" rel="external">精神奕奕 &raquo; Apache2 使用 mod_deflate 增進傳輸效能</a>。</p>
@@ -167,7 +167,7 @@ mod_gzip 可以將 Apache 輸">
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -211,7 +211,7 @@ mod_gzip 可以將 Apache 輸">
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

@@ -65,24 +65,24 @@
 <p>接下來我就來介紹如何建立一個 Portable 的 ZF 專案。</p>
 <a id="more"></a>
 <p>假設這個專案名稱叫 portable ，原始檔位於 D:\WEB\zf\portable (之後統稱為專案根目錄) 上，我們用 Zend Framework 提供的 Zend_Tool工具來建立它：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zf create project portable</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">zf create project portable</span><br></pre></td></tr></table></figure>
 <p>然後我們切換到該專案目錄下，進行後續的操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd portable</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd portable</span><br></pre></td></tr></table></figure>
 <p>註：雖然我是以 Win32 為主要環境，但 Linux 上的操作步驟也是雷同。</p>
 <p>接下來<strong>把 public 目錄下的 index.php 及 .htaccess 複製到專案根目錄</strong>下，然後修改專案根目錄下的 .zfproject.xml ，把上方紅框處的 index.php 和 .htaccess 的 XML tag 複製到下方的紅框處：</p>
 <p><a href="/resources/zf_portable/zfproject_xml.png"><img src="/resources/zf_portable/zfproject_xml.png" alt="修改 .zfproject.xml"></a></p>
 <p>註：這個步驟要不要做都可以，主要只是為了保持讓 .zfproject.xml 與專案的目錄檔案結構保持一致。</p>
 <p>接下來要修改<strong>專案根目錄下的 index.php</strong> 裡， application 目錄的相對位置；找到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|| define(&#39;APPLICATION_PATH&#39;, realpath(dirname(__FILE__) . &#39;/../application&#39;));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">|| define(&#39;APPLICATION_PATH&#39;, realpath(dirname(__FILE__) . &#39;/../application&#39;));</span><br></pre></td></tr></table></figure>
 <p>改為：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|| define(&#39;APPLICATION_PATH&#39;, realpath(dirname(__FILE__) . &#39;/application&#39;));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">|| define(&#39;APPLICATION_PATH&#39;, realpath(dirname(__FILE__) . &#39;/application&#39;));</span><br></pre></td></tr></table></figure>
 <p>然後我們要在<strong>專案根目錄下的 .htaccess</strong> 加入當前環境的常數，也就是在它的最上面一行加入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SetEnv APPLICATION_ENV development</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SetEnv APPLICATION_ENV development</span><br></pre></td></tr></table></figure>
 <p>這樣我們在 index.php 中取得的 APPLICATION_ENV 環境變數就會是 development 了。</p>
 <h2 id="修改原來在_public_目錄下的檔案">修改原來在 public 目錄下的檔案</h2><p>原來的 public 目錄下的 index.php 則改用來阻擋使用者直接瀏覽 public 目錄，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;header(&#39;HTTP/1.1 403 Forbidden&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;header(&#39;HTTP/1.1 403 Forbidden&#39;);</span><br></pre></td></tr></table></figure>
 <p>而原來的 public 目錄下的 .htaccess 則是將 Rewrite Engine 關閉，讓外界可以直接存取：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine Off</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteEngine Off</span><br></pre></td></tr></table></figure>
 <p>這樣一來就可以讓我們的 Zend Framework 專案具有可攜性了。</p>
 <h2 id="補充">補充</h2><p>這樣的作法還是會遇到一些問題，請參考「 <a href="http://www.jaceju.net/blog/archives/1619" target="_blank" rel="external">Portable ZF 專案會遇到的問題</a>」一文來解決。</p>
 
@@ -176,7 +176,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -220,7 +220,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

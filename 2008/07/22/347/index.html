@@ -67,18 +67,18 @@ PHP 5.3 將有可能會有 Lambda (黏巴達？) 和 closure ，來源為 Reques
 <p>註：所以 <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> 剛剛跟我說 PHP 快變四不像了。</p>
 <a id="more"></a>
 <p>Lambda 語法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function &#38;amp; (parameters) use (lexical vars) &#123; body &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function &#38;amp; (parameters) use (lexical vars) &#123; body &#125;</span><br></pre></td></tr></table></figure>
 <p>範例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$lambda = function () &#123; echo &#34;Hello World!\n&#34;; &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$lambda = function () &#123; echo &#34;Hello World!\n&#34;; &#125;;</span><br></pre></td></tr></table></figure>
 <p>可以這樣用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$lambda ();&#10;call_user_func($lambda);&#10;call_user_func_array($lambda, array());</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$lambda ();&#10;call_user_func($lambda);&#10;call_user_func_array($lambda, array());</span><br></pre></td></tr></table></figure>
 <p>所以 call_user_func 系列函式就可以用 Lambda 了。 </p>
 <p>進階的 Lambda 範例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function replace_spaces ($text) &#123;&#10;    $replacement = function ($matches) &#123;&#10;        return str_replace ($matches[1], &#39; &#39;, &#39;&#38;amp;nbsp;&#39;).&#39; &#39;;&#10;    &#125;;&#10;    return preg_replace_callback (&#39;/( +) /&#39;, $replacement, $text);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function replace_spaces ($text) &#123;&#10;    $replacement = function ($matches) &#123;&#10;        return str_replace ($matches[1], &#39; &#39;, &#39;&#38;amp;nbsp;&#39;).&#39; &#39;;&#10;    &#125;;&#10;    return preg_replace_callback (&#39;/( +) /&#39;, $replacement, $text);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>Closure 語法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function (normal parameters) use ($var1, $var2, &#38;amp;$refvar) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function (normal parameters) use ($var1, $var2, &#38;amp;$refvar) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>範例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function replace_in_array ($search, $replacement, $array) &#123;&#10;    $map = function ($text) use ($search, $replacement) &#123;&#10;        if (strpos ($text, $search) &#62; 50) &#123;&#10;            return str_replace($search, $replacement, $text);&#10;        &#125; else &#123;&#10;            return $text;&#10;        &#125;&#10;    &#125;;&#10;    return array_map($map, $array);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function replace_in_array ($search, $replacement, $array) &#123;&#10;    $map = function ($text) use ($search, $replacement) &#123;&#10;        if (strpos ($text, $search) &#62; 50) &#123;&#10;            return str_replace($search, $replacement, $text);&#10;        &#125; else &#123;&#10;            return $text;&#10;        &#125;&#10;    &#125;;&#10;    return array_map($map, $array);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到原來可以用 callback 的函式，應該都能接受 closure 。 </p>
 <p>其他就請參考來源文章囉。</p>
 <h2 id="相關文章">相關文章</h2><ul>
@@ -176,7 +176,7 @@ PHP 5.3 將有可能會有 Lambda (黏巴達？) 和 closure ，來源為 Reques
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -220,7 +220,7 @@ PHP 5.3 將有可能會有 Lambda (黏巴達？) 和 closure ，來源為 Reques
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

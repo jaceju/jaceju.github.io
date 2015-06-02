@@ -65,11 +65,11 @@ PHP 5.3 帶來很多有趣的特色，其中一個就是可以把你的 Library 
 <p>PHP 5.3 帶來很多有趣的特色，其中一個就是可以把你的 Library 打包成 phar 格式，並透過 require 敘述來引用裡面的程式碼。</p>
 <a id="more"></a>
 <p>首先你可以用 PHP 5.3 的新類別 Phar 來打包你想要的程式碼 (通常是類別檔案) ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$phar = new Phar(&#39;My.phar&#39;, 0, &#39;My.phar&#39;); // &#24314;&#31435; My.phar &#27284;&#26696;&#10;$phar-&#62;buildFromDirectory(dirname(__FILE__) . &#39;/My&#39;, &#39;/\.php$/&#39;); // &#25171;&#21253;&#25152;&#26377; My &#30446;&#37636;&#19979;&#30340; php &#27284;&#26696;&#10;$phar-&#62;compressFiles( Phar::GZ ); // &#20197; GZ &#26684;&#24335;&#22739;&#32302;&#10;$phar-&#62;stopBuffering(); // &#22739;&#32302;&#23436;&#25104;&#65292;&#23531;&#20837; phar &#27284;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$phar = new Phar(&#39;My.phar&#39;, 0, &#39;My.phar&#39;); // &#24314;&#31435; My.phar &#27284;&#26696;&#10;$phar-&#62;buildFromDirectory(dirname(__FILE__) . &#39;/My&#39;, &#39;/\.php$/&#39;); // &#25171;&#21253;&#25152;&#26377; My &#30446;&#37636;&#19979;&#30340; php &#27284;&#26696;&#10;$phar-&#62;compressFiles( Phar::GZ ); // &#20197; GZ &#26684;&#24335;&#22739;&#32302;&#10;$phar-&#62;stopBuffering(); // &#22739;&#32302;&#23436;&#25104;&#65292;&#23531;&#20837; phar &#27284;</span><br></pre></td></tr></table></figure>
 <p>然後你可以整包引入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require &#39;My.phar&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require &#39;My.phar&#39;;</span><br></pre></td></tr></table></figure>
 <p>也可以單獨引入其中的某支檔案：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require &#39;phar://My.phar/src/Test.php&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require &#39;phar://My.phar/src/Test.php&#39;;</span><br></pre></td></tr></table></figure>
 <p>就連 <a href="http://www.phpunit.de/" target="_blank" rel="external">PHPUnit 3.3</a> 也<a href="http://sebastian-bergmann.de/archives/799-Phar.html" target="_blank" rel="external">試用 Phar 來打包</a>囉了！ </p>
 <p>那麼效能呢？據 Jan Schneider 的<a href="http://blog.stuartherbert.com/php/2008/06/29/where-are-the-benchmarks-for-phar/" target="_blank" rel="external">消息</a>指出， PHP 的開發團隊已經把這個功能的效能調整到接近 native PHP 的執行進度了！</p>
 <p>很酷吧？期待 PHP 5.3 的來臨吧！ </p>
@@ -167,7 +167,7 @@ PHP 5.3 帶來很多有趣的特色，其中一個就是可以把你的 Library 
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -211,7 +211,7 @@ PHP 5.3 帶來很多有趣的特色，其中一個就是可以把你的 Library 
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

@@ -73,17 +73,17 @@
 <span class="bullet">* </span>把 iframe 高度調整至和 html 內容一般高。 
 </code></pre><p>這裡我用 jQuery 來實作囉。</p>
 <h3 id="建立一個動態_iframe">建立一個動態 iframe</h3><p>假設我們的 html 內容已經放在 div.htmlContent 這個區塊中，我們可以用以下程式來動態建立一個 iframe ，並將它 append 在  div.htmlContent 中。當然也別忘記把原來的內容清掉：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(function () &#123;&#10;    var $iframe = $(&#39;&#60;iframe src=&#34;about:blank&#34; width=&#34;100%&#34; height=&#34;300&#34; frameborder=&#34;0&#34;&#62;&#60;/iframe&#62;&#39;);&#10;    var $htmlContent = $(&#39;div.htmlContent&#39;);&#10;    var html = $htmlContent.html();&#10;    $htmlContent.html(&#39;&#39;);&#10;    $htmlContent.append($iframe);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(function () &#123;&#10;    var $iframe = $(&#39;&#60;iframe src=&#34;about:blank&#34; width=&#34;100%&#34; height=&#34;300&#34; frameborder=&#34;0&#34;&#62;&#60;/iframe&#62;&#39;);&#10;    var $htmlContent = $(&#39;div.htmlContent&#39;);&#10;    var html = $htmlContent.html();&#10;    $htmlContent.html(&#39;&#39;);&#10;    $htmlContent.append($iframe);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這裡要注意一點，就是 iframe 的高度一定要設定一個大於 0 的整數值，不然等一下 IE 在自動調整高度時會出問題。 (別問我為什麼…我也是自己試出來的 Orz) </p>
 <p>至於 iframe 的來源，我們設定為 about:blank 就好，也就是瀏覽器預設的空白頁。 </p>
 <h3 id="將原本的_html_內容指定給_iframe_的_document">將原本的 html 內容指定給 iframe 的 document</h3><p>在建立好動態的 iframe 之後，我們要先等它將內容載完。在載完之後，我們就可以將原來的 html 放到 iframe 裡的 docuement 物件的 body 中。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$iframe.load(function () &#123;&#10;    var iframeDocument = getIframeDocument($iframe.get(0));&#10;    $(iframeDocument.body).html(html).css(&#123; margin: &#39;0&#39;, padding: &#39;0&#39; &#125;);&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$iframe.load(function () &#123;&#10;    var iframeDocument = getIframeDocument($iframe.get(0));&#10;    $(iframeDocument.body).html(html).css(&#123; margin: &#39;0&#39;, padding: &#39;0&#39; &#125;);&#10;&#125;);</span><br></pre></td></tr></table></figure>
 <p>這裡用到了一個自訂函式 getIframeDocument ， 它可以幫我們取得 iframe 裡的 document 物件，而且是跨瀏覽器的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function getIframeDocument(iframeObject) &#123;&#10;    if (iframeObject.contentWindow) &#123;&#10;        return iframeObject.contentWindow.document;&#10;    &#125; else if (iframeObject.contentDocument) &#123;&#10;        return iframeObject.contentDocument.document;&#10;    &#125;&#10;    return null;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getIframeDocument(iframeObject) &#123;&#10;    if (iframeObject.contentWindow) &#123;&#10;        return iframeObject.contentWindow.document;&#10;    &#125; else if (iframeObject.contentDocument) &#123;&#10;        return iframeObject.contentDocument.document;&#10;    &#125;&#10;    return null;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>註：getIframeDocument 暫時不支援 Google Chrome 和 Safari 。 </p>
 <h3 id="把_iframe_高度調整至和_html_內容一般高">把 iframe 高度調整至和 html 內容一般高</h3><p>接著我們要調整 iframe 的高度，讓它能完整呈現出 html 的內容。 </p>
 <p>在 html 載入完畢後，body 的 offsetHeight 就會是我們所需要的內容高度：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$iframe.load(function () &#123;&#10;    var iframeDocument = $.wacow.getIframeDocument($iframe.get(0));&#10;    $(iframeDocument.body).html(html).css(&#123; margin: &#39;0&#39;, padding: &#39;0&#39; &#125;);&#10;    setTimeout(function () &#123;&#10;        var bodyHeight = iframeDocument.body.offsetHeight + 20;&#10;        $iframe.height(bodyHeight);&#10;    &#125;, 0);&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$iframe.load(function () &#123;&#10;    var iframeDocument = $.wacow.getIframeDocument($iframe.get(0));&#10;    $(iframeDocument.body).html(html).css(&#123; margin: &#39;0&#39;, padding: &#39;0&#39; &#125;);&#10;    setTimeout(function () &#123;&#10;        var bodyHeight = iframeDocument.body.offsetHeight + 20;&#10;        $iframe.height(bodyHeight);&#10;    &#125;, 0);&#10;&#125;);</span><br></pre></td></tr></table></figure>
 <p>這裡有個小技巧，就是重新指定 html 內容時， load 事件並不會被觸發，所以我們要利用 setTimeout 來確定 html 已經全部加載完畢 (讓它跳離到另一個執行空間) 。</p>
 <p>到這裡就大功告成啦~謝謝收看~</p>
 
@@ -177,7 +177,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -221,7 +221,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

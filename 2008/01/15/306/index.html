@@ -72,10 +72,10 @@ cascading delete 主要的目的是這樣的：假設 a 資料表和 b 資料表
 <a id="more"></a>
 <h2 id="範例下載">範例下載</h2><p>不提供了，請下載<a href="/resources/zf_table/example2.zip">上次的範例</a>照以下說明修改吧。</p>
 <h2 id="說明">說明</h2><h3 id="刪除文章時同時刪除文章與標籤之間的關連">刪除文章時同時刪除文章與標籤之間的關連</h3><p>首先我們在 Articles 這個類別中，加入一個 $_dependentTables 屬性： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class Articles extends Zend_Db_Table_Abstract&#10;&#123;&#10;    // ... &#30053; ...&#10;    protected $_dependentTables = array(&#39;ArticlesTags&#39;);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Articles extends Zend_Db_Table_Abstract&#10;&#123;&#10;    // ... &#30053; ...&#10;    protected $_dependentTables = array(&#39;ArticlesTags&#39;);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這個  $_dependentTables 必須給它一個陣列，這個陣列要包含你要串聯刪除的資料表類別名稱 (此例即為 ArticlesTags 這個類別) 。</p>
 <p>接下來打開 ArticlesTags 這個類別，在原本的 $_referenceMap[‘Article’] 關連中，再加入一個 onDelete 索引：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class ArticlesTags extends Zend_Db_Table_Abstract&#10;&#123;&#10;    protected $_referenceMap = array(&#10;        // ... &#30053; ...&#10;        &#39;Article&#39; =&#62; array(&#10;            &#39;columns&#39; =&#62; array(&#39;article_id&#39;),&#10;            &#39;refTableClass&#39; =&#62; &#39;Articles&#39;,&#10;            &#39;refColumns&#39; =&#62; &#39;id&#39;,&#10;            &#39;onDelete&#39; =&#62; self::CASCADE,&#10;        ),&#10;    );&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class ArticlesTags extends Zend_Db_Table_Abstract&#10;&#123;&#10;    protected $_referenceMap = array(&#10;        // ... &#30053; ...&#10;        &#39;Article&#39; =&#62; array(&#10;            &#39;columns&#39; =&#62; array(&#39;article_id&#39;),&#10;            &#39;refTableClass&#39; =&#62; &#39;Articles&#39;,&#10;            &#39;refColumns&#39; =&#62; &#39;id&#39;,&#10;            &#39;onDelete&#39; =&#62; self::CASCADE,&#10;        ),&#10;    );&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>onDelete 的值固定就是用 self::CASCADE (其他值就不會動了) 。</p>
 <p>註：別忘記原來 $_referenceMap[‘Article’] 所指定的意思，它是指 articles_tags 這個資料表的 articles_id (columns) 這個欄位要對應到 Articles (refTableClass) 這個資料表類別的 id 欄位 (refColumns) 。 </p>
 <p>這樣設定好後，就完成串聯刪除的動作了，很簡單吧？不過有一點非常重要：那就是一定要用 Zend_Db_Table_Row 的 delete 方法來刪除紀錄，才能啟動串聯刪除！</p>
@@ -84,7 +84,7 @@ cascading delete 主要的目的是這樣的：假設 a 資料表和 b 資料表
 
 <p>註：請依照上面的例子，先在 articles 、 tags 及 artices_tags 三個資料表分別加入相關的紀錄。 </p>
 <p>接下來在 IndexController 中，加入一個 deleteAction 方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    // ... &#30053; ...&#10;&#10;    function deleteAction()&#10;    &#123;&#10;        // &#19981;&#39023;&#31034;&#30059;&#38754;&#10;        $this-&#62;getHelper(&#39;ViewRenderer&#39;)-&#62;setNoRender();&#10;        $articleTable = new Articles();&#10;        // &#26377;&#25214;&#21040;&#25165;&#21034;&#10;        if ($articleRow = $articleTable-&#62;find(3)-&#62;current()) &#123;&#10;            $articleRow-&#62;delete();&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    // ... &#30053; ...&#10;&#10;    function deleteAction()&#10;    &#123;&#10;        // &#19981;&#39023;&#31034;&#30059;&#38754;&#10;        $this-&#62;getHelper(&#39;ViewRenderer&#39;)-&#62;setNoRender();&#10;        $articleTable = new Articles();&#10;        // &#26377;&#25214;&#21040;&#25165;&#21034;&#10;        if ($articleRow = $articleTable-&#62;find(3)-&#62;current()) &#123;&#10;            $articleRow-&#62;delete();&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>現在瀏覽一下 <a href="http://localhost/example3/index/delete" target="_blank" rel="external">http://localhost/example3/index/delete</a> (實際位置請按照各位的環境自行輸入) ，畫面應該不會出現任何資訊。現在到資料庫觀察一下，應該會發現 articles 資料表的第 3 筆紀錄已經被刪除；再看看 articles_tags ，在 article_id 為 3 的紀錄也跟著一併被刪除了。這樣就完成串聯刪除啦！</p>
 <p>再整理一次重點：</p>
 <ul>
@@ -183,7 +183,7 @@ cascading delete 主要的目的是這樣的：假設 a 資料表和 b 資料表
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -227,7 +227,7 @@ cascading delete 主要的目的是這樣的：假設 a 資料表和 b 資料表
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

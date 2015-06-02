@@ -149,9 +149,9 @@ PHP 4.4.8 釋出了，在 2008-08-08 號前如果沒有安全性議題的話，�
 </ul>
 <p>幫你在資料表更換 prefix ，測了一下，在一開始沒有 prefix 的狀況下會有 Bug 。解決方式：</p>
 <p>找到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function replace_prefix($s, $prefix) &#123;&#10;$pos = strpos($s, &#34;_&#34;);&#10;$s = substr($s, $pos + 1);&#10;$s = sprintf(&#34;%s_%s&#34;, $prefix, $s);&#10;return $s;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function replace_prefix($s, $prefix) &#123;&#10;$pos = strpos($s, &#34;_&#34;);&#10;$s = substr($s, $pos + 1);&#10;$s = sprintf(&#34;%s_%s&#34;, $prefix, $s);&#10;return $s;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>改成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function replace_prefix($s, $prefix) &#123;&#10;$pos = ($pos = strpos($s, &#34;_&#34;)) ? $pos + 1 : 0;&#10;$s = substr($s, $pos);&#10;$s = sprintf(&#34;%s_%s&#34;, $prefix, $s);&#10;return $s;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function replace_prefix($s, $prefix) &#123;&#10;$pos = ($pos = strpos($s, &#34;_&#34;)) ? $pos + 1 : 0;&#10;$s = substr($s, $pos);&#10;$s = sprintf(&#34;%s_%s&#34;, $prefix, $s);&#10;return $s;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><a href="http://www.rockstarapps.com/wordpress/?p=88" target="_blank" rel="external">How do you store a tree in a database table?</a></li>
 </ul>
@@ -255,7 +255,7 @@ PHP 4.4.8 釋出了，在 2008-08-08 號前如果沒有安全性議題的話，�
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -299,7 +299,7 @@ PHP 4.4.8 釋出了，在 2008-08-08 號前如果沒有安全性議題的話，�
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

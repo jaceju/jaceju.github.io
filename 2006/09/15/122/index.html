@@ -76,12 +76,12 @@
 <li>執行 cmd.exe ，並切換到 D:\Repository 下。</li>
 <li>輸入以下指令以建立一個新專案的檔案庫：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Repository&#62;svnadmin create &#23560;&#26696;&#21517;&#31281;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Repository&#62;svnadmin create &#23560;&#26696;&#21517;&#31281;</span><br></pre></td></tr></table></figure>
 <p>專案名稱請自訂。</p>
 <h2 id="註冊_Subversion_服務">註冊 Subversion 服務</h2><ul>
 <li>輸入以下指令以註冊一個新的服務：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\svn&#62;sc create Subversion binPath= &#34;D:\svn\bin\svnserve.exe --service -r D:\Repository&#34; DisplayName= &#34;Subversion&#34; start= auto depend= TCPIP</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\svn&#62;sc create Subversion binPath= &#34;D:\svn\bin\svnserve.exe --service -r D:\Repository&#34; DisplayName= &#34;Subversion&#34; start= auto depend= TCPIP</span><br></pre></td></tr></table></figure>
 <p>這樣 Service Controller 就會幫我們用 Subversion 的名稱註冊一個服務。</p>
 <p>註：特別要注意以下兩點：</p>
 <ol>
@@ -97,34 +97,34 @@
 <ul>
 <li>svnserve.conf 中已經有一些設定了，請參照下面的設定，把 # 註解符號移除：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[general]&#10;# &#26410;&#35469;&#35657;&#32773;&#26377;&#35712;&#30340;&#27402;&#38480;&#65292;&#21487;&#35373;&#28858; none (&#21363;&#28961;&#27402;&#38480;)&#10;anon-access = read&#10;# &#36890;&#36942;&#35469;&#35657;&#32773;&#26377;&#35712;&#23531;&#30340;&#27402;&#38480;&#10;auth-access = write&#10;# &#23494;&#30908;&#27284;&#10;password-db = passwd&#10;# &#27402;&#38480;&#35373;&#23450;&#27284;&#65292;&#36889;&#35041;&#22914;&#26524;&#19981;&#35373;&#23450;&#30340;&#35441;&#65292;&#37027;&#40636;&#19978;&#38754;&#30340; password-db &#35373;&#23450;&#26159;&#19981;&#26371;&#21205;&#20316;&#30340;&#10;authz-db = authz&#10;# &#35426;&#21839;&#23494;&#30908;&#26178;&#65292;&#35498;&#26126;&#29992;&#30340;&#25991;&#23383;&#10;realm = &#38936;&#22495;&#35498;&#26126;&#25991;&#23383;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[general]&#10;# &#26410;&#35469;&#35657;&#32773;&#26377;&#35712;&#30340;&#27402;&#38480;&#65292;&#21487;&#35373;&#28858; none (&#21363;&#28961;&#27402;&#38480;)&#10;anon-access = read&#10;# &#36890;&#36942;&#35469;&#35657;&#32773;&#26377;&#35712;&#23531;&#30340;&#27402;&#38480;&#10;auth-access = write&#10;# &#23494;&#30908;&#27284;&#10;password-db = passwd&#10;# &#27402;&#38480;&#35373;&#23450;&#27284;&#65292;&#36889;&#35041;&#22914;&#26524;&#19981;&#35373;&#23450;&#30340;&#35441;&#65292;&#37027;&#40636;&#19978;&#38754;&#30340; password-db &#35373;&#23450;&#26159;&#19981;&#26371;&#21205;&#20316;&#30340;&#10;authz-db = authz&#10;# &#35426;&#21839;&#23494;&#30908;&#26178;&#65292;&#35498;&#26126;&#29992;&#30340;&#25991;&#23383;&#10;realm = &#38936;&#22495;&#35498;&#26126;&#25991;&#23383;</span><br></pre></td></tr></table></figure>
 <p>修改完後存檔即可。</p>
 <ul>
 <li>接著切換到 passwd 檔，以每一行「使用者名稱 = 密碼」的方式來設定使用者的帳號，例如：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user1 = pass1&#10;user2 = pass2&#10;user3 = pass3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">user1 = pass1&#10;user2 = pass2&#10;user3 = pass3</span><br></pre></td></tr></table></figure>
 <p>修改完後存檔即可。</p>
 <ul>
 <li>最後切換到 authz ，參考以下的設定： </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#35373;&#23450;&#32676;&#32068;&#10;[groups]&#10;Admin = user1,user2&#10;User = user3&#10;# &#35373;&#23450;&#26681;&#30446;&#37636;&#27402;&#38480; (&#24517;&#35201;)&#10;[/]&#10;@Admin = rw&#10;* = r&#10;# &#35373;&#23450;&#27284;&#26696;&#24235;&#27402;&#38480;&#10;[/test]&#10;@Admin = rw&#10;@User = r&#10;* =</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># &#35373;&#23450;&#32676;&#32068;&#10;[groups]&#10;Admin = user1,user2&#10;User = user3&#10;# &#35373;&#23450;&#26681;&#30446;&#37636;&#27402;&#38480; (&#24517;&#35201;)&#10;[/]&#10;@Admin = rw&#10;* = r&#10;# &#35373;&#23450;&#27284;&#26696;&#24235;&#27402;&#38480;&#10;[/test]&#10;@Admin = rw&#10;@User = r&#10;* =</span><br></pre></td></tr></table></figure>
 <p>在 gorups 區段中，可以指定哪些使用者是屬於同一群組 (以逗號分開) 。而設定根目錄及檔案庫權限時，群組名稱前要加上一個 @ 號。</p>
 <p>而在等號後面的 r 表示有讀取權限， w 為寫入權限，如果是空字串則表示沒有權限。</p>
 <p>註：我實驗的結果是根目錄的設定一定要有 (並且按照上面的設定) ，它的權限會影響底下的檔案庫權限。</p>
 <p>基本上這三個檔案改完後，就會立即發生作用了，不必重新啟動 Subversion 。</p>
 <h2 id="連線測試">連線測試</h2><p>現在服務已經啟動了，我們可以用以下指令來取出剛剛建立的專案：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\&#62;svn co svn://localhost/&#23560;&#26696;&#21517;&#31281; &#35201;&#23384;&#25918;&#30340;&#30446;&#37636;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\&#62;svn co svn://localhost/&#23560;&#26696;&#21517;&#31281; &#35201;&#23384;&#25918;&#30340;&#30446;&#37636;</span><br></pre></td></tr></table></figure>
 <p>當然也可以用 <a href="http://tortoisesvn.net/" target="_blank" rel="external">TortoiseSVN</a> 等用戶端來取得專案。注意在取出或更新專案時，要有讀取權限 (* = r) ；而在 svn commit 時，則是要有寫入權限。</p>
 <h2 id="中文問題">中文問題</h2><p>當使用 cmd.exe 執行 svn 時，有時會出現以下的亂碼：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Workspace&#62;svn co svn://localhost/test test&#10;A    test\test.txt&#10;?\229?\143?\150?\229?\135?\186?\228?\191?\174?\232?\168?\130?\231?\137?\136 13.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Workspace&#62;svn co svn://localhost/test test&#10;A    test\test.txt&#10;?\229?\143?\150?\229?\135?\186?\228?\191?\174?\232?\168?\130?\231?\137?\136 13.</span><br></pre></td></tr></table></figure>
 <p>這是因為 svn 有內建中文語系，但系統的顯示上不支援；解決方式如下：</p>
 <p>第一個方法，我們可以把 D:\svn 下的 share 目錄刪掉，再重新啟動 Subversion 服務，不過這樣就沒辦法顯示中文了。</p>
 <p>第二個方法是由 chihwen 提供的，我們要先在系統環境變數裡加上以下三個變數：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LANG = zh_TW.UTF8&#10;APR_ICONV_PATH = D:\svn\iconv&#10;SVN_EDITOR = notepad.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LANG = zh_TW.UTF8&#10;APR_ICONV_PATH = D:\svn\iconv&#10;SVN_EDITOR = notepad.exe</span><br></pre></td></tr></table></figure>
 <p>註： emisjerry 指正 LANG 在 *nix 上才需要設定， Windows 不必。</p>
 <p>其中 APR_ICONV_PATH 就是指向 Subversion 內附的 iconv 路徑。</p>
 <p>然後重新開啟一個 cmd.exe 來用，所以剛剛的亂碼訊息就會變成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Workspace&#62;svn co svn://localhost/test test&#10;A    test\test.txt&#10;&#21462;&#20986;&#20462;&#35330;&#29256; 13.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Workspace&#62;svn co svn://localhost/test test&#10;A    test\test.txt&#10;&#21462;&#20986;&#20462;&#35330;&#29256; 13.</span><br></pre></td></tr></table></figure>
 <p>是不是很棒呢？</p>
 
       
@@ -217,7 +217,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -261,7 +261,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

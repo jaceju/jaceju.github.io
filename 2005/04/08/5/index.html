@@ -7,7 +7,7 @@
   <meta name="author" content="Jace Ju">
   
   <meta name="description" content="將元素的 position 指定為 relative 後，會使得元素的寬高受到父元素寬高的影響。 例如 a 標籤被包在 li 標籤內時，如果 li 標籤寬度設定為 100px ， a 標籤的 Box 寬度 (等於 margin + border + padding + width) 就會等於 100px。這樣一來，連結的作用區域就不會只受限於文字或圖片上，而可以佔滿整個父元素。
-12345a &amp;#123;position: relative;/* 如果連結是在 td 內的話，則要再加入底下這個設定 */display: block;&amp;#125;">
+a &amp;#123;position: relative;/* 如果連結是在 td 內的話，則要再加入底下這個設定 */display: block;&amp;#125;">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -62,12 +62,12 @@
     <div class="entry">
       
         <p>將元素的 position 指定為 relative 後，會使得元素的寬高受到父元素寬高的影響。 例如 a 標籤被包在 li 標籤內時，如果 li 標籤寬度設定為 100px ， a 標籤的 Box 寬度 (等於 margin + border + padding + width) 就會等於 100px。這樣一來，連結的作用區域就不會只受限於文字或圖片上，而可以佔滿整個父元素。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">a</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line"><span class="comment">/* 如果連結是在 td 內的話，則要再加入底下這個設定 */</span></span><br><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line"><span class="comment">/* 如果連結是在 td 內的話，則要再加入底下這個設定 */</span></span><br><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>如果兩種樣式是一樣的時候，不用寫兩次；利用逗號將兩者分開即可。 如果想要讓 link 和 visited 樣式一樣的話，也最好一起指定。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">a</span>:<span class="value">link, a:visited &#123;</span><br><span class="line">display: block</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">12px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#495F6E</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#F2F3F4</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">"Arial"</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">3px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">a</span>:<span class="value">link, a:visited &#123;</span><br><span class="line">display: block</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">12px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#495F6E</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#F2F3F4</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">"Arial"</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">3px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>連結樣式指定的順序必須為 link -&gt; visited -&gt; hover -&gt; active 。而 hover 和 active 會繼承 link 和 visited 的設定值，所以如果要變動的話，僅需更改想變動的屬性即可。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">a</span>:<span class="value">hover &#123;</span><br><span class="line">color: <span class="hexcolor">#FFFFFF</span></span></span>; <span class="comment">/* 變更文字顏色 */</span></span><br><span class="line"><span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#990000</span></span></span>; <span class="comment">/* 變更背景顏色 */</span></span><br><span class="line"><span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> underline</span></span>; <span class="comment">/* 變更文字樣式 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">a</span>:<span class="value">hover &#123;</span><br><span class="line">color: <span class="hexcolor">#FFFFFF</span></span></span>; <span class="comment">/* 變更文字顏色 */</span></span><br><span class="line"><span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#990000</span></span></span>; <span class="comment">/* 變更背景顏色 */</span></span><br><span class="line"><span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> underline</span></span>; <span class="comment">/* 變更文字樣式 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -159,7 +159,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -203,7 +203,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

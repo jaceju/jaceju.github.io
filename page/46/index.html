@@ -172,11 +172,11 @@
 <p><img src="/resources/smarty_book/install_001.gif" alt=""></p>
 <p>這是因為 PHP 在 5.1 以後有個時區的設定 (date.timezone) ，會預設為美國時區。所以當我們的程式在執行時，就會出現上面的錯誤。</p>
 <p>正確的解決方式是在 PHP.INI 中指定正確的時區  (<a href="http://www.php.net/manual/en/timezones.php" target="_blank" rel="external">參考</a>) ，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date.timezone = Asia/Taipei</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date.timezone = Asia/Taipei</span><br></pre></td></tr></table></figure>
 <p>也可以在 ch03 目錄下放置一個 .htaccess ，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value date.timezone Asia/Taipei</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php_value date.timezone Asia/Taipei</span><br></pre></td></tr></table></figure>
 <p>或是在建立 Smarty 物件前，直接用 <a href="http://www.php.net/manual/en/function.date-default-timezone-set.php" target="_blank" rel="external">date_default_timezone_set()</a> 在程式直接指定時區： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date_default_timezone_set(&#39;Asia/Taipei&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date_default_timezone_set(&#39;Asia/Taipei&#39;);</span><br></pre></td></tr></table></figure>
 <p>然後 giorno 又發現一個<a href="http://blog.roodo.com/jaceju/archives/2237311.html#comment-3266913" target="_blank" rel="external">問題</a>，雖然我不太瞭解他的意思，不過為什麼在他回復程式後，第二次又可以執行這點我倒是可以解釋一下。</p>
 <p>這是因為第一次正常執行後， Smarty 就會在 templates_c 裡建立一個供 testSmartyInstall.php 用的暫存檔，所以第二次執行時，只要 testSmartyInstall.tpl.htm 沒有任何更動，那麼 Smarty 就會使用該暫存檔來執行。</p>
 <p>註：相關的運作流程可以查看拙作的第 2-3 頁。 </p>
@@ -469,7 +469,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -513,7 +513,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

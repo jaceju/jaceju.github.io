@@ -7,7 +7,7 @@
   <meta name="author" content="Jace Ju">
   
   <meta name="description" content="之前提到 JavaScript 撰寫物件時的寫法：
-1&amp;#29289;&amp;#20214;&amp;#39006;&amp;#21029;&amp;#21517;&amp;#31281; = function([&amp;#21443;&amp;#25976;]) &amp;#123;&amp;#10;this.&amp;#23660;&amp;#24615;1 = null;&amp;#10;this.&amp;#23660;&amp;#24615;2 = new Array();&amp;#10;this.&amp;#26041;&amp;#27861;1 = function([&amp;#21443;&amp;#25976;]) &amp;#123;&amp;#10;// &amp;#26041;&amp;#27861;1&amp;#31243;&amp;#24335;&amp;#30908;&amp;#10;this.&amp;#23660;&amp;#24615;1 = &amp;#39;DEF&amp;#39;;&amp;#10;&amp;#125;&amp;#10;this.&amp;#26041;&amp;#27861;2 = function([&amp;#21443;&amp;#25976;]) &amp;#123;&amp;#10;// &amp;#26041;&amp;#27861;2&amp;#31243;&amp;#24335;&amp;#30908;&amp;#10;this.&amp;#23660;&amp;#24615;2 = new Array(4, 5, 6);&amp;#10;&amp;#125;&amp;#10;&amp;#125;
+&amp;#29289;&amp;#20214;&amp;#39006;&amp;#21029;&amp;#21517;&amp;#31281; = function([&amp;#21443;&amp;#25976;]) &amp;#123;&amp;#10;this.&amp;#23660;&amp;#24615;1 = null;&amp;#10;this.&amp;#23660;&amp;#24615;2 = new Array();&amp;#10;this.&amp;#26041;&amp;#27861;1 = function([&amp;#21443;&amp;#25976;]) &amp;#123;&amp;#10;// &amp;#26041;&amp;#27861;1&amp;#31243;&amp;#24335;&amp;#30908;&amp;#10;this.&amp;#23660;&amp;#24615;1 = &amp;#39;DEF&amp;#39;;&amp;#10;&amp;#125;&amp;#10;this.&amp;#26041;&amp;#27861;2 = function([&amp;#21443;&amp;#25976;]) &amp;#123;&amp;#10;// &amp;#26041;&amp;#27861;2&amp;#31243;&amp;#24335;&amp;#30908;&amp;#10;this.&amp;#23660;&amp;#24615;2 = new Array(4, 5, 6);&amp;#10;&amp;#125;&amp;#10;&amp;#125;
 這種方法在有物件實體時才會有作用，如果要像 Java 或 PHP 一樣呼叫靜態方法的話，就要這樣寫：">
   
   
@@ -63,14 +63,14 @@
     <div class="entry">
       
         <p>之前提到 JavaScript 撰寫物件時的寫法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#29289;&#20214;&#39006;&#21029;&#21517;&#31281; = function([&#21443;&#25976;]) &#123;&#10;this.&#23660;&#24615;1 = null;&#10;this.&#23660;&#24615;2 = new Array();&#10;this.&#26041;&#27861;1 = function([&#21443;&#25976;]) &#123;&#10;// &#26041;&#27861;1&#31243;&#24335;&#30908;&#10;this.&#23660;&#24615;1 = &#39;DEF&#39;;&#10;&#125;&#10;this.&#26041;&#27861;2 = function([&#21443;&#25976;]) &#123;&#10;// &#26041;&#27861;2&#31243;&#24335;&#30908;&#10;this.&#23660;&#24615;2 = new Array(4, 5, 6);&#10;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#29289;&#20214;&#39006;&#21029;&#21517;&#31281; = function([&#21443;&#25976;]) &#123;&#10;this.&#23660;&#24615;1 = null;&#10;this.&#23660;&#24615;2 = new Array();&#10;this.&#26041;&#27861;1 = function([&#21443;&#25976;]) &#123;&#10;// &#26041;&#27861;1&#31243;&#24335;&#30908;&#10;this.&#23660;&#24615;1 = &#39;DEF&#39;;&#10;&#125;&#10;this.&#26041;&#27861;2 = function([&#21443;&#25976;]) &#123;&#10;// &#26041;&#27861;2&#31243;&#24335;&#30908;&#10;this.&#23660;&#24615;2 = new Array(4, 5, 6);&#10;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這種方法在有物件實體時才會有作用，如果要像 Java 或 PHP 一樣呼叫靜態方法的話，就要這樣寫：</p>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#29289;&#20214;&#39006;&#21029;&#21517;&#31281; = function([&#21443;&#25976;]) &#123;&#10;&#125;&#10;// &#19968;&#23450;&#35201;&#22312;&#24314;&#27083;&#20989;&#24335;&#20043;&#24460;&#20877;&#23459;&#21578;&#65292;&#21542;&#21063;&#26371;&#26377;&#37679;&#35492;&#12290;&#10;&#29289;&#20214;&#39006;&#21029;&#21517;&#31281;.&#38748;&#24907;&#35722;&#25976; = null;&#10;&#29289;&#20214;&#39006;&#21029;&#21517;&#31281;.&#38748;&#24907;&#26041;&#27861; = function([&#21443;&#25976;]) &#123;&#10;// &#36889;&#26178;&#20505;&#19981;&#21487;&#20351;&#29992; this &#38364;&#37749;&#23383;&#10;&#29289;&#20214;&#39006;&#21029;&#21517;&#31281;.&#38748;&#24907;&#35722;&#25976;1 = &#39;DEF&#39;;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#29289;&#20214;&#39006;&#21029;&#21517;&#31281; = function([&#21443;&#25976;]) &#123;&#10;&#125;&#10;// &#19968;&#23450;&#35201;&#22312;&#24314;&#27083;&#20989;&#24335;&#20043;&#24460;&#20877;&#23459;&#21578;&#65292;&#21542;&#21063;&#26371;&#26377;&#37679;&#35492;&#12290;&#10;&#29289;&#20214;&#39006;&#21029;&#21517;&#31281;.&#38748;&#24907;&#35722;&#25976; = null;&#10;&#29289;&#20214;&#39006;&#21029;&#21517;&#31281;.&#38748;&#24907;&#26041;&#27861; = function([&#21443;&#25976;]) &#123;&#10;// &#36889;&#26178;&#20505;&#19981;&#21487;&#20351;&#29992; this &#38364;&#37749;&#23383;&#10;&#29289;&#20214;&#39006;&#21029;&#21517;&#31281;.&#38748;&#24907;&#35722;&#25976;1 = &#39;DEF&#39;;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>這樣我們可以利用它來建立一個 Singleton 類別  ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyTest = function() &#123;&#10;this.msg = null;&#10;this.echo = function() &#123;&#10;alert(this.msg);&#10;&#125;&#10;this.setMsg = function(msg) &#123;&#10;this.msg = msg;&#10;&#125;&#10;&#125;&#10;// &#36889;&#35041;&#26159;&#38364;&#37749;&#10;MyTest._instance = null;&#10;MyTest.getInstance = function() &#123;&#10;if (!MyTest._instance)&#10;&#123;&#10;MyTest._instance = new MyTest();&#10;this.msg = &#39;test!&#39;;&#10;&#125;&#10;return MyTest._instance;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MyTest = function() &#123;&#10;this.msg = null;&#10;this.echo = function() &#123;&#10;alert(this.msg);&#10;&#125;&#10;this.setMsg = function(msg) &#123;&#10;this.msg = msg;&#10;&#125;&#10;&#125;&#10;// &#36889;&#35041;&#26159;&#38364;&#37749;&#10;MyTest._instance = null;&#10;MyTest.getInstance = function() &#123;&#10;if (!MyTest._instance)&#10;&#123;&#10;MyTest._instance = new MyTest();&#10;this.msg = &#39;test!&#39;;&#10;&#125;&#10;return MyTest._instance;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>測試如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34; src=&#34;test.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;&#60;strong&#62;var test1 = MyTest.getInstance();&#60;/strong&#62;&#10;test1.echo(); // show &#39;null&#39;&#10;test1.setMsg(&#39;this is test1!&#39;);&#10;test1.echo(); // show &#39;this is test1!&#39;&#10;&#60;strong&#62;var test2 = MyTest.getInstance();&#60;/strong&#62;&#10;test2.echo(); // show &#39;this is test1!&#39;&#10;test2.setMsg(&#39;this is test2!&#39;);&#10;&#60;strong&#62;test1&#60;/strong&#62;.echo(); // show &#39;this is test2!&#39;&#10;//--&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34; src=&#34;test.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;&#60;strong&#62;var test1 = MyTest.getInstance();&#60;/strong&#62;&#10;test1.echo(); // show &#39;null&#39;&#10;test1.setMsg(&#39;this is test1!&#39;);&#10;test1.echo(); // show &#39;this is test1!&#39;&#10;&#60;strong&#62;var test2 = MyTest.getInstance();&#60;/strong&#62;&#10;test2.echo(); // show &#39;this is test1!&#39;&#10;test2.setMsg(&#39;this is test2!&#39;);&#10;&#60;strong&#62;test1&#60;/strong&#62;.echo(); // show &#39;this is test2!&#39;&#10;//--&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
 <p>可以看得出來， test1 和 test2 其實都是指向 MyTest._instance 。</p>
 <p>當然用 JavaScript 實作 Singleton 的實際意義不大 (建構式還是公開的) ，這裡我只是在強調 JavaScript 靜態方法及變數的寫法而已。</p>
 
@@ -164,7 +164,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -208,7 +208,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   

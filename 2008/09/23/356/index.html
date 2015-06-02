@@ -64,15 +64,15 @@
 <a id="more"></a>
 <h2 id="下載">下載</h2><p>網址： <a href="http://www.twbsd.org/cht/bug_tracker/index.php?page=download.htm" target="_blank" rel="external">http://www.twbsd.org/cht/bug_tracker/index.php?page=download.htm</a><br>在「按此下載」的連結上點一下，把 BugTracker-2.x.x.tar.gz 存放到網站根目錄就可以了。</p>
 <h2 id="安裝">安裝</h2><p>Bug Tracker 號稱安裝非常容易，但其實在 PHP5 的環境上，還是有一些要特別注意的地方。<br>解開剛剛的 BugTracker-2.x.x.tar.gz ，然後我們會得到一個 bug 目錄；所以到時候我們可以用 <a href="http://localhost/bug" target="_blank" rel="external">http://localhost/bug</a> 的網址來使用這套系統。<br>假設你的開發環境是 PHP5 ，那麼 short_open_tag 這個選項預設應該是 Off 。而 Bug Tracker 的程式碼大部份都是以 &lt;? 開頭，因此我們需要把 short_open_tag 設為 On 。<br>不過因為我個人不喜歡去更動系統預設值，所以我改用 .htaccess 來改變 short_open_tag 的設定。請將以下內容存為 .htaccess 後，存在 bug 資料夾下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_flag short_open_tag on</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php_flag short_open_tag on</span><br></pre></td></tr></table></figure>
 <p>接著我們要修改應用程式的設定，請用文字編輯器開始 bug/include/config.php ，找到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbtype&#39;] = &#34;postgres&#34;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbtype&#39;] = &#34;postgres&#34;;</span><br></pre></td></tr></table></figure>
 <p>將它註解掉 (前面加上 //) 。<br>然後取消以下程式碼開頭的註解：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbtype&#39;] = &#34;mysqlt&#34;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbtype&#39;] = &#34;mysqlt&#34;;</span><br></pre></td></tr></table></figure>
 <p>然後往下看到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbpwd&#39;] = &#34;&#34;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbpwd&#39;] = &#34;&#34;;</span><br></pre></td></tr></table></figure>
 <p>在設定值上寫上 MySQL 的 root 密碼，讓程式可以自動建立資料庫。<br>最後修改應用程式的路徑：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$GLOBALS[&#34;SYS_PROJECT_PATH&#34;] = &#39;/home/synosrc/bug&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#34;SYS_PROJECT_PATH&#34;] = &#39;/home/synosrc/bug&#39;;</span><br></pre></td></tr></table></figure>
 <p>將 /home/synosrc/bug 改為你安裝程式的路徑。<br>現在開啟以下連結，進行安裝動作：<br><a href="http://localhost/bug/setup/" target="_blank" rel="external">http://localhost/bug/setup/</a><br>基本上就是一直按 Next Step 而已，安裝程式會告訴你一切需要的資訊，並自動執行相關的動作。<br>安裝完後，請記得移除 bug/setup 這個資料夾。<br>這樣就完成安裝 Bug Tracker 囉~</p>
 <h2 id="設定語系">設定語系</h2><p>一開始 Bug Tracker 的登入畫面是正體中文：</p>
 <p><a href="/resources/bugtracker/login.gif"><img class="aligncenter" src="/resources/bugtracker/login.gif" alt="登入畫面" width="400"></a><br>但用 admin 登入後，我們會發現預設的語系還是英文的：</p>
@@ -170,7 +170,7 @@
   
     <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>45</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
   
@@ -214,7 +214,7 @@
   
     <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
   
-    <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
+    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
   
     <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
   
