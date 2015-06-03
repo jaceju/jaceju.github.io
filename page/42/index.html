@@ -49,6 +49,48 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2007-03-26T16:00:00.000Z"><a href="/2007/03/27/173/">2007-03-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/03/27/173/">我也來實作 PHP mix-in 的概念 - Part 3</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="說明">說明</h2><p>石頭成老大把他心目中的 mix-in <a href="http://blog.roodo.com/rocksaying/archives/2884871.html">目標</a>做出來了，他主要的實作有以下兩個重點：</p>
+<ul>
+<li>物件實體生成後彼此做 mix-in 是不相干的。</li>
+<li>類別方法在動態委派後要能遵守繼承原則，也就是說子承父、父不承子。</li>
+</ul>
+<p>另外他也提到要儲存方法是一件困難的事情，因為 PHP 有三種函式的呼叫方法：一般函數、類別靜態方法、實例方法。而我在 <a href="http://blog.roodo.com/jaceju/archives/2853761.html">Part 2</a> 裡的概念實作則是用 <a href="http://blog.roodo.com/jaceju/archives/409709.html">callback</a> 虛擬型態來儲存，不過<a href="http://blog.roodo.com/jaceju/archives/2853761.html" title="前一版"></a>卻忘了把一般函式給放進去。</p>
+<p>不過 Part 2 的實作已經實現了第一個目標，所以在這次 Part 3 的實作裡，我除了決定把一般函式也納入 mix-in 的實作裡，而且還要達成石頭成老大說的第二個目標。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2007/03/27/173/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2007-03-24T16:00:00.000Z"><a href="/2007/03/25/172/">2007-03-25</a></time>
       
       
@@ -618,42 +660,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-03-09T16:00:00.000Z"><a href="/2007/03/10/162/">2007-03-10</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/03/10/162/">Zend PHP5 認證自我測試</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在 <a href="http://blog.agoraproduction.com/index.php?/archives/23-Zend-PHP5-Certification-self-test.html">Zend PHP5 Certification self-test</a> 這篇文章中，作者通過了官方的 <a href="http://www.zend.com/store/education/certification/self-test.php">Self-Test</a>  8 道題目的測試，大家有興趣的話可以試試看。 </p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2007/03/10/162/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -682,6 +688,8 @@
     <li><a href="/tags/ASP/">ASP</a><small>8</small></li>
   
     <li><a href="/tags/AngularJS/">AngularJS</a><small>1</small></li>
+  
+    <li><a href="/tags/BDD/">BDD</a><small>1</small></li>
   
     <li><a href="/tags/Backbone-js/">Backbone.js</a><small>2</small></li>
   
@@ -717,6 +725,8 @@
   
     <li><a href="/tags/PHPConf-TW/">PHPConf.TW</a><small>1</small></li>
   
+    <li><a href="/tags/PhantomJS/">PhantomJS</a><small>1</small></li>
+  
     <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
   
     <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
@@ -747,7 +757,7 @@
   
     <li><a href="/tags/作品/">作品</a><small>13</small></li>
   
-    <li><a href="/tags/單元測試/">單元測試</a><small>4</small></li>
+    <li><a href="/tags/單元測試/">單元測試</a><small>1</small></li>
   
     <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
   
@@ -762,6 +772,8 @@
     <li><a href="/tags/未分類/">未分類</a><small>5</small></li>
   
     <li><a href="/tags/業界資訊/">業界資訊</a><small>5</small></li>
+  
+    <li><a href="/tags/測試/">測試</a><small>4</small></li>
   
     <li><a href="/tags/程式開發/">程式開發</a><small>14</small></li>
   
