@@ -3,7 +3,7 @@ layout: post
 title: "開發 Laravel 套件時的單元測試"
 date: 2013-12-12 22:51
 comments: true
-tags: [Laravel, "單元測試"]
+tags: [Laravel, "測試"]
 ---
 
 在官方手上的[有關開發 Laravel 4 套件的章節](http://laravel.com/docs/packages)，內容其實寫得滿詳盡了。只是它缺少了有關單元測試的說明，以下我將介紹一些自己的做法和經驗。
@@ -14,7 +14,9 @@ tags: [Laravel, "單元測試"]
 
 我們可以用以下指令來建立一個新的 Laravel 套件：
 
-    php artisan workbench --resource vendor/name
+```bash
+php artisan workbench --resource vendor/name
+```
 
 然後在專案目錄下的 `workbench/vendor/name` 路徑下找到我們的專案原始檔。
 
@@ -22,20 +24,22 @@ tags: [Laravel, "單元測試"]
 
 我們會看到目錄結構如下：
 
-    .
-    ├── composer.json
-    ├── phpunit.xml
-    ├── public
-    ├── src
-    │   ├── Vendor
-    │   │   └── Name
-    │   │       └── NameServiceProvider.php
-    │   ├── config
-    │   ├── controllers
-    │   ├── lang
-    │   ├── migrations
-    │   └── views
-    └── tests
+```
+.
+├── composer.json
+├── phpunit.xml
+├── public
+├── src
+│   ├── Vendor
+│   │   └── Name
+│   │       └── NameServiceProvider.php
+│   ├── config
+│   ├── controllers
+│   ├── lang
+│   ├── migrations
+│   └── views
+└── tests
+```
 
 接下來不特別說明的話，所有操作都是在上述的路徑裡。
 
@@ -65,9 +69,7 @@ tags: [Laravel, "單元測試"]
 
 這邊假設我們的 model 名稱為 `Ranger` ，它只有 `id` 和 `name` 兩個屬性。請在 `src/Vendor/Name` 這個路徑下建立一個 `Ranger.php` ，然後輸入以下內容：
 
-```
-<?php
-
+```php
 namespace Vendor\Name;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
@@ -104,7 +106,7 @@ Laravel 的 Model 預設會自行找出類別名稱與資料表名稱的對應�
 
 然後在 `composer.json` 的 `psr-0` 區段中加入：
 
-```
+```json
 "psr-0": {
     ...
     "Vendor\\NameTest": "tests/"
@@ -115,9 +117,7 @@ Laravel 的 Model 預設會自行找出類別名稱與資料表名稱的對應�
 
 接著在 `NameTest` 資料夾中再建立一個 PHP 檔案 `RangerTest.php` ，內容如下：
 
-```
-<?php
-
+```php
 namespace Vendor\NameTest;
 
 use Vendor\Name\Ranger;
@@ -141,8 +141,7 @@ class RangerTest extends \PHPUnit_Framework_TestCase
 
 接著在 `RangerTest` 類別中加入以下程式碼：
 
-```
-<?php
+```php
 ...
 
     protected static $db = null;
@@ -188,8 +187,7 @@ class RangerTest extends \PHPUnit_Framework_TestCase
 
 現在我們可以撰寫測試案例了，舉例如下：
 
-```
-<?php
+```php
 ...
 
     public function testFind()
@@ -216,9 +214,7 @@ class RangerTest extends \PHPUnit_Framework_TestCase
 
 再將先前的資料庫連結的部份複製到新的 `TestCase` 類別裡，成果如下：
 
-```
-<?php
-
+```php
 namespace Vendor\NameTest;
 
 use Illuminate\Database\Capsule\Manager as DB;
@@ -249,9 +245,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
 然後回到 `RangerTest` 類別，將連結資料庫的部份移除，並改為繼承 `TestCase` ：
 
-```
-<?php
-
+```php
 namespace Vendor\NameTest;
 
 use Illuminate\Database\Capsule\Manager as DB;
@@ -266,7 +260,7 @@ class RangerTest extends TestCase
 
 解決方法是在 `composer.json` 裡面告訴 composer 要去哪裡找這個類別檔案：
 
-```
+```json
     "classmap": [
         "tests/NameTest/TestCase.php"
     ],
@@ -282,19 +276,21 @@ class RangerTest extends TestCase
 
 首先要為 workbench 中 package 建立 migrations 資料夾：
 
-    mkdir workbench/vendor/name/src/migrations
+```bash
+mkdir workbench/vendor/name/src/migrations
+```
 
 然後我們要為 package 建立一個 migration ：
 
-    php artisan migrate:make create_rangers_table --bench=vendor/name
+```bash
+php artisan migrate:make create_rangers_table --bench=vendor/name
+```
 
 這會建立 `workbench/vendor/name/src/migrations/xxxx_xx_xx_xxxxxx_create_rangers_table.php` 這個檔案 (xx 會視建立時間而有所不同) ，其類別名稱為 `CreateRangersTable` 。
 
 在 `CreateRangersTable` 中，我們可以直接利用先前在 `Ranger` 類別中定義的 `$tableName` 與 `getBlueprint` 來完成 migration 的 `up` 及 `down` ：
 
-```
-<?php
-
+```php
 use Illuminate\Database\Migrations\Migration;
 use Vendor\Name\Ranger;
 
