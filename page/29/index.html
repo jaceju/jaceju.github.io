@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>第 29 页 | 網站製作學習誌</title>
+  <title>第 29 頁 | 網站製作學習誌</title>
   <meta name="author" content="Jace Ju">
   
   
@@ -43,6 +43,51 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-01-06T16:00:00.000Z"><a href="/2008/01/07/304/">2008-01-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2008/01/07/304/">dean 的 IE7 Library 釋出新版</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>完整文章連結：<a href="http://dean.edwards.name/weblog/2008/01/ie7-2/" target="_blank" rel="external">IE7.js version 2.0 (beta)</a> </p>
+<p>這次從 0.9 直接跳到 2.0 beta ，而且拆成了 IE7.js 和 IE8.js 兩個部份。</p>
+<p> IE7.js 把功能只精簡到微軟正牌 IE7 有實作的部份，其他加強的部份就移到 IE8.js 上了 (因為 <a href="http://blogs.msdn.com/ie/archive/2007/12/19/internet-explorer-8-and-acid2-a-milestone.aspx" target="_blank" rel="external">IE8 已經趕上 Web 標準</a>了) 。其他修正部份如下：</p>
+<ul>
+<li>The IE7 project is now <a href="http://code.google.com/p/ie7-js/" target="_blank" rel="external">hosted on googlecode</a> (I got fed up with <a href="https://sourceforge.net/" target="_blank" rel="external">SourceForge</a>).</li>
+<li>IE7 is no longer modular. Instead I’ve merged the scripts into two: IE7.js and IE8.js</li><li>IE7.js includes <em>only</em> fixes that are included in the real MSIE7 browser.</li>
+<li>All other enhancements are moved to IE8.js.</li>
+<li>IE7 is now much smaller (11KB gzipped).</li>
+<li>IE7 is now much faster (it uses the selector engine from <a href="http://dean.edwards.name/weblog/2007/03/yet-another/" target="_blank" rel="external">base2.DOM</a>)</li><li>There are no dependencies on other files (except <tt>blank.gif</tt>)</li>
+<li>You can <a href="http://ie7-js.googlecode.com/svn/version/" target="_blank" rel="external">hotlink</a> IE7/IE8.js directly from Google’s servers (usage instructions below)</li>
+<li>The <a href="http://dean.edwards.name/weblog/2005/06/base64-ie/" target="_blank" rel="external">fix for base64 encoded images</a> is no longer included</li>
+</ul>
+<p>看起來不錯喔，有興趣的朋友不妨試一下。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -1111,197 +1156,20 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-11-30T16:00:00.000Z"><a href="/2007/12/01/294/">2007-12-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/12/01/294/">[Web] 連結分享</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <a id="more"></a>
-<h2 id="PHP">PHP</h2><ul>
-<li><a href="http://tad.tnc.edu.tw/modules/tadbook2/open_book.php?book_sn=22" target="_blank" rel="external">台南社大PHP程式開發基礎班 part1</a> / <a href="http://tad.tnc.edu.tw/modules/tadbook2/open_book.php?book_sn=23" target="_blank" rel="external">part2</a></li>
-</ul>
-<p>感謝 tad 提供這麼豐富的講義！推薦 PHP 新手參考！</p>
-<ul>
-<li><a href="http://www.jansch.nl/2007/11/30/dont-use-addslashes-for-database-escapes/" target="_blank" rel="external">Don’t use addslashes for database escapes</a></li>
-</ul>
-<p>因為有些 RDBMS 不是用 \’ 來表示字串內的單引號，所以不建議使用 <a href="http://www.php.net/manual/en/function.addslashes.php" target="_blank" rel="external">addslashes</a> ；這時候像 PDO 這種資料庫抽象層的類別庫就派得上用場了。</p>
-<ul>
-<li><a href="http://www.karlkatzke.com/php-symfony-vs-zend/" target="_blank" rel="external">PHP: Symfony vs. Zend</a></li>
-</ul>
-<p>我是覺得放在一起比好像不太對…因為 ZF 有很多東西本來就不打算做，因為我猜 Zend 其實是很有私心地想把這些功能放在他們的 ZDE 裡賣錢 (XD) 。</p>
-<ul>
-<li><a href="http://plog.longwin.com.tw/programming/2007/11/30/validate_email_use_dns_mx_2007" target="_blank" rel="external">PHP 驗證 Email -檢查 DNS 的 MX 是否有通</a></li>
-</ul>
-<p>宗董的方法很不錯，只差不能驗證是否有該帳號 (不過有些 ISP 不會告訴你，而是一律收下) ；之前有看過 hoyo 寫過相關的文章，也可以參考看看： <a href="http://www.hoyo.idv.tw/hoyoweb/document/view.php?sid=236&amp;author=hoyo&amp;status=view" target="_blank" rel="external">Socket 應用之『E-mail 正確性查詢』：對付“威而剛”留言板廣告</a> / <a href="http://phorum.study-area.org/index.php/topic,44602.0.html" target="_blank" rel="external">討論</a>。</p>
-<ul>
-<li><a href="http://blog.php-security.org/archives/94-Suhosin-0.9.21-XSS-Protection.html" target="_blank" rel="external">Suhosin 0.9.21 - XSS Protection</a></li>
-</ul>
-<p>在 Server 端加入此套件，可以防止部份的 XSS 攻擊。</p>
-<ul>
-<li><a href="http://paul-m-jones.com/blog/?p=270" target="_blank" rel="external">What Does This Say About Unit-Testing in PHP Land?</a></li>
-</ul>
-<p>搞不懂作者的意思？比較 Unit Testing 套件的數量有意義嗎？我覺得重點是開發者有沒有認真去測試自己的產品才比較重要吧？</p>
-<ul>
-<li><a href="http://www.phpbuilder.com/columns/rajeev_rakesh_20071125.php3" target="_blank" rel="external">PHP with Apache on Windows? Piece of Cake!</a></li>
-</ul>
-<p>超簡單的安裝步驟…建議認真的新手還是看一下<a href="http://blog.roodo.com/jaceju/archives/4225735.html" target="_blank" rel="external">我寫的</a>好了 (哇~~真是厚臉皮) 。 </p>
-<h2 id="Zend_Framework">Zend Framework</h2><ul>
-<li><a href="http://blog.felho.hu/extending-zend_acl-to-support-custom-roles-and-resources.html" target="_blank" rel="external">Extending Zend_Acl to support custom roles and resources</a></li>
-</ul>
-<p>這篇有談到 Zend_Acl 的應用方式，看來我得花點時間好好把 Zend_Acl 搞熟了。 </p>
-<h2 id="JavaScript">JavaScript</h2><ul>
-<li><a href="http://blog.roodo.com/chhuang/archives/4559031.html" target="_blank" rel="external">dhtml position</a></li>
-</ul>
-<p>很棒的一張解說圖，有在開發 DHTML 的朋友都應該參考看看。適用於 IE ，其他瀏覽器要再對照看看有沒有不支援或是對應的屬性。</p>
-<ul>
-<li><a href="http://www.mikecat.net//blogview.asp?logID=1744" target="_blank" rel="external">JSON简介</a></li>
-</ul>
-<p>還滿完整的 JSON 介紹。</p>
-<ul>
-<li><a href="http://www.mikecat.net//blogview.asp?logID=1737" target="_blank" rel="external">IE和Firefox的js兼容性整理</a></li>
-</ul>
-<p>也是很棒的參考文章。</p>
-<ul>
-<li><a href="http://www.hrcerqueira.com/semi-transparent-html-elements-without-affecting-the-content/" target="_blank" rel="external">Semi transparent HTML elements without affecting the content</a></li>
-</ul>
-<p>一般使用 CSS 對圖層設定半透明效果後，會使得圖層上的內容也跟著變成半透明；本文採用 JavaScript 來解決這樣的問題，原理是再複製一個相同的無透明圖層，然後去除掉它的背景，最後再疊回原來的圖層上。</p>
-<ul>
-<li><a href="http://ha.ckers.org/blog/20071130/blocking-alert/" target="_blank" rel="external">Blocking Alert</a></li>
-</ul>
-<p>想辦法避過 alert 被阻擋時的技巧：使用 function pointer 。 </p>
-<ul>
-<li><a href="http://www.jnathanson.com/blog/client/jquery/heatcolor/index.cfm" target="_blank" rel="external">HeatColor, a jQuery plugin</a></li>
-</ul>
-<p>會依照元素值產生漸層色的 jQuery Plugin 。 </p>
-<h2 id="CSS">CSS</h2><ul>
-<li><a href="http://www.cssplay.co.uk/menus/pro_horizontal" target="_blank" rel="external">Professional horizontal series [17 menus to date]</a></li>
-</ul>
-<p>17 個非常漂亮的下拉選單，有提供原始碼下載。</p>
-<ul>
-<li><a href="http://css-tricks.com/links-of-interest-10/" target="_blank" rel="external">Links of Interest</a></li>
-</ul>
-<p>10 個 CSS 文章連結的整理。</p>
-<ul>
-<li><a href="http://www.search-this.com/2007/11/26/css-a-recipe-for-success/" target="_blank" rel="external">CSS - A Recipe for Success</a></li>
-</ul>
-<p>用 CSS 做出餐廳菜單的樣式效果。</p>
-<ul>
-<li><a href="http://24ways.org/2007/supersleight-transparent-png-in-ie6" target="_blank" rel="external">Transparent PNGs in Internet Explorer 6</a></li>
-</ul>
-<p>只要是有經驗的開發者，都知道 IE6 以前預設是不支援 Alpha 透明度的 PNG 格式圖檔，而必須要使用 IE 內建的 filter 來處理。但是這個 filter 如果作用在背景圖片時，卻會帶來一些副作用。因此作者提供了一個 <a href="http://24ways.org/code/supersleight-transparent-png-in-ie6/supersleight.zip" target="_blank" rel="external">SuperSleight</a> 套件，來協助我們處理這些問題。 </p>
-<h2 id="Web">Web</h2><ul>
-<li><a href="http://www.sitepoint.com/blogs/2007/11/30/internet-explorer-doesnt-just-suck-it-also-blows/" target="_blank" rel="external">Internet Explorer doesn’t just suck, it also blows!</a></li>
-</ul>
-<p>IE 真的是我們這些 Web 開發者的惡夢…就不能來點正常的嗎？</p>
-<ul>
-<li><p><a href="http://css-tricks.com/more-information-regarding-html-emails/" target="_blank" rel="external">More Information Regarding HTML Emails</a></p>
-</li>
-</ul>
-<p>前陣子提過寄送 HTML Email 所要注意的樣式問題，這篇幫我們做了一些整理。</p>
-<ul>
-<li><a href="http://css-tricks.com/using-css-in-html-emails-the-real-story/" target="_blank" rel="external">Using CSS in HTML emails</a></li>
-<li><a href="http://www.thinkvitamin.com/features/design/ensuring-your-html-emails-look-great-and-get-delivered" target="_blank" rel="external">Ensuring your HTML emails look great and get delivered</a></li>
-<li><a href="http://www.email-standards.org/" target="_blank" rel="external">Email Standards Project</a></li>
-<li><a href="http://shapeshed.com/journal/web_standards_in_email_clients/" target="_blank" rel="external">Web Standards in Email Clients</a></li>
-<li><a href="http://www.campaignmonitor.com/blog/archives/2007/04/a_guide_to_css_support_in_emai_2.html" target="_blank" rel="external">A Guide to CSS Support in Email</a></li>
-</ul>
-<ul>
-<li><a href="http://www.wakeuplater.com/website-tips/4-design-elements-you-hate-but-they-work.aspx" target="_blank" rel="external">4 Design Elements You Hate, But…They Work</a></li>
-</ul>
-<p>4 個被認為不好，但是確實有用的 Web 設計。</p>
-<ul>
-<li><a href="http://www.neo.com.tw/archives/001119.html" target="_blank" rel="external">Yahoo! 奇摩信箱 - 網路上的”大窄門”</a></li>
-</ul>
-<p>我也深受其害…真不知道 Yahoo! 是搞這個服務來做什麼用的？ </p>
-<h2 id="Database">Database</h2><ul>
-<li><a href="http://www.littlehart.net/atthekeyboard/2007/11/30/more-xml-db-fun/" target="_blank" rel="external">More XML-DB Fun!</a></li>
-</ul>
-<p>看起來很有趣的技術。</p>
-<ul>
-<li><a href="http://searchsqlserver.techtarget.com/tip/0,289483,sid87_gci1284087,00.html?track=sy41&amp;asrc=RSS_RSS-3_41" target="_blank" rel="external">Tricks to increase SQL Server query performance</a></li>
-</ul>
-<p>有用 MS SQL Server 的朋友不妨參考看看。 </p>
-<h2 id="Programming">Programming</h2><ul>
-<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/72c659eecc59acf9b2fb95ed.html" target="_blank" rel="external">NullObject的感悟</a></li>
-</ul>
-<p>上次提到 return null 時，我談到 Null Object 模式，它是重構裡一個還滿有用的手法。本文說明了 Null Object 的使用時機及技巧。</p>
-<ul>
-<li><a href="http://zvikico.typepad.com/problog/2007/11/five-ways-for-t.html" target="_blank" rel="external">Five ways for tracing Java execution</a></li>
-</ul>
-<p>雖然沒有用 Java ，不過這篇裡的觀念也可以參考看看。</p>
-<ul>
-<li><a href="http://crazylion.wordpress.com/2007/11/30/metacoding/" target="_blank" rel="external">metacoding</a></li>
-</ul>
-<p>直接引述 CrazyLion 的說明：「MetaCoding可以讓你用網頁寫程式專案，還可幫你編譯，之後再讓你下載編譯好的程式，神吧」。</p>
-<ul>
-<li><a href="http://www.javaworld.com.tw/roller/page/qing?entry=%E8%BB%9F%E9%AB%94%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88%E7%9A%84%E5%88%86%E5%B1%A4%E6%9E%B6%E6%A7%8B" target="_blank" rel="external">軟體系統設計的分層架構</a></li>
-</ul>
-<p>很重要的觀念。</p>
-<ul>
-<li><a href="http://www.javaworld.com.tw/roller/page/qing?entry=%E5%88%A9%E7%94%A8fa%C3%A7ade%E6%A8%A1%E5%BC%8F%E4%BE%86%E5%8A%83%E5%88%86%E5%87%BA%E5%AD%90%E7%B3%BB%E7%B5%B1" target="_blank" rel="external">利用Façade模式來劃分出子系統</a></li>
-</ul>
-<p>介紹 Facade 模式的應用。</p>
-<ul>
-<li><a href="http://techblog.tilllate.com/2007/11/30/caching-of-dynamic-data-sets/" target="_blank" rel="external">Caching of Dynamic Data Sets</a></li>
-</ul>
-<p>介紹 Cache 的一些觀念： Two-Tiered Caching 、 Incremental Caching 及 Cache Versioning 。 </p>
-<ul>
-<li><a href="http://blog.natural20software.com/article/agiles-dark-side" target="_blank" rel="external">Agile’s Dark Side</a></li>
-</ul>
-<p>敏捷開發的黑暗面…</p>
-<ul>
-<li><a href="http://saloon.javaranch.com/cgi-bin/ubb/ultimatebb.cgi?ubb=get_topic&amp;f=49&amp;t=000747" target="_blank" rel="external">Implementation Patterns by Kent Beck</a></li>
-</ul>
-<p>哇！ Kent 老大的新書耶！而且是模式實作！<a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=0321413091&amp;sid=34104" target="_blank" rel="external">原文書在天瓏開始賣了</a>，不曉得台灣有沒有出版社要翻譯？這個一定大賣。</p>
-<h2 id="Software">Software</h2><ul>
-<li><a href="http://briian.com/?p=4618" target="_blank" rel="external">如何用 FileZilla Server 架FTP站？</a></li>
-</ul>
-<p>簡單而且實用。 </p>
-<h2 id="Other">Other</h2><ul>
-<li><a href="http://allgraphicdesign.com/graphicsblog/2007/11/28/120-self-promotion-ideas-for-graphic-designers-freelancers-free-or-almost-free/" target="_blank" rel="external">120 Self Promotion Ideas for Graphic Designers &amp; Freelancers (Free or Almost Free)</a></li>
-</ul>
-<p>適合視覺工作者的一堆自我推銷的 Idea …  </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/page/28/" class="alignleft prev">上一页</a>
+    <a href="/page/28/" class="alignleft prev">上一頁</a>
   
   
-    <a href="/page/30/" class="alignright next">下一页</a>
+    <a href="/page/30/" class="alignright next">下一頁</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="search" name="q" results="0" placeholder="搜尋">
     <input type="hidden" name="q" value="site:jaceju.net">
   </form>
 </div>
@@ -1310,7 +1178,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">标签</h3>
+  <h3 class="title">標籤</h3>
   <ul class="entry">
   
     <li><a href="/tags/ASP/">ASP</a><small>8</small></li>
@@ -1336,6 +1204,8 @@
     <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
   
     <li><a href="/tags/Laravel/">Laravel</a><small>1</small></li>
+  
+    <li><a href="/tags/Laravel-PHP/">Laravel, PHP</a><small>1</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>5</small></li>
   
