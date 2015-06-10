@@ -1,65 +1,144 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="utf-8">
-  
-  <title>Smarty 2 整合到 Zend Framework 1.10 的重點整理 | 網站製作學習誌</title>
-  <meta name="author" content="Jace Ju">
-  
-  <meta name="description" content="因為我個人偏好使用 Smarty ，而 1.8 版以後的 Zend Framework 的專案架構又有相當大的調整，因此本文將介紹 Smarty 如何整合到新架構的 Zend Framework 上。
-不過因為在 Smarty 3 目前還是 beta 版的狀況下，包含了太多未知數，所以這裡我還是選用 Smarty 2 來做為整合的對象。">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="Smarty 2 整合到 Zend Framework 1.10 的重點整理"/>
-  <meta property="og:site_name" content="網站製作學習誌"/>
-
-  
-    <meta property="og:image" content="http://i.imgur.com/LmHuRXl.jpg"/>
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+
+
+  <meta name="keywords" content="Smarty,Zend Framework," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    analytics: {
+      google: ''
+    },
+    sidebar: 'post'
+  };
+</script>
+
+
+
+
+  <title> Smarty 2 整合到 Zend Framework 1.10 的重點整理 // 網站製作學習誌 </title>
 </head>
 
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">網站製作學習誌</a></h1>
-  <h2><a href="/">記錄在開發網站時所學的一切</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">網站製作學習誌</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
     
-      <li><a href="/">Home</a></li>
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          首頁
+        </a>
+      </li>
     
-      <li><a href="/archives">Archives</a></li>
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          歸檔
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          標籤
+        </a>
+      </li>
     
   </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2010-03-30T16:00:00.000Z"><a href="/2010/03/31/1083/">2010-03-31</a></time>
-      
-      
-  
-    <h1 class="title">Smarty 2 整合到 Zend Framework 1.10 的重點整理</h1>
-  
 
-    </header>
-    <div class="entry">
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              Smarty 2 整合到 Zend Framework 1.10 的重點整理
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2010-03-31
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
       
         <p>因為我個人偏好使用 Smarty ，而 1.8 版以後的 Zend Framework 的專案架構又有相當大的調整，因此本文將介紹 Smarty 如何整合到新架構的 Zend Framework 上。</p>
 <p>不過因為在 Smarty 3 目前還是 beta 版的狀況下，包含了太多未知數，所以這裡我還是選用 Smarty 2 來做為整合的對象。</p>
@@ -121,212 +200,353 @@
 
       
     </div>
-    <footer>
-      
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/Smarty/">Smarty</a>, <a href="/tags/Zend-Framework/">Zend Framework</a>
-  </div>
 
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Smarty/"> #Smarty </a>
+          
+            <a href="/tags/Zend-Framework/"> #Zend Framework </a>
+          
+        </div>
+      
 
       
-      <div class="clearfix"></div>
-    </footer>
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2010/04/01/1087/">為什麼台灣的工程師 / 設計師常常加班？</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2010/03/26/1077/">ZFDebug - 幫你診斷 Zend Framework 專案</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
   </div>
-</article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
 
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
+    
+      <div class="comments" id="comments">
+        
+      </div>
+    
+  </div>
 
-<div class="fb-comments" data-href="http://jaceju.net/2010/03/31/1083/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+
+        </div>
+
+        
+      </div>
+
+
       
   
-</section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜尋">
-    <input type="hidden" name="q" value="site:jaceju.net">
-  </form>
-</div>
-
-  
-
-  
-<div class="widget tag">
-  <h3 class="title">標籤</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/ASP/">ASP</a><small>8</small></li>
-  
-    <li><a href="/tags/AngularJS/">AngularJS</a><small>1</small></li>
-  
-    <li><a href="/tags/BDD/">BDD</a><small>1</small></li>
-  
-    <li><a href="/tags/Backbone-js/">Backbone.js</a><small>2</small></li>
-  
-    <li><a href="/tags/CSS/">CSS</a><small>22</small></li>
-  
-    <li><a href="/tags/CoffeeScript/">CoffeeScript</a><small>1</small></li>
-  
-    <li><a href="/tags/Compass/">Compass</a><small>1</small></li>
-  
-    <li><a href="/tags/Grunt/">Grunt</a><small>1</small></li>
-  
-    <li><a href="/tags/IE6/">IE6</a><small>1</small></li>
-  
-    <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
-  
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
-  
-    <li><a href="/tags/Laravel/">Laravel</a><small>2</small></li>
-  
-    <li><a href="/tags/Linux/">Linux</a><small>5</small></li>
-  
-    <li><a href="/tags/Mobile-開發/">Mobile 開發</a><small>1</small></li>
-  
-    <li><a href="/tags/MongoDB/">MongoDB</a><small>1</small></li>
-  
-    <li><a href="/tags/MySQL/">MySQL</a><small>2</small></li>
-  
-    <li><a href="/tags/NetBeans/">NetBeans</a><small>1</small></li>
-  
-    <li><a href="/tags/Octopress/">Octopress</a><small>1</small></li>
-  
-    <li><a href="/tags/PHP/">PHP</a><small>113</small></li>
-  
-    <li><a href="/tags/PHPConf-TW/">PHPConf.TW</a><small>1</small></li>
-  
-    <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
-  
-    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
-  
-    <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
-  
-    <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
-  
-    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
-  
-    <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
-  
-    <li><a href="/tags/Web-開發/">Web 開發</a><small>25</small></li>
-  
-    <li><a href="/tags/WebConf/">WebConf</a><small>1</small></li>
-  
-    <li><a href="/tags/WebKit/">WebKit</a><small>1</small></li>
-  
-    <li><a href="/tags/Windows/">Windows</a><small>13</small></li>
-  
-    <li><a href="/tags/Yeoman/">Yeoman</a><small>1</small></li>
-  
-    <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
-  
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
-    <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
-  
-    <li><a href="/tags/作品/">作品</a><small>13</small></li>
-  
-    <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
-  
-    <li><a href="/tags/好書推薦/">好書推薦</a><small>14</small></li>
-  
-    <li><a href="/tags/好站推薦/">好站推薦</a><small>11</small></li>
-  
-    <li><a href="/tags/心得感想/">心得感想</a><small>34</small></li>
-  
-    <li><a href="/tags/持續整合/">持續整合</a><small>2</small></li>
-  
-    <li><a href="/tags/未分類/">未分類</a><small>5</small></li>
-  
-    <li><a href="/tags/業界資訊/">業界資訊</a><small>5</small></li>
-  
-    <li><a href="/tags/測試/">測試</a><small>5</small></li>
-  
-    <li><a href="/tags/程式開發/">程式開發</a><small>14</small></li>
-  
-    <li><a href="/tags/網路趣味/">網路趣味</a><small>3</small></li>
-  
-    <li><a href="/tags/設計模式/">設計模式</a><small>7</small></li>
-  
-    <li><a href="/tags/資料庫/">資料庫</a><small>5</small></li>
-  
-    <li><a href="/tags/連結分享/">連結分享</a><small>183</small></li>
-  
-    <li><a href="/tags/開發工具/">開發工具</a><small>8</small></li>
-  
-    <li><a href="/tags/電腦知識/">電腦知識</a><small>7</small></li>
-  
-  </ul>
-</div>
-
-</aside>
-    <div class="clearfix"></div>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" />
+          <p class="site-author-name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element"></p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">579</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立專案"><span class="nav-number">1.</span> <span class="nav-text">建立專案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#產生_ZF_專案"><span class="nav-number">1.1.</span> <span class="nav-text">產生 ZF 專案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入_Smarty_套件"><span class="nav-number">1.2.</span> <span class="nav-text">加入 Smarty 套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入_My_資料夾"><span class="nav-number">1.3.</span> <span class="nav-text">加入 My 資料夾</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合_Smarty"><span class="nav-number">2.</span> <span class="nav-text">整合 Smarty</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Adapter_模式"><span class="nav-number">2.1.</span> <span class="nav-text">Adapter 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#處理_template_dir_及_compile_dir_問題"><span class="nav-number">2.2.</span> <span class="nav-text">處理 template_dir 及 compile_dir 問題</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改寫_Bootstrap"><span class="nav-number">3.</span> <span class="nav-text">改寫 Bootstrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改寫_Template"><span class="nav-number">4.</span> <span class="nav-text">改寫 Template</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">5.</span> <span class="nav-text">心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考文章"><span class="nav-number">6.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
   
-  &copy; 2015 Jace Ju
-  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jace Ju</span>
 </div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
 
 
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
 </script>
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
 
-  ga('create', 'UA-450710-8', 'auto');
-  ga('send', 'pageview');
-</script>
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+
 </body>
 </html>

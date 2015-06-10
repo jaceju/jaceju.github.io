@@ -1,65 +1,144 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="utf-8">
-  
-  <title>Eclipse 上的 PHP 開發工具 - 安裝篇 | 網站製作學習誌</title>
-  <meta name="author" content="Jace Ju">
-  
-  <meta name="description" content="之前提過 PHP Development Studio ，它是基於 Ecplise + PHPEclipse 的一套 PHP 開發工具。然而後來 EClipse 官方自己也推了一個 PHP 開發工具計畫，它就叫 PDT - PHP Development Tools 。
-我試用的結果它在 Eclipse 的支援程度比 PHPEclipse 好很多 (廢話，有官方支援當然好) ，而且比 PHPEclipse 多了很多功能 (像預先載入類別庫或更為完整的程式碼提示等) 。如果有需要免費的 PHP 開發環境的話， PDT 是個不錯的選擇。剛好 Neo 大對它也有興趣，那我就野人獻曝，簡單介紹一下它的安裝方式。">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="Eclipse 上的 PHP 開發工具 - 安裝篇"/>
-  <meta property="og:site_name" content="網站製作學習誌"/>
-
-  
-    <meta property="og:image" content="http://i.imgur.com/LmHuRXl.jpg"/>
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+
+
+  <meta name="keywords" content="開發工具," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    analytics: {
+      google: ''
+    },
+    sidebar: 'post'
+  };
+</script>
+
+
+
+
+  <title> Eclipse 上的 PHP 開發工具 - 安裝篇 // 網站製作學習誌 </title>
 </head>
 
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">網站製作學習誌</a></h1>
-  <h2><a href="/">記錄在開發網站時所學的一切</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">網站製作學習誌</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
     
-      <li><a href="/">Home</a></li>
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          首頁
+        </a>
+      </li>
     
-      <li><a href="/archives">Archives</a></li>
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          歸檔
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          標籤
+        </a>
+      </li>
     
   </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-03-19T16:00:00.000Z"><a href="/2007/03/20/170/">2007-03-20</a></time>
-      
-      
-  
-    <h1 class="title">Eclipse 上的 PHP 開發工具 - 安裝篇</h1>
-  
 
-    </header>
-    <div class="entry">
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              Eclipse 上的 PHP 開發工具 - 安裝篇
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-03-20
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
       
         <p>之前<a href="http://blog.roodo.com/jaceju/archives/2176654.html" target="_blank" rel="external">提過 PHP Development Studio</a> ，它是基於 <a href="http://www.eclipse.org/" target="_blank" rel="external">Ecplise</a> + <a href="http://www.phpeclipse.de" target="_blank" rel="external">PHPEclipse</a> 的一套 PHP 開發工具。然而後來 EClipse 官方自己也推了一個 PHP 開發工具計畫，它就叫 <a href="http://www.eclipse.org/pdt/" target="_blank" rel="external">PDT</a> - PHP Development Tools 。</p>
 <p>我試用的結果它在 Eclipse 的支援程度比 PHPEclipse 好很多 (廢話，有官方支援當然好) ，而且比 PHPEclipse 多了很多功能 (像預先載入類別庫或更為完整的程式碼提示等) 。如果有需要免費的 PHP 開發環境的話， PDT 是個不錯的選擇。<br>剛好 <a href="http://www.neo.com.tw" target="_blank" rel="external">Neo</a> 大對它也有興趣，那我就野人獻曝，簡單介紹一下它的安裝方式。</p>
@@ -84,212 +163,367 @@
 </h3>
       
     </div>
-    <footer>
-      
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/開發工具/">開發工具</a>
-  </div>
 
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/開發工具/"> #開發工具 </a>
+          
+        </div>
+      
 
       
-      <div class="clearfix"></div>
-    </footer>
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2007/03/20/169/">好書推薦</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2007/03/19/168/">[轉載] Readable regular expressions</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
   </div>
-</article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
 
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
+    
+      <div class="comments" id="comments">
+        
+      </div>
+    
+  </div>
 
-<div class="fb-comments" data-href="http://jaceju.net/2007/03/20/170/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+
+        </div>
+
+        
+      </div>
+
+
       
   
-</section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜尋">
-    <input type="hidden" name="q" value="site:jaceju.net">
-  </form>
-</div>
-
-  
-
-  
-<div class="widget tag">
-  <h3 class="title">標籤</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/ASP/">ASP</a><small>8</small></li>
-  
-    <li><a href="/tags/AngularJS/">AngularJS</a><small>1</small></li>
-  
-    <li><a href="/tags/BDD/">BDD</a><small>1</small></li>
-  
-    <li><a href="/tags/Backbone-js/">Backbone.js</a><small>2</small></li>
-  
-    <li><a href="/tags/CSS/">CSS</a><small>22</small></li>
-  
-    <li><a href="/tags/CoffeeScript/">CoffeeScript</a><small>1</small></li>
-  
-    <li><a href="/tags/Compass/">Compass</a><small>1</small></li>
-  
-    <li><a href="/tags/Grunt/">Grunt</a><small>1</small></li>
-  
-    <li><a href="/tags/IE6/">IE6</a><small>1</small></li>
-  
-    <li><a href="/tags/JSDC/">JSDC</a><small>1</small></li>
-  
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>46</small></li>
-  
-    <li><a href="/tags/Laravel/">Laravel</a><small>2</small></li>
-  
-    <li><a href="/tags/Linux/">Linux</a><small>5</small></li>
-  
-    <li><a href="/tags/Mobile-開發/">Mobile 開發</a><small>1</small></li>
-  
-    <li><a href="/tags/MongoDB/">MongoDB</a><small>1</small></li>
-  
-    <li><a href="/tags/MySQL/">MySQL</a><small>2</small></li>
-  
-    <li><a href="/tags/NetBeans/">NetBeans</a><small>1</small></li>
-  
-    <li><a href="/tags/Octopress/">Octopress</a><small>1</small></li>
-  
-    <li><a href="/tags/PHP/">PHP</a><small>113</small></li>
-  
-    <li><a href="/tags/PHPConf-TW/">PHPConf.TW</a><small>1</small></li>
-  
-    <li><a href="/tags/RequireJS/">RequireJS</a><small>2</small></li>
-  
-    <li><a href="/tags/Selenium/">Selenium</a><small>2</small></li>
-  
-    <li><a href="/tags/Smarty/">Smarty</a><small>16</small></li>
-  
-    <li><a href="/tags/Software-Development/">Software Development</a><small>1</small></li>
-  
-    <li><a href="/tags/TDD/">TDD</a><small>3</small></li>
-  
-    <li><a href="/tags/Titanium/">Titanium</a><small>1</small></li>
-  
-    <li><a href="/tags/Web-開發/">Web 開發</a><small>25</small></li>
-  
-    <li><a href="/tags/WebConf/">WebConf</a><small>1</small></li>
-  
-    <li><a href="/tags/WebKit/">WebKit</a><small>1</small></li>
-  
-    <li><a href="/tags/Windows/">Windows</a><small>13</small></li>
-  
-    <li><a href="/tags/Yeoman/">Yeoman</a><small>1</small></li>
-  
-    <li><a href="/tags/Zend-Framework/">Zend Framework</a><small>57</small></li>
-  
-    <li><a href="/tags/jQuery/">jQuery</a><small>2</small></li>
-  
-    <li><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a><small>18</small></li>
-  
-    <li><a href="/tags/作品/">作品</a><small>13</small></li>
-  
-    <li><a href="/tags/好文推薦/">好文推薦</a><small>2</small></li>
-  
-    <li><a href="/tags/好書推薦/">好書推薦</a><small>14</small></li>
-  
-    <li><a href="/tags/好站推薦/">好站推薦</a><small>11</small></li>
-  
-    <li><a href="/tags/心得感想/">心得感想</a><small>34</small></li>
-  
-    <li><a href="/tags/持續整合/">持續整合</a><small>2</small></li>
-  
-    <li><a href="/tags/未分類/">未分類</a><small>5</small></li>
-  
-    <li><a href="/tags/業界資訊/">業界資訊</a><small>5</small></li>
-  
-    <li><a href="/tags/測試/">測試</a><small>5</small></li>
-  
-    <li><a href="/tags/程式開發/">程式開發</a><small>14</small></li>
-  
-    <li><a href="/tags/網路趣味/">網路趣味</a><small>3</small></li>
-  
-    <li><a href="/tags/設計模式/">設計模式</a><small>7</small></li>
-  
-    <li><a href="/tags/資料庫/">資料庫</a><small>5</small></li>
-  
-    <li><a href="/tags/連結分享/">連結分享</a><small>183</small></li>
-  
-    <li><a href="/tags/開發工具/">開發工具</a><small>8</small></li>
-  
-    <li><a href="/tags/電腦知識/">電腦知識</a><small>7</small></li>
-  
-  </ul>
-</div>
-
-</aside>
-    <div class="clearfix"></div>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" />
+          <p class="site-author-name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element"></p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">579</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下載"><span class="nav-number">1.</span> <span class="nav-text">下載</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Eclipse_Platform"><span class="nav-number">1.1.</span> <span class="nav-text">Eclipse Platform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">PDT
+基本上 PDT 不用下載，但是如果你會用到 Xdebug 的話，就得下載 0.7 RC2 這個版本；這是因為  Xdebug for PDT 目前只支援這個版本，它在其他版本上會使得 Eclipse 出現錯誤。
+PDT 0.7 RC2 的下載網址為 http://download.eclipse.org/tools/pdt/downloads/?release=S20070130-RC2 (檔名為 org.eclipse.php_feature-S20070130_RC2.zip ) 。 
+Xdebug for PDT這是給 PDT 用的 Xdebug 外掛，下載網址為 https://bugs.eclipse.org/bugs/show_bug.cgi?id=169408 。這裡我下載的是 Prebuilt Binary of XDebug With Path Mapper V0.1.4 (PDT RC2) [.ZIP] (檔名為 org.eclipse.php.xdebug_0.1.4.zip ) 。注意這個套件是非必要的，就算不安裝也不會影響 PDT 的執行。
+註：另外也建議再下載 Prebuilt Binary which provides XDebug Support for PHP IDE (檔名 XDebugBinContrib_0.1.1.zip ) ，裡面有個 PDF 檔案會教你如何使用這個套件。 
+安裝這裡我把安裝步驟分成主要平台和套件兩個部份來說明。
+Eclipse 主要平台主要平台的安裝步驟如下： 先把 eclipse-SDK-3.2.2-win32.zip 解開，這裡我將它解開到 D:\Programes\Eclipse 。 Eclipse 在 Win32 平台的執行檔是 eclipse.exe ，我們可以在桌面上為它建立一個捷徑。這樣就完成主要平台的安裝了。
+註：這裡我不會安裝中文語言套件。
+安裝必要套件在安裝 PDT 前，有一些套件是必須安裝的：  GEF - Graphical Editing Framework EMF - Eclipse Modeling Framework JEM - Java EMF Modeling SDK WTP - Web Tools Platform而在 Eclipse 中套件的安裝方式分成： Remote Site (線上安裝，來源可分為內建或自訂)  Local Site (本地安裝) Archived Site (壓縮檔安裝)所以通常上面的套件可以全部下載回來再用本地安裝，不過這裡我將會採用線上安裝；因為這樣可以保持最小化的安裝方式，以加速 Eclipse 的啟動速度。必要套件安裝步驟如下： 執行 eclipse.exe 以啟動 Eclipse 。 第一次執行會詢問我們 Workspace 的路徑，這裡我先指定「 ..\workspace 」。 主畫面開啟後，選擇功能表上的「 Help / Software Updates / Find and Install… 」。 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。  在 Update sites to visit 的「 Site to include in search 」欄裡勾選「 Callisto Discovery Site 」，然後按下「 Finish 」。註：「 Callisto Discovery Site 」是 Eclipse 內建的線上安裝來源，是無法刪除的。* 在 Update Site Mirrors 視窗中選擇較近 (或較快) 的更新網站後，按「 OK 」。
+在 Updates 視窗中的「 Select the features to install 」欄裡勾選以下項目 (勾選粗體項目即可) ：Enabling FeaturesBatikGraphical Editor and FrameworksVisual EditorGraphical Editing FrameworkModels and Model DevelopmentEclipse Modeling Frameworks (EMF) Runtime + End-User ToolsXML Schema Infoset Model (XSD) Runtime + End-User ToolsGraphical Modeling FrameworkJava EMF Model Web and J2EE DevelopmentWeb Standard Tools (WST) Project                註：上面的套件是一定要安裝的，因為它們都具有相依性。不過這些套件也許會因為版本不同而有所改變，請特別注意。
+
+在 Install 視窗中，選擇「 I accept the terms in the license agreements 」後，按「 Next 」後再按「 Finish 」。 接下來安裝程式會花很長一段時間 (約半個小時到一個小時，視網路連線速度而定) 來下載套件，請耐心等候。 下載完成後，會詢問要是不是要安裝，這時選擇「 Install All 」後就會開始安裝了。 * 安裝完成後， Eclipse 會問要不要重新啟動，選 「 Yes 」。 安裝 PDT如果決定不使用 Xdebug for PDT 的話，那麼在這裡就可以採用自訂的線上安裝，步驟如下：  選擇功能表上的「 Help / Software Updates / Find and Install… 」。 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。 按下「 New Remote Site 」，在 New Update Site 視窗中的 Name 欄位輸入「 PDT (可以隨便填) 」，而 URL 欄位則填入「 http://download.eclipse.org/tools/php/updates/ 」。 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 PDT 」項目。這時除了「 PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。 接下來的步驟就和上面必要套件安裝步驟是一樣的，這裡略過。如果想使用 Xdebug for PDT ，那麼這邊 PDT 就要改用本地安裝的方式來安裝，步驟如下： 解開  PDT 0.7 RC2 ( org.eclipse.php_feature-S20070130_RC2.zip ) ，假設這裡我解開到「 D:\Temp\PDT\eclipse 」。  選擇功能表上的「 Help / Software Updates / Find and Install… 」。 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。  按下「 New Local Site 」，這時安裝程式會要我們選擇一個資料夾，這裡就選「 D:\Temp\PDT\eclipse 」。 在 Edit Local Site 視窗中的 Name 欄位輸入「 PDT (可以隨便填) 」。 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 PDT 」項目。這時除了「 PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。 接下來的步驟就和上面套件安裝步驟是一樣的，這裡略過。安裝 Aptana </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xdebug_for_PDT"><span class="nav-number">1.3.</span> <span class="nav-text">Xdebug for PDT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">2.</span> <span class="nav-text">安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Eclipse_主要平台"><span class="nav-number">2.1.</span> <span class="nav-text">Eclipse 主要平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝必要套件"><span class="nav-number">2.2.</span> <span class="nav-text">安裝必要套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_PDT"><span class="nav-number">2.3.</span> <span class="nav-text">安裝 PDT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_Aptana"><span class="nav-number">2.4.</span> <span class="nav-text">安裝 Aptana </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.</span> <span class="nav-text">安裝 Subclipse 
+
+Subclipse 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採用自訂線上更新，它的遠端網址是「 http://subclipse.tigris.org/update_1.2.x 」。註： Subclipse 套件也是非必要的，團隊裡用有 Subversion 管理的話再裝即可。 
+安裝 Xdebug For PDTXdebug for PDT 是提供 PDT 偵錯功能的套件，因為它沒有提供線上更新網址，所以這裡要採用本地安裝。安裝步驟如下：註：要先安裝好 PDT 0.7 RC2 才能再裝 Xdebug for PDT 。  解開 Xdebug for PDT ( org.eclipse.php.xdebug_0.1.4.zip ) ，假設這裡我解開到「 D:\Temp\PDT\xdebug\eclipse 」。  選擇功能表上的「 Help / Software Updates / Find and Install… 」。 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。  按下「 New Local Site 」，這時安裝程式會要我們選擇一個資料夾，這裡就選「 D:\Temp\PDT\xdebug\eclipse 」。 在 Edit Local Site 視窗中的 Name 欄位輸入「 Xdebug for PDT (可以隨便填) 」。 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 Xdebug for PDT 」項目。這時除了「 Xdebug for PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。 接下來的步驟就和上面套件安裝步驟是一樣的，這裡略過。註：一般都是使用 PHP Debugger ，不過我個人偏好使用 Xdebug 。以上就完成全部的套件安裝了，參考手冊的設定方式請參考石頭成老大這篇 Development within Eclipse PHP IDE (PDT) 裡的說明。
+最後要提醒一點，因為 Eclipse 是使用 Java 開發的，在差一點的機器上執行速度會有點慢，而且第一次啟用時間也會比較久。強烈建議小專案直接使用 PSPad 或其他輕量級的文字編輯器就可以了，架構龐大且類別層級複雜的專案再考慮使用 PDT 。
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_Xdebug_For_PDT"><span class="nav-number">2.6.</span> <span class="nav-text">安裝 Xdebug For PDT</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
   
-  &copy; 2015 Jace Ju
-  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jace Ju</span>
 </div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
 
 
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
 </script>
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
 
-  ga('create', 'UA-450710-8', 'auto');
-  ga('send', 'pageview');
-</script>
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+
 </body>
 </html>
