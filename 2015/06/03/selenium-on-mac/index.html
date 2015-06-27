@@ -157,7 +157,8 @@
 <li>在適合的位置建立一個新資料夾，例如 <code>~/Selenium</code> ，接下來的工作都會在這裡進行。</li>
 <li>最後在 Terminal 中下載我寫好的 script 並執行它，它會下載 selenium server 並安裝 ChromeDriver 及建立 Firefox Profile。</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/Selenium</span><br><span class="line">curl -S <span class="operator">-s</span> -L https://goo.gl/s519kT &gt; run-selenium</span><br><span class="line">chmod +x run-selenium &amp;&amp; mv run-selenium /usr/<span class="built_in">local</span>/bin</span><br><span class="line">run-selenium init</span><br></pre></td></tr></table></figure>
+<p>完整的指令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/Selenium &amp;&amp; <span class="built_in">cd</span> <span class="variable">$_</span></span><br><span class="line">curl -S <span class="operator">-s</span> -L https://goo.gl/s519kT &gt; run-selenium</span><br><span class="line">chmod +x run-selenium &amp;&amp; mv run-selenium /usr/<span class="built_in">local</span>/bin</span><br><span class="line">run-selenium init</span><br></pre></td></tr></table></figure>
 <h2 id="設定瀏覽器">設定瀏覽器</h2><p>先確認好已經安裝 <a href="http://mozilla.com.tw/" target="_blank" rel="external">Firefox</a> 、 <a href="https://www.google.com.tw/chrome/" target="_blank" rel="external">Google Chrome</a> 等瀏覽器， Safari 則已內建。</p>
 <h3 id="Google_Chrome">Google Chrome</h3><p><a href="https://sites.google.com/a/chromium.org/chromedriver/" target="_blank" rel="external">ChromeDriver</a> 可以讓 Selenium Server 呼叫 Google Chrome 執行；如果前面已經執行過 <code>./run-selenium init</code> 的話，就已經安裝好了。可以在 Terminal 執行 <code>chromedriver -v</code> 來驗證是否正確安裝。</p>
 <h3 id="Safari">Safari</h3><p><a href="https://github.com/SeleniumHQ/selenium/wiki/SafariDriver" target="_blank" rel="external">SafariDriver</a> 則可以讓 Selenium Server 呼叫 Safari 執行，它是一個 Safari Extension ，必須手動安裝。</p>
