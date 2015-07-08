@@ -18,8 +18,10 @@ Selenium 的簡單原理與應用可以參考：[自動測試與 TDD 實務開�
 1. 在適合的位置建立一個新資料夾，例如 `~/Selenium` ，接下來的工作都會在這裡進行。
 1. 最後在 Terminal 中下載我寫好的 script 並執行它，它會下載 selenium server 並安裝 ChromeDriver 及建立 Firefox Profile。
 
+完整的指令如下：
+
 ```bash
-cd ~/Selenium
+mkdir -p ~/Selenium && cd $_
 curl -S -s -L https://goo.gl/s519kT > run-selenium
 chmod +x run-selenium && mv run-selenium /usr/local/bin
 run-selenium init
