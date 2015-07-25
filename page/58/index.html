@@ -117,6 +117,319 @@
           
           
             
+              <a class="post-title-link" href="/2005/05/01/16/">
+                Apache 伺服器非官方已編譯模組
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-05-01
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/05/01/16/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/05/01/16/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>雖然我覺得自己編譯 Apache 模組是一件很重要的事，但是我還是遇到了一些問題。</p>
+<p>不過還好我找到了這個網站：<a href="http://gknw.itex.at/development/apache/" target="_blank" rel="external">http://gknw.itex.at/development/apache/</a></p>
+<h2 id="mod_gzip">mod_gzip</h2><p>以下我們來介紹一個簡單的模組：mod_gzip 。</p>
+<p>mod_gzip 可以將 Apache 輸出的網頁文字內容先作壓縮後，再傳送到用戶端 (就是瀏覽器啦) 。因此可以減少大量的頻寬，增加線路的轉輸效率。</p>
+<p>當然，首先我們得先安裝好 Apache2(win32) ，這我就不多提了。然後我們連到上述的網址後，找到 Apache 2.0 webserver -&gt; Win32 -&gt; modules 的連結。點選後，在新頁面找到 <code>mod_gzip-2.0.xx-w32.zip</code> 並下載它。</p>
+<p>解開 <code>mod_gzip-2.0.xx-w32.zip</code> 後，找到 <code>Release</code> 資料夾下的 <code>mod_gzip.so</code> 檔；接著將它複製到 Apache2 安裝目錄下的 <code>modules</code> 資料夾下。</p>
+<p>再來我們在 Apache2 安裝目錄下的 conf 資料夾內，用文字編輯器開啟 <code>httpd.conf</code> ，找到 LoadModule 區；然後加入此行：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> gzip_module modules/mod_gzip.so</span><br></pre></td></tr></table></figure>
+<p>最後儲存 <code>httpd.conf</code> ，再重新啟動 Apache ，然後試試看頁面瀏覽的速度有沒有變快。</p>
+<h2 id="補充">補充</h2><p>果然網路上高手眾多，有網友推薦使用 Apache2 內建的 mod_deflate ，它和 mod_gzip 同樣是用來壓縮傳輸內容的。</p>
+<p>我找到了一篇還不錯的介紹，所以這裡就不寫了：<a href="http://ying.homedns.org/wp/archives/2005/08/13/21/28/00/" target="_blank" rel="external">精神奕奕 &raquo; Apache2 使用 mod_deflate 增進傳輸效能</a>。</p>
+<p>感謝 Arthur 的資訊 ~~</p>
+<p>Apache 的官方說明：<a href="http://httpd.apache.org/docs/2.0/mod/mod_deflate.html" target="_blank" rel="external">Apache Module mod_deflate</a>。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2005/04/29/15/">
+                CSS 排版觀念：Position
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-04-29
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/04/29/15/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/29/15/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>很多人都會用圖層來製作網頁，或許常會聽到所謂的絕對位置和相對位置。其實它們都是 CSS 中 <code>position</code> 的設定值，透過設定 <code>position</code> ，便能讓我們隨意移動元素的位置。</p>
+<p>不過它們之間到底有什麼不同呢？本文做個簡單的說明。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2005/04/29/15/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2005/04/28/14/">
+                如何讓 JpGraph 顯示中文
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-04-28
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/04/28/14/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/28/14/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>這篇是我在網路上的好友 chihwen 向我提到的， JpGraph 能否顯示中文？我在和他討論後，找到了方法，便把它記在這裡了。 <a href="http://www.aditus.nu/jpgraph/" target="_blank" rel="external">JpGraph</a> 是一套包裝 GD 函式庫，可用來顯示圖表的 PHP 類別程式。新版 (1.17) 已支援顯示中文，而不必我們手動轉換。</p>
+<h2 id="安裝">安裝</h2><p>在使用 JpGraph 之前，請先確認安裝了：</p>
+<ul>
+<li>GD2 (繪圖函式庫)</li>
+<li>iconv (字元編碼轉換函式庫)</li>
+</ul>
+<p>以上的函式庫在最新版的 PHP5 Win32 版已內建，並請在 <code>php.ini</code> 設定好。</p>
+<p>將最新版的 JpGraph 下載回來後，找到 <code>src</code> 資料夾，將它更名為 <code>jpgraph</code> ，然後放到 <code>php.ini</code> 指定的 <code>include_path</code> 下。</p>
+<p>註：在原 <code>src</code> 資料夾下有個 <code>Examples</code> 子資料夾，裡面有很多不錯的範例。</p>
+<p>接著在更名後的 <code>jpgraph</code> 資料夾下，找到 <code>jpg-config.inc</code> 檔，修改以下的設定：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">DEFINE(<span class="string">'CHINESE_TTF_FONT'</span>, <span class="string">'bkai00mp.ttf'</span>);</span><br></pre></td></tr></table></figure>
+<p>我個人偏好用新細明體，所以我改成：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">DEFINE(<span class="string">'CHINESE_TTF_FONT'</span>, <span class="string">'mingliu.ttc'</span>);</span><br></pre></td></tr></table></figure>
+<p>在 Windows 系統上， JpGraph 會自行抓取系統的字型存放路徑，所以基本上不需擔心路徑問題。</p>
+<h2 id="範例">範例</h2><p>我們來看看一個範例 (取自 <a href="http://timteam.org" target="_blank" rel="external">PHP 之戀</a>) ：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> (<span class="string">"jpgraph/jpgraph.php"</span>);</span><br><span class="line"><span class="keyword">include</span> (<span class="string">"jpgraph/jpgraph_pie.php"</span>);</span><br><span class="line"><span class="keyword">include</span> (<span class="string">"jpgraph/jpgraph_pie3d.php"</span>);</span><br><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="number">40</span>, <span class="number">60</span>, <span class="number">21</span>, <span class="number">33</span>, <span class="number">50</span>);</span><br><span class="line"><span class="variable">$graph</span> = <span class="keyword">new</span> PieGraph(<span class="number">400</span>, <span class="number">200</span>);</span><br><span class="line"><span class="variable">$graph</span>-&gt;SetShadow();</span><br><span class="line"><span class="variable">$graph</span>-&gt;title-&gt;SetFont(FF_BIG5, FS_NORMAL);</span><br><span class="line"><span class="variable">$graph</span>-&gt;legend-&gt;SetFont(FF_BIG5, FS_NORMAL);</span><br><span class="line"><span class="variable">$graph</span>-&gt;title-&gt;Set(<span class="string">"中文"</span>);</span><br><span class="line"><span class="variable">$p1</span> = <span class="keyword">new</span> PiePlot3D(<span class="variable">$data</span>);</span><br><span class="line"><span class="variable">$p1</span>-&gt;SetSize(<span class="number">0.5</span>);</span><br><span class="line"><span class="variable">$p1</span>-&gt;SetCenter(<span class="number">0.45</span>);</span><br><span class="line"><span class="variable">$p1</span>-&gt;SetLegends(<span class="keyword">array</span>(<span class="string">"中文"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>));</span><br><span class="line"><span class="variable">$graph</span>-&gt;Add(<span class="variable">$p1</span>);</span><br><span class="line"><span class="variable">$graph</span>-&gt;Stroke();</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>執行結果如下圖：</p>
+<p><img src="/resources/jpgraph/pie3d.png" alt="執行結果"></p>
+<p>重點就是我們只要針對 <code>$graph</code> 裡的屬性值，像是 <code>title</code> 、 <code>legend</code> 等設定 <code>SetFont(FF_BIG5)</code> 或是 <code>SetFont(FF_CHINESE)</code> ，就能正常顯示中文了。</p>
+<h2 id="補充">補充</h2><p>chihwen 發現原本的 Pie3D 所呈現的圖樣顏色 (Legend) 和資料呈現的顏色無法對應，我到官方網站去搜尋的結果，找到了一篇討論：<a href="http://jpgraph.intellit.nl/viewtopic.php?t=2087&amp;highlight=pieplot3d" target="_blank" rel="external">http://jpgraph.intellit.nl/viewtopic.php?t=2087&amp;highlight=pieplot3d</a></p>
+<p>修正方式：</p>
+<p>找到 <code>jpgraph_pie.php</code> ，並做以下的修改：</p>
+<p>第 229 行，加上 <code>strtolower()</code> 如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>( strtolower(get_class(<span class="variable">$this</span>))===<span class="string">'pieplot3d'</span> ) &#123;</span><br></pre></td></tr></table></figure>
+<p>第 236 行，加上 <code>strtolower()</code> 如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="variable">$graph</span>-&gt;pieaa &amp;&amp; strtolower(get_class(<span class="variable">$this</span>))===<span class="string">'pieplot'</span> ) &#123;</span><br></pre></td></tr></table></figure>
+<p>這是 PHP4 轉 PHP5 未向下相容的問題，因為預設 <code>get_class()</code> 在 PHP4 回傳都會是小寫，但 PHP5 則是大小寫有別所造成。</p>
+<p>以上資訊感謝 chihwen 提供~~</p>
+<h2 id="再補充">再補充</h2><p>新版的 JpGraph 已解決上面的問題，請記得更新！</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2005/04/28/13/">
+                如何自製 JavaScript 物件類別？
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-04-28
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/04/28/13/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/28/13/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>對 JavaScript 而言，我們可以把 Function 看成是一種物件類別。這裡介紹一個簡單的方法，來建立自己的類別。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2005/04/28/13/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2005/04/26/12/">
                 CSS 的 ID 和 CLASS 有什麼不同？
               </a>
@@ -526,227 +839,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/04/12/6/">
-                CSS 好書推薦
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-04-12
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/04/12/6/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/12/6/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>以下兩本書對 CSS 排版有深入的見解；想學好 CSS 排版，強烈建議把它們買回來看。</p>
-<ul>
-<li><a href="http://www.books.com.tw/exep/prod/booksfile.php?item=0010282284" target="_blank" rel="external">CSS網頁設計師手札－101個您一定會遇到的問題與解答</a></li>
-<li><a href="http://www.books.com.tw/exep/prod/booksfile.php?item=0010271593" target="_blank" rel="external">跨平台網頁設計：使用Web標準技術</a></li>
-</ul>
-<p>接下來的兩本工具書也是不可或缺的，忘了就隨時拿起來參考參考。</p>
-<ul>
-<li><a href="http://www.books.com.tw/exep/prod/booksfile.php?item=0010274466" target="_blank" rel="external">CSS 速查手冊 第二版</a></li>
-<li><a href="http://www.books.com.tw/exep/prod/booksfile.php?item=0010198885" target="_blank" rel="external">CSS/HTML語法參考辭典</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/04/08/5/">
-                連結 CSS 樣式說明
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-04-08
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/04/08/5/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/08/5/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>將元素的 position 指定為 relative 後，會使得元素的寬高受到父元素寬高的影響。 例如 a 標籤被包在 li 標籤內時，如果 li 標籤寬度設定為 100px ， a 標籤的 Box 寬度 (等於 margin + border + padding + width) 就會等於 100px。這樣一來，連結的作用區域就不會只受限於文字或圖片上，而可以佔滿整個父元素。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line"><span class="comment">/* 如果連結是在 td 內的話，則要再加入底下這個設定 */</span></span><br><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2005/04/08/5/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/04/06/4/">
-                用 JavaScript 計算使用者輸入的文字字數
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-04-06
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/04/06/4/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/06/4/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>這是我在 <a href="http://timteam.org/">Tim Club</a> 上回應的一篇<a href="http://timteam.org/?TIM=FORUM&amp;FORUM=1&amp;ShowDocument=13453#TIM13453">文章</a>，用來計算使用者輸入的文字字數。有興趣的話，可以延伸出很多應用。例如發送簡訊時，可以讓使用者知道他輸入了多少字。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2005/04/06/4/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/57/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span>
+    <a class="extend prev" rel="prev" href="/page/57/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/59/">&raquo;</a>
   </div>
 
 
@@ -780,7 +877,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">579</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

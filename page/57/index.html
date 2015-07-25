@@ -117,6 +117,453 @@
           
           
             
+              <a class="post-title-link" href="/2005/06/24/26/">
+                自製 JavaScript 物件
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-06-24
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/06/24/26/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/06/24/26/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>一種在 JavaScript 直接建立物件的方式，而且還可以利用這種方式在網路上傳遞 JS 的物件資訊，稱為 JSON (JavaScript Object Notation)。</p>
+<p>以下是一個自訂的 JavaScript 物件，利用花括號 ({}) 將物件的屬性及方法包起來。每個屬性或方法是用冒號 (:) 來指定值，並用逗號 (,) 分隔開來。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#29289;&#20214;&#21517;&#31281; = &#123;&#10;&#23660;&#24615;1 : null,&#10;&#23660;&#24615;2 : [],&#10;&#26041;&#27861;1 : function() &#123;&#10;this.&#23660;&#24615;1 = &#39;DEF&#39;;&#10;&#125;,&#10;&#26041;&#27861;2 : function() &#123;&#10;this.&#23660;&#24615;2 = new Array(4, 5, 6);&#10;&#125;&#10;&#125;&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;1);&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;2.length);&#10;&#29289;&#20214;&#21517;&#31281;.&#26041;&#27861;1();&#10;&#29289;&#20214;&#21517;&#31281;.&#26041;&#27861;2();&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;1);&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;2.length);</span><br></pre></td></tr></table></figure>
+<p>注意它不是一個 constructor ，所以不需要 new 的過程。當設定好物件後，就可以直接使用它了。</p>
+<p>另外如果要設定陣列的話，就用方括號 ([]) 來設定。</p>
+<p>這樣的寫法可以用在設定一個物件的起始狀態，例如 <a href="http://www.dynarch.com/projects/calendar/" target="_blank" rel="external">JS Calendar</a> 就用這種方式來設定 Calendar 的長相。</p>
+<p>補充參考：<a href="http://blog.roodo.com/syshen/archives/1410294.html" target="_blank" rel="external">JSON</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2005/06/14/25/">
+                JavaScript 物件類別繼承
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-06-14
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/06/14/25/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/06/14/25/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>我在找適用於各種主流瀏覽器的 XML 開發方式時，看到了一個有趣的 JavaScript 物件類別繼承寫法。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2005/06/14/25/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2005/06/13/24/">
+                樂多三欄式 CSS 樣版入門
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-06-13
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/06/13/24/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/06/13/24/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>常常有人問樂多如何製作三欄樣版？以目前的樂多 DOM 不太可能單純以 CSS 完成，不過這幾天看了許多網友的 Blog ，發現一個滿有趣的方法。透過搭配 JavaScript (不是 Java 喔，別搞混了) ，我們來試試這個超級任務。</p>
+<p>補充：樂多目前有三欄版型可供選擇，大家可以直接使用它們或修改它們。這篇文章的目的在於記錄我自己在 CSS 三欄式版面的製作心得，大家參考看看就好囉。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2005/06/13/24/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2005/06/08/23/">
+                Smarty 入門
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-06-08
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/06/08/23/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/06/08/23/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>這是我一年前寫的文章，之前寄放在朋友的站：<a href="http://www.php5.idv.tw/" target="_blank" rel="external">[PHP 5知識交換中心]</a>。</p>
+<p>不過因為有針對舊有的內容做一些小調整，所以這次把它放回到自己的 Blog 裡。</p>
+<h2 id="序言">序言</h2><p>剛開始接觸樣版引擎的 PHP 設計師，聽到 Smarty 時，都會覺得很難。其實筆者也不例外，碰都不敢碰一下。但是後來在剖析 XOOPS 的程式架構時，開始發現 Smarty 其實並不難。只要將 Smarty 基礎功練好，在一般應用上就已經相當足夠了。當然基礎能打好，後面的進階應用也就不用怕了。</p>
+<p>這次的更新，主要加上了一些概念性的東西，當然也有一些進階的技巧。不過這些也許早已深入大家的程式之中，如果有更好的觀點，也歡迎大家能夠回饋。文章中的程式架構僅供參考，並不是最好的作法。不過如果剛學習Smarty，倒是可以先以這樣的寫法為基礎。</p>
+<p>jaceju@gmail 2005/03/12</p>
+<h2 id="Smarty介紹">Smarty介紹</h2><h3 id="什麼是樣版引擎">什麼是樣版引擎</h3><p>不知道從什麼時候開始，有人開始對 HTML 內嵌入 Server Script 覺得不太滿意。然而不論是微軟的 ASP 或是開放源碼的 PHP，都是屬於內嵌 Server Script 的網頁伺服端語言。因此也就有人想到，如果能把程式應用邏輯 (或稱商業應用邏輯) 與網頁呈現 (Layout) 邏輯分離的話，是不是會比較好呢？</p>
+<p>其實這個問題早就存在已久，從互動式網頁開始風行時，不論是 ASP 或是 PHP 的使用者都是身兼程式開發者與視覺設計師兩種身份。可是通常這些使用者不是程式強就是美工強，如果要兩者同時兼顧，那可得死掉不少腦細胞…</p>
+<p>所以樣版引擎就應運而生啦！樣版引擎的目的，就是要達到上述提到的邏輯分離的功能。它能讓程式開發者專注於資料的控制或是功能的達成；而視覺設計師則可專注於網頁排版，讓網頁看起來更具有專業感！因此樣版引擎很適合公司的網站開發團隊使用，使每個人都能發揮其專長！</p>
+<p>就筆者接觸過的樣版引擎來說，依資料呈現方式大概分成：需搭配程式處理的樣版引擎和完全由樣版本身自行決定的樣版引擎兩種形式。</p>
+<p>在需搭配程式處理的樣版引擎中，程式開發者必須要負責變數的呈現邏輯，也就是說他必須把變數的內容在輸出到樣版前先處理好，才能做 assign 的工作。換句話說，程式開發者還是得多寫一些程式來決定變數呈現的風貌。而完全由樣版本身自行決定的樣版引擎，它允許變數直接 assign 到樣版中，讓視覺設計師在設計樣版時再決定變數要如何呈現。因此它就可能會有另一套屬於自己的樣版程式語法 (如 Smarty) ，以方便控制變數的呈現。但這樣一來，視覺設計師也得學習如何使用樣版語言。</p>
+<h3 id="樣版引擎的運作原理">樣版引擎的運作原理</h3><p>首先我們先看看以下的運作圖：</p>
+<p><img src="/resources/smarty_basic/1-01.gif" alt="test"></p>
+<p>一般的樣版引擎 (如 PHPLib) 都是在建立樣版物件時取得要解析的樣版，然後把變數套入後，透過 parse() 這個方法來解析樣版，最後再將網頁輸出。</p>
+<p><img src="/resources/smarty_basic/1-02.gif" alt="test"></p>
+<p>對 Smarty 的使用者來說，<span class="important">程式裡也不需要做任何 parse 的動作了</span>，這些 Smarty 自動會幫我們做。而且已經編譯過的網頁，如果樣版沒有變動的話， Smarty 就自動跳過編譯的動作，直接執行編譯過的網頁，以節省編譯的時間。</p>
+<h3 id="使用Smarty的一些概念">使用Smarty的一些概念</h3><p>在一般樣版引擎中，我們常看到區域的觀念，所謂區塊大概都會長成這樣：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!-- START : Block name --&#62;&#10;&#21312;&#22495;&#20839;&#23481;&#10;&#60;!-- END : Block name --&#62;</span><br></pre></td></tr></table></figure>
+<p>這些區塊大部份都會在 PHP 程式中以 if 或 for, while 來控制它們的顯示狀態，雖然樣版看起來簡潔多了，但只要一換了顯示方式不同的樣版， PHP 程式勢必要再改一次！</p>
+<p><span class="important">在 Smarty 中，一切以變數為主，所有的呈現邏輯都讓樣版自行控制。</span>因為 Smarty 會有自己的樣版語言，所以不管是區塊是否要顯示還是要重覆，都是用 Smarty 的樣版語法 (if, foreach, section) 搭配變數內容作呈現。這樣一來感覺上好像樣版變得有點複雜，但好處是只要規劃得當， PHP 程式一行都不必改。</p>
+<p>由上面的說明，我們可以知道使用 Smarty 要掌握一個原則：將程式應用邏輯與網頁呈現邏輯明確地分離。就是說 PHP 程式裡不要有太多的 HTML 碼。程式中只要決定好那些變數要塞到樣版裡，讓樣版自己決定該如何呈現這些變數 (甚至不呈現也行) 。</p>
+<h2 id="Smarty的基礎">Smarty的基礎</h2><h3 id="安裝Smarty">安裝Smarty</h3><p>首先，我們先決定程式放置的位置。</p>
+<ul>
+<li>Windows下可能會類似這樣的位置：「 d:\appserv\web\demo\ 」。</li>
+<li>Linux下可能會類似這樣的位置：「 /home/jaceju/public_html/ 」。</li>
+</ul>
+<p>接著在程式主資料夾下建立一個 library 資料夾，這是我們用來放置 Smarty 套件的地方。 </p>
+<p>然後我們到 Smarty 的官方網站下載最新的 Smarty 套件：<a href="http://smarty.php.net" target="_blank" rel="external">http://smarty.php.net</a>。</p>
+<p> 解開 Smarty 2.6.0 後，會看到很多檔案，其中有個 libs 資料夾。在 libs 中應該會有 3 個 class.php 檔 + 1 個 debug.tpl + 1 個 plugin 資料夾 + 1 個 core 資料夾。<span class="important">然後直接將 libs 複製到剛剛建立的 library 資料夾下，再更名為 Smarty 就可以了。</span>就這樣？沒錯！這種安裝法比較簡單，適合一般沒有自己主機的使用者。</p>
+<p>至於 Smarty 官方手冊中為什麼要介紹一些比較複雜的安裝方式呢？基本上依照官方的方式安裝，可以只在主機安裝一次，然後提供給該主機下所有設計者開發不同程式時直接引用，而不會重覆安裝太多的 Smarty 複本。而筆者所提供的方式則是適合要把程式帶過來移過去的程式開發者使用，這樣不用煩惱主機有沒有安裝 Smarty 。</p>
+<h3 id="程式的資料夾設定">程式的資料夾設定</h3><p>以筆者在Windows安裝Appserv為例，程式的主資料夾是「d:\appserv\web\demo\」。安裝好Smarty後，我們在主資料夾下再建立這樣的資料夾：</p>
+<p><img src="/resources/smarty_basic/2-01.gif" alt="test"></p>
+<p><span class="important">在 Linux 底下，請記得將 templates_c 的權限變更為 777 。</span>Windows 下則將其唯讀取消。</p>
+<h3 id="第一個用Smarty寫的小程式">第一個用Smarty寫的小程式</h3><p>我們先設定 Smarty 的路徑，請將以下這個檔案命名為 main.php ，並放置到主資料夾下：</p>
+<p><strong>main.php</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;include &#34;library/Smarty/Smarty.class.php&#34;;&#10;define(&#39;APP_PATH&#39;, str_replace(&#39;\\&#39;, &#39;/&#39;, dirname(__FILE__)));&#10;$tpl = new Smarty();&#10;$tpl-&#62;template_dir = APP_PATH . &#34;/templates/&#34;;&#10;$tpl-&#62;compile_dir = APP_PATH . &#34;/templates_c/&#34;;&#10;$tpl-&#62;config_dir = APP_PATH . &#34;/configs/&#34;;&#10;$tpl-&#62;cache_dir = APP_PATH . &#34;/cache/&#34;;</span><br></pre></td></tr></table></figure>
+<p>照上面方式設定的用意在於，程式如果要移植到其他地方，只要改 APP_PATH 就可以啦。 (這裡是參考 XOOPS 的 )</p>
+<p>Smarty 的樣版路徑設定好後，程式會依照這個路徑來抓所有樣版的相對位置 (範例中是 ‘d:/appserv/web/demo/templates/‘ ) 。然後我們用 display() 這個 Smarty 方法來顯示我們的樣版。</p>
+<p>接下來我們在 templates 資料夾下放置一個 test.htm：(副檔名叫什麼都無所謂，但便於視覺設計師開發，筆者都還是以 .htm 為主。)</p>
+<p><strong>templates/test.htm</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&#62;&#10;&#60;title&#62;&#123;$title&#125;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#123;$content&#125;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>現在我們要將上面的樣版顯示出來，並將網頁標題 ($title) 與內容 ($content) 更換，請將以下檔案內容命名為 test.php ，並放置在主資料夾下：</p>
+<p><strong>test.php</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require &#34;main.php&#34;;&#10;$tpl-&#62;assign(&#34;title&#34;, &#34;&#28204;&#35430;&#29992;&#30340;&#32178;&#38913;&#27161;&#38988;&#34;);&#10;$tpl-&#62;assign(&#34;content&#34;, &#34;&#28204;&#35430;&#29992;&#30340;&#32178;&#38913;&#20839;&#23481;&#34;);&#10;// &#19978;&#38754;&#20841;&#34892;&#20063;&#21487;&#20197;&#29992;&#36889;&#34892;&#20195;&#26367;&#10;// $tpl-&#62;assign(array(&#34;title&#34; =&#62; &#34;&#28204;&#35430;&#29992;&#30340;&#32178;&#38913;&#27161;&#38988;&#34;, &#34;content&#34; =&#62; &#34;&#28204;&#35430;&#29992;&#30340;&#32178;&#38913;&#20839;&#23481;&#34;));&#10;$tpl-&#62;display(&#39;test.htm&#39;);</span><br></pre></td></tr></table></figure>
+<p>請打開瀏覽器，輸入 <a href="http://localhost/demo/test.php" target="_blank" rel="external">http://localhost/demo/test.php</a> 試試看(依您的環境決定網址)，應該會看到以下的畫面：</p>
+<p><img src="/resources/smarty_basic/2-02.gif" alt="test"></p>
+<p>再到 templates_c 底下，我們會看到其中有一個奇怪的檔案：</p>
+<p><strong>%%6B^6B2^6B2BF9A3%%test.htm.php<br></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php /* Smarty version 2.6.14, created on 2007-08-11 14:10:33&#10;compiled from test.htm */ ?&#62;&#10;&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&#62;&#10;&#60;title&#62;&#60;?php echo $this-&#62;_tpl_vars[&#39;title&#39;]; ?&#62;&#10;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;?php echo $this-&#62;_tpl_vars[&#39;content&#39;]; ?&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>沒錯，這就是 Smarty 編譯過的檔案。它將我們在樣版中的變數轉換成了 PHP 的語法來執行，下次再讀取同樣的內容時， Smarty 就會直接抓取這個檔案來執行了。</p>
+<p>最後我們整理一下整個 Smarty 程式撰寫步驟：</p>
+<ul>
+<li>載入 Smarty 樣版引擎。</li>
+<li>建立 Smarty 物件。</li>
+<li>設定 Smarty 物件的參數。</li>
+<li>在程式中處理變數後，再用 Smarty 的 assign 方法將變數置入樣版裡。</li>
+<li>利用 Smarty 的 display 方法將網頁秀出。</li>
+</ul>
+<h3 id="如何安排你的程式架構">如何安排你的程式架構</h3><p>上面我們看到除了 Smarty 所需要的資料夾外 (library 、  templates 、 templates_c) ，還有兩個資料夾： configs 、 modules 。其實這是筆者模仿 XOOPS 的架構所建立出來的，因為 XOOPS 是筆者所接觸到的程式中，少數使用 Smarty 樣版引擎的架站程式。所謂西瓜偎大邊，筆者這樣的程式架構雖沒有 XOOPS 的百分之一強，但至少給人看時還有 XOOPS 撐腰。</p>
+<p>configs 資料夾一般都是用來存放設定檔的，當然也可以用放存放 Smarty 會用到的 config 設定。 </p>
+<p>modules 這個資料夾則是用來放置程式模組的，如此一來便不會把程式丟得到處都是，整體架構一目瞭然。</p>
+<p>上面我們也提到 main.php ，這是整個程式的主要核心，不論是常數定義、外部程式載入、共用變數建立等，都是在這裡開始的。所以之後的模組都只要將這個檔案包含進來就可以啦。因此在程式流程規劃期間，就必須好好構思 main.php 中應該要放那些東西；當然利用 include 或 require 指令，把每個環節清楚分離是再好不過了。</p>
+<p><img src="/resources/smarty_basic/2-03.gif" alt="test"></p>
+<p>在上節提到的 Smarty 程式 5 步驟， main.php 就會幫我們先將前 3 個步驟做好，後面的模組程式只要做後面兩個步驟就可以了。</p>
+<h2 id="從變數開始">從變數開始</h2><h3 id="如何使用變數">如何使用變數</h3><p>從上一章範例中，我們可以清楚地看到我們利用 <span class="important">{</span> 及 <span class="important">}</span> 這兩個標示符號將變數包起來，這是 Smarty 預設的標示符號。變數的命名方式和 PHP 的變數命名方式是一模一樣的，前面也有個 $ 字號 (這和一般的樣版引擎不同)。標示符號就有點像是 PHP 中的 &lt;?php 及 ?&gt; (事實上它們在大部份的解析過程中，的確會被替換成這個符號) ，所以以下的樣版變數寫法都是可行的：</p>
+<ul>
+<li>一般的寫法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$var&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>與變數中間留有空白：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123; $var &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>啟始的標示符號和結束的標示符號不在同一行 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$var&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>註：有時為了中文衝碼及 Javascript 的關係，我們透過 $left_delimiter 和 $right_delimiter 兩個 Smarty 類別屬性，來將標示符號換掉。</p>
+<p>在 Smarty 裡，<span class="important">變數預設是全域的</span>，也就是說你只要指定一次就好了。<span class="important">指定兩次以上的話，變數內容會以最後指定的為主。</span>就算我們在主樣版中載入了外部的子樣版，子樣版中同樣的變數一樣也會被替代，這樣我們就不用再針對子樣版再做一次解析的動作。</p>
+<p>如果想要顯示的資料已經放在一個陣列裡了，是否要將裡面的變數分離出來，再做 assign 的動作呢？其實不需要！我們可以直接就把這個陣列 assign 到樣版物件中，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$this_user = array(&#34;fullname&#34; =&#62; &#34;Jace Ju&#34;, &#34;phone&#34; =&#62; &#34;012345678&#34;, &#34;email&#34; =&#62; &#34;jaceju@seed.net.tw&#34;);&#10;$tpl-&#62;assign(&#34;this_user&#34;, $this_user);</span><br></pre></td></tr></table></figure>
+<p>然後在樣版中這裡使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$this_user.fullname&#125;&#10;&#123;$this_user.phone&#125;&#10;&#123;$this_user.email&#125;</span><br></pre></td></tr></table></figure>
+<p>如此一來就不需將陣列分離， PHP 程式裡也不會有一大堆的 assign 了。</p>
+<p>另外我們也可以把「物件」 assign 到 Smarty 裡，例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$obj = new SomeObject();&#10;$tpl-&#62;assign(&#34;obj&#34;, $obj);</span><br></pre></td></tr></table></figure>
+<p>而在樣版中也是與 PHP 一樣使用「 -&gt; 」來存取該物件的屬性與方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$obj-&#62;fullname&#125;&#10;&#123;$obj-&#62;method1()&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="修飾你的變數">修飾你的變數</h3><p>上面我們提到 Smarty 變數呈現的風貌是由樣版自行決定的，所以 Smarty 提供了許多修飾變數的函式。使用的方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#35722;&#25976;|&#20462;&#39166;&#20989;&#24335;&#125; &#60;!-- &#30070;&#20462;&#39166;&#20989;&#24335;&#27794;&#26377;&#21443;&#25976;&#26178; --&#62;&#10;&#123;&#35722;&#25976;|&#20462;&#39166;&#20989;&#24335;:&#34;&#21443;&#25976;(&#38750;&#24517;&#35201;&#65292;&#35222;&#20989;&#24335;&#32780;&#23450;)&#34;&#125; &#60;!-- &#30070;&#20462;&#39166;&#20989;&#24335;&#26377;&#21443;&#25976;&#26178; --&#62;</span><br></pre></td></tr></table></figure>
+<p>範例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$var|nl2br&#125; &#60;!-- &#23559;&#35722;&#25976;&#20013;&#30340;&#25563;&#34892;&#23383;&#20803;&#25563;&#25104; &#60;br /&#62; --&#62;&#10;&#123;$var|string_format:&#34;%02d&#34;&#125; &#60;!-- &#23559;&#35722;&#25976;&#26684;&#24335;&#21270; --&#62;</span><br></pre></td></tr></table></figure>
+<p>好，那為什麼要讓樣版自行決定變數呈現的風貌？先看看底下的 HTML ，這是某個購物車結帳的部份畫面。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;input name=&#34;total&#34; type=&#34;hidden&#34; value=&#34;21000&#34; /&#62;&#10;&#32317;&#37329;&#38989;&#65306;21,000 &#20803;</span><br></pre></td></tr></table></figure>
+<p>一般樣版引擎的樣版可能會這樣寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;input name=&#34;total&#34; type=&#34;hidden&#34; value=&#34;&#123;total&#125;&#34; /&#62;&#10;&#32317;&#37329;&#38989;&#65306;&#123;format_total&#125; &#20803;</span><br></pre></td></tr></table></figure>
+<p>它們的 PHP 程式中要這樣寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$total = 21000;&#10;$tpl-&#62;assign(&#34;total&#34;, $total);&#10;$tpl-&#62;assign(&#34;format_total&#34;, number_format($total));</span><br></pre></td></tr></table></figure>
+<p>而 Smarty 的樣版就可以這樣寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;input name=&#34;total&#34; type=&#34;hidden&#34; value=&#34; &#123;$total&#125; &#34; /&#62;&#10;&#32317;&#37329;&#38989;&#65306; &#123;$total|number_format:&#34;&#34;&#125; &#20803;</span><br></pre></td></tr></table></figure>
+<p>Smarty 的 PHP 程式中只要這樣寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$total = 21000;&#10;$tpl-&#62;assign(&#34;total&#34;, $total);</span><br></pre></td></tr></table></figure>
+<p>所以在 Smarty 中我們只要指定一次變數，剩下的交給樣版自行決定即可。這樣瞭解了嗎？這就是讓樣版自行決定變數呈現風貌的好處！</p>
+<h2 id="控制樣版的內容">控制樣版的內容</h2><h3 id="重覆的區塊">重覆的區塊</h3><p>上面筆者提到，針對單一的一階陣列，我們可以直接將它 assign 到樣版上；但如果我們想將資料庫所選取出來的多筆資料一次顯示到樣版上時，勢必要透過迴圈將資料傾印出來。在樣版裡，我們可以利用重覆的區塊來完成這樣的動作。</p>
+<p>在 Smarty 樣板中，我們要重覆一個區塊有兩種方式： foreach 及 section 。而在程式中我們則要 assign 一個陣列，這個陣列中可以包含數組陣列。就像下面這個例子：</p>
+<p>首先我們來看 PHP 程式是如何寫的：</p>
+<p><strong>test2.php</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require &#34;main.php&#34;;&#10;$array1 = array(1 =&#62; &#34;&#34315;&#26524;&#34;, 2 =&#62; &#34;&#40179;&#26792;&#34;, 3 =&#62; &#34;&#39321;&#34121;&#34;, 4 =&#62; &#34;&#33453;&#27138;&#34;);&#10;$tpl-&#62;assign(&#34;array1&#34;, $array1);&#10;$array2 = array(&#10;    array(&#34;index1&#34; =&#62; &#34;data1-1&#34;, &#34;index2&#34; =&#62; &#34;data1-2&#34;, &#34;index3&#34; =&#62; &#34;data1-3&#34;),&#10;    array(&#34;index1&#34; =&#62; &#34;data2-1&#34;, &#34;index2&#34; =&#62; &#34;data2-2&#34;, &#34;index3&#34; =&#62; &#34;data2-3&#34;),&#10;    array(&#34;index1&#34; =&#62; &#34;data3-1&#34;, &#34;index2&#34; =&#62; &#34;data3-2&#34;, &#34;index3&#34; =&#62; &#34;data3-3&#34;),&#10;    array(&#34;index1&#34; =&#62; &#34;data4-1&#34;, &#34;index2&#34; =&#62; &#34;data4-2&#34;, &#34;index3&#34; =&#62; &#34;data4-3&#34;),&#10;    array(&#34;index1&#34; =&#62; &#34;data5-1&#34;, &#34;index2&#34; =&#62; &#34;data5-2&#34;, &#34;index3&#34; =&#62; &#34;data5-3&#34;));&#10;$tpl-&#62;assign(&#34;array2&#34;, $array2);&#10;$tpl-&#62;display(&#34;test2.htm&#34;);</span><br></pre></td></tr></table></figure>
+<p>而樣版的寫法如下：</p>
+<p><strong>templates/test2.htm</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&#62;&#10;&#60;title&#62;&#28204;&#35430;&#37325;&#35206;&#21312;&#22602;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;pre&#62;&#10;&#30452;&#25509;&#21576;&#29694; array1&#10;&#123;$array1.1&#125;&#10;&#123;$array1.2&#125;&#10;&#123;$array1.3&#125;&#10;&#123;$array1.4&#125;&#10;&#21033;&#29992; foreach &#20358;&#21576;&#29694; array1&#10;&#123;foreach item=item1 from=$array1&#125;&#10;&#123;$item1&#125;&#10;&#123;/foreach&#125;&#10;&#21033;&#29992; section &#20358;&#21576;&#29694; array1&#10;&#123;section name=sec1 loop=$array1&#125;&#10;&#123;$array1[sec1]&#125;&#10;&#123;/section&#125;&#10;&#21033;&#29992; foreach &#20358;&#21576;&#29694; array2&#10;&#123;foreach item=index2 from=$array2&#125;&#10;&#123;foreach key=key2 item=item2 from=$index2&#125;&#10;&#123;$key2&#125; : &#123;$item2&#125;&#10;&#123;/foreach&#125;&#10;&#123;/foreach&#125;&#10;&#21033;&#29992; section &#20358;&#21576;&#29694; array2&#10;&#123;section name=sec2 loop=$array2&#125;&#10;index1: &#123;$array2[sec2].index1&#125;&#10;index2: &#123;$array2[sec2].index2&#125;&#10;index3: &#123;$array2[sec2].index3&#125;&#10;&#123;/section&#125;&#10;&#60;/pre&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>執行上例後，我們發現不管是 foreach 或 section 兩個執行結果是一樣的。那麼兩者到底有何不同呢？</p>
+<p>第一個差別很明顯，就是 foreach 要以巢狀處理的方式來呈現我們所 assign 的兩層陣列變數，而 section 則以「主陣列[迴圈名稱].子陣列索引」即可將整個陣列呈現出來。由此可知， Smarty 在樣版中的 foreach 和 PHP 中的 foreach 是一樣的；而 section 則是 Smarty 為了處理如上列的陣列變數所發展出來的敘述。當然 section 的功能還不只如此，除了下一節所談到的巢狀資料呈現外，官方手冊中也提供了好幾個 section 的應用範例。</p>
+<p><span class="important">不過要注意的是，丟給 section 的陣列索引必須是從 0 開始的正整數，即 0, 1, 2, 3, …。</span>如果您的陣列索引不是從 0 開始的正整數，那麼就得改用 foreach 來呈現您的資料。您可以參考官方討論區中的<a href="http://www.phpinsider.com/smarty-forum/viewtopic.php?t=1574" target="_blank" rel="external">此篇討論</a>，其中探討了 section 和 foreach 的用法。</p>
+<h3 id="巢狀資料的呈現">巢狀資料的呈現</h3><p>樣版引擎裡最令人傷腦筋的大概就是巢狀資料的呈現吧，許多著名的樣版引擎都會特意強調這點，不過這對 Smarty 來說卻是小兒科。</p>
+<p>最常見到的巢狀資料，就算論譠程式中的討論主題區吧。假設要呈現的結果如下：</p>
+<table summary="討論區格式" width="200" border="1" align="center" cellpadding="3" cellspacing="0"><br><tr><br><td colspan="2">公告區</td><br></tr><br><tr><br><td width="25">&nbsp;</td><br><td width="164">站務公告</td><br></tr><br><tr><br><td colspan="2">文學專區</td><br></tr><br><tr><br><td width="164" rowspan="2">&nbsp;</td><br><td width="164">奇文共賞</td><br></tr><br><tr><br><td>好書介紹</td><br></tr><br><tr><br><td colspan="2">電腦專區</td><br></tr><br><tr><br><td width="164" rowspan="2">&nbsp;</td><br><td width="164">軟體討論</td><br></tr><br><tr><br><td>硬體週邊</td><br></tr><br></table>
+
+<p>程式中我們先以靜態資料為例：</p>
+<p><strong>test3_1.php</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require &#34;main.php&#34;;&#10;$forum = array(&#10;array(&#34;category_id&#34; =&#62; 1, &#34;category_name&#34; =&#62; &#34;&#20844;&#21578;&#21312;&#34;,&#10;&#34;topic&#34; =&#62; array(&#10;array(&#34;topic_id&#34; =&#62; 1, &#34;topic_name&#34; =&#62; &#34;&#31449;&#21209;&#20844;&#21578;&#34;)&#10;)&#10;),&#10;array(&#34;category_id&#34; =&#62; 2, &#34;category_name&#34; =&#62; &#34;&#25991;&#23416;&#23560;&#21312;&#34;,&#10;&#34;topic&#34; =&#62; array(&#10;array(&#34;topic_id&#34; =&#62; 2, &#34;topic_name&#34; =&#62; &#34;&#22909;&#26360;&#20171;&#32057;&#34;),&#10;array(&#34;topic_id&#34; =&#62; 3, &#34;topic_name&#34; =&#62; &#34;&#22855;&#25991;&#20849;&#36062;&#34;)&#10;)&#10;),&#10;array(&#34;category_id&#34; =&#62; 3, &#34;category_name&#34; =&#62; &#34;&#38651;&#33126;&#23560;&#21312;&#34;,&#10;&#34;topic&#34; =&#62; array(&#10;array(&#34;topic_id&#34; =&#62; 4, &#34;topic_name&#34; =&#62; &#34;&#30828;&#39636;&#36913;&#37002;&#34;),&#10;array(&#34;topic_id&#34; =&#62; 5, &#34;topic_name&#34; =&#62; &#34;&#36575;&#39636;&#35342;&#35542;&#34;)&#10;)&#10;)&#10;);&#10;$tpl-&#62;assign(&#34;forum&#34;, $forum);&#10;$tpl-&#62;display(&#34;test3.htm&#34;);</span><br></pre></td></tr></table></figure>
+<p>樣版的寫法如下：</p>
+<p><strong>templates/test3.htm</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;title&#62;&#24034;&#29376;&#36852;&#22280;&#28204;&#35430;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;table width=&#34;200&#34; border=&#34;1&#34; align=&#34;center&#34; cellpadding=&#34;3&#34; cellspacing=&#34;0&#34;&#62;&#10;&#123;section name=sec1 loop=$forum&#125;&#10;&#60;tr&#62;&#10;&#60;td colspan=&#34;2&#34;&#62; &#123;$forum[sec1].category_name&#125; &#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#123;section name=sec2 loop=$forum[sec1].topic&#125;&#10;&#60;tr&#62;&#10;&#60;td width=&#34;25&#34;&#62;&#38;amp;nbsp;&#60;/td&#62;&#10;&#60;td width=&#34;164&#34;&#62; &#123;$forum[sec1].topic[sec2].topic_name&#125; &#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#123;/section&#125;&#10;&#123;/section&#125;&#10;&#60;/table&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>執行的結果就像筆者上面舉的例子一樣。</p>
+<p>因此呢，在程式中我們只要想辦法把所要重覆值一層一層的塞到陣列中，再利用 {第一層陣列[迴圈1].第二層陣列[迴圈2].第三層陣列[迴圈3]. … .陣列索引} 這樣的方式來顯示每一個巢狀迴圈中的值。至於用什麼方法呢？下一節使用資料庫時我們再提。</p>
+<h3 id="轉換資料庫中的資料">轉換資料庫中的資料</h3><p>上面提到如何顯示巢狀迴圈，而實際上應用時我們的資料可能是從資料庫中抓取出來的，所以我們就得想辦法把資料庫的資料變成上述的多重陣列的形式。這裡筆者用 <a href="http://www.php.net/manual/en/ref.mysqli.php" target="_blank" rel="external">MySQLi</a> 來抓取資料庫中的資料，如果各位有其他自己喜好的資料庫抽象套件的話，原理也是差不多的。</p>
+<p>我們只修改 PHP 程式，樣版還是上面那個 (這就是樣版引擎的好處~)，而且抓出來的資料就是上面的例子。</p>
+<p><strong>test3_2.php</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require &#34;main.php&#34;;&#10;// &#24314;&#31435;&#36039;&#26009;&#24235;&#36899;&#32080;&#10;$mysqli = new mysqli(&#34;localhost&#34;, &#34;username&#34;, &#34;password&#34;, &#34;testdb&#34;);&#10;// &#20808;&#24314;&#31435;&#31532;&#19968;&#23652;&#38499;&#21015;&#21450; SQL &#25351;&#20196;&#10;$category = array();&#10;$sql1 = &#34;SELECT category_id, category_name FROM categories&#34;;&#10;// &#25235;&#21462;&#31532;&#19968;&#23652;&#36852;&#22280;&#30340;&#36039;&#26009;&#10;if ($result1 = $mysqli-&#62;query($sql1)) &#123;&#10;    while ($item_category = $result1-&#62;fetch_assoc()) &#123;&#10;        // &#24314;&#31435;&#31532;&#20108;&#23652;&#38499;&#21015;&#21450; SQL &#25351;&#20196;&#10;        $topic = array();&#10;        $sql2 = sprintf(&#10;            &#34;SELECT topic_id, topic_name FROM topics WHERE category_id = &#39;%s&#39;&#34;,&#10;            $item_category[&#39;category_id&#39;]&#10;        );&#10;        // &#25235;&#21462;&#31532;&#20108;&#23652;&#36852;&#22280;&#30340;&#36039;&#26009;&#10;        if ($result2 = $mysqli-&#62;query($sql2)) &#123;&#10;            while ($item_topic = $result2-&#62;fetch_assoc()) &#123;&#10;                // &#25226;&#25235;&#21462;&#30340;&#36039;&#26009;&#25512;&#20837;&#31532;&#20108;&#23652;&#38499;&#21015;&#20013;&#10;                array_push($topic, $item_topic);&#10;            &#125;&#10;            $result2-&#62;close();&#10;        &#125;&#10;        // &#25226;&#31532;&#20108;&#23652;&#38499;&#21015;&#25351;&#23450;&#28858;&#31532;&#19968;&#23652;&#38499;&#21015;&#25152;&#25235;&#21462;&#30340;&#36039;&#26009;&#20013;&#30340;&#19968;&#20491;&#25104;&#21729;&#10;        $item_category[&#39;topic&#39;] = $topic;&#10;        // &#25226;&#31532;&#19968;&#23652;&#36039;&#26009;&#25512;&#20837;&#31532;&#19968;&#23652;&#38499;&#21015;&#20013;&#10;        array_push($category, $item_category);&#10;        $result1-&#62;close();&#10;    &#125;&#10;&#125;&#10;$mysqli-&#62;close();&#10;$tpl-&#62;assign(&#34;forum&#34;, $category);&#10;$tpl-&#62;display(&#34;test3.htm&#34;);</span><br></pre></td></tr></table></figure>
+<p>在資料庫抓取一筆資料後，我們得到的是一個包含該筆資料的陣列。透過 while 敘述及 array_push 函式，我們將資料庫中的資料一筆一筆塞到陣列裡。如果您只用到單層迴圈，就把第二層迴圈 (紅色的部份) 去掉即可。</p>
+<h3 id="決定內容是否顯示">決定內容是否顯示</h3><p>要決定是否顯示內容，我們可以使用 if 這個語法來做選擇。例如如果使用者已經登入的話，我們的樣版就可以這樣寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;if $is_login == true&#125;&#10;&#39023;&#31034;&#20351;&#29992;&#32773;&#25805;&#20316;&#36984;&#21934;&#10;&#123;else&#125;&#10;&#39023;&#31034;&#36664;&#20837;&#24115;&#34399;&#21644;&#23494;&#30908;&#30340;&#34920;&#21934;&#10;&#123;/if&#125;</span><br></pre></td></tr></table></figure>
+<p>if 語法一般的應用可以參照官方使用說明，所以筆者在這裡就不詳加介紹了。不過筆者發現了一個有趣的應用：常常會看到程式裡要產生這樣的一個表格： (數字代表的是資料集的順序)</p>
+<table summary="橫向重覆表格" width="100" border="1" align="center" cellpadding="3" cellspacing="0"><br><tr align="center"><br><td>1</td><br><td>2</td><br></tr><br><tr align="center"><br><td>3</td><br><td>4</td><br></tr><br><tr align="center"><br><td>5</td><br><td>6</td><br></tr><br><tr align="center"><br><td>7</td><br><td>8</td><br></tr><br></table>
+
+<p>這個筆者稱之為「橫向重覆表格」。它的特色和傳統的縱向重覆不同，前幾節我們看到的重覆表格都是從上而下，一列只有一筆資料。而橫向重覆表格則可以橫向地在一列中產生 n 筆資料後，再換下一列，直到整個迴圈結束。要達到這樣的功能，最簡單的方式只需要 section 和 if 搭配即可。</p>
+<p>我們來看看下面這個例子：</p>
+<p><strong>test4.php</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require &#34;main.php&#34;;&#10;$my_array = array(&#10;    array(&#34;value&#34; =&#62; &#34;0&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;1&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;2&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;3&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;4&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;5&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;6&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;7&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;8&#34;),&#10;    array(&#34;value&#34; =&#62; &#34;9&#34;)&#10;);&#10;$tpl-&#62;assign(&#34;my_array&#34;, $my_array);&#10;$tpl-&#62;display(&#39;test4.htm&#39;);</span><br></pre></td></tr></table></figure>
+<p>樣版的寫法如下：</p>
+<p><strong>templates/test4.htm</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;title&#62;&#27243;&#21521;&#37325;&#35206;&#34920;&#26684;&#28204;&#35430;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;table width=&#34;500&#34; border=&#34;1&#34; cellspacing=&#34;0&#34; cellpadding=&#34;3&#34;&#62;&#10;&#60;tr&#62;&#10;&#123;section name=sec1 loop=$my_array&#125;&#10;&#60;td&#62; &#123;$my_array[sec1].value&#125; &#60;/td&#62;&#10;&#123;if $smarty.section.sec1.rownum is div by 2&#10;&#38;amp;&#38;amp; $smarty.section.sec1.rownum &#60; $smarty.section.sec1.total&#125;&#10;&#60;/tr&#62;&#10;&#60;tr&#62;&#10;&#123;/if&#125;&#10;&#123;/section&#125;&#10;&#60;/tr&#62;&#10;&#60;/table&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>重點在於 $smarty.section.sec1.rownum 及 $smarty.section.sec1.total 這兩個 Smarty 變數，在 section 迴圈中這個 rownum 變數會取得從 1 開始的 索引值，所以當 rownum 能被 2 除盡時，就輸出 <span class="important"><tr></tr></span> 使表格換列 (注意！是 <span class="important"></span> 在前面 <span class="important"><tr></tr></span> 在後面) ，因此數字 2 就是我們在一列中想要呈現的資料筆數。而 total 這個變數會回傳資料總筆數，所以讓 rownum 在小於 total 這個變數才做輸出 <tr> 的動作，會確保不會出現最後一個空的 </tr><tr></tr> 。 </p>
+<p>各位可以由此去變化其他不同的呈現方式。</p>
+<h3 id="載入外部內容">載入外部內容</h3><p>我們可以在樣版內載入 PHP 程式碼或是另一個子樣版，分別是使用 include_php 及 include 這兩個 Smarty 樣版語法； include_php 筆者較少用，使用方式可以查詢官方手冊，這裡不再敘述。</p>
+<p>在使用 include 時，我們可以預先載入子樣版，或是動態載入子樣版。預先載入通常使用在有共同的文件標頭及版權宣告；而動態載入則可以用在統一的框架頁，而進一步達到如 Winamp 般可換 Skin 。當然這兩種我們也可以混用，視狀況而定。</p>
+<p>我們來看看下面這個例子：</p>
+<p><strong>test5.php</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require &#34;main.php&#34;;&#10;$tpl-&#62;assign(&#34;title&#34;, &#34;Include &#28204;&#35430;&#34;);&#10;$tpl-&#62;assign(&#34;content&#34;, &#34;&#36889;&#26159;&#27171;&#29256; 2 &#20013;&#30340;&#35722;&#25976;&#34;);&#10;$tpl-&#62;assign(&#34;dyn_page&#34;, &#34;test5_3.htm&#34;);&#10;$tpl-&#62;display(&#39;test5_1.htm&#39;);</span><br></pre></td></tr></table></figure>
+<p>樣版 1 的寫法如下：</p>
+<p><strong>templates/test5_1.htm</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&#62;&#10;&#60;title&#62; &#123;$title&#125; &#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#123;include file=&#34;test5_2.htm&#34;&#125;&#10;&#123;include file=$dyn_page&#125;&#10;&#123;include file=&#34;test5_4.htm&#34; custom_var=&#34;&#33258;&#35330;&#35722;&#25976;&#30340;&#20839;&#23481;&#34;&#125;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>樣版 2 的寫法如下：</p>
+<p><strong>templates/test5_2.htm</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;p&#62;&#123;$content&#125;&#60;/p&#62;</span><br></pre></td></tr></table></figure>
+<p>樣版 3 的寫法如下：</p>
+<p><strong>templates/test5_3.htm</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;p&#62;&#36889;&#26159;&#27171;&#29256; 3 &#30340;&#20839;&#23481;&#60;/p&#62;</span><br></pre></td></tr></table></figure>
+<p>樣版 4 的寫法如下：</p>
+<p><strong>templates/test5_4.htm</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;p&#62;&#123;$custom_var&#125;&#60;/p&#62;</span><br></pre></td></tr></table></figure>
+<p>這裡注意幾個重點：</p>
+<ul>
+<li>樣版的位置都是以先前定義的 template_dir 為基準。</li>
+<li>所有 include 進來的子樣版中，其變數也會被解譯。</li>
+<li>include 中可以用「變數名稱=變數內容」來指定引含進來的樣版中所包含的變數，如同上面樣版 4 的做法。</li>
+</ul>
+<h2 id="範例下載">範例下載</h2><p><a href="/resources/smarty_basic/example.zip">下載</a>本文所有範例。</p>
+<p>而其他 Smarty 更進階的部份，就請看筆者的拙作：「 <a href="http://www.flag.com.tw/book/5105.asp?bokno=F5471" target="_blank" rel="external">PHP Smarty 樣版引擎</a>」。 </p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2005/06/03/22/">
                 CSS 技巧：表單
               </a>
@@ -530,324 +977,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/05/01/16/">
-                Apache 伺服器非官方已編譯模組
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-05-01
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/05/01/16/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/05/01/16/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>雖然我覺得自己編譯 Apache 模組是一件很重要的事，但是我還是遇到了一些問題。</p>
-<p>不過還好我找到了這個網站：<a href="http://gknw.itex.at/development/apache/" target="_blank" rel="external">http://gknw.itex.at/development/apache/</a></p>
-<h2 id="mod_gzip">mod_gzip</h2><p>以下我們來介紹一個簡單的模組：mod_gzip 。</p>
-<p>mod_gzip 可以將 Apache 輸出的網頁文字內容先作壓縮後，再傳送到用戶端 (就是瀏覽器啦) 。因此可以減少大量的頻寬，增加線路的轉輸效率。</p>
-<p>當然，首先我們得先安裝好 Apache2(win32) ，這我就不多提了。然後我們連到上述的網址後，找到 Apache 2.0 webserver -&gt; Win32 -&gt; modules 的連結。點選後，在新頁面找到 <code>mod_gzip-2.0.xx-w32.zip</code> 並下載它。</p>
-<p>解開 <code>mod_gzip-2.0.xx-w32.zip</code> 後，找到 <code>Release</code> 資料夾下的 <code>mod_gzip.so</code> 檔；接著將它複製到 Apache2 安裝目錄下的 <code>modules</code> 資料夾下。</p>
-<p>再來我們在 Apache2 安裝目錄下的 conf 資料夾內，用文字編輯器開啟 <code>httpd.conf</code> ，找到 LoadModule 區；然後加入此行：</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> gzip_module modules/mod_gzip.so</span><br></pre></td></tr></table></figure>
-<p>最後儲存 <code>httpd.conf</code> ，再重新啟動 Apache ，然後試試看頁面瀏覽的速度有沒有變快。</p>
-<h2 id="補充">補充</h2><p>果然網路上高手眾多，有網友推薦使用 Apache2 內建的 mod_deflate ，它和 mod_gzip 同樣是用來壓縮傳輸內容的。</p>
-<p>我找到了一篇還不錯的介紹，所以這裡就不寫了：<a href="http://ying.homedns.org/wp/archives/2005/08/13/21/28/00/" target="_blank" rel="external">精神奕奕 &raquo; Apache2 使用 mod_deflate 增進傳輸效能</a>。</p>
-<p>感謝 Arthur 的資訊 ~~</p>
-<p>Apache 的官方說明：<a href="http://httpd.apache.org/docs/2.0/mod/mod_deflate.html" target="_blank" rel="external">Apache Module mod_deflate</a>。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/04/29/15/">
-                CSS 排版觀念：Position
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-04-29
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/04/29/15/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/29/15/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>很多人都會用圖層來製作網頁，或許常會聽到所謂的絕對位置和相對位置。其實它們都是 CSS 中 <code>position</code> 的設定值，透過設定 <code>position</code> ，便能讓我們隨意移動元素的位置。</p>
-<p>不過它們之間到底有什麼不同呢？本文做個簡單的說明。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2005/04/29/15/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/04/28/13/">
-                如何自製 JavaScript 物件類別？
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-04-28
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/04/28/13/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/28/13/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>對 JavaScript 而言，我們可以把 Function 看成是一種物件類別。這裡介紹一個簡單的方法，來建立自己的類別。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2005/04/28/13/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/04/28/14/">
-                如何讓 JpGraph 顯示中文
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-04-28
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/04/28/14/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/28/14/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>這篇是我在網路上的好友 chihwen 向我提到的， JpGraph 能否顯示中文？我在和他討論後，找到了方法，便把它記在這裡了。 <a href="http://www.aditus.nu/jpgraph/" target="_blank" rel="external">JpGraph</a> 是一套包裝 GD 函式庫，可用來顯示圖表的 PHP 類別程式。新版 (1.17) 已支援顯示中文，而不必我們手動轉換。</p>
-<h2 id="安裝">安裝</h2><p>在使用 JpGraph 之前，請先確認安裝了：</p>
-<ul>
-<li>GD2 (繪圖函式庫)</li>
-<li>iconv (字元編碼轉換函式庫)</li>
-</ul>
-<p>以上的函式庫在最新版的 PHP5 Win32 版已內建，並請在 <code>php.ini</code> 設定好。</p>
-<p>將最新版的 JpGraph 下載回來後，找到 <code>src</code> 資料夾，將它更名為 <code>jpgraph</code> ，然後放到 <code>php.ini</code> 指定的 <code>include_path</code> 下。</p>
-<p>註：在原 <code>src</code> 資料夾下有個 <code>Examples</code> 子資料夾，裡面有很多不錯的範例。</p>
-<p>接著在更名後的 <code>jpgraph</code> 資料夾下，找到 <code>jpg-config.inc</code> 檔，修改以下的設定：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">DEFINE(<span class="string">'CHINESE_TTF_FONT'</span>, <span class="string">'bkai00mp.ttf'</span>);</span><br></pre></td></tr></table></figure>
-<p>我個人偏好用新細明體，所以我改成：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">DEFINE(<span class="string">'CHINESE_TTF_FONT'</span>, <span class="string">'mingliu.ttc'</span>);</span><br></pre></td></tr></table></figure>
-<p>在 Windows 系統上， JpGraph 會自行抓取系統的字型存放路徑，所以基本上不需擔心路徑問題。</p>
-<h2 id="範例">範例</h2><p>我們來看看一個範例 (取自 <a href="http://timteam.org" target="_blank" rel="external">PHP 之戀</a>) ：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> (<span class="string">"jpgraph/jpgraph.php"</span>);</span><br><span class="line"><span class="keyword">include</span> (<span class="string">"jpgraph/jpgraph_pie.php"</span>);</span><br><span class="line"><span class="keyword">include</span> (<span class="string">"jpgraph/jpgraph_pie3d.php"</span>);</span><br><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="number">40</span>, <span class="number">60</span>, <span class="number">21</span>, <span class="number">33</span>, <span class="number">50</span>);</span><br><span class="line"><span class="variable">$graph</span> = <span class="keyword">new</span> PieGraph(<span class="number">400</span>, <span class="number">200</span>);</span><br><span class="line"><span class="variable">$graph</span>-&gt;SetShadow();</span><br><span class="line"><span class="variable">$graph</span>-&gt;title-&gt;SetFont(FF_BIG5, FS_NORMAL);</span><br><span class="line"><span class="variable">$graph</span>-&gt;legend-&gt;SetFont(FF_BIG5, FS_NORMAL);</span><br><span class="line"><span class="variable">$graph</span>-&gt;title-&gt;Set(<span class="string">"中文"</span>);</span><br><span class="line"><span class="variable">$p1</span> = <span class="keyword">new</span> PiePlot3D(<span class="variable">$data</span>);</span><br><span class="line"><span class="variable">$p1</span>-&gt;SetSize(<span class="number">0.5</span>);</span><br><span class="line"><span class="variable">$p1</span>-&gt;SetCenter(<span class="number">0.45</span>);</span><br><span class="line"><span class="variable">$p1</span>-&gt;SetLegends(<span class="keyword">array</span>(<span class="string">"中文"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>));</span><br><span class="line"><span class="variable">$graph</span>-&gt;Add(<span class="variable">$p1</span>);</span><br><span class="line"><span class="variable">$graph</span>-&gt;Stroke();</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>執行結果如下圖：</p>
-<p><img src="/resources/jpgraph/pie3d.png" alt="執行結果"></p>
-<p>重點就是我們只要針對 <code>$graph</code> 裡的屬性值，像是 <code>title</code> 、 <code>legend</code> 等設定 <code>SetFont(FF_BIG5)</code> 或是 <code>SetFont(FF_CHINESE)</code> ，就能正常顯示中文了。</p>
-<h2 id="補充">補充</h2><p>chihwen 發現原本的 Pie3D 所呈現的圖樣顏色 (Legend) 和資料呈現的顏色無法對應，我到官方網站去搜尋的結果，找到了一篇討論：<a href="http://jpgraph.intellit.nl/viewtopic.php?t=2087&amp;highlight=pieplot3d" target="_blank" rel="external">http://jpgraph.intellit.nl/viewtopic.php?t=2087&amp;highlight=pieplot3d</a></p>
-<p>修正方式：</p>
-<p>找到 <code>jpgraph_pie.php</code> ，並做以下的修改：</p>
-<p>第 229 行，加上 <code>strtolower()</code> 如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>( strtolower(get_class(<span class="variable">$this</span>))===<span class="string">'pieplot3d'</span> ) &#123;</span><br></pre></td></tr></table></figure>
-<p>第 236 行，加上 <code>strtolower()</code> 如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="variable">$graph</span>-&gt;pieaa &amp;&amp; strtolower(get_class(<span class="variable">$this</span>))===<span class="string">'pieplot'</span> ) &#123;</span><br></pre></td></tr></table></figure>
-<p>這是 PHP4 轉 PHP5 未向下相容的問題，因為預設 <code>get_class()</code> 在 PHP4 回傳都會是小寫，但 PHP5 則是大小寫有別所造成。</p>
-<p>以上資訊感謝 chihwen 提供~~</p>
-<h2 id="再補充">再補充</h2><p>新版的 JpGraph 已解決上面的問題，請記得更新！</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/56/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><span class="page-number current">57</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/58/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/56/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><span class="page-number current">57</span><a class="page-number" href="/page/58/">58</a><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/58/">&raquo;</a>
   </div>
 
 
@@ -881,7 +1015,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">579</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

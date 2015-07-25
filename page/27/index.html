@@ -117,6 +117,291 @@
           
           
             
+              <a class="post-title-link" href="/2008/04/18/330/">
+                Bridge 模式的簡單範例
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2008-04-18
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2008/04/18/330/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/04/18/330/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>今天跟 <a href="http://blog.pixnet.net/HACGIS" target="_blank" rel="external">tokimeki</a> 討論到 Bridge 模式的例子，這裡我做個簡單的記錄。</p>
+<p>假設我們有軟體 (Software) 會透過印表機 (Printer) 做列印輸出，而軟體有文字編輯器 (輸出文字) 與影像編輯器 (輸出影像) ，然後印表機則可分做雷射、噴墨及點陣式。</p>
+<p>在設計上，這兩者分別屬於不同的繼承體系，而 Software 又會利用到 Printer ，因此它們形成了 Bridge 關係，如下圖： </p>
+<p><a href="/resources/bridge/PrinterSample.png"><img src="/resources/bridge/PrinterSample.png" alt="Bridge 範例"></a></p>
+<p>把幾個討論心得整理如下：</p>
+<ul>
+<li><p>由於 Printer 抽象類封裝了實作上的不同，因此 Software 的子類別不必瞭解 Printer 的實作，它們只要知道 Printer 提供哪些介面可用。這些子類別會依照自己的需要來組合這些介面，就算用不到也沒關係。</p>
+</li>
+<li><p>在 Software 的子類別可以加入屬於自己的特殊方法，因為它們通常會依場合直接被調用，所以這裡並不需要遵守 LSP 原則。</p>
+</li>
+<li><p>對 Printer 體系來說，它不需要知道誰來用它；但反過來 Software 體系因為需要 Printer 體系的支援，所以形成了單向耦合。</p>
+</li>
+<li><p>對 Software 體系來說，只要它需要新的功能，而且這些功能所需要的實作也在 Printer 抽象類支援的範圍之內，那麼它就可以直接調用 Printer 物件的方法，而不會影響 Printer 體系。</p>
+</li>
+<li><p>如果 Software 體系需要的新功能是 Printer 抽象類所沒有的，那麼還是可以在 Printer 抽象類裡加入新的方法，而實作則交給 Printer 的子類別完成。這樣的修改完全不會影響 Software 體系。 </p>
+</li>
+</ul>
+<p>更詳細的 Bridge 模式介紹可參考良葛格的「 <a href="http://caterpillar.onlyfun.net/Gossip/DesignPattern/BridgePattern.htm" target="_blank" rel="external">Design Pattern: Bridge 模式</a>」一文。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2008/04/17/329/">
+                簡單說明「抽象類」與「介面」
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2008-04-17
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2008/04/17/329/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/04/17/329/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>繼承抽象類表示類別「是個什麼」，實作介面表示類別「能做什麼」。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2008/04/15/328/">
+                給 Web 開發者的一句話
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2008-04-15
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2008/04/15/328/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/04/15/328/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>不管你要做什麼服務，<span style="color:#000;">正妹</span>就是最好的 Interface !!!</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2008/04/14/327/">
+                [PHP] 在 PHP5 中實作 AOP 的概念
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2008-04-14
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2008/04/14/327/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/04/14/327/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>這篇積在我電腦裡很久了，一直沒公開…這次趁著要幫我的 Library 加料，順便拿出來分享一下心得。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2008/04/14/327/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2008/04/13/326/">
                 [Web] 連結分享
               </a>
@@ -782,422 +1067,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2008/03/16/320/">
-                [Web] 連結分享
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2008-03-16
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2008/03/16/320/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/03/16/320/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <a id="more"></a>
-<h2 id="PHP">PHP</h2><ul>
-<li><a href="http://www.ajaxray.com/blog/2008/03/08/php-universal-feed-generator-supports-rss-10-rss-20-and-atom/" target="_blank" rel="external">PHP Universal Feed Generator (supports RSS 1.0, RSS 2.0 and ATOM)</a></li>
-</ul>
-<p>可以用來產生 RSS 及 ATOM 的套件。</p>
-<ul>
-<li><a href="http://www.devshed.com/c/a/PHP/Inserting-Comments-and-Accessing-Nodes-with-the-DOM-XML-Extension-in-PHP-5/" target="_blank" rel="external">Inserting Comments and Accessing Nodes with the DOM XML Extension in PHP 5</a></li>
-</ul>
-<p>教你透過 PHP 的 DOM XML 延伸套件處理文件節點。 </p>
-<ul>
-<li><a href="http://sebastian-bergmann.de/archives/756-Generating-Code-from-Tests.html" target="_blank" rel="external">Generating Code from Tests</a></li>
-</ul>
-<p>讚！以前都是從 Class 程式碼去產生測試骨架，現在 PHPUnit 3.3 可以反向從測試去產生 Class 的骨架了！ </p>
-<ul>
-<li><a href="http://blog.makemepulse.com/2008/03/13/php6-unicode-and-textiterator-features/" target="_blank" rel="external">PHP6, Unicode and TextIterator features</a></li>
-</ul>
-<p>介紹有關 PHP6 裡的 Unicode 相關設定項目及函式應用。 </p>
-<h3 id="Zend_Framework">Zend Framework</h3><ul>
-<li><a href="http://www.killerphp.com/articles/pear-vs-zend-framework/" target="_blank" rel="external">PEAR vs. Zend Framework</a></li>
-</ul>
-<p>簡單說明了 PEAR 和 ZF 之間最大的不同： Zend Framework 投注很大的心力在套件之間的協同運作，但你還是可以拆開分別運用 (也就是鬆耦合) ；而 PEAR 除了必要的相依套件外，其他都是獨立開發的。兩者的優勢分別是： ZF 發揮了 PHP5 的特性，而 PEAR 則能延展你的程式碼在 PHP4 的生命週期。 </p>
-<h2 id="JavaScript">JavaScript</h2><ul>
-<li><a href="http://bdn.backbase.com/blog/sjoerd/performance-is-everything" target="_blank" rel="external">Performance is Everything</a></li>
-</ul>
-<p>探討目前主流瀏覽器在 JavaScript 引擎上的效能表現。看起來 Safari 和 Firefox 的最新版本都有不俗的表現，而 IE8 Beta 1 的表現還差強人意。 </p>
-<ul>
-<li><a href="http://www.matts411.com/main/super_tables" target="_blank" rel="external">Super Tables - HTML Tables with Fixed Headers and More</a> </li>
-</ul>
-<p>在呈現表格資料時，將表頭固定的 JavaScript 套件。 </p>
-<ul>
-<li><a href="http://plog.longwin.com.tw/news-technology/2008/03/12/javascript_db_taffy_database_2008" target="_blank" rel="external">Javascript 的 Database: Taffy DB</a></li>
-</ul>
-<p>用 JavaScript 寫的 Database ，詳情就請宗董開示。我個人覺得似乎可以拿來暫時包裝一些簡單的資訊：像是購物車。 </p>
-<ul>
-<li><a href="http://ejohn.org/blog/search-and-dont-replace/" target="_blank" rel="external">Search and Don’t Replace</a></li>
-</ul>
-<p>討論將 “foo=1&amp;foo=2&amp;foo=3&amp;blah=a&amp;blah=b” 轉換成 “foo=1,2,3&amp;blah=a,b” 的方法。 </p>
-<ul>
-<li><a href="http://www.ajaxonomy.com/2008/web-20/javascriptmvc-model-view-controller-for-javascript" target="_blank" rel="external">JavaScriptMVC - Model View Controller for JavaScript</a></li>
-</ul>
-<p>作者開發這個套件的目的是為了應付越來越龐大的 JavaScript Application ，而我還滿欣賞那個 include 功能的。</p>
-<p>PS: 那個在一樓留言的匿名者 (批評別人都不敢留名字？) ，就是標準的文人相輕…唉…作者回得也真是太客氣了。 </p>
-<h3 id="jQuery">jQuery</h3><ul>
-<li><a href="http://www.iscripting.net/smf/tutorial-submissions/identifying-and-manipulating-elements-using-jquery/0/" target="_blank" rel="external">Identifying and Manipulating Elements Using jQuery</a></li>
-</ul>
-<p>這篇教你如何用 jQuery 來操作頁面的元素，算是不錯的基礎文章。 </p>
-<ul>
-<li><a href="http://www.webdesignfromscratch.com/dhtml-decision-maker.cfm" target="_blank" rel="external">DHTML Decision-making grid</a></li>
-</ul>
-<p>主要特點就是能動態新增欄與列。</p>
-<ul>
-<li><a href="http://www.gcmingati.net/wordpress/wp-content/lab/jquery/imagestrip/imageslide-plugin.html" target="_blank" rel="external">jQuery slideViewer 1.1</a></li>
-</ul>
-<p>主要特點在於幫你建立一個數字列按鈕來瀏覽圖片。</p>
-<ul>
-<li><a href="http://moblur.org/workshop/jflot_intro/" target="_blank" rel="external">jQuery + jFlot - Plots, Canvas and Charts</a></li>
-</ul>
-<p>用來建立條狀圖表的套件。</p>
-<ul>
-<li><a href="http://dev.iceburg.net/jquery/tableEditor/demo.php" target="_blank" rel="external">tableEditor</a></li>
-</ul>
-<p>讓我們可以即時編輯列資料。</p>
-<ul>
-<li><a href="http://pure-essence.net/stuff/webTips/jqueryTableRowCheckboxToggle.html" target="_blank" rel="external">jqueryTableRowCheckboxToggle</a></li>
-</ul>
-<p>讓我們可以在點選列時，同時更新 Checkbox 的狀態。 </p>
-<ul>
-<li><a href="http://www.wowbox.com.tw/blog/article.asp?id=2562" target="_blank" rel="external">45個新鮮出爐的jQuery插件</a></li>
-</ul>
-<p>介紹了很多不錯用的 jQuery 套件。 </p>
-<h2 id="CSS">CSS</h2><ul>
-<li><a href="http://www.wowbox.com.tw/blog/article.asp?id=2559" target="_blank" rel="external">CSS Hacks 和 問題解決</a></li>
-</ul>
-<p>將常見的 CSS 問題解決整理起來了。</p>
-<ul>
-<li><a href="http://stylizedweb.com/2008/03/12/most-used-css-tricks/" target="_blank" rel="external">Most used CSS tricks</a></li>
-</ul>
-<p>提供一些常用的 CSS 美化技巧。 </p>
-<ul>
-<li><a href="http://www.cssplay.co.uk/opacity/png_link_error.html" target="_blank" rel="external">IE6 AlphaImageLoader with links error</a></li>
-</ul>
-<p>當用了 IE6 的 PNG fix 後，會讓連結無法正常動作；解法是再包一層 position:absolute 的 div 。 </p>
-<h2 id="Database">Database</h2><h3 id="MySQL">MySQL</h3><ul>
-<li><a href="http://www.phpguru.org/article.php/224" target="_blank" rel="external"> Transferring a MySQL database</a></li>
-</ul>
-<p>如何將資料庫的資料轉移到遠端的另一部 MySQL 主機上。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysqldump -h host1 -u username -pPASSWORD database_name | mysql -h host2 -u username -pPASSWORD database_name</span><br></pre></td></tr></table></figure>
-<h2 id="Web">Web</h2><ul>
-<li><a href="http://developer.yahoo.com/performance/rules.html" target="_blank" rel="external">Best Practices for Speeding Up Your Web Site</a></li>
-</ul>
-<p>之前好像有貼過類似的了？還是同一篇？</p>
-<ul>
-<li><a href="http://blog.miniasp.com/post/2008/03/13/Flash-Intro-need-consider-more-than-detection.aspx" target="_blank" rel="external">網站的 Flash 前導頁需考量的不僅僅瀏覽器是否支援</a></li>
-</ul>
-<p>Flash 前導頁在商業場合還是少用吧。 </p>
-<ul>
-<li><a href="http://www.coachwei.com/blog/_archives/2008/3/11/3574715.html" target="_blank" rel="external">Possible Solutions to Web Security Issues</a> </li>
-</ul>
-<p>介紹一些有關網站安全性的解決方案。</p>
-<ul>
-<li><a href="http://reference.sitepoint.com/html" target="_blank" rel="external">HTML Reference (beta)</a></li>
-</ul>
-<p>SitePoint 推出的 HTML 參考手冊。另外之前有介紹過 <a href="http://reference.sitepoint.com/css" target="_blank" rel="external">CSS 參考手冊</a>。 </p>
-<ul>
-<li><a href="http://plog.longwin.com.tw/my_note-unix/2008/03/14/shell_script_top_10_ip_2008" target="_blank" rel="external">Shell Script: 來最多次的 IP, 抓前 10 名</a></li>
-</ul>
-<p>這個要學起來，免得被大量攻擊時還傻傻的不知到怎麼解。</p>
-<ul>
-<li><a href="http://www.refly.net/blog/2008/03/15/%e5%af%86%e7%a2%bc%e5%bc%b7%e5%ba%a6%e6%aa%a2%e6%b8%ac%e5%99%a8/" target="_blank" rel="external">密碼強度檢測器 | 慢條斯理的溫柔</a></li>
-</ul>
-<p>好物呀！我也常在想這個演算法要怎麼寫，原來有寫好的囉。</p>
-<h3 id="Browser">Browser</h3><ul>
-<li><a href="http://heresy.spaces.live.com/blog/cns%21E0070FB8ECF9015F%213330.entry" target="_blank" rel="external">微軟新一代瀏覽器：IE8 Beta1</a> </li>
-</ul>
-<p>上次貼了一堆 IE8 的連結沒寫介紹，所以這次就直接借用別人寫好的連結了。這篇是在介紹 IE8 的特點，還有作者的使用心得。我是比較期待 Firefox 3.0 正式版… </p>
-<h2 id="Internet">Internet</h2><ul>
-<li><a href="http://forum.icst.org.tw/phpBB2/viewtopic.php?t=79" target="_blank" rel="external">FTP 的主動模式( active )和被動模式( passive )</a> </li>
-</ul>
-<p>這個要學過 TCP/IP 的運作原理才會比較瞭解在說什麼，還好我學過；總之主動模式不能用的話，就試試被動模式。 </p>
-<h2 id="Programming">Programming</h2><ul>
-<li><a href="http://www.regdeveloper.co.uk/2008/03/10/ten_ways_to_improve_code/" target="_blank" rel="external">10 ways to improve your code</a></li>
-</ul>
-<p>10 個改進程式碼的方法。</p>
-<h2 id="Other">Other</h2><h3 id="Software">Software</h3><ul>
-<li><a href="http://cha.homeip.net/blog/archives/2008/03/_ntfs4dos_xp.html" target="_blank" rel="external">使用 NTFS4DOS 開機碟修複 XP</a></li>
-</ul>
-<p>這個是很方便的工具~</p>
-<ul>
-<li><a href="http://briian.com/?p=5240" target="_blank" rel="external">picture-shark 幫全部圖片「批次」加蓋浮水印！</a></li>
-</ul>
-<p>現有的圖片可以用這個來大量轉，很方便。如果是寫 PHP 程式的話，可以考慮用 <a href="http://www.imagemagick.org/script/index.php" target="_blank" rel="external">ImageMagick</a> 。 </p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2008/03/09/319/">
-                [Web] 連結分享
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2008-03-09
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2008/03/09/319/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/03/09/319/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>最近要減少網摘的文章以及連結的說明了，因為那花去我太多時間 (看底下那堆連結…Orz) 。</p>
-<p>接下來要把重心放在新的專案上，以及更深入瞭解 Zend Framework 及物件導向的相關知識。 </p>
-<p>註：這次還偷懶，直接從 Firefox 匯出來貼…如果有發現歸錯類的話，還望大家不吝告知。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2008/03/09/319/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2008/02/29/318/">
-                目錄結構的安排
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2008-02-29
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2008/02/29/318/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/02/29/318/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Zend Framework 在開發上算是滿自由的一套 Framework ，但也因此它在目錄結構的安排 (Directory Layout) 就成了一個很讓初學者困擾的問題；而且不論是官方或是社群都推薦了很多方法，更讓剛接觸 Zend Framework 的朋友難以適從。</p>
-<p>本文將探討 Zend Framework 目錄結構的特點以及幾個常見的目錄結構，讓各位開發者能夠對它們有所認知。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2008/02/29/318/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2008/02/27/317/">
-                Front Controller 的基本應用技
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2008-02-27
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2008/02/27/317/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/02/27/317/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>剛學 Zend Framework 的朋友通常會遇到兩個麻煩：目錄結構的安排，還有就是怎麼在 index.php (bootstrap) 中使用 Front Controller ？</p>
-<p>目錄結構的安排下次有機會再談，這裡我來說說 Front Controller 的用法。</p>
-<p>註：在此之前，請大家先看過 Rob Allen 寫的 <a href="http://akrabat.com/zend-framework-tutorial/">Getting Started with the Zend Framework</a> 一文 (<a href="http://akrabat.com/wp-content/uploads/getting-started-with-the-zend-framework_145.pdf">PDF 版本</a>) ；本文將會以該篇教學為基礎，一步一步來說明。 </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2008/02/27/317/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/28/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/26/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/28/">&raquo;</a>
   </div>
 
 
@@ -1231,7 +1105,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">579</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

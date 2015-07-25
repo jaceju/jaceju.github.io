@@ -117,6 +117,162 @@
           
           
             
+              <a class="post-title-link" href="/2007/08/20/229/">
+                [SQL] 如何計算紀錄總數並更新到另一個表
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-08-20
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/08/20/229/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/20/229/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>在 MySQL 4.1 以上版本怎麼把某個 table 的 COUNT 總數複製到另一個 table 對應的欄位裡呢？ </p>
+<p>假設這裡有 a 和 b 兩個 table ，其中 b 表有一個欄位 a_id 對應到 a 表的 id 主鍵，而 a 表有個欄位 total 要記錄在 b 表中屬於 a 表的記錄總共有多少筆。一直記得 SQL 可以很簡單做到，可以一下子就是想不起來。 </p>
+<p>感謝 Neo 一語驚醒夢中人，用 Sub Query 就搞定了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;UPDATE&#60;/strong&#62; a, (&#60;strong&#62;SELECT&#60;/strong&#62; a_id, &#60;strong&#62;COUNT&#60;/strong&#62;(*) &#60;strong&#62;AS&#60;/strong&#62; total&#10;&#60;strong&#62;FROM&#60;/strong&#62; b&#10;&#60;strong&#62;GROUP&#60;/strong&#62; &#60;strong&#62;BY&#60;/strong&#62; a_id) &#60;strong&#62;AS&#60;/strong&#62; c&#10;&#60;strong&#62;SET&#60;/strong&#62; a.total = c.total&#10;&#60;strong&#62;WHERE&#60;/strong&#62; a.id = c.a_id;</span><br></pre></td></tr></table></figure>
+<p>這裡記下來先，不然到時候又忘了；可能有更好的方法，不過目前先完成工作要緊。 :) </p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2007/08/18/227/">
+                [PHP] 幾篇不錯的文章
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-08-18
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/08/18/227/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/18/227/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <a id="more"></a>
+<ul>
+<li><a href="http://greg.chiaraquartet.net/archives/16-Incredible-Zend-ZDE-debugging-trick-for-debugging-CLI-apps.html" target="_blank" rel="external">Incredible Zend ZDE debugging trick for debugging CLI apps</a></li>
+</ul>
+<p>用以下方式來 Debug PHP CLI 應用程式，我只能說作者真的很天才。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62; set &#34;QUERY_STRING=start_debug=1&#38;amp;debug_host=192.168.0.102&#38;amp;debug_port=10000&#38;amp;debug_stop=1&#34;</span><br></pre></td></tr></table></figure>
+<p>有機會應該來試試看才對。</p>
+<ul>
+<li><a href="http://pixelated-dreams.com/archives/313-AJAX-and-PHP-End-to-End-Debugging.html" target="_blank" rel="external">AJAX and PHP End-to-End Debugging</a></li>
+</ul>
+<p>參考上一篇文章的方式，這次用來 Debug Ajax ；也就是把上面的 QUERY_STRING 系統變數當做 Ajax 的 GET 參數。 </p>
+<ul>
+<li><a href="http://www.rooftopsolutions.nl/article/148" target="_blank" rel="external">PHP: Arrays vs. Objects</a></li>
+</ul>
+<p>又是一篇比較 PHP 陣列和物件效率的文章，我個人是認為效率相差不大的狀況下，應該挑選適合程序的方式來用，而不是固執於一種形式。</p>
+<ul>
+<li><a href="http://blog.agoraproduction.com/index.php?/archives/47-PHP-Namespaces-Part-1-Basic-usage-gotchas.html" target="_blank" rel="external">PHP Namespaces (Part 1: Basic usage &amp; gotchas)</a></li>
+</ul>
+<p>這篇告訴你為什麼要用 Namespaces ，而 Mark 在中文化 dotProject 時也遇過同樣的問題。 </p>
+<li><br><br><a href="http://php100.wordpress.com/2007/08/17/namespaces-faq/" target="_blank" rel="external">Namespaces FAQ</a><br><br>經典：<br><blockquote><br><br> Q: PHP 為什麼需要 Namespaces ？<br><br>A: 因為 PEAR_Form_Loader_Validate_Table_Element_Validator_Exception 實在是太 TMD 長了。 (嗯…這句是我瞎掰的 XD)<br></blockquote><br></li>
+
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2007/08/16/225/">
                 ZF 和 SEO
               </a>
@@ -190,8 +346,8 @@
           
           
             
-              <a class="post-title-link" href="/2007/08/15/223/">
-                [CSS] 多種分頁樣式範例
+              <a class="post-title-link" href="/2007/08/16/226/">
+                [JavaScript] 相關連結
               </a>
             
           
@@ -200,7 +356,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2007-08-15
+          發表於 2007-08-16
         </span>
 
         
@@ -209,8 +365,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2007/08/15/223/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/15/223/"></span>
+            <a href="/2007/08/16/226/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/16/226/"></span>
             </a>
           </span>
           
@@ -225,12 +381,93 @@
 
       
         
-          <p>前陣子看到一篇分頁樣式的文章，趁最近在寫文件時順便整理一下：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2007/08/15/223/#more">
-              閱讀全文 &raquo;
+          <p>JavaScript 越來越神奇了，從大家都認為只是小玩意的技術，搖身一變成為高手們競相研究的對象。</p>
+<p>以下兩個連結就可以看出 JavaScript 真的是非常有趣的一門語言：</p>
+<ul>
+<li><a href="http://osteele.com/archives/2006/04/javascript-memoization" target="_blank" rel="external">One-Line JavaScript Memoization</a></li>
+<li><a href="http://peter.michaux.ca/article/3556" target="_blank" rel="external">Lazy Function Definition Pattern</a> (<a href="http://realazy.org/blog/2007/08/16/lazy-function-definition-pattern/" target="_blank" rel="external">簡體中文版</a> by <a href="http://realazy.org/blog/" target="_blank" rel="external">Realazy</a>)</li>
+</ul>
+<p>順便附上幾個 JavaScript 相關技術的文章：</p>
+<ul>
+<li><a href="http://yuiblog.com/blog/2007/06/12/module-pattern/" target="_blank" rel="external">A JavaScript Module Pattern</a></li>
+<li><a href="http://www.jibbering.com/faq/faq_notes/not_browser_detect.html" target="_blank" rel="external">Browser Detecting (and what to do Instead)</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2007/08/16/224/">
+                [轉載] Scraping Links With PHP
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-08-16
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/08/16/224/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/16/224/"></span>
             </a>
-          </div>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>剛剛看到一篇很有用的 PHP 技巧整理，主要在說明如何結合 cURL 和 DOM 來解析網頁中的連結：</p>
+<p><a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/" target="_blank" rel="external">Scraping Links With PHP</a></p>
+<p>節錄如下：</p>
+<blockquote><br><br>### What You’ll Learn<br><br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#curl_content" target="_blank" rel="external">How to use cURL</a> to get the content from a website (URL).
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#php_dom" target="_blank" rel="external">Call PHP DOM functions</a> to parse the HTML so you can extract links.<br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#xpath_easy" target="_blank" rel="external">Use XPath to grab links</a> from specific parts of a page.
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#store_links" target="_blank" rel="external">Store the scraped links</a> in a MySQL database.<br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#put_together" target="_blank" rel="external">Put it all together into a link scraper.</a>
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#more_uses" target="_blank" rel="external">What else you could use a scraper for.</a><br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#legal_issues" target="_blank" rel="external">Legal issues</a> associated with scraping content.<br><br><br>### What You Will Need
+
+</em> Basic knowledge of <a href="http://php.net/" target="_blank" rel="external">PHP</a> and <a href="http://dev.mysql.com/doc/refman/5.0/en/" target="_blank" rel="external">MySQL</a>.<br><em> A web server running PHP 5.
+</em> The <a href="http://us.php.net/curl" target="_blank" rel="external">cURL</a> extension for PHP.<br>* MySQL - if you want to store the links.<br><br></blockquote>
+
         
       
     </div>
@@ -423,8 +660,8 @@
           
           
             
-              <a class="post-title-link" href="/2007/08/14/219/">
-                [Web] 連結分享
+              <a class="post-title-link" href="/2007/08/15/223/">
+                [CSS] 多種分頁樣式範例
               </a>
             
           
@@ -433,7 +670,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2007-08-14
+          發表於 2007-08-15
         </span>
 
         
@@ -442,8 +679,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2007/08/14/219/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/14/219/"></span>
+            <a href="/2007/08/15/223/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/15/223/"></span>
             </a>
           </span>
           
@@ -458,71 +695,12 @@
 
       
         
-          <p>最近沒空寫東西了，光文件就快讓我忙不過來了。</p>
-<p>再搜集幾個連結，有些是從 Neo 的「<a href="http://www.neo.com.tw/archives/001088.html" target="_blank" rel="external">用 PHP 實作 ActiveRecord</a> 」那邊看來的：</p>
-<h2 id="PHP">PHP</h2><ul>
-<li><a href="http://www.advogato.org/article/470.html" target="_blank" rel="external">Mixins in PHP</a></li>
-</ul>
-<p>和我的<a href="http://www.jaceju.net/blog/archives/163" target="_blank" rel="external">實作</a>滿像的，不過有用到 <a href="http://tw.php.net/manual/en/language.oop5.reflection.php" target="_blank" rel="external">Reflection API</a> 。另外看了人家的程式後，我發現我的實作忘了要 return 結果。</p>
-<ul>
-<li><a href="http://www.scriptorama.nl/tips-tricks/re-mixins-in-php" target="_blank" rel="external">Re: mixins in PHP</a></li>
-</ul>
-<p>這個有用到 <a href="http://tw.php.net/manual/en/ref.runkit.php" target="_blank" rel="external">runkit</a> 。</p>
-<ul>
-<li><a href="http://www.actsasflinn.com/articles/2007/08/08/php-and-activerecord" target="_blank" rel="external">PHP and ActiveRecord</a></li>
-</ul>
-<p>解釋了為什麼 Ruby 適合實作 ActiveRecord ，但是 PHP 則很難實現。不過 PHP 不好做的話也別氣餒， Zend Framework 的 <a href="http://framework.zend.com/manual/en/zend.db.table.html" target="_blank" rel="external">Table Data Gateway</a> 和 <a href="http://framework.zend.com/manual/en/zend.db.table.row.html" target="_blank" rel="external">Row Data Gateway</a> 就是一種不錯的實作了。</p>
-<ul>
-<li><a href="http://blog.adaniels.nl/?p=40" target="_blank" rel="external">PHP != Ruby (and why PHP needs more advanced OO stuff)</a></li>
-</ul>
-<p>從上一篇延伸而來的，作者解釋可以用 runkit 來實現很多 PHP 原來做不到的事情，用排序來做為範例。</p>
-<ul>
-<li><a href="http://www.actsasflinn.com/articles/2007/08/10/php-and-activerecord-continued" target="_blank" rel="external">PHP and ActiveRecord (continued)</a></li>
-</ul>
-<p>PHP and ActiveRecord 的作者又根據上篇文章回應了，他是希望 PHP6 可以加入一些真正有用的功能。可以參考：<a href="http://livepipe.net/blog/programming/what_php6_actually_needs" target="_blank" rel="external">What PHP6 Actually Needs</a> 。</p>
-<ul>
-<li><a href="http://www.sitepoint.com/blogs/2007/08/13/ptest-php-unit-tester-in-9-lines-of-code/" target="_blank" rel="external">pTest: PHP Unit Tester in 9 Lines Of Code</a></li>
-</ul>
-<p>九行實作一個測試用的 assertTrue 函式。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**&#10;* pTest - PHP Unit Tester&#10;* @param mixed $test Condition to test, evaluated as boolean&#10;* @param string $message Descriptive message to output upon test&#10;*/&#10;function assertTrue($test, $message)&#10;&#123;&#10;static $count;&#10;if (!isset($count)) $count = array(&#39;pass&#39;=&#62;0, &#39;fail&#39;=&#62;0, &#39;total&#39;=&#62;0);&#10;$mode = $test ? &#39;pass&#39; : &#39;fail&#39;;&#10;printf(&#34;%s: %s (%d of %d tests run so far have %sed)\n&#34;,&#10;strtoupper($mode), $message, ++$count[$mode], ++$count[&#39;total&#39;], $mode);&#10;&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><a href="http://devzone.zend.com/article/2442-PHP-and-RIA" target="_blank" rel="external">PHP and RIA</a></p>
-</li>
-</ul>
-<p>介紹一些 Zend Framework 和 Ajax 的結合，有範例可以下載參考。</p>
-<ul>
-<li><p><a href="http://devzone.zend.com/node/view/id/1234" target="_blank" rel="external">Part 1: Introduction, The Zend Framework</a></p>
-</li>
-<li><p><a href="http://devzone.zend.com/node/view/id/1280" target="_blank" rel="external">Part 2:Prototype, Scriptaculous, Application HTML</a></p>
-</li>
-<li><p><a href="http://devzone.zend.com/node/view/id/1326" target="_blank" rel="external">Part 3:Storage Medium, XML and the Message Process</a></p>
-</li>
-<li><p><a href="http://devzone.zend.com/node/view/id/1387" target="_blank" rel="external">Part 4: IndexController MessageAction() and JSON Encoding</a></p>
-</li>
-<li><p><a href="http://devzone.zend.com/node/view/id/1407" target="_blank" rel="external">Part 5: The Javascript, Sending Chat Messages, Screen Name Changes</a></p>
-</li>
-<li><p><a href="http://devzone.zend.com/node/view/id/1532" target="_blank" rel="external">Part 6: Updating the User List</a></p>
-</li>
-<li><p><a href="http://devzone.zend.com/node/view/id/1580" target="_blank" rel="external">Part 7: Usability Improvements</a></p>
-</li>
-</ul>
-<ul>
-<li><a href="http://www.rooftopsolutions.nl/article/145" target="_blank" rel="external">PHPRPC and PHP frameworks</a><br>把 PHPRPC 提交到目前作者認為是 PHP 主流的框架與類庫裡。這個 PHPRPC 好像跟對岸 <a href="http://www.coolcode.cn/author/andot/" target="_blank" rel="external">andot</a> 開發的 <a href="http://www.coolcode.cn/andot/phprpc-11-protocol/107" target="_blank" rel="external">PHPRPC</a> 兩者是不一樣的東西？</li>
-</ul>
-<p>註： <a href="http://www.coolcode.cn/author/andot/" target="_blank" rel="external">andot</a> 的 <a href="http://www.phprpc.org/" target="_blank" rel="external">PHPRPC</a> 已經搞到其他開發環境裡了，簡單來說就是「撈過界」了啦。 XD</p>
-<h2 id="CSS">CSS</h2><ul>
-<li><a href="http://www.hedgerwow.com/360/dhtml/css-menu-separator.html" target="_blank" rel="external">Menu Separators 101</a></li>
-</ul>
-<p>如何在不使用 first class 或 CSS pseudo selector 的情況下，把第一個元素的背景隱藏起來。</p>
-<ul>
-<li><a href="http://www.hedgerwow.com/360/dhtml/css-flex-input-boxes.html" target="_blank" rel="external">Flex input box layout</a></li>
-</ul>
-<p>如果常常煩惱怎麼讓輸入欄位的寬度自動符合視窗寬度的話，這篇可以參考看看。</p>
-<h2 id="Windows">Windows</h2><ul>
-<li><a href="http://www.alexatnet.com/node/54" target="_blank" rel="external">Create and delete users using windows scripting host (jscript)</a></li>
-</ul>
-<p>用 Windows Scripting Host (JScript) 來新增、刪除 Windows 使用者。</p>
-
+          <p>前陣子看到一篇分頁樣式的文章，趁最近在寫文件時順便整理一下：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/08/15/223/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -664,7 +842,7 @@
           
           
             
-              <a class="post-title-link" href="/2007/08/11/218/">
+              <a class="post-title-link" href="/2007/08/14/219/">
                 [Web] 連結分享
               </a>
             
@@ -674,7 +852,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2007-08-11
+          發表於 2007-08-14
         </span>
 
         
@@ -683,8 +861,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2007/08/11/218/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/11/218/"></span>
+            <a href="/2007/08/14/219/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/14/219/"></span>
             </a>
           </span>
           
@@ -699,245 +877,71 @@
 
       
         
-          <ul>
-<li><a href="http://www.ibm.com/developerworks/web/library/x-html5/index.html" target="_blank" rel="external">New elements in HTML 5</a> (<a href="http://realazy.org/blog/2007/08/10/new-elements-in-html-5/" target="_blank" rel="external">HTML 5新增的元素</a>) </li>
+          <p>最近沒空寫東西了，光文件就快讓我忙不過來了。</p>
+<p>再搜集幾個連結，有些是從 Neo 的「<a href="http://www.neo.com.tw/archives/001088.html" target="_blank" rel="external">用 PHP 實作 ActiveRecord</a> 」那邊看來的：</p>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.advogato.org/article/470.html" target="_blank" rel="external">Mixins in PHP</a></li>
 </ul>
-<p>HTML 5 加強語意與結構的改進，當然視覺效果還是交給 CSS 。</p>
+<p>和我的<a href="http://www.jaceju.net/blog/archives/163" target="_blank" rel="external">實作</a>滿像的，不過有用到 <a href="http://tw.php.net/manual/en/language.oop5.reflection.php" target="_blank" rel="external">Reflection API</a> 。另外看了人家的程式後，我發現我的實作忘了要 return 結果。</p>
 <ul>
-<li><p><a href="http://www.killerphp.com/articles/why-php-business-perspective/" target="_blank" rel="external">Why PHP is the choice language - a business owners perspective.</a></p>
+<li><a href="http://www.scriptorama.nl/tips-tricks/re-mixins-in-php" target="_blank" rel="external">Re: mixins in PHP</a></li>
+</ul>
+<p>這個有用到 <a href="http://tw.php.net/manual/en/ref.runkit.php" target="_blank" rel="external">runkit</a> 。</p>
+<ul>
+<li><a href="http://www.actsasflinn.com/articles/2007/08/08/php-and-activerecord" target="_blank" rel="external">PHP and ActiveRecord</a></li>
+</ul>
+<p>解釋了為什麼 Ruby 適合實作 ActiveRecord ，但是 PHP 則很難實現。不過 PHP 不好做的話也別氣餒， Zend Framework 的 <a href="http://framework.zend.com/manual/en/zend.db.table.html" target="_blank" rel="external">Table Data Gateway</a> 和 <a href="http://framework.zend.com/manual/en/zend.db.table.row.html" target="_blank" rel="external">Row Data Gateway</a> 就是一種不錯的實作了。</p>
+<ul>
+<li><a href="http://blog.adaniels.nl/?p=40" target="_blank" rel="external">PHP != Ruby (and why PHP needs more advanced OO stuff)</a></li>
+</ul>
+<p>從上一篇延伸而來的，作者解釋可以用 runkit 來實現很多 PHP 原來做不到的事情，用排序來做為範例。</p>
+<ul>
+<li><a href="http://www.actsasflinn.com/articles/2007/08/10/php-and-activerecord-continued" target="_blank" rel="external">PHP and ActiveRecord (continued)</a></li>
+</ul>
+<p>PHP and ActiveRecord 的作者又根據上篇文章回應了，他是希望 PHP6 可以加入一些真正有用的功能。可以參考：<a href="http://livepipe.net/blog/programming/what_php6_actually_needs" target="_blank" rel="external">What PHP6 Actually Needs</a> 。</p>
+<ul>
+<li><a href="http://www.sitepoint.com/blogs/2007/08/13/ptest-php-unit-tester-in-9-lines-of-code/" target="_blank" rel="external">pTest: PHP Unit Tester in 9 Lines Of Code</a></li>
+</ul>
+<p>九行實作一個測試用的 assertTrue 函式。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**&#10;* pTest - PHP Unit Tester&#10;* @param mixed $test Condition to test, evaluated as boolean&#10;* @param string $message Descriptive message to output upon test&#10;*/&#10;function assertTrue($test, $message)&#10;&#123;&#10;static $count;&#10;if (!isset($count)) $count = array(&#39;pass&#39;=&#62;0, &#39;fail&#39;=&#62;0, &#39;total&#39;=&#62;0);&#10;$mode = $test ? &#39;pass&#39; : &#39;fail&#39;;&#10;printf(&#34;%s: %s (%d of %d tests run so far have %sed)\n&#34;,&#10;strtoupper($mode), $message, ++$count[$mode], ++$count[&#39;total&#39;], $mode);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><a href="http://devzone.zend.com/article/2442-PHP-and-RIA" target="_blank" rel="external">PHP and RIA</a></p>
 </li>
 </ul>
-<p>從商業經營者的角度來看 PHP 。</p>
+<p>介紹一些 Zend Framework 和 Ajax 的結合，有範例可以下載參考。</p>
 <ul>
-<li>Is the language reliable? </li>
-<li>Does the language have a strong community? </li>
-<li>Is it easy to find programmers who use that language? </li>
-<li>Is the language productive? </li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1234" target="_blank" rel="external">Part 1: Introduction, The Zend Framework</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1280" target="_blank" rel="external">Part 2:Prototype, Scriptaculous, Application HTML</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1326" target="_blank" rel="external">Part 3:Storage Medium, XML and the Message Process</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1387" target="_blank" rel="external">Part 4: IndexController MessageAction() and JSON Encoding</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1407" target="_blank" rel="external">Part 5: The Javascript, Sending Chat Messages, Screen Name Changes</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1532" target="_blank" rel="external">Part 6: Updating the User List</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1580" target="_blank" rel="external">Part 7: Usability Improvements</a></p>
+</li>
 </ul>
 <ul>
-<li><a href="http://blogoscoped.com/archive/2007-08-10-n75.html" target="_blank" rel="external">SEO Speak Translated: The Real SEO Glossary</a></li>
+<li><a href="http://www.rooftopsolutions.nl/article/145" target="_blank" rel="external">PHPRPC and PHP frameworks</a><br>把 PHPRPC 提交到目前作者認為是 PHP 主流的框架與類庫裡。這個 PHPRPC 好像跟對岸 <a href="http://www.coolcode.cn/author/andot/" target="_blank" rel="external">andot</a> 開發的 <a href="http://www.coolcode.cn/andot/phprpc-11-protocol/107" target="_blank" rel="external">PHPRPC</a> 兩者是不一樣的東西？</li>
 </ul>
-<p>SEO 業者的謊言？我個人覺得還是充實網站內容比較重要，排名不能代表一切。</p>
+<p>註： <a href="http://www.coolcode.cn/author/andot/" target="_blank" rel="external">andot</a> 的 <a href="http://www.phprpc.org/" target="_blank" rel="external">PHPRPC</a> 已經搞到其他開發環境裡了，簡單來說就是「撈過界」了啦。 XD</p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.hedgerwow.com/360/dhtml/css-menu-separator.html" target="_blank" rel="external">Menu Separators 101</a></li>
+</ul>
+<p>如何在不使用 first class 或 CSS pseudo selector 的情況下，把第一個元素的背景隱藏起來。</p>
 <ul>
-<li><a href="http://dean.edwards.name/weblog/2007/08/base2-doc/" target="_blank" rel="external">Documentation for base2</a> (<a href="http://base2.googlecode.com/svn/trunk/src/apps/doc/base2.html" target="_blank" rel="external">link</a>) </li>
+<li><a href="http://www.hedgerwow.com/360/dhtml/css-flex-input-boxes.html" target="_blank" rel="external">Flex input box layout</a></li>
 </ul>
-<p>Dean 終於為他的 JavaScript Library 寫了一份文件了，可以看看人家是怎麼用 JavaScript 的。 </p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/08/09/217/">
-                ZF 相關評論
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-08-09
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/08/09/217/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/09/217/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>今天看到對岸兩位網友對 <a href="http://framework.zend.com">Zend Framework</a> 有趣的評論，收錄如下：</p>
-<ul>
-<li><a href="http://hi.baidu.com/thinkinginlamp">Thinking In LAMP</a>::<a href="http://hi.baidu.com/thinkinginlamp/blog/item/6282d539d96198f13a87ced1.html">我眼中的ZF</a></li>
-<li><a href="http://blog.xxiyy.com/">Some reminiscences, some memories</a>::<a href="http://blog.xxiyy.com/index.php/archives/42">小议 Zend Framework 的三宗罪</a></li>
+<p>如果常常煩惱怎麼讓輸入欄位的寬度自動符合視窗寬度的話，這篇可以參考看看。</p>
+<h2 id="Windows">Windows</h2><ul>
+<li><a href="http://www.alexatnet.com/node/54" target="_blank" rel="external">Create and delete users using windows scripting host (jscript)</a></li>
 </ul>
-<p>基本上，我個人比較偏向 mikespook 的說法。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2007/08/09/217/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
+<p>用 Windows Scripting Host (JScript) 來新增、刪除 Windows 使用者。</p>
 
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/08/07/216/">
-                [CSS] Blueprint CSS framework
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-08-07
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/08/07/216/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/07/216/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="Blueprint_CSS_framework">Blueprint CSS framework</h2><ul>
-<li><a href="http://bjorkoy.com/blueprint/tutorial.html" target="_blank" rel="external">舊的專案網頁</a></li>
-<li><a href="http://code.google.com/p/blueprintcss/" target="_blank" rel="external">新的專案網頁</a> (放在 Google Code 裡) </li>
-</ul>
-<p>看起來是滿有趣的東西，有空可以試試看。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/08/07/215/">
-                編譯 Zend Framework CHM 檔案
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-08-07
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/08/07/215/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/07/215/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>以後要自己編譯最新的 Zend Framework CHM 格式的參考手冊了，這裡記一下完整的步驟。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2007/08/07/215/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
@@ -960,7 +964,7 @@
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/36/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/38/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/36/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/38/">&raquo;</a>
   </div>
 
 
@@ -994,7 +998,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">579</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
