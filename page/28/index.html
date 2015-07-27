@@ -117,6 +117,77 @@
           
           
             
+              <a class="post-title-link" href="/2008/02/29/318/">
+                目錄結構的安排
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2008-02-29
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2008/02/29/318/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/02/29/318/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>Zend Framework 在開發上算是滿自由的一套 Framework ，但也因此它在目錄結構的安排 (Directory Layout) 就成了一個很讓初學者困擾的問題；而且不論是官方或是社群都推薦了很多方法，更讓剛接觸 Zend Framework 的朋友難以適從。</p>
+<p>本文將探討 Zend Framework 目錄結構的特點以及幾個常見的目錄結構，讓各位開發者能夠對它們有所認知。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2008/02/29/318/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2008/02/27/317/">
                 Front Controller 的基本應用技
               </a>
@@ -897,85 +968,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2008/01/15/306/">
-                初探 Zend_Db_Table Relationships (三)
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2008-01-15
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2008/01/15/306/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/01/15/306/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><a href="http://www.jaceju.net/blog/archives/263">前面我已經知道如何設定 Zend_Db_Table 的關連</a>，這次來記一下串聯刪除 (cascading delete) 。</p>
-<p>cascading delete 主要的目的是這樣的：假設 a 資料表和 b 資料表間有關連 (a.id = b.a_id) ，而當 a 資料表的某紀錄被刪除後，會使得 b 資料表中的相關紀錄失去作用而需要一併刪除。多數主流的資料庫系統都會內建類似的功能，例如 Oracle 、 MSSQL 及 PostgreSQL 等。但像是 MySQL 4.x 以前 的 MyISAM 格式並沒有提供 foreign key 和 trigger ，所以也沒辦法內建 Cascading Delete 時，這時只好從程式裡來著手。 </p>
-<p>不過有一點要小心，就算資料庫系統有支援 cascading delete ，也必須在資料表定義 foreign key 時設定 cascading delete 的相關指令 (通常是 ON DELETE CASCADE) ；不然資料表還是不會知道要去刪掉對應的紀錄。</p>
-<p>註：以上資訊有錯誤的話，煩請大家不吝指正。</p>
-<p>延續上一次的程式碼，這次我要為它們加入 cascading delete 的功能。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2008/01/15/306/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/27/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/29/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/27/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/29/">&raquo;</a>
   </div>
 
 
@@ -1009,7 +1006,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">580</span>
+              <span class="site-state-item-count">581</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1023,7 +1020,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">51</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

@@ -117,8 +117,8 @@
           
           
             
-              <a class="post-title-link" href="/2007/06/19/195/">
-                PHP 的 Application 層
+              <a class="post-title-link" href="/2007/06/22/196/">
+                PHP 為什麼快？
               </a>
             
           
@@ -127,7 +127,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2007-06-19
+          發表於 2007-06-22
         </span>
 
         
@@ -136,8 +136,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2007/06/19/195/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/06/19/195/"></span>
+            <a href="/2007/06/22/196/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/06/22/196/"></span>
             </a>
           </span>
           
@@ -152,18 +152,12 @@
 
       
         
-          <p>前陣子才在和 <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> 老大談論到 PHP 的 Application 層，今天就看到有人做出類似的東西了。</p>
-<p>請參考： <a href="http://blog.milkfarmsoft.com/?p=51" target="_blank" rel="external">Application Server in PHP? well… Yes!</a></p>
-<p>文章中主要是利用 <a href="http://python.ca/scgi/" target="_blank" rel="external">SCGI</a> 這個協定實作了一個 SCGI_Application 類別讓我們的應用程式繼承，這樣一來這個 Application 就會像是一個伺服器一樣，使用 9999 (預設值) 這個 Port 來回應 Web 伺服器所傳來的要求。這裡有<a href="http://appserver-in-php.googlecode.com/svn/trunk/examples/scgi/" target="_blank" rel="external">範例</a>可以參考，有興趣的朋友不妨試試。 </p>
-<p>什麼是 Application 層呢？我們都知道 PHP 在處理每一次的用戶要求時，都會重頭執行一次 Script ，然後初始化每個物件 (像是資料庫、樣版引擎或是 Model 物件等等) 。當然在流量小的網站，這樣的方式並沒有什麼不妥；可是一旦流量變大時，每一次的初始化都會浪費掉些許的時間，而累積起來後就會造成伺服器的負擔。這種現象是因為 HTTP 協定的無狀態特性使然，對所有 Web 伺服端技術而言都是一樣的。 </p>
-<p>所以如果能在 Web 伺服器的上面加上一個 Application 伺服器，就能夠利用這個伺服器所產生的抽象 Application 層來保存住這些常用物件。也就是說在 Application 層裡，我們會把共用物件常駐在記憶體裡，避免物件初始化所帶來的效能問題。例如在 Java Tomcat 或 <a href="http://www.caucho.com/resin-3.0/" target="_blank" rel="external">Resin</a> 裡，我們能把 Java Bean 持續地放在記憶體裡保持住它的狀態；如此一來在每一個要求裡所看到的 Bean 物件其實就是同一個。</p>
-<p>然而目前 PHP 因為沒有類似 <a href="http://tomcat.apache.org/" target="_blank" rel="external">Tomcat</a> 這種 Application Server 來協助儲存狀態，所以在效能上就會有所折扣；也因此 PHP 才會有 <a href="http://pecl.php.net/package/APC" target="_blank" rel="external">APC</a> 或是 <a href="http://eaccelerator.net/" target="_blank" rel="external">eAccelerator</a> 這樣的加速器。</p>
-<p>註：<del>雖然</del> Resin 目前也<a href="http://www.caucho.com/resin-3.1/doc/quercus-resin-module.xtp" target="_blank" rel="external">支援 PHP</a> ，<del>不過據 Mark 老大的說法，在 Resin 使用 PHP 就必須採用 JDBC 來連接資料庫。這樣的話，實用價值似乎不大。</del> 它在資料庫存取時會利用 JDBC 來模擬，使 PHP 原有的存取方式可以不用更動。</p>
-<p>除了加速器外，在 PHP 中我們倒是有另一種保持物件的方式，那就是快取。一般來說，我們會利用序列化 (<a href="http://www.php.net/manual/en/function.serialize.php" target="_blank" rel="external">serialize</a>) 把物件狀態存在檔案或記憶體裡，比較常見的方式就是利用 <a href="http://danga.com/memcached/" target="_blank" rel="external">memcached</a> 。不過就算使用了快取，我們其實還是得在 PHP 程式裡初始化相關的快取物件才行，這又回到了前面所談到的問題。</p>
-<p>註：當然加速器也是另一種形態的快取，不過對儲存物件狀態的功效不大。</p>
-<p>另外在 MVC 框架中，會嚴重影響效能的物件就是 Controller 了。像 Front Controller 就必須判斷使用者的要求，進一步將這些要求分派 (dispatch) 到特定的 Action Controller 裡，而每一次的分派其實就會佔用掉大部份的執行時間。所以如果 Controller 能夠編譯並結合到 Application 伺服器的話，那麼程式執行的效率就會進一步的提升。</p>
-<p>當然我本身是希望 PHP 也能提供這樣的機制，或是將 Zend Framework 變成一個 PHP 的 extension 。嗯，也許我是痴人說夢，但我衷心希望有這一天的來臨。 </p>
-
+          <p>今天看到<a href="http://blog.tenyi.com/">鳥毅</a>老大提了一個問題：<a href="http://blog.tenyi.com/2007/06/php.html">PHP 為什麼快呢？</a>本來想回應在他的 Blog 上，不過寫一寫又太長了，就貼在自己家吧。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/06/22/196/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -237,6 +231,82 @@
               閱讀全文 &raquo;
             </a>
           </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2007/06/19/195/">
+                PHP 的 Application 層
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-06-19
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/06/19/195/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/06/19/195/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>前陣子才在和 <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> 老大談論到 PHP 的 Application 層，今天就看到有人做出類似的東西了。</p>
+<p>請參考： <a href="http://blog.milkfarmsoft.com/?p=51" target="_blank" rel="external">Application Server in PHP? well… Yes!</a></p>
+<p>文章中主要是利用 <a href="http://python.ca/scgi/" target="_blank" rel="external">SCGI</a> 這個協定實作了一個 SCGI_Application 類別讓我們的應用程式繼承，這樣一來這個 Application 就會像是一個伺服器一樣，使用 9999 (預設值) 這個 Port 來回應 Web 伺服器所傳來的要求。這裡有<a href="http://appserver-in-php.googlecode.com/svn/trunk/examples/scgi/" target="_blank" rel="external">範例</a>可以參考，有興趣的朋友不妨試試。 </p>
+<p>什麼是 Application 層呢？我們都知道 PHP 在處理每一次的用戶要求時，都會重頭執行一次 Script ，然後初始化每個物件 (像是資料庫、樣版引擎或是 Model 物件等等) 。當然在流量小的網站，這樣的方式並沒有什麼不妥；可是一旦流量變大時，每一次的初始化都會浪費掉些許的時間，而累積起來後就會造成伺服器的負擔。這種現象是因為 HTTP 協定的無狀態特性使然，對所有 Web 伺服端技術而言都是一樣的。 </p>
+<p>所以如果能在 Web 伺服器的上面加上一個 Application 伺服器，就能夠利用這個伺服器所產生的抽象 Application 層來保存住這些常用物件。也就是說在 Application 層裡，我們會把共用物件常駐在記憶體裡，避免物件初始化所帶來的效能問題。例如在 Java Tomcat 或 <a href="http://www.caucho.com/resin-3.0/" target="_blank" rel="external">Resin</a> 裡，我們能把 Java Bean 持續地放在記憶體裡保持住它的狀態；如此一來在每一個要求裡所看到的 Bean 物件其實就是同一個。</p>
+<p>然而目前 PHP 因為沒有類似 <a href="http://tomcat.apache.org/" target="_blank" rel="external">Tomcat</a> 這種 Application Server 來協助儲存狀態，所以在效能上就會有所折扣；也因此 PHP 才會有 <a href="http://pecl.php.net/package/APC" target="_blank" rel="external">APC</a> 或是 <a href="http://eaccelerator.net/" target="_blank" rel="external">eAccelerator</a> 這樣的加速器。</p>
+<p>註：<del>雖然</del> Resin 目前也<a href="http://www.caucho.com/resin-3.1/doc/quercus-resin-module.xtp" target="_blank" rel="external">支援 PHP</a> ，<del>不過據 Mark 老大的說法，在 Resin 使用 PHP 就必須採用 JDBC 來連接資料庫。這樣的話，實用價值似乎不大。</del> 它在資料庫存取時會利用 JDBC 來模擬，使 PHP 原有的存取方式可以不用更動。</p>
+<p>除了加速器外，在 PHP 中我們倒是有另一種保持物件的方式，那就是快取。一般來說，我們會利用序列化 (<a href="http://www.php.net/manual/en/function.serialize.php" target="_blank" rel="external">serialize</a>) 把物件狀態存在檔案或記憶體裡，比較常見的方式就是利用 <a href="http://danga.com/memcached/" target="_blank" rel="external">memcached</a> 。不過就算使用了快取，我們其實還是得在 PHP 程式裡初始化相關的快取物件才行，這又回到了前面所談到的問題。</p>
+<p>註：當然加速器也是另一種形態的快取，不過對儲存物件狀態的功效不大。</p>
+<p>另外在 MVC 框架中，會嚴重影響效能的物件就是 Controller 了。像 Front Controller 就必須判斷使用者的要求，進一步將這些要求分派 (dispatch) 到特定的 Action Controller 裡，而每一次的分派其實就會佔用掉大部份的執行時間。所以如果 Controller 能夠編譯並結合到 Application 伺服器的話，那麼程式執行的效率就會進一步的提升。</p>
+<p>當然我本身是希望 PHP 也能提供這樣的機制，或是將 Zend Framework 變成一個 PHP 的 extension 。嗯，也許我是痴人說夢，但我衷心希望有這一天的來臨。 </p>
+
         
       
     </div>
@@ -493,6 +563,74 @@
           
           
             
+              <a class="post-title-link" href="/2007/05/28/189/">
+                「PHP - Smarty 樣版引擎」勘誤更新
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-05-28
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/05/28/189/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/05/28/189/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>先向各位讀者說聲抱歉，這件事本來早就該做了。只是懶病作祟，一直沒有去好好整理它。</p>
+<p>由於第二刷目前已經上市，所以我想這件事就不能再拖了；就請有買書的讀者對照一下手邊第一刷的書吧。真是大抱歉~~_orz</p>
+<p><a href="http://www.jaceju.net/blog/archives/40" target="_blank" rel="external">勘誤表網址</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2007/05/28/190/">
                 我要玩 Wii 貼紙更新
               </a>
@@ -535,74 +673,6 @@
 <p>也許不像<a href="http://www.wretch.cc/blog/cwwany" target="_blank" rel="external">彎彎</a>她們那些專業網路畫家畫得那麼好看，不過有需要的朋友就自便吧。 :)</p>
 <p>咦？又一篇跟網站製作無關的了？算了，放鬆一下也不錯啦。</p>
 <p>丫凱有一個很好的建議，不過目前我還沒有時間處理，所以暫時先保密囉。 ;)</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/05/28/189/">
-                「PHP - Smarty 樣版引擎」勘誤更新
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-05-28
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/05/28/189/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/05/28/189/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>先向各位讀者說聲抱歉，這件事本來早就該做了。只是懶病作祟，一直沒有去好好整理它。</p>
-<p>由於第二刷目前已經上市，所以我想這件事就不能再拖了；就請有買書的讀者對照一下手邊第一刷的書吧。真是大抱歉~~_orz</p>
-<p><a href="http://www.jaceju.net/blog/archives/40" target="_blank" rel="external">勘誤表網址</a></p>
 
         
       
@@ -762,83 +832,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/05/19/185/">
-                Anonymous functions in PHP
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-05-19
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/05/19/185/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/05/19/185/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>國外最近有一些 PHP 的<a href="http://www.php.net/conferences/" target="_blank" rel="external">技術研討會</a>，其中比較有趣的一項是：<a href="http://devzone.zend.com/node/view/id/2013" target="_blank" rel="external">匿名函式</a> (Anonymous functions) 。</p>
-<p>範例如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$data &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;= array(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;zoo&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;orange&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;car&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;lemon&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;apple&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;[usort](/manual/view/page/function.usort.html)&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$data&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, function(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$a&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$b&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;) &#123; return &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;[strcmp](/manual/view/page/function.strcmp.html)&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$a&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$b&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;); &#125;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;[var_dump](/manual/view/page/function.var-dump.html)&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$data&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;); &#60;/span&#62;&#60;span style=&#34;color: rgb(255, 128, 0);&#34;&#62;# data is sorted alphabetically&#60;/span&#62;&#60;/span&#62;</span><br></pre></td></tr></table></figure>
-<p>沒錯，看起來就像是 JavaScript 的 function literal 。</p>
-<p>這樣一來我們可以不需要再使用 <a href="http://www.php.net/en/create_function" target="_blank" rel="external">create_function</a> ，也不必撰寫有一堆跳脫字元的醜陋函式字串，而能更直覺地寫出我們所需要的函式。文章裡還有其他關於匿名函式的範例，有興趣的朋友可以自行參考。</p>
-<p>話雖如此，到底哪個版本才會有這麼好用的東西出來呀？我的 mixin 類別正在找尋歸屬說。 </p>
-<p>註：不過裡面 Jim Wilson 也提到了 (就是 Smarty 網站上常看到的  boots 本人) ，匿名函式和 <a href="http://www.javaworld.com.tw/roller/page/ingramchen?entry=2007_1_1_WhyAddClosureInJava7" target="_blank" rel="external">closure</a> (<a href="http://blog.roodo.com/rocksaying/" target="_blank" rel="external">石頭成</a>老大譯：<a href="http://blog.roodo.com/rocksaying/archives/3088893.html" target="_blank" rel="external">封絕</a>) 是完全不一樣的東西，而 PHP 是不需要 closure 的。可是為什麼我看感覺是一樣的？唉…大概是我等級還不夠，看不出什麼所以然吧？</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/39/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/41/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/39/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/41/">&raquo;</a>
   </div>
 
 
@@ -872,7 +870,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">580</span>
+              <span class="site-state-item-count">581</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -886,7 +884,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">51</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

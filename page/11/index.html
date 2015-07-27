@@ -117,6 +117,201 @@
           
           
             
+              <a class="post-title-link" href="/2011/01/06/1495/">
+                重構實例介紹 – 分析篇
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2011-01-06
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2011/01/06/1495/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/01/06/1495/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>重構是什麼？這問題其實真的很難回答。</p>
+<p>我個人覺得重構是一種讓程式保持活力的一種方法，讓它能隨著時間而不斷地進化。如果我們一直放任自己不對程式碼做適當的整理，而是靠著不求甚解的修修補補來維繫它的生命，很快地程式碼就會變得殘破不堪、臃腫肥大而難以維護。</p>
+<p>而且有的時候，我們也想讓程式碼能隨著我們觀念的增長，以適應未來的變化；今天我們會覺得這樣的寫法很讚，但明天可能又會學到更好的寫法，重構就能給我們改變程式碼的機會。</p>
+<p>但是這些都是很籠統的解釋，有沒有什麼方法可以讓我們更瞭解重構呢？我想，只有用實際的例子來說明是最直接的吧。但是太精簡的範例可能表達不了重構的意圖，而過於複雜的範例又會讓重構的焦點模糊，要找到一個適合的例子可能比重構本身還困難。</p>
+<p>後來某次的改版機會下，我分析了伙伴之前所製作的功能並做了一次重構，發現這個功能的規模不算太大，而且也很容易展現出重構後的優點；因此，我便將這個功能稍微做了簡化以方便說明，希望能讓大家瞭解重構究竟是在做些什麼。</p>
+<p>不過這個範例雖然不大，但也還是需要一番功夫來解說；因此我將會把它分成兩個部份來說明，第一篇是分析，第二篇則是實戰。</p>
+<p>接下來就一起來看看這個例子吧。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/01/06/1495/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2010/12/31/1472/">
+                我的噗浪語錄（二） – 開發篇
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2010-12-31
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2010/12/31/1472/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/12/31/1472/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <a id="more"></a>
+<ul>
+<li>用別人開發的程式最怕對它一知半解，用自己開發的程式最怕考慮不周。</li>
+<li>想知道自己是否真正瞭解了一個程式語言，那就試試看重構自己以前寫的程式碼。</li>
+<li>大師能在一小時之內看穿某項技術的本質，高手大概只需一天，有經驗的人可能要到一週，平凡如我就得花上一年了。</li>
+<li>真正優秀的工程師都是懶惰的，所以他們才會勤勞地在短短幾個小時之內專心找出最俐落的解決方法，來換取不加班的休閒時間。</li>
+<li>好的工具讓不熟悉它的人使用時，就無法發揮它的功效，同時也會讓大家對這個工具產生誤解。</li>
+<li>熟悉的工具總是比新穎的技術好用，但也往往因為如此而限制了我們的創意。</li>
+<li>好的 Framework 是幫開發者解決問題，而不是為他們製造問題。</li>
+<li>且戰且走又不重構的程式就像路邊的一坨大便，臭味沖天！</li>
+<li>如果把程式碼分五級，那麼…等級一的程式碼要能對得起自己的良心；等級二的程式碼則不能考驗測試人員的耐心；等級三的程式碼要能得到上頭的歡心；等級四的程式碼要獲得客戶的信心；等級五的程式碼要能受到其他開發者的關心。</li>
+<li>掌握了測試的精髓，就決定了程式的生命。</li>
+<li>老闆的態度決定程式碼的長度。</li>
+<li>當知道的、可以用的方法越多時，我們就更難找出完美的解決方案。</li>
+<li>為了效能，我們把 code 全擠在一起；為了維護，我們又把 code 拆開分離；在程式之道中，直行與叉路分分合合，而我們能選擇的只有前進而已。</li>
+<li>重構最大的問題不是不知道怎麼重構，而是不知道該什麼時候重構，還有什麼時候該停止重構。</li>
+<li>不斷撰寫程式，逐漸矯正觀念，直到我們將它們當作空氣一般自然而忘卻時，就已經體悟程式之道了。</li>
+<li>考慮得多，補強的程式碼也多，相對地 Bug 卻也越多。</li>
+<li>再完美的系統，都避不掉「使用者」這個最大的 bug 。</li>
+<li>是優點的未必不是缺點，是缺點的也難說不是優點；程式之道，在於是否適切於己。</li>
+<li>使用者一直期待著系統夠聰明，但工程師卻總是期待使用者不要那麼笨。</li>
+<li>拼湊而不重構而且想到哪就寫到哪的程式碼，終究會像流沙一樣，把工程師拖入永無止盡的除錯地獄裡。</li>
+<li>有時候簡單的介面才容易讓我們得到需要的資訊，用華麗的外表過度包裝只會讓人容易迷失而已。</li>
+<li>要思考每個 code snippet 的含義，不要只是把它們照抄放到程式裡面，而是要將它們的思想內化到自己的程式之道中。</li>
+<li>成為高手的途徑：先要認識身邊的高手，然後模仿他們的作法，並且瞭解他們的思維，接著超越他們的成就，最後習得他們的謙卑。</li>
+<li>不要被技術的糖衣所吸引而冒然吞下它，要剖開它並仔細研究裡面到底包了什麼。</li>
+<li>怕別人看光你的程式碼前，先問自己：我的程式碼別人看不看得懂。</li>
+<li>不要相信客戶舊資料庫裡存放的資料，也不要相信客戶舊系統所產生的資料；因為如果它們是正確的，就不需要你來改版了。</li>
+<li>在你剛接觸模式之前，別特意去模仿它們；在你弄懂模式之後，別時時想使用它們；而當你完全瞭解模式之時，將會發現模式早就存在於你的系統裡了。</li>
+<li>RC 版跟正式 Release 版本的程式碼不可有太大的差異，否則就應該再進入一次 RC 才可以。</li>
+<li>有 Bug 才有生命…我是指程式。</li>
+<li>Design Patterns 本來就不是能讓你馬上使用的解決方案；執著在它的形上面，只會讓你看不清你真正要解決的問題。</li>
+<li>要思考模式的意，別執著模式的形。</li>
+<li>“First make it work, then make it right, then make it fast.” - by Kent Beck</li>
+<li>所謂的零錯誤程式，就是指沒人用的程式。</li>
+<li>身為一個優秀的 PHP 開發者，不該忽略任何警告訊息。</li>
+<li>所謂的高手不是指一開始就寫出完美程式的人，而是懂得如何時時刻刻修正自己的人。</li>
+<li>真正的高手不會一味追求新工具，而是瞭解並善用自己現在用的工具，直到他認為舊工具侷限了他的思維。</li>
+<li>重構就像整理身邊的環境，多數的軟體工程師都希望能在乾淨的辦公室裡寫程式，但是這樣的環境得要自己維護好才行。</li>
+<li>複製不過二，三則重構之。</li>
+<li>沒有效率的程式寫法，單靠增加機器也是彌補不來的。</li>
+<li>好的設計不是一朝一夕，而是經驗的累積。</li>
+<li>在台灣，『專業』是『廉價』的代名詞。</li>
+<li>先別去想在程式的設計過程裡可以用到哪種 Pattern ，那通常不準；只有在實際的重構過程中，才會知道能用哪個 Pattern 。</li>
+<li>當你被技術的形所迷惑時，就見不到它背後的真義了。</li>
+<li>程式開發就像下山一樣，你可以選擇從階梯穩健踏實地往下步行，也許會有點麻煩也慢了一些；或是你也可以選擇從懸崖毅然決然地縱身一跳，則會非常輕鬆也快了很多…不過死得也滿快的就是。</li>
+<li>好的軟體開發者不只是在堆積程式碼，而是把他的靈魂注入其中。</li>
+<li>Interface 的一致性可以讓系統的轉移更順暢。</li>
+<li>開發一個功能時，不要把顯示和運算混雜在一起…分開它們，測試它們，再組合它們。</li>
+<li>開發不守規範，程式必定會亂；程式不寫測試，上線肯定會死。</li>
+<li>片斷而不求甚解的知識只會做出勉強能動的拼裝程式碼…而你永遠不知道它何時會爆炸。</li>
+<li>MVC 口訣： Controller 知道有 View 和 Model ， View 也知道有 Controller 和 Model ，但 Model 誰都不知道。</li>
+<li>大師的思維，我們必須靠無數次的實踐才能體會，因為大師也是這麼悟道的…</li>
+</ul>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2010/12/31/1465/">
                 我的噗浪語錄（二） – 生活篇
               </a>
@@ -252,125 +447,6 @@
 <li>在專案風險評估中，如果有註明客戶可能會延遲交付給廠商的部份，那麼這個項目就 100% 一定會 Delay 。</li>
 <li>就算我們用的技術再完美，只要不符合客戶的需求，那它就是個屁。</li>
 <li>曾經有無數的肝想當上金字塔的頂端，但如今它們都成了最底層的石材…</li>
-</ul>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2010/12/31/1472/">
-                我的噗浪語錄（二） – 開發篇
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2010-12-31
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2010/12/31/1472/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/12/31/1472/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <a id="more"></a>
-<ul>
-<li>用別人開發的程式最怕對它一知半解，用自己開發的程式最怕考慮不周。</li>
-<li>想知道自己是否真正瞭解了一個程式語言，那就試試看重構自己以前寫的程式碼。</li>
-<li>大師能在一小時之內看穿某項技術的本質，高手大概只需一天，有經驗的人可能要到一週，平凡如我就得花上一年了。</li>
-<li>真正優秀的工程師都是懶惰的，所以他們才會勤勞地在短短幾個小時之內專心找出最俐落的解決方法，來換取不加班的休閒時間。</li>
-<li>好的工具讓不熟悉它的人使用時，就無法發揮它的功效，同時也會讓大家對這個工具產生誤解。</li>
-<li>熟悉的工具總是比新穎的技術好用，但也往往因為如此而限制了我們的創意。</li>
-<li>好的 Framework 是幫開發者解決問題，而不是為他們製造問題。</li>
-<li>且戰且走又不重構的程式就像路邊的一坨大便，臭味沖天！</li>
-<li>如果把程式碼分五級，那麼…等級一的程式碼要能對得起自己的良心；等級二的程式碼則不能考驗測試人員的耐心；等級三的程式碼要能得到上頭的歡心；等級四的程式碼要獲得客戶的信心；等級五的程式碼要能受到其他開發者的關心。</li>
-<li>掌握了測試的精髓，就決定了程式的生命。</li>
-<li>老闆的態度決定程式碼的長度。</li>
-<li>當知道的、可以用的方法越多時，我們就更難找出完美的解決方案。</li>
-<li>為了效能，我們把 code 全擠在一起；為了維護，我們又把 code 拆開分離；在程式之道中，直行與叉路分分合合，而我們能選擇的只有前進而已。</li>
-<li>重構最大的問題不是不知道怎麼重構，而是不知道該什麼時候重構，還有什麼時候該停止重構。</li>
-<li>不斷撰寫程式，逐漸矯正觀念，直到我們將它們當作空氣一般自然而忘卻時，就已經體悟程式之道了。</li>
-<li>考慮得多，補強的程式碼也多，相對地 Bug 卻也越多。</li>
-<li>再完美的系統，都避不掉「使用者」這個最大的 bug 。</li>
-<li>是優點的未必不是缺點，是缺點的也難說不是優點；程式之道，在於是否適切於己。</li>
-<li>使用者一直期待著系統夠聰明，但工程師卻總是期待使用者不要那麼笨。</li>
-<li>拼湊而不重構而且想到哪就寫到哪的程式碼，終究會像流沙一樣，把工程師拖入永無止盡的除錯地獄裡。</li>
-<li>有時候簡單的介面才容易讓我們得到需要的資訊，用華麗的外表過度包裝只會讓人容易迷失而已。</li>
-<li>要思考每個 code snippet 的含義，不要只是把它們照抄放到程式裡面，而是要將它們的思想內化到自己的程式之道中。</li>
-<li>成為高手的途徑：先要認識身邊的高手，然後模仿他們的作法，並且瞭解他們的思維，接著超越他們的成就，最後習得他們的謙卑。</li>
-<li>不要被技術的糖衣所吸引而冒然吞下它，要剖開它並仔細研究裡面到底包了什麼。</li>
-<li>怕別人看光你的程式碼前，先問自己：我的程式碼別人看不看得懂。</li>
-<li>不要相信客戶舊資料庫裡存放的資料，也不要相信客戶舊系統所產生的資料；因為如果它們是正確的，就不需要你來改版了。</li>
-<li>在你剛接觸模式之前，別特意去模仿它們；在你弄懂模式之後，別時時想使用它們；而當你完全瞭解模式之時，將會發現模式早就存在於你的系統裡了。</li>
-<li>RC 版跟正式 Release 版本的程式碼不可有太大的差異，否則就應該再進入一次 RC 才可以。</li>
-<li>有 Bug 才有生命…我是指程式。</li>
-<li>Design Patterns 本來就不是能讓你馬上使用的解決方案；執著在它的形上面，只會讓你看不清你真正要解決的問題。</li>
-<li>要思考模式的意，別執著模式的形。</li>
-<li>“First make it work, then make it right, then make it fast.” - by Kent Beck</li>
-<li>所謂的零錯誤程式，就是指沒人用的程式。</li>
-<li>身為一個優秀的 PHP 開發者，不該忽略任何警告訊息。</li>
-<li>所謂的高手不是指一開始就寫出完美程式的人，而是懂得如何時時刻刻修正自己的人。</li>
-<li>真正的高手不會一味追求新工具，而是瞭解並善用自己現在用的工具，直到他認為舊工具侷限了他的思維。</li>
-<li>重構就像整理身邊的環境，多數的軟體工程師都希望能在乾淨的辦公室裡寫程式，但是這樣的環境得要自己維護好才行。</li>
-<li>複製不過二，三則重構之。</li>
-<li>沒有效率的程式寫法，單靠增加機器也是彌補不來的。</li>
-<li>好的設計不是一朝一夕，而是經驗的累積。</li>
-<li>在台灣，『專業』是『廉價』的代名詞。</li>
-<li>先別去想在程式的設計過程裡可以用到哪種 Pattern ，那通常不準；只有在實際的重構過程中，才會知道能用哪個 Pattern 。</li>
-<li>當你被技術的形所迷惑時，就見不到它背後的真義了。</li>
-<li>程式開發就像下山一樣，你可以選擇從階梯穩健踏實地往下步行，也許會有點麻煩也慢了一些；或是你也可以選擇從懸崖毅然決然地縱身一跳，則會非常輕鬆也快了很多…不過死得也滿快的就是。</li>
-<li>好的軟體開發者不只是在堆積程式碼，而是把他的靈魂注入其中。</li>
-<li>Interface 的一致性可以讓系統的轉移更順暢。</li>
-<li>開發一個功能時，不要把顯示和運算混雜在一起…分開它們，測試它們，再組合它們。</li>
-<li>開發不守規範，程式必定會亂；程式不寫測試，上線肯定會死。</li>
-<li>片斷而不求甚解的知識只會做出勉強能動的拼裝程式碼…而你永遠不知道它何時會爆炸。</li>
-<li>MVC 口訣： Controller 知道有 View 和 Model ， View 也知道有 Controller 和 Model ，但 Model 誰都不知道。</li>
-<li>大師的思維，我們必須靠無數次的實踐才能體會，因為大師也是這麼悟道的…</li>
 </ul>
 
         
@@ -1344,196 +1420,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2010/11/04/1406/">
-                [Web] 連結分享
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2010-11-04
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2010/11/04/1406/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/11/04/1406/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <a id="more"></a>
-<h2 id="PHP">PHP</h2><ul>
-<li><a href="http://www.re-cycledair.com/php-dark-arts-sockets" target="_blank" rel="external">PHP Dark Arts: Sockets</a></li>
-<li><a href="http://devzone.zend.com/article/12701-Unit-Testing-Strategies" target="_blank" rel="external">Unit Testing Strategies</a></li>
-<li><a href="http://www.rooftopsolutions.nl/blog/internationalized-domain-names-are-you-ready" target="_blank" rel="external">Internationalized domain names, are you ready?</a></li>
-<li><a href="http://blog.pumka.net/2010/10/24/why-mysql-timestamp-is-24-seconds-different-from-php/" target="_blank" rel="external">Why MySQL timestamp is 24 seconds different from PHP</a></li>
-<li><a href="http://net.tutsplus.com/tutorials/php/creating-a-php5-framework-part-1/" target="_blank" rel="external">Creating a PHP5 Framework – Part 1</a></li>
-<li><a href="http://www.prodevtips.com/2010/10/25/multiple-file-uploads-with-xhr-and-php/" target="_blank" rel="external">Multiple File Uploads with XHR and PHP</a></li>
-<li><a href="http://www.barelyfitz.com/projects/csscolor/" target="_blank" rel="external">CSS Colors: Take Control Using PHP</a></li>
-<li><a href="http://www.searchforphp.com/" target="_blank" rel="external">Search for PHP</a></li>
-<li><a href="http://blogs.sitepoint.com/2010/10/29/faster-web-pages-php-buffer-flush/" target="_blank" rel="external">Speed Up Your Website With PHP Buffer Flushing</a></li>
-<li><a href="http://www.developer.com/lang/php/article.php/3904261/Build-Your-First-PHP-for-Android-Application.htm" target="_blank" rel="external">Build Your First PHP for Android Application</a></li>
-<li><a href="http://www.chazzuka.com/blog/?p=58" target="_blank" rel="external">63+ Best practice optimize PHP code performance</a></li>
-<li><a href="http://www.laruence.com/2010/10/29/1774.html" target="_blank" rel="external">Mpass – PHP做Socket服务的解决方案</a></li>
-<li><a href="http://www.re-cycledair.com/php-dark-arts-daemonizing-a-process" target="_blank" rel="external">PHP Dark Arts: Daemonizing a Process</a></li>
-<li><a href="http://ilia.ws/archives/228-Hidden-Features-of-PHP-Slides.html" target="_blank" rel="external">Hidden Features of PHP Slides</a></li>
-<li><a href="http://devzone.zend.com/article/12618-Using-APC-with-PHP" target="_blank" rel="external">Using APC with PHP</a></li>
-<li><a href="http://www.minwt.com/?p=1530" target="_blank" rel="external">PHP教學－利用Gmail的SMTP製作線上客服系統</a></li>
-<li><a href="http://inspire.twgg.org/c/programming/php/php-programming-specification.html" target="_blank" rel="external">PHP 程式編寫規範</a></li>
-<li><a href="http://www.devshed.com/c/a/PHP/PHP-Modeling-a-URL-Class/?kc=rss" target="_blank" rel="external">PHP: Modeling a URL Class</a></li>
-<li><a href="http://gonzalo123.wordpress.com/2010/11/01/database-connection-pooling-with-php-and-gearman/" target="_blank" rel="external">Database connection pooling with PHP and gearman</a></li>
-<li><a href="http://blog.dynom.nl/archives/PHP-Quiz-part-4_20101102_51.html" target="_blank" rel="external">PHP Quiz part 4</a></li>
-<li><a href="http://www.laruence.com/2010/11/03/1794.html" target="_blank" rel="external">PFA – PHP for Android</a></li>
-<li><a href="http://www.devshed.com/c/a/PHP/PHP-Adding-Behavior-to-a-URL-Class/?kc=rss" target="_blank" rel="external">PHP: Adding Behavior to a URL Class</a></li>
-<li><a href="http://ilia.ws/archives/230-Memcached,-the-Better-Memcache-Interface-Slides.html" target="_blank" rel="external">Memcached, the Better Memcache Interface Slides</a></li>
-<li><a href="http://thread.gmane.org/gmane.comp.php.devel/62998" target="_blank" rel="external">[PHP-DEV] PHP 5.4: Annotations</a></li>
-</ul>
-<h2 id="Zend_Framework">Zend Framework</h2><ul>
-<li><a href="http://blog.digitalstruct.com/2010/10/24/zend-framework-cache-backend-libmemcached-session-cache/" target="_blank" rel="external">Zend Framework Cache Backend Libmemcached + Session Cache</a></li>
-<li><a href="http://devzone.zend.com/article/12621-Zend-Framework-applications-PHPUnit-suite-3x-faster" target="_blank" rel="external">Zend Framework application’s PHPUnit suite 3x faster</a></li>
-<li><a href="http://www.techfounder.net/2010/11/02/zend-framework-dependency-manager/" target="_blank" rel="external">Zend Framework dependency manager</a></li>
-<li><a href="http://www.binpress.com/app/zf-dependency-manager/30" target="_blank" rel="external">ZF dependency manager</a></li>
-<li><a href="http://techportal.ibuildings.com/2010/11/02/creative-mvc-meet-the-viewmodel-pattern/" target="_blank" rel="external">Creative MVC: Meet the ViewModel Pattern</a></li>
-</ul>
-<h2 id="JavaScript">JavaScript</h2><ul>
-<li><a href="http://visionmedia.github.com/jspec/" target="_blank" rel="external">JSpec - JavaScript Testing Framework</a></li>
-<li><a href="http://inspire.twgg.org/c/programming/javascript/javascript-based-object-oriented-programming-explained.html" target="_blank" rel="external">Javascript 物件導向式程式設計基礎講解</a></li>
-<li><a href="http://techblog.procurios.nl/k/n618/news/view/44080/14863/1-Javascript-event-handler.html" target="_blank" rel="external">1 Javascript event handler</a></li>
-<li><a href="http://liuliu.me/detect/detect.html" target="_blank" rel="external">Face Detector</a></li>
-<li><a href="http://djdesignerlab.com/2010/10/30/10-stunning-javascript-animation-frameworks/" target="_blank" rel="external">10 Stunning JavaScript Animation Frameworks</a></li>
-<li><a href="http://www.patrick-wied.at/static/heatmap/" target="_blank" rel="external">Real-time heatmap example with Javascript and HTMLCanvas</a></li>
-</ul>
-<h2 id="jQuery">jQuery</h2><ul>
-<li><a href="http://blog.darkthread.net/blogs/darkthreadtw/archive/2010/10/23/jquery-1-4-3.aspx" target="_blank" rel="external">jQuery-1.4.3小閱兵</a></li>
-<li><a href="http://www.devcurry.com/2010/10/use-jquery-to-detect-if-user-has.html" target="_blank" rel="external">Use jQuery to Detect if User has Scrolled to the Bottom or Top of a Page</a></li>
-<li><a href="http://webdesignledger.com/tutorials/10-fresh-jquery-plugins-and-tutorials" target="_blank" rel="external">10 Fresh jQuery Plugins and Tutorials</a></li>
-<li><a href="http://ticore.blogspot.com/2010/10/simplest-infinite-recursion-jquery.html" target="_blank" rel="external">jQuery 史上最簡單無窮遞迴</a></li>
-<li><a href="http://addyosmani.com/blog/shinetime/" target="_blank" rel="external">ShineTime – A Kick-Ass New jQuery &amp; CSS3 Gallery With Animated Shine Effects</a></li>
-<li><a href="http://www.skill-guru.com/blog/2010/10/24/server-side-logic-management-with-jquery-and-json/" target="_blank" rel="external">Remote JSON made easy with jQuery</a></li>
-<li><a href="http://www.infinite-scroll.com/infinite-scroll-jquery-plugin/" target="_blank" rel="external">Infinite Scroll jQuery Plugin</a></li>
-<li><a href="http://tutorialzine.com/2010/10/ajaxed-coming-soon-page/" target="_blank" rel="external">Creating a Stylish Coming Soon Page with jQuery</a></li>
-<li><a href="http://www.leemunroe.com/css3-gradients/" target="_blank" rel="external">A quick intro into CSS3 gradients</a></li>
-<li><a href="http://www.webdeveloperjuice.com/2010/10/29/12-key-points-why-jquery-is-boss/" target="_blank" rel="external">12 Key Points why JQuery is Boss</a></li>
-<li><a href="http://www.reencoded.com/2010/10/29/15-excellent-websites-to-learn-jquery/" target="_blank" rel="external">15+ Excellent Websites To Learn jQuery</a></li>
-<li><a href="http://jquery.hinablue.me/uicheatsheet/icons.html" target="_blank" rel="external">jQuery UI CSS Framework Cheat Sheet</a></li>
-<li><a href="http://niczsoft.com/2010/11/jquery-pure-templates/" target="_blank" rel="external">jquery pure templates</a></li>
-<li><a href="http://tympanus.net/codrops/2010/11/01/pull-out-content-panel/" target="_blank" rel="external">Pull Out Content Panel with jQuery</a></li>
-<li><a href="https://github.com/codler/jQuery-Css3-Finalize" target="_blank" rel="external">jQuery CSS3 Finalize</a></li>
-</ul>
-<h2 id="CSS">CSS</h2><ul>
-<li><a href="http://www.vcarrer.com/2010/10/two-lines-css-framework.html" target="_blank" rel="external">Two Lines CSS Framework</a></li>
-<li><a href="http://www.vcarrer.com/2009/06/1-line-css-grid-framework.html" target="_blank" rel="external">1 line CSS Grid Framework</a></li>
-<li><a href="http://djdesignerlab.com/2010/10/25/20-latest-useful-css-techniques-tutorials-and-tools/" target="_blank" rel="external">20 Latest Useful CSS Techniques, Tutorials and Tools</a></li>
-<li><a href="http://www.yuiblog.com/blog/2010/10/28/css-quick-tip-how-to-prevent-a-float-drop-in-ie6/" target="_blank" rel="external">CSS Quick Tip: How to prevent a “float drop” in IE6</a></li>
-<li><a href="http://www.smashingmagazine.com/2010/10/31/transparent-css-sprites/" target="_blank" rel="external">Transparent CSS Sprites</a></li>
-<li><a href="http://css-tricks.com/triangle-breadcrumbs/" target="_blank" rel="external">Breadcrumb Navigation with CSS Triangles</a></li>
-<li><a href="http://boxiedesigner.com/tools/8-css-compression-tools-to-decrease-load-time/" target="_blank" rel="external">8 CSS Compression Tools to Decrease Load Time</a></li>
-<li><a href="http://nisha.in/12-tips-for-writing-good-css#" target="_blank" rel="external">12 Tips for Writing Good CSS</a></li>
-<li><a href="http://www.smashingmagazine.com/2010/11/02/the-important-css-declaration-how-and-when-to-use-it/" target="_blank" rel="external">The !important CSS Declaration: How and When to Use It</a></li>
-<li><a href="http://css3wizardry.com/2010/10/29/css-gradients-for-ie9/" target="_blank" rel="external">CSS Gradients for IE9</a></li>
-<li><a href="http://sonspring.com/journal/formalize-css" target="_blank" rel="external">Formalize CSS</a></li>
-</ul>
-<h2 id="Python">Python</h2><ul>
-<li><a href="http://plog.longwin.com.tw/document-ebook/2010/11/02/quick-python-script-learn-2010" target="_blank" rel="external">用一張圖來為 Python 快速入門(Cheatsheet)</a></li>
-</ul>
-<h2 id="Database">Database</h2><ul>
-<li><a href="http://www.fettesps.com/mysql-reordering-table-fields/" target="_blank" rel="external">MySQL – Reordering Table Fields</a></li>
-<li><a href="http://blogs.sitepoint.com/2010/10/27/phpmyadmin-alternatives/" target="_blank" rel="external">3 Lightweight Alternatives to phpMyAdmin</a></li>
-<li><a href="http://www.ooso.net/archives/547" target="_blank" rel="external">mysql主从同步快速设置</a></li>
-<li><a href="http://huoding.com/2010/10/28/16" target="_blank" rel="external">轻量级MySQL备份方案：AutoMySQLBackup</a></li>
-<li><a href="http://yoshinorimatsunobu.blogspot.com/2010/10/using-mysql-as-nosql-story-for.html" target="_blank" rel="external">Using MySQL as a NoSQL - A story for exceeding 750,000 qps on a commodity server</a></li>
-<li><a href="http://blog.darkhero.net/?p=456" target="_blank" rel="external">MySQL+innodb 要收費了！！快來轉移到 Percona Server with XtraDB</a></li>
-</ul>
-<h2 id="HTML5&amp;CSS3">HTML5&amp;CSS3</h2><ul>
-<li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/html5-audio-and-video-what-you-must-know/" target="_blank" rel="external">HTML5 Audio and Video: What you Must Know</a></li>
-<li><a href="http://blogs.sitepoint.com/2010/10/26/shadow-boxing-image-free-css3-glossy-buttons/" target="_blank" rel="external">Shadow Boxing; Image-free, CSS3, Glossy Buttons</a></li>
-<li><a href="http://webhole.net/2010/10/30/html5-tutorials-resources-demos-and-tools/" target="_blank" rel="external">10 HTML5 Resources You Need To Have</a></li>
-<li><a href="http://spyrestudios.com/creating-a-css3-generator-with-css3-html5-and-jquery/" target="_blank" rel="external">Creating a CSS3 Generator with CSS3, HTML5 and jQuery</a></li>
-<li><a href="http://creativefan.com/20-useful-css3-button-resources-and-tutorials/" target="_blank" rel="external">20 Useful CSS3 Button Resources and Tutorials</a></li>
-</ul>
-<h2 id="Web_Development">Web Development</h2><p><li><a href="http://josephj.com/entry.php?id=340" target="_blank" rel="external">HTML <dl>, <dt> 與 <dd> 的誤用</dd></dt></dl></a></li></p>
-<ul>
-<li><a href="http://blog.eddie.com.tw/2010/10/27/misunderstanding-about-flash" target="_blank" rel="external">Misunderstanding about Flash</a></li>
-<li><a href="http://www.ermanafacan.com/?p=398" target="_blank" rel="external">Cool Ajax, Jquery, Javascript and CSS Mix</a></li>
-<li><a href="http://plog.longwin.com.tw/my-favorite-site/2010/10/29/favorite-mobile-detect-web-2010" target="_blank" rel="external">好站: 如何偵測使用者是否使用 手機 來瀏覽網頁</a></li>
-<li><a href="http://github.com/Modernizr/Modernizr" target="_blank" rel="external">Modernizr</a></li>
-<li><a href="http://speckyboy.com/2010/10/07/useful-collection-of-cheat-sheet-desktop-wallpaper-for-web-designers/" target="_blank" rel="external">Useful Collection of Cheat-Sheet Desktop Wallpaper for Web Designers</a></li>
-<li><a href="http://cweiske.de/tagebuch/xhtml-entities.htm" target="_blank" rel="external">Entites in modular XHTML</a></li>
-<li><a href="http://www.inc.com/guides/2010/10/7-deadly-web-design-mistakes.html" target="_blank" rel="external">7 Deadly Web Design Sins</a></li>
-<li><a href="http://blog.dynatrace.com/2010/10/30/web-performance-optimization-use-cases-part-3-automation/" target="_blank" rel="external">Web Performance Optimization Use Cases – Part 3 Automation Application Performance, Scalability and Architecture</a></li>
-<li><a href="http://plog.longwin.com.tw/news_security/2010/11/03/firesheep-wifi-get-cookie-2010" target="_blank" rel="external">利用 Firesheep 竊聽 WiFi網路 來擷取 Cookie</a></li>
-</ul>
-<h2 id="Design">Design</h2><ul>
-<li><a href="http://www.1stwebdesigner.com/resources/fresh-icon-sets-web-designers/" target="_blank" rel="external">35 Fresh Icon Sets for Web Designers and Developers</a></li>
-<li><a href="http://www.onextrapixel.com/2010/11/03/15-ui-design-patterns-web-designers-should-keep-handy/" target="_blank" rel="external">15 UI Design Patterns Web Designers Should Keep Handy</a></li>
-</ul>
-<h2 id="Programming">Programming</h2><ul>
-<li><a href="http://net.tutsplus.com/articles/general/9-confusing-naming-conventions-for-beginners/" target="_blank" rel="external">9 Confusing Naming Conventions for Beginners</a></li>
-<li><a href="http://www.wretch.cc/blog/kojenchieh/15533840" target="_blank" rel="external">為什麼在實作之前撰寫測試會比較好</a></li>
-</ul>
-<h2 id="Software">Software</h2><ul>
-<li><a href="http://playpcesor.blogspot.com/2010/11/blumind.html" target="_blank" rel="external">Blumind 小巧快速的中文免費心智圖軟體，激盪靈感、夠用就好</a></li>
-</ul>
-<h2 id="System">System</h2><ul>
-<li><a href="http://giantflyingsaucer.com/blog/?p=1826" target="_blank" rel="external">Install PHP 5, Apache 2 and MongoDB on Ubuntu 10.10 and test it out</a></li>
-<li><a href="http://www.queness.com/post/5421/17-useful-htaccess-tricks-and-tips" target="_blank" rel="external">17 Useful Htaccess Tricks and Tips</a></li>
-</ul>
-<h2 id="WordPress">WordPress</h2><ul>
-<li><a href="http://blogs.sitepoint.com/2010/11/03/10-wordpress-security-tips/" target="_blank" rel="external">10 Ways to Secure Your WordPress Installation</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/12/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/10/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/12/">&raquo;</a>
   </div>
 
 
@@ -1567,7 +1458,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">580</span>
+              <span class="site-state-item-count">581</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1581,7 +1472,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">51</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
