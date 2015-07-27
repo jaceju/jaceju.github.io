@@ -117,162 +117,6 @@
           
           
             
-              <a class="post-title-link" href="/2007/08/20/229/">
-                [SQL] 如何計算紀錄總數並更新到另一個表
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-08-20
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/08/20/229/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/20/229/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>在 MySQL 4.1 以上版本怎麼把某個 table 的 COUNT 總數複製到另一個 table 對應的欄位裡呢？ </p>
-<p>假設這裡有 a 和 b 兩個 table ，其中 b 表有一個欄位 a_id 對應到 a 表的 id 主鍵，而 a 表有個欄位 total 要記錄在 b 表中屬於 a 表的記錄總共有多少筆。一直記得 SQL 可以很簡單做到，可以一下子就是想不起來。 </p>
-<p>感謝 Neo 一語驚醒夢中人，用 Sub Query 就搞定了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;UPDATE&#60;/strong&#62; a, (&#60;strong&#62;SELECT&#60;/strong&#62; a_id, &#60;strong&#62;COUNT&#60;/strong&#62;(*) &#60;strong&#62;AS&#60;/strong&#62; total&#10;&#60;strong&#62;FROM&#60;/strong&#62; b&#10;&#60;strong&#62;GROUP&#60;/strong&#62; &#60;strong&#62;BY&#60;/strong&#62; a_id) &#60;strong&#62;AS&#60;/strong&#62; c&#10;&#60;strong&#62;SET&#60;/strong&#62; a.total = c.total&#10;&#60;strong&#62;WHERE&#60;/strong&#62; a.id = c.a_id;</span><br></pre></td></tr></table></figure>
-<p>這裡記下來先，不然到時候又忘了；可能有更好的方法，不過目前先完成工作要緊。 :) </p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/08/18/227/">
-                [PHP] 幾篇不錯的文章
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-08-18
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/08/18/227/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/18/227/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <a id="more"></a>
-<ul>
-<li><a href="http://greg.chiaraquartet.net/archives/16-Incredible-Zend-ZDE-debugging-trick-for-debugging-CLI-apps.html" target="_blank" rel="external">Incredible Zend ZDE debugging trick for debugging CLI apps</a></li>
-</ul>
-<p>用以下方式來 Debug PHP CLI 應用程式，我只能說作者真的很天才。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62; set &#34;QUERY_STRING=start_debug=1&#38;amp;debug_host=192.168.0.102&#38;amp;debug_port=10000&#38;amp;debug_stop=1&#34;</span><br></pre></td></tr></table></figure>
-<p>有機會應該來試試看才對。</p>
-<ul>
-<li><a href="http://pixelated-dreams.com/archives/313-AJAX-and-PHP-End-to-End-Debugging.html" target="_blank" rel="external">AJAX and PHP End-to-End Debugging</a></li>
-</ul>
-<p>參考上一篇文章的方式，這次用來 Debug Ajax ；也就是把上面的 QUERY_STRING 系統變數當做 Ajax 的 GET 參數。 </p>
-<ul>
-<li><a href="http://www.rooftopsolutions.nl/article/148" target="_blank" rel="external">PHP: Arrays vs. Objects</a></li>
-</ul>
-<p>又是一篇比較 PHP 陣列和物件效率的文章，我個人是認為效率相差不大的狀況下，應該挑選適合程序的方式來用，而不是固執於一種形式。</p>
-<ul>
-<li><a href="http://blog.agoraproduction.com/index.php?/archives/47-PHP-Namespaces-Part-1-Basic-usage-gotchas.html" target="_blank" rel="external">PHP Namespaces (Part 1: Basic usage &amp; gotchas)</a></li>
-</ul>
-<p>這篇告訴你為什麼要用 Namespaces ，而 Mark 在中文化 dotProject 時也遇過同樣的問題。 </p>
-<li><br><br><a href="http://php100.wordpress.com/2007/08/17/namespaces-faq/" target="_blank" rel="external">Namespaces FAQ</a><br><br>經典：<br><blockquote><br><br> Q: PHP 為什麼需要 Namespaces ？<br><br>A: 因為 PEAR_Form_Loader_Validate_Table_Element_Validator_Exception 實在是太 TMD 長了。 (嗯…這句是我瞎掰的 XD)<br></blockquote><br></li>
-
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="/2007/08/16/225/">
                 ZF 和 SEO
               </a>
@@ -316,82 +160,6 @@
 <li><a href="http://www.wormus.com/aaron/stories/2007/08/16/zf-and-seo.html" target="_blank" rel="external">ZF and SEO</a></li>
 </ul>
 <p>不過這年頭為什麼對機器好比對人好重要呀？大概是人比較難搞的關係吧？</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/08/16/226/">
-                [JavaScript] 相關連結
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-08-16
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/08/16/226/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/16/226/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>JavaScript 越來越神奇了，從大家都認為只是小玩意的技術，搖身一變成為高手們競相研究的對象。</p>
-<p>以下兩個連結就可以看出 JavaScript 真的是非常有趣的一門語言：</p>
-<ul>
-<li><a href="http://osteele.com/archives/2006/04/javascript-memoization" target="_blank" rel="external">One-Line JavaScript Memoization</a></li>
-<li><a href="http://peter.michaux.ca/article/3556" target="_blank" rel="external">Lazy Function Definition Pattern</a> (<a href="http://realazy.org/blog/2007/08/16/lazy-function-definition-pattern/" target="_blank" rel="external">簡體中文版</a> by <a href="http://realazy.org/blog/" target="_blank" rel="external">Realazy</a>)</li>
-</ul>
-<p>順便附上幾個 JavaScript 相關技術的文章：</p>
-<ul>
-<li><a href="http://yuiblog.com/blog/2007/06/12/module-pattern/" target="_blank" rel="external">A JavaScript Module Pattern</a></li>
-<li><a href="http://www.jibbering.com/faq/faq_notes/not_browser_detect.html" target="_blank" rel="external">Browser Detecting (and what to do Instead)</a></li>
-</ul>
 
         
       
@@ -497,6 +265,80 @@
           
           
             
+              <a class="post-title-link" href="/2007/08/15/221/">
+                [PHP] Smarty 入門文章更新
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-08-15
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/08/15/221/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/15/221/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>感謝 <a href="http://www.php5.idv.tw/" target="_blank" rel="external">PHP 5知識交換中心</a>的總理大臣長久以來提供空間讓我存放 Smarty 入門，不過因為部份內容有所變動，所以我決定把它放回來自己的 Blog 。</p>
+<p>主要是有幾個改變：</p>
+<ul>
+<li>因為之前用的資料庫是自己寫的 DB 類別，不過這會讓一般 PHPer 看不懂我在寫什麼；所以這裡我改用 MySQLi 來存取資料庫。</li><li>把原來的 &lt;{ 和 }&gt; 標示符號改成預設的 { 和 } 。</li>
+<li>提供範例下載，但不含資料庫 Schema 。 </li>
+</ul>
+<p>沒買過書的朋友，可以先看看再決定要不要學 Smarty 。</p>
+<p>再強調一次：<strong>學 PHP 不是非學 Smarty 不可，它只是一個工具，請確認它對你的工作有幫助再使用它；也請不要隨意評斷別人的技術是玩具或垃圾，它並不會因為你的批評而從這世界上消失。</strong> </p>
+<p><a href="http://www.jaceju.net/blog/archives/23" target="_blank" rel="external">Smarty 入門文章連結</a> </p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2007/08/15/222/">
                 [JavaScript] 有關 jQuery
               </a>
@@ -556,80 +398,6 @@
 </ul>
 <p>作弊小抄….啊，不是，是速查表。不過我還是喜歡上面的 API Browser ，比 cheat sheet 方便。</p>
 <p>不過基本上我都是看官方網站找 plugins ，然後查一下 API Browser 而已。比較深入研究的話，就要找<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>，他是個 JavaScript 高手。 :) </p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/08/15/221/">
-                [PHP] Smarty 入門文章更新
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-08-15
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/08/15/221/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/15/221/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>感謝 <a href="http://www.php5.idv.tw/" target="_blank" rel="external">PHP 5知識交換中心</a>的總理大臣長久以來提供空間讓我存放 Smarty 入門，不過因為部份內容有所變動，所以我決定把它放回來自己的 Blog 。</p>
-<p>主要是有幾個改變：</p>
-<ul>
-<li>因為之前用的資料庫是自己寫的 DB 類別，不過這會讓一般 PHPer 看不懂我在寫什麼；所以這裡我改用 MySQLi 來存取資料庫。</li><li>把原來的 &lt;{ 和 }&gt; 標示符號改成預設的 { 和 } 。</li>
-<li>提供範例下載，但不含資料庫 Schema 。 </li>
-</ul>
-<p>沒買過書的朋友，可以先看看再決定要不要學 Smarty 。</p>
-<p>再強調一次：<strong>學 PHP 不是非學 Smarty 不可，它只是一個工具，請確認它對你的工作有幫助再使用它；也請不要隨意評斷別人的技術是玩具或垃圾，它並不會因為你的批評而從這世界上消失。</strong> </p>
-<p><a href="http://www.jaceju.net/blog/archives/23" target="_blank" rel="external">Smarty 入門文章連結</a> </p>
 
         
       
@@ -960,11 +728,244 @@
 
 
     
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2007/08/11/218/">
+                [Web] 連結分享
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-08-11
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/08/11/218/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/11/218/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="http://www.ibm.com/developerworks/web/library/x-html5/index.html" target="_blank" rel="external">New elements in HTML 5</a> (<a href="http://realazy.org/blog/2007/08/10/new-elements-in-html-5/" target="_blank" rel="external">HTML 5新增的元素</a>) </li>
+</ul>
+<p>HTML 5 加強語意與結構的改進，當然視覺效果還是交給 CSS 。</p>
+<ul>
+<li><p><a href="http://www.killerphp.com/articles/why-php-business-perspective/" target="_blank" rel="external">Why PHP is the choice language - a business owners perspective.</a></p>
+</li>
+</ul>
+<p>從商業經營者的角度來看 PHP 。</p>
+<ul>
+<li>Is the language reliable? </li>
+<li>Does the language have a strong community? </li>
+<li>Is it easy to find programmers who use that language? </li>
+<li>Is the language productive? </li>
+</ul>
+<ul>
+<li><a href="http://blogoscoped.com/archive/2007-08-10-n75.html" target="_blank" rel="external">SEO Speak Translated: The Real SEO Glossary</a></li>
+</ul>
+<p>SEO 業者的謊言？我個人覺得還是充實網站內容比較重要，排名不能代表一切。</p>
+<ul>
+<li><a href="http://dean.edwards.name/weblog/2007/08/base2-doc/" target="_blank" rel="external">Documentation for base2</a> (<a href="http://base2.googlecode.com/svn/trunk/src/apps/doc/base2.html" target="_blank" rel="external">link</a>) </li>
+</ul>
+<p>Dean 終於為他的 JavaScript Library 寫了一份文件了，可以看看人家是怎麼用 JavaScript 的。 </p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2007/08/09/217/">
+                ZF 相關評論
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-08-09
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/08/09/217/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/09/217/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>今天看到對岸兩位網友對 <a href="http://framework.zend.com">Zend Framework</a> 有趣的評論，收錄如下：</p>
+<ul>
+<li><a href="http://hi.baidu.com/thinkinginlamp">Thinking In LAMP</a>::<a href="http://hi.baidu.com/thinkinginlamp/blog/item/6282d539d96198f13a87ced1.html">我眼中的ZF</a></li>
+<li><a href="http://blog.xxiyy.com/">Some reminiscences, some memories</a>::<a href="http://blog.xxiyy.com/index.php/archives/42">小议 Zend Framework 的三宗罪</a></li>
+</ul>
+<p>基本上，我個人比較偏向 mikespook 的說法。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/08/09/217/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2007/08/07/216/">
+                [CSS] Blueprint CSS framework
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-08-07
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/08/07/216/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/08/07/216/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Blueprint_CSS_framework">Blueprint CSS framework</h2><ul>
+<li><a href="http://bjorkoy.com/blueprint/tutorial.html" target="_blank" rel="external">舊的專案網頁</a></li>
+<li><a href="http://code.google.com/p/blueprintcss/" target="_blank" rel="external">新的專案網頁</a> (放在 Google Code 裡) </li>
+</ul>
+<p>看起來是滿有趣的東西，有空可以試試看。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/36/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/38/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/36/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/38/">&raquo;</a>
   </div>
 
 
@@ -998,7 +999,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">583</span>
+              <span class="site-state-item-count">580</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

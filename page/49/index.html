@@ -117,219 +117,6 @@
           
           
             
-              <a class="post-title-link" href="/2006/07/01/107/">
-                [分享] nVidia 顯示卡驅動程式 91.31 SLI 訊息的問題
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2006-07-01
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2006/07/01/107/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/07/01/107/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>呃…這次這個不是網頁製作的知識，但是我還是把它記下來好了，免得以後忘記。</p>
-<p>在我安裝最新的 nVidia 顯示卡驅動程式 91.31 版後，開機時右下角常會跑出 SLI 已停用的警告訊息 (我的顯示卡是 7800 ) 。不論我使用任何方式，就是無法取消這個訊息。</p>
-<p>求助 Google 大神的結果，我找到了以下這個網址，它提供了一個解法：</p>
-<p><a href="http://technologyexpert.blogspot.com/2006/06/problems-w-nvidias-9131-drivers.html" target="_blank" rel="external"> Problems w/ nVidia’s 91.31 Drivers</a></p>
-<p>請把以下的內容存成一個 nvidia9131.reg ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak\]&#10;&#34;NvCplEnableMultiGPUConfigurationPage&#34;=dword:00000000&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\MediaCenterTray]&#10;&#34;NvCplDisableBalloonNotifications&#34;=dword:00000001</span><br></pre></td></tr></table></figure>
-<p>接著雙擊這個 reg 檔，將以上的設定匯入系統登錄檔。</p>
-<p>然後執行登錄編輯程式，到：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HKLM\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
-<p>把以下兩個項目刪除：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NvCplDaemon: RUNDLL32.EXE C:\WINDOWS\system32\NvCpl.dll,NvStartup&#10;NvMediaCenter: RunDLL32.exe NvMCTray.dll,NvTaskbarInit</span><br></pre></td></tr></table></figure>
-<p>最後重開機即可解決。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2006/06/17/106/">
-                [轉載] Smarty 取巧圖解 2.0
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2006-06-17
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2006/06/17/106/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/06/17/106/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>在 <a href="http://blog.markplace.net/marks_place/1/2006/06/17/102" target="_blank" rel="external">Mark’s Place</a> 看到的，有國外的開發者把 Smarty 的參考手冊濃縮成一張 A4 大小的圖解，有在使用 Smarty 的人可以參考看看。</p>
-<p>網址：<a href="http://hasin.wordpress.com/2006/06/10/smarty-cheat-sheet-version-20/" target="_blank" rel="external">Smarty Cheat Sheet Version 2.0</a></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2006/06/13/105/">
-                [分享] Smarty 手冊正體中文版
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2006-06-13
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2006/06/13/105/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/06/13/105/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>如果大家看過我的書，但是對 Smarty 的一些細節還不是很清楚的話，可以去翻翻 Smarty 的手冊，裡面的資訊是你不應該錯過的。</p>
-<p>不過我想還是有很多人對英文不太行，網路上就有一位非常好心的網友 elie 幫大家把 Smarty 手冊翻譯成了正體中文 (感動吧~~) 。不過譯者也保留了原英文內容，可以讓大家對照用。</p>
-<p>網址：<a href="http://twpug.net/docs/smarty_2.6.9_elie/index.html" target="_blank" rel="external">Smarty 手冊中文翻譯</a> by elie 。</p>
-<p>目前這份文件是放在<a href="http://twpug.net/" target="_blank" rel="external">台灣 PHP 聯盟</a>上，大家對 PHP 有強烈興趣的話，也應該去這個台灣好站朝拜一下 :) </p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="/2006/06/03/104/">
                 [分享] JavaScript 知識等級
               </a>
@@ -837,11 +624,229 @@
 
 
     
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2006/04/26/97/">
+                [轉載] 正則表達式的五個成功習慣
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2006-04-26
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2006/04/26/97/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/04/26/97/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>Regular Expression (正規表示式、常規表示式、正規表達式) 是很多程式開發者所懼怕的一種語法；但是因為它的功能強大，使得軟體界有個不成文的說法：沒學會 Regular Expression ，就不能稱為高手。</p>
+<p>我是後來才學會 Regular Expression 怎麼寫的，不過我沒有因此而變成一個高手。但是 Regular Expression 讓我的程式功力大大的進步，而且在支援 Regular Expression 的文字編輯器中 (如 EditPlus 等) ，我也能夠很容易地找到一些俱備相同規則的字串。所以學會 Regular Expression 是一個好的程式開發者所必定會經歷的過程。</p>
+<p>但是 Regular Expression 是有名的難懂，而且通常寫完之後就很難再看懂它要表達什麼；所以這次介紹的這篇文章，就很清楚地告訴我們要如何寫出讓人能夠容易閱讀的 Regular Expression 。</p>
+<p>廢話不多說了，請自行參考吧。 </p>
+<p>文章網址：<a href="http://www.phpv.net/article.php/1506" target="_blank" rel="external">正則表達式的五個成功習慣</a> (簡體中文) </p>
+<p>重點提示： </p>
+<blockquote>對於大部分程序員來說，在一個正則表達式環境裡使用空格和縮進排列都不成問題，如果他們沒有這麼做一定會被同行甚至外行人士看笑話。幾乎每個人都知道把代碼擠在一行會難於閱讀、書寫和維護。</blockquote>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2006/04/23/96/">
+                ASP 購物車三部曲(1)
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2006-04-23
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2006/04/23/96/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/04/23/96/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="簡介">簡介</h2><p>物件導向是一種思維，這點我深信不疑。但是在我寫了 ASP 物件設計手法系列文章後，我才發現自己其實深陷在語言的泥淖裡。 </p>
+<p>我想這裡也許該用一些真正的實例來表達我的想法了，也就是我想告訴大家，我心目中的物件導向思維到底是什麼？</p>
+<p>前面幾篇的 ASP 物件設計手法或許看起來很神妙，但那只不過是 ASP 原本就有的一些東西。在別的物件導向語言裡，這些手法可能就像呼吸一樣稀鬆平常。所以如果你懂的是別種開發平台 (例如 PHP 、 ASP.NET 或 JSP ) 也沒關係，瞭解物件導向思維的意義後，你大可去發揮那個平台的長處。</p>
+<p>當然不一定非得 ASP 不可，我已經不會再去證明 ASP 能不能辦到什麼。只不過我想會寫 Web 網站程式的人大部份應該都懂 ASP ，而且也為了延續之前的主題，所以這裡就繼續用 ASP 了。</p>
+<p>註：這裡的 ASP 採用的當然是 VBScript ，你想用 JScript 來做我也不反對。</p>
+<p>我將利用一個簡化的購物車程式，來介紹一些我設計購物車程式時的概念，其中會包括先前介紹的 ASP 物件設計手法以及設計模式的應用。</p>
+<p>廢話不多說，往下看吧。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2006/04/23/96/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2006/04/22/95/">
+                JavaScript 小陷阱 (2) - 消失的 submit()
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2006-04-22
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2006/04/22/95/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/04/22/95/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>這個星期每天都是沒天沒日的趕專案，整個人的精神已經呈現耗弱狀態。然而就在我維護某支程式時，遇到了一個小問題，怎麼看都覺得程式沒寫錯，找了半天才發現原因所在。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2006/04/22/95/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/48/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><span class="page-number current">49</span><a class="page-number" href="/page/50/">50</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/50/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/48/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><span class="page-number current">49</span><a class="page-number" href="/page/50/">50</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/50/">&raquo;</a>
   </div>
 
 
@@ -875,7 +880,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">583</span>
+              <span class="site-state-item-count">580</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
