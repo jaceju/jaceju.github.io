@@ -182,7 +182,6 @@
 </blockquote>
 <p>先利用以下的指令來安裝 gearman 及相關套件：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install gearman-job-server</span><br></pre></td></tr></table></figure>
-<p>其中 libdrizzle4 套件就是提供 Gearman 的 Persistent Queues 功能，稍後我們會使用它來串接 MySQL 。</p>
 <p>完成後， Gearman Job Server 就會在我們的系統中啟動了。</p>
 <h2 id="設定_Persistent_Queue">設定 Persistent Queue</h2><p>接著我們要在 MySQL 中先建立一個 gearman 資料庫，這樣稍後啟動 Gearman Job Server 時，才能建立所需要的資料表：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'CREATE DATABASE gearman'</span> &gt; /tmp/temp.sql ; mysql -u root -p &lt; /tmp/temp.sql ; rm <span class="operator">-f</span> /tmp/temp.sql</span><br></pre></td></tr></table></figure>
@@ -191,16 +190,20 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exec</span> start-stop-daemon --start --chuid gearman --exec /usr/sbin/gearmand -- --log-file=/var/<span class="built_in">log</span>/gearman-job-server/gearman.log</span><br></pre></td></tr></table></figure>
 <p>置換為：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">script</span><br><span class="line">    . /etc/default/gearman-job-server</span><br><span class="line">    <span class="built_in">exec</span> start-stop-daemon --start --chuid gearman --exec /usr/sbin/gearmand -- <span class="variable">$PARAMS</span> --log-file=/var/<span class="built_in">log</span>/gearman-job-server/gearman.log</span><br><span class="line">end script</span><br></pre></td></tr></table></figure>
-<p>其中 libdrizzle-host 可換成各位慣用的 MySQL 伺服器 IP ，而 libdrizzle-user 、 libdrizzle-password 則是要有 CREATE TABLE 的權限。</p>
 <blockquote>
 <p>註：這邊是個 bug ，可以參考 <a href="http://jeremykendall.net/2014/09/04/ubuntu-14-dot-04-gearman-config-bug/" target="_blank" rel="external">Ubuntu 14.04 Gearman Config Bug</a> 一文。</p>
 </blockquote>
+<p>然後再編輯 <code>/etc/default/gearman-job-server</code> ，將：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PARAMS=<span class="string">"--listen=localhost"</span></span><br></pre></td></tr></table></figure>
+<p>置換成：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PARAMS=<span class="string">"-q mysql --mysql-host 127.0.0.1 \</span><br><span class="line">                 --mysql-user root \</span><br><span class="line">                 --mysql-password secret \</span><br><span class="line">                 --mysql-db gearman \</span><br><span class="line">                 --mysql-table gearman_queue"</span></span><br></pre></td></tr></table></figure>
+<p>其中 <code>--mysql-host</code> 可換成各位慣用的 MySQL 伺服器 IP ，而 <code>--mysql-user</code> 、 <code>--mysql-password</code> 則是要有 <code>CREATE TABLE</code> 的權限。</p>
 <p>最後重新啟動 Gearman Job Server ：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service gearman-job-server restart</span><br></pre></td></tr></table></figure>
 <p>我們可以用 ps 指令來查看啟動是否成功：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps aux | grep gearman</span><br></pre></td></tr></table></figure>
 <p>出現以下結果的話，就表示我們成功安裝並設定好 Gearman Job Server 了。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gearman   <span class="number">4471</span>  <span class="number">0.0</span>  <span class="number">0.2</span> <span class="number">481504</span>  <span class="number">4684</span> ?        Ssl  <span class="number">13</span>:<span class="number">26</span>   <span class="number">0</span>:<span class="number">00</span> /usr/sbin/gearmand --log-file=/var/<span class="built_in">log</span>/gearman-job-server/gearman.log</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gearman   <span class="number">7158</span>  <span class="number">0.0</span>  <span class="number">0.3</span> <span class="number">483732</span>  <span class="number">7384</span> ?        Ssl  <span class="number">16</span>:<span class="number">01</span>   <span class="number">0</span>:<span class="number">00</span> /usr/sbin/gearmand -q mysql --mysql-host <span class="number">127.0</span>.<span class="number">0.1</span> --mysql-user root --mysql-password secret --mysql-db gearman --mysql-table gearman_queue --log-file=/var/<span class="built_in">log</span>/gearman-job-server/gearman.log</span><br></pre></td></tr></table></figure>
 <h2 id="安裝_PHP_Gearman_API_Extension">安裝 PHP Gearman API Extension</h2><p>因為後面的範例是使用 PHP 做示範，所以我們安裝 Gearman Extension ：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install php5-gearman</span><br></pre></td></tr></table></figure>
 <h2 id="簡易實作">簡易實作</h2><p>接下來，我們可以試著用 PHP API 來連接 Job Server 。前面安裝好 PECL 的 Gearman Extension 後，我們就可以在 PHP 程式裡建立操作 Gearman API 的物件了。</p>
