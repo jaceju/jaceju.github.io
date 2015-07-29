@@ -1,0 +1,579 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+
+
+  <meta name="keywords" content="Laravel," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    analytics: {
+      google: 'UA-450710-8'
+    },
+    sidebar: 'post'
+  };
+</script>
+
+
+
+
+  <title> 在 Laravel 上用 MailCatcher 發送測試信件 // 網站製作學習誌 </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">網站製作學習誌</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          首頁
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          歸檔
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          標籤
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              在 Laravel 上用 MailCatcher 發送測試信件
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2015-07-29
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/29/laravel-mailcatcher/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/29/laravel-mailcatcher/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <p>雖然 Laravel 在寄送測試信件上提供了 <a href="http://www.mailgun.com/" target="_blank" rel="external">Mailgun</a> 這個服務的串接方式，不過如果能夠在 Homestead 就可以直接測試是更棒的選擇；而 <a href="http://mailcatcher.me/" target="_blank" rel="external">MailCatcher</a> 剛好就提供這樣的功能，它能啟動一個 SMTP 模擬服務，並且讓我們透過 Web 介面來查看信件是否有被發送出來。</p>
+<blockquote>
+<p>註：類似的工類還有用 Go 寫的 <a href="https://github.com/mailhog/MailHog" target="_blank" rel="external">MailHog</a> ，據說速度更快；雖然我還沒試過，但我想用法應該是相同的。</p>
+</blockquote>
+<p>以下就簡單介紹一下如何在 Laravel 5.1 上使用 MailCatcher 。</p>
+<a id="more"></a>
+<h2 id="安裝_MailCatcher">安裝 MailCatcher</h2><p>這裡我們用 Homestead 示範，先把 Homestead 的 port 1080/1025 導到本機的 port 1080/1025 ，方便稍後在本機操作。執行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ homestead edit</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>註： <code>$</code>  為提示字元，不需要輸入。</p>
+</blockquote>
+<p>然後加入：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">ports:&#10;    - send: 1080&#10;      to: 1080&#10;    - send: 1025&#10;      to: 1025</span><br></pre></td></tr></table></figure>
+<p>接著進入 Homestead ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ homestead up</span><br><span class="line">$ homestead ssh</span><br></pre></td></tr></table></figure>
+<p>確認 Ruby 環境是安裝好的：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ruby -v</span><br><span class="line">ruby <span class="number">2.1</span>.<span class="number">2</span>p95 (<span class="number">2014</span>-<span class="number">05</span>-<span class="number">08</span>) [x86_64-linux-gnu]</span><br><span class="line"></span><br><span class="line">$ gem -v</span><br><span class="line"><span class="number">2.2</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>然後安裝 MailCatcher ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo gem install mailcatcher --no-ri --no-rdoc</span><br></pre></td></tr></table></figure>
+<p>安裝完成後，直接執行 <code>mailcatcher</code> ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mailcatcher --ip <span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line">Starting MailCatcher</span><br><span class="line">==&gt; smtp://<span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">1025</span></span><br><span class="line">==&gt; http://<span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">1080</span></span><br><span class="line">*** MailCatcher runs as a daemon by default. Go to the web interface to quit.</span><br></pre></td></tr></table></figure>
+<p>這樣 MailCatcher 的 port 1025 就會監聽 SMTP 請求，而 port 1080 就會是它的 Web 管理介面。</p>
+<p>打開本機的瀏覽器，瀏覽 <code>http://127.0.0.1:1080</code> ，應該就會看到 MailCatcher 的 Web 管理介面：</p>
+<p><img src="/resources/laravel-mailcatcher/mailcatcher-web-ui.png" alt="MailCatcher Web UI"></p>
+<h2 id="修改_Laravel_Mail_設定">修改 Laravel Mail 設定</h2><p>這裡我假設你已經建立一個 Laravel 5.1 專案了，所以修改 <code>.env</code> 中的 <code>MAIL_HOST</code> 與 <code>MAIL_PORT</code> 即可：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="setting">MAIL_HOST=<span class="value"><span class="number">127.0</span>.<span class="number">0.1</span></span></span></span><br><span class="line"><span class="setting">MAIL_PORT=<span class="value"><span class="number">1025</span></span></span></span><br></pre></td></tr></table></figure>
+<p>其他一切都可以不需要改動。</p>
+<h2 id="測試發送信件">測試發送信件</h2><p>我們可以直接用 tinker 來測試是否能夠發送信件，執行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ php artisan tinker</span><br><span class="line">Psy Shell v0.<span class="number">5.2</span> (PHP <span class="number">5.6</span>.<span class="number">8</span> — cli) by Justin Hileman</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>然後輸入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Mail::raw(&#39;This is a test mail&#39;, function ($message) &#123;&#10;$message-&#62;subject(&#39;Test&#39;);&#10;$message-&#62;from(&#39;laravel@example.com&#39;, &#39;Laravel&#39;);&#10;$message-&#62;to(&#39;user@example.com&#39;);&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<p>結果應該會回傳 <code>1</code> ，然後你可以回到瀏覽器查看 MailCatcher 是否有收到這封信，結果應該會如下圖所示：</p>
+<p><img src="/resources/laravel-mailcatcher/mailcatcher-result.png" alt="MailCatcher Result"></p>
+<h2 id="與其他測試框架的整合">與其他測試框架的整合</h2><p>MailCatcher 可以跟 PHP 的自動化測試框架做很好的整合，詳情可以參考以下文章：</p>
+<ul>
+<li>PHPUnit - <a href="http://codeception.com/12-15-2013/testing-emails-in-php.html" target="_blank" rel="external">Testing Emails in PHP. Part 1: PHPUnit</a></li>
+<li>Behat - <a href="https://github.com/kibao/behat-mailcatcher-extension" target="_blank" rel="external">MailCatcher extension for Behat</a></li>
+<li>Codeception - <a href="https://github.com/captbaritone/codeception-mailcatcher-module" target="_blank" rel="external">Test emails in your Codeception acceptance tests</a></li>
+</ul>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Laravel/"> #Laravel </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/26/laravel-events-broadcasting/">Laravel 5.1 Events Broadcasting 實務練習</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    
+      <div class="comments" id="comments">
+        
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          </div>
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" />
+          <p class="site-author-name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element"></p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/jaceju" target="_blank">GitHub</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/jaceju" target="_blank">Twitter</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝_MailCatcher"><span class="nav-number">1.</span> <span class="nav-text">安裝 MailCatcher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改_Laravel_Mail_設定"><span class="nav-number">2.</span> <span class="nav-text">修改 Laravel Mail 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試發送信件"><span class="nav-number">3.</span> <span class="nav-text">測試發送信件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#與其他測試框架的整合"><span class="nav-number">4.</span> <span class="nav-text">與其他測試框架的整合</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+
+  
+  
+  
+
+  
+
+    
+      
+    
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = '2015/07/29/laravel-mailcatcher/';
+      var disqus_title = '在 Laravel 上用 MailCatcher 發送測試信件';
+      var disqus_url = 'http://jaceju.net/2015/07/29/laravel-mailcatcher/';
+
+      (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }());
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript" src="/js/analytics_google-analytics.js"></script>
+
+
+</body>
+</html>

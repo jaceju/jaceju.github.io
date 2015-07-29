@@ -117,6 +117,88 @@
           
           
             
+              <a class="post-title-link" href="/2008/01/16/307/">
+                [PHP] mysql_query 的記憶體使用與分頁方式
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2008-01-16
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2008/01/16/307/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2008/01/16/307/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="說明">說明</h2><p>這個實驗主要是探討在 TWPUG 上的這篇 FIEND 寫的： <a href="http://twpug.net/modules/newbb/viewtopic.php?topic_id=3094&amp;forum=35">[原創] [分享] 小弟寫的 cakephp 換頁 排序 功能 (第一版)</a> 。</p>
+<p>幾個實驗重點如下：</p>
+<ul>
+<li>FIEND 提到兩次 Query 不是一個好方式，他的做法是用一次 Query 配合 while + mysql_result 就能做到分頁效果。</li>
+</ul>
+<li>
+
+<p>另外 shirock 從 PHP 原始碼的部份<a href="http://blog.roodo.com/rocksaying/archives/4986803.html">解釋 PHP 和 MySQL 抓資料後的處理方式</a>，但 FIEND 卻說「<strong><a href="http://twpug.net/modules/newbb/viewtopic.php?post_id=11749#forumpost11749">用屁股想都知道 PHP 不可能把 QUERY 結果 全部拉回 PHP 端記憶體</a></strong>」。<br></li></p>
+<ul>
+<li>還有 shirock 提到：「參考文章中已經很明白指出 mysql_query 跳過 PHP 內建記憶體配置機制，而直接使用 mysql C library 的函數儲存資料在 PHP 程序這端。而 memory_limit 只會管制到 PHP 內建記憶體配置機制的使用上限。所以 mysql_query 查詢大量資料時，不會受到 memory_limit 的限制。」 </li>
+</ul>
+<p>基本上我從來不知道屁股可以用來思考，所以我還是要實事求是，用 FIEND 的方法實驗一次。</p>
+<p>註：不過我老是在上廁所時想到一些靈感…Orz</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2008/01/16/307/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2008/01/15/306/">
                 初探 Zend_Db_Table Relationships (三)
               </a>
@@ -1486,244 +1568,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/12/15/297/">
-                [Web] 連結分享
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-12-15
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/12/15/297/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/12/15/297/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <a id="more"></a>
-<h2 id="PHP">PHP</h2><ul>
-<li><a href="http://kore-nordmann.de/blog/published_article_image_creation_with_php.html" target="_blank" rel="external">Image creation with PHP</a></li>
-</ul>
-<p>一系列有關影像建立的文章，主要是應用作者搭配 GD 所寫出來的套件。 </p>
-<ul>
-<li><a href="http://devzone.zend.com/article/2803-Introducing-xdebug" target="_blank" rel="external">Introducing xdebug</a></li>
-</ul>
-<p>這篇是很棒而且還滿完整的 Xdeubg 介紹文。</p>
-<ul>
-<li><a href="http://blog.stuartherbert.com/php/2007/12/10/quick-tip-get-set-and-query-in-one-method/" target="_blank" rel="external">Quick Tip: Get, Set and Query in One Method</a></li>
-</ul>
-<p>雖然很多程式開發的書上都建議不要把 Getter 、 Setter 和 Query 寫在同一個函式裡，但是這樣看來似乎很方便？尤其 jQuery 本身也大量使用這種方法後，我的信心似乎有點動搖了。不過我想這樣的方法也一定是有副作用的，如果一個函式做太多事情的話，有時候 Bug 就會潛藏於其中也說不定。</p>
-<ul>
-<li><a href="http://www.devshed.com/c/a/PHP/Throwing-Basic-Exceptions-When-Auto-Loading-Classes-in-PHP-5/" target="_blank" rel="external">Throwing Basic Exceptions When Auto Loading Classes in PHP 5</a></li>
-</ul>
-<p>在自動載入錯誤時，丟出一個異常。這個我也試過，不瞭解 __autoload 機制的話，實作起來還滿困難的。</p>
-<ul>
-<li><a href="http://www.v-nessa.net/2007/12/07/common-php-errors" target="_blank" rel="external">Common PHP Errors</a></li>
-</ul>
-<p>解說常見的一些 PHP 錯誤訊息。</p>
-<ul>
-<li><a href="http://kevin.vanzonneveld.net/techblog/article/php_tiff2pdf/" target="_blank" rel="external">PHP: tiff2pdf</a> </li>
-</ul>
-<p>利用 Imagick 和 ps2pdfwr 將 TIFF 轉換成 PDF 的方式。</p>
-<ul>
-<li><a href="http://doughboy.wordpress.com/2007/12/13/namespaces-sigh/" target="_blank" rel="external">Namespaces, <em>sigh</em></a></li>
-</ul>
-<p>還是有人對新的 PHP Namespaces 機制抱持著失望的看法。</p>
-<ul>
-<li><a href="http://davidwalsh.name/download-urls-content-php-curl/" target="_blank" rel="external">Download a URL’s Content Using PHP CURL</a></li>
-</ul>
-<p>介紹如何使用 cURL 來取得網站內容。</p>
-<ul>
-<li><a href="http://php100.wordpress.com/2007/12/12/icuphplove/" target="_blank" rel="external">ICU+PHP=love</a></li>
-</ul>
-<p>一個用來處理 ICU (<a href="http://en.wikipedia.org/wiki/International_Components_for_Unicode" target="_blank" rel="external">International Components for Unicode</a>) 的 PHP 延伸套件。</p>
-<ul>
-<li><a href="http://bitfilm.net/2007/08/24/tips-for-faster-php-scripts/" target="_blank" rel="external">Tips for faster PHP scripts</a></li>
-</ul>
-<p>這種比較效率的文章已經快多到我以為我已經介紹過了？總之還是有參考價值啦，不妨多看幾眼。不過還是一句話，適用為先。 </p>
-<h3 id="Zend_Framework">Zend Framework</h3><ul>
-<li><a href="http://akrabat.com/2007/12/11/simple-zend_layout-example/" target="_blank" rel="external">Simple Zend_Layout Example</a></li>
-</ul>
-<p>Zend_Layout 太晚出現了，我自己已經有一套自認不輸它的開發方式了。 (我的臉皮怎麼可以厚成這樣？ XD )  </p>
-<h2 id="JavaScript">JavaScript</h2><ul>
-<li><a href="http://www.dustindiaz.com/pro-javascript-design-patterns/" target="_blank" rel="external">Pro JavaScript Design Patterns hits the shelves</a></li>
-</ul>
-<p>JavaScript 也有 Design Patterns ？這本書似乎值得一看。</p>
-<ul>
-<li><a href="http://www.thespanner.co.uk/2007/12/10/javascript-based-encryption/" target="_blank" rel="external">Javascript based encryption</a></li>
-</ul>
-<p>用 JavaScript 做的加密層，在沒有 SSL 的環境下也可以保護要送出去的資料。</p>
-<ul>
-<li><a href="http://www.hrcerqueira.com/beginners-guide-to-prototypal-inheritance-in-javascript/" target="_blank" rel="external">Beginners guide to prototypal inheritance in javascript</a></li>
-</ul>
-<p>雖然這是給初學者的 JavaScript 繼承機制教學，我覺得我其實也應該再好好再從頭學起。</p>
-<ul>
-<li><a href="http://ejohn.org/blog/instant-javascript-apps/" target="_blank" rel="external">Instant JavaScript Apps</a></li>
-</ul>
-<p><a href="http://appjet.com/" target="_blank" rel="external">AppJet</a> 用 JavaScript 作為 Web 應用程式的後端技術 (看來就是傳說中的 <a href="http://www.mozilla.org/rhino/" target="_blank" rel="external">Rhino</a>) ，就連 IDE 也是在線上使用。</p>
-<ul>
-<li><a href="http://www.dustindiaz.com/javascript-function-declaration-ambiguity/" target="_blank" rel="external">JavaScript function declaration ambiguity</a></li>
-</ul>
-<p>定義 function 的方式不同，也會影響呼叫的順序。</p>
-<ul>
-<li><a href="http://www.hrcerqueira.com/javascript-setters-and-getters/" target="_blank" rel="external">Javascript Setters and Getters</a></li>
-</ul>
-<p>這些屬性還沒研究過…找時間來試試看。 </p>
-<h3 id="jQuery">jQuery</h3><ul>
-<li><a href="http://www.prodevtips.com/2007/12/11/jquery-tablesorter-sorting-tables-is-easy/" target="_blank" rel="external">jQuery tablesorter - sorting tables is easy</a></li>
-</ul>
-<p>排序表格的 plugin 。</p>
-<ul>
-<li><a href="http://worcesterwideweb.com/2007/12/11/show-div-on-check-for-checkbox/" target="_blank" rel="external">show div on check for checkbox</a></li>
-</ul>
-<p>很簡單也很易懂的 jQuery 動畫應用。</p>
-<ul>
-<li><a href="http://24ways.org/2007/unobtrusively-mapping-microformats-with-jquery" target="_blank" rel="external">Unobtrusively Mapping Microformats with jQuery</a></li>
-</ul>
-<p>上次有提過 <a href="http://mapstraction.com/" target="_blank" rel="external">Mapstraction</a> 這個地圖整合套件，這次要改用 jQuery 來協助它完成部份的功能。</p>
-<ul>
-<li><a href="http://ejohn.org/blog/i-learned-some-things-about-jquery-today/" target="_blank" rel="external">I Learned Some Things About jQuery Today</a></li>
-</ul>
-<p>因為 MooTools 的一個介紹影片，讓 jQuery 的開發者有點小激動。可以看看該文回應的部份，有來有往的，很精采。總之，每個技術都有其優缺點，讓使用者自行找出適用的就可以了。補充一下： Mark 有寫一篇「<a href="http://blog.markplace.net/marks_place/9/2007/12/15/322" target="_blank" rel="external">從 MooTools 與 jQuery 的恩怨看工程師到底要不要懂公關</a>」，把過程寫得很詳細。 </p>
-<ul>
-<li><a href="http://www.christianmontoya.com/2007/12/10/how-i-learned-to-stop-programming-and-love-the-dom/" target="_blank" rel="external">How I learned to stop programming and love the DOM</a></li>
-</ul>
-<p>我看完的感想是：有 jQuery 真的方便很多。 </p>
-<h2 id="CSS">CSS</h2><ul>
-<li><a href="http://www.dave-woods.co.uk/?p=131" target="_blank" rel="external">3 Column Fluid CSS Layout</a></li>
-</ul>
-<p>三欄排版。中間的區塊利用 margin 預留出空間，然後把剩下的區塊利用 float 移至兩側。</p>
-<ul>
-<li><a href="http://24ways.org/2007/css-for-accessibility" target="_blank" rel="external">CSS for Accessibility</a></li>
-</ul>
-<p>說明透過 CSS 解決 Accessibility (無障礙) 上的問題。</p>
-<ul>
-<li><a href="http://www.dave-woods.co.uk/?p=133" target="_blank" rel="external">Float and Clear: A comparison of CSS clearing techniques</a></li>
-</ul>
-<p>這篇介紹了 float 和 clear 兩個屬性，也介紹了一些應用上的小技巧。</p>
-<ul>
-<li><a href="http://www.noupe.com/showcases/css-gallery-attacks.html" target="_blank" rel="external">CSS Gallery Attacks</a></li>
-</ul>
-<p>一堆 CSS 的應用展示。</p>
-<ul>
-<li><a href="http://css-tricks.com/group-input-needed-rating-your-level-of-css-skill/" target="_blank" rel="external">Group Input Needed: Rating Your Level of CSS Skill</a></li>
-</ul>
-<p>很久以前我貼過如何分析自己的 JavaScript 技術等級，而這篇則是分析 CSS 技術等級！我個人是到等級 3 - 4 左右。 </p>
-<h2 id="Web">Web</h2><ul>
-<li><a href="http://www.infoq.com/articles/rest-introduction" target="_blank" rel="external">A Brief Introduction to REST</a></li>
-</ul>
-<p>REST 的介紹。</p>
-<ul>
-<li><a href="http://www.infoq.com/cn/news/2007/12/MVC-vs-Web-Forms" target="_blank" rel="external">为什么会出现ASP.NET平台下的MVC框架？</a></li>
-</ul>
-<p>看來 RoR 的出現真的影響了 Web 開發的方式。</p>
-<ul>
-<li><a href="http://weblogs.asp.net/plip/archive/2007/12/09/is-mvc-right-for-you.aspx" target="_blank" rel="external">Is MVC right for you?</a></li>
-</ul>
-<p>看完上一篇後，可以藉由這篇思考一下使用 MVC 的必要性。</p>
-<ul>
-<li><a href="http://www.soledadpenades.com/2007/12/11/utf-8-checklist/" target="_blank" rel="external">UTF-8 checklist (apache, flash, mysql, php)</a></li>
-</ul>
-<p>網站要使用 UTF-8 時，要檢查的各個項目。</p>
-<ul>
-<li><a href="http://damieng.com/blog/2007/12/10/how-dangerous-is-html-injection" target="_blank" rel="external">How dangerous is HTML injection?</a></li>
-</ul>
-<p>指出 HTML injection 的問題，並提供各大後端技術的解決。</p>
-<ul>
-<li><a href="http://www.noupe.com/ajax/47-excellent-ajax-css-forms.html" target="_blank" rel="external">47+ Excellent Ajax CSS Forms</a></li>
-</ul>
-<p>一堆表單技術的集合。</p>
-<ul>
-<li><a href="http://www.iuiuiu.com/plog/post/1/343" target="_blank" rel="external">中国网站首页设计有四大特色[zt]</a></li>
-</ul>
-<p>很有趣的分析。的確每次去對岸的網站首頁，都會有相同的感受。</p>
-<ul>
-<li><a href="http://blogs.bytecode.com.au/glen/2007/12/10/1197253000332.html" target="_blank" rel="external">Gravl Week One: Webflowing an Ajax upload</a></li>
-</ul>
-<p>利用 Ajax 上傳時，要如何顯示 Progress Bar 的流程。 (我怎麼覺得作者很像歡樂大集合裡面那個很高大的演員？) </p>
-<ul>
-<li><a href="http://bergie.iki.fi/blog/site_structure_planning_with_writemaps.html" target="_blank" rel="external">Site structure planning with WriteMaps</a></li>
-</ul>
-<p>線上製作 Site Map 的服務。 </p>
-<h3 id="Browser">Browser</h3><ul>
-<li><a href="http://www.sitepoint.com/article/ie-standards-chris-wilson" target="_blank" rel="external">IE and Standards: Chris Wilson Talks</a></li>
-</ul>
-<p>訪問 IE7 的 Platform Architect 。</p>
-<ul>
-<li><a href="http://www.manwithnoblog.com/2007/12/08/internet-explorer-8-in-2008-maybe/" target="_blank" rel="external">Internet Explorer 8 in 2008, Maybe?</a></li>
-</ul>
-<p>然後就有 IE8 會在明年出現的謠言？ </p>
-<h3 id="Flash">Flash</h3><ul>
-<li><a href="http://www.emmaalvarez.com/2007/12/56-flash-tutorials.html" target="_blank" rel="external">56 Flash Tutorials</a></li>
-</ul>
-<p>想學 Flash 的朋友可以參考看看。</p>
-<h3 id="RoR">RoR</h3><ul>
-<li><a href="http://robbin.javaeye.com/blog/147397" target="_blank" rel="external">Ruby on Rails 2.0的新特性介绍</a></li>
-</ul>
-<p>還是關注一下 RoR 2.0 好了，因為有些東西還滿值得借鏡的。 </p>
-<h2 id="Programming">Programming</h2><ul>
-<li><a href="http://heaven.branda.to/~thinker/GinGin_CGI.py/show_id_doc/305" target="_blank" rel="external">Dia 除了畫圖 2</a></li>
-</ul>
-<p>還能用 UML 定義一個 View (不過不是 DBMS 提供的那種 View ) 。</p>
-<ul>
-<li><a href="http://atedev.wordpress.com/2007/12/10/%e7%b0%a1%e5%96%ae%e7%9a%84%e6%ad%a3%e8%a6%8f%e8%a1%a8%e7%a4%ba%e5%bc%8f%e5%8e%9f%e7%90%86/" target="_blank" rel="external">簡單的正規表示式原理</a></li>
-</ul>
-<p>還不錯的正規表示式原理解說，適合入門的朋友參考。不過提到的東西大部份是在預設的狀況，像只比對出第一個找到的部份 (這部份可以用貪心比對來找出多個符合的值) 。 </p>
-<h2 id="Other">Other</h2><ul>
-<li><a href="http://www.wretch.cc/blog/phopicking&amp;article_id=12955261" target="_blank" rel="external">收尾巴？！這應該還沒開始吧！</a></li>
-</ul>
-<p>睽違已久的獨孤木老大談專案管理，他提到了製作網站專案所會面臨到的一些問題。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1762,7 +1606,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">581</span>
+              <span class="site-state-item-count">582</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

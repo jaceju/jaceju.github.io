@@ -117,6 +117,82 @@
           
           
             
+              <a class="post-title-link" href="/2005/10/20/35/">
+                關於PHP的多型
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-10-20
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/10/20/35/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/10/20/35/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>我在 <a href="http://www.twbb.org/?topic=4673.0" target="_blank" rel="external">PHP Twbb 台灣論壇資源網</a>回答一個多型的問題：以下有三種不同的多型實作方式，有什麼不同呢？</p>
+<p>我的見解如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class shape&#10;&#123;&#10;function niceDrawing($temp)&#10;&#123;&#10;$temp-&#62;draw();&#10;&#125;&#10;function draw()&#10;&#123;&#10;//do nothing;&#10;&#125;&#10;&#125;&#10;class Circle&#10;&#123;&#10;function draw()&#10;&#123;&#10;echo &#39;circle&#39;;&#10;&#125;&#10;&#125;&#10;class Rectangle&#10;&#123;&#10;function draw()&#10;&#123;&#10;echo &#39;rec&#39;;&#10;&#125;&#10;&#125;&#10;$board = new shape();&#10;$obj = new Circle();&#10;$obj2 = new Rectangle();&#10;$board-&#62;niceDrawing($obj); //will call the draw method of Circle.&#10;$board-&#62;niceDrawing($obj2); //will call the draw method of Rectangle.&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>第 1 種方式沒有用到繼承，只是很單純的委託別的類別來處理事情。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class shape&#10;&#123;&#10;var $temp;&#10;function niceDrawing()&#10;&#123;&#10;$this-&#62;draw();&#10;&#125;&#10;function draw()&#10;&#123;&#10;//do nothing;&#10;&#125;&#10;&#125;&#10;class Circle&#10;&#123;&#10;function Circle()&#10;&#123;&#10;shape::niceDrawing();&#10;&#125;&#10;function draw()&#10;&#123;&#10;echo &#39;circle&#39;;&#10;&#125;&#10;&#125;&#10;class Rectangle&#10;&#123;&#10;function Rectangle()&#10;&#123;&#10;shape::niceDrawing();&#10;&#125;&#10;function draw()&#10;&#123;&#10;echo &#39;rec&#39;;&#10;&#125;&#10;&#125;&#10;$obj = new Circle();&#10;$obj2 = new Rectangle();&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p> 第 2 種方式也是一樣，只不過採用呼叫 shape 的靜態方法，使物件在初始化時就開始動作。 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Message &#123;&#10;var $message;&#10;function setMessage($message)&#10;&#123;&#10;$this-&#62;message = $message;&#10;&#125;&#10;function getMessage()&#10;&#123;&#10;return $this-&#62;message;&#10;&#125;&#10;&#125;&#10;class PoliteMessage extends Message &#123;&#10;function PoliteMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;How are you today?&#39;);&#10;&#125;&#10;&#125;&#10;class TerseMessage extends Message &#123;&#10;function TerseMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;Howzit?&#39;);&#10;&#125;&#10;&#125;&#10;class RudeMessage extends Message &#123;&#10;function RudeMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;You look like *%&#38;amp;* today!&#39;);&#10;&#125;&#10;&#125;&#10;class MessageReader &#123;&#10;var $messages;&#10;function MessageReader(&#38;amp;$messages)&#10;&#123;&#10;$this-&#62;messages = &#38;amp;$messages;&#10;$this-&#62;readMessages();&#10;&#125;&#10;function readMessages()&#10;&#123;&#10;foreach ($this-&#62;messages as $message)&#10;&#123;&#10;if (is_a($message, &#39;Message&#39;))&#10;echo $message-&#62;getMessage() . &#39;&#60;br /&#62;&#39;;&#10;&#125;&#10;&#125;&#10;&#125;&#10;$classNames = array(&#39;PoliteMessage&#39;, &#39;TerseMessage&#39;, &#39;RudeMessage&#39;);&#10;$messages = array();&#10;srand((float)microtime() * 1000000); // Prepares random shuffle&#10;for ($i = 0; $i &#60; 10; $i++)&#10;&#123;&#10;shuffle($classNames);&#10;$messages[] = new $classNames[0]();&#10;&#125;&#10;$messageReader = new MessageReader($messages);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>第 3 種方式用到了繼承，這是常見的多形技巧。 MessageReader 能接受一個 Message 類別所產生的物件，當然 Message 的子類別也同樣地能被 MessageReader 接受。對 MessageReader 來說， &#036;messages 陣列裡所有的類別都繼承於 Message 類別，但因為它們在實作方法上有所不同，故在執行期間能夠產生不同的動作，所以能夠被稱之為多型。</p>
+<p> 第 3 種方式從比較廣義的角度來說，可以稱為「策略模式」。 MessageReader 在執行期間，不必在乎 &#036;messages 陣列裡的物件的實作 (也就是演算法) ，只要這些物件屬於 Message 類別，那麼它就能呼叫 Message 類別中的 getMessage 方法。</p>
+<p> 不過實際上， PHP4 並沒有比較漂亮的辦法在傳入參數時就分別出 &#036;messages 陣列中的物件是否真的屬於 Message 類別 (只能在函式中用 is_a ) ，在 PHP5 就能夠用 Type Hinting 來辨認。</p>
+<p>我不一定是對的，所以歡迎大家提出不同的見解。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2005/09/12/34/">
                 又一本 CSS 好書
               </a>
@@ -772,76 +848,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/06/14/25/">
-                JavaScript 物件類別繼承
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-06-14
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/06/14/25/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/06/14/25/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>我在找適用於各種主流瀏覽器的 XML 開發方式時，看到了一個有趣的 JavaScript 物件類別繼承寫法。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2005/06/14/25/#more">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -880,7 +886,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">581</span>
+              <span class="site-state-item-count">582</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
