@@ -117,6 +117,84 @@
           
           
             
+              <a class="post-title-link" href="/2005/10/26/36/">
+                MySQL 5 可用於正式產品上了
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-10-26
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/10/26/36/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/10/26/36/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>前陣子看到 <a href="http://www.mysql.com" target="_blank" rel="external">MySQL 5</a> 已經正式推出了，支援 Stored Procedures 、 Functions 、 Views 、 Triggers 等。</p>
+<p>目前 phpMyAdmin 2.6.4 好像還不支援這些新特色 (View 可以看得到，但是沒有建立的介面？) ，不過 MySQL 官方自己推了一個 <a href="http://dev.mysql.com/downloads/query-browser/1.1.html" target="_blank" rel="external">MySQL Query Browser</a> ，還不錯用， 缺點是中文的支援性不佳 (輸入中文時會怪怪的) 。</p>
+<p>小試了一下用 MySQL Query Browser 寫一個 Stored Procedure ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;DELIMITER $$&#60;/strong&#62;&#10;DROP PROCEDURE IF EXISTS `spTest` $$&#10;CREATE PROCEDURE `spTest`(p_title VARCHAR(200), p_description TEXT)&#10;&#60;strong&#62;DETERMINISTIC&#60;/strong&#62;&#10;BEGIN&#10;INSERT INTO category (title, description)&#10;VALUES (p_title, p_description);&#10;END $$&#10;&#60;strong&#62;DELIMITER ;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<p>其中 DELIMITER 是用來決定 SQL 分隔符號的，在寫 Stored Procedure 前，要先把預設的分號換掉，不然按下 MySQL Query Browser 的 Execute 按鈕時，會真的去跑裡面的 INSERT 指令。寫完 Stored Procedure 的 routine_body 後，再回復成預設的分號。</p>
+<p>另外我在寫這個 Stored Procedurce 時，發現一定要加上 characteristic 才行，也就是上面的 DETERMINISTIC 。可是官方手冊明明寫可略過，這我就沒時間研究為什麼了。</p>
+<p>另外就是參數的名稱， MySQL 5 不像 MSSQL 是用 @param 來表示 Stored Procedure 的參數？這樣有點難以分辨參數及資料表欄位，不過也不是不能解決。</p>
+<p>執行這個 Stored Procedure 的方法是用 CALL：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CALL spTest &#39;TEST&#39;, &#39;ABC&#39;;</span><br></pre></td></tr></table></figure>
+<p>當然語法不同，就會造成寫 PHP 程式的不方便，改天來找找看有沒有比較好的抽象層資料庫存取介面 (就是像 PEAR::DB 或 ADOdb 之類的物件類別庫) ，可以支援不同類型資料庫的 Stored Procedure 。</p>
+<p>Stored Procedure 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html</a></p>
+<p>Trigger 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/triggers.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/triggers.html</a></p>
+<p>View 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/views.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/views.html</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2005/10/20/35/">
                 關於PHP的多型
               </a>
@@ -776,78 +854,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/06/24/26/">
-                自製 JavaScript 物件
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-06-24
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/06/24/26/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/06/24/26/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>一種在 JavaScript 直接建立物件的方式，而且還可以利用這種方式在網路上傳遞 JS 的物件資訊，稱為 JSON (JavaScript Object Notation)。</p>
-<p>以下是一個自訂的 JavaScript 物件，利用花括號 ({}) 將物件的屬性及方法包起來。每個屬性或方法是用冒號 (:) 來指定值，並用逗號 (,) 分隔開來。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#29289;&#20214;&#21517;&#31281; = &#123;&#10;&#23660;&#24615;1 : null,&#10;&#23660;&#24615;2 : [],&#10;&#26041;&#27861;1 : function() &#123;&#10;this.&#23660;&#24615;1 = &#39;DEF&#39;;&#10;&#125;,&#10;&#26041;&#27861;2 : function() &#123;&#10;this.&#23660;&#24615;2 = new Array(4, 5, 6);&#10;&#125;&#10;&#125;&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;1);&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;2.length);&#10;&#29289;&#20214;&#21517;&#31281;.&#26041;&#27861;1();&#10;&#29289;&#20214;&#21517;&#31281;.&#26041;&#27861;2();&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;1);&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;2.length);</span><br></pre></td></tr></table></figure>
-<p>注意它不是一個 constructor ，所以不需要 new 的過程。當設定好物件後，就可以直接使用它了。</p>
-<p>另外如果要設定陣列的話，就用方括號 ([]) 來設定。</p>
-<p>這樣的寫法可以用在設定一個物件的起始狀態，例如 <a href="http://www.dynarch.com/projects/calendar/" target="_blank" rel="external">JS Calendar</a> 就用這種方式來設定 Calendar 的長相。</p>
-<p>補充參考：<a href="http://blog.roodo.com/syshen/archives/1410294.html" target="_blank" rel="external">JSON</a></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -886,7 +892,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -900,7 +906,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

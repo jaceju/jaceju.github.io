@@ -117,6 +117,86 @@
           
           
             
+              <a class="post-title-link" href="/2007/04/19/176/">
+                IE7 對錯誤 Hostname 在處理 Cookie 上的問題
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2007-04-19
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2007/04/19/176/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/19/176/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>昨天<a href="http://blog.darkhero.net/" target="_blank" rel="external">凱</a>發現了一個 IE7 的<a href="http://blog.darkhero.net/articles/view/222" target="_blank" rel="external">問題</a>，我們兩個做了一個討論後在這裡把結果記錄下來。</p>
+<p>要重現這個問題很簡單，請照著以下的步驟試試看。</p>
+<p>首先在 Windows 的 hosts 檔裡加入粗體部份：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1    localhost&#10;&#60;strong&#62;127.0.0.1    host_name&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<p>然後在網站根目錄底下建立一個 session.php ，內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;session_start();&#10;$test = (isset($_SESSION[&#39;test&#39;]))&#10;? (int) $_SESSION[&#39;test&#39;]&#10;: 0;&#10;echo $test;&#10;$test ++;&#10;$_SESSION[&#39;test&#39;] = $test;</span><br></pre></td></tr></table></figure>
+<p>然後試試用 IE7 瀏覽以下網址：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://host_name/session.php</span><br></pre></td></tr></table></figure>
+<p>試試看去重新整理這個頁面，會發現 Session 沒辦法動作。 </p>
+<p>不過同樣的網址在 IE6 和 Firefox 上， Session 都會在每次重新整理時正常加一；但如果把 host_name 換成 localhsot ，則每個瀏覽器都會正常動作。</p>
+<p>一開始我以為是 IE7 有支援 HttpOnly Cookie 的設定，不過這項設定是在 PHP 5.2 以後才會有，而凱用的是 PHP 5.1.6 ；然而 Firefox 也支援 HttpOnly Cookie 卻能正確運作，所以並不是這個問題。</p>
+<p>凱告訴我，他在 hosts 上加入 127.0.0.1 my.xxx.net 的設定，然後再用以上三種瀏覽器去瀏覽 <a href="http://my.xxx.net/session.php" target="_blank" rel="external">http://my.xxx.net/session.php</a> ，發現 Session 是可以運作的。這時我們就想到會不會是 host_name 有底線的關係，所以凱很快地重新把底線去掉後再用 IE7 測試，結果就正常了。</p>
+<p>最後我們兩個人的結論是：</p>
+<p><strong>在 IE7 中，有底線的 hostname 會沒辦法正確使用 Cookie 。</strong></p>
+<p>其實微軟不建議 Hostname (或 Domain Name ) 使用底線字元，這個可以參閱「<a href="http://support.microsoft.com/kb/909264" target="_blank" rel="external">為電腦、 網域、 站台及 OU 命名慣例在 Active Directory</a> 」一文。 </p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2007/04/19/177/">
                 JavaScript 小陷阱 (6) - JSON 在瀏覽器上的差異
               </a>
@@ -190,8 +270,8 @@
           
           
             
-              <a class="post-title-link" href="/2007/04/19/176/">
-                IE7 對錯誤 Hostname 在處理 Cookie 上的問題
+              <a class="post-title-link" href="/2007/04/19/178/">
+                在 Linux 上建構 PHP5 開發與測試環境
               </a>
             
           
@@ -209,8 +289,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2007/04/19/176/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/19/176/"></span>
+            <a href="/2007/04/19/178/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/19/178/"></span>
             </a>
           </span>
           
@@ -225,22 +305,14 @@
 
       
         
-          <p>昨天<a href="http://blog.darkhero.net/" target="_blank" rel="external">凱</a>發現了一個 IE7 的<a href="http://blog.darkhero.net/articles/view/222" target="_blank" rel="external">問題</a>，我們兩個做了一個討論後在這裡把結果記錄下來。</p>
-<p>要重現這個問題很簡單，請照著以下的步驟試試看。</p>
-<p>首先在 Windows 的 hosts 檔裡加入粗體部份：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1    localhost&#10;&#60;strong&#62;127.0.0.1    host_name&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>然後在網站根目錄底下建立一個 session.php ，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;session_start();&#10;$test = (isset($_SESSION[&#39;test&#39;]))&#10;? (int) $_SESSION[&#39;test&#39;]&#10;: 0;&#10;echo $test;&#10;$test ++;&#10;$_SESSION[&#39;test&#39;] = $test;</span><br></pre></td></tr></table></figure>
-<p>然後試試用 IE7 瀏覽以下網址：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://host_name/session.php</span><br></pre></td></tr></table></figure>
-<p>試試看去重新整理這個頁面，會發現 Session 沒辦法動作。 </p>
-<p>不過同樣的網址在 IE6 和 Firefox 上， Session 都會在每次重新整理時正常加一；但如果把 host_name 換成 localhsot ，則每個瀏覽器都會正常動作。</p>
-<p>一開始我以為是 IE7 有支援 HttpOnly Cookie 的設定，不過這項設定是在 PHP 5.2 以後才會有，而凱用的是 PHP 5.1.6 ；然而 Firefox 也支援 HttpOnly Cookie 卻能正確運作，所以並不是這個問題。</p>
-<p>凱告訴我，他在 hosts 上加入 127.0.0.1 my.xxx.net 的設定，然後再用以上三種瀏覽器去瀏覽 <a href="http://my.xxx.net/session.php" target="_blank" rel="external">http://my.xxx.net/session.php</a> ，發現 Session 是可以運作的。這時我們就想到會不會是 host_name 有底線的關係，所以凱很快地重新把底線去掉後再用 IE7 測試，結果就正常了。</p>
-<p>最後我們兩個人的結論是：</p>
-<p><strong>在 IE7 中，有底線的 hostname 會沒辦法正確使用 Cookie 。</strong></p>
-<p>其實微軟不建議 Hostname (或 Domain Name ) 使用底線字元，這個可以參閱「<a href="http://support.microsoft.com/kb/909264" target="_blank" rel="external">為電腦、 網域、 站台及 OU 命名慣例在 Active Directory</a> 」一文。 </p>
-
+          <p>終於正式進入 PHP5 的領域了，而公司的正式環境是使用 Linux ，所以我也必須準備一個在 Linux 平台上的測試環境。 Neo 老大給了我一台還不錯的雙 PIII 工作站，稍作清理後我就準備用它來當做測試機了。 </p>
+<p>不過為了在這台機器建構這樣的測試平台卻花了我不少時間，看來三年多前使用 Linux 的經驗已經完全消失了 (囧rz) 。還好網路上資源非常豐富，雖然在安裝的過程中遇到不少挫折，但是總算是一一克服。接下來，我就把自己安裝的方式記錄下來，免得以後忘記。當然如果內容有錯誤的話，也請各位先進不吝指導。 </p>
+<p>註：這裡還要感謝 <a href="http://www.neo.com.tw/">Neo</a> 和<a href="http://blog.darkhero.net/">丫凱</a>，他們不厭其煩地教導我很多有關 Linux 的知識，減少了我許多摸索的時間。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/04/19/178/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -788,74 +860,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2007/03/19/168/">
-                [轉載] Readable regular expressions
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2007-03-19
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2007/03/19/168/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/03/19/168/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>上次介紹過 <a href="http://blog.roodo.com/jaceju/archives/1480444.html" target="_blank" rel="external">Regular Expression 五個良好的習慣</a>，這次來個英文的相關文章。</p>
-<p>範例是用 PHP ，不過我想其他語言應該也適用。</p>
-<p>文章網址：<a href="http://www.reiersol.com/blog/index.php?op=ViewArticle&amp;articleId=18&amp;blogId=1" target="_blank" rel="external">Readable regular expressions</a> (英文) </p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -894,7 +898,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -908,7 +912,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

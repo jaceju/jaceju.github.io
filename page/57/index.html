@@ -117,6 +117,78 @@
           
           
             
+              <a class="post-title-link" href="/2005/06/24/26/">
+                自製 JavaScript 物件
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-06-24
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/06/24/26/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/06/24/26/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>一種在 JavaScript 直接建立物件的方式，而且還可以利用這種方式在網路上傳遞 JS 的物件資訊，稱為 JSON (JavaScript Object Notation)。</p>
+<p>以下是一個自訂的 JavaScript 物件，利用花括號 ({}) 將物件的屬性及方法包起來。每個屬性或方法是用冒號 (:) 來指定值，並用逗號 (,) 分隔開來。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#29289;&#20214;&#21517;&#31281; = &#123;&#10;&#23660;&#24615;1 : null,&#10;&#23660;&#24615;2 : [],&#10;&#26041;&#27861;1 : function() &#123;&#10;this.&#23660;&#24615;1 = &#39;DEF&#39;;&#10;&#125;,&#10;&#26041;&#27861;2 : function() &#123;&#10;this.&#23660;&#24615;2 = new Array(4, 5, 6);&#10;&#125;&#10;&#125;&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;1);&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;2.length);&#10;&#29289;&#20214;&#21517;&#31281;.&#26041;&#27861;1();&#10;&#29289;&#20214;&#21517;&#31281;.&#26041;&#27861;2();&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;1);&#10;alert(&#29289;&#20214;&#21517;&#31281;.&#23660;&#24615;2.length);</span><br></pre></td></tr></table></figure>
+<p>注意它不是一個 constructor ，所以不需要 new 的過程。當設定好物件後，就可以直接使用它了。</p>
+<p>另外如果要設定陣列的話，就用方括號 ([]) 來設定。</p>
+<p>這樣的寫法可以用在設定一個物件的起始狀態，例如 <a href="http://www.dynarch.com/projects/calendar/" target="_blank" rel="external">JS Calendar</a> 就用這種方式來設定 Calendar 的長相。</p>
+<p>補充參考：<a href="http://blog.roodo.com/syshen/archives/1410294.html" target="_blank" rel="external">JSON</a></p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2005/06/14/25/">
                 JavaScript 物件類別繼承
               </a>
@@ -905,84 +977,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/05/01/16/">
-                Apache 伺服器非官方已編譯模組
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-05-01
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/05/01/16/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/05/01/16/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>雖然我覺得自己編譯 Apache 模組是一件很重要的事，但是我還是遇到了一些問題。</p>
-<p>不過還好我找到了這個網站：<a href="http://gknw.itex.at/development/apache/" target="_blank" rel="external">http://gknw.itex.at/development/apache/</a></p>
-<h2 id="mod_gzip">mod_gzip</h2><p>以下我們來介紹一個簡單的模組：mod_gzip 。</p>
-<p>mod_gzip 可以將 Apache 輸出的網頁文字內容先作壓縮後，再傳送到用戶端 (就是瀏覽器啦) 。因此可以減少大量的頻寬，增加線路的轉輸效率。</p>
-<p>當然，首先我們得先安裝好 Apache2(win32) ，這我就不多提了。然後我們連到上述的網址後，找到 Apache 2.0 webserver -&gt; Win32 -&gt; modules 的連結。點選後，在新頁面找到 <code>mod_gzip-2.0.xx-w32.zip</code> 並下載它。</p>
-<p>解開 <code>mod_gzip-2.0.xx-w32.zip</code> 後，找到 <code>Release</code> 資料夾下的 <code>mod_gzip.so</code> 檔；接著將它複製到 Apache2 安裝目錄下的 <code>modules</code> 資料夾下。</p>
-<p>再來我們在 Apache2 安裝目錄下的 conf 資料夾內，用文字編輯器開啟 <code>httpd.conf</code> ，找到 LoadModule 區；然後加入此行：</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> gzip_module modules/mod_gzip.so</span><br></pre></td></tr></table></figure>
-<p>最後儲存 <code>httpd.conf</code> ，再重新啟動 Apache ，然後試試看頁面瀏覽的速度有沒有變快。</p>
-<h2 id="補充">補充</h2><p>果然網路上高手眾多，有網友推薦使用 Apache2 內建的 mod_deflate ，它和 mod_gzip 同樣是用來壓縮傳輸內容的。</p>
-<p>我找到了一篇還不錯的介紹，所以這裡就不寫了：<a href="http://ying.homedns.org/wp/archives/2005/08/13/21/28/00/" target="_blank" rel="external">精神奕奕 &raquo; Apache2 使用 mod_deflate 增進傳輸效能</a>。</p>
-<p>感謝 Arthur 的資訊 ~~</p>
-<p>Apache 的官方說明：<a href="http://httpd.apache.org/docs/2.0/mod/mod_deflate.html" target="_blank" rel="external">Apache Module mod_deflate</a>。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1021,7 +1015,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1035,7 +1029,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

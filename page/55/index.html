@@ -117,6 +117,77 @@
           
           
             
+              <a class="post-title-link" href="/2005/11/22/46/">
+                安裝問題 3
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-11-22
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/11/22/46/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/11/22/46/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>有讀者詢問了以下的問題：</p>
+<p>「我把 Smarty 預設的 “{“ 和 “}” 改成 “ &lt;{“ 和 “}&gt;”，並依照依照您書上的方法修改光碟內的Dreamweaver 擴充套件，可是會發生問題…」 (我修飾了一下用詞) </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2005/11/22/46/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2005/11/21/44/">
                 讀者留言版
               </a>
@@ -741,84 +812,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/10/26/36/">
-                MySQL 5 可用於正式產品上了
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-10-26
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/10/26/36/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/10/26/36/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>前陣子看到 <a href="http://www.mysql.com" target="_blank" rel="external">MySQL 5</a> 已經正式推出了，支援 Stored Procedures 、 Functions 、 Views 、 Triggers 等。</p>
-<p>目前 phpMyAdmin 2.6.4 好像還不支援這些新特色 (View 可以看得到，但是沒有建立的介面？) ，不過 MySQL 官方自己推了一個 <a href="http://dev.mysql.com/downloads/query-browser/1.1.html" target="_blank" rel="external">MySQL Query Browser</a> ，還不錯用， 缺點是中文的支援性不佳 (輸入中文時會怪怪的) 。</p>
-<p>小試了一下用 MySQL Query Browser 寫一個 Stored Procedure ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;DELIMITER $$&#60;/strong&#62;&#10;DROP PROCEDURE IF EXISTS `spTest` $$&#10;CREATE PROCEDURE `spTest`(p_title VARCHAR(200), p_description TEXT)&#10;&#60;strong&#62;DETERMINISTIC&#60;/strong&#62;&#10;BEGIN&#10;INSERT INTO category (title, description)&#10;VALUES (p_title, p_description);&#10;END $$&#10;&#60;strong&#62;DELIMITER ;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>其中 DELIMITER 是用來決定 SQL 分隔符號的，在寫 Stored Procedure 前，要先把預設的分號換掉，不然按下 MySQL Query Browser 的 Execute 按鈕時，會真的去跑裡面的 INSERT 指令。寫完 Stored Procedure 的 routine_body 後，再回復成預設的分號。</p>
-<p>另外我在寫這個 Stored Procedurce 時，發現一定要加上 characteristic 才行，也就是上面的 DETERMINISTIC 。可是官方手冊明明寫可略過，這我就沒時間研究為什麼了。</p>
-<p>另外就是參數的名稱， MySQL 5 不像 MSSQL 是用 @param 來表示 Stored Procedure 的參數？這樣有點難以分辨參數及資料表欄位，不過也不是不能解決。</p>
-<p>執行這個 Stored Procedure 的方法是用 CALL：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CALL spTest &#39;TEST&#39;, &#39;ABC&#39;;</span><br></pre></td></tr></table></figure>
-<p>當然語法不同，就會造成寫 PHP 程式的不方便，改天來找找看有沒有比較好的抽象層資料庫存取介面 (就是像 PEAR::DB 或 ADOdb 之類的物件類別庫) ，可以支援不同類型資料庫的 Stored Procedure 。</p>
-<p>Stored Procedure 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html</a></p>
-<p>Trigger 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/triggers.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/triggers.html</a></p>
-<p>View 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/views.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/views.html</a></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -857,7 +850,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -871,7 +864,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

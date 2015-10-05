@@ -117,6 +117,83 @@
           
           
             
+              <a class="post-title-link" href="/2006/07/01/107/">
+                [分享] nVidia 顯示卡驅動程式 91.31 SLI 訊息的問題
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2006-07-01
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2006/07/01/107/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/07/01/107/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>呃…這次這個不是網頁製作的知識，但是我還是把它記下來好了，免得以後忘記。</p>
+<p>在我安裝最新的 nVidia 顯示卡驅動程式 91.31 版後，開機時右下角常會跑出 SLI 已停用的警告訊息 (我的顯示卡是 7800 ) 。不論我使用任何方式，就是無法取消這個訊息。</p>
+<p>求助 Google 大神的結果，我找到了以下這個網址，它提供了一個解法：</p>
+<p><a href="http://technologyexpert.blogspot.com/2006/06/problems-w-nvidias-9131-drivers.html" target="_blank" rel="external"> Problems w/ nVidia’s 91.31 Drivers</a></p>
+<p>請把以下的內容存成一個 nvidia9131.reg ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak\]&#10;&#34;NvCplEnableMultiGPUConfigurationPage&#34;=dword:00000000&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\MediaCenterTray]&#10;&#34;NvCplDisableBalloonNotifications&#34;=dword:00000001</span><br></pre></td></tr></table></figure>
+<p>接著雙擊這個 reg 檔，將以上的設定匯入系統登錄檔。</p>
+<p>然後執行登錄編輯程式，到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HKLM\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
+<p>把以下兩個項目刪除：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NvCplDaemon: RUNDLL32.EXE C:\WINDOWS\system32\NvCpl.dll,NvStartup&#10;NvMediaCenter: RunDLL32.exe NvMCTray.dll,NvTaskbarInit</span><br></pre></td></tr></table></figure>
+<p>最後重開機即可解決。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2006/06/17/106/">
                 [轉載] Smarty 取巧圖解 2.0
               </a>
@@ -760,78 +837,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2006/04/26/97/">
-                [轉載] 正則表達式的五個成功習慣
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2006-04-26
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2006/04/26/97/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/04/26/97/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Regular Expression (正規表示式、常規表示式、正規表達式) 是很多程式開發者所懼怕的一種語法；但是因為它的功能強大，使得軟體界有個不成文的說法：沒學會 Regular Expression ，就不能稱為高手。</p>
-<p>我是後來才學會 Regular Expression 怎麼寫的，不過我沒有因此而變成一個高手。但是 Regular Expression 讓我的程式功力大大的進步，而且在支援 Regular Expression 的文字編輯器中 (如 EditPlus 等) ，我也能夠很容易地找到一些俱備相同規則的字串。所以學會 Regular Expression 是一個好的程式開發者所必定會經歷的過程。</p>
-<p>但是 Regular Expression 是有名的難懂，而且通常寫完之後就很難再看懂它要表達什麼；所以這次介紹的這篇文章，就很清楚地告訴我們要如何寫出讓人能夠容易閱讀的 Regular Expression 。</p>
-<p>廢話不多說了，請自行參考吧。 </p>
-<p>文章網址：<a href="http://www.phpv.net/article.php/1506" target="_blank" rel="external">正則表達式的五個成功習慣</a> (簡體中文) </p>
-<p>重點提示： </p>
-<blockquote>對於大部分程序員來說，在一個正則表達式環境裡使用空格和縮進排列都不成問題，如果他們沒有這麼做一定會被同行甚至外行人士看笑話。幾乎每個人都知道把代碼擠在一行會難於閱讀、書寫和維護。</blockquote>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -870,7 +875,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -884,7 +889,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

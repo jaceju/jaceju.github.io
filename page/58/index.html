@@ -117,6 +117,84 @@
           
           
             
+              <a class="post-title-link" href="/2005/05/01/16/">
+                Apache 伺服器非官方已編譯模組
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-05-01
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/05/01/16/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/05/01/16/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>雖然我覺得自己編譯 Apache 模組是一件很重要的事，但是我還是遇到了一些問題。</p>
+<p>不過還好我找到了這個網站：<a href="http://gknw.itex.at/development/apache/" target="_blank" rel="external">http://gknw.itex.at/development/apache/</a></p>
+<h2 id="mod_gzip">mod_gzip</h2><p>以下我們來介紹一個簡單的模組：mod_gzip 。</p>
+<p>mod_gzip 可以將 Apache 輸出的網頁文字內容先作壓縮後，再傳送到用戶端 (就是瀏覽器啦) 。因此可以減少大量的頻寬，增加線路的轉輸效率。</p>
+<p>當然，首先我們得先安裝好 Apache2(win32) ，這我就不多提了。然後我們連到上述的網址後，找到 Apache 2.0 webserver -&gt; Win32 -&gt; modules 的連結。點選後，在新頁面找到 <code>mod_gzip-2.0.xx-w32.zip</code> 並下載它。</p>
+<p>解開 <code>mod_gzip-2.0.xx-w32.zip</code> 後，找到 <code>Release</code> 資料夾下的 <code>mod_gzip.so</code> 檔；接著將它複製到 Apache2 安裝目錄下的 <code>modules</code> 資料夾下。</p>
+<p>再來我們在 Apache2 安裝目錄下的 conf 資料夾內，用文字編輯器開啟 <code>httpd.conf</code> ，找到 LoadModule 區；然後加入此行：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> gzip_module modules/mod_gzip.so</span><br></pre></td></tr></table></figure>
+<p>最後儲存 <code>httpd.conf</code> ，再重新啟動 Apache ，然後試試看頁面瀏覽的速度有沒有變快。</p>
+<h2 id="補充">補充</h2><p>果然網路上高手眾多，有網友推薦使用 Apache2 內建的 mod_deflate ，它和 mod_gzip 同樣是用來壓縮傳輸內容的。</p>
+<p>我找到了一篇還不錯的介紹，所以這裡就不寫了：<a href="http://ying.homedns.org/wp/archives/2005/08/13/21/28/00/" target="_blank" rel="external">精神奕奕 &raquo; Apache2 使用 mod_deflate 增進傳輸效能</a>。</p>
+<p>感謝 Arthur 的資訊 ~~</p>
+<p>Apache 的官方說明：<a href="http://httpd.apache.org/docs/2.0/mod/mod_deflate.html" target="_blank" rel="external">Apache Module mod_deflate</a>。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2005/04/29/15/">
                 CSS 排版觀念：Position
               </a>
@@ -761,81 +839,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/04/12/6/">
-                CSS 好書推薦
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-04-12
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/04/12/6/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/04/12/6/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>以下兩本書對 CSS 排版有深入的見解；想學好 CSS 排版，強烈建議把它們買回來看。</p>
-<ul>
-<li><a href="http://www.books.com.tw/exep/prod/booksfile.php?item=0010282284" target="_blank" rel="external">CSS網頁設計師手札－101個您一定會遇到的問題與解答</a></li>
-<li><a href="http://www.books.com.tw/exep/prod/booksfile.php?item=0010271593" target="_blank" rel="external">跨平台網頁設計：使用Web標準技術</a></li>
-</ul>
-<p>接下來的兩本工具書也是不可或缺的，忘了就隨時拿起來參考參考。</p>
-<ul>
-<li><a href="http://www.books.com.tw/exep/prod/booksfile.php?item=0010274466" target="_blank" rel="external">CSS 速查手冊 第二版</a></li>
-<li><a href="http://www.books.com.tw/exep/prod/booksfile.php?item=0010198885" target="_blank" rel="external">CSS/HTML語法參考辭典</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -874,7 +877,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -888,7 +891,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

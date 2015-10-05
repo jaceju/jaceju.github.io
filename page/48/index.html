@@ -117,6 +117,77 @@
           
           
             
+              <a class="post-title-link" href="/2006/08/28/117/">
+                JavaScript 小陷阱 (4) - location.reload()
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2006-08-28
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2006/08/28/117/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/08/28/117/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>以前的同事問了我一個問題：</p>
+<blockquote><br><br>在 A 視窗 (list.asp) 中會用 window.open 開啟子視窗 B (edit.asp) ，然後 B 視窗上的表單資料會 submit 到一支 C 程式 (save.asp) 。<br><br>而 當 C 程式做完存檔動作後，在最後面程式碼裡加上了：<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;alert(&#39;&#23384;&#27284;&#25104;&#21151;&#65281;&#39;);&#10;window.opener.location.reload();&#10;window.close();&#10;//--&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure><br><br>理論上 A 視窗會重新整理，然後子視窗 B 會關掉；但是現在 A 視窗會出現以下訊息 (IE) ：<br><br><img src="/resources/location_reload/1.gif" alt=""><br><br>或是在 Firefox 中出現：<br><br><img src="/resources/location_reload/2.gif" alt=""><br></blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2006/08/28/117/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2006/08/25/116/">
                 MySQL 中文編碼徹底研究
               </a>
@@ -744,83 +815,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2006/07/01/107/">
-                [分享] nVidia 顯示卡驅動程式 91.31 SLI 訊息的問題
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2006-07-01
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2006/07/01/107/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/07/01/107/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>呃…這次這個不是網頁製作的知識，但是我還是把它記下來好了，免得以後忘記。</p>
-<p>在我安裝最新的 nVidia 顯示卡驅動程式 91.31 版後，開機時右下角常會跑出 SLI 已停用的警告訊息 (我的顯示卡是 7800 ) 。不論我使用任何方式，就是無法取消這個訊息。</p>
-<p>求助 Google 大神的結果，我找到了以下這個網址，它提供了一個解法：</p>
-<p><a href="http://technologyexpert.blogspot.com/2006/06/problems-w-nvidias-9131-drivers.html" target="_blank" rel="external"> Problems w/ nVidia’s 91.31 Drivers</a></p>
-<p>請把以下的內容存成一個 nvidia9131.reg ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak\]&#10;&#34;NvCplEnableMultiGPUConfigurationPage&#34;=dword:00000000&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\MediaCenterTray]&#10;&#34;NvCplDisableBalloonNotifications&#34;=dword:00000001</span><br></pre></td></tr></table></figure>
-<p>接著雙擊這個 reg 檔，將以上的設定匯入系統登錄檔。</p>
-<p>然後執行登錄編輯程式，到：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HKLM\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
-<p>把以下兩個項目刪除：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NvCplDaemon: RUNDLL32.EXE C:\WINDOWS\system32\NvCpl.dll,NvStartup&#10;NvMediaCenter: RunDLL32.exe NvMCTray.dll,NvTaskbarInit</span><br></pre></td></tr></table></figure>
-<p>最後重開機即可解決。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -859,7 +853,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -873,7 +867,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

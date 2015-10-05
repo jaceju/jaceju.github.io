@@ -117,8 +117,8 @@
           
           
             
-              <a class="post-title-link" href="/2006/02/20/76/">
-                ASP 物件設計手法 (6) - 單元測試
+              <a class="post-title-link" href="/2006/02/26/77/">
+                自行編譯 chm 格式的 PHP 手冊
               </a>
             
           
@@ -127,7 +127,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2006-02-20
+          發表於 2006-02-26
         </span>
 
         
@@ -136,8 +136,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2006/02/20/76/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/02/20/76/"></span>
+            <a href="/2006/02/26/77/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/02/26/77/"></span>
             </a>
           </span>
           
@@ -152,18 +152,10 @@
 
       
         
-          <h2 id="ASP_上的單元測試">ASP 上的單元測試</h2><p>沒錯，你沒看錯， ASP 也有單元測試。</p>
-<p>什麼是單元測試呢？我想使用 Java 或 .NET 來開發程式的朋友們一定很熟悉。我這裡僅簡單說明一下它的原理，至於深入的介紹，請大家自行去找 XP (eXtreme Programming ，中文常譯為「極致編程」) 相關書籍吧。 </p>
-<p>註：建議你去看看<a href="http://www.dotspace.idv.tw/">點空間</a>裡有篇文章叫「<a href="http://140.109.17.94/xp/2002/JUnit_test.htm">測試的概念</a>」，寫得滿簡單易懂的。</p>
-<p>在 ASP 上面要進行單元測試，首先就要有單元測試框架 (Unit Testing Framework) 。在網路上我找到了以下兩種框架：</p>
-<ul>
-<li><a href="http://aspunit.sourceforge.net/">ASPUnit</a></li>
-<li><a href="http://sourceforge.jp/projects/aspunit/">ASPunit</a> (這是日本人開發的。) </li>
-</ul>
-<p>它們的名字差在 U 的大小寫。 </p>
-<p>日本人開發的 <strong>ASPunit</strong> 架構比較複雜，而 <strong>ASPUnit</strong> 的比較簡單易懂，而且也容易使用，所以本篇將圍繞在 <strong>ASPUnit</strong> 這個測試框架上。</p>
+          <p>我常常會用到 PHP 手冊，其中 chm 格式支援了索引和搜尋的功能，是我比較喜歡的查詢方式。可是官方的 chm 手冊更新速度比較慢一點，因此隔一陣子我都會自行編譯 chm 格式的 PHP 手冊。</p>
+<p>其實已經有對岸已經有一位名為「深空」的高手寫過這類的<a href="http://www.openphp.cn/index.php/article/2/14/index.html">文章</a>了，這裡我借用他的步驟，然後依循我自己的風格，重新寫一篇關於正體中文的版本。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2006/02/20/76/#more">
+            <a class="btn" href="/2006/02/26/77/#more">
               閱讀全文 &raquo;
             </a>
           </div>
@@ -266,8 +258,8 @@
           
           
             
-              <a class="post-title-link" href="/2006/02/09/72/">
-                BOM (Byte Order Mark) 的問題
+              <a class="post-title-link" href="/2006/02/20/76/">
+                ASP 物件設計手法 (6) - 單元測試
               </a>
             
           
@@ -276,7 +268,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2006-02-09
+          發表於 2006-02-20
         </span>
 
         
@@ -285,8 +277,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2006/02/09/72/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/02/09/72/"></span>
+            <a href="/2006/02/20/76/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/02/20/76/"></span>
             </a>
           </span>
           
@@ -301,17 +293,21 @@
 
       
         
-          <p>如果在 Smarty 中 include 了 UTF-8 格式的檔案，就要小心 BOM (Byte Order Mark) 的問題。</p>
-<p>BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是不是屬於 Unicode 格式，請參考 <a href="http://blog.cdpa.nsysu.edu.tw/zmx/archives/001058.html" target="_blank" rel="external">憤怒的青蛙: UTF-8, BOM, Micrisoft</a> ，或用 Google 搜尋 <a href="http://www.google.com.tw/search?hl=zh-TW&amp;rls=GGGL%2CGGGL%3A2005-09%2CGGGL%3Azh-TW&amp;q=utf-8+bom&amp;btnG=%E6%90%9C%E5%B0%8B&amp;meta=lr%3Dlang_zh-TW" target="_blank" rel="external">UTF-8 BOM</a> ，有更多有用的訊息。</p>
-<p>那麼為什麼 BOM 會造成影響呢？因為 BOM 對 HTML 來說是屬於字元，所以 include UTF-8 的檔案時，HTML 就會就會認為被 include 的子樣版上方有個字元，因此就會保留一個空間給它了，就是你們看到那個白白的空行。</p>
-<p>補充：這個空白行似乎只有 IE 才會出現。</p>
-<p>這種問題也會發生在 PHP 上面，如果有使用 Session 時，常會見到以下情況：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Warning: session_start() [http://www.php.net/manual/en/function.session-start]:&#10;Cannot send session cookie -&#10;headers already sent by (output started at test.php:1) in test.php on line 2</span><br></pre></td></tr></table></figure>
-<p>而這也是 BOM 在做怪，原程式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(BOM&#22312;&#36889;&#35041;&#65292;&#20294;&#20320;&#30475;&#19981;&#35211;&#23427;)&#60;?php&#10;session_start();&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<p>解決的方式可以改用 EditPlus 、 EmEdit 等可支援無 BOM 之 UTF-8 的文字編輯器，如果是 Dreamweaver MX 2004 的話，在編碼方式選成 Unicode (UTF-8) 時就要將取消「包含 Unicode 簽名 (BOM) 」。 </p>
-<p><img src="/resources/bom/dw_bom.gif" alt="Dreamweaver BOM"></p>
-
+          <h2 id="ASP_上的單元測試">ASP 上的單元測試</h2><p>沒錯，你沒看錯， ASP 也有單元測試。</p>
+<p>什麼是單元測試呢？我想使用 Java 或 .NET 來開發程式的朋友們一定很熟悉。我這裡僅簡單說明一下它的原理，至於深入的介紹，請大家自行去找 XP (eXtreme Programming ，中文常譯為「極致編程」) 相關書籍吧。 </p>
+<p>註：建議你去看看<a href="http://www.dotspace.idv.tw/">點空間</a>裡有篇文章叫「<a href="http://140.109.17.94/xp/2002/JUnit_test.htm">測試的概念</a>」，寫得滿簡單易懂的。</p>
+<p>在 ASP 上面要進行單元測試，首先就要有單元測試框架 (Unit Testing Framework) 。在網路上我找到了以下兩種框架：</p>
+<ul>
+<li><a href="http://aspunit.sourceforge.net/">ASPUnit</a></li>
+<li><a href="http://sourceforge.jp/projects/aspunit/">ASPunit</a> (這是日本人開發的。) </li>
+</ul>
+<p>它們的名字差在 U 的大小寫。 </p>
+<p>日本人開發的 <strong>ASPunit</strong> 架構比較複雜，而 <strong>ASPUnit</strong> 的比較簡單易懂，而且也容易使用，所以本篇將圍繞在 <strong>ASPUnit</strong> 這個測試框架上。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2006/02/20/76/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -455,6 +451,81 @@
 <p><a href="http://www.hedgerwow.com/" target="_blank" rel="external">HedgerWow`s Blog</a> &gt; <a href="http://blog.360.yahoo.com/blog-ktYYK_s5fqJ2Hu1ryv2QSL0-?p=160" target="_blank" rel="external">100% pure CSS Fix for IE Z-INDEX Bug</a> &gt; <a href="http://www.hedgerwow.com/360/bugs/css-select-free.html" target="_blank" rel="external"><select> Free Layer</select></a></p>
 <p>主要也是用 iframe 來解決，但是完全不用 JavaScript (裡面的 JavaScript 是用來拖曳圖層的) 。 </p>
 <p><a href="http://www.hedgerwow.com/" target="_blank" rel="external">HedgerWow`s Blog</a> 真是一個很不錯的參考網站，感謝 chihwen 。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2006/02/09/72/">
+                BOM (Byte Order Mark) 的問題
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2006-02-09
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2006/02/09/72/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/02/09/72/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>如果在 Smarty 中 include 了 UTF-8 格式的檔案，就要小心 BOM (Byte Order Mark) 的問題。</p>
+<p>BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是不是屬於 Unicode 格式，請參考 <a href="http://blog.cdpa.nsysu.edu.tw/zmx/archives/001058.html" target="_blank" rel="external">憤怒的青蛙: UTF-8, BOM, Micrisoft</a> ，或用 Google 搜尋 <a href="http://www.google.com.tw/search?hl=zh-TW&amp;rls=GGGL%2CGGGL%3A2005-09%2CGGGL%3Azh-TW&amp;q=utf-8+bom&amp;btnG=%E6%90%9C%E5%B0%8B&amp;meta=lr%3Dlang_zh-TW" target="_blank" rel="external">UTF-8 BOM</a> ，有更多有用的訊息。</p>
+<p>那麼為什麼 BOM 會造成影響呢？因為 BOM 對 HTML 來說是屬於字元，所以 include UTF-8 的檔案時，HTML 就會就會認為被 include 的子樣版上方有個字元，因此就會保留一個空間給它了，就是你們看到那個白白的空行。</p>
+<p>補充：這個空白行似乎只有 IE 才會出現。</p>
+<p>這種問題也會發生在 PHP 上面，如果有使用 Session 時，常會見到以下情況：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Warning: session_start() [http://www.php.net/manual/en/function.session-start]:&#10;Cannot send session cookie -&#10;headers already sent by (output started at test.php:1) in test.php on line 2</span><br></pre></td></tr></table></figure>
+<p>而這也是 BOM 在做怪，原程式如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(BOM&#22312;&#36889;&#35041;&#65292;&#20294;&#20320;&#30475;&#19981;&#35211;&#23427;)&#60;?php&#10;session_start();&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>解決的方式可以改用 EditPlus 、 EmEdit 等可支援無 BOM 之 UTF-8 的文字編輯器，如果是 Dreamweaver MX 2004 的話，在編碼方式選成 Unicode (UTF-8) 時就要將取消「包含 Unicode 簽名 (BOM) 」。 </p>
+<p><img src="/resources/bom/dw_bom.gif" alt="Dreamweaver BOM"></p>
 
         
       
@@ -754,73 +825,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2006/01/02/66/">
-                將 MySQL 4.0 的資料轉至 MySQL 5.0
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2006-01-02
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2006/01/02/66/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/01/02/66/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>我在<strong>公司的 MySQL 4.0 + phpMyAdmin 2.7.0 pl2 中</strong>把資料用 SQL 格式一次匯出，想轉到另一台主機的 MySQL 5.0 上，結果試了 UTF-8 、 BIG5 、 latin1 等等，都無法順利將資料匯入 (許功蓋的問題) 。結果改用 binary 格式後就成功了，特此記之。</p>
-<p>補充：看了 axis  的回應，我要特此聲明一下，這個方式我測過只適用我們公司，其他環境是否是一樣的做法，我不能確定！因為這些匯入匯出的方式和 mysql 的字元校對、 client 和 server 端的預設編碼還有 phpMyAdmin 的 Language 設定都有很大的關係，這些有機會我再做一次完整的說明。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -859,7 +863,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">582</span>
+              <span class="site-state-item-count">583</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -873,7 +877,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
