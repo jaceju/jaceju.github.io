@@ -117,6 +117,77 @@
           
           
             
+              <a class="post-title-link" href="/2005/10/27/37/">
+                變更 Windows 平台上的 PHP.INI 位置
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2005-10-27
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2005/10/27/37/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/10/27/37/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>如果你和我一樣，同時會用 ASP 和 PHP 工作的話，那麼應該會用 IIS 來當作 Web Server 。不過用 IIS 有個缺點，那就是一定要把 PHP.INI 放在 Windows 的系統路徑下 (C:\WINDOWS 或 C:\WINNT) 。 </p>
+<p>可是如果真的不想把 PHP.INI 放在 C:\WINDOWS (或 C:\WINNT)下時，該怎麼辦呢？</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2005/10/27/37/#more">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2005/10/26/36/">
                 MySQL 5 可用於正式產品上了
               </a>
@@ -770,90 +841,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2005/06/29/27/">
-                蠟筆小新 CSS 版型大進擊
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2005-06-29
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2005/06/29/27/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/06/29/27/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>無聊之餘，弄了個蠟筆小新的版型。</p>
-<p>這個版型唯一的難度在於 content 的寬度比 banner 來的窄，而缺點是小新的頭太大了。</p>
-<p>圖是我自己用 Fireworks 畫的，拉到最底下可以看到小新的腳。</p>
-<p>而電影常常搞個幕後花絮，那我也來簡單介紹一下我的小新版型是怎麼做的。<br>首先準備小新的圖，並切成頭、身體背景及腳。</p>
-<p><img src="/resources/shin/shin01.gif" alt="小新的身體被我切開了"></p>
-<p>接下來在腦袋裡想像一下網頁的結構：</p>
-<p><img src="/resources/shin/shin02.gif" alt="小新的身體被我切開了"></p>
-<ul>
-<li><h1 id="container_的實際寬度為_760px_，但內容寬度為_600px_，這是為了置放_#content_裡的文字，使它們能夠縮在小新的身體裡。所以我把_#container_左右兩邊的_padding_設為_80px_(760px_減掉_600px_再除以_2)_。">container 的實際寬度為 760px ，但內容寬度為 600px ，這是為了置放 #content 裡的文字，使它們能夠縮在小新的身體裡。所以我把 #container 左右兩邊的 padding 設為 80px (760px 減掉 600px 再除以 2) 。</h1></li>
-<li>因為 #container 的寬度被限制在 600px ，但是 #banner 及 #footer 的實際寬度必須維持在 760px ，所以我把 #banner 和 #footer 設為 position: relative 後，把它們往左拉回 80px ，這樣小新的頭和腳才能與身體對齊。</li>
-<li>接下來的 #content 及 #links 部份，其實和兩欄式版型的製作方式雷同。</li>
-<li>把架構固定後，接著就把小新的頭、腳及身體當做背景放上去。因為頭和腳的大小剛好固定，所以我就不特意再下什麼語法去調整。但是身體因為是 #container 的背景，所以只能用縱軸重覆，不然會版型的左右兩邊會跑出奇怪的白色區塊。</li>
-</ul>
-<p>不過有個地方很麻煩，那就是樂多在 #footer 後面沒事加了一個 div ，而且沒 id 值。這樣一來我就沒辦法把它藏起來，只好把 body 的底部邊界往上拉。可是 IE 和 Firefox 對這個方式解釋又不同，所以用 IE 看的話，就會發現小新的腳底有個奇怪的白色區塊。當然我是有辦法解決，但就是懶字訣作祟…</p>
-<ul>
-<li>最後的裝飾就是苦工了，我是直接拿舊的 site.css 來改的。沒辦法，我這個人對沒什麼意義的事就很懶得去做。</li>
-</ul>
-<p> CSS 碼就不貼了，有興趣的朋友用 Firefox 自行找吧。</p>
-<p>只要觀念對了， CSS 不會很難的。</p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -892,7 +879,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">583</span>
+              <span class="site-state-item-count">584</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

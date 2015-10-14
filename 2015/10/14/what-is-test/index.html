@@ -1,0 +1,601 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+
+
+  <meta name="keywords" content="PHP,測試," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    analytics: {
+      google: 'UA-450710-8'
+    },
+    sidebar: 'post'
+  };
+</script>
+
+
+
+
+  <title> 這樣寫測試錯了嗎？ // 網站製作學習誌 </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">網站製作學習誌</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          首頁
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          歸檔
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          標籤
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              這樣寫測試錯了嗎？
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2015-10-14
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/14/what-is-test/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/14/what-is-test/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <p>這篇文章的出現，主要是因為尤川豪的 <a href="http://blog.turn.tw/?p=2741" target="_blank" rel="external">PHP與撰寫測試入門</a> 一文，然後在 Facebook 上也有相關討論：<a href="https://www.facebook.com/groups/199493136812961/permalink/871965886232346/" target="_blank" rel="external">連結一</a>、<a href="https://www.facebook.com/groups/199493136812961/permalink/871965886232346/" target="_blank" rel="external">連結二</a>。</p>
+<p>只是當我提出測試不該有邏輯時，討論就往該不該有 assertion library 偏過去了。我發現我太執著在這個點上，沒有正確地自己的想法傳達清楚。</p>
+<p>所以接下來我會從幾個層面來討論測試該怎寫，將我想表達的觀念重新整理一下。</p>
+<a id="more"></a>
+<h2 id="為什麼這樣寫測試有問題">為什麼這樣寫測試有問題</h2><p>起因就是原文的這個範例，這是它的待測目標：</p>
+<figure class="highlight php"><figcaption><span>// simple_add_test.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$arg1</span> = <span class="variable">$_GET</span>[<span class="string">'arg1'</span>];</span><br><span class="line"><span class="variable">$arg2</span> = <span class="variable">$_GET</span>[<span class="string">'arg2'</span>];</span><br><span class="line"><span class="variable">$return</span> = (int)<span class="variable">$arg1</span> + (int)<span class="variable">$arg2</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$return</span>;</span><br></pre></td></tr></table></figure>
+<p>測試程式是這樣寫的：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">// 把整個模擬測試流程寫成一個function，方便重用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">(<span class="variable">$arg1</span>, <span class="variable">$arg2</span>)</span></span>&#123;</span><br><span class="line">    <span class="variable">$_GET</span>[<span class="string">'arg1'</span>] = <span class="variable">$arg1</span>;</span><br><span class="line">    <span class="variable">$_GET</span>[<span class="string">'arg2'</span>] = <span class="variable">$arg2</span>;</span><br><span class="line">    ob_start();</span><br><span class="line">    <span class="keyword">include</span> <span class="string">'simple_add.php'</span>;</span><br><span class="line">    <span class="keyword">return</span> ob_get_clean();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$result</span> = execute(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>==<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test passed\n"</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test failed\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$result</span> = execute(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>==<span class="number">3</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test passed\n"</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test failed\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$result</span> = execute(<span class="number">1</span>, -<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>==<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test passed\n"</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test failed\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$result</span> = execute(<span class="number">0</span>, -<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>==-<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test passed\n"</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test failed\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注意：後面的一大串if/else以及echo敘述，其實可以再包成function來簡化</span></span><br></pre></td></tr></table></figure>
+<p>如果這篇文章會繼續提到更嚴謹的做法，也許就不會有後續的討論了。事實上以往我在教測試時，也差不多是這樣開始的。只是整篇讀完後，我發現其實沒有任何後續 (雖然後來作者有提到會再寫) ，這才讓我開始擔心起來。</p>
+<p>原本我想提的主要有兩點：</p>
+<ol>
+<li><p>這只是測試的初步觀念，但不是嚴謹的作法，更不是一種創意。</p>
+<p>當然在原文的範例裡，用 <code>if ==</code> 來驗證其實是沒有問題的；只是當你信任這個驗證方式，測試也通過了，天下就太平了嗎？如同作者自己提到的，我們有機會在自己寫的 assertion 中犯錯；而當你發現錯誤其實是在自己的驗證程式時，我想後續的除錯成本就不在話下了。這也是為什麼我一直強調就算是要用自己的驗證機制，也應該對它進行驗證。</p>
+<p>至於測試中的 assertion 寫錯，跟該不該用第三方 assertion library 其實是兩回事，這點後面我會說為什麼。</p>
+</li>
+<li><p>測試案例不該寫在一起，這樣會讓初學者覺得寫測試反而導致更多問題。</p>
+<p>再次強調，這個範例沒有問題不表示可以用這個做法通吃所有的狀況。測試案例彼此應該是獨立的，也就是我們要讓每個測試案例在執行時都不受到前一個測試案例的影響，讓我們能單純驗證目標對象的邏輯在受控環境的結果。</p>
+<p>一個好的測試案例應該只測一件事，而一件事通常是只會測試目標邏輯一次。如果今天 <code>execute()</code> 的邏輯中會有可能影響下一次執行結果的狀況，那麼這樣的寫法就有可能發生連續的錯誤，而你就很難確定錯誤是在哪個測試案例中開始的。</p>
+</li>
+</ol>
+<h2 id="測試裡不該有邏輯">測試裡不該有邏輯</h2><p>有朋友說，所以這些驗證工具裡面也是有 <code>if</code> 及 <code>throw exception</code> 的邏輯呀！怎麼會說測試裡不該有邏輯？</p>
+<p>這裡確實是我表達得不夠好的點，也是討論上我過於執著的地方。事實上在 assertion 中的這些邏輯，是被封裝起來的，對我們來說就是不需要在意的邏輯，我們只要知道它是具有可靠性的黑盒子即可。所以最前面原文的那個例子，在 assertion 沒有被封裝的狀況下， <code>if</code> 嚴格來說就必須算是測試案例裡的邏輯。</p>
+<p>我瞭解這解釋有點過於嚴格了，但其實我有強力阻擋的理由：當初學者認為這裡可以用 <code>if</code> 來判斷時，通常就會毫無限制地使用了。這也就為什麼我們常說：雖然你可以這麼做，但你不該這麼做。</p>
+<p>還是要再次強調，因為範例中的判斷邏輯只是簡單的 <code>==</code> ，所以看不出會有什麼影響；但這只是為了說明測試的原理，不代表實務上可以這麼做。</p>
+<p>只是到底什麼是測試裡的邏輯？舉例來說 <code>try...catch</code> 就不該出現在測試案例裡，接收異常的機制應該是由測試框架來處理，我們要確保的是待測試邏輯「一定會拋出預期的異常」，而 <code>try...catch</code> 就有不確定的意味存在。</p>
+<p>測試的目的就是確保該發生的一定要發生，而不是去判斷某件事會不會發生。如果測試案例中包含了不確定性的邏輯，那就不叫測試了。</p>
+<h2 id="測試只是輔助">測試只是輔助</h2><p>有朋友提到 TDD 循環，其實我認為是在這個討論中有些失焦了。但不是說提出 TDD 是不對的，事實上我非常認同；只是我在這裡想討論的是「測試的寫法」，換句話說，就是在紅燈之前你怎麼寫測試案例。</p>
+<p>TDD 有一個很重要的觀念：確保我們想清楚規格了才去動手。</p>
+<p>我們寫測試通常是為了有測試而寫，只是想要驗證到底我們寫出來的程式碼對不對。但真正好的測試案例應該是以測試程式來描述規格。</p>
+<p>回頭看一下原文範例的寫法：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$result</span> = execute(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>==<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test passed\n"</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"simple_add_test failed\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>當看到這個測試案例時，你知道原來的邏輯是做什麼的嗎？我想除了程式原作者之外，應該是沒人知道待測邏輯要做什麼吧？</p>
+<p>「一個測試案例應該清楚描述待測對象的用途」，我們可以把測試案例想像成是 production code 的說明書，讓看到測試案例的人一眼就能明白該怎麼去使用待測對象。</p>
+<p>之所以 assertion library 會封裝驗證的邏輯，除了提供可靠性之外，另一個目的就是提供較為語意化的 API 。例如 PHPUnit 的 <code>assertEquals</code> 、 <code>assertContains</code> 等，這些語義化的 API 很清楚地告訴我們要驗證的是什麼；如果用錯了，很有可能就是我們其實對需求理解得不夠明確。</p>
+<p>那麼測試怎麼去描述需求呢？像是 JavaScript 的 mocha 框架就可以讓我們這樣寫：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">describe(<span class="string">'Array'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  describe(<span class="string">'#indexOf()'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    it(<span class="string">'should return -1 when the value is not present'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">5</span>).should.equal(-<span class="number">1</span>);</span><br><span class="line">      [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">0</span>).should.equal(-<span class="number">1</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>像這樣就能清楚地表達陣列的 <code>indexOf</code> 方法可以怎麼用。你可以發現裡面其實沒有邏輯，因為「需求的 what 是不會有邏輯的，只有 how 才有邏輯。」</p>
+<p>如果是原來的例子，如果萬不得已真的要自己寫驗證工具，可以寫成：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span> <span class="comment">// my_test_tools.php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">runScriptWithQuery</span><span class="params">(<span class="variable">$script</span>, <span class="variable">$queryParams</span> = [])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$_GET</span> = <span class="variable">$queryParams</span>;</span><br><span class="line">    ob_start();</span><br><span class="line">    <span class="keyword">require</span> <span class="variable">$script</span>;</span><br><span class="line">    <span class="keyword">return</span> ob_get_clean();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assertEquals</span><span class="params">(<span class="variable">$expected</span>, <span class="variable">$actual</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$expected</span> == <span class="variable">$actual</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Passed\n"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Failed asserting that $actual matches expected $expected.\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用法會是這樣：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span> <span class="comment">// simple_add_test_cases.php</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'my_test_tools.php'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">it_should_passed_with_1_add_2_equals_3</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// Arrange</span></span><br><span class="line">    <span class="variable">$queryParams</span> = [<span class="string">'arg1'</span> =&gt; <span class="number">1</span>, <span class="string">'arg2'</span> =&gt; <span class="number">2</span>];</span><br><span class="line">    <span class="variable">$expected</span> = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Act</span></span><br><span class="line">    <span class="variable">$actual</span> = runScriptWithQuery(<span class="string">'simple_add_test.php'</span>, <span class="variable">$queryParams</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Assert</span></span><br><span class="line">    assertEquals(<span class="variable">$expected</span>, <span class="variable">$actual</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">it_should_passed_with_1_add_2_equals_3();</span><br></pre></td></tr></table></figure>
+<p>註：避免跟原來的 <code>simple_add_test.php</code> 混淆，測試程式我改名為 <code>simple_add_test_cases.php</code> 。</p>
+<p>這樣就可以很清楚的知道我們要測試的是 <code>simple_add_test.php</code> ，它的用途也是一清二楚。對看測試程式的人來說，它就是一種「對需求的描述」而不是「對程式邏輯的測試」。</p>
+<h2 id="該不該用自動化測試框架">該不該用自動化測試框架</h2><p>在討論中 Ricky 提到沒有 PHPUnit 是不是就不能做測試了？這樣在沒有 PHPUnit 之前的程式碼不就不合格了？當然不是，還是強調一點：用自己寫的驗證機制是沒問題的，只要你能確保它驗證出來的結果是可信任的。</p>
+<p>例如 c9s 提到 PHP 原始碼裡的一支<a href="https://github.com/php/php-src/blob/master/tests/lang/004.phpt" target="_blank" rel="external">測試</a>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">--TEST--&#10;Simple If/Else Test&#10;--FILE--&#10;&#60;?php&#10;$a=1;&#10;if($a==0) &#123;&#10;    echo &#34;bad&#34;;&#10;&#125; else &#123;&#10;    echo &#34;good&#34;;&#10;&#125;&#10;?&#62;&#10;--EXPECT--&#10;good</span><br></pre></td></tr></table></figure>
+<p>事實上就是用到了 PHP 自帶的測試程式 (<a href="https://github.com/php/php-src/blob/master/run-tests.php" target="_blank" rel="external"><code>run-tests.php</code></a>) ，因為在測試 PHP 語法這個需求當初並沒有適合的自動化測試框架，所以 PHP 需要自己建立一個。</p>
+<p>註：要注意這個測試的對象是 <code>if..else</code> 這個語法，並不是指 <code>if..else</code> 就是用來做驗證的機制。</p>
+<p>那為什麼我們還是需要 PHPUnit 或其他自動化測試框架？除了公認的可靠性之外，主要是它提供了我們在測試上很多重要的機制：</p>
+<ol>
+<li>自動化驗證：你可以專注在寫測試，該批次執行的事情框架都會幫你處理好。</li>
+<li>隔離測試：模擬待測試邏輯中被隔離出去的相依物件。</li>
+<li>程式碼測試涵蓋率：確保測試有測到待測邏輯。</li>
+<li>與其他開發工具的整合：例如 IDE 、 CI Service 等，以造就了完整的開發生態圈。</li>
+</ol>
+<p>這些都是真正實務上經過千錘百鍊後的特色，也適用在絕大多數的 PHP 專案上。如果專案沒有特別的需求，當然是優先使用別人寫好自動化測試框架。</p>
+<h2 id="結論">結論</h2><p>我一直很強調測試的重要性，但並不是要讓它變成我們開發上的負擔，而是用來輔助我們很快地去驗證我們的程式碼是否符合了需求。也就是說我們不要為了只是要驗證程式的正確性而去寫測試，而是應該讓測試來協助我們去理解程式想要滿足什麼需求。</p>
+<p>工具是手段沒錯，但它的目的就是要幫我們很快地去把一件事做好。今天如果自己寫的工具可以做到這件事，那當然是很好的。但如果已經有更好的工具，為什麼不直接使用呢？當然工具會出錯，但 open source 的好處就是讓我們有機會去修補它們。當工具的公正性已經接受過時間的考驗以及許多案例的檢驗，我想那都會比你花時間自己弄一套來得嚴謹很多。</p>
+<p>當然每個人心中對測試有自己的定見，我很難說服每一個人。但還是希望讓大家可以重新思考一下測試的本質，在正確的地方轉彎。</p>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/"> #PHP </a>
+          
+            <a href="/tags/測試/"> #測試 </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/05/simple-refatoring-example-01/">邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    
+      <div class="comments" id="comments">
+        
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          </div>
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" />
+          <p class="site-author-name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element"></p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">584</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/jaceju" target="_blank">GitHub</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/jaceju" target="_blank">Twitter</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#為什麼這樣寫測試有問題"><span class="nav-number">1.</span> <span class="nav-text">為什麼這樣寫測試有問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試裡不該有邏輯"><span class="nav-number">2.</span> <span class="nav-text">測試裡不該有邏輯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試只是輔助"><span class="nav-number">3.</span> <span class="nav-text">測試只是輔助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#該不該用自動化測試框架"><span class="nav-number">4.</span> <span class="nav-text">該不該用自動化測試框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+
+  
+  
+  
+
+  
+
+    
+      
+    
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = '2015/10/14/what-is-test/';
+      var disqus_title = '這樣寫測試錯了嗎？';
+      var disqus_url = 'http://jaceju.net/2015/10/14/what-is-test/';
+
+      (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }());
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript" src="/js/analytics_google-analytics.js"></script>
+
+
+</body>
+</html>

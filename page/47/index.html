@@ -117,6 +117,85 @@
           
           
             
+              <a class="post-title-link" href="/2006/10/09/129/">
+                安裝問題 4
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2006-10-09
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2006/10/09/129/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/10/09/129/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>網友 giorno 問了一個這樣的<a href="http://blog.roodo.com/jaceju/archives/2237311.html#comment-3222051" target="_blank" rel="external">問題</a>：</p>
+<p>在執行 testSmartyInstall.php 時，出現了以下的訊息：</p>
+<p><img src="/resources/smarty_book/install_001.gif" alt=""></p>
+<p>這是因為 PHP 在 5.1 以後有個時區的設定 (date.timezone) ，會預設為美國時區。所以當我們的程式在執行時，就會出現上面的錯誤。</p>
+<p>正確的解決方式是在 PHP.INI 中指定正確的時區  (<a href="http://www.php.net/manual/en/timezones.php" target="_blank" rel="external">參考</a>) ，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date.timezone = Asia/Taipei</span><br></pre></td></tr></table></figure>
+<p>也可以在 ch03 目錄下放置一個 .htaccess ，內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php_value date.timezone Asia/Taipei</span><br></pre></td></tr></table></figure>
+<p>或是在建立 Smarty 物件前，直接用 <a href="http://www.php.net/manual/en/function.date-default-timezone-set.php" target="_blank" rel="external">date_default_timezone_set()</a> 在程式直接指定時區： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date_default_timezone_set(&#39;Asia/Taipei&#39;);</span><br></pre></td></tr></table></figure>
+<p>然後 giorno 又發現一個<a href="http://blog.roodo.com/jaceju/archives/2237311.html#comment-3266913" target="_blank" rel="external">問題</a>，雖然我不太瞭解他的意思，不過為什麼在他回復程式後，第二次又可以執行這點我倒是可以解釋一下。</p>
+<p>這是因為第一次正常執行後， Smarty 就會在 templates_c 裡建立一個供 testSmartyInstall.php 用的暫存檔，所以第二次執行時，只要 testSmartyInstall.tpl.htm 沒有任何更動，那麼 Smarty 就會使用該暫存檔來執行。</p>
+<p>註：相關的運作流程可以查看拙作的第 2-3 頁。 </p>
+<p>這應該是 Smarty 在 PHP 5.1 上的相容性問題，只要設定好相關配置之後，應該就不會再發生了。</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2006/10/07/128/">
                 IE7 這個月要推出了？
               </a>
@@ -756,74 +835,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2006/08/31/118/">
-                [轉載] Prototype Dissected
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2006-08-31
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2006/08/31/118/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2006/08/31/118/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>外國人好像還滿喜歡把函式庫整理成一張表來參考，這次發現有位仁兄把 <a href="http://prototype.conio.net/" target="_blank" rel="external">prototype.js</a> 1.5.0_pre0 的 API 做成了一張 Cheat Sheet 。 </p>
-<p>文章網址： <a href="http://www.snook.ca/archives/000531.php" target="_blank" rel="external">Prototype Dissected</a></p>
-<p>註： Cheat Sheet 有點像小抄的意思， <a href="http://blog.markplace.net/marks_place/1/2006/06/17/102" target="_blank" rel="external">Mark</a> 把它譯為取巧圖解。 </p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -862,7 +873,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">583</span>
+              <span class="site-state-item-count">584</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
