@@ -8,6 +8,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
 
 
 
@@ -15,7 +21,15 @@
   <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -26,120 +40,190 @@
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
+
+<meta name="description" content="為什麼要測試？因為我們沒辦法保證程式碼是萬無一失的，所以通常我們都會需要驗證我們的程式，而測試就是其中一種方法。很多工程師都在寫完程式之後，自己手動去做測試；如果執行結果是按照自己的想法出現後，那麼他們通常就認為程式沒錯了。
+可是，其實這樣的程式碼通常就會躲進很多很多的 Bug 。所以我們要讓程式碼自己告訴我們它沒問題，而不是我們自己去想像它沒問題。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="關於測試這件事">
+<meta property="og:url" content="http://jaceju.net/2010/05/14/1142/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="為什麼要測試？因為我們沒辦法保證程式碼是萬無一失的，所以通常我們都會需要驗證我們的程式，而測試就是其中一種方法。很多工程師都在寫完程式之後，自己手動去做測試；如果執行結果是按照自己的想法出現後，那麼他們通常就認為程式沒錯了。
+可是，其實這樣的程式碼通常就會躲進很多很多的 Bug 。所以我們要讓程式碼自己告訴我們它沒問題，而不是我們自己去想像它沒問題。">
+<meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="關於測試這件事">
+<meta name="twitter:description" content="為什麼要測試？因為我們沒辦法保證程式碼是萬無一失的，所以通常我們都會需要驗證我們的程式，而測試就是其中一種方法。很多工程師都在寫完程式之後，自己手動去做測試；如果執行結果是按照自己的想法出現後，那麼他們通常就認為程式沒錯了。
+可是，其實這樣的程式碼通常就會躲進很多很多的 Bug 。所以我們要讓程式碼自己告訴我們它沒問題，而不是我們自己去想像它沒問題。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    analytics: {
-      google: 'UA-450710-8'
-    },
     sidebar: 'post'
   };
 </script>
 
 
 
-
-  <title> 關於測試這件事 // 網站製作學習誌 </title>
+  <title> 關於測試這件事 | 網站製作學習誌 </title>
 </head>
 
-<body>
-<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
   <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">網站製作學習誌</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
 
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
 
-  <ul id="menu" class="menu">
-     
-    
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
       
-      <li class="menu-item menu-item-home">
-        <a href="/">
-          <i class="menu-item-icon icon-home"></i> <br />
-          首頁
-        </a>
-      </li>
-    
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
       
-      <li class="menu-item menu-item-archives">
-        <a href="/archives">
-          <i class="menu-item-icon icon-archives"></i> <br />
-          歸檔
-        </a>
-      </li>
-    
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
       
-      <li class="menu-item menu-item-tags">
-        <a href="/tags">
-          <i class="menu-item-icon icon-tags"></i> <br />
-          標籤
-        </a>
-      </li>
-    
-  </ul>
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
 
+      
+      
+    </ul>
+  
 
-      </div>
-    </div>
+  
+</nav>
 
-    <div id="main" class="main">
+ </div>
+    </header>
+
+    <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              關於測試這件事
-            
-          
-        </h1>
-      
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2010-05-14
-        </span>
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2010/05/14/1142/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/14/1142/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                關於測試這件事
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-14T00:00:00+08:00" content="2010-05-14">
+              2010-05-14
+            </time>
           </span>
+
           
-        
-      </div>
-    </div>
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/14/1142/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/14/1142/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
 
     <div class="post-body">
 
@@ -147,7 +231,7 @@
       
 
       
-        <h2 id="為什麼要測試？">為什麼要測試？</h2><p>因為我們沒辦法保證程式碼是萬無一失的，所以通常我們都會需要驗證我們的程式，而測試就是其中一種方法。很多工程師都在寫完程式之後，自己手動去做測試；如果執行結果是按照自己的想法出現後，那麼他們通常就認為程式沒錯了。</p>
+        <span itemprop="articleBody"><h2 id="為什麼要測試？">為什麼要測試？</h2><p>因為我們沒辦法保證程式碼是萬無一失的，所以通常我們都會需要驗證我們的程式，而測試就是其中一種方法。很多工程師都在寫完程式之後，自己手動去做測試；如果執行結果是按照自己的想法出現後，那麼他們通常就認為程式沒錯了。</p>
 <p>可是，其實這樣的程式碼通常就會躲進很多很多的 Bug 。所以我們要<strong>讓程式碼自己告訴我們它沒問題，而不是我們自己去想像它沒問題</strong>。</p>
 <a id="more"></a>
 <p>當然測試並不是萬靈丹，它只是去驗證我們所考慮到的狀況；但如果抱持著「既然我都有考慮到，而且也寫在程式碼裡，那這樣就不用測試了呀！」的態度，那其實也是災難的根源。<strong>因為如果我們沒有寫測試來驗證程式碼的話，那我們的防範措施根本就不值得信賴！</strong></p>
@@ -171,61 +255,68 @@
 <p>另外有些既有的錯誤是必須在長時間才能發現，這時候我們可能就要用推測的方式來撰寫測試案例。這樣一來有兩個好處，其一是我們就可以讓測試自動化去代替手動測試的部份，其二是如果未來還是發生同樣問題時，我們也能透過這些測試來排除掉先前推測出來的因素。</p>
 <h2 id="結論">結論</h2><p>其實我們也很難百分之百地保證通過測試的程式碼一定完全沒問題，但很重要的一點就是我們至少能<strong>保證</strong>通過測試的部份是會按照我們的想法來執行。</p>
 <p>一個好的系統在交到客戶手上時，就應該要有一定的品質；而品質的保證來自我們的信心。至於我們的信心並不是建構在想像之上，而是應該用實際的測試數據來做為它的基礎。</p>
-
+</span>
       
     </div>
 
-    <div class="post-footer">
+    <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/程式開發/"> #程式開發 </a>
+            <a href="/tags/程式開發/" rel="tag">#程式開發</a>
           
         </div>
       
 
       
         <div class="post-nav">
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/2010/05/21/1152/">Zend Framework Testing 入門 - 測試環境建置篇</a>
+              <a href="/2010/05/14/1139/" rel="next" title="[Web] 連結分享">
+                <i class="fa fa-chevron-left"></i> [Web] 連結分享
+              </a>
             
           </div>
 
-          <div class="post-nav-next post-nav-item">
+          <div class="post-nav-prev post-nav-item">
             
-              <a href="/2010/05/14/1139/">[Web] 連結分享</a>
+              <a href="/2010/05/21/1152/" rel="prev" title="Zend Framework Testing 入門 - 測試環境建置篇">
+                Zend Framework Testing 入門 - 測試環境建置篇 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
       
 
       
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
       
     </div>
   </div>
 
+ </div>
 
-
-    
-      <div class="comments" id="comments">
         
-          <div id="disqus_thread">
-            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
           </div>
         
       </div>
-    
-  </div>
-
-
-        </div>
-
-        
-      </div>
-
 
       
+        
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -235,12 +326,14 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
+
+      
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目錄
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -249,13 +342,13 @@
         </ul>
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" />
-          <p class="site-author-name">Jace Ju</p>
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
         </div>
-        <p class="site-description motion-element"></p>
-        <div class="site-state motion-element">
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">584</span>
@@ -277,7 +370,7 @@
               </a>
           </div>
 
-        </div>
+        </nav>
 
         
 
@@ -285,29 +378,37 @@
           
             
               <span class="links-of-author-item">
-              <a href="https://github.com/jaceju" target="_blank">GitHub</a>
-            </span>
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://twitter.com/jaceju" target="_blank">Twitter</a>
-            </span>
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
             
           
         </div>
 
         
         
-          <div class="cc-license motion-element">
+          <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
         
 
-      </div>
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
 
       
-        <div class="post-toc-wrap sidebar-panel-active">
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
@@ -316,25 +417,25 @@
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </div>
+        </section>
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
+      
+    </main>
 
-    <div id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
   
-  &copy; &nbsp; 
-  2015
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
   <span class="with-love">
-    <i class="icon-heart"></i>
+    <i class="icon-next-heart fa fa-heart"></i>
   </span>
-  <span class="author">Jace Ju</span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
 </div>
 
 <div class="powered-by">
@@ -349,9 +450,8 @@
 </div>
 
 
-
-      </div>
-    </div>
+ </div>
+    </footer>
 
     <div class="back-to-top"></div>
   </div>
@@ -360,26 +460,57 @@
 
   
   
+  
+    
+    
 
   
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = '2010/05/14/1142/';
+      var disqus_title = '關於測試這件事';
+      var disqus_url = 'http://jaceju.net/2010/05/14/1142/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js"></script>
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
   
 
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
 
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -412,7 +543,6 @@
     }
 
     function getTOCMaxHeight () {
-      var $sidebarInner = $('.sidebar-inner');
       var height = $('.sidebar').height() -
                    $tocSelector.position().top -
                    $('.post-toc-indicator-bottom').height();
@@ -434,7 +564,7 @@
       )
     }
 
-    $(document).on('sidebar.didShow', function () {
+    $(document).on('sidebar.motion.complete', function () {
       processTOC();
     });
 
@@ -451,7 +581,6 @@
       element.on('mousewheel DOMMouseScroll', function (event) {
           var oe = event.originalEvent;
           var delta = oe.wheelDelta || -oe.detail;
-          var self = this;
 
           this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
           event.preventDefault();
@@ -461,60 +590,82 @@
     }
 
     function tocOverflowIndicator (indicator, action) {
-      $(indicator).velocity('stop').velocity({
-        opacity: action === 'show' ? 0.4 : 0
-      }, { duration: 100 });
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
     }
 
   });
 </script>
 
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
 
-  <script type="text/javascript" id="sidebar.nav">
-    $(document).ready(function () {
-      var html = $('html');
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
 
-      $('.sidebar-nav li').on('click', function () {
-        var item = $(this);
-        var activeTabClassName = 'sidebar-nav-active';
-        var activePanelClassName = 'sidebar-panel-active';
-        if (item.hasClass(activeTabClassName)) {
-          return;
-        }
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
 
-        var currentTarget = $('.' + activePanelClassName);
-        var target = $('.' + item.data('target'));
-
-        currentTarget.velocity('transition.slideUpOut', 200, function () {
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
           target
             .velocity('stop')
-            .velocity('transition.slideDownIn', 200)
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
             .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
         });
 
-        item.siblings().removeClass(activeTabClassName);
-        item.addClass(activeTabClassName);
-      });
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
 
-      $('.post-toc a').on('click', function (e) {
-        e.preventDefault();
-        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
         html.velocity('stop').velocity('scroll', {
           offset: offset  + 'px',
           mobileHA: false
-        });
-      });
-
-      // Expand sidebar on post detail page by default, when post has a toc.
-      var $tocContent = $('.post-toc-content');
-      if (isDesktop() && CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
     });
-  </script>
 
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
 
 
 
@@ -523,44 +674,29 @@
       if (CONFIG.sidebar === 'always') {
         displaySidebar();
       }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
     });
   </script>
 
   
-
-  
-  
   
 
   
-
-    
-      
-    
-
-    <script type="text/javascript">
-      var disqus_shortname = 'jaceju';
-      var disqus_identifier = '2010/05/14/1142/';
-      var disqus_title = '關於測試這件事';
-      var disqus_url = 'http://jaceju.net/2010/05/14/1142/';
-
-      (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }());
-    </script>
   
 
-
-
-
   
-  
-  <script type="text/javascript" src="/js/analytics_google-analytics.js"></script>
-
-
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

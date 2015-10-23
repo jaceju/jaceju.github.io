@@ -8,6 +8,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
 
 
 
@@ -15,7 +21,15 @@
   <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -26,120 +40,188 @@
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
+
+<meta name="description" content="前言從 Zend Framework 正式推出以來，其認證和權限控制的機制就一直是非常多開發者有興趣的東西。可惜開發手冊上的範例都偏向於介紹單一功能，如果要實際整合到專案時，就會令人不知從何下手。不過在參考了 Rob Allen 的 Getting Started with Zend_Auth 後，算是比較有概念了。基本上 Zend_Auth 是用來驗證使用者的工具，它可以採用 DbTable 、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zend_Auth + Zend_Acl 基礎概念">
+<meta property="og:url" content="http://jaceju.net/2009/04/08/426/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="前言從 Zend Framework 正式推出以來，其認證和權限控制的機制就一直是非常多開發者有興趣的東西。可惜開發手冊上的範例都偏向於介紹單一功能，如果要實際整合到專案時，就會令人不知從何下手。不過在參考了 Rob Allen 的 Getting Started with Zend_Auth 後，算是比較有概念了。基本上 Zend_Auth 是用來驗證使用者的工具，它可以採用 DbTable 、">
+<meta property="og:image" content="http://jaceju.net/resources/zf_auth_acl/flow-s.png">
+<meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zend_Auth + Zend_Acl 基礎概念">
+<meta name="twitter:description" content="前言從 Zend Framework 正式推出以來，其認證和權限控制的機制就一直是非常多開發者有興趣的東西。可惜開發手冊上的範例都偏向於介紹單一功能，如果要實際整合到專案時，就會令人不知從何下手。不過在參考了 Rob Allen 的 Getting Started with Zend_Auth 後，算是比較有概念了。基本上 Zend_Auth 是用來驗證使用者的工具，它可以採用 DbTable 、">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    analytics: {
-      google: 'UA-450710-8'
-    },
     sidebar: 'post'
   };
 </script>
 
 
 
-
-  <title> Zend_Auth + Zend_Acl 基礎概念 // 網站製作學習誌 </title>
+  <title> Zend_Auth + Zend_Acl 基礎概念 | 網站製作學習誌 </title>
 </head>
 
-<body>
-<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
   <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">網站製作學習誌</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
 
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
 
-  <ul id="menu" class="menu">
-     
-    
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
       
-      <li class="menu-item menu-item-home">
-        <a href="/">
-          <i class="menu-item-icon icon-home"></i> <br />
-          首頁
-        </a>
-      </li>
-    
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
       
-      <li class="menu-item menu-item-archives">
-        <a href="/archives">
-          <i class="menu-item-icon icon-archives"></i> <br />
-          歸檔
-        </a>
-      </li>
-    
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
       
-      <li class="menu-item menu-item-tags">
-        <a href="/tags">
-          <i class="menu-item-icon icon-tags"></i> <br />
-          標籤
-        </a>
-      </li>
-    
-  </ul>
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
 
+      
+      
+    </ul>
+  
 
-      </div>
-    </div>
+  
+</nav>
 
-    <div id="main" class="main">
+ </div>
+    </header>
+
+    <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              Zend_Auth + Zend_Acl 基礎概念
-            
-          
-        </h1>
-      
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2009-04-08
-        </span>
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2009/04/08/426/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2009/04/08/426/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Zend_Auth + Zend_Acl 基礎概念
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2009-04-08T00:00:00+08:00" content="2009-04-08">
+              2009-04-08
+            </time>
           </span>
+
           
-        
-      </div>
-    </div>
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2009/04/08/426/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2009/04/08/426/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
 
     <div class="post-body">
 
@@ -147,7 +229,7 @@
       
 
       
-        <h2 id="前言">前言</h2><p>從 Zend Framework 正式推出以來，其認證和權限控制的機制就一直是非常多開發者有興趣的東西。可惜開發手冊上的範例都偏向於介紹單一功能，如果要實際整合到專案時，就會令人不知從何下手。不過在參考了 Rob Allen 的 <a href="http://akrabat.com/zend-auth-tutorial/" target="_blank" rel="external">Getting Started with Zend_Auth</a> 後，算是比較有概念了。<br>基本上 Zend_Auth 是用來驗證使用者的工具，它可以採用 DbTable 、 Digest 、 HTTP 、 InfoCard 、 LDAP 或是 OpenID 等等驗證方式，這樣一來就能提供給開發者多樣化的選擇。而 Zend_Acl 則是提供了一套非常通用的權限控制系統，讓我們可以簡單地透過使用者的角色去限定他們可以存取的功能。它們可以單獨使用，如果要整合在 Zend Framework 的專案中，則可配合 Controller 的 Plugin 來協同運作。<br>接下來，我就用我自己的方式來簡單介紹 Zend_Auth 和 Zend_Acl 在做些什麼。</p>
+        <span itemprop="articleBody"><h2 id="前言">前言</h2><p>從 Zend Framework 正式推出以來，其認證和權限控制的機制就一直是非常多開發者有興趣的東西。可惜開發手冊上的範例都偏向於介紹單一功能，如果要實際整合到專案時，就會令人不知從何下手。不過在參考了 Rob Allen 的 <a href="http://akrabat.com/zend-auth-tutorial/" target="_blank" rel="external">Getting Started with Zend_Auth</a> 後，算是比較有概念了。<br>基本上 Zend_Auth 是用來驗證使用者的工具，它可以採用 DbTable 、 Digest 、 HTTP 、 InfoCard 、 LDAP 或是 OpenID 等等驗證方式，這樣一來就能提供給開發者多樣化的選擇。而 Zend_Acl 則是提供了一套非常通用的權限控制系統，讓我們可以簡單地透過使用者的角色去限定他們可以存取的功能。它們可以單獨使用，如果要整合在 Zend Framework 的專案中，則可配合 Controller 的 Plugin 來協同運作。<br>接下來，我就用我自己的方式來簡單介紹 Zend_Auth 和 Zend_Acl 在做些什麼。</p>
 <a id="more"></a>
 <h2 id="原理">原理</h2><p>首先，我們來看一個很常見的登入流程。</p>
 <p><a href="/resources/zf_auth_acl/flow.png"><img class="aligncenter" src="/resources/zf_auth_acl/flow-s.png" alt="登入流程" width="300" height="247"></a><br>如果我們要存取一個需要權限的頁面，一般會需要登入才能使用。因此 Zend_Auth 會協助我們判斷使用者是否已經登入。在 Wacow Framework (一套建構在 Zend Framework 上的簡易框架) 裡，這個判斷是寫在 Wacow_Controller_Plugin_Auth::dispatchLoopStartup() 裡面，這樣就能提早改變 $request 物件的 dispatch 內容，讓它執行登入畫面的流程。</p>
@@ -156,61 +238,68 @@
 <p>一般只要判斷 SUCCESS 狀態即可，其他都是驗證失敗。<br>在驗證成功後，我們可以透過 Zend_Auth 所提供的 Storage 物件來存放使用者資料，最常用的 Storage 就是 Session 。接著我們就可以在 loginAction() 中，將頁面導回原來的要存取的網址；如果是使用 Ajax 來輸入帳號密碼，那麼成功後也可以用 location.reload() 的方式直接重載頁面即可。</p>
 <h3 id="權限判斷">權限判斷</h3><p>Zend_Acl 需要註冊「資源 (resource) 」和「角色 (role) 」這兩種物件，然後再利用 allow() 及 deny() 兩個方法來建構整個存取控制清單 (ACL, Access Controll List) 。所以系統一開始就會先將 ACL  透過 Zend_Acl 設定好。<br>所以回到原來的網址時，因為這時我們已經登入並取得該帳號的角色了，因此就可以利用存取清單來判斷我們是不是能存取這個頁面；如果可以就執行該頁面，不行的話就改變 $request 物件的 dispatch 內容，讓它導向顯示「權限不足」的畫面。<br>一般來說， ACL 可以從資料庫取得，也可以寫死在繼承自 Zend_Acl 的類別中。如果從資料庫取得的話，除了使用者資料表外，我們會需要以下其他幾個資料表：角色 (roles) 、資源 (resources) 及權限 (permissions) ；其中權限資料表記錄的就是角色與資源的對應關係。</p>
 <h2 id="感想">感想</h2><p>先前我在開發 Zend Framework 專案時，都是參考別人寫的程式碼。雖然可以照抄後稍加修改，但有時還是不甚瞭解為什麼要這樣做。像 Zend_Auth 和 Zend_Acl 都是寫完程式很久後，才慢慢瞭解它們運作上的觀念。希望這次將 Zend_Auth 和 Zend_Acl 運作的觀念整理出來，能對剛入門的朋友有些許的幫助。</p>
-
+</span>
       
     </div>
 
-    <div class="post-footer">
+    <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Zend-Framework/"> #Zend Framework </a>
+            <a href="/tags/Zend-Framework/" rel="tag">#Zend Framework</a>
           
         </div>
       
 
       
         <div class="post-nav">
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/2009/04/15/469/">[心得感想] 學習技術的步驟</a>
+              <a href="/2009/04/08/423/" rel="next" title="[Web] 連結分享">
+                <i class="fa fa-chevron-left"></i> [Web] 連結分享
+              </a>
             
           </div>
 
-          <div class="post-nav-next post-nav-item">
+          <div class="post-nav-prev post-nav-item">
             
-              <a href="/2009/04/08/423/">[Web] 連結分享</a>
+              <a href="/2009/04/15/469/" rel="prev" title="[心得感想] 學習技術的步驟">
+                [心得感想] 學習技術的步驟 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
       
 
       
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
       
     </div>
   </div>
 
+ </div>
 
-
-    
-      <div class="comments" id="comments">
         
-          <div id="disqus_thread">
-            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
           </div>
         
       </div>
-    
-  </div>
-
-
-        </div>
-
-        
-      </div>
-
 
       
+        
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -220,12 +309,14 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
+
+      
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目錄
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -234,13 +325,13 @@
         </ul>
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" />
-          <p class="site-author-name">Jace Ju</p>
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
         </div>
-        <p class="site-description motion-element"></p>
-        <div class="site-state motion-element">
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">584</span>
@@ -262,7 +353,7 @@
               </a>
           </div>
 
-        </div>
+        </nav>
 
         
 
@@ -270,29 +361,37 @@
           
             
               <span class="links-of-author-item">
-              <a href="https://github.com/jaceju" target="_blank">GitHub</a>
-            </span>
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://twitter.com/jaceju" target="_blank">Twitter</a>
-            </span>
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
             
           
         </div>
 
         
         
-          <div class="cc-license motion-element">
+          <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
         
 
-      </div>
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
 
       
-        <div class="post-toc-wrap sidebar-panel-active">
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
@@ -301,25 +400,25 @@
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </div>
+        </section>
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
+      
+    </main>
 
-    <div id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
   
-  &copy; &nbsp; 
-  2015
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
   <span class="with-love">
-    <i class="icon-heart"></i>
+    <i class="icon-next-heart fa fa-heart"></i>
   </span>
-  <span class="author">Jace Ju</span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
 </div>
 
 <div class="powered-by">
@@ -334,9 +433,8 @@
 </div>
 
 
-
-      </div>
-    </div>
+ </div>
+    </footer>
 
     <div class="back-to-top"></div>
   </div>
@@ -345,26 +443,57 @@
 
   
   
+  
+    
+    
 
   
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = '2009/04/08/426/';
+      var disqus_title = 'Zend_Auth + Zend_Acl 基礎概念';
+      var disqus_url = 'http://jaceju.net/2009/04/08/426/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js"></script>
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
   
 
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
 
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -397,7 +526,6 @@
     }
 
     function getTOCMaxHeight () {
-      var $sidebarInner = $('.sidebar-inner');
       var height = $('.sidebar').height() -
                    $tocSelector.position().top -
                    $('.post-toc-indicator-bottom').height();
@@ -419,7 +547,7 @@
       )
     }
 
-    $(document).on('sidebar.didShow', function () {
+    $(document).on('sidebar.motion.complete', function () {
       processTOC();
     });
 
@@ -436,7 +564,6 @@
       element.on('mousewheel DOMMouseScroll', function (event) {
           var oe = event.originalEvent;
           var delta = oe.wheelDelta || -oe.detail;
-          var self = this;
 
           this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
           event.preventDefault();
@@ -446,60 +573,82 @@
     }
 
     function tocOverflowIndicator (indicator, action) {
-      $(indicator).velocity('stop').velocity({
-        opacity: action === 'show' ? 0.4 : 0
-      }, { duration: 100 });
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
     }
 
   });
 </script>
 
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
 
-  <script type="text/javascript" id="sidebar.nav">
-    $(document).ready(function () {
-      var html = $('html');
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
 
-      $('.sidebar-nav li').on('click', function () {
-        var item = $(this);
-        var activeTabClassName = 'sidebar-nav-active';
-        var activePanelClassName = 'sidebar-panel-active';
-        if (item.hasClass(activeTabClassName)) {
-          return;
-        }
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
 
-        var currentTarget = $('.' + activePanelClassName);
-        var target = $('.' + item.data('target'));
-
-        currentTarget.velocity('transition.slideUpOut', 200, function () {
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
           target
             .velocity('stop')
-            .velocity('transition.slideDownIn', 200)
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
             .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
         });
 
-        item.siblings().removeClass(activeTabClassName);
-        item.addClass(activeTabClassName);
-      });
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
 
-      $('.post-toc a').on('click', function (e) {
-        e.preventDefault();
-        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
         html.velocity('stop').velocity('scroll', {
           offset: offset  + 'px',
           mobileHA: false
-        });
-      });
-
-      // Expand sidebar on post detail page by default, when post has a toc.
-      var $tocContent = $('.post-toc-content');
-      if (isDesktop() && CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
     });
-  </script>
 
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
 
 
 
@@ -508,44 +657,29 @@
       if (CONFIG.sidebar === 'always') {
         displaySidebar();
       }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
     });
   </script>
 
   
-
-  
-  
   
 
   
-
-    
-      
-    
-
-    <script type="text/javascript">
-      var disqus_shortname = 'jaceju';
-      var disqus_identifier = '2009/04/08/426/';
-      var disqus_title = 'Zend_Auth + Zend_Acl 基礎概念';
-      var disqus_url = 'http://jaceju.net/2009/04/08/426/';
-
-      (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }());
-    </script>
   
 
-
-
-
   
-  
-  <script type="text/javascript" src="/js/analytics_google-analytics.js"></script>
-
-
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>
