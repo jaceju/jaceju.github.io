@@ -189,6 +189,90 @@
             
             
               
+                <a class="post-title-link" href="/2007/07/26/209/" itemprop="url">
+                  [SQL] PHP MySQL Tips
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-07-26T00:00:00+08:00" content="2007-07-26">
+              2007-07-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/07/26/209/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/07/26/209/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在 <a href="http://www.thespanner.co.uk/" target="_blank" rel="external">Spanner</a> 看到<a href="http://www.thespanner.co.uk/2007/07/23/php-mysql-tips/" target="_blank" rel="external">一篇 MySQL 語法的效能比較</a>，記下來先：</p>
+<blockquote><br><br>## PHP Mysql tips<br><br>Continuing from my earlier post on PHP performance, I thought I’d share a few Mysql tips that I’ve learnt over the years. Hope it helps someone and please leave a comment with your own tips or provide any corrections to the ones mentioned.<br><br>### Word searching<br><br>1.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; MATCH &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;`field`&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; AGAINST &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;Keyword&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fastest)<br><br>2.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; MATCH &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;`field`&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; AGAINST &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;+Keyword&#39;&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;IN&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;BOOLEAN&#60;/span&#62; MODE&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fast)<br><br>3.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;RLIKE&#60;/span&#62; &#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;(^| +)Keyword($| +)&#39;&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>OR<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62;&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;RLIKE&#60;/span&#62; &#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;([[:space:]]|[[:&#60;:]])Keyword([[:space:]]|[[:&#62;:]])&#39;&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Slow)<br><br>### Contains searching<br><br>1.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; MATCH &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;`field`&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; AGAINST &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;Keyword*&#39;&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;IN&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;BOOLEAN&#60;/span&#62; MODE&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fastest)<br><br>2.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FIELD&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LIKE&#60;/span&#62; &#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;Keyword%&#39;&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fast)<br><br>3.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; MATCH &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;`field`&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; AGAINST &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;*Keyword*&#39;&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;IN&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;BOOLEAN&#60;/span&#62; MODE&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Slow)<br><br>4.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FIELD&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LIKE&#60;/span&#62; &#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;%Keyword%&#39;&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Slow)<br><br>### Recordsets<br><br>1.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; SQL_CALC_FOUND_ROWS * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; Condition &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LIMIT&#60;/span&#62; &#60;span style=&#34;color: rgb(204, 102, 204);&#34;&#62;0&#60;/span&#62;, &#60;span style=&#34;color: rgb(204, 102, 204);&#34;&#62;10&#60;/span&#62;&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; FOUND_ROWS&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fastest)<br><br>2.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; Condition &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LIMIT&#60;/span&#62; &#60;span style=&#34;color: rgb(204, 102, 204);&#34;&#62;0&#60;/span&#62;, &#60;span style=&#34;color: rgb(204, 102, 204);&#34;&#62;10&#60;/span&#62;&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; COUNT&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;PrimaryKey&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; Condition</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fast)<br><br>3.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(0, 0, 255);&#34;&#62;$result&#60;/span&#62; = &#60;span style=&#34;color: rgb(0, 0, 102);&#34;&#62;mysql_query&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#34;SELECT * FROM table&#34;&#60;/span&#62;, &#60;span style=&#34;color: rgb(0, 0, 255);&#34;&#62;$link&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;;&#10;&#60;span style=&#34;color: rgb(0, 0, 255);&#34;&#62;$num_rows&#60;/span&#62; = &#60;span style=&#34;color: rgb(0, 0, 102);&#34;&#62;mysql_num_rows&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 255);&#34;&#62;$result&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Very slow)<br><br>### Joins<br><br>Use an INNER JOIN when you want the joining table to only have matching records that you specify in the join. Use LEFT JOIN when it doesn’t matter if the records contain matching records or not.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; products&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;INNER&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;JOIN&#60;/span&#62; suppliers &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;ON&#60;/span&#62; suppliers.SupplierID = products.SupplierID</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>Returns all products with a matching supplier.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; products&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LEFT&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;JOIN&#60;/span&#62; suppliers &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;ON&#60;/span&#62; suppliers.SupplierID = products.SupplierID&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; suppliers.SupplierID &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;IS&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;NULL&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>Returns all products without a matching supplier.<br><br>### Best practice<br><br>1. Always use lowercase for table names. (If you use different OS’s this is a must)<br>2. Always prepend the table name to the field. E.g. ProductName, SupplierPostCode.<br>This makes multiple joins very easy.<br>3. Always create a primary id field with the name of the table followed by the id. e.g. ProductID<br>4. Index fields used for joins.<br>5. Use a separate logging table or transactions for logs of table updates, deletes etc.<br></blockquote>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2007/07/26/208/" itemprop="url">
                   [PHP] Namespace in PHP5 Come Back!!
                 </a>
@@ -981,93 +1065,6 @@
 
 
     
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2007/07/01/200/" itemprop="url">
-                  Zend Framework 釋出 1.0.0 正式版
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2007-07-01T00:00:00+08:00" content="2007-07-01">
-              2007-07-01
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2007/07/01/200/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/07/01/200/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>就在昨天， <a href="http://framework.zend.com/home" target="_blank" rel="external">Zend Framework</a> 釋出了 1.0.0 正式版，主要修正了很多 RC 版發現的問題。 </p>
-<p>請參考： <a href="http://framework.zend.com/changelog" target="_blank" rel="external">Changelog</a> 。 </p>
-<p>我想這是 ZF 的一個重大里程碑，這也表示未來會有更多建構於 ZF 之上的網站或產品推出 (不過我想這只限國外) 。</p>
-<p>至於我目前所開發的專案，也將會全部改用 ZF 1.0.0 正式版本來重新驗證。 </p>
-<p>題外話，變形金剛真好看，強烈推薦。 :)</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1110,7 +1107,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">584</span>
+              <span class="site-state-item-count">585</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

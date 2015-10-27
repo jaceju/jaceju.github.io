@@ -189,6 +189,93 @@
             
             
               
+                <a class="post-title-link" href="/2005/10/28/38/" itemprop="url">
+                  我的新書 (1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2005-10-28T00:00:00+08:00" content="2005-10-28">
+              2005-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2005/10/28/38/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/10/28/38/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在 PHP 這個領域混了兩三年，終於把一些心得集結成了一本書…這本書就是「 PHP Smarty 樣版引擎」。</p>
+<p><img src="/resources/smarty_book/smarty_cover_for_blog.jpg" alt="PHP Smarty 樣版引擎"></p>
+<p>這本書不厚，裡面的內容也不難，主要介紹 Smarty 的應用。除了 Smarty 的語法、程式應用，還提到如何使用樣版引擎及其他相關技術讓團隊運作得更為順利。</p>
+<p>當然，這本書只是開端，目的就是希望能啟發讀者的一些想法，也讓不瞭解樣版引擎的人可以明白為什麼要或不要使用樣版引擎。</p>
+<p>說歸說，這本書還在印，我想再過不久我應該就能拿到了，屆時再來深入介紹它。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2005/10/27/37/" itemprop="url">
                   變更 Windows 平台上的 PHP.INI 位置
                 </a>
@@ -965,103 +1052,6 @@
 
 
     
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2005/07/15/28/" itemprop="url">
-                  PHP 加速器 ： eAccelerator
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2005-07-15T00:00:00+08:00" content="2005-07-15">
-              2005-07-15
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2005/07/15/28/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/07/15/28/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p><a href="http://www.eaccelerator.net/" target="_blank" rel="external">eAccelerator</a> 是一個非常好用的 PHP 加速器，目前支援 PHP4 及 PHP5 。而且還提供 PHP 編碼程式，以保護商業智慧。</p>
-<h2 id="Windows_版安裝方式">Windows 版安裝方式</h2><p>先連上<a href="http://www.sitebuddy.com/PHP/Accelerators/eAccelerator_windows_binaries_builds" target="_blank" rel="external">最新版的 eAccelerator for Windows</a> 的下載位址，然後找到和系統 PHP 版本相符的 eAccelerator095_5.2.0.dll ，將它下載到 PHP 安裝目錄 的 ext 子資料夾裡。</p>
-<p>請記得設定 php.ini 的 extension_dir=”c:/php5/ext/“ ；或是把 Windows 的 PATH 系統變數後面加上「 ;c:\php5\ext 」，然後重新啟動電腦。</p>
-<p>註：有時候 Windows 還是不能找到 ext 底下的 dll 檔 (例如 PHP 5.1 就會如此) ，這時候只要把 “c:\php5\ext;” 改加在 PATH 變數之前就行了。例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">c:\php5;c:\php5\ext;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem</span><br></pre></td></tr></table></figure>
-<p>接著在 php.ini 中加入：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[eAccelerator]&#10;zend_extension_ts=eAccelerator095_5.2.0.dll&#10;eaccelerator.shm_size=&#34;64&#34;&#10;eaccelerator.cache_dir=&#34;D:/TEMP/eAccelerator&#34;&#10;eaccelerator.enable=&#34;1&#34;&#10;eaccelerator.optimizer=&#34;1&#34;&#10;eaccelerator.debug=&#34;0&#34;&#10;eaccelerator.check_mtime=&#34;1&#34;&#10;eaccelerator.filter=&#34;&#34;&#10;eaccelerator.shm_max=&#34;0&#34;&#10;eaccelerator.shm_ttl=&#34;0&#34;&#10;eaccelerator.shm_prune_period=&#34;0&#34;&#10;eaccelerator.shm_only=&#34;0&#34;&#10;eaccelerator.compress=&#34;1&#34;&#10;eaccelerator.compress_level=&#34;9&#34;&#10;eaccelerator.keys=&#34;shm_and_disk&#34;&#10;eaccelerator.sessions=&#34;shm_and_disk&#34;&#10;eaccelerator.content=&#34;shm_and_disk&#34;</span><br></pre></td></tr></table></figure>
-<p>最後重新啟動 Apache ，用 phpinfo() 查看是否安裝正確。</p>
-<p><img src="/resources/xdebug/01.gif" alt=""></p>
-<h2 id="安裝_PHP_編碼程式">安裝 PHP 編碼程式</h2><p>連到<a href="http://www.arnot.info/eaccelerator/" target="_blank" rel="external">這個位址</a>，下載 phpcoder-multiencoder-x.x.x.zip 。然後把所有檔案解壓縮至可執行 PHP 的資料夾裡。</p>
-<p>接著修改其中的 index.php ，找到：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$coder = &#38;amp;NewEncoder(&#34;mmcache&#34;);</span><br></pre></td></tr></table></figure>
-<p>改成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$coder = &#38;amp;NewEncoder(&#34;eAccelerator&#34;);</span><br></pre></td></tr></table></figure>
-<p>存檔後便可試著執行看看；使用方法就請自行嘗試了。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1104,7 +1094,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">584</span>
+              <span class="site-state-item-count">585</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

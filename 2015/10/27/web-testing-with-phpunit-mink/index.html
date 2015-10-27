@@ -1,0 +1,747 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Selenium,Web 開發,測試," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="如果你面對的是以前舊有的 PHP 程式，是時候負起一些責任了。
+我知道它改起來很痛苦，一堆不良的 PHP 程式習慣都阻礙你的修正；使得每次調整功能時，到底改得對不對，得要等到上線才知道。想要重寫一個新版本，但太多的實作細節你不清楚；也沒有最新的規格文件，讓你無法為新版本做出功能無誤的保證。
+現在你唯一擁有的，就是已經在線上運作的程式邏輯；雖然它可能還有 bug ，但至少大多數的功能是通過使用者驗證">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用 PHPUnit 與 Mink 來做 Web 測試">
+<meta property="og:url" content="http://jaceju.net/2015/10/27/web-testing-with-phpunit-mink/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description" content="如果你面對的是以前舊有的 PHP 程式，是時候負起一些責任了。
+我知道它改起來很痛苦，一堆不良的 PHP 程式習慣都阻礙你的修正；使得每次調整功能時，到底改得對不對，得要等到上線才知道。想要重寫一個新版本，但太多的實作細節你不清楚；也沒有最新的規格文件，讓你無法為新版本做出功能無誤的保證。
+現在你唯一擁有的，就是已經在線上運作的程式邏輯；雖然它可能還有 bug ，但至少大多數的功能是通過使用者驗證">
+<meta property="og:updated_time" content="2015-10-27T10:38:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用 PHPUnit 與 Mink 來做 Web 測試">
+<meta name="twitter:description" content="如果你面對的是以前舊有的 PHP 程式，是時候負起一些責任了。
+我知道它改起來很痛苦，一堆不良的 PHP 程式習慣都阻礙你的修正；使得每次調整功能時，到底改得對不對，得要等到上線才知道。想要重寫一個新版本，但太多的實作細節你不清楚；也沒有最新的規格文件，讓你無法為新版本做出功能無誤的保證。
+現在你唯一擁有的，就是已經在線上運作的程式邏輯；雖然它可能還有 bug ，但至少大多數的功能是通過使用者驗證">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 利用 PHPUnit 與 Mink 來做 Web 測試 | 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用 PHPUnit 與 Mink 來做 Web 測試
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2015-10-27T18:36:05+08:00" content="2015-10-27">
+              2015-10-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/27/web-testing-with-phpunit-mink/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/27/web-testing-with-phpunit-mink/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>如果你面對的是以前舊有的 PHP 程式，是時候負起一些責任了。</p>
+<p>我知道它改起來很痛苦，一堆不良的 PHP 程式習慣都阻礙你的修正；使得每次調整功能時，到底改得對不對，得要等到上線才知道。想要重寫一個新版本，但太多的實作細節你不清楚；也沒有最新的規格文件，讓你無法為新版本做出功能無誤的保證。</p>
+<p>現在你唯一擁有的，就是已經在線上運作的程式邏輯；雖然它可能還有 bug ，但至少大多數的功能是通過使用者驗證的。那麼先為它買個保險吧！確保之後的修改不會影響到其他功能的正常運作；而最直接的方式，就是把目前程式邏輯所呈現的結果或是使用者的操作，寫成自動化 Web 測試。</p>
+<p>建立 Web 測試的方法有很多，這裡我將介紹我在實務上使用 <a href="https://phpunit.de/" target="_blank" rel="external">PHPUnit</a> 加上 <a href="http://mink.behat.org/en/latest/" target="_blank" rel="external">Mink</a> 搭配 <a href="http://phantomjs.org/" target="_blank" rel="external">PhantomJS</a> 的方法。</p>
+<a id="more"></a>
+<h2 id="所需工具與原理">所需工具與原理</h2><p>在 Web 測試中，主要分成三個部份：</p>
+<ul>
+<li>自動化測試框架：負責執行測試案例及驗證</li>
+<li>瀏覽器控制器或模擬器：透過腳本來操作或模擬瀏覽器的行為</li>
+<li>目標瀏覽器：就是我們常用的網頁瀏覽器</li>
+</ul>
+<p>PHPUnit 是 PHP 中最常見的自動化測試框架，要應用在舊專案中也非常輕鬆。</p>
+<p>Mink 扮演的就是控制瀏覽器的角色，它可以透過不同的 <a href="http://mink.behat.org/en/latest/guides/drivers.html" target="_blank" rel="external">Driver</a> 來控制或模擬瀏覽器。</p>
+<p>而 PhantomJS 則是一個透過程式來操作的 Headless WebKit 瀏覽器；也因為它沒有視窗介面，所以啟動速度非常快，非常適合用來測試。另外它還內建 <a href="GhostDriver">GhostDriver</a> ，讓我們可以透過 <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol" target="_blank" rel="external">WebDriver Wire Protocol</a>  來操作它。</p>
+<p>所以整個 Web 測試的基礎，就是在 PHPUnit 的測試案例中，透過 Mink 的 Selenium2 Driver 來操作 PhamtomJS 。</p>
+<p>接下來就進入實作吧。</p>
+<h2 id="工具的安裝">工具的安裝</h2><p>以下介紹的安裝方式，都是在 Mac OS X 環境下完成；其他作業系統的安裝方式也差不多，這裡就不再贅述。</p>
+<h3 id="安裝_PHPUnit_與_Mink">安裝 PHPUnit 與 Mink</h3><p>先建立一個專案目錄，然後切換到專案目錄下，執行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require phpunit/phpunit behat/mink-selenium2-driver</span><br></pre></td></tr></table></figure>
+<p>這樣 Composer 會將 PHPUnit 、 Mink 及 Mink Selenium 2 Driver 安裝在 <code>vendor</code> 目錄下，並自動建立 <code>composer.json</code> 及 <code>composer.lock</code> 兩個檔案。</p>
+<p>註：這裡我假設你的環境可以執行 <code>composer</code> 指令，所以也不再贅述 Composer 的安裝流程。</p>
+<h3 id="安裝_PhantomJS">安裝 PhantomJS</h3><p>接著到 <a href="http://phantomjs.org/download.html" target="_blank" rel="external">PhantomJS 官網</a>下載 Mac OS X 專用的 ZIP 檔。然後執行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">unzip phantomjs-2.0.0-macosx.zip&#10;sudo mv phantomjs /usr/local/bin/</span><br></pre></td></tr></table></figure>
+<p>用以下指令確認有安裝完成：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">phantomjs --version</span><br></pre></td></tr></table></figure>
+<p>沒問題的話，應該會出現 <code>2.0.0</code> 。</p>
+<h2 id="設定專案的_PHPUnit">設定專案的 PHPUnit</h2><p>在專案目錄下新增 <code>phpunit.xml</code> 檔，內容為：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">phpunit</span> <span class="attribute">backupGlobals</span>=<span class="value">"false"</span></span><br><span class="line">         <span class="attribute">backupStaticAttributes</span>=<span class="value">"false"</span></span><br><span class="line">         <span class="attribute">bootstrap</span>=<span class="value">"vendor/autoload.php"</span></span><br><span class="line">         <span class="attribute">colors</span>=<span class="value">"true"</span></span><br><span class="line">         <span class="attribute">convertErrorsToExceptions</span>=<span class="value">"true"</span></span><br><span class="line">         <span class="attribute">convertNoticesToExceptions</span>=<span class="value">"true"</span></span><br><span class="line">         <span class="attribute">convertWarningsToExceptions</span>=<span class="value">"true"</span></span><br><span class="line">         <span class="attribute">processIsolation</span>=<span class="value">"false"</span></span><br><span class="line">         <span class="attribute">stopOnFailure</span>=<span class="value">"false"</span></span><br><span class="line">         <span class="attribute">syntaxCheck</span>=<span class="value">"false"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">testsuites</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">testsuite</span> <span class="attribute">name</span>=<span class="value">"Application Test Suite"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">directory</span>&gt;</span>./tests/<span class="tag">&lt;/<span class="title">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">testsuite</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">testsuites</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">phpunit</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>執行 <code>./vendor/bin/phpunit</code> ，確認有使用這個設定檔：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PHPUnit 5.0.8 by Sebastian Bergmann and contributors.&#10;&#10;Time: 13 ms, Memory: 1.75Mb&#10;&#10;No tests executed!</span><br></pre></td></tr></table></figure>
+<h2 id="測試實例">測試實例</h2><p>簡單介紹撰寫測試案例的步驟：</p>
+<ol>
+<li>建立一個 driver 物件，這裡是使用 <code>Selenium2Driver</code> 。</li>
+<li>建立一個 session 物件，並透過上面的 driver 物件來操作瀏覽器。</li>
+<li>將 session 物件連上指定網址。</li>
+<li>從 session 取出 page 物件來操作頁面。</li>
+<li>取出 page 物件的狀態或內容來驗證。</li>
+</ol>
+<p>詳細的測試寫法可以參考 <a href="http://mink.behat.org/en/latest/index.html" target="_blank" rel="external">Mink 官方文件</a>。</p>
+<p>以下我示範如何用 Google 來搜尋關鍵字，並驗證搜尋結果有包含我所預期的文字。</p>
+<p>先建立 <code>tests</code> 目錄，然後新增一個 <code>tests/GoogleSearchTest.php</code> 檔，內容如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Behat</span>\<span class="title">Mink</span>\<span class="title">Driver</span>\<span class="title">Selenium2Driver</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Behat</span>\<span class="title">Mink</span>\<span class="title">Session</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoogleSearchTest</span> <span class="keyword">extends</span> <span class="title">PHPUnit_Framework_TestCase</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testSearchWithKeyword</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// 使用 Selenium2Driver 來操作 PhantomJS</span></span><br><span class="line">        <span class="variable">$driver</span> = <span class="keyword">new</span> Selenium2Driver(<span class="string">'phantomjs'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 建立一個 Session 物件來控制瀏覧器</span></span><br><span class="line">        <span class="variable">$session</span> = <span class="keyword">new</span> Session(<span class="variable">$driver</span>);</span><br><span class="line">        <span class="variable">$session</span>-&gt;start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 瀏覽 Google 首頁</span></span><br><span class="line">        <span class="variable">$session</span>-&gt;visit(<span class="string">'https://www.google.com'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 操作頁面物件來搜尋關鍵字</span></span><br><span class="line">        <span class="variable">$page</span> = <span class="variable">$session</span>-&gt;getPage();</span><br><span class="line">        <span class="variable">$page</span>-&gt;fillField(<span class="string">'q'</span>, <span class="string">'Jace Ju'</span>);</span><br><span class="line">        <span class="variable">$page</span>-&gt;find(<span class="string">'css'</span>, <span class="string">'form'</span>)-&gt;submit();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 得到搜尋結果後驗證是否包含預期中的文字</span></span><br><span class="line">        <span class="variable">$text</span> = <span class="variable">$page</span>-&gt;getText();</span><br><span class="line">        <span class="variable">$this</span>-&gt;assertContains(<span class="string">'網站製作學習誌'</span>, <span class="variable">$text</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="執行測試">執行測試</h2><p>在執行測試之前，需要先啟動 PhantomJS 。 PhantomJS 提供一個 <code>--webdriver</code> 的選項讓它可以啟用遠端 WebDriver 模式，接收測試程式透過 WebDriver API 傳來的要求。另外因為有時測試的網址會包含 SSL ，所以要用 <code>--ssl-protocol=tlsv1</code> 及 <code>--ignore-ssl-errors=true</code> 來確保 SSL 的操作正常。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">phantomjs --webdriver=<span class="number">4444</span> --ssl-protocol=tlsv1 --ignore-ssl-errors=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>PhantomJS 順利啟動後，就可以另開一個 terminal 視窗來進行測試了：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./vendor/bin/phpunit</span><br></pre></td></tr></table></figure>
+<p>測試無誤的話會出現以下結果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PHPUnit 5.0.8 by Sebastian Bergmann and contributors.&#10;&#10;.                                                                   1 / 1 (100%)&#10;&#10;Time: 2.38 seconds, Memory: 4.50Mb&#10;&#10;OK (1 test, 1 assertion)</span><br></pre></td></tr></table></figure>
+<h2 id="Page_Objects_模式">Page Objects 模式</h2><p>上面的例子中有個問題：當頁面功能沒有更動，但是 UI 改變時 (例如 DOM 元素或 id/class 名稱) ，我們就必須去更改測試案例的程式碼；而如果同樣的功能在多個測試案例中出現，那麼要改的地方就更多了。所以在實務中，我們會將頁面的功能行為與 UI 細節分離開來，以解決 UI 細節重複的問題；為了這個目標，我們引入 <a href="https://code.google.com/p/selenium/wiki/PageObjects" target="_blank" rel="external">Page Objects</a> 這個模式。</p>
+<p>要特別注意的是， Page Objects 模式和 Mink 的 page 物件是兩件事。 Page Objects 模式主要是透過 API 描述頁面的行為，並封裝 UI 細節；而 Mink 的 page 物件則實際上是一個 <code>DocumentElement</code> 物件，主要是用來操作頁面上的元素。換句話說，在 Page Objects 模式中，頁面類別所封裝的 UI 細節，就是用 <code>DocumentElement</code> 物件來操作的。</p>
+<h3 id="實作_Page_Objects_模式">實作 Page Objects 模式</h3><p>首先在 <code>composer.json</code> 中加入：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">"autoload": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "PageObject\\": "tests/PageObject/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接著建立 <code>tests/PageObject</code> 目錄，並執行 <code>composer dump</code> 。</p>
+<p>新增 <code>tests/PageObject/Page.php</code> 這個抽象類例，主要是封裝 Mink 的 Session 物件及 Page 物件，並讓後面繼承的頁面類別可以復用：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">PageObject</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Behat</span>\<span class="title">Mink</span>\<span class="title">Session</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Page</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@var</span> Session</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$session</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@var</span> string</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$url</span> = <span class="string">'http://localhost/'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> Session $session</span><br><span class="line">     * <span class="doctag">@param</span> string $url</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Session <span class="variable">$session</span>, <span class="variable">$url</span> = <span class="string">''</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;session = <span class="variable">$session</span>;</span><br><span class="line">        <span class="keyword">if</span> (filter_var(<span class="variable">$url</span>, FILTER_VALIDATE_URL)) &#123;</span><br><span class="line">            <span class="variable">$this</span>-&gt;url = <span class="variable">$url</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$this</span>-&gt;session-&gt;visit(<span class="variable">$this</span>-&gt;url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> $name</span><br><span class="line">     * <span class="doctag">@return</span> Page</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loadPage</span><span class="params">(<span class="variable">$name</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$className</span> = <span class="string">'PageObject\\'</span> . <span class="variable">$name</span>;</span><br><span class="line">        <span class="keyword">if</span> (class_exists(<span class="variable">$className</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="variable">$className</span>(<span class="variable">$this</span>-&gt;session);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="將頁面細節封裝在頁面行為功能裡">將頁面細節封裝在頁面行為功能裡</h3><p>接下來先建立 <code>tests/PageObject/GoogleHome.php</code> 檔；這是 Google 首頁類別，它繼承抽象的 <code>Page</code> 類別，並提供一個 <code>search</code> 方法：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">PageObject</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoogleHome</span> <span class="keyword">extends</span> <span class="title">Page</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$url</span> = <span class="string">'https://www.google.com'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> $keyword</span><br><span class="line">     * <span class="doctag">@return</span> GoogleSearchResult</span><br><span class="line">     * <span class="doctag">@throws</span> \Behat\Mink\Exception\ElementNotFoundException</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">search</span><span class="params">(<span class="variable">$keyword</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$page</span> = <span class="variable">$this</span>-&gt;session-&gt;getPage();</span><br><span class="line">        <span class="variable">$page</span>-&gt;fillField(<span class="string">'q'</span>, <span class="variable">$keyword</span>);</span><br><span class="line">        <span class="variable">$page</span>-&gt;find(<span class="string">'css'</span>, <span class="string">'form'</span>)-&gt;submit();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;loadPage(<span class="string">'GoogleSearchResult'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這裡，我把原來輸入關鍵字並送出表單的 UI 操作，封裝在 <code>search</code> 方法中，並回傳一個搜尋結果頁面物件。</p>
+<p>再建立 <code>tests/PageObject/GoogleSearchResult.php</code> 檔，它主要是封裝搜尋結果頁。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">PageObject</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPUnit_Framework_Assert</span> <span class="title">as</span> <span class="title">Assert</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoogleSearchResult</span> <span class="keyword">extends</span> <span class="title">Page</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> $text</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">shouldContains</span><span class="params">(<span class="variable">$text</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$page</span> = <span class="variable">$this</span>-&gt;session-&gt;getPage();</span><br><span class="line">        <span class="variable">$result</span> = <span class="variable">$page</span>-&gt;getText();</span><br><span class="line">        Assert::assertContains(<span class="variable">$text</span>, <span class="variable">$result</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我在 <code>GoogleSearchResult</code> 類別的 <code>shouldContains</code> 方法中加入斷言 (assertion) ，這是為了讓外部的測試案例可以用更語意化的方式來使用這個類別，是一種 <code>Tell Don&#39;t Ask</code> 的實現。</p>
+<p>最後就可以把原來的測試案例改用新的頁面類別來重寫了：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Behat</span>\<span class="title">Mink</span>\<span class="title">Driver</span>\<span class="title">Selenium2Driver</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Behat</span>\<span class="title">Mink</span>\<span class="title">Session</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PageObject</span>\<span class="title">GoogleHome</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoogleSearchTest</span> <span class="keyword">extends</span> <span class="title">PHPUnit_Framework_TestCase</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testSearchWithKeyword</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// 使用 PhantomJS 當做 Driver</span></span><br><span class="line">        <span class="variable">$driver</span> = <span class="keyword">new</span> Selenium2Driver(<span class="string">'phantomjs'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 建立一個 Session 物件來控制瀏覧器</span></span><br><span class="line">        <span class="variable">$session</span> = <span class="keyword">new</span> Session(<span class="variable">$driver</span>);</span><br><span class="line">        <span class="variable">$session</span>-&gt;start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 瀏覽 Google 首頁</span></span><br><span class="line">        <span class="variable">$homePage</span> = <span class="keyword">new</span> GoogleHome(<span class="variable">$session</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 搜尋關鍵字並驗證搜尋結果是否包含預期的文字</span></span><br><span class="line">        <span class="variable">$homePage</span>-&gt;search(<span class="string">'Jace Ju'</span>)</span><br><span class="line">            -&gt;shouldContains(<span class="string">'網站製作學習誌'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這麼一來，在測試案例中就可以清楚地用頁面物件的行為去描述實際的需求，而不是落在操作 UI 的思維裡。</p>
+<h2 id="總結">總結</h2><p>雖然舊專案可能難以做到單元測試，但我們可以先利用 Web 測試來驗證它已經存在的行為；而在 Web 測試中可以透過程式來控制瀏覽器，達到自動化測試的目的。在撰寫測試案例時，最重要的是對需求的描述，而不是 UI 操作的細節；因此可以用 Page Objects 模式來封裝 UI 細節，讓頁面物件提供有語意化的行為操作方式。</p>
+<p>希望這個介紹能幫助大家對 Web 測試有基本的瞭解，當然在實務上可能會遇到的問題會更複雜；有機會的話我會另文分享自己在實務上遇到的問題，也歡迎大家提供不同的見解。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Selenium/" rel="tag">#Selenium</a>
+          
+            <a href="/tags/Web-開發/" rel="tag">#Web 開發</a>
+          
+            <a href="/tags/測試/" rel="tag">#測試</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/14/what-is-test/" rel="next" title="這樣寫測試錯了嗎？">
+                <i class="fa fa-chevron-left"></i> 這樣寫測試錯了嗎？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">585</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#所需工具與原理"><span class="nav-number">1.</span> <span class="nav-text">所需工具與原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具的安裝"><span class="nav-number">2.</span> <span class="nav-text">工具的安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_PHPUnit_與_Mink"><span class="nav-number">2.1.</span> <span class="nav-text">安裝 PHPUnit 與 Mink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_PhantomJS"><span class="nav-number">2.2.</span> <span class="nav-text">安裝 PhantomJS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定專案的_PHPUnit"><span class="nav-number">3.</span> <span class="nav-text">設定專案的 PHPUnit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試實例"><span class="nav-number">4.</span> <span class="nav-text">測試實例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#執行測試"><span class="nav-number">5.</span> <span class="nav-text">執行測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page_Objects_模式"><span class="nav-number">6.</span> <span class="nav-text">Page Objects 模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#實作_Page_Objects_模式"><span class="nav-number">6.1.</span> <span class="nav-text">實作 Page Objects 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#將頁面細節封裝在頁面行為功能裡"><span class="nav-number">6.2.</span> <span class="nav-text">將頁面細節封裝在頁面行為功能裡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#總結"><span class="nav-number">7.</span> <span class="nav-text">總結</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = '2015/10/27/web-testing-with-phpunit-mink/';
+      var disqus_title = '利用 PHPUnit 與 Mink 來做 Web 測試';
+      var disqus_url = 'http://jaceju.net/2015/10/27/web-testing-with-phpunit-mink/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
