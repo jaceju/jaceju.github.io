@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="經過了幾個月的等待， Laravel 5.1 終於在美國時間 6/9 正式釋出了。同時 Laracasts 也推出了一系列的 Laravel 5.1 新功能介紹，絕對是每位 Artisan 必看的影片。
+官方也介紹了 5.1 有哪些新特色 ，以下我會簡單介紹它們。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel 5.1 正式釋出">
 <meta property="og:url" content="http://jaceju.net/2015/06/10/laravel-5-1/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="經過了幾個月的等待， Laravel 5.1 終於在美國時間 6/9 正式釋出了。同時 Laracasts 也推出了一系列的 Laravel 5.1 新功能介紹，絕對是每位 Artisan 必看的影片。
+官方也介紹了 5.1 有哪些新特色 ，以下我會簡單介紹它們。">
 <meta property="og:updated_time" content="2015-06-09T17:48:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel 5.1 正式釋出">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="經過了幾個月的等待， Laravel 5.1 終於在美國時間 6/9 正式釋出了。同時 Laracasts 也推出了一系列的 Laravel 5.1 新功能介紹，絕對是每位 Artisan 必看的影片。
+官方也介紹了 5.1 有哪些新特色 ，以下我會簡單介紹它們。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> Laravel 5.1 正式釋出 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,48 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>經過了幾個月的等待， Laravel 5.1 終於在美國時間 6/9 <a href="https://laravel-news.com/2015/06/laravel-5-1-released/" target="_blank" rel="external">正式釋出</a>了。同時 Laracasts 也推出了一系列的 <a href="https://laracasts.com/series/whats-new-in-laravel-5-1" target="_blank" rel="external">Laravel 5.1 新功能介紹</a>，絕對是每位 Artisan 必看的影片。</p>
+<p>官方也介紹了 5.1 有哪些<a href="http://laravel.com/docs/5.1/releases" target="_blank" rel="external">新特色</a> ，以下我會簡單介紹它們。</p>
+<a id="more"></a>
+<h2 id="不再支援_PHP_5-5-9_以前的版本">不再支援 PHP 5.5.9 以前的版本</h2><p>從推出以來，我個人認為 Laravel 的作者似乎都一直在依循著 PHP 的新特色來開發 Laravel ，讓整個 Framework 不論在程式架構或效能上，都能保持在一定的水準。這次 5.1 版也是如此，直接就告訴大家：該把 PHP 升級到 5.5.9 以上的版本了，這樣才能使用新版的 Laravel 所帶來的好處。</p>
+<p>很難想像這樣先進的 PHP Framework 的開發作者，原來是寫 .Net 的；而在開發 Laravel 之前完全沒學過 PHP ，真是令我汗顏。</p>
+<h2 id="第一個_LTS_版本">第一個 LTS 版本</h2><p>當然隨著 PHP 持續演進的過程中，勢必就得有所取捨；這樣的特色讓許多依賴舊的 Laravel 版本所開發的專案，在穩定與升級之間面臨很大的抉擇。到了 Laravel 5.1 ，作者終於正式宣佈它是一個 LTS (Long Term Support) 版本，將會讓企業安心用它來開發需要穩定的長期專案。</p>
+<p>也就是說現在用 Laravel 5.1 開發的專案，在未來的兩、三年內可以不用再怕沒人修核心的 bug 了。</p>
+<h2 id="新的文件">新的文件</h2><p>在 5.1 將要發佈之前，作者花了很多心力在完善文件。例如 <a href="http://laravel.com/docs/5.1/authentication" target="_blank" rel="external">Authentication</a> 的部份就做了很完整的 Quickstart 範例，讓開發者瞭解如何去實作自己的認證機制。另外即時搜尋也是這次文件系統的新特色，讓開發者可以很快地用關鍵字來查閱相關說明。</p>
+<p>不過我還是覺得字太小，而且每次要看其他章節都得捲回去頁首。</p>
+<h2 id="PSR-2">PSR-2</h2><p>在 Laravel 5.1 之前的版本，讓我最困擾的就是作者自己弄了一套 Coding Style ，而不是照著 PSR 標準走。終於在眾開發者的要求下，作者從善如流，讓核心代碼以及產生器所產生的程式碼，都遵守了 PSR-2 標準。</p>
+<p>這個結果，我只能拍手叫好了；因為即便 PSR-2 再怎麼不如己意，但它終歸是大家討論出來的標準。 (公司的 coding style 也不正是如此嗎？)</p>
+<ul>
+<li>相關影片： <a href="https://laracasts.com/series/whats-new-in-laravel-5-1/episodes/1" target="_blank" rel="external">Adopting PSR-2</a></li>
+</ul>
+<h2 id="在樣版中注入服務">在樣版中注入服務</h2><p>在 Blade 引擎中也新增了一個 <code>@inject</code> 指令，讓開發者可以即時地注入一個物件。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">@inject('metrics', 'App\Services\MetricsService')</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">    Monthly Revenue: &#123;&#123; $metrics-&gt;monthlyRevenue() &#125;&#125;.</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這樣一來應該就可以不必在 Controller 或 View Composer 中引入變數了。</p>
+<ul>
+<li>相關文件： <a href="http://laravel.com/docs/5.1/blade#service-injection" target="_blank" rel="external">Blade Templates - Service Injection</a></li>
+<li>相關影片： <a href="https://laracasts.com/series/whats-new-in-laravel-5-1/episodes/2" target="_blank" rel="external">Injecting Services With Blade</a></li>
+</ul>
+<h2 id="Middleware_參數">Middleware 參數</h2><p>原本我們只能從傳入 request 物件給 middleware ，再從 request 物件中取得參數給 middleware 使用；在新版本終於可以自訂 middleware 的參數，再從 route 的定義裡傳入參數給 middleware 。</p>
+<p>例如在製作權限系統時，就可以在 route 傳入指定的角色，讓管理權限的 middleware 判斷使用者是否符合這個角色。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoleMiddleware</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(<span class="variable">$request</span>, Closure <span class="variable">$next</span>, <span class="variable">$role</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (! <span class="variable">$request</span>-&gt;user()-&gt;hasRole(<span class="variable">$role</span>)) &#123;</span><br><span class="line">            <span class="comment">// Redirect...</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$next</span>(<span class="variable">$request</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Route::put(<span class="string">'post/&#123;id&#125;'</span>, [<span class="string">'middleware'</span> =&gt; <span class="string">'role:editor'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(<span class="variable">$id</span>)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>另外 Middleware 的設計也因為底層的 Symfony 採用了剛定案的 PSR-7 標準，所以也符合 PSR-7 的標準。</p>
+<ul>
+<li>相關文件： <a href="http://laravel.com/docs/5.1/middleware#middleware-parameters" target="_blank" rel="external">HTTP Middleware - Middleware Parameters</a></li>
+</ul>
+<h2 id="事件廣播">事件廣播</h2><p>Laravel 原本已經包含了一個強大的事件系統，現在加上實作更簡單的事件廣播功能，能讓開發者搭配特定的服務 (例如 Redis) 以廣播 WebSocket 事件，便可以更有效率地做出即時應用程式。</p>
+<p>原本我打算用 <a href="http://reactphp.org/" target="_blank" rel="external">ReactPHP</a> 的說，看來又要改變主意了。</p>
+<ul>
+<li>相關文件： <a href="http://laravel.com/docs/5.1/events#broadcasting-events" target="_blank" rel="external">Events - Broadcasting Events</a></li>
+<li>相關影片： <a href="https://laracasts.com/series/intermediate-laravel/episodes/3" target="_blank" rel="external">The Power of Eventing</a> (需付費)</li>
+</ul>
+<h2 id="更完整的測試框架">更完整的測試框架</h2><p>先前的版本所提供的測試工具提供的功能有限，僅能做到部份的整合測試。現在 Laravel 5.1 引入了 laracasts 的測試套件，讓整合測試變得更易讀。</p>
+<p>我才剛把 <a href="http://codeception.com/" target="_blank" rel="external">Codeception</a> 引入而已，這套要不要用可能要再研究一下。</p>
+<ul>
+<li>相關文件： <a href="http://laravel.com/docs/5.1/testing" target="_blank" rel="external">Testing</a></li>
+</ul>
+<h2 id="小結">小結</h2><p>據作者說， Laravel 5.1 是他目前最滿意的版本；當然這或許有些老王賣瓜的感覺，但從 Laravel 3 追到現在，我也覺得 Laravel 真的是與時俱進，不斷地結合許多先進的開發觀念。</p>
+<p>接下來我會把一些目前正在執行的專案都換成 5.1 ，再來看看它是不是真的有如作者所說的這麼強大。</p>
+</span>
       
     </div>
 
@@ -290,22 +319,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +398,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +431,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不再支援_PHP_5-5-9_以前的版本"><span class="nav-number">1.</span> <span class="nav-text">不再支援 PHP 5.5.9 以前的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一個_LTS_版本"><span class="nav-number">2.</span> <span class="nav-text">第一個 LTS 版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的文件"><span class="nav-number">3.</span> <span class="nav-text">新的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PSR-2"><span class="nav-number">4.</span> <span class="nav-text">PSR-2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在樣版中注入服務"><span class="nav-number">5.</span> <span class="nav-text">在樣版中注入服務</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Middleware_參數"><span class="nav-number">6.</span> <span class="nav-text">Middleware 參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件廣播"><span class="nav-number">7.</span> <span class="nav-text">事件廣播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更完整的測試框架"><span class="nav-number">8.</span> <span class="nav-text">更完整的測試框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">9.</span> <span class="nav-text">小結</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +447,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +469,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +479,6 @@
 
   
   
-
   
     
     
@@ -491,21 +508,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +677,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +707,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

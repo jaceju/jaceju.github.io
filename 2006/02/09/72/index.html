@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,36 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="如果在 Smarty 中 include 了 UTF-8 格式的檔案，就要小心 BOM (Byte Order Mark) 的問題。
+BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是不是屬於 Unicode 格式，請參考 憤怒的青蛙: UTF-8, BOM, Micrisoft ，或用 Google 搜尋 UTF-8 BOM ，有更多有用的訊息。
+那麼為什麼 BOM 會造成影響呢？因為">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BOM (Byte Order Mark) 的問題">
 <meta property="og:url" content="http://jaceju.net/2006/02/09/72/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="如果在 Smarty 中 include 了 UTF-8 格式的檔案，就要小心 BOM (Byte Order Mark) 的問題。
+BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是不是屬於 Unicode 格式，請參考 憤怒的青蛙: UTF-8, BOM, Micrisoft ，或用 Google 搜尋 UTF-8 BOM ，有更多有用的訊息。
+那麼為什麼 BOM 會造成影響呢？因為">
+<meta property="og:image" content="http://jaceju.net/resources/bom/dw_bom.gif">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BOM (Byte Order Mark) 的問題">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="如果在 Smarty 中 include 了 UTF-8 格式的檔案，就要小心 BOM (Byte Order Mark) 的問題。
+BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是不是屬於 Unicode 格式，請參考 憤怒的青蛙: UTF-8, BOM, Micrisoft ，或用 Google 搜尋 UTF-8 BOM ，有更多有用的訊息。
+那麼為什麼 BOM 會造成影響呢？因為">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> BOM (Byte Order Mark) 的問題 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +136,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +146,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +156,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +176,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +235,17 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>如果在 Smarty 中 include 了 UTF-8 格式的檔案，就要小心 BOM (Byte Order Mark) 的問題。</p>
+<p>BOM 的由來簡單來說是為了讓一些編輯程式能夠辨認該檔案是不是屬於 Unicode 格式，請參考 <a href="http://blog.cdpa.nsysu.edu.tw/zmx/archives/001058.html" target="_blank" rel="external">憤怒的青蛙: UTF-8, BOM, Micrisoft</a> ，或用 Google 搜尋 <a href="http://www.google.com.tw/search?hl=zh-TW&amp;rls=GGGL%2CGGGL%3A2005-09%2CGGGL%3Azh-TW&amp;q=utf-8+bom&amp;btnG=%E6%90%9C%E5%B0%8B&amp;meta=lr%3Dlang_zh-TW" target="_blank" rel="external">UTF-8 BOM</a> ，有更多有用的訊息。</p>
+<p>那麼為什麼 BOM 會造成影響呢？因為 BOM 對 HTML 來說是屬於字元，所以 include UTF-8 的檔案時，HTML 就會就會認為被 include 的子樣版上方有個字元，因此就會保留一個空間給它了，就是你們看到那個白白的空行。</p>
+<p>補充：這個空白行似乎只有 IE 才會出現。</p>
+<p>這種問題也會發生在 PHP 上面，如果有使用 Session 時，常會見到以下情況：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Warning: session_start() [http://www.php.net/manual/en/function.session-start]:&#10;Cannot send session cookie -&#10;headers already sent by (output started at test.php:1) in test.php on line 2</span><br></pre></td></tr></table></figure>
+<p>而這也是 BOM 在做怪，原程式如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(BOM&#22312;&#36889;&#35041;&#65292;&#20294;&#20320;&#30475;&#19981;&#35211;&#23427;)&#60;?php&#10;session_start();&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>解決的方式可以改用 EditPlus 、 EmEdit 等可支援無 BOM 之 UTF-8 的文字編輯器，如果是 Dreamweaver MX 2004 的話，在編碼方式選成 Unicode (UTF-8) 時就要將取消「包含 Unicode 簽名 (BOM) 」。 </p>
+<p><img src="/resources/bom/dw_bom.gif" alt="Dreamweaver BOM"></p>
+</span>
       
     </div>
 
@@ -288,22 +290,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +369,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +402,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +418,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +440,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +450,6 @@
 
   
   
-
   
     
     
@@ -489,21 +479,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +648,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +678,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

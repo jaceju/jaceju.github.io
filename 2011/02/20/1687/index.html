@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="在之前的「 Smarty 2 整合到 Zend Framework 1.10 的重點整理」一文中，我們已經將 Smarty 2 整合到 Zend Framework 裡了，但是我後來發現在實戰應用裡，會因為 Smarty 預設的錯誤處理而使得 Zend Framework 沒辦法正確顯示 Exception ！
+終於在經過多次的嘗試下，我找到了一個更佳的解法，以下是重點整理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="將 Smarty 3 整合到 Zend Framework 1.11 中">
 <meta property="og:url" content="http://jaceju.net/2011/02/20/1687/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="在之前的「 Smarty 2 整合到 Zend Framework 1.10 的重點整理」一文中，我們已經將 Smarty 2 整合到 Zend Framework 裡了，但是我後來發現在實戰應用裡，會因為 Smarty 預設的錯誤處理而使得 Zend Framework 沒辦法正確顯示 Exception ！
+終於在經過多次的嘗試下，我找到了一個更佳的解法，以下是重點整理。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="將 Smarty 3 整合到 Zend Framework 1.11 中">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="在之前的「 Smarty 2 整合到 Zend Framework 1.10 的重點整理」一文中，我們已經將 Smarty 2 整合到 Zend Framework 裡了，但是我後來發現在實戰應用裡，會因為 Smarty 預設的錯誤處理而使得 Zend Framework 沒辦法正確顯示 Exception ！
+終於在經過多次的嘗試下，我找到了一個更佳的解法，以下是重點整理。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 將 Smarty 3 整合到 Zend Framework 1.11 中 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,52 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>在之前的「 <a href="http://www.jaceju.net/blog/archives/1083" target="_blank" rel="external">Smarty 2 整合到 Zend Framework 1.10 的重點整理</a>」一文中，我們已經將 Smarty 2 整合到 Zend Framework 裡了，但是我後來發現在實戰應用裡，會因為 Smarty 預設的錯誤處理而使得 Zend Framework 沒辦法正確顯示 Exception ！</p>
+<p>終於在經過多次的嘗試下，我找到了一個更佳的解法，以下是重點整理。</p>
+<a id="more"></a>
+<h2 id="準備">準備</h2><ul>
+<li><p>先依照「<a href="http://www.jaceju.net/blog/archives/1600" target="_blank" rel="external">建立 Portable 的 ZF 專案</a>」一文準備一個新專案，然後按照「<a href="http://www.jaceju.net/blog/archives/1683" target="_blank" rel="external">讓 Zend Framework 把 Error 當做 Exception 處理</a>」一文將錯誤處理的部份設定好。</p>
+</li>
+<li><p>接著下載 Smarty 最新的版本 (本文使用 3.0.7 版) ，並在解壓縮後將 libs 更名為 Smarty3 再放到專案的 library 目錄下。</p>
+</li>
+</ul>
+<p>註：如果暫時不想使用 Smarty 3 的話，也可以下載 Smarty 2 最新的版本，然後按照上面的步驟進行，但要將 libs 目錄改名為 Smarty2 。</p>
+<h2 id="整合">整合</h2><p>與「 <a href="http://www.jaceju.net/blog/archives/1083" target="_blank" rel="external">Smarty 2 整合到 Zend Framework 1.10 的重點整理</a>」的原理差不多，我們要先建立 Plugin 和自訂的 View ，程式如下：</p>
+<h3 id="My_Controller_Plugin_View_Smarty_類別">My_Controller_Plugin_View_Smarty 類別</h3><p>接下來請新建 library/My/Controller/Plugin/View/Smarty.php 這個檔案：</p>
+<p>註：跟前一個作法不同，我在 Plugin 下有多了一個 View 目錄，請特別注意。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * @see Zend_Controller_Plugin_Abstract&#10; */&#10;require_once &#39;Zend/Controller/Plugin/Abstract.php&#39;;&#10;/**&#10; * &#21205;&#24907;&#34389;&#29702; Smarty &#30340;&#36335;&#24465;&#23660;&#24615;&#10; *&#10; */&#10;class My_Controller_Plugin_View_Smarty extends Zend_Controller_Plugin_Abstract&#10;&#123;&#10;    /**&#10;     * &#21205;&#24907;&#20999;&#25563; template_dir &#21450; compile_dir&#10;     *&#10;     * @param Zend_Controller_Request_Abstract $request&#10;     */&#10;    public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)&#10;    &#123;&#10;        // Set ViewRenderer&#10;        $frontController = Zend_Controller_Front::getInstance();&#10;        $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper(&#39;ViewRenderer&#39;);&#10;        $smarty = $viewRenderer-&#62;view-&#62;getEngine();&#10;        // &#34389;&#29702; Smarty &#36335;&#24465;&#10;        if ($frontController-&#62;getDefaultModule() != $request-&#62;getModuleName()) &#123;&#10;            $smarty-&#62;compile_dir .= &#39;/&#39; . $this-&#62;getRequest()-&#62;getModuleName();&#10;            if (!file_exists($smarty-&#62;compile_dir)) &#123;&#10;                mkdir($smarty-&#62;compile_dir);&#10;            &#125;&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="My_View_Smarty">My_View_Smarty</h3><p>接著再建立 library/My/View/Smarty.php 這個檔案：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;defined(&#39;SMARTY_VERSION&#39;) || define(&#39;SMARTY_VERSION&#39;, 3);&#10;/**&#10; * @see Smarty&#10; */&#10;require_once &#39;Smarty&#39; . SMARTY_VERSION . &#39;/Smarty.class.php&#39;;&#10;/**&#10; * @see Zend_View_Abstract&#10; */&#10;require_once &#39;Zend/View/Abstract.php&#39;;&#10;/**&#10; * &#34389;&#29702;&#27171;&#29256;&#10; *&#10; */&#10;class My_View_Smarty extends Zend_View_Abstract&#10;&#123;&#10;    /**&#10;     * Smarty &#29289;&#20214;&#10;     *&#10;     * @var Smarty&#10;     */&#10;    protected $_smarty = null;&#10;    /**&#10;     * &#24314;&#27083;&#23376;&#10;     *&#10;     * &#34389;&#29702; Smarty &#30456;&#38364;&#35373;&#23450;&#10;     *&#10;     * @param array $config Configuration data&#10;     */&#10;    public function __construct($config = array())&#10;    &#123;&#10;        parent::__construct($config);&#10;        $this-&#62;_smarty = new Smarty();&#10;        if (array_key_exists(&#39;params&#39;, $config)) &#123;&#10;            foreach ($config[&#39;params&#39;] as $key =&#62; $value) &#123;&#10;                if (&#39;plugins_dir&#39; === $key) &#123;&#10;                    $this-&#62;_addtPluginDir($value);&#10;                &#125; else &#123;&#10;                    if (property_exists(&#39;Smarty&#39;, $key)) &#123;&#10;                        $this-&#62;_smarty-&#62;$key = $value;&#10;                    &#125;&#10;                &#125;&#10;            &#125;&#10;        &#125;&#10;        $this-&#62;_addtPluginDir(dirname(__FILE__) . &#39;/Smarty/plugins&#39;);&#10;        $this-&#62;_smarty-&#62;assign(&#39;this&#39;, $this);&#10;    &#125;&#10;    /**&#10;     * &#26032;&#22686; Plugin &#25628;&#23563;&#36335;&#24465;&#10;     *&#10;     * @param string $pluginPath&#10;     */&#10;    protected function _addtPluginDir($pluginPath)&#10;    &#123;&#10;        if (3 === SMARTY_VERSION) &#123;&#10;            $this-&#62;_smarty-&#62;addPluginsDir($pluginPath);&#10;        &#125; else &#123;&#10;            $this-&#62;_smarty-&#62;plugins_dir[] = $pluginPath;&#10;        &#125;&#10;    &#125;&#10;    /**&#10;     * &#22238;&#20659; Smarty &#29289;&#20214;&#10;     *&#10;     * @return Smarty&#10;     */&#10;    public function getEngine()&#10;    &#123;&#10;        return $this-&#62;_smarty;&#10;    &#125;&#10;    /**&#10;     * &#35373;&#23450; Smarty &#23660;&#24615;&#10;     *&#10;     * @param string $key&#10;     * @param mixed $value&#10;     */&#10;    public function setParam($key, $value)&#10;    &#123;&#10;        $this-&#62;_smarty-&#62;$key = $value;&#10;    &#125;&#10;    /**&#10;     * &#35373;&#23450;&#27171;&#29256;&#35722;&#25976;&#10;     *&#10;     * @param string $key &#27171;&#29256;&#35722;&#25976;&#21517;&#31281;&#10;     * @param mixed $value &#27171;&#29256;&#35722;&#25976;&#20540;&#10;     */&#10;    public function __set($key, $value)&#10;    &#123;&#10;        parent::__set($key, $value);&#10;        $this-&#62;_smarty-&#62;assign($key, $value);&#10;    &#125;&#10;    /**&#10;     * &#21462;&#24471;&#27171;&#29256;&#35722;&#25976;&#10;     *&#10;     * @param string $key &#27171;&#29256;&#35722;&#25976;&#21517;&#31281;&#10;     * @return mixed &#27171;&#29256;&#35722;&#25976;&#20540;&#10;     */&#10;    public function __get($key)&#10;    &#123;&#10;        return $this-&#62;_smarty-&#62;getTemplateVars($key);&#10;    &#125;&#10;    /**&#10;     * &#27298;&#26597;&#27171;&#29256;&#35722;&#25976;&#26159;&#21542;&#23384;&#22312;&#10;     *&#10;     * @param string $key &#27171;&#29256;&#35722;&#25976;&#21517;&#31281;&#10;     * @return boolean&#10;     */&#10;    public function __isset($key)&#10;    &#123;&#10;        return null === $this-&#62;_smarty-&#62;getTemplateVars($key);&#10;    &#125;&#10;    /**&#10;     * &#31227;&#38500;&#27171;&#29256;&#35722;&#25976;&#10;     *&#10;     * @param string $key &#27171;&#29256;&#35722;&#25976;&#21517;&#31281;&#10;     */&#10;    public function __unset($key)&#10;    &#123;&#10;        parent::__unset($key);&#10;        $this-&#62;_smarty-&#62;clearAssign($key);&#10;    &#125;&#10;    /**&#10;     * &#35373;&#23450;&#27171;&#29256;&#35722;&#25976;&#10;     *&#10;     * @param string | array $var &#27171;&#29256;&#35722;&#25976;&#21517;&#31281;&#25110;&#27171;&#29256;&#35722;&#25976;&#38499;&#21015; (key =&#62; value)&#10;     * @param mixed $value &#27171;&#29256;&#35722;&#25976;&#20540;&#10;     */&#10;    public function assign($var, $value = null)&#10;    &#123;&#10;        if (is_array($var)) &#123;&#10;            foreach ($var as $key =&#62; $value) &#123;&#10;                parent::__set($key, $value);&#10;            &#125;&#10;            $this-&#62;_smarty-&#62;assign($var);&#10;            return;&#10;        &#125;&#10;        $this-&#62;__set($var, $value);&#10;    &#125;&#10;    /**&#10;     * &#31227;&#38500;&#25152;&#26377;&#27171;&#29256;&#35722;&#25976;&#10;     */&#10;    public function clearVars()&#10;    &#123;&#10;        parent::clearVars();&#10;        $this-&#62;_smarty-&#62;clearAllAssign();&#10;    &#125;&#10;    /**&#10;     * Extension of the abstract parent class method&#10;     */&#10;    protected function _run()&#10;    &#123;&#10;        $oldErrorHandler = set_error_handler(array($this, &#39;emptyErrorHandler&#39;));&#10;        $file = func_get_arg(0);&#10;        echo $this-&#62;_smarty-&#62;fetch($file);&#10;        restore_error_handler();&#10;    &#125;&#10;    /**&#10;     *&#10;     */&#10;    public function emptyErrorHandler()&#10;    &#123;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>不過與前一個作法不一樣的地方是，我改在 _run() 這個內建的抽象方法去呼叫 Smarty 的 fetch() 方法，如此一來我們就可以不需要特別去處理 View Script 的部份；同時也解決掉了前一個作法中，當沒有 View Script 時，畫面會一片空白的問題。</p>
+<p>而且在 _run() 這個方法裡，我把原來在 index.php (入口) 裡的 errorExceptionHandler 關掉了，這樣才不會讓 Smarty 一直跑出樣版變數未定義的錯誤。</p>
+<p>另外原來 Zend_View 的幾個魔術方法 (例如 <strong>set 、 </strong>get 等) ，除了轉手給 Smarty 處理外，我還保留呼叫 parent 的同名方法；這邊主要是為了讓其他因為特別因素而沒有用到 Smarty 的套件 (像是 Zend_Form ) ， Zend_View 還是能保留原來的動作機制。</p>
+<p>還有就是我也定義了一個 SMARTY_VERSION 常數，讓大家可以切換 Smarty 版本；只要在 index.php (入口) 最上方加入以下程式碼即可切換 Smarty 的版本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">defined(&#39;SMARTY_VERSION&#39;) || define(&#39;SMARTY_VERSION&#39;, 3);</span><br></pre></td></tr></table></figure>
+<p>接下來就要讓專案可以載入以上兩個類別了。</p>
+<h3 id="My_Application_Resource_View">My_Application_Resource_View</h3><p>在前一個作法中，我們是改寫 application/Bootstrap.php 以載入上面操作 Smarty 用的兩個類別。但是這次我改用 Application 的 View Resource 來載入，這樣就不需要去更動 Bootstrap.php ，也可以讓我們的程式碼更具移植性。</p>
+<p>所以最後我們要再建立 My/Application/Resource/View.php 這個檔案，程式如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * @see Zend_Application_Resource_View&#10; */&#10;require_once &#39;Zend/Application/Resource/View.php&#39;;&#10;/**&#10; * &#34389;&#29702;&#35222;&#22294;&#24341;&#25806;&#10; *&#10; */&#10;class My_Application_Resource_View extends Zend_Application_Resource_View&#10;&#123;&#10;    /**&#10;     * &#35222;&#22294;&#29289;&#20214;&#36984;&#38917;&#10;     *&#10;     * @var array&#10;     */&#10;    protected $_options = array();&#10;    /**&#10;     * &#35222;&#22294;&#29289;&#20214;&#10;     *&#10;     * @var Zend_View&#10;     */&#10;    protected $_view = null;&#10;    /**&#10;     * &#21021;&#22987;&#21270;&#35222;&#22294;&#29289;&#20214;&#10;     *&#10;     */&#10;    public function init()&#10;    &#123;&#10;        parent::init();&#10;        $this-&#62;_setControllerPlugin();&#10;        $this-&#62;_setViewRenderer();&#10;        $this-&#62;_setLayout();&#10;        return $this-&#62;getView();&#10;    &#125;&#10;    /**&#10;     * &#21462;&#24471;&#24341;&#25806;&#21517;&#31281;&#10;     *&#10;     * @return string&#10;     */&#10;    protected function _getEngineName()&#10;    &#123;&#10;        return isset($this-&#62;_options[&#39;engine&#39;])&#10;             ? ucfirst(strtolower(trim($this-&#62;_options[&#39;engine&#39;])))&#10;             : null;&#10;    &#125;&#10;    /**&#10;     * &#35373;&#23450; Controller Plugin&#10;     *&#10;     */&#10;    protected function _setControllerPlugin()&#10;    &#123;&#10;        $engineName = $this-&#62;_getEngineName();&#10;        if ($engineName) &#123;&#10;            $pluginName = &#39;My_Controller_Plugin_View_&#39; . $this-&#62;_getEngineName();&#10;            Zend_Controller_Front::getInstance()-&#62;registerPlugin(new $pluginName());&#10;        &#125;&#10;    &#125;&#10;    /**&#10;     * &#23559; View &#32622;&#20837;&#21040; ViewRenderer&#10;     *&#10;     */&#10;    protected function _setViewRenderer()&#10;    &#123;&#10;        parent::init(); // Set View into ViewRenderer&#10;        if (isset($this-&#62;_options[&#39;viewSuffix&#39;])) &#123;&#10;            Zend_Controller_Action_HelperBroker::getStaticHelper(&#39;ViewRenderer&#39;)&#10;                -&#62;setViewSuffix($this-&#62;_options[&#39;viewSuffix&#39;]);&#10;        &#125;&#10;    &#125;&#10;    /**&#10;     * &#23559; View &#32622;&#20837;&#21040; Layout&#10;     *&#10;     */&#10;    protected function _setLayout()&#10;    &#123;&#10;        $bootstrap = $this-&#62;getBootstrap();&#10;        if ($bootstrap-&#62;hasPluginResource(&#39;layout&#39;)) &#123;&#10;            $bootstrap-&#62;bootstrap(&#39;layout&#39;);&#10;            $bootstrap-&#62;getPluginResource(&#39;layout&#39;)-&#62;getLayout()-&#62;setView($this-&#62;getView());&#10;        &#125;&#10;    &#125;&#10;    /**&#10;     * &#21462;&#24471;&#35222;&#22294;&#29289;&#20214;&#10;     *&#10;     * @return Zend_View&#10;     */&#10;    public function getView()&#10;    &#123;&#10;        if (null == $this-&#62;_view) &#123;&#10;            $engineName = $this-&#62;_getEngineName();&#10;            if (null === $engineName) &#123;&#10;                $this-&#62;_view = parent::getView();&#10;            &#125; else &#123;&#10;                $viewName = &#39;My_View_&#39; . $this-&#62;_getEngineName();&#10;                $options = $this-&#62;getOptions();&#10;                $this-&#62;_view = new $viewName($options);&#10;                if (isset($options[&#39;doctype&#39;])) &#123;&#10;                    $this-&#62;_view-&#62;doctype()-&#62;setDoctype(strtoupper($options[&#39;doctype&#39;]));&#10;                &#125;&#10;            &#125;&#10;        &#125;&#10;        return $this-&#62;_view;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>基本上 My_Application_Resource_View 做的事情都跟前一個作法裡的 Bootstrap.php 差不多，只是我將它重構得更清楚。只要在稍後做一些設定後， My_Application_Resource_View 將會取代 Zend_Application_Resource_View 來執行初始化 View 的動作。</p>
+<p>為什麼要改用 View Resource 呢？主要原因如下：</p>
+<ul>
+<li><p>它可以幫我們取得 application.ini 中，有關 resources.view 的設定。</p>
+</li>
+<li><p>具有移植性，可以隨著 My 套件移植到其他專案上。</p>
+</li>
+<li><p>可以切換回預設的 Zend_View 樣版引擎。</p>
+</li>
+</ul>
+<p>當然只是把我們的 My 套件放在 library 下並不能發揮它的作用，我們必須告訴專案來使用這些新類別。</p>
+<h3 id="設定">設定</h3><p>接下來就要讓 My 套件整合到我們的專案裡了，我們只需要在 applicatin.ini 中加入以下設定即可：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Autoloadernamespaces[] = &#34;My_&#34; ; &#21521; Autoloader &#35387;&#20874; My &#36889;&#20491; namespace&#10;pluginPaths.My_Application_Resource_ = &#34;My/Application/Resource&#34; ; &#35387;&#20874; Resource &#30340;&#25628;&#23563;&#36335;&#24465;&#10;resources.view.engine                 = &#34;smarty&#34; ; &#20351;&#29992; Smarty &#27171;&#29256;&#24341;&#25806;&#65292;&#22914;&#26524;&#19981;&#38656;&#35201;&#30340;&#35441;&#23601;&#25972;&#34892;&#31227;&#38500;&#10;resources.view.params.compile_dir     = APPLICATION_PATH &#34;/temp/compiled&#34; ; &#35373;&#23450; Smarty &#30340; compiled &#36335;&#24465;&#10;resources.view.params.left_delimiter  = &#34;&#60;%&#34; ; &#24038;&#37002;&#30340; delimiter&#10;resources.view.params.right_delimiter = &#34;%&#62;&#34; ; &#21491;&#37002;&#30340; delimiter&#10;resources.view.params.auto_literal    = false ; &#35731; delimiter &#21487;&#20197;&#25509;&#21463;&#31354;&#30333;&#10;resources.view.doctype                = &#34;XHTML1_TRANSITIONAL&#34; ; &#35731; Zend_Form &#31561;&#22871;&#20214;&#20351;&#29992; XHTML1 &#20358;&#36664;&#20986;</span><br></pre></td></tr></table></figure>
+<p>相關說明就請參考設定後面的註解。</p>
+<p>要特別說一下的是 pluginPaths 這個設定，它會讓 Zend Framework 以註冊的 namespace 來尋找像是 Resource 或 Plugin 等未指定 namespace 的類別。原則上越晚註冊的 namespace ，就會越先被搜尋；因此我們的 My_Application_Resource_View 才能取代原來預設的 Zend_Application_Resource_View 。</p>
+<p>還有就是 auto_literal 這個參數，這是在 Smarty 3 才特別出現的。主要是因為 Smarty 3 預設在 delimiter 和敘述語法間是不能有空白字元的，如果我們需要空白字元的話，就要將 auto_literal 關閉。例如在 auto_literal 開啟時：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;$name&#125; // &#21512;&#27861;&#10;&#123; $name &#125; // &#19981;&#21512;&#27861;&#10;&#123; $name&#10;&#125; // &#19981;&#21512;&#27861;</span><br></pre></td></tr></table></figure>
+<p>當關閉了 auto_literal 後，上面的語法就都可以被 Smarty 辨別了。</p>
+<h3 id="樣版">樣版</h3><p>作法與「 <a href="http://www.jaceju.net/blog/archives/1083" target="_blank" rel="external">Smarty 2 整合到 Zend Framework 1.10 的重點整理</a>」一樣，這裡就不再詳述。</p>
+<h2 id="小結">小結</h2><p>經過多次的實戰，加上朋友的意見反饋，我把舊有而有問題的做法改成了目前這個新方式；當然這並不一定是最完美的解法，希望大家在測試過後也能給我一些新的建議。</p>
+</span>
       
     </div>
 
@@ -292,22 +325,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -374,17 +404,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -411,10 +437,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#準備"><span class="nav-number">1.</span> <span class="nav-text">準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合"><span class="nav-number">2.</span> <span class="nav-text">整合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#My_Controller_Plugin_View_Smarty_類別"><span class="nav-number">2.1.</span> <span class="nav-text">My_Controller_Plugin_View_Smarty 類別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#My_View_Smarty"><span class="nav-number">2.2.</span> <span class="nav-text">My_View_Smarty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#My_Application_Resource_View"><span class="nav-number">2.3.</span> <span class="nav-text">My_Application_Resource_View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定"><span class="nav-number">2.4.</span> <span class="nav-text">設定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#樣版"><span class="nav-number">2.5.</span> <span class="nav-text">樣版</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">3.</span> <span class="nav-text">小結</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -429,8 +453,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -452,8 +475,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -463,7 +485,6 @@
 
   
   
-
   
     
     
@@ -493,21 +514,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -659,20 +683,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -680,5 +713,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

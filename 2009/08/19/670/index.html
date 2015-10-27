@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="先前同事詢問有關 PHP static 關鍵字的用法，這裡我簡單整理一下。
+static 主要用途在於定義一個變數空間，讓函式或類別可以保留住該變數的值，直到下次的存取。
+以下就各別來探討 static 在函式與類別中的用法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PHP] 瞭解 static 關鍵字">
 <meta property="og:url" content="http://jaceju.net/2009/08/19/670/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="先前同事詢問有關 PHP static 關鍵字的用法，這裡我簡單整理一下。
+static 主要用途在於定義一個變數空間，讓函式或類別可以保留住該變數的值，直到下次的存取。
+以下就各別來探討 static 在函式與類別中的用法。">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[PHP] 瞭解 static 關鍵字">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="先前同事詢問有關 PHP static 關鍵字的用法，這裡我簡單整理一下。
+static 主要用途在於定義一個變數空間，讓函式或類別可以保留住該變數的值，直到下次的存取。
+以下就各別來探討 static 在函式與類別中的用法。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [PHP] 瞭解 static 關鍵字 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,45 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>先前同事詢問有關 PHP static 關鍵字的用法，這裡我簡單整理一下。</p>
+<p>static 主要用途在於定義一個變數空間，讓函式或類別可以保留住該變數的值，直到下次的存取。</p>
+<p>以下就各別來探討 static 在函式與類別中的用法。</p>
+<a id="more"></a>
+<h2 id="函式裡的_static_關鍵字">函式裡的 static 關鍵字</h2><p>先來看看以下的例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getCount()&#10;&#123;&#10;    static $count = 0;&#10;    $count ++;&#10;    return $count;&#10;&#125;&#10;&#10;for ($i = 0; $i &#60; 10; $i ++) &#123;&#10;   echo getCount(), &#34;\n&#34;;&#10;&#125;&#10;/* output:&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;*/</span><br></pre></td></tr></table></figure>
+<p>首先我們在 getCount() 這個方法中定義了一個 static 變數 $count ，然後每次呼叫 getCount() 時，就會對 $count 作累加的動作。</p>
+<p>接著我們透過迴圈執行十次 getCount() 方法，便可得到了 1 ~ 10 的輸出結果。</p>
+<p>這是因為將變數宣告為 static 後，第一次呼叫 getCount() 這個方法時，會為 $count 保留一塊記憶體空間；而當脫離了 getCount() 的變數作用域後，這個記憶體空間並不會被消滅掉，而會在下一次呼叫 getCount() 方法時，再次被配置進來，並還原先前的變數值。</p>
+<p>因此，除了第一次呼叫 getCount() 方法外，接下來的每次呼叫都會讓 $count 值累加，而得到 1 ~ 10 的輸出結果；如果把 static 關鍵字拿掉，就會輸出十次的 1 。</p>
+<h2 id="應用在遞迴上的_static_關鍵字">應用在遞迴上的 static 關鍵字</h2><p>瞭解函式中的 static 關鍵字用法後，我們來看一個應用的例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function fibV1($n)&#10;&#123;&#10;    if ($n &#60;= 2) &#123;&#10;        return 1;&#10;    &#125; else &#123;&#10;        return fibV1($n - 2) + fibV1($n - 1);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這是 PHP 版的 Fibonacci Sequence 遞迴函式，原理我就不多說明了。先來看看它在參數為 20 時所需要的執行時間：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$start_time = (float) microtime(true);&#10;echo fibV1(20), &#34;\n&#34;;&#10;$end_time = (float) microtime(true);&#10;echo &#34;Spent Time: &#34;, ($end_time - $start_time), &#34;(s)\n&#34;;&#10;/* output:&#10;6765&#10;Spent Time: 0.26100397109985(s)&#10;*/</span><br></pre></td></tr></table></figure>
+<p>這裡代入的數字越大，執行時間會越長。</p>
+<p>現在我們用 static 關鍵字來改寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function fibV2($n)&#10;&#123;&#10;    static $result = array();&#10;    if (!isset($result[$n])) &#123;&#10;        if ($n &#60;= 2) &#123;&#10;            $result[$n] = 1;&#10;        &#125; else &#123;&#10;            $result[$n] = fibV2($n - 2) + fibV2($n - 1);&#10;        &#125;&#10;    &#125;&#10;    return $result[$n];&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>然後再來看執行的時間：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$start_time = (float) microtime(true);&#10;echo fibV2(20), &#34;\n&#34;;&#10;$end_time = (float) microtime(true);&#10;echo &#34;Spent Time: &#34;, ($end_time - $start_time), &#34;(s)\n&#34;;&#10;/* output:&#10;6765&#10;Spent Time: 0.0009009838104248(s)&#10;*/</span><br></pre></td></tr></table></figure>
+<p>速度竟然差了快三百倍！為什麼？</p>
+<p>其實是因為這裡的 static 關鍵字扮演了 cache 的角色，讓程式不用重新計算已經算好的結果。而使用了 static 關鍵字後，也使得執行時間不會再隨著代入數字變大而變長。</p>
+<p>註：不是任何遞迴函式都可以用 static 變數來做 cache ，在使用上要特別注意這一點。</p>
+<h2 id="類別裡的_static_關鍵字">類別裡的 static 關鍵字</h2><p>在類別裡的 static 關鍵字，也扮演了類似的角色。我們利用 static 在類別裡定義的屬性，會佔用類別的記憶體空間。而透過同一類別所生成的物件，會彼此共享這個 static 屬性；所以不論我們產生多少同類別的物件，它們都會存取到同一個 static 類別屬性。</p>
+<p>來看看以下的例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class DB&#10;&#123;&#10;    private static $_instance = null;&#10;&#10;    private static $_instanceCount = 0;&#10;    private function __construct()&#10;    &#123;&#10;        self::$_instanceCount ++;&#10;    &#125;&#10;&#10;    public static function getInstance()&#10;    &#123;&#10;        if (null === self::$_instance) &#123;&#10;            self::$_instance = new self();&#10;        &#125;&#10;        return self::$_instance;&#10;    &#125;&#10;&#10;    public function getInstanceCount()&#10;    &#123;&#10;        return self::$_instanceCount;&#10;    &#125;&#10;&#125;&#10;$db1 = DB::getInstance();&#10;echo $db1-&#62;getInstanceCount(), &#34;\n&#34;; // 1&#10;$db2 = DB::getInstance();&#10;echo $db2-&#62;getInstanceCount(), &#34;\n&#34;; // 1</span><br></pre></td></tr></table></figure>
+<p>範例即為經典的 Singleton 模式，原理這裡先不多做說明。</p>
+<p>這裡我們定義了兩個類別 static 屬性，分別是 $_instance 及 $_instanceCount ；而透過 static 定義的類別屬性，在類別裡存取時要用 self 關鍵字加上雙冒號 (::) ，例如 self::$_instance 。</p>
+<p>接著我們可以看到在 getInstance() 方法中，如果 self::$_instance 是 null 的話，表示是第一次呼叫，那麼程式就會透過私有的建構式產生一個 DB 物件指定給 self::$_instance 變數，最後再將它回傳出去。這時雖然 getInstance() 裡的變數作用域已經結束，但 self::$_instance 卻會保留下來。</p>
+<p>下一次 getInstance() 呼叫時，因為 self::$_instance 已經不再是 null 值，所以就會直接將其內容回傳給呼叫的程式了。</p>
+<p>也因為這個原因，所以整個程式執行下來， DB 的 __construct() 方法也只被執行過一次，使得 self::$_instanceCount 也只累加一次，其結果永遠為 1 。</p>
+<h2 id="結論">結論</h2><p>一般 PHP 開發者很少會去使用 static 關鍵字，因為平常會用到 static 的場合其實也不多。這裡我再做一次 static 使用時機的重點整理：</p>
+<ul>
+<li>需要記住上一次函式執行的結果。</li>
+<li>某些可以保留執行結果的遞迴函式。</li>
+<li>不希望因為物件個體不同，進而被影響的類別屬性。</li>
+<li>類別的 Singleton 模式。</li>
+</ul>
+<p>希望透過上面的說明，能讓大家對 static 關鍵字有進一步的瞭解。</p>
+</span>
       
     </div>
 
@@ -288,22 +317,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +396,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +429,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函式裡的_static_關鍵字"><span class="nav-number">1.</span> <span class="nav-text">函式裡的 static 關鍵字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#應用在遞迴上的_static_關鍵字"><span class="nav-number">2.</span> <span class="nav-text">應用在遞迴上的 static 關鍵字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#類別裡的_static_關鍵字"><span class="nav-number">3.</span> <span class="nav-text">類別裡的 static 關鍵字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +445,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +467,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +477,6 @@
 
   
   
-
   
     
     
@@ -489,21 +506,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +675,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +705,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

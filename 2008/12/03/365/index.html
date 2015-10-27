@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="昨天小魚在工作遇到了一個 JavaScript 的問題來請教我，基於對技術的興趣我就試著幫她解決；經過一番研究後，終於被我找到原因。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JavaScript] Firefox 在 DHTML 解析上的問題">
 <meta property="og:url" content="http://jaceju.net/2008/12/03/365/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="昨天小魚在工作遇到了一個 JavaScript 的問題來請教我，基於對技術的興趣我就試著幫她解決；經過一番研究後，終於被我找到原因。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JavaScript] Firefox 在 DHTML 解析上的問題">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="昨天小魚在工作遇到了一個 JavaScript 的問題來請教我，基於對技術的興趣我就試著幫她解決；經過一番研究後，終於被我找到原因。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [JavaScript] Firefox 在 DHTML 解析上的問題 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,35 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>昨天小魚在工作遇到了一個 JavaScript 的問題來請教我，基於對技術的興趣我就試著幫她解決；經過一番研究後，終於被我找到原因。</p>
+<a id="more"></a>
+<h2 id="問題描述">問題描述</h2><p>小魚在整合其他人的舊程式時，測試到一支要產生動態 select 選項的程式。而這支舊程式的寫法如下： </p>
+<ul>
+<li><p>先利用傳統的 Ajax (XMLHttpRequest) 取得 PHP 輸出的一段 HTML 表單 select 物件，然後利用 innerHTML 放在前端的 POST 表單裡。</p>
+</li>
+<li><p>接著在新 select 選項中選擇一個項目後，按下送出。</p>
+</li>
+</ul>
+<p>但神奇的是，小魚執行時發現 IE 是可以送出 POST 資料，但 Firefox 卻不行。 </p>
+<h2 id="實驗過程">實驗過程</h2><p>我簡單地用以下程式模擬，這是前端頁面 (index.php) ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62; AJAX &#28204;&#35430;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;function createXMLHttpRequest() &#123;&#10;if (window.XMLHttpRequest) &#123;&#10;return new XMLHttpRequest();&#10;&#125;&#10;else if (window.ActiveXObject) &#123;&#10;return new ActiveXObject(&#34;Microsoft.XMLHTTP&#34;);&#10;&#125;&#10;&#125;&#10;function handler() &#123;&#10;if (this.readyState == 4 &#38;amp;&#38;amp; this.status == 200) &#123;&#10;document.getElementById(&#39;result&#39;).innerHTML = this.responseText;&#10;&#125;&#10;&#125;&#10;var xmlHttp = createXMLHttpRequest();&#10;function run() &#123;&#10;xmlHttp.open(&#39;POST&#39;, &#39;test.php&#39;);&#10;xmlHttp.onreadystatechange = handler;&#10;xmlHttp.send(null);&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#10;&#60;div id=&#34;result&#34;&#62;&#10;&#60;/div&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;&#10;&#60;input type=&#34;button&#34; id=&#34;test&#34; value=&#34;&#28204;&#35430;&#34; /&#62;&#10;&#60;hr /&#62;&#10;&#60;?php var_dump($_POST); ?&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;document.getElementById(&#39;test&#39;).onclick = run;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>接著是後端 PHP 程式 (test.php) ： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;header(&#39;Content-Type: text/html&#39;);&#10;?&#62;&#10;&#60;select name=&#34;test&#34;&#62;&#10;&#60;option value=&#34;1&#34;&#62;1&#60;/option&#62;&#10;&#60;option value=&#34;2&#34;&#62;2&#60;/option&#62;&#10;&#60;option value=&#34;3&#34;&#62;3&#60;/option&#62;&#10;&#60;option value=&#34;4&#34;&#62;4&#60;/option&#62;&#10;&#60;/select&#62;</span><br></pre></td></tr></table></figure>
+<p>我測試的結果並沒有發現小魚所說的狀況，不論是 IE 或 Firefox 都可以正常傳送出 POST 資料。</p>
+<p>然後我想說會不會是 &nbsp;Ajax 的關係，所以我建議小魚使用 jQuery 的 ajax 方法試試，但結果還是相同。 </p>
+<p>後來我再仔細再看了看她的 HTML 碼，發現 form 標籤是藏在 tr 標籤裡，因此我把表單修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;table&#62;&#10;&#60;tr&#62;&#60;td&#62;&#28204;&#35430;&#60;/td&#62;&#60;/tr&#62;&#10;&#60;strong&#62;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#60;/strong&#62;&#10;&#60;tr&#62;&#10;&#60;td&#62;&#10;&#60;div id=&#34;result&#34;&#62;&#10;&#60;/div&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;strong&#62;&#60;/form&#62;&#60;/strong&#62;&#10;&#60;input type=&#34;button&#34; id=&#34;test&#34; value=&#34;&#28204;&#35430;&#34; /&#62;&#10;&#60;/table&#62;</span><br></pre></td></tr></table></figure>
+<p>然後再測試一次，就發現 Firefox 真的無法送出 POST 資料了。</p>
+<p>接著我想是不是只有 select 有這個問題，所以我又在表單內再加了一個靜態的 input 元件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;table&#62;&#10;&#60;tr&#62;&#60;td&#62;&#28204;&#35430;&#60;/td&#62;&#60;/tr&#62;&#10;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#10;&#60;tr&#62;&#10;&#60;td&#62;&#10;&#60;div id=&#34;result&#34;&#62;&#10;&#60;/div&#62;&#10;&#60;strong&#62;&#60;input type=&#34;text&#34; name=&#34;var1&#34; value=&#34;temp1&#34; /&#62;&#60;/strong&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;/form&#62;&#10;&#60;input type=&#34;button&#34; id=&#34;test&#34; value=&#34;&#28204;&#35430;&#34; /&#62;&#10;&#60;/table&#62;</span><br></pre></td></tr></table></figure>
+<p>而 Ajax 取得的 PHP 輸出內容也加了一個 input 元件： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;header(&#39;Content-Type: text/html&#39;);&#10;?&#62;&#10;&#60;select name=&#34;test&#34;&#62;&#10;&#60;option value=&#34;1&#34;&#62;1&#60;/option&#62;&#10;&#60;option value=&#34;2&#34;&#62;2&#60;/option&#62;&#10;&#60;option value=&#34;3&#34;&#62;3&#60;/option&#62;&#10;&#60;option value=&#34;4&#34;&#62;4&#60;/option&#62;&#10;&#60;/select&#62;&#10;&#60;strong&#62;&#60;input type=&#34;text&#34; name=&#34;var2&#34; value=&#34;temp2&#34; /&#62;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<p>再次試驗的結果，發現只要是 Ajax 丟出來的動態表單元件，雖然已經載入在 DOM 裡 (可以 Firebug 觀察) ，但實際 Submit 時則無法被 Firefox 所接受 (但畫面上的確會出現該元件) 。</p>
+<p>然後我把 form 標籤移到正常的 table 外後，測試的結果一切正常，不論 IE 或 Firefox 都能正確送出 POST 資料。</p>
+<h2 id="結論">結論</h2><p>從上面的結果，我推測 Firefox 在處理動態內容時，應該是遵守著標準的 HTML 規範；所以不正確的 form 標籤位置會使得 Firefox 在處理動態元件時有錯誤，導致實際 Submit 表單時，這些元件就被 Firefox 給忽略掉了。</p>
+<p>當然 Firefox 底層是怎麼處理的，我並沒有深入研究，所以這個結論可能是有誤的。但是從這次的問題的解決方法來看，只要保持正確的 HTML 結構，我想應該就能避開很多瀏覽器差異上的問題了。</p>
+<p>註：只是苦了小魚，她說她有一堆別人寫的舊程式碼都是這種寫法。</p>
+</span>
       
     </div>
 
@@ -288,22 +301,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +380,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +413,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#問題描述"><span class="nav-number">1.</span> <span class="nav-text">問題描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實驗過程"><span class="nav-number">2.</span> <span class="nav-text">實驗過程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +429,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +451,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +461,6 @@
 
   
   
-
   
     
     
@@ -489,21 +490,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +659,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +689,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

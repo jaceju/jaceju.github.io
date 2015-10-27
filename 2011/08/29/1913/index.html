@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
+<meta name="description" content="更新：本文因為有安全性議題，請先參考「DevCore / 如何正確的取得使用者 IP？」建立正確觀念。
 
-
-
-
-<meta name="description">
+我想多數從事程式開發的朋友，都曾經在遇到問題時，直接上相關的論壇去詢問前輩，或是想辦法去找尋有沒有人碰過同樣的問題。而幸運的是，通常在網路上也可以找到很多前人所提供的解決方案，甚至有寫好的程式碼供後人參考。但是很多人都是直接把這些程式碼直接複製過來使用，很少會去探討其中的原理。只要能解決問題，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="精進你的程式碼 - 從取得用戶端 IP 的函式談起">
 <meta property="og:url" content="http://jaceju.net/2011/08/29/1913/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="更新：本文因為有安全性議題，請先參考「DevCore / 如何正確的取得使用者 IP？」建立正確觀念。
+
+我想多數從事程式開發的朋友，都曾經在遇到問題時，直接上相關的論壇去詢問前輩，或是想辦法去找尋有沒有人碰過同樣的問題。而幸運的是，通常在網路上也可以找到很多前人所提供的解決方案，甚至有寫好的程式碼供後人參考。但是很多人都是直接把這些程式碼直接複製過來使用，很少會去探討其中的原理。只要能解決問題，">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="精進你的程式碼 - 從取得用戶端 IP 的函式談起">
-<meta name="twitter:description">
+<meta name="twitter:description" content="更新：本文因為有安全性議題，請先參考「DevCore / 如何正確的取得使用者 IP？」建立正確觀念。
 
+我想多數從事程式開發的朋友，都曾經在遇到問題時，直接上相關的論壇去詢問前輩，或是想辦法去找尋有沒有人碰過同樣的問題。而幸運的是，通常在網路上也可以找到很多前人所提供的解決方案，甚至有寫好的程式碼供後人參考。但是很多人都是直接把這些程式碼直接複製過來使用，很少會去探討其中的原理。只要能解決問題，">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 精進你的程式碼 - 從取得用戶端 IP 的函式談起 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,51 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p><strong>更新</strong>：本文因為有安全性議題，請先參考「<a href="http://devco.re/blog/2014/06/19/client-ip-detection/" target="_blank" rel="external">DevCore / 如何正確的取得使用者 IP？</a>」建立正確觀念。</p>
+<hr>
+<p>我想多數從事程式開發的朋友，都曾經在遇到問題時，直接上相關的論壇去詢問前輩，或是想辦法去找尋有沒有人碰過同樣的問題。而幸運的是，通常在網路上也可以找到很多前人所提供的解決方案，甚至有寫好的程式碼供後人參考。<br>但是很多人都是直接把這些程式碼直接複製過來使用，很少會去探討其中的原理。只要能解決問題，有誰會去在乎程式碼到底是圓是扁呢？然而這就是許多程式開發者無法精進自己能力的主要原因之一。</p>
+<a id="more"></a>
+<p>當然我本身也是曾經是這種人，在不瞭解原理的狀況下，對於能夠運作的程式碼，也曾經抱持著能不改就別改的心態。但是在技術這條路上，如果一直用這種態度去處理問題，那麼跟沒有思考能力的機器人又有什麼兩樣呢？<br>來吧！我們就從一個最常見的問題開始，一起來瞭解怎樣才能寫出一個所謂「好」的程式碼。</p>
+<h2 id="如何取得用戶端_IP_？">如何取得用戶端 IP ？</h2><p>大部份從事 Web 開發的朋友，一定都會遇到需要取得用戶端 IP 的狀況。而在 PHP 中，透過 Google 去搜尋的話，也可以找到很多解決方案。<br>以下的程式碼應該是最常見的解法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function get_client_ip()&#10;&#123;&#10;    return $_SERVER[&#39;REMOTE_ADDR&#39;];&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>然而這個方法有個問題，那就是 $_SERVER[‘REMOTE_ADDR’] 有可能不是真實的用戶端 IP 。<br>原因是用戶可能是在防火牆之後，也可能是透過 Proxy 上網，而使得 $_SERVER[‘REMOTE_ADDR’] 的值可能不是用戶真實的 IP ；總而言之，我們並不能完全相信 $_SERVER[‘REMOTE_ADDR’] 所回傳的值。<br>那該怎麼辦呢？網路上又有了這樣的解決方案：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function get_client_ip()&#10;&#123;&#10;    if ($_SERVER[&#39;HTTP_CLIENT_IP&#39;]) &#123; // check ip from share internet&#10;        $ip = $_SERVER[&#39;HTTP_CLIENT_IP&#39;];&#10;    &#125; elseif ($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]) &#123; // to check ip is pass from proxy&#10;        $ip = $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;];&#10;    &#125; else &#123;&#10;        $ip = $_SERVER[&#39;REMOTE_ADDR&#39;];&#10;    &#125;&#10;    return $ip;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 HTTP_CLIENT_IP 這個 HTTP Header 表示用戶可能是在防火牆之後，或是在透過 IP 分享器來上網；而 HTTP_X_FORWARDED_FOR 則表示用戶可能是透過 Proxy 過來的。這兩個 HTTP Headers 都會將用戶真實的 IP 記錄下來，轉交給 Web Server 處理。<br>而在這兩個 HTTP Headers 都沒有的狀況下，我們就只好選擇 $_SERVER[‘REMOTE_ADDR’] 這個一定會有的值，因為它可能就是用戶真實的 IP 了。</p>
+<h2 id="PHP_嚴格開發模式">PHP 嚴格開發模式</h2><p>一般在開發時，我們都會把 PHP 設定成嚴格開發模式來讓程式儘可能不要有基本的錯誤發生，像是變數未定義就使用，陣列索引不存在等等，以確保我們的程式在任何設定下都可以順利執行。<br>設定嚴格開發模式的方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">error_reporting(E_ALL | E_STRICT);</span><br></pre></td></tr></table></figure>
+<p>身為一個合格的 PHP 開發人員所開發出來的程式，至少要在這種嚴格的環境中執行，而不會發生基本的錯誤。<br>然而在打開 PHP 嚴格開發模式後，前面的範例在 PHP 嚴格開發模式下可能會出現 “Undefined index: HTTP_CLIENT_IP in xxx.php on line xx” 的警告訊息，這是因為 HTTP_CLIENT_IP 及 HTTP_X_FORWARDED_FOR 這兩個 HTTP Headers 其實是有可能不會設定在 $_SERVER 中的。<br>可是我們不是有判斷這兩個 HTTP Headers 的值是否存在嗎？是的，只是我們是判斷它們的「值」是否存在，而不是判斷它們是否存在於 $_SERVER 陣列之中。正確的方法是要以 empty 敘述來判斷這兩個 HTTP Headers 的索引是否存在於 $_SERVER 陣列裡：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function get_client_ip()&#10;&#123;&#10;    if (!empty($_SERVER[&#39;HTTP_CLIENT_IP&#39;])) &#123; // check ip from share internet&#10;        $ip = $_SERVER[&#39;HTTP_CLIENT_IP&#39;];&#10;    &#125; elseif (!empty($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])) &#123; // to check ip is pass from proxy&#10;        $ip = $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;];&#10;    &#125; else &#123;&#10;        $ip = $_SERVER[&#39;REMOTE_ADDR&#39;];&#10;    &#125;&#10;    return $ip;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>註：至於為什麼 $_SERVER 中有可能不會包含 HTTP_CLIENT_IP 及 HTTP_X_FORWARDED_FOR 這兩個 HTTP Headers 呢？這其實跟 Web/Proxy Server 與網路設備的運作方式有關，這裡就不再深入討論。</p>
+<h2 id="其他有用的_HTTP_Headers">其他有用的 HTTP Headers</h2><p>事實上，除了 HTTP_CLIENT_IP 與 HTTP_X_FORWARDED_FOR 之外，還有其實可能會是用戶實際 IP 的 HTTP Headers ，分別是：</p>
+<ul>
+<li>HTTP_X_FORWARDED</li>
+<li>HTTP_X_CLUSTER_CLIENT_IP</li>
+<li>HTTP_FORWARDED_FOR</li>
+<li>HTTP_FORWARDED</li>
+</ul>
+<p>因此我們就必須得再多判斷這些 HTTP Headers ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function get_client_ip()&#10;&#123;&#10;    if (!empty($_SERVER[&#39;HTTP_CLIENT_IP&#39;])) &#123;&#10;        $ip = $_SERVER[&#39;HTTP_CLIENT_IP&#39;];&#10;    &#125; elseif (!empty($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])) &#123;&#10;        $ip = $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;];&#10;    &#125; elseif (!empty($_SERVER[&#39;HTTP_X_FORWARDED&#39;])) &#123;&#10;        $ip = $_SERVER[&#39;HTTP_X_FORWARDED&#39;];&#10;    &#125; elseif (!empty($_SERVER[&#39;HTTP_X_CLUSTER_CLIENT_IP&#39;])) &#123;&#10;        $ip = $_SERVER[&#39;HTTP_X_CLUSTER_CLIENT_IP&#39;];&#10;    &#125; elseif (!empty($_SERVER[&#39;HTTP_FORWARDED_FOR&#39;])) &#123;&#10;        $ip = $_SERVER[&#39;HTTP_FORWARDED_FOR&#39;];&#10;    &#125; elseif (!empty($_SERVER[&#39;HTTP_FORWARDED&#39;])) &#123;&#10;        $ip = $_SERVER[&#39;HTTP_FORWARDED&#39;];&#10;    &#125; else &#123;&#10;        $ip = $_SERVER[&#39;REMOTE_ADDR&#39;];&#10;    &#125;&#10;    return $ip;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>但現實上它們的值還是有可能並非用戶實際的 IP ，因此僅供參考用。</p>
+<p>註：很可惜的是，我還沒找到這些 HTTP Headers 的完整解釋，只能從字面上去猜測。如果大家有找到它們所代表的意義，還請不吝告知。</p>
+<h2 id="判斷是否為合法的_IP">判斷是否為合法的 IP</h2><p>基於從用戶端所傳過來的值都是不可信任的原則，我們還是要對上述的這些 IP 做合法性驗證；在 PHP 5.2 之後，我們可以透過 <a href="http://php.net/manual/en/function.filter-var.php" target="_blank" rel="external">filter_var</a> 方法來處理：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function validate_ip($ip)&#10;&#123;&#10;    return (bool) filter_var($ip, FILTER_VALIDATE_IP,&#10;            FILTER_FLAG_IPV4 |&#10;            FILTER_FLAG_NO_PRIV_RANGE |&#10;            FILTER_FLAG_NO_RES_RANGE&#10;            );&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 FILTER<em>VALIDATE_IP 表示我們要過濾的是 IP 值，而 FILTER_FLAG</em>* 的意義可以參考 <a href="http://www.php.net/manual/en/filter.filters.flags.php" target="_blank" rel="external">Filter flags</a> 。<br><a href="http://php.net/manual/en/function.filter-var.php" target="_blank" rel="external">filter_var</a> 函式會回傳驗證過後的值，如果驗證不過，就回傳 false 。因此我們就可以改寫我們的 get_client_ip 函式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function get_client_ip()&#10;&#123;&#10;    if (!empty($_SERVER[&#39;HTTP_CLIENT_IP&#39;]) &#38;amp;&#38;amp; validate_ip($_SERVER[&#39;HTTP_CLIENT_IP&#39;])) &#123;&#10;        return $_SERVER[&#39;HTTP_CLIENT_IP&#39;];&#10;    &#125;&#10;    if (!empty($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]) &#38;amp;&#38;amp; validate_ipSERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])) &#123;&#10;        return $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;];&#10;    &#125;&#10;    if (!empty($_SERVER[&#39;HTTP_X_FORWARDED&#39;]) &#38;amp;&#38;amp; validate_ip($_SERVER[&#39;HTTP_X_FORWARDED&#39;])) &#123;&#10;        return $_SERVER[&#39;HTTP_X_FORWARDED&#39;];&#10;    &#125;&#10;    if (!empty($_SERVER[&#39;HTTP_X_CLUSTER_CLIENT_IP&#39;]) &#38;amp;&#38;amp; validate_ip($_SERVER[&#39;HTTP_X_CLUSTER_CLIENT_IP&#39;])) &#123;&#10;        return $_SERVER[&#39;HTTP_X_CLUSTER_CLIENT_IP&#39;];&#10;    &#125;&#10;    if (!empty($_SERVER[&#39;HTTP_FORWARDED_FOR&#39;]) &#38;amp;&#38;amp; validate_ip($_SERVER[&#39;HTTP_FORWARDED_FOR&#39;])) &#123;&#10;        return $_SERVER[&#39;HTTP_FORWARDED_FOR&#39;];&#10;    &#125;&#10;    if (!empty($_SERVER[&#39;HTTP_FORWARDED&#39;]) &#38;amp;&#38;amp; validate_ip($_SERVER[&#39;HTTP_FORWARDED&#39;])) &#123;&#10;        return $_SERVER[&#39;HTTP_FORWARDED&#39;];&#10;    &#125;&#10;    return $_SERVER[&#39;REMOTE_ADDR&#39;];&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這裡另外改寫的部份就是直接把驗證無誤的 IP 值回傳給函式呼叫者，這樣一來我們就不需要再加上一個暫存變數 $ip 了。</p>
+<p>註：也許有人會對一個函式中有多個 return 出口感到不舒服，但在這裡確實是個避免後續程式繼續執行的好方法，這在重構中稱為 <a href="http://www.refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html" target="_blank" rel="external">Guard Clauses</a> 。</p>
+<h2 id="HTTP_X_FORWARDED_FOR_可能的格式">HTTP_X_FORWARDED_FOR 可能的格式</h2><p>前面的程式碼看起來很長對吧？沒關係，晚點我們會回頭過來處理它；現在要先來看看一個比較重要的問題。<br>根據 Wiki 對 <a href="http://en.wikipedia.org/wiki/X-Forwarded-For" target="_blank" rel="external">X-Forwarded-For</a> 這個 HTTP Header 的描述，它的格式有可能是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">client1, proxy1, proxy2</span><br></pre></td></tr></table></figure>
+<p>換句話說，我們必須對它預先以處理才能得到用戶的 IP ，方法是以 <a href="http://php.net/manual/en/function.explode.php" target="_blank" rel="external">explode</a> 來拆開每組 IP ，程式碼如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// &#30053;&#10;&#125; elseif (!empty($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])) &#123;&#10;    foreach (explode(&#39;,&#39;, $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]) as $ip) &#123;&#10;        $ip = trim($ip); // just to be safe&#10;        if (validate_ip($ip)) &#123;&#10;            return $ip;&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>將上面的片段加到原有的程式碼後，整個函式就更顯得落落長；雖然可以用，但是如果這樣就滿足，那我們真的就只是程式碼轉貼手了。</p>
+<h2 id="精簡的寫法">精簡的寫法</h2><p>接下來我們要想辦法把一長串的 if…elseif 簡化，也可以避免寫一堆的陣列元素。既然這些值都是在 $_SERVER 中，那麼我們就可以用迴圈來一一將它們代入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function get_client_ip()&#10;&#123;&#10;    foreach (array(&#10;                &#39;HTTP_CLIENT_IP&#39;,&#10;                &#39;HTTP_X_FORWARDED_FOR&#39;,&#10;                &#39;HTTP_X_FORWARDED&#39;,&#10;                &#39;HTTP_X_CLUSTER_CLIENT_IP&#39;,&#10;                &#39;HTTP_FORWARDED_FOR&#39;,&#10;                &#39;HTTP_FORWARDED&#39;,&#10;                &#39;REMOTE_ADDR&#39;) as $key) &#123;&#10;        if (array_key_exists($key, $_SERVER)) &#123;&#10;            // &#34389;&#29702; IP&#10;        &#125;&#10;    &#125;&#10;    return null;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>相信這樣的轉換應該不難懂，這樣的程式碼雖然比不上其他程式語言的語法來的漂亮，但已經比我們原來的那段範例好看太多了。<br>至於怎麼處理 IP 呢？除了 HTTP_X_FORWARDED_FOR 需要以 <a href="http://php.net/manual/en/function.explode.php" target="_blank" rel="external">explode</a> 函式處理，其他的值應該都不需要處理呀？我們可以把它們放在一起嗎？<br>其實是可以的，我們可以把非 HTTP_X_FORWARDED_FOR 的其他值也用 <a href="http://php.net/manual/en/function.explode.php" target="_blank" rel="external">explode</a> 函式過個水，然後會得到只有一個元素的陣列；這樣一來，我們就不需要再用 if…else 判斷格式上的差異，直接都以陣列來處理即可。<br>最後完整的程式碼如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function get_client_ip()&#10;&#123;&#10;    foreach (array(&#10;                &#39;HTTP_CLIENT_IP&#39;,&#10;                &#39;HTTP_X_FORWARDED_FOR&#39;,&#10;                &#39;HTTP_X_FORWARDED&#39;,&#10;                &#39;HTTP_X_CLUSTER_CLIENT_IP&#39;,&#10;                &#39;HTTP_FORWARDED_FOR&#39;,&#10;                &#39;HTTP_FORWARDED&#39;,&#10;                &#39;REMOTE_ADDR&#39;) as $key) &#123;&#10;        if (array_key_exists($key, $_SERVER)) &#123;&#10;            foreach (explode(&#39;,&#39;, $_SERVER[$key]) as $ip) &#123;&#10;                $ip = trim($ip);&#10;                if ((bool) filter_var($ip, FILTER_VALIDATE_IP,&#10;                                FILTER_FLAG_IPV4 |&#10;                                FILTER_FLAG_NO_PRIV_RANGE |&#10;                                FILTER_FLAG_NO_RES_RANGE)) &#123;&#10;                    return $ip;&#10;                &#125;&#10;            &#125;&#10;        &#125;&#10;    &#125;&#10;    return null;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>跟前面的程式碼比起來，你是否也覺得最後的這段程式碼比較容易瞭解與維護呢？</p>
+<p>註：其實最後這段程式碼也是網路上找得到的，而我在這裡只是讓大家瞭解為什麼高手要這樣精簡程式碼。</p>
+<h2 id="心得">心得</h2><p>在取得用戶實際 IP 這個很常見的功能中，其實也蘊涵了很重要的網路知識，雖然不見得我們能完全瞭解這些 HTTP Headers 的由來與運作方式，但至少也要知道為什麼要把它們加進來的原因。<br>而在語法上的重構，也是我們程式精進上一個很重要的技能；它能反映出你是否真正瞭解這門程式語言，並且知道該怎麼善用它們來增加你工作上的效率。<br>手邊擁有的工具越多，就更應該熟悉它們；這樣才能適其位盡所能，發揮它們真正的價值。</p>
+</span>
       
     </div>
 
@@ -290,22 +325,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +404,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +437,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何取得用戶端_IP_？"><span class="nav-number">1.</span> <span class="nav-text">如何取得用戶端 IP ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP_嚴格開發模式"><span class="nav-number">2.</span> <span class="nav-text">PHP 嚴格開發模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他有用的_HTTP_Headers"><span class="nav-number">3.</span> <span class="nav-text">其他有用的 HTTP Headers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判斷是否為合法的_IP"><span class="nav-number">4.</span> <span class="nav-text">判斷是否為合法的 IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP_X_FORWARDED_FOR_可能的格式"><span class="nav-number">5.</span> <span class="nav-text">HTTP_X_FORWARDED_FOR 可能的格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精簡的寫法"><span class="nav-number">6.</span> <span class="nav-text">精簡的寫法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">7.</span> <span class="nav-text">心得</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +453,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +475,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +485,6 @@
 
   
   
-
   
     
     
@@ -491,21 +514,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +683,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +713,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

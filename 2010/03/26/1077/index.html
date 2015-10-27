@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,44 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="以往在開發 Web 專案時，最麻煩的就是取得整個網站的相關系統資訊了。例如像是整個網站的執行時間、載入了多少程式檔案、記憶體使用量等等，這些資訊在以往的程式裡都要添東加西的，才有辦法取得。
+而即便使用了 Zend Framework 後，一般對它的架構不甚瞭解的開發者還是很難從中取得這些資訊。不過這一切在 ZFDebug 出現後，就將會改觀啦！
+在使用了 ZFDebug 之後，就會在網頁下方出現一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZFDebug - 幫你診斷 Zend Framework 專案">
 <meta property="og:url" content="http://jaceju.net/2010/03/26/1077/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="以往在開發 Web 專案時，最麻煩的就是取得整個網站的相關系統資訊了。例如像是整個網站的執行時間、載入了多少程式檔案、記憶體使用量等等，這些資訊在以往的程式裡都要添東加西的，才有辦法取得。
+而即便使用了 Zend Framework 後，一般對它的架構不甚瞭解的開發者還是很難從中取得這些資訊。不過這一切在 ZFDebug 出現後，就將會改觀啦！
+在使用了 ZFDebug 之後，就會在網頁下方出現一">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/main.png">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/cache.png">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/database.png">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/file.png">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/html.png">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/memory.png">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/registry.png">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/time.png">
+<meta property="og:image" content="http://jaceju.net/resources/zfdebug/variables.png">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZFDebug - 幫你診斷 Zend Framework 專案">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="以往在開發 Web 專案時，最麻煩的就是取得整個網站的相關系統資訊了。例如像是整個網站的執行時間、載入了多少程式檔案、記憶體使用量等等，這些資訊在以往的程式裡都要添東加西的，才有辦法取得。
+而即便使用了 Zend Framework 後，一般對它的架構不甚瞭解的開發者還是很難從中取得這些資訊。不過這一切在 ZFDebug 出現後，就將會改觀啦！
+在使用了 ZFDebug 之後，就會在網頁下方出現一">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> ZFDebug - 幫你診斷 Zend Framework 專案 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +144,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +154,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +164,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +184,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +243,47 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>以往在開發 Web 專案時，最麻煩的就是取得整個網站的相關系統資訊了。例如像是整個網站的執行時間、載入了多少程式檔案、記憶體使用量等等，這些資訊在以往的程式裡都要添東加西的，才有辦法取得。</p>
+<p>而即便使用了 Zend Framework 後，一般對它的架構不甚瞭解的開發者還是很難從中取得這些資訊。不過這一切在 ZFDebug 出現後，就將會改觀啦！</p>
+<p>在使用了 ZFDebug 之後，就會在網頁下方出現一個浮動的資訊列，這樣我們就更很方便地知道這個網站運作時的資訊啦。</p>
+<p><img src="/resources/zfdebug/main.png" alt="主要畫面"></p>
+<p>接下來我簡單介紹一下怎麼安裝及使用 ZFDebug 。</p>
+<a id="more"></a>
+<h2 id="安裝">安裝</h2><p>首先到 ZFDebug 的<a href="http://code.google.com/p/zfdebug/" target="_blank" rel="external">官方網站</a>下載最新版本的 ZFDebug ，下載回來後把裡面的 zfdebug/library/ 下的 ZFDebug 資料夾整個放置到 include_path 指定的路徑裡；或著也可以把 ZFDebug 這個資料夾放在 ZF 專案的 library 資料夾裡，總之只要能讓 Zend 的 Loader 能自動載入 ZFDebug_Controller_Plugin_Debug 這個類別就可以了。</p>
+<h2 id="設定程式碼">設定程式碼</h2><p>ZFDebug 主要是透過 FrontController Plugin 的機制來完成所有的資訊收集，所以一定要在 FrontController 的 dispatch 動作之前，完成 Plugin 的註冊。</p>
+<h3 id="新專案中使用_ZFDebug">新專案中使用 ZFDebug</h3><p>如果是用 Zend Framework 1.8 版後提供的 Command Line 指令稿所建置的專案，那麼可以在 application/Bootstrap.php 中加入以下方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function _initZFDebug()&#10;&#123;&#10;    $autoloader = Zend_Loader_Autoloader::getInstance();&#10;    $autoloader-&#62;registerNamespace(&#39;ZFDebug&#39;);&#10;    $options = array(&#10;        &#39;plugins&#39; =&#62; array(&#10;            &#39;Variables&#39;,&#10;            &#39;File&#39; =&#62; array(&#39;base_path&#39; =&#62; realpath(APPLICATION_PATH . &#39;/../&#39;)),&#10;            &#39;Memory&#39;,&#10;            &#39;Time&#39;,&#10;            &#39;Registry&#39;,&#10;            &#39;Exception&#39;,&#10;    ));&#10;    # Instantiate the database adapter and setup the plugin.&#10;    # Alternatively just add the plugin like above and rely on the autodiscovery feature.&#10;    if ($this-&#62;hasPluginResource(&#39;db&#39;)) &#123;&#10;        $this-&#62;bootstrap(&#39;db&#39;);&#10;        $db = $this-&#62;getPluginResource(&#39;db&#39;)-&#62;getDbAdapter();&#10;        $options[&#39;plugins&#39;](&#39;Database&#39;)[&#39;adapter&#39;] = $db;&#10;    &#125;&#10;    # Setup the cache plugin&#10;    if ($this-&#62;hasPluginResource(&#39;cache&#39;)) &#123;&#10;        $this-&#62;bootstrap(&#39;cache&#39;);&#10;        $cache = $this-getPluginResource(&#39;cache&#39;)-&#62;getDbAdapter();&#10;        $options[&#39;plugins&#39;](&#39;Cache&#39;)[&#39;backend&#39;] = $cache-&#62;getBackend();&#10;    &#125;&#10;    $debug = new ZFDebug_Controller_Plugin_Debug($options);&#10;    $this-&#62;bootstrap(&#39;frontController&#39;);&#10;    $frontController = $this-&#62;getResource(&#39;frontController&#39;);&#10;    $frontController-&#62;registerPlugin($debug);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這樣一來， Bootstrap 會自動幫我們初始化 ZFDebug 。</p>
+<p>然後要記得在 template 頁面上加入 <head> 和 </head><body> 標籤，這樣 ZFDebug 才能自動幫我們產生相關的 CSS 及 HTML 碼。</body></p>
+<h3 id="舊專案中使用_ZFDebug">舊專案中使用 ZFDebug</h3><p>在舊的 ZF 專案中因為通常沒有 Bootstrap 這個自動載入資源的類別可以修改，但其實還是可以在 FrontController 的 dispatch 動作之前註冊 ZFDebug 這個 Plugin ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$options = array(&#10;    &#39;plugins&#39; =&#62; array(&#10;        &#39;Variables&#39;,&#10;        &#39;Html&#39;,&#10;        &#39;Database&#39; =&#62; array(&#39;adapter&#39; =&#62; array(&#39;standard&#39; =&#62; $db)),&#10;        &#39;File&#39; =&#62; array(&#39;base_path&#39; =&#62; WF_ROOT_PATH),&#10;        &#39;Memory&#39;,&#10;        &#39;Time&#39;,&#10;        &#39;Registry&#39;,&#10;        &#39;Cache&#39; =&#62; array(&#39;backend&#39; =&#62; $cache-&#62;getBackend()),&#10;        &#39;Exception&#39;&#10;));&#10;$debug = new ZFDebug_Controller_Plugin_Debug($options);&#10;// setup front controller&#10;$frontController = Wacow_Application::getFrontController();&#10;$frontController-&#62;registerPlugin($debug);</span><br></pre></td></tr></table></figure>
+<p>要特別注意的是， $db 和 $cache 必須在這段程式碼之前就先定義好。</p>
+<h2 id="ZFDebug_支援的_Plugins">ZFDebug 支援的 Plugins</h2><p>上面程式碼中，我們有看到 $options[‘plugins’] 裡有好幾個項目，它們就是 ZFDebug 的幕後大功臣，介紹如下：</p>
+<h3 id="Cache">Cache</h3><p>如果有指定 Zend_Cache 物件時，會在這裡顯示相關資訊。 (<a href="http://code.google.com/p/zfdebug/wiki/Documentation_Plugin_Cache" target="_blank" rel="external">官方說明</a>)</p>
+<p><img src="/resources/zfdebug/cache.png" alt="Cache"></p>
+<h3 id="Database">Database</h3><p>我個人很喜歡的一項功能，它可以完整列出整個頁面所執行的 SQL 指令及執行時間。 (<a href="http://code.google.com/p/zfdebug/wiki/Documentation_Plugin_Database" target="_blank" rel="external">官方說明</a>)</p>
+<p><img src="/resources/zfdebug/database.png" alt="Database"></p>
+<h3 id="File">File</h3><p>這個也很棒，它可以完整列出這次程式執行過程中所載入的檔案。 (<a href="http://code.google.com/p/zfdebug/wiki/Documentation_Plugin_File" target="_blank" rel="external">官方說明</a>)</p>
+<p><img src="/resources/zfdebug/file.png" alt="File"></p>
+<h3 id="Html">Html</h3><p>這裡會顯示載入多少 CSS 及 JavaScript 檔案，也可以幫你連到 W3C 做驗證。</p>
+<p><img src="/resources/zfdebug/html.png" alt="Html"></p>
+<h3 id="Memory">Memory</h3><p>顯示記憶體的峰值使用量，還有每個 Action Controller 用了多少記憶體，另外也會顯示自訂要測量的部份。 (<a href="http://code.google.com/p/zfdebug/wiki/Documentation_Plugin_Memory" target="_blank" rel="external">官方說明</a>)</p>
+<p><img src="/resources/zfdebug/memory.png" alt="Memory"></p>
+<h3 id="Registry">Registry</h3><p>顯示 Zend_Registry 裡所註冊的物件內容。 (<a href="http://code.google.com/p/zfdebug/wiki/Documentation_Plugin_Registry" target="_blank" rel="external">官方說明</a>)</p>
+<p><img src="/resources/zfdebug/registry.png" alt="Registry"></p>
+<h3 id="Time">Time</h3><p>這個也是超棒的功能！它會顯示整個網頁執行的時間 (最少時間、最大時間和平均時間) ，也以個別測量我們在程式裡自訂的範圍。 (<a href="http://code.google.com/p/zfdebug/wiki/Documentation_Plugin_Time" target="_blank" rel="external">官方說明</a>)</p>
+<p><img src="/resources/zfdebug/time.png" alt="Time"></p>
+<h3 id="Variables">Variables</h3><p> 列出樣版變數、目前的 Module 、 Controller 及 Action 名稱，還有 $COOKIE 及 $POST 的內容。 (<a href="http://code.google.com/p/zfdebug/wiki/Documentation_Plugin_Variables" target="_blank" rel="external">官方說明</a>)</p>
+<p><img src="/resources/zfdebug/variables.png" alt="Variables"></p>
+<h3 id="Exception">Exception</h3><p>這個我還不太會用，主要是顯示異常訊息的內容讓我們可以追蹤。 (<a href="http://code.google.com/p/zfdebug/wiki/Documentation_Plugin_Exception" target="_blank" rel="external">官方說明</a>)</p>
+<h2 id="心得小結">心得小結</h2><p>因為 ZFDebug 主要是收集 Zend Framework 執行時所產生的資訊，或多或少會影響到執行效能。另外在線上使用時，如果沒有用適當的機制來控制 ZFDebug 的話，這些資訊就會顯示在用戶端了。</p>
+<p>所以如果真的有需要在線上環境使用它的話，幾個使用建議如下：</p>
+<ul>
+<li>利用一個 Debug Flag 來開關 ZFDebug 。</li>
+<li>只在特定 IP 區段才加入 ZFDebug ，方便開發者線上除錯。</li>
+</ul>
+<p>有使用 Zend Framework 開發的朋友們快試試看吧！</p>
+</span>
       
     </div>
 
@@ -288,22 +328,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +407,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +440,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定程式碼"><span class="nav-number">2.</span> <span class="nav-text">設定程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新專案中使用_ZFDebug"><span class="nav-number">2.1.</span> <span class="nav-text">新專案中使用 ZFDebug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#舊專案中使用_ZFDebug"><span class="nav-number">2.2.</span> <span class="nav-text">舊專案中使用 ZFDebug</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZFDebug_支援的_Plugins"><span class="nav-number">3.</span> <span class="nav-text">ZFDebug 支援的 Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache"><span class="nav-number">3.1.</span> <span class="nav-text">Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Database"><span class="nav-number">3.2.</span> <span class="nav-text">Database</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File"><span class="nav-number">3.3.</span> <span class="nav-text">File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Html"><span class="nav-number">3.4.</span> <span class="nav-text">Html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory"><span class="nav-number">3.5.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Registry"><span class="nav-number">3.6.</span> <span class="nav-text">Registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time"><span class="nav-number">3.7.</span> <span class="nav-text">Time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variables"><span class="nav-number">3.8.</span> <span class="nav-text">Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exception"><span class="nav-number">3.9.</span> <span class="nav-text">Exception</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得小結"><span class="nav-number">4.</span> <span class="nav-text">心得小結</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +456,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +478,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +488,6 @@
 
   
   
-
   
     
     
@@ -489,21 +517,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +686,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +716,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

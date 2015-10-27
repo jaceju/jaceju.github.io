@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="用以下的方式，可以讓大部份瀏覽器 (主要是 IE) 詢問你是否要下載檔案 (而不是直接開啟) 。 
+&amp;#60;span style=&amp;#34;color: rgb(0, 0, 0);&amp;#34;&amp;#62;&amp;#60;span style=&amp;#34;color: rgb(0, 0, 187);&amp;#34;&amp;#62;&amp;#60;?php&amp;#10;$&amp;#60;/span&amp;#62;&amp;#60;/span&amp;#62;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 檔案下載 header 設置">
 <meta property="og:url" content="http://jaceju.net/2005/12/01/50/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="用以下的方式，可以讓大部份瀏覽器 (主要是 IE) 詢問你是否要下載檔案 (而不是直接開啟) 。 
+&amp;#60;span style=&amp;#34;color: rgb(0, 0, 0);&amp;#34;&amp;#62;&amp;#60;span style=&amp;#34;color: rgb(0, 0, 187);&amp;#34;&amp;#62;&amp;#60;?php&amp;#10;$&amp;#60;/span&amp;#62;&amp;#60;/span&amp;#62;&amp;">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 檔案下載 header 設置">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="用以下的方式，可以讓大部份瀏覽器 (主要是 IE) 詢問你是否要下載檔案 (而不是直接開啟) 。 
+&amp;#60;span style=&amp;#34;color: rgb(0, 0, 0);&amp;#34;&amp;#62;&amp;#60;span style=&amp;#34;color: rgb(0, 0, 187);&amp;#34;&amp;#62;&amp;#60;?php&amp;#10;$&amp;#60;/span&amp;#62;&amp;#60;/span&amp;#62;&amp;">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> PHP 檔案下載 header 設置 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,17 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>用以下的方式，可以讓大部份瀏覽器 (主要是 IE) <strong>詢問你是否要下載檔案</strong> (而不是直接開啟) 。 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;&#60;?php&#10;$&#60;/span&#62;&#60;/span&#62;&#60;strong&#62;file_name&#60;/strong&#62;&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62; &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;= &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;file.name&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;;&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$&#60;/span&#62;&#60;/span&#62;&#60;strong&#62;file_path&#60;/strong&#62;&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62; &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;= &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#34;/path/to/realfile&#34;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;;&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$&#60;/span&#62;&#60;/span&#62;&#60;strong&#62;file_size&#60;/strong&#62;&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62; &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;= &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;filesize&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$&#60;/span&#62;&#60;/span&#62;&#60;strong&#62;file_path&#60;/strong&#62;&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Pragma: public&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Expires: 0&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Last-Modified: &#39; &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;. &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;gmdate&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;D, d M Y H:i &#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;) . &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39; GMT&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Cache-Control: must-revalidate, post-check=0, pre-check=0&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Cache-Control: private&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;, &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;false&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Content-Type: &#60;strong&#62;application/octet-stream&#60;/strong&#62;&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Content-Length: &#39; &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;. &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$&#60;/span&#62;&#60;/span&#62;&#60;strong&#62;file_size&#60;/strong&#62;&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Content-Disposition: attachment; filename=&#34;&#39; &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;. &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$&#60;/span&#62;&#60;/span&#62;&#60;strong&#62;file_name&#60;/strong&#62;&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62; &#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;. &#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;&#34;;&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;header&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(221, 0, 0);&#34;&#62;&#39;Content-Transfer-Encoding: &#60;strong&#62;binary&#39;&#60;/strong&#62;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;readfile&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;$&#60;/span&#62;&#60;/span&#62;&#60;strong&#62;file_path&#60;/strong&#62;&#60;span style=&#34;color: rgb(0, 0, 0);&#34;&#62;&#60;span style=&#34;color: rgb(0, 119, 0);&#34;&#62;);&#10;&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 187);&#34;&#62;?&#62;&#60;/span&#62;&#60;/span&#62;</span><br></pre></td></tr></table></figure>
+<p><strong>補充：</strong></p>
+<p>看到 keisuke 誤會了以上變數的用途，我想我應該解釋一下每個變數的用意：</p>
+<p><li>$file_name: <strong>這是給瀏覽器看的檔案名稱</strong>，也就是下載視窗會出現的那個檔名；<strong>它可以跟實際檔案的名稱不一樣！</strong></li></p>
+<p><li>$file_path: 會連到實際檔案的位置，也就是<strong>該檔案在伺服器上的真實路徑</strong>。</li></p>
+<ul>
+<li>$file_size: 檔案的大小。</li>
+</ul>
+<p>keisuke 誤會的是 $file_name 和 $file_path ，可能是因為他的實際檔案和下載用的 PHP 是擺在同一個位置的關係。 </p>
+</span>
       
     </div>
 
@@ -288,22 +286,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +365,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +398,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +414,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +436,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +446,6 @@
 
   
   
-
   
     
     
@@ -489,21 +475,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +644,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +674,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

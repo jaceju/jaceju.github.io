@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="在 Web 開發界打滾了幾年，其實對 Web Framework 的熟悉度不算太淺，但也不能算太深。
+基於我個人對目前業界使用 Web Framework 的觀察，大略區分了以下數種類型。
+註：基本上這是一篇嘴炮文，部份論點是個人想法，若有謬誤還望指正。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="談框架">
 <meta property="og:url" content="http://jaceju.net/2009/11/17/798/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="在 Web 開發界打滾了幾年，其實對 Web Framework 的熟悉度不算太淺，但也不能算太深。
+基於我個人對目前業界使用 Web Framework 的觀察，大略區分了以下數種類型。
+註：基本上這是一篇嘴炮文，部份論點是個人想法，若有謬誤還望指正。">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="談框架">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="在 Web 開發界打滾了幾年，其實對 Web Framework 的熟悉度不算太淺，但也不能算太深。
+基於我個人對目前業界使用 Web Framework 的觀察，大略區分了以下數種類型。
+註：基本上這是一篇嘴炮文，部份論點是個人想法，若有謬誤還望指正。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 談框架 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,30 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>在 Web 開發界打滾了幾年，其實對 Web Framework 的熟悉度不算太淺，但也不能算太深。</p>
+<p>基於我個人對目前業界使用 Web Framework 的觀察，大略區分了以下數種類型。</p>
+<p>註：基本上這是一篇嘴炮文，部份論點是個人想法，若有謬誤還望指正。</p>
+<a id="more"></a>
+<h2 id="不知框為何物">不知框為何物</h2><p>Framework 對有些工程師來說是很陌生的，但這不表示說他們一定是初學者，他們可能是已經在 Web 開發好幾年，只是因為 Web Framework 這種概念是這幾年才較為蓬勃發展。</p>
+<p>不過通常這類工程師都有一種特性，那就是墨守成規；他們會自己有自己的一套開發模式，也不會特意去學習新的架構，簡單說…他們認為活得下去最重要。</p>
+<h2 id="只見框形，不得框髓">只見框形，不得框髓</h2><p>剛開始使用 Framework 的開發者，他們大多是驚奇於框架所帶來的便利性，因為以往要花很多功夫的才做得出來的功能，用了 Framework 兩三下就搞定。</p>
+<p>但多數這樣的開發者反而常被 Framework 給綁住，只要 Framework 沒有提供的功能，他們就會開始不知所措，像是失去方向感的螞蟻一樣在各大論譠到處亂竄。</p>
+<h2 id="框不為框，非框也">框不為框，非框也</h2><p>有一些已經對 Framework 處於狂熱階段的開發者，他們認為 Framework 就是要提供快速建立專案的工具、要有強大的 ORM 套件，或是其他能讓他們瞬間擁有超高產能的機制。</p>
+<p>所以只要有 Framework 推出時，沒有這些強大的傢私，那麼就會被他們打入 Library 之列，不能正名為 Framework 。</p>
+<h2 id="速、信、達者，框也">速、信、達者，框也</h2><p>有些開發團隊的領導者，常苦惱沒有一個好的方向能讓大家遵行， Framework 的出現讓他高興了好一陣子。</p>
+<p>在研究了數個時下流行的 Framework 後，他發現 Framework 官方的那些特色展示不過就是噱頭而已；讓團隊能擁有快速、穩定、並完成客戶目標，才是一個好的 Framework 真正應該要做到的。</p>
+<h2 id="手中有框，心中無框">手中有框，心中無框</h2><p>某些開發者走到了高手的地步， Framework 在他們的手上，就是一把無形的劍，念到即劍到；即便是殘劍，也無損於他們制敵於機先。</p>
+<p>他們對 Framework 已經瞭然於胸。他們不會因為 Framework 而使創意受限，即便有些功能在 Framework 中找不到，他們也能夠用自己所學來彌補 Framework 的不足。</p>
+<h2 id="信手捻來都是框">信手捻來都是框</h2><p>創作出 Framework 的人，多數都是有著非常豐富經驗的開發者；為了能傳承這些經驗並再利用，所以他們透過程式碼把它包裝起來。</p>
+<p>他們能把我們要花好幾個月甚至好幾年才能參透的知識，找出其共通的部份並封裝在框架裡，然後再給我們一個既定的方式，告訴我們怎麼去修改需要變動的地方。</p>
+<p>他們懂得一切，也懂得怎麼讓我們用簡單的方式去使用這這一切。</p>
+<h2 id="無框即有框，善用一切而已">無框即有框，善用一切而已</h2><p>像 PHP 本身廣義上而言就是一個 Framework ，它黏合了所有我們所需要的工具，但絕大多數的開發者不會認為自己身處在 PHP 這個 Framework 裡。</p>
+<p>但是我們還是能透過 PHP 讓 Web 多采多姿，讓我們的想像力無限延伸在無窮無盡地網路世界…</p>
+<p>只要我們用對了工具。</p>
+<h2 id="世上本無框，本質為王">世上本無框，本質為王</h2><p>在像 Google 這種大公司裡的開發者， Framework 對他們來說反而是一種侷限；他們看到的世界遠比我們廣得多，他們處理的資料早已超過我們的想像。</p>
+<p>他們創造的是 Framework 以外的世界，凡人呀！那便是廣大的雲端！</p>
+<p>幸好，他們還是給了我們一架飛機。</p>
+</span>
       
     </div>
 
@@ -288,22 +302,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +381,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +414,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不知框為何物"><span class="nav-number">1.</span> <span class="nav-text">不知框為何物</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只見框形，不得框髓"><span class="nav-number">2.</span> <span class="nav-text">只見框形，不得框髓</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框不為框，非框也"><span class="nav-number">3.</span> <span class="nav-text">框不為框，非框也</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#速、信、達者，框也"><span class="nav-number">4.</span> <span class="nav-text">速、信、達者，框也</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手中有框，心中無框"><span class="nav-number">5.</span> <span class="nav-text">手中有框，心中無框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信手捻來都是框"><span class="nav-number">6.</span> <span class="nav-text">信手捻來都是框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#無框即有框，善用一切而已"><span class="nav-number">7.</span> <span class="nav-text">無框即有框，善用一切而已</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#世上本無框，本質為王"><span class="nav-number">8.</span> <span class="nav-text">世上本無框，本質為王</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +430,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +452,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +462,6 @@
 
   
   
-
   
     
     
@@ -489,21 +491,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +660,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +690,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

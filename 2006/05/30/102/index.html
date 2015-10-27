@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,42 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="簡介是到了該結帳的時候了，就像你在大賣場買完東西後，要到櫃台付錢是一樣的。但是在購物網站買完東西後，總是要填寫一些個人資料，方便商家能夠把東西寄給你，這是虛擬商店比較不同的地方。
+而要填寫的資料不外乎是購買人資訊、收貨人資訊等等，這些資訊大部份都能在使用者登入成為會員取得，這通常也是一般會員制購物網站的作法。
+不過難題來了，雖然我們建立的是一個會員制購物網站，但是客戶卻希望能讓未註冊的訪客也能夠在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ASP 購物車三部曲(2)">
 <meta property="og:url" content="http://jaceju.net/2006/05/30/102/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="簡介是到了該結帳的時候了，就像你在大賣場買完東西後，要到櫃台付錢是一樣的。但是在購物網站買完東西後，總是要填寫一些個人資料，方便商家能夠把東西寄給你，這是虛擬商店比較不同的地方。
+而要填寫的資料不外乎是購買人資訊、收貨人資訊等等，這些資訊大部份都能在使用者登入成為會員取得，這通常也是一般會員制購物網站的作法。
+不過難題來了，雖然我們建立的是一個會員制購物網站，但是客戶卻希望能讓未註冊的訪客也能夠在">
+<meta property="og:image" content="http://jaceju.net/resources/ooasp_cart/images/01_checkout_guest.gif">
+<meta property="og:image" content="http://jaceju.net/resources/ooasp_cart/images/01_checkout_member.gif">
+<meta property="og:image" content="http://jaceju.net/resources/ooasp_cart/images/02_checkout_guest.gif">
+<meta property="og:image" content="http://jaceju.net/resources/ooasp_cart/images/02_checkout_member.gif">
+<meta property="og:image" content="http://jaceju.net/resources/ooasp_cart/images/02_checkout_vip.gif">
+<meta property="og:image" content="http://jaceju.net/resources/ooasp_cart/images/template_method.png">
+<meta property="og:image" content="http://jaceju.net/resources/ooasp_cart/images/shopping_cart_checkout.png">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ASP 購物車三部曲(2)">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="簡介是到了該結帳的時候了，就像你在大賣場買完東西後，要到櫃台付錢是一樣的。但是在購物網站買完東西後，總是要填寫一些個人資料，方便商家能夠把東西寄給你，這是虛擬商店比較不同的地方。
+而要填寫的資料不外乎是購買人資訊、收貨人資訊等等，這些資訊大部份都能在使用者登入成為會員取得，這通常也是一般會員制購物網站的作法。
+不過難題來了，雖然我們建立的是一個會員制購物網站，但是客戶卻希望能讓未註冊的訪客也能夠在">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> ASP 購物車三部曲(2) | 網站製作學習誌 </title>
 </head>
@@ -143,7 +142,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +152,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +162,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +182,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +241,137 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><h2 id="簡介">簡介</h2><p>是到了該結帳的時候了，就像你在大賣場買完東西後，要到櫃台付錢是一樣的。但是在購物網站買完東西後，總是要填寫一些個人資料，方便商家能夠把東西寄給你，這是虛擬商店比較不同的地方。</p>
+<p>而要填寫的資料不外乎是購買人資訊、收貨人資訊等等，這些資訊大部份都能在使用者登入成為會員取得，這通常也是一般會員制購物網站的作法。</p>
+<p>不過難題來了，雖然我們建立的是一個會員制購物網站，但是客戶卻希望能讓未註冊的訪客也能夠在這裡先買東西，而到結帳時才選擇是不是要加入會員。當然客戶永遠不會瞭解採取這種方式的難度，他認為你是網站開發人員，你一定會有辦法的。</p>
+<p>先不要翻桌子，解決問題是我們的責任。仔細想想，訪客對購物網站的經營者而言，也可能是潛在的消費者；所以如果能提供便利的方式讓這些人轉變為會員，其實還滿重要的。</p>
+<p>當然我們得提供畫面讓使用者填寫資料，並且把這些資料做適當的處理。不過後續的處理方式我就不多提了，現在我們把重點先放在結帳表單顯示的頁面流程，來看看物件導向思維如何應用在這上面。</p>
+<p>註：這裡我也會略過金流及物流的部份，因為各家金流及物流的實作方式都不太一樣，要寫的話可能又會是落落長。</p>
+<a id="more"></a>
+<h2 id="定義頁面顯示的流程">定義頁面顯示的流程</h2><p>暫時別想太多，我們先將填寫個人資料表單頁面的產生流程定義下來：</p>
+<ul>
+<li>判斷是不是已登入，如果是就取得該會員的資料 (一般是從資料庫取得) 。</li>
+<li>如果不是會員 (即訪客) ，顯示空值表單，並顯示一個選項讓訪客決定要不要成為會員；否則表單就預先帶出會員的資料，但不必再填寫購買人的資訊 (收貨人則是一定要填寫的，這是一般結帳原則) 。</li>
+</ul>
+<p>而不管使用者是不是會員，我們都先把資料產生出來，放到一個 Dictionary 物件中，以便 HTML 頁面可以用一致的方式顯示資料。</p>
+<p>結帳時處理會員的程式如下：</p>
+<p>/Checkout.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;%&#10;Option Explicit&#10;%&#62;&#10;&#60;!-- #include virtual=&#34;/OOASP/functions/GetObject.asp&#34; --&#62;&#10;&#60;%&#10;Session(&#34;MemberID&#34;) = &#34;A123456789&#34;&#10;&#39; &#26371;&#21729;&#29289;&#20214;&#10;Dim oMember : Set oMember = GetObject(&#34;Member&#34;)&#10;&#39; &#26371;&#21729;&#21021;&#22987;&#21270;&#10;oMember.Init&#10;&#39; HTML &#30340;&#37096;&#20221;&#21033;&#29992;&#19978;&#38754;&#30340; oMember &#20358;&#39023;&#31034;&#34920;&#21934;&#38913;&#38754;&#10;%&#62;&#10;&#60;!-- #include file=&#34;CheckOut.tpl.asp&#34; --&#62;</span><br></pre></td></tr></table></figure>
+<p>因為在 ASP 中我們沒辦法把自訂類別所產生的物件放到 Session 裡，所以這邊我只利用 Session 來記住某個關鍵屬性。假設登入時， Session(“MemberID”) 會記住會員的身份證號碼；而這個 Session(“MemberID”) 是在使用者為登入時，則會是空值。</p>
+<p>然後 HTML 頁面的部份我是用 SSI 的 Include 方式，這在小程序上非常好用，以下就是部份的 HTML 碼：</p>
+<p>/Checkout.tpl.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...&#10;&#60;%&#10;&#39; &#22914;&#26524;&#26159;&#35370;&#23458;&#23601;&#35201;&#22635;&#23531;&#36092;&#36023;&#20154;&#22995;&#21517;&#21450;&#36523;&#20221;&#35657;&#34399;&#30908;&#10;If Not oMember.IsLogin Then&#10;%&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;shopper_name&#34; class=&#34;text&#34;&#62;&#36092;&#36023;&#20154;&#22995;&#21517;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;shopper_name&#34; id=&#34;shopper_name&#34;&#10;value=&#34;&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;shopper_pid&#34; class=&#34;text&#34;&#62;&#36523;&#20221;&#35657;&#34399;&#30908;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;shopper_pid&#34; id=&#34;shopper_pid&#34;&#10;value=&#34;&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;%&#10;&#39; &#22914;&#26524;&#26159;&#26371;&#21729;&#23601;&#19981;&#29992;&#22635;&#23531;&#20102;&#10;Else&#10;%&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;shopper_name&#34; class=&#34;text&#34;&#62;&#36092;&#36023;&#20154;&#22995;&#21517;&#60;/label&#62;&#10;&#60;span&#62;&#60;% = oMember.GetField(&#34;Name&#34;) %&#62;&#60;/span&#62;&#10;&#60;input type=&#34;hidden&#34; name=&#34;shopper_name&#34; id=&#34;shopper_name&#34;&#10;value=&#34;&#60;% = oMember.GetField(&#34;Name&#34;) %&#62;&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;shopper_pid&#34; class=&#34;text&#34;&#62;&#36523;&#20221;&#35657;&#34399;&#30908;&#60;/label&#62;&#10;&#60;span&#62;&#60;% = oMember.GetField(&#34;PersonalNumer&#34;) %&#62;&#60;/span&#62;&#10;&#60;input type=&#34;hidden&#34; name=&#34;shopper_pid&#34; id=&#34;shopper_pid&#34;&#10;value=&#34;&#60;% = oMember.GetField(&#34;PersonalNumer&#34;) %&#62;&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;%&#10;End If&#10;%&#62;&#10;...&#10;&#60;label for=&#34;receiver_name&#34; class=&#34;text&#34;&#62;&#25910;&#20214;&#20154;&#22995;&#21517;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;receiver_name&#34; id=&#34;receiver_name&#34;&#10;value=&#34;&#60;% = oMember.GetField(&#34;Name&#34;) %&#62;&#34; /&#62;&#10;...&#10;&#60;label for=&#34;receiver_address&#34; class=&#34;text&#34;&#62;&#25910;&#20214;&#20154;&#22320;&#22336;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;receiver_address&#34; id=&#34;receiver_address&#34; /&#62;&#10;...&#10;&#60;%&#10;&#39; &#22312;&#34920;&#21934;&#20013;&#21152;&#19978;&#19968;&#20491; checkbox&#10;&#39; &#35731;&#20351;&#29992;&#32773;&#27770;&#23450;&#35201;&#19981;&#35201;&#29992;&#29694;&#22312;&#30340;&#36039;&#26009;&#25104;&#28858;&#26371;&#21729;&#10;If Not oMember.IsLogin Then&#10;%&#62;&#10;&#60;fieldset&#62;&#60;legend&#62;&#36984;&#38917; (&#38750;&#24517;&#22635;) &#60;/legend&#62;&#10;&#60;input type=&#34;checkbox&#34; name=&#34;change_level&#34; id=&#34;change_level&#34; /&#62;&#10;&#60;label for=&#34;change_level&#34;&#62;&#26159;&#21542;&#25104;&#28858;&#26371;&#21729;&#65311;&#60;/label&#62;&#10;&#60;/fieldset&#62;&#10;&#60;%&#10;End If&#10;%&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#30906;&#23450;&#34; /&#62;&#10;...</span><br></pre></td></tr></table></figure>
+<p>註：為了不讓大家頭痛，在 HTML 的部份我省略掉很多東西，像是 JavaScript 的表單驗證等等，請先專注在 ASP 程式上就好。</p>
+<p>其實看起來也不會太難嗎？而且不管怎樣，使用者都一定要填寫個人資料；因為如果使用者的身分是會員時，購買人的輸入欄就會變成隱藏欄位，這樣處理資料時就能夠一致了 (除了訪客可能會成為會員時) 。</p>
+<p>先來看看顯示的結果好了，如果使用者尚未登入成為會員時，就會顯示以下畫面：</p>
+<p><img src="/resources/ooasp_cart/images/01_checkout_guest.gif" alt=""></p>
+<p>而如果已經登入成會員身份時，就會顯示以下畫面：</p>
+<p><img src="/resources/ooasp_cart/images/01_checkout_member.gif" alt=""></p>
+<p>這時候會員就不必填寫購買人姓名和身份證了。</p>
+<p>註：當然實際應用上的表單會比較複雜，這裡我特意簡化了。</p>
+<p>大致瞭解程式與畫面後，我們接下來就可以完成會員類別的程式碼：</p>
+<p>/class/Member.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;%&#10;&#39; &#23450;&#32681;&#24120;&#25976;&#10;Const LEVEL_GUEST  = 1   &#39; &#35370;&#23458;&#10;Const LEVEL_MEMBER = 2   &#39; &#19968;&#33324;&#26371;&#21729;&#10;&#39; &#26371;&#21729;&#39006;&#21029;&#10;Class Member&#10;Private Fields&#10;Public IsLogin&#10;&#39; &#29289;&#20214;&#21021;&#22987;&#21270;&#10;Private Sub Class_Initialize()&#10;IsLogin = False&#10;&#39; &#28858;&#20102;&#26041;&#20415;&#35498;&#26126;&#65292;&#25105;&#21482;&#29992;&#20102;&#24190;&#20491;&#31777;&#21934;&#30340;&#26371;&#21729;&#23660;&#24615;&#10;Set Fields = Server.CreateObject(&#34;Scripting.Dictionary&#34;)&#10;With Fields&#10;.Add &#34;Level&#34;, LEVEL_GUEST &#39; &#38928;&#35373;&#31561;&#32026;&#28858;&#35370;&#23458;&#10;.Add &#34;Name&#34;, &#34;&#34;           &#39; &#38928;&#35373;&#22995;&#21517;&#28858;&#31354;&#23383;&#20018;&#10;.Add &#34;PersonalNumer&#34;, &#34;&#34;  &#39; &#38928;&#35373;&#36523;&#20221;&#35657;&#34399;&#30908;&#28858;&#31354;&#23383;&#20018;&#10;End With&#10;End Sub&#10;&#39; &#26371;&#21729;&#21021;&#22987;&#21270;&#10;Public Sub Init&#10;Dim sName : sName = &#34;&#34;&#10;Dim iLevel : iLevel = LEVEL_GUEST&#10;Dim sPersonalNumer&#10;sPersonalNumer = UCase(Trim(Session(&#34;MemberID&#34;)))&#10;&#39; &#24478; Session &#20540;&#21028;&#26039;&#26159;&#21542;&#24050;&#30331;&#20837;&#10;If sPersonalNumer = &#34;A123456789&#34; Then&#10;sName = &#34;&#25105;&#26159;&#19968;&#33324;&#26371;&#21729;&#34;&#10;iLevel = LEVEL_MEMBER&#10;IsLogin = True&#10;End If&#10;SetField &#34;Level&#34;, iLevel&#10;SetField &#34;Name&#34;, sName&#10;SetField &#34;PersonalNumer&#34;, sPersonalNumer&#10;End Sub&#10;&#39; &#35373;&#23450;&#26371;&#21729;&#23660;&#24615;&#10;Public Sub SetField(sName, vValue)&#10;If Fields.Exists(sName) Then&#10;Fields(sName) = vValue&#10;End If&#10;End Sub&#10;&#39; &#21462;&#24471;&#26371;&#21729;&#23660;&#24615;&#10;Public Function GetField(sName)&#10;GetField = Null&#10;If Fields.Exists(sName) Then&#10;GetField = Fields(sName)&#10;End If&#10;End Function&#10;&#39; &#29289;&#20214;&#32080;&#26463;&#10;Private Sub Class_Terminate()&#10;Set Fields = Nothing&#10;End Sub&#10;End Class&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>註：會員類別做的事當然不僅這些，這裡我簡化掉很多功能，像是 Login 方法等；目前我只需要讓範例能夠成功執行，讓大家能夠專注在頁面的流程上。</p>
+<h2 id="流程的改變">流程的改變</h2><p>不過上面的做法讓我覺得心神不寧，因為我總是認為客戶絕對不會就這樣滿足。果不其然，沒多久客戶就要我們加上 VIP 會員的流程。一樣為了簡化說明，這裡我先把新的流程定義如下：</p>
+<ul>
+<li>判斷是不是已登入，如果是就取得該會員的資料 (一般是從資料庫取得) 。</li>
+<li>如果不是會員 (即訪客) ，顯示空值表單，並顯示一個選項讓訪客決定要不要成為會員；否則表單就預先帶出會員的資料，但不必再填寫購買人的資訊 (至此都和前面的規則一樣) 。 </li>
+<li>如果是一般會員，就要顯示升級為 VIP 會員的選項；如果是 VIP 會員，要額外顯示可用折扣額度及折扣輸入的欄位。</li>
+</ul>
+<p>註：事實上，我在專案裡所加入的功能遠比單純加上 VIP 會員流程複雜；這裡只是為了讓大家容易進入狀況，我特地以這種比較簡單的方式來說明。</p>
+<p>我們先來看看畫面有什麼差別，首先是訪客：</p>
+<p><img src="/resources/ooasp_cart/images/02_checkout_guest.gif" alt=""></p>
+<p>我們可以看到訪客的表單跟前面是一樣的。</p>
+<p>接下來是一般會員的表單畫面：</p>
+<p><img src="/resources/ooasp_cart/images/02_checkout_member.gif" alt=""></p>
+<p>如上圖所示，一般會員多了一個是否升級為 VIP 會員的選項。</p>
+<p>最後是新增的 VIP 會員表單畫面： </p>
+<p><img src="/resources/ooasp_cart/images/02_checkout_vip.gif" alt=""></p>
+<p>很清楚地，三種不同等級的使用者都有不同選項，所以我們的程式也要有所因應。</p>
+<p>不過會員類別的部份其實可以不用變動，因為實際上會員資料是從資料庫取得的；但為了模擬程式效果，我還是加入了 VIP 會員的常數定義及程式判斷： </p>
+<p>/class/Member.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39; &#23450;&#32681;&#24120;&#25976;&#10;Const LEVEL_GUEST  = 1   &#39; &#35370;&#23458;&#10;Const LEVEL_MEMBER = 2   &#39; &#19968;&#33324;&#26371;&#21729;&#10;Const LEVEL_VIP    = 3   &#39; VIP &#26371;&#21729;&#10;&#39; &#26371;&#21729;&#39006;&#21029;&#10;Class Member&#10;...&#10;&#39; &#26371;&#21729;&#21021;&#22987;&#21270;&#10;Public Sub Init&#10;...&#10;&#39; &#24478; Session &#20540;&#21028;&#26039;&#26159;&#21542;&#24050;&#30331;&#20837;&#10;Select Case sPersonalNumer&#10;Case &#34;A123456789&#34;&#10;sName = &#34;&#19968;&#33324;&#26371;&#21729;&#34;&#10;iLevel = LEVEL_MEMBER&#10;IsLogin = True&#10;      Case &#34;V123456789&#34;&#10;        sName = &#34; VIP &#26371;&#21729;&#34;&#10;        iLevel = LEVEL_VIP&#10;        IsLogin = True&#10;End Select&#10;...&#10;End Sub&#10;...&#10;End Class</span><br></pre></td></tr></table></figure>
+<p>至於 Checkout.asp 就暫時不用修改了，主要的變化是在 HTML 頁面上，因此我們可以將 HTML 頁面的選項區修改如下：</p>
+<p>/Checkout.tpl.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...&#10;&#60;fieldset&#62;&#60;legend&#62;&#36984;&#38917; (&#38750;&#24517;&#22635;) &#60;/legend&#62;&#10;&#60;%&#10;&#39; &#22312;&#34920;&#21934;&#20013;&#21152;&#19978;&#19968;&#20491; checkbox&#10;&#39; &#35731;&#20351;&#29992;&#32773;&#27770;&#23450;&#35201;&#19981;&#35201;&#29992;&#29694;&#22312;&#30340;&#36039;&#26009;&#25104;&#28858;&#26371;&#21729;&#10;If Not oMember.IsLogin Then&#10;%&#62;&#10;&#60;input type=&#34;checkbox&#34; name=&#34;change_level&#34; id=&#34;change_level&#34; /&#62;&#10;&#60;label for=&#34;change_level&#34;&#62;&#26159;&#21542;&#25104;&#28858;&#26371;&#21729;&#65311;&#60;/label&#62;&#10;&#60;%&#10;&#39; &#22312;&#34920;&#21934;&#20013;&#21152;&#19978;&#19968;&#20491; checkbox&#10;&#39; &#35731;&#19968;&#33324;&#26371;&#21729;&#27770;&#23450;&#35201;&#19981;&#35201;&#21319;&#32026;&#28858; VIP &#26371;&#21729;&#10;ElseIf LEVEL_MEMBER = oMember.GetField(&#34;Level&#34;) Then&#10;%&#62;&#10;&#60;input type=&#34;checkbox&#34; name=&#34;change_level&#34; id=&#34;change_level&#34; /&#62;&#10;&#60;label for=&#34;change_level&#34;&#62;&#26159;&#21542;&#21319;&#32026;&#28858; VIP &#26371;&#21729;&#65311;&#60;/label&#62;&#10;&#60;%&#10;&#39; &#22312;&#34920;&#21934;&#20013;&#21152;&#19978;&#19968;&#20491;&#25991;&#23383;&#27396;&#20301;&#10;&#39; &#35731; VIP &#26371;&#21729;&#20351;&#29992;&#40670;&#25976;&#10;ElseIf LEVEL_VIP = oMember.GetField(&#34;Level&#34;) Then&#10;%&#62;&#10;&#60;p&#62;&#24744;&#21487;&#29992;&#30340; ECoupon &#40670;&#25976;&#65306;100&#60;/p&#62;&#10;&#60;label for=&#34;ecoupon_number&#34;&#62;&#36664;&#20837;&#27442;&#20351;&#29992;&#30340; ECoupon &#40670;&#25976;&#65306;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;ecoupon_number&#34; id=&#34;ecoupon_number&#34; size=&#34;10&#34; /&#62;&#10;&#60;%&#10;End If&#10;%&#62;&#10;&#60;/fieldset&#62;</span><br></pre></td></tr></table></figure>
+<p>但是我仔細思考了一下，如果我們再用 If Else 結構，往後維護肯定很麻煩，而且 Checkout.tpl.asp 的架構會變得非常之龐大，這可不是我樂意見到的。</p>
+<p>註：上面程式之所以看起來很簡單的原因，是因為我簡略掉很多細節。</p>
+<h2 id="流程抽象化">流程抽象化</h2><p>我重新歸納並且分開三種角色的流程，看看它們到底有什麼不同。</p>
+<p>訪客：</p>
+<ul>
+<li>建立空的會員資料，購買人欄位為可填。</li>
+<li>顯示收貨人的填寫欄位。</li>
+<li>加上一個詢問是不是要成為會員的選項。</li>
+</ul>
+<p>一般會員：</p>
+<ul>
+<li>預先帶出會員的資料，但購買人欄位變為不可填。</li>
+<li>顯示收貨人的填寫欄位。</li>
+<li>加上升級為 VIP 會員的選項。</li>
+</ul>
+<p>VIP 會員：</p>
+<ul>
+<li>預先帶出 VIP 會員的資料，但購買人欄位變為不可填。</li>
+<li>顯示收貨人的填寫欄位。</li>
+<li>顯示可用折扣額度。</li>
+</ul>
+<p>看起來只有第二個步驟是一樣的，第一步和第三步好像都不太一樣，但是真的是不一樣嗎？</p>
+<p> 在三個角色的第一個步驟裡，不管是建立空的會員資料或是從資料庫讀取會員資料，最後不是都會在 HTML 頁面上顯示購買人欄位嗎？差別只是要不要填寫而已。從這個方向去想，其實它們做的事是滿相像的。</p>
+<p>同樣地對第三個步驟來說，每種層級都會有不同的附屬畫面，例如訪客有詢問是否要成為會員的選項，而 VIP 會員會有一個額外顯示可折扣額度的功能；其實我們也可以將它視為附屬在顯示表單流程裡。</p>
+<p>因此不管是哪一個角色，我們都能得到一個基本的概念流程：</p>
+<ul>
+<li>取得角色資料，決定是否讓使用者填寫購買人資訊。</li>
+<li>顯示收貨人的填寫欄位。</li>
+<li>依照使用者等級決定表單所以顯示的額外資訊。</li>
+</ul>
+<p>這就是流程抽象化。</p>
+<h2 id="Template_Method_模式">Template Method 模式</h2><h3 id="什麼是_Template_Method">什麼是 Template Method</h3><p>抽象化有什麼好處還記得嗎？沒錯！就是可以用相同的方式來處理不同的邏輯。我們已經將上面三種會員的結帳表單顯示流程歸納出了相同的抽象結構，所以我們是不是能用相同的方式來處理它們呢？這時候就是 Template Method 模式大展身手的時機了。 </p>
+<p>Template Method 的基本概念就是在父類別 (Base) 的某個方法 (Run) 中定義好一個流程骨架，然後讓子類別 (ConcreteClass) 繼承，再由子類別去實作流程中的每個步驟。我們可以用以下的 UML 圖來表示：</p>
+<p><img src="/resources/ooasp_cart/images/template_method.png" alt="Template Method UML"></p>
+<p>如你所見， Base 類別的 Run 函式定義好了整個流程骨架，而它就不能被子類別所覆寫，以免打亂了整個流程。這在良好物件導向特性語言裡，可以用 final 關鍵字來指定。 </p>
+<p>所以子類別 (ConcreteClass) 只需要關心步驟的實作，而執行的順序早已由 Base 類別的 Run 函式決定好了。也因此每個角色的流程雖然都一樣，但透過子類別上各步驟實作上的不同，我們就能夠清楚地分離每個角色該做的事。</p>
+<h3 id="如何實作_Template_Method">如何實作 Template Method</h3><p>先前提過 ASPUnit 用到了一個 Template Method 模式，但是沒有繼承機制的 ASP 如何實作 Template Method 呢？</p>
+<p>Template Method 裡有句名言： Don’t Call Me, I Call You!</p>
+<p>意思就是父類別會去呼叫子類別的方法；雖然在似類 Java 的語言裡，實際執行動作的還是子類別的實體 (因為父類別是抽象的) ，但是在 ASP 中卻真的是由父類別的實體去呼叫子類別的實體！</p>
+<p>還是實際用前面的例子來示範好了，首先我先把 Checkout.asp 改一下，讓大家清楚程式會怎麼跑：</p>
+<p>/Checkout.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;%&#10;Option Explicit&#10;%&#62;&#10;&#60;!-- #include virtual=&#34;/OOASP/functions/GetObject.asp&#34; --&#62;&#10;&#60;!-- #include file=&#34;class/CheckoutForm.asp&#34; --&#62;&#10;&#60;%&#10;Session(&#34;MemberID&#34;) = &#34;A123456789&#34;&#10;&#39; &#26371;&#21729;&#29289;&#20214;&#10;Dim oMember : Set oMember = GetObject(&#34;Member&#34;)&#10;&#39; &#26371;&#21729;&#21021;&#22987;&#21270;&#10;oMember.Init&#10;&#39; &#24314;&#31435;&#34920;&#21934;&#39023;&#31034;&#29289;&#20214;&#10;&#39; &#22240;&#28858;&#29992;&#21040;&#20102; SSI &#25351;&#20196;&#65292;&#25152;&#20197;&#19981;&#33021;&#20351;&#29992; GetObject &#20358;&#24314;&#31435;&#29289;&#20214;&#10;Dim oCheckoutForm : Set oCheckoutForm = New CheckoutForm&#10;oCheckoutForm.SetMember oMember&#10;oCheckoutForm.Display&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>你應該會發現原來的 SSI Include 指令被我換成一個 CheckoutForm 類別物件了，它扮演的角色就是 Template Method 中的父類別，也就是負責定義流程骨架的角色。</p>
+<p>接下來是 CheckoutForm 類別，它是用來顯示表單的：</p>
+<p>/class/CheckoutForm.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!-- #include file=&#34;GuestCheckoutForm.asp&#34; --&#62;&#10;&#60;!-- #include file=&#34;MemberCheckoutForm.asp&#34; --&#62;&#10;&#60;!-- #include file=&#34;VIPCheckoutForm.asp&#34; --&#62;&#10;&#60;%&#10;Class CheckoutForm&#10;&#39; &#23526;&#39636;&#29289;&#20214;&#10;Private ConcreteObject&#10;&#39; &#34987;&#32380;&#25215;&#30340;&#29289;&#20214;&#10;Public Prototype&#10;&#39; &#26371;&#21729;&#10;Public Member&#10;&#39; &#26371;&#21729;&#23652;&#32026;&#30340;&#23565;&#25033;&#34920;&#10;Private LevelList&#10;&#39; &#29289;&#20214;&#21021;&#22987;&#21270;&#10;Private Sub Class_Initialize()&#10;Set ConcreteObject = Me&#10;Set Prototype = Me&#10;Set LevelList = _&#10;Server.CreateObject(&#34;Scripting.Dictionary&#34;)&#10;With LevelList&#10;.Add LEVEL_GUEST, &#34;Guest&#34;&#10;.Add LEVEL_MEMBER, &#34;Member&#34;&#10;.Add LEVEL_VIP, &#34;VIP&#34;&#10;End With&#10;End Sub&#10;&#39; &#35373;&#23450;&#26371;&#21729;&#10;Public Sub SetMember(oMember)&#10;Set Member = oMember&#10;Set ConcreteObject = Me&#10;On Error Resume Next&#10;Execute &#34;Set ConcreteObject = New &#34; &#38;amp; _&#10;LevelList(oMember.GetField(&#34;Level&#34;)) &#38;amp; _&#10;&#34;CheckoutForm&#34;&#10;On Error Goto 0&#10;Set ConcreteObject.Prototype = Me&#10;End Sub&#10;&#39; &#39023;&#31034;&#34920;&#21934;&#10;Public Sub Display()&#10;%&#62;&#60;!-- #include file=&#34;../CheckOut.tpl.asp&#34; --&#62;&#60;%&#10;End Sub&#10;&#39; &#39023;&#31034;&#36092;&#36023;&#20154;&#27396;&#20301;&#10;Public Sub DisplayShopperFields()&#10;%&#62;&#60;p&#62;&#10;&#60;label for=&#34;shopper_name&#34; class=&#34;text&#34;&#62;&#36092;&#36023;&#20154;&#22995;&#21517;&#60;/label&#62;&#10;&#60;span&#62;&#60;% = Prototype.Member.GetField(&#34;Name&#34;) %&#62;&#60;/span&#62;&#10;&#60;input type=&#34;hidden&#34; name=&#34;shopper_name&#34; id=&#34;shopper_name&#34;&#10;value=&#34;&#60;% = Prototype.Member.GetField(&#34;Name&#34;) %&#62;&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;shopper_pid&#34; class=&#34;text&#34;&#62;&#36523;&#20221;&#35657;&#34399;&#30908;&#60;/label&#62;&#10;&#60;span&#62;&#60;% = Prototype.Member.GetField(&#34;PersonalNumer&#34;) %&#62;&#60;/span&#62;&#10;&#60;input type=&#34;hidden&#34; name=&#34;shopper_pid&#34; id=&#34;shopper_pid&#34;&#10;value=&#34;&#60;% = Prototype.Member.GetField(&#34;PersonalNumer&#34;) %&#62;&#34; /&#62;&#10;&#60;/p&#62;&#60;%&#10;End Sub&#10;&#39; &#39023;&#31034;&#25910;&#36008;&#20154;&#27396;&#20301;&#10;Public Sub DisplayReceiverFields()&#10;%&#62;&#60;p&#62;&#10;&#60;label for=&#34;receiver_name&#34; class=&#34;text&#34;&#62;&#25910;&#20214;&#20154;&#22995;&#21517;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;receiver_name&#34; id=&#34;receiver_name&#34;&#10;value=&#34;&#60;% = Prototype.Member.GetField(&#34;Name&#34;) %&#62;&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;receiver_address&#34; class=&#34;text&#34;&#62;&#25910;&#20214;&#20154;&#22320;&#22336;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;receiver_address&#34; id=&#34;receiver_address&#34; /&#62;&#10;&#60;/p&#62;&#60;%&#10;End Sub&#10;&#39; &#39023;&#31034;&#36984;&#25799;&#27396;&#20301;&#10;Public Sub DisplayOptionFields()&#10;End Sub&#10;&#39; &#29289;&#20214;&#32080;&#26463;&#10;Private Sub Class_Terminate()&#10;Set ConcreteObject = Nothing&#10;Set Prototype = Nothing&#10;Set LevelList = Nothing&#10;Set Member = Nothing&#10;End Sub&#10;End Class&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>注意，我們在 SetMember 函式裡用了 Factory Method 模式，它會幫助我們自動產生對應的 CheckoutForm 衍生物件。</p>
+<p>在 CheckoutForm 類別中， Display 函式就是一個 Template Method ；看起來它只是將原來引入 Checkout.tpl.asp 的動作搬過來而已，但這其實是告訴我們流程已經定義在 Checkout.tpl.asp 裡：</p>
+<p>/Checkout.tpl.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...&#10;&#60;fieldset&#62;&#60;legend&#62;&#36092;&#36023;&#20154;&#36039;&#35338;&#60;/legend&#62;&#10;&#60;% ConcreteObject.DisplayShopperFields %&#62;&#10;&#60;/fieldset&#62;&#10;&#60;fieldset&#62;&#60;legend&#62;&#25910;&#20214;&#20154;&#36039;&#35338;&#60;/legend&#62;&#10;&#60;% ConcreteObject.DisplayReceiverFields %&#62;&#10;&#60;/fieldset&#62;&#10;&#60;fieldset&#62;&#60;legend&#62;&#36984;&#38917; (&#38750;&#24517;&#22635;) &#60;/legend&#62;&#10;&#60;% ConcreteObject.DisplayOptionFields %&#62;&#10;&#60;/fieldset&#62;&#10;...</span><br></pre></td></tr></table></figure>
+<p>而 DisplayShopperFields 、 DisplayReceiverFields 、 DisplayOptionFields 就是我們的步驟函式，也就是說子類別只需要實作這三個函式即可。當然在 CheckoutForm 類別裡，我們也可以把預設的動作寫上去，這樣子類別如果有不想覆寫的步驟，就可以轉交給父類別執行。</p>
+<p>可是到底要怎麼模擬繼承呢？ ASPUnit 採用了一個很聰明的作法，也就是反過來將子類別的方法或屬性，移交給父類別來執行。</p>
+<p>什麼意思呢？首先我們在父類別中定義了兩個屬性： Prototype 及 ConcreteObject ，而在子類別中定義了一個 Prototype 屬性。在 CheckForm 類別實體化時，把 Prototype 及 ConcreteObject 兩個屬性都指向自己 (Me) 。</p>
+<p>而在 Factory Method (也就是 SetMember) 執行後，就會把 ConcreteObject 指向真正的子類別 (GuestCheckoutForm 、 MemberCheckoutForm 、 VIPCheckoutForm 其中之一) 的實體；並且同時將子類別的 Prototype 屬性指向 CheckoutForm 的實體 (Me) ，讓雙方都能同時相互參考。</p>
+<p>如此一來，父類別就會透過 ConcreteObject 來呼叫子類別；如果子類別有不想實作的函式，就透過 Prototype 屬性把要求轉交給父類別；整個執行的角色就是父類別，而這其中的關鍵就是 SetMember 函式。</p>
+<p>換句話說，我們在執行時期只會操作到父類別的實體。至於子類別的實體，則是由父類別實體自行產生並控制。</p>
+<p>我想你大概已經昏了吧？直接看看 CheckoutForm 的子類別好了：</p>
+<p>/class/GuestCheckoutForm.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;%&#10;Class GuestCheckoutForm &#39; Extends CheckoutForm&#10;&#39; &#34987;&#32380;&#25215;&#30340;&#29289;&#20214;&#10;Public Prototype&#10;&#39; &#39023;&#31034;&#36092;&#36023;&#20154;&#27396;&#20301;&#10;Public Sub DisplayShopperFields()&#10;%&#62;&#60;p&#62;&#10;&#60;label for=&#34;shopper_name&#34; class=&#34;text&#34;&#62;&#36092;&#36023;&#20154;&#22995;&#21517;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;shopper_name&#34; id=&#34;shopper_name&#34;&#10;value=&#34;&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;shopper_pid&#34; class=&#34;text&#34;&#62;&#36523;&#20221;&#35657;&#34399;&#30908;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;shopper_pid&#34; id=&#34;shopper_pid&#34;&#10;value=&#34;&#34; /&#62;&#10;&#60;/p&#62;&#60;%&#10;End Sub&#10;&#39; &#39023;&#31034;&#25910;&#36008;&#20154;&#27396;&#20301;&#10;Public Sub DisplayReceiverFields()&#10;Prototype.DisplayReceiverFields&#10;End Sub&#10;&#39; &#39023;&#31034;&#36984;&#25799;&#27396;&#20301;&#10;Public Sub DisplayOptionFields()&#10;%&#62;&#60;input type=&#34;checkbox&#34; name=&#34;change_level&#34; id=&#34;change_level&#34; /&#62;&#10;&#60;label for=&#34;change_level&#34;&#62;&#26159;&#21542;&#25104;&#28858;&#26371;&#21729;&#65311;&#60;/label&#62;&#60;%&#10;End Sub&#10;End Class&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>由於 GuestCheckoutForm 的購買人欄位和其他兩個類別不同，所以我覆寫了 CheckoutForm 的 DisplayShopperFields 函式，而 DisplayOptionFields 也是一樣。但是因為 DisplayReceiverFields 用預設的即可，因此我便透過 Prototype 來呼叫父類別實體裡的 DisplayReceiverFields 函式。</p>
+<p>另外我把 HTML 頁面中屬於訪客條件區塊的部份集中到 GuestCheckoutForm 裡，這樣我們就能很明確知道訪客應該執行的步驟。</p>
+<p>註：這裡用 ASP 模擬繼承時有個缺點，那就是方法必須再宣告一次，然後呼叫父類別的實作來執行。</p>
+<p>以此類推， MemberCheckoutForm 及 VIPCheckoutForm 也是一樣的道理。</p>
+<p>/class/MemberCheckoutForm.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;%&#10;Class MemberCheckoutForm &#39; Extends CheckoutForm&#10;&#39; &#34987;&#32380;&#25215;&#30340;&#29289;&#20214;&#10;Public Prototype&#10;&#39; &#39023;&#31034;&#36092;&#36023;&#20154;&#27396;&#20301;&#10;Public Sub DisplayShopperFields()&#10;Prototype.DisplayShopperFields&#10;End Sub&#10;&#39; &#39023;&#31034;&#25910;&#36008;&#20154;&#27396;&#20301;&#10;Public Sub DisplayReceiverFields()&#10;Prototype.DisplayReceiverFields&#10;End Sub&#10;&#39; &#39023;&#31034;&#36984;&#25799;&#27396;&#20301;&#10;Public Sub DisplayOptionFields()&#10;%&#62;&#60;input type=&#34;checkbox&#34; name=&#34;change_level&#34; id=&#34;change_level&#34; /&#62;&#10;&#60;label for=&#34;change_level&#34;&#62;&#26159;&#21542;&#21319;&#32026;&#28858; VIP &#26371;&#21729;&#65311;&#60;/label&#62;&#60;%&#10;End Sub&#10;End Class&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>/class/VIPCheckoutForm.asp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;%&#10;Class VIPCheckoutForm &#39; Extends CheckoutForm&#10;&#39; &#34987;&#32380;&#25215;&#30340;&#29289;&#20214;&#10;Public Prototype&#10;&#39; &#39023;&#31034;&#36092;&#36023;&#20154;&#27396;&#20301;&#10;Public Sub DisplayShopperFields()&#10;Prototype.DisplayShopperFields&#10;End Sub&#10;&#39; &#39023;&#31034;&#25910;&#36008;&#20154;&#27396;&#20301;&#10;Public Sub DisplayReceiverFields()&#10;Prototype.DisplayReceiverFields&#10;End Sub&#10;&#39; &#39023;&#31034;&#36984;&#25799;&#27396;&#20301;&#10;Public Sub DisplayOptionFields()&#10;%&#62;&#60;p&#62;&#24744;&#21487;&#29992;&#30340; ECoupon &#40670;&#25976;&#65306;100&#60;/p&#62;&#10;&#60;label for=&#34;ecoupon_number&#34;&#62;&#36664;&#20837;&#27442;&#20351;&#29992;&#30340; ECoupon &#40670;&#25976;&#65306;&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;ecoupon_number&#34; id=&#34;ecoupon_number&#34; size=&#34;10&#34; /&#62;&#60;%&#10;End Sub&#10;End Class&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>由上面的程式碼可以看出，我們在子類別只要實作父類別所定義的步驟函式，就能輕鬆地更換流程執行的過程。整個系統架構如下所示：</p>
+<p><img src="/resources/ooasp_cart/images/shopping_cart_checkout.png" alt=""></p>
+<h2 id="結論">結論</h2><p>看完這篇的人，大概十個裡面會有八個說：為什麼要弄得這麼複雜呀！其實這是因為 ASP (VBScript) 不支援繼承的關係；實際上使用支援 OO 特性的語言，要實現 Template Method 就會變得很簡單而且也比較容易懂。當然以上的例子並不能說是非常好，不過我想也許能讓大家瞭解 Template Method 的精神。</p>
+<p>Template Method 可以說是把物件導向特性發揮的淋漓盡致：流程的抽象化、步驟的繼承、角色的多型；換句話說，因為 Template Method 已經幫我們定義好了流程骨架，所以如果未來我們有新的相似流程，就不必再跑到 HTML 頁面裡加上一大堆的條件判斷式。而且我們也要清楚地分離流程中的每個步驟，把它們交由子類別來實作；這樣我們就能區隔每個角色應該做的事，而不會被大量的 If Else 給淹沒。</p>
+<p>不過應用 Template Method 模式時，還有許多要注意的地方，像是如何切割流程、設計掛勾函式 (Hook) 等，都是很有趣的課題；這些我想很多書上都有寫了，所以我就不再多提了。</p>
+<p>還有我其實不應該把 HTML 寫在類別裡面，應該使用樣版引擎將它們分離。不過為了不讓大家搞混，所以我就省略掉了這些枝節。但是我強烈建議實際應用時，不要把 HTML 寫在程式裡面。</p>
+<p>註：不要把樣版和 Template Method 搞混了。樣版一般是指 HTML 畫面，而 Template Method 的 Template 有流程骨架的意思。</p>
+<h2 id="範例程式下載">範例程式下載</h2><p>範例程式裡面包含了上面每個步驟所介紹的結帳表單原始程式，你可以參考壓縮檔案的 README.txt 來得知如何執行它們。 </p>
+<p><a href="/resources/ooasp_cart/source/ooasp_02_src.rar">下載</a></p>
+</span>
       
     </div>
 
@@ -288,22 +416,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +495,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +528,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#簡介"><span class="nav-number">1.</span> <span class="nav-text">簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定義頁面顯示的流程"><span class="nav-number">2.</span> <span class="nav-text">定義頁面顯示的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程的改變"><span class="nav-number">3.</span> <span class="nav-text">流程的改變</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程抽象化"><span class="nav-number">4.</span> <span class="nav-text">流程抽象化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Template_Method_模式"><span class="nav-number">5.</span> <span class="nav-text">Template Method 模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什麼是_Template_Method"><span class="nav-number">5.1.</span> <span class="nav-text">什麼是 Template Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何實作_Template_Method"><span class="nav-number">5.2.</span> <span class="nav-text">如何實作 Template Method</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">6.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例程式下載"><span class="nav-number">7.</span> <span class="nav-text">範例程式下載</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +544,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +566,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +576,6 @@
 
   
   
-
   
     
     
@@ -489,21 +605,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +774,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +804,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

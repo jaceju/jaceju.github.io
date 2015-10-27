@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="前陣子請同事教大家 JavaScript 物件導向的基礎，但講到存取 JavaScript 物件屬性的方式時，卻很可惜地沒有把它交代清楚，因此這裡我再自己做個補充。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JavaScript] 存取物件屬性的方式">
 <meta property="og:url" content="http://jaceju.net/2010/01/19/993/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="前陣子請同事教大家 JavaScript 物件導向的基礎，但講到存取 JavaScript 物件屬性的方式時，卻很可惜地沒有把它交代清楚，因此這裡我再自己做個補充。">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JavaScript] 存取物件屬性的方式">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="前陣子請同事教大家 JavaScript 物件導向的基礎，但講到存取 JavaScript 物件屬性的方式時，卻很可惜地沒有把它交代清楚，因此這裡我再自己做個補充。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [JavaScript] 存取物件屬性的方式 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,33 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>前陣子請同事教大家 JavaScript 物件導向的基礎，但講到存取 JavaScript 物件屬性的方式時，卻很可惜地沒有把它交代清楚，因此這裡我再自己做個補充。</p>
+<a id="more"></a>
+<h2 id="存取物件屬性方式">存取物件屬性方式</h2><p>JavaScript 有兩種方式可以用來存取物件屬性，假設我們有以下這個物件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myObject = &#123;&#10;   att1: &#39;123&#39;,&#10;   att2: &#39;456&#39;,&#10;   func1: function () &#123;&#125;,&#10;   func2: function () &#123;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>第一種存取的方法是用 JavaScript 的物件屬性存取子「句點 (.) 」：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alert(myObject.attr1);&#10;alert(myObject.attr2);&#10;myObject.func1();&#10;myObject.func2();</span><br></pre></td></tr></table></figure>
+<p>第二種方法是利用關聯索引來存取：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alert(myObject[&#39;attr1&#39;]);&#10;alert(myObject[&#39;attr2&#39;]);&#10;myObject[&#39;func1&#39;]();&#10;myObject[&#39;func2&#39;]();</span><br></pre></td></tr></table></figure>
+<p>然後我問同事，為什麼要有第二種方法？他卻沒辦法回答，著實讓我嚇了一跳。</p>
+<h2 id="動態存取">動態存取</h2><p>假設今天我們要依序找出 myObject 物件裡的各項屬性，可以用以下的方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var attrName in myObject) &#123;&#10;    alert(attrName + &#39;:&#39; + &#27599;&#20491;&#38917;&#30446;&#30340;&#20540;);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這裡 attrName 會依序是 attr1, attr2, func1, func2 ，那麼我們怎麼抓到每個項目的值呢？</p>
+<p>聰明的你應該想到了，就是用第二種方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var attrName in myObject) &#123;&#10;    alert(attrName + &#39;:&#39; + myObject[attrName]);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>在這裡 attrName 會自動轉型成字串，用來當做關聯索引的值，也讓我們能夠存取到 myObject 物件裡對應的資訊。</p>
+<p>那為什麼不能用第一種方法呢？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var attrName in myObject) &#123;&#10;    alert(attrName + &#39;:&#39; + myObject.attrName); // myObject.attrName &#21487;&#20197;&#21966;&#65311;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>因為 JavaScript 規定在句點後面不能接上一個變數，所以如果我們用 myObject.attrName 的話，會被 JavaScript 解釋成要存取 myObject 的 attrName 屬性。</p>
+<h2 id="儘可能別用_eval">儘可能別用 eval</h2><p>在同事似懂非懂後，他反問我，為什麼不用 eval ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var attrName in myObject) &#123;&#10;    alert(attrName + &#39;:&#39; + eval(&#39;myObject.&#39; + attrName));&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>其實原因很簡單：一來 eval 會拖慢速度，寫起來也不方便；二來既然 JavaScript 已經提供關聯索引的方式，就不需要再用 eval 這種 evil 的函式了。</p>
+<h2 id="心得">心得</h2><p>在上完課之後，同事又問我：他不懂，為什麼要技術要這麼地深入？不是夠用就好了嗎？</p>
+<p>我回答他：如果我們一輩子想當個半調子的程式設計師，的確是不用學這麼多。但優秀的開發者都應該思考怎麼讓自己的技術更加精進，瞭解並善用自己手邊的工具。</p>
+<p>一旦僅自滿於現況，那麼不但自己的競爭力會輸給別人，對公司來說，你也只會是個 Coder ，而不是 Programer ；漸漸地你就會被排除在核心之外，永遠無法進步。</p>
+<p>在解釋一堆之後，我最後告訴他：</p>
+<p><strong>瞭解越多，你的世界就會越廣。</strong></p>
+</span>
       
     </div>
 
@@ -288,22 +299,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +378,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +411,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存取物件屬性方式"><span class="nav-number">1.</span> <span class="nav-text">存取物件屬性方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#動態存取"><span class="nav-number">2.</span> <span class="nav-text">動態存取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#儘可能別用_eval"><span class="nav-number">3.</span> <span class="nav-text">儘可能別用 eval</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">4.</span> <span class="nav-text">心得</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +427,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +449,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +459,6 @@
 
   
   
-
   
     
     
@@ -489,21 +488,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +657,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +687,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

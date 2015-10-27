@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,30 +27,20 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
 
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
+  <meta name="keywords" content="Hexo,next" />
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
 
 
 <meta name="description">
@@ -68,14 +54,14 @@
 <meta name="twitter:description">
 
 
-
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -144,7 +130,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -154,7 +140,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -164,7 +150,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -184,8 +170,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
   <section id="posts" class="posts-expand">
     
       
@@ -247,11 +232,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>最近忙著一個大案子，所以這篇的發佈時間就 Delay 了，而且以後貼網摘的時間也可能會越拉越長…Orz  </p>
+<p>另外我想說…Oracle 的表格、欄位名稱都要大寫這個限制實在很鳥…不曉得有沒有哪位 Oracle 前輩能指點一二？ </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2008/04/26/333/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -331,7 +318,8 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>大師發明技術廠商包裝技術高手掌握技術阿宅沈迷技術</p>
+
             
           </span>
         
@@ -413,7 +401,25 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>今天跟 <a href="http://blog.pixnet.net/HACGIS" target="_blank" rel="external">tokimeki</a> 討論到 Bridge 模式的例子，這裡我做個簡單的記錄。</p>
+<p>假設我們有軟體 (Software) 會透過印表機 (Printer) 做列印輸出，而軟體有文字編輯器 (輸出文字) 與影像編輯器 (輸出影像) ，然後印表機則可分做雷射、噴墨及點陣式。</p>
+<p>在設計上，這兩者分別屬於不同的繼承體系，而 Software 又會利用到 Printer ，因此它們形成了 Bridge 關係，如下圖： </p>
+<p><a href="/resources/bridge/PrinterSample.png"><img src="/resources/bridge/PrinterSample.png" alt="Bridge 範例"></a></p>
+<p>把幾個討論心得整理如下：</p>
+<ul>
+<li><p>由於 Printer 抽象類封裝了實作上的不同，因此 Software 的子類別不必瞭解 Printer 的實作，它們只要知道 Printer 提供哪些介面可用。這些子類別會依照自己的需要來組合這些介面，就算用不到也沒關係。</p>
+</li>
+<li><p>在 Software 的子類別可以加入屬於自己的特殊方法，因為它們通常會依場合直接被調用，所以這裡並不需要遵守 LSP 原則。</p>
+</li>
+<li><p>對 Printer 體系來說，它不需要知道誰來用它；但反過來 Software 體系因為需要 Printer 體系的支援，所以形成了單向耦合。</p>
+</li>
+<li><p>對 Software 體系來說，只要它需要新的功能，而且這些功能所需要的實作也在 Printer 抽象類支援的範圍之內，那麼它就可以直接調用 Printer 物件的方法，而不會影響 Printer 體系。</p>
+</li>
+<li><p>如果 Software 體系需要的新功能是 Printer 抽象類所沒有的，那麼還是可以在 Printer 抽象類裡加入新的方法，而實作則交給 Printer 的子類別完成。這樣的修改完全不會影響 Software 體系。 </p>
+</li>
+</ul>
+<p>更詳細的 Bridge 模式介紹可參考良葛格的「 <a href="http://caterpillar.onlyfun.net/Gossip/DesignPattern/BridgePattern.htm" target="_blank" rel="external">Design Pattern: Bridge 模式</a>」一文。</p>
+
             
           </span>
         
@@ -495,7 +501,8 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>繼承抽象類表示類別「是個什麼」，實作介面表示類別「能做什麼」。</p>
+
             
           </span>
         
@@ -577,7 +584,8 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>不管你要做什麼服務，<span style="color:#000;">正妹</span>就是最好的 Interface !!!</p>
+
             
           </span>
         
@@ -657,11 +665,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>這篇積在我電腦裡很久了，一直沒公開…這次趁著要幫我的 Library 加料，順便拿出來分享一下心得。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2008/04/14/327/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -739,11 +748,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>朋友問我這些連結怎麼看得完？我其實沒有全部看完，只是挑重點看。其他的都是瞄個大概，然後記下先；註解也是看懂大概後寫的 (我的英文閱讀能力普普) ，所以有時候可能會錯，請大家原諒。 &gt;_&lt; </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2008/04/13/326/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -823,7 +833,112 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Accessing-Attributes-and-Cloning-Nodes-with-the-DOM-XML-Extension-in-PHP-5/" target="_blank" rel="external">Accessing Attributes and Cloning Nodes with the DOM XML Extension in PHP 5</a> </li>
+</ul>
+<p>教你用 PHP5 的 DOM 套件存取元素屬性或用來複製節點。 </p>
+<ul>
+<li><a href="http://www.ibuildings.nl/blog/archives/811-Multithreading-in-PHP-with-CURL.html" target="_blank" rel="external">Multithreading in PHP with CURL</a></li>
+</ul>
+<p>用  cURL 在 PHP 中模擬出多執行緒。</p>
+<ul>
+<li><a href="http://devzone.zend.com/article/3336-Reading-and-Writing-Spreadsheets-with-PHP" target="_blank" rel="external">Reading and Writing Spreadsheets with PHP</a> </li>
+</ul>
+<p>用 PHP 讀寫 Excel 。 </p>
+<ul>
+<li><a href="http://devforhire.blogspot.com/2008/03/fluent-interfaces-and-code-readability.html" target="_blank" rel="external">Fluent interfaces and code readability</a></li>
+</ul>
+<p>不要濫用 Fluent Interface ，要顧及程式碼的可讀性。 </p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Creating-an-Error-Handling-Module-for-a-PHP-5-File-Uploader/" target="_blank" rel="external">Creating an Error Handling Module for a PHP 5 File Uploader</a> </li>
+</ul>
+<p>建立一個錯誤處理器，以便在檔案上傳後可以方便處理錯誤。</p>
+<ul>
+<li><a href="http://www.ibm.com/developerworks/edu/os-dw-os-php-ondemvideo1.html?ca=drs-tp1408" target="_blank" rel="external">Setting up your own on-demand video site with PHP, Part 1: Groundwork</a> </li>
+</ul>
+<p>用 PHP 建立一個影像即時播送網站。</p>
+<ul>
+<li><a href="http://verens.com/archives/2008/04/03/translation-in-php/" target="_blank" rel="external">Translation in PHP</a></li>
+</ul>
+<p>教你做一個多國語言的 PHP 應用程式。</p>
+<ul>
+<li><a href="http://blog.pixnet.net/HACGIS/post/16081003" target="_blank" rel="external">名稱空間的注意事項</a></li>
+</ul>
+<p>在 PHP 5.3 裡使用 Namespaces 時要注意的地方。 </p>
+<h3 id="Zend_Framework">Zend Framework</h3><ul>
+<li><a href="http://www.phpchina.com/bbs/thread-56702-1-1.html" target="_blank" rel="external">Zend Framework中Ajax的一個使用技巧</a> </li>
+</ul>
+<p>我的實作也是基於同樣的概念，不過我是聽從 Mark 的建議，改以切換 View Object 來實現。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://devorbit.net/english/css-designs-using-float/" target="_blank" rel="external">CSS designs using float</a></li>
+</ul>
+<p>這篇跟我的「<a href="http://blog.roodo.com/jaceju/archives/152005.html" target="_blank" rel="external">樂多Blog排版入門</a>」很像，有興趣讀英文的朋友不妨參考看看。</p>
+<ul>
+<li><a href="http://bitsonewmedia.com/permalink/the_amazing_li" target="_blank" rel="external">The Amazing LI: Using CSS and Unordered List Items to Do Just About Anything</a> </li>
+</ul>
+<p>教你把無序清單轉換成各種樣式。 </p>
+<ul>
+<li><a href="http://speckyboy.com/2008/03/28/top-12-css-frameworks-and-how-to-understand-them/" target="_blank" rel="external">Top 12 CSS Frameworks and How to Understand Them</a></li>
+</ul>
+<p>將常見的 12 個 CSS Frameworks 整理出來，其中 <a href="http://www.yaml.de/en/" target="_blank" rel="external">YAML</a> 真的是滿強的。 </p>
+<ul>
+<li><a href="http://trevordavis.net/blog/tutorial/the-6-most-important-css-techniques-you-need-to-know/" target="_blank" rel="external">The 6 Most Important CSS Techniques You Need To Know</a> </li>
+</ul>
+<p>6 個滿實用的 CSS 技巧。 </p>
+<ul>
+<li><a href="http://cameronmoll.com/articles/extensible-css/" target="_blank" rel="external">The Highly Extensible CSS Interface</a> </li>
+</ul>
+<p><a href="http://cameronmoll.com/archives/2008/02/the_highly_extensible_css_interface_the_series/" target="_blank" rel="external">該系列</a>的文章教你打造可隨視窗寬度延展的 CSS 樣式。 </p>
+<ul>
+<li><a href="http://meiert.com/en/indices/css-properties/" target="_blank" rel="external">CSS Properties Index</a></li>
+</ul>
+<p>這篇好！幾乎把所有 CSS 屬性都列出來了！ </p>
+<ul>
+<li><a href="http://www.phpied.com/background-repeat-and-css-sprites/" target="_blank" rel="external">Background repeat and CSS sprites</a></li>
+</ul>
+<p>利用 CSS sprite 來製作重複的背景圖。 </p>
+<h2 id="JavaScript">JavaScript</h2><h3 id="jQuery">jQuery</h3><ul>
+<li><a href="http://www.learningjquery.com/2008/03/working-with-events-part-1" target="_blank" rel="external">Working with Events, part 1</a> </li>
+</ul>
+<p>主要是教你如何運用 jQuery 的 event 機制。 </p>
+<ul>
+<li><a href="http://css-tricks.com/revealing-photo-slider/" target="_blank" rel="external">Revealing Photo Slider</a></li>
+</ul>
+<p>教你如何先顯示圖片的某個區域，點選後再顯示完整圖片。</p>
+<ul>
+<li><a href="http://plog.longwin.com.tw/programming/2008/04/02/focus_on_first_form_element_2008" target="_blank" rel="external">用 jQuery Focus Form 的第一個輸入欄位</a> </li>
+</ul>
+<p>常用的技巧！</p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://www.savethedevelopers.org/" target="_blank" rel="external">SaveTheDevelopers.org</a> </li>
+</ul>
+<p>向 IE6 說 No ！這個網站有提供一個 Script 讓使用者在以 IE6 瀏覽你的網站時，會出現一個提示升級的訊息。 </p>
+<ul>
+<li><a href="http://blog.blueshop.com.tw/topcat/archive/2008/04/03/54681.aspx" target="_blank" rel="external">跨網站單一登入(Single Sign On)的作法概念</a></li>
+</ul>
+<p>這個也可能會用到，記下先。</p>
+<h3 id="Browser">Browser</h3><ul>
+<li><a href="http://stylizedweb.com/2008/03/25/browser-testing/" target="_blank" rel="external">Browser testing</a> </li>
+</ul>
+<p>收集了一些測試瀏覽器畫面的服務。</p>
+<h3 id="Design">Design</h3><ul>
+<li><a href="http://blog.yoren.info/2008/04/01/495/" target="_blank" rel="external"> 免費網頁小圖示：Vaga</a></li>
+</ul>
+<p><a href="http://www.tenbytwenty.com/products/icon-sets/vaga" target="_blank" rel="external">Vaga</a> 提供了一堆免費的小圖示。 </p>
+<h2 id="Other">Other</h2><h3 id="Software">Software</h3><ul>
+<li><a href="http://cha.homeip.net/blog/archives/2008/03/mplayerffmpeg.html" target="_blank" rel="external"> mplayer、ffmpeg 指令備忘</a></li>
+</ul>
+<p>也是記下先。</p>
+<h3 id="4月1日(愚人節快樂)">4月1日(愚人節快樂)</h3><ul>
+<li><p><a href="http://www.css3.info/ie9-to-include-alternative-css2012-standard/" target="_blank" rel="external">IE9 to include alternative ‘CSS.2012′ standard</a></p>
+</li>
+<li><p><a href="http://ejohn.org/blog/classy-query/" target="_blank" rel="external">Classy Query</a></p>
+</li>
+<li><p><a href="http://www.robertnyman.com/2008/04/01/microsoft-will-use-gecko-layout-engine-in-ie-8/" target="_blank" rel="external">Microsoft will use Gecko layout engine in IE 8</a></p>
+</li>
+</ul>
+
             
           </span>
         
@@ -903,11 +1018,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>今天又被問到怎麼開始學 Zend Framework ，我是覺得要上手並不難，但是基礎一定要有。</p>
+<p>那麼哪些東西算是基礎呢？當然 HTML 、 JavaScript (Ajax) 或 CSS 等必備技能就不必多說了；以下我介紹幾個我個人認為滿重要的部份以及學習的次序：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2008/03/31/324/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -987,7 +1104,164 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Handling-HTML-Strings-and-Files-with-the-DOM-XML-Extension-in-PHP-5/" target="_blank" rel="external">Handling HTML Strings and Files with the DOM XML Extension in PHP 5</a> </li>
+</ul>
+<p>教你用 PHP5 的 DOM XML 套件來處理 HTML 字串或檔案。 </p>
+<ul>
+<li><a href="http://schlueters.de/blog/archives/68-PHP-5.3-Up-to-30-performance-win.html" target="_blank" rel="external">PHP 5.3: Up to 30% performance win</a></li>
+</ul>
+<p>PHP 5.3 的運行效能又提升了。 </p>
+<ul>
+<li><a href="http://urbanoalvarez.es/blog/2008/03/21/php-logging-class/" target="_blank" rel="external">PHP logging class</a> </li>
+</ul>
+<p>這個簡單好用的 Log 套件拿來給舊專案用還不錯。 </p>
+<ul>
+<li><a href="http://php.dzone.com/news/watch-your-post-save-php-post-" target="_blank" rel="external">Watch Your POST: Save PHP POST Data as XML</a></li>
+</ul>
+<p>這個 function 可以幫你把陣列轉換成 xml 格式。 </p>
+<ul>
+<li><a href="http://blog.maartenballiauw.be/post/2008/03/Reuse-Excel-business-logic-with-PHPExcel.aspx" target="_blank" rel="external">Reuse Excel business logic with PHPExcel</a> </li>
+</ul>
+<p>可以透過 PHPExcel 讀取 Excel 裡的公式所算出來的值，使得資料能與 Excel 檔案同步。 </p>
+<ul>
+<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/2fd89e51bc60e62043a75b4d.html" target="_blank" rel="external">foreach在引用时的陷阱</a></li>
+</ul>
+<p>嚴格來說這個是特性，但還是要注意一下。</p>
+<ul>
+<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/17f882261608c3138b82a12f.html" target="_blank" rel="external">半透明的装饰模式</a></li>
+</ul>
+<p>奇怪的方式…這個再研究看看。</p>
+<h3 id="Zend_Framework">Zend Framework</h3><ul>
+<li><p><a href="http://www.killerphp.com/zend-framework/videos/mvc-zend-part-1.php" target="_blank" rel="external">VIDEO TUTORIAL: SETTING UP AN MVC STRUCTURE WITH THE ZEND FRAMEWORK - PART 1 OF 2</a> </p>
+</li>
+<li><p><a href="http://www.killerphp.com/zend-framework/videos/mvc-zend-part-2.php" target="_blank" rel="external">VIDEO TUTORIAL: SETTING UP AN MVC STRUCTURE WITH THE ZEND FRAMEWORK - PART 2 OF 2</a></p>
+</li>
+</ul>
+<p>這兩個影片教你如何建立 ZF 的 MVC 目錄結構。 </p>
+<ul>
+<li><a href="http://devzone.zend.com/article/3311-Zend_Layout-and-Zend-_View-Enhancements-Webinar" target="_blank" rel="external">Zend_Layout and Zend _View Enhancements Webinar</a></li>
+</ul>
+<p>這個是 Zend_Layout 與 Zend_View 的影片教學。 </p>
+<ul>
+<li><a href="http://www.zendframeworkinaction.com/2008/03/27/zend-framework-151-released/" target="_blank" rel="external">Zend Framework 1.5.1 released</a> </li>
+</ul>
+<p>ZF 1.5.1 釋出，修正一些 Bug 。 </p>
+<ul>
+<li><a href="http://weierophinney.net/matthew/archives/165-Login-and-Authentication-with-Zend-Framework.html" target="_blank" rel="external">Login and Authentication with Zend Framework</a></li>
+</ul>
+<p>登入與身份驗證的教學。</p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.themaninblue.com/experiment/CSSLoveChild/" target="_blank" rel="external">CSS Love Child</a></li>
+</ul>
+<p>這個有趣的網站可以讓你將另一個網站的 CSS 套用到其他網站中。 </p>
+<ul>
+<li><a href="http://www.strictlycss.com/articles/article/40/the-only-css-layout-you-need" target="_blank" rel="external">The only CSS layout you need(?)</a></li>
+</ul>
+<p>列舉出一些常見的 CSS Layout 方式。可以把它們複製回來當範本。</p>
+<ul>
+<li><a href="http://www.456bereastreet.com/archive/200610/useful_tips_for_writing_efficient_css/" target="_blank" rel="external">Useful tips for writing efficient CSS</a></li>
+</ul>
+<p>這篇是作者在看完 <a href="http://www.snook.ca/archives/html_and_css/top_css_tips/" target="_blank" rel="external">Top CSS Tips</a> 的心得。 </p>
+<ul>
+<li><a href="http://css-tricks.com/links-of-interest-23/" target="_blank" rel="external">Links of Interest</a></li>
+</ul>
+<p>這是例行的 CSS 文章整理。 </p>
+<ul>
+<li><a href="http://www.hackszine.com/blog/archive/2008/03/easiest_crossbrowser_css_minhe.html" target="_blank" rel="external">Easiest cross-browser CSS min-height</a> </li>
+</ul>
+<p>如何建立跨瀏覽器的 CSS 最小高度與寬度，超簡單…而且很好用。重點在於那個 auto !important ，而且這三個規則的順序不能亂調。 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.foo &#123;&#10;min-height:100px;&#10;height:auto !important;&#10;height:100px; &#125;&#10;.bar &#123;&#10;min-width:100px;&#10;width:auto !important;&#10;width:100px; &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="http://css-tricks.com/nine-techniques-for-css-image-replacement/" target="_blank" rel="external">Nine Techniques for CSS Image Replacement</a></li>
+</ul>
+<p>舉出 9 種常見的 CSS 影像代替文字的作法。可惜以現代的瀏覽器支援程度來說，沒有一個作法是完美的，我們只好挑一個較為適合的來用。 </p>
+<ul>
+<li><a href="http://nunos.zi-yu.com/?p=81" target="_blank" rel="external">Divs instead of tables</a></li>
+</ul>
+<p>用範例教你如何將舊的 Table 排版方式改用 CSS + Div 排版。 </p>
+<ul>
+<li><a href="http://snook.ca/archives/html_and_css/content_overlay_css/" target="_blank" rel="external">Content Overlay with CSS</a></li>
+</ul>
+<p>用 CSS 做出當滑鼠移過後，呈現額外內容的效果。 </p>
+<ul>
+<li><a href="http://woork.blogspot.com/2008/03/write-well-structured-css-file-without.html" target="_blank" rel="external"> Write a well structured CSS file without becoming crazy</a></li>
+</ul>
+<p>這篇教你如何寫出有結構且好維護的 CSS 碼，值得一看！ </p>
+<ul>
+<li><a href="http://msdn2.microsoft.com/en-us/library/cc351024(VS.85" target="_blank" rel="external">CSS Compatibility and Internet Explorer</a>.aspx)</li>
+</ul>
+<p>這是微軟 MSDN 提供的 IE 各版本 CSS 相容性一覽。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.thinkingphp.org/2008/03/23/run-intense-js-without-freezing-the-browser/" target="_blank" rel="external">Run intense JS without freezing the browser</a></li>
+</ul>
+<p>因為在頁面初始化時，我們對 HTML 元素繫結了太多事件，造成瀏覽器常有無法回應的狀況。這篇透過 jQuery 教大家如何避免瀏覽器凍住的問題。 </p>
+<ul>
+<li><a href="http://techeyes.blogspot.com/2007/11/making-html-select-readonly.html" target="_blank" rel="external">Making a HTML select readonly</a></li>
+</ul>
+<p>暫時還想不出這個可以用在哪。</p>
+<ul>
+<li><a href="http://www.dtsn.co.uk/2008/03/26/bouncing-javascript-tutorial/" target="_blank" rel="external">Bouncing Javascript</a></li>
+</ul>
+<p>教你做出區塊蹦出與收回的效果。</p>
+<ul>
+<li><a href="http://css-tricks.com/javascript-page-slider-roundup/" target="_blank" rel="external">Javascript Page Slider Roundup</a></li>
+</ul>
+<p>收集了一堆 Slider 效果。 </p>
+<ul>
+<li><a href="http://www.sitepoint.com/blogs/2008/03/19/a-collection-is-not-an-array/" target="_blank" rel="external">A collection is not an array</a> </li>
+</ul>
+<p>請直接參考這篇翻譯： <a href="http://www.hkpug.net/node/244" target="_blank" rel="external">DOM 的集合 (collection) 不等於陣列 (array)</a> 。 </p>
+<h3 id="jQuery">jQuery</h3><ul>
+<li><a href="http://blogs.pathf.com/agileajax/2008/03/jquery-form-and.html" target="_blank" rel="external">jQuery Form and jQuery UI Tabs: Two great tastes that taste great together</a> </li>
+</ul>
+<p>介紹如何整合 jQuery 的 Form 及 UI Tabs 兩個套件。 </p>
+<ul>
+<li><a href="http://webplicity.net/flexigrid/" target="_blank" rel="external">Flexigrid</a></li>
+</ul>
+<p>這個用來做後台列表是很棒的！不僅有分頁，還能調整表格欄位！</p>
+<ul>
+<li><a href="http://www.jondavis.net/blog/post/2008/03/jqalert---The-jQuery-empowered-alert(" target="_blank" rel="external">Introducing jqalert - The jQuery-empowered alert() replacement</a>-replacement.aspx) </li>
+</ul>
+<p>很棒的 alert 替代方案。 </p>
+<ul>
+<li><a href="http://www.webappers.com/2008/03/27/markitup-turns-any-textarea-into-markup-editor-in-jquery/" target="_blank" rel="external">MarkItUp Turns Any Textarea into Markup Editor in jQuery by WebAppers</a> </li>
+</ul>
+<p><a href="http://markitup.jaysalvat.com/" target="_blank" rel="external">markItUp</a> 是一個線上編輯器。它能協助你處理一些 Web 常見的語法，像是 HTML 、 CSS 、 BBCode 等等。 </p>
+<ul>
+<li><a href="http://abeautifulsite.net/notebook.php?article=58" target="_blank" rel="external">jQuery File Tree</a> </li>
+</ul>
+<p>這個也是好物！這個套件可以協助我們呈現檔案目錄結構。</p>
+<ul>
+<li><a href="http://www.noupe.com/jquery/50-amazing-jquery-examples-part1.html" target="_blank" rel="external">50+ Amazing Jquery Examples- Part1</a> </li>
+</ul>
+<p>這篇收集了很多 jQuery 的套件與特效教學。 </p>
+<ul>
+<li><a href="http://www.webdesignerwall.com/tutorials/jquery-tutorials-for-designers/" target="_blank" rel="external">jQuery Tutorials for Designers</a></li>
+</ul>
+<p>這篇主要是為 Designer 介紹 jQuery 的寫法以及一些常見的特效，並配合圖解來說明所需要的 HTML 結構，強烈推薦！ </p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://www.blueidea.com/tech/web/2008/5575.asp" target="_blank" rel="external">二行代码解决全部网页木马</a></li>
+</ul>
+<p>我只是想知道像是 Google Map 這樣的外掛 API 怎麼辦？我個人是認為還需要加入白名單的技巧。 </p>
+<h2 id="Internet">Internet</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2008/03/27/best-of-march-2008/" target="_blank" rel="external">Best Of March 2008</a> </li>
+</ul>
+<p>Smashing Magazine 照例會收集與推薦的網摘介紹。 </p>
+<h3 id="Service">Service</h3><ul>
+<li><a href="http://lab.xms.pl/markup-generator/" target="_blank" rel="external">XHTML/CSS Markup Generator</a> </li>
+</ul>
+<p>這個和 <a href="http://www.accessify.com/tools-and-wizards/developer-tools/markup-maker/" target="_blank" rel="external">Markup Maker</a> 是一樣的，不過語法變化性比較多。主要是透過撰寫簡單的結構，然後快速產生 XHTML/CSS 。 </p>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://lijinjoseji.wordpress.com/2008/03/24/installing-subversion-just-follow-this-7-steps/" target="_blank" rel="external">Installing Subversion? Just follow this 7 Steps</a></li>
+</ul>
+<p>Windows 上安裝 Subversion 的方法。 </p>
+<ul>
+<li><a href="http://www.oodesign.com/design-principles.html" target="_blank" rel="external"> Design Principles</a> </li>
+</ul>
+<p>常見的五個物件導向設計原則。</p>
+
             
           </span>
         
@@ -1016,14 +1290,11 @@
   </nav>
 
 
-
-        </div>
-
-        
-
+ </div>
 
         
 
+        
       </div>
 
       
@@ -1081,17 +1352,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -1123,8 +1390,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1146,8 +1412,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1157,7 +1422,6 @@
 
   
   
-
   
     
     
@@ -1185,25 +1449,39 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -1211,5 +1489,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

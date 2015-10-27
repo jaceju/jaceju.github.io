@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="上次介紹了一篇 Bring some Ruby/Prototype flavour in your PHP array  ，這次有個類似的。
+文章網址： Prototype-based programming in PHP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 裡的 Prototype-based 開發手法">
 <meta property="og:url" content="http://jaceju.net/2006/11/10/144/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="上次介紹了一篇 Bring some Ruby/Prototype flavour in your PHP array  ，這次有個類似的。
+文章網址： Prototype-based programming in PHP">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 裡的 Prototype-based 開發手法">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="上次介紹了一篇 Bring some Ruby/Prototype flavour in your PHP array  ，這次有個類似的。
+文章網址： Prototype-based programming in PHP">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> PHP 裡的 Prototype-based 開發手法 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,16 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>上次介紹了一篇 <a href="http://hasin.wordpress.com/2006/10/17/bring-some-rubyprototype-flavour-in-your-php-array/" target="_blank" rel="external">Bring some Ruby/Prototype flavour in your PHP array</a>  ，這次有個類似的。</p>
+<p>文章網址： <a href="http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/" target="_blank" rel="external">Prototype-based programming in PHP</a></p>
+<a id="more"></a>
+<p>原文轉載如下：</p>
+<blockquote><br><br>For those who have been doing a lot of Javascript programming, you know what prototype-based programming is all about. The basic idea is that functions can be added to classes dynamically. In Javascript functions can be added to a static class (using prototype) and it will be added to all instances of the class, or they can be added to a specific instance and only be added to that instance.<br><br>Anyway, lets get to the point. I decided to try adding this functionality to PHP. I’m not sure why its a good idea, or if it even is, but I’ll let you be the judge of that. So here is the class I came up with:<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**&#10; * @copyright   &#38;amp;#169; 2006, Schmalls / Joshua Thompson, All Rights Reserved&#10; * @license&#9; http://www.opensource.org/licenses/bsd-license.php New BSD&#10; * @author&#9;  Joshua Thompson &#60;spam.goes.in.here@gmail.com&#62;&#10; * @version&#9; 1.0.0&#10; * @link&#9;&#9;http://www.countercubed.com&#10; */&#10;/**&#10; * This class holds the prototype capabilities&#10; *&#10; * Extending this class makes it prototype capable&#10; */&#10;class Prototype&#10;&#123;&#10;    /**&#10;     * Holds prototype functions&#10;     *&#10;     * @var  array&#10;     */&#10;    private $_functions = array();&#10;    /**&#10;     * Default constructor&#10;     *&#10;     * This is here so that php doesn&#39;t complain about the prototype function&#10;     */&#10;    public function __construct()&#10;    &#123;&#10;    &#125;&#10;    /**&#10;     * Sets the prototype functions or variables&#10;     *&#10;     * @param   string $name&#10;     * @param   mixed $value&#10;     */&#10;    public function __set( $name, $value )&#10;    &#123;&#10;        if ( function_exists( $value ) ) :&#10;            $this-&#62;_functions[$name] = $value;&#10;        else :&#10;            $this-&#62;$name = $value;&#10;        endif;&#10;    &#125;&#10;    /**&#10;     * Gets static prototype variables if they exist&#10;     *&#10;     * @param   string $name&#10;     * @return  mixed&#10;     */&#10;    public function __get( $name )&#10;    &#123;&#10;        if ( isset( $this-&#62;prototype()-&#62;$name ) ) :&#10;            return $this-&#62;prototype()-&#62;$name;&#10;        else :&#10;            trigger_error( &#39;Undefined property: &#39; . __CLASS__ . &#39;::&#39; . $name, E_USER_NOTICE );&#10;        endif;&#10;    &#125;&#10;    /**&#10;     * Calls a static prototype function&#10;     *&#10;     * @param   string $name&#10;     * @param   array $arguments&#10;     * @return  mixed&#10;     */&#10;    public function __call( $name, $arguments )&#10;    &#123;&#10;        if ( isset( $this-&#62;_functions[$name] ) ) :&#10;            return call_user_func_array( $this-&#62;_functions[$name], $arguments );&#10;        elseif ( $this-&#62;prototype()-&#62;isCallable( $name ) ) :&#10;            return call_user_func_array( array( $this-&#62;prototype(), $name ), $arguments );&#10;        else :&#10;            trigger_error( &#39;Call to undefined method &#39; . __CLASS__ . &#39;::&#39; . $name . &#39;()&#39;, E_USER_ERROR );&#10;        endif;&#10;    &#125;&#10;    /**&#10;     * Returns the static prototype holder&#10;     *&#10;     * @return  Prototype&#10;     */&#10;    public static function prototype()&#10;    &#123;&#10;        static $prototype = null;&#10;        if ( $prototype === null ) :&#10;            $prototype = new Prototype();&#10;        endif;&#10;        return $prototype;&#10;    &#125;&#10;    /**&#10;     * Needed for the static calling functionality&#10;     *&#10;     * @return  boolean&#10;     */&#10;    public function isCallable( $name )&#10;    &#123;&#10;        return ( isset( $this-&#62;_functions[$name] ) );&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure><br><br>Now all a class needs to do is extend the Prototype class. A sample of its use follows:<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// make some prototype classes&#10;class Test1 extends Prototype&#10;&#123;&#10;&#125;&#10;class Test2 extends Prototype&#10;&#123;&#10;&#125;&#10;class Test3 extends Test1&#10;&#123;&#10;&#125;&#10;// lets create some test static functions&#10;Test1::prototype()-&#62;fun1 = create_function( &#39;$arg1&#39;, &#39;&#10;    echo \&#39;Static Test1::fun1 \&#39; . $arg1 . &#34;\n&#34;;&#10;&#39;);&#10;Test2::prototype()-&#62;fun2 = create_function( &#39;$arg1&#39;, &#39;&#10;    echo \&#39;Static Test2::fun2 \&#39; . $arg1 . &#34;\n&#34;;&#10;&#39;);&#10;// now instantiate the objects&#10;$test1 = new Test1();&#10;$test2 = new Test2();&#10;// and make some more functions&#10;$test1-&#62;fun3 = create_function( &#39;$arg2&#39;, &#39;&#10;echo \&#39;Test1::fun3 \&#39; . $arg2 . &#34;\n&#34;;&#10;&#39;);&#10;$test2-&#62;fun4 = create_function( &#39;$arg2&#39;, &#39;&#10;echo \&#39;Test2::fun4 \&#39; . $arg2 . &#34;\n&#34;;&#10;&#39;);&#10;// output: Static Test1::fun1 bob&#10;$test1-&#62;fun1( &#39;bob&#39; );&#10;// create another function&#10;Test1::prototype()-&#62;fun2 = create_function( &#39;$arg1&#39;, &#39;&#10;echo \&#39;Static Test1::fun2 \&#39; . $arg1 . &#34;\n&#34;;&#10;&#39;);&#10;// output: Static Test1::fun2 bobby&#10;$test1-&#62;fun2( &#39;bobby&#39; );&#10;// output: Static Test2::fun2 robert&#10;$test2-&#62;fun2( &#39;robert&#39; );&#10;// output: Test1::fun3 robby&#10;$test1-&#62;fun3( &#39;robby&#39; );&#10;// output: Test2::fun4 rob&#10;$test2-&#62;fun4( &#39;rob&#39; );&#10;// another instance still has the static functions&#10;$test1_2 = new Test1();&#10;// output: Static Test1::fun1 bob&#10;$test1_2-&#62;fun1( &#39;bob&#39; );&#10;$test3 = new Test3();&#10;// this will give an error because prototype functions do not extend down to a child class&#10;$test3-&#62;fun1( &#39;roberto&#39; );</span><br></pre></td></tr></table></figure><br><br>Once again, I don’t know how useful it is, but let me know what you think.<br></blockquote>
+
+<p>主要的概念是用 PHP5 的 magic methods ： <strong>set 、 </strong>get 、 __call 。 </p>
+<p>利用 <strong>set 及物件內部的 _functions 變數記住 create_function 所產生出來的 callback 匿名函式，然後再用 </strong>call 呼叫這些動態建立的 methods 。 </p>
+<p>當然 magic methods 必須在物件實體產生後才能使用，詳細的說明可以參考一下該文回應的部份。 </p>
+</span>
       
     </div>
 
@@ -288,22 +285,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +364,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +397,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +413,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +435,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +445,6 @@
 
   
   
-
   
     
     
@@ -489,21 +474,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +643,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +673,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

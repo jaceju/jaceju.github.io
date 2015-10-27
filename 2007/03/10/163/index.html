@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="之前提過一篇 Prototype-based programming in PHP ，後來在石頭閒語那裡也看到 PHP 實踐 mix-in 概念之可行性，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限制就像石頭成所說的，所以我也不多提了。還是等 PHP7 的規格出來，看它會不會支援 closure 好了  (要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我也來實作 PHP mix-in 的概念">
 <meta property="og:url" content="http://jaceju.net/2007/03/10/163/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="之前提過一篇 Prototype-based programming in PHP ，後來在石頭閒語那裡也看到 PHP 實踐 mix-in 概念之可行性，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限制就像石頭成所說的，所以我也不多提了。還是等 PHP7 的規格出來，看它會不會支援 closure 好了  (要">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我也來實作 PHP mix-in 的概念">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="之前提過一篇 Prototype-based programming in PHP ，後來在石頭閒語那裡也看到 PHP 實踐 mix-in 概念之可行性，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限制就像石頭成所說的，所以我也不多提了。還是等 PHP7 的規格出來，看它會不會支援 closure 好了  (要">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 我也來實作 PHP mix-in 的概念 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,13 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>之前提過一篇 <a href="http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/" target="_blank" rel="external">Prototype-based programming in PHP</a> ，後來在<a href="http://blog.roodo.com/rocksaying" target="_blank" rel="external">石頭閒語</a>那裡也看到 <a href="http://blog.roodo.com/rocksaying/archives/2817003.html" target="_blank" rel="external">PHP 實踐 mix-in 概念之可行性</a>，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限制就像石頭成所說的，所以我也不多提了。還是等 PHP7 的規格出來，看它會不會<a href="http://javaworld.com.tw/roller/page/ingramchen?entry=2007_1_1_WhyAddClosureInJava7" target="_blank" rel="external">支援 closure</a> 好了  (要跟隨 Java 7 嗎？ XD) 。</p>
+<p>註： PHP 6 可能會實現的東西請參考 <a href="http://www.corephp.co.uk/archives/19-Prepare-for-PHP-6.html" target="_blank" rel="external">Prepare for PHP 6</a> 。 </p>
+<a id="more"></a>
+<p>程式如下： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * &#23526;&#20316; mix-in &#27010;&#24565;&#10; *&#10; * &#21443;&#32771;&#10; * http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/&#10; * http://blog.roodo.com/rocksaying/archives/2817003.html&#10; **/&#10;// &#21487;&#25509;&#21463; mix-in &#29289;&#20214;&#30340;&#25277;&#35937;&#39006;&#21029;&#10;abstract class Prototype&#10;&#123;&#10;    private function __set($name, $value)&#10;    &#123;&#10;        $this-&#62;$name = $value;&#10;    &#125;&#10;    private function __call($method, $args)&#10;    &#123;&#10;        if (class_exists($this-&#62;$method)) &#123;&#10;            $method_object = new $this-&#62;$method($this);&#10;            call_user_func_array(array ($method_object, &#39;doWork&#39;), $args);&#10;        &#125;&#10;    &#125;&#10;&#125;&#10;// mix-in &#26041;&#27861;&#30340;&#25277;&#35937;&#39006;&#21029;&#10;abstract class MethodObject&#10;&#123;&#10;    protected $object;&#10;    public function __construct($object = NULL)&#10;    &#123;&#10;        $this-&#62;object = $object;&#10;    &#125;&#10;    abstract function doWork();&#10;&#125;&#10;// &#28204;&#35430;&#29992;&#30340; Person &#39006;&#21029;&#10;class Person extends Prototype&#10;&#123;&#10;    private $name;&#10;    public function __construct($name)&#10;    &#123;&#10;        $this-&#62;name = $name;&#10;    &#125;&#10;    public function getName()&#10;    &#123;&#10;        return $this-&#62;name;&#10;    &#125;&#10;    public function __toString()&#10;    &#123;&#10;        return $this-&#62;name;&#10;    &#125;&#10;&#125;&#10;// &#28204;&#35430;&#29992;&#30340; Car &#39006;&#21029;&#10;class Car extends Prototype&#10;&#123;&#10;    private $owner;&#10;    public function setOwner(Person $person)&#10;    &#123;&#10;        $this-&#62;owner = $person;&#10;    &#125;&#10;    public function __toString()&#10;    &#123;&#10;        return &#39;This is &#39; . $this-&#62;owner-&#62;getName() . &#39;\&#39;s car.&#39;;&#10;    &#125;&#10;&#125;&#10;// &#28204;&#35430;&#29992;&#30340; PrintString &#39006;&#21029;&#10;class PrintString extends MethodObject&#10;&#123;&#10;    public function doWork()&#10;    &#123;&#10;        $n = func_num_args();&#10;        echo $this-&#62;object, (1 == $n) ? func_get_arg(0) : &#39;&#39;;&#10;    &#125;&#10;&#125;&#10;// &#28204;&#35430;&#29992;&#30340;&#31243;&#24335;&#30908;&#10;$me = new Person(&#39;Jace&#39;);&#10;$me-&#62;printName = &#39;PrintString&#39;;&#10;$me-&#62;printName(&#39; Say: &#39;);&#10;$my_car = new Car;&#10;$my_car-&#62;setOwner($me);&#10;$my_car-&#62;printCarName = &#39;PrintString&#39;;&#10;$my_car-&#62;printCarName();</span><br></pre></td></tr></table></figure>
+<p>有沒有用我也不清楚，我的實務經驗太少，沒辦法想到它的用途。不過反正只是寫好玩的，也許能激發別人的靈感也說不一定。 </p>
+</span>
       
     </div>
 
@@ -288,22 +279,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +358,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +391,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +407,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +429,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +439,6 @@
 
   
   
-
   
     
     
@@ -489,21 +468,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +637,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +667,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

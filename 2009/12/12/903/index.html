@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,40 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="很久以前，我寫過一篇「MySQL 中文編碼徹底研究」，簡單介紹了如何將 MySQL 4.0 轉換到 MySQL 4.1 時要注意的部份。
+註：大家可以把這篇「MySQL 中文編碼徹底研究」當做是本人在拙作「PHP Smarty 樣版引擎」中的觀念修正文。
+不過我想還是會有很多朋友會覺得該文寫的東西還是有點雜亂，尤其在 BIG5 和 UTF-8 之間的切換，可能讓很多人看完還是一頭霧水。
+所以，就目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[五分鐘教室] MySQL 4.1+ 編碼快速入門">
 <meta property="og:url" content="http://jaceju.net/2009/12/12/903/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="很久以前，我寫過一篇「MySQL 中文編碼徹底研究」，簡單介紹了如何將 MySQL 4.0 轉換到 MySQL 4.1 時要注意的部份。
+註：大家可以把這篇「MySQL 中文編碼徹底研究」當做是本人在拙作「PHP Smarty 樣版引擎」中的觀念修正文。
+不過我想還是會有很多朋友會覺得該文寫的東西還是有點雜亂，尤其在 BIG5 和 UTF-8 之間的切換，可能讓很多人看完還是一頭霧水。
+所以，就目">
+<meta property="og:image" content="http://jaceju.net/resources/mysql_charset/01.png">
+<meta property="og:image" content="http://jaceju.net/resources/mysql_charset/02.png">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[五分鐘教室] MySQL 4.1+ 編碼快速入門">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="很久以前，我寫過一篇「MySQL 中文編碼徹底研究」，簡單介紹了如何將 MySQL 4.0 轉換到 MySQL 4.1 時要注意的部份。
+註：大家可以把這篇「MySQL 中文編碼徹底研究」當做是本人在拙作「PHP Smarty 樣版引擎」中的觀念修正文。
+不過我想還是會有很多朋友會覺得該文寫的東西還是有點雜亂，尤其在 BIG5 和 UTF-8 之間的切換，可能讓很多人看完還是一頭霧水。
+所以，就目">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [五分鐘教室] MySQL 4.1+ 編碼快速入門 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +140,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +150,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +160,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +180,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +239,31 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>很久以前，我寫過一篇「<a href="http://www.jaceju.net/blog/archives/116" target="_blank" rel="external">MySQL 中文編碼徹底研究</a>」，簡單介紹了如何將 MySQL 4.0 轉換到 MySQL 4.1 時要注意的部份。</p>
+<p>註：大家可以把這篇「<a href="http://www.jaceju.net/blog/archives/116" target="_blank" rel="external">MySQL 中文編碼徹底研究</a>」當做是本人在拙作「<a href="http://www.flag.com.tw/book/5105.asp?bokno=F5471" target="_blank" rel="external">PHP Smarty 樣版引擎</a>」中的觀念修正文。</p>
+<p>不過我想還是會有很多朋友會覺得該文寫的東西還是有點雜亂，尤其在 BIG5 和 UTF-8 之間的切換，可能讓很多人看完還是一頭霧水。</p>
+<p>所以，就目前時下網路服務都是用 UTF-8 做為溝通間的編碼這點來看，這裡我建議大家乾脆就一律用 4.1 以上的版本吧！省得在切換這些編碼時搞得自己身心俱疲。</p>
+<p>接下來我會快速為大家介紹 MySQL 4.1 以上的版本，在使用編碼上的一些觀念。</p>
+<a id="more"></a>
+<h2 id="MySQL_4-1+_編碼">MySQL 4.1+ 編碼</h2><h3 id="編碼的影響範圍">編碼的影響範圍</h3><p>MySQL 4.1 以後的編碼影響層級可細分為三層：資料庫、資料表、欄位。</p>
+<p><img src="/resources/mysql_charset/01.png" alt="編碼影響範圍"></p>
+<p>一般來說，我們只要對資料表設定編碼即可，其下所擁有的資料表和資料欄位的編碼與資料庫設定的一致。但如果針對資料庫和資料欄位設定不同的編碼也是可以的，只要我們在創建它們時指定字集和校對即可。</p>
+<h3 id="字集與校對">字集與校對</h3><p>MySQL 4.1 + 之後就引入二階式的編碼設定：字集 (character set) 及校對 (collation) 。</p>
+<p>字集一般就是我們說的編碼，例如 UTF-8 或 BIG5 等；校對則是再針對字集裡分出二進制 (bin) 或多種語言並不分大小寫 (xxx_ci) 等特性。</p>
+<p>所以一般選完字集後，我們就會需要再選擇校對。對一般欄位來說，校對並不需要區分大小寫 (xxx_ci) ，但是如果較為重要的欄位 (例如密碼) ，就要選擇二進制 (bin) 。</p>
+<p>那麼哪個字集比較好呢？</p>
+<h2 id="就是_UTF-8">就是 UTF-8</h2><p>UTF-8 是目前網站開發編碼的不二人選，它的優點這裡我就不再多加闡述了。如果以前各位是慣用 BIG5 或是 Latin-1 等編碼的話，在新網站就改用 UTF-8 吧。</p>
+<p>註：舊網站的編碼需不需要升級？這點就留給大家自行判斷吧。</p>
+<p>很多朋友在從 MySQL 4.0 轉換成 MySQL 4.1 以上版本時，常會有 PHP 把從 MySQL 取得的資料輸出為問號，或是文字顯示為亂碼的困擾。其實要解決這樣的問題很簡單，以下幾個小地方注意即可。</p>
+<p><img src="/resources/mysql_charset/02.png" alt="輸出至瀏覽器的編碼操作"></p>
+<ul>
+<li>PHP 在從 MySQL 存取資料之前，利用 <code>SET NAMES UTF8</code> 告訴 MySQL 接下來的資料都要轉換為 UTF8 。</li>
+<li>PHP 輸出資料給 Browser 時，要在 Header 指定正確的編碼。</li>
+<li>有時候瀏覽器需要 meta 標籤指定編碼，所以在 <code>&lt;title&gt;</code> 標籤之前把正確的 meta 標籤設定好。</li>
+<li>當然別忘了你的 HTML Template 的編碼也是要用 UTF-8 。</li>
+</ul>
+<p>就是這麼簡單，別再為 MySQL 的編碼困擾了！更詳盡的介紹就請參考本人的拙作：「<a href="http://www.jaceju.net/blog/archives/116" target="_blank" rel="external">MySQL 中文編碼徹底研究</a>」吧！</p>
+</span>
       
     </div>
 
@@ -290,22 +310,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +389,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +422,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL_4-1+_編碼"><span class="nav-number">1.</span> <span class="nav-text">MySQL 4.1+ 編碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#編碼的影響範圍"><span class="nav-number">1.1.</span> <span class="nav-text">編碼的影響範圍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字集與校對"><span class="nav-number">1.2.</span> <span class="nav-text">字集與校對</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#就是_UTF-8"><span class="nav-number">2.</span> <span class="nav-text">就是 UTF-8</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +438,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +460,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +470,6 @@
 
   
   
-
   
     
     
@@ -491,21 +499,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +668,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +698,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

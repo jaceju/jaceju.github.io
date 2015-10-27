@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="剛學 Zend Framework 的朋友通常會遇到兩個麻煩：目錄結構的安排，還有就是怎麼在 index.php (bootstrap) 中使用 Front Controller ？
+目錄結構的安排下次有機會再談，這裡我來說說 Front Controller 的用法。
+註：在此之前，請大家先看過 Rob Allen 寫的 Getting Started with the Zend Framewo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Front Controller 的基本應用技">
 <meta property="og:url" content="http://jaceju.net/2008/02/27/317/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="剛學 Zend Framework 的朋友通常會遇到兩個麻煩：目錄結構的安排，還有就是怎麼在 index.php (bootstrap) 中使用 Front Controller ？
+目錄結構的安排下次有機會再談，這裡我來說說 Front Controller 的用法。
+註：在此之前，請大家先看過 Rob Allen 寫的 Getting Started with the Zend Framewo">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Front Controller 的基本應用技">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="剛學 Zend Framework 的朋友通常會遇到兩個麻煩：目錄結構的安排，還有就是怎麼在 index.php (bootstrap) 中使用 Front Controller ？
+目錄結構的安排下次有機會再談，這裡我來說說 Front Controller 的用法。
+註：在此之前，請大家先看過 Rob Allen 寫的 Getting Started with the Zend Framewo">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> Front Controller 的基本應用技 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,44 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>剛學 Zend Framework 的朋友通常會遇到兩個麻煩：目錄結構的安排，還有就是怎麼在 index.php (bootstrap) 中使用 Front Controller ？</p>
+<p>目錄結構的安排下次有機會再談，這裡我來說說 Front Controller 的用法。</p>
+<p>註：在此之前，請大家先看過 Rob Allen 寫的 <a href="http://akrabat.com/zend-framework-tutorial/" target="_blank" rel="external">Getting Started with the Zend Framework</a> 一文 (<a href="http://akrabat.com/wp-content/uploads/getting-started-with-the-zend-framework_145.pdf" target="_blank" rel="external">PDF 版本</a>) ；本文將會以該篇教學為基礎，一步一步來說明。 </p>
+<a id="more"></a>
+<h2 id="什麼是_Front_Controller">什麼是 Front Controller</h2><p>整體而言 Front Controller 比較像是一個中介的角色，以下是它常見的幾個功能：</p>
+<ul>
+<li>處理應用程式的初始化設定並執行之。</li>
+<li>管理應用程式執行路徑。</li>
+<li>管理輸入 (Request) ，使得使用者的動作得以分派 (&nbsp;Dispatch) 到 Action Controller 中。</li>
+<li>管理輸出 (Response) ，使得應用程式能將結果傳送出來。</li>
+<li>可以接受 Plugins 來擴充 Front Controller 的行為。</li>
+</ul>
+<p> Front Controller 裡還有更深入的參數設定機制，不過本文暫且先略過不談。 </p>
+<h2 id="基本的_Front_Controller_用法">基本的 Front Controller 用法</h2><p>我們先來看看 Rob 在 <a href="http://akrabat.com/zend-framework-tutorial/" target="_blank" rel="external">Getting Started with the Zend Framework</a> 裡是怎麼用 Front Controller 的： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;error_reporting(E_ALL|E_STRICT);&#10;date_default_timezone_set(&#39;Europe/London&#39;);&#10;set_include_path(&#39;.&#39; . PATH_SEPARATOR . &#39;./library&#39;&#10;. PATH_SEPARATOR . &#39;./application/models/&#39;&#10;. PATH_SEPARATOR . get_include_path());&#10;include &#34;Zend/Loader.php&#34;;&#10;Zend_Loader::loadClass(&#39;Zend_Controller_Front&#39;);&#10;// setup controller&#10;$frontController = Zend_Controller_Front::getInstance();&#10;$frontController-&#62;throwExceptions(true);&#10;$frontController-&#62;setControllerDirectory(&#39;./application/controllers&#39;);&#10;// run!&#10;$frontController-&#62;dispatch();</span><br></pre></td></tr></table></figure>
+<p>撇開前面 PHP 的設定部份，我們可以看到 Front Controller 主要分成設定與執行兩個部份。</p>
+<p>在設定的部份裡，首先我們可以看到 Front Controller 為 Singleton ，換句話說 Front Controller 在整個應用程式執行的過程中只會有一個實體存在。接著我們再呼叫 Front Controller 的 throwExceptions() 方法，它能為我們設定是否要將 Exception 直接丟出或是放到 Response 物件中。最後我們再設定應用程式的 Action Controller 所在路徑，讓 Front Controller 知道到哪裡能找到要執行的 action 。</p>
+<p>當設定好 Front Controller 後，就可以呼叫它的 dispatch() 方法來執行整個應用程式了。</p>
+<p>以上就是最簡單的 Front Controller 使用方法，接下來我會介紹目前我所使用的方法。 </p>
+<h2 id="進階的_Front_Controller_用法">進階的 Front Controller 用法</h2><p>先來看看程式碼：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;error_reporting(E_ALL|E_STRICT);&#10;date_default_timezone_set(&#39;Asia/Taipei&#39;);&#10;// set include_path&#10;define(&#39;ROOT_PATH&#39;, str_replace(&#39;\\&#39;, &#39;/&#39;, dirname(__FILE__)));&#10;$includePath = array(&#10;    ROOT_PATH . &#39;/lib&#39;,&#10;    get_include_path(),&#10;);&#10;set_include_path(join(PATH_SEPARATOR, $includePath));&#10;// autoload&#10;require_once &#39;Zend/Loader.php&#39;;&#10;Zend_Loader::registerAutoload();&#10;// setup controller&#10;$frontController = Zend_Controller_Front::getInstance();&#10;$frontController-&#62;setControllerDirectory(array(&#10;        &#39;default&#39; =&#62; &#39;./app/mod/default/controllers&#39;,&#10;        &#39;admin&#39; =&#62; &#39;./app/mod/admin/controllers&#39;))&#10;    -&#62;throwExceptions(false)&#10;    -&#62;setDefaultModule(&#39;default&#39;)&#10;    -&#62;returnResponse(true);&#10;// run!&#10;$response = $frontController-&#62;dispatch();&#10;if ($response-&#62;isException()) &#123;&#10;    $response-&#62;renderExceptions(true);&#10;&#125;&#10;$response-&#62;sendResponse();</span><br></pre></td></tr></table></figure>
+<p>基本上我在 PHP 一般設定的部份和 Rob 的差不多 (因為我也是從他的教學入門的) ，只是我在載入類別的地方做了一些修改而已 (例如自動載入) 。</p>
+<h3 id="設定部份">設定部份</h3><p>接下來我們來看 Front Controller 設定的部份：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// setup controller&#10;$frontController = Zend_Controller_Front::getInstance();&#10;$frontController-&#62;setControllerDirectory(array(&#10;        &#39;default&#39; =&#62; &#39;./app/mod/default/controllers&#39;,&#10;        &#39;admin&#39;   =&#62; &#39;./app/mod/admin/controllers&#39;))&#10;    -&#62;setDefaultModule(&#39;default&#39;)&#10;    -&#62;throwExceptions(false)&#10;    -&#62;returnResponse(true);</span><br></pre></td></tr></table></figure>
+<p>在 Rob 的教學中因為只需要單一的功能 (也就是專輯管理) ，因此他並沒有使用 Front Controller 的模組設定。而在我所開發的專案中通常會有前後台之分，因此我就應用了 Front Controller 裡的模組功能。使用 Front Controller 模組功能的方法很簡單，就是在 setControllerDirectory() 方法中，給它一個陣列參數；這個陣列參數的 key 即為模組名稱， value 則為模組中 Action Controller 的路徑。</p>
+<p>然後我們要設定預設執行的模組，這裡使用的是 setDefaultModule() 方法。預設模組的好處是我們在網址上不必特別指定模組名稱，在上面的例子中即為 default 。如果不是預設的模組，那麼就要在網址中明確指定模組名稱；以 admin 這個模組來說，網址就要輸入： <a href="http://localhost/admin" target="_blank" rel="external">http://localhost/admin</a> 。特別要注意的是網址上的模組名稱參考的是前段說明中的 key ，而非 value 裡的目錄名稱。 </p>
+<p>接下來的 throwExceptions() 方法是個 setter 和 getter 的合體，當我們給它參數值時 (true 或 false) 它就是 setter ，反之不提供任何參數時就會是 getter 。前面提到 throwExceptions() 在設定  true 值時， Front Controller 會直接丟出 Exception ，這時程式就會直接中斷 (或是用 try…catch 來接也行) ；而 throwExceptions() 設定 false 值時，  Front Controller 則會將 Exception 放到 Response 物件裡，在稍後處理 Reponse 物件時才會看到 Exception 的內容。</p>
+<p>註： throwExceptions() 方法在 setter 時會回傳 Front Controller 物件本身，而成為 getter 時則會回傳 boolean 值；這邊要特別小心，我也曾經在這裡中招。 </p>
+<p>最後的 returnResponse() 方法也是個 setter 與 getter 的合體，它主要是設定 Front Controller 的 dispatch() 方法要不要回傳一個 Response 物件。這裡我的做法是永遠回傳 Response 物件 (也就是設定 true 值) ，這樣後面執行的程式碼才不會發生錯誤。 </p>
+<h3 id="執行部份">執行部份</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// run!&#10;$response = $frontController-&#62;dispatch();&#10;if ($response-&#62;isException()) &#123;&#10;    $response-&#62;renderExceptions(true);&#10;&#125;&#10;$response-&#62;sendResponse();</span><br></pre></td></tr></table></figure>
+<p>在執行的部份，由於我們前面已經用 returnResponse() 方法來設定要回傳 Response 物件，因此 Front Controller 在完成 dispatch() 方法後就會將輸出的結果包裝在 Response 物件中回傳給 index.php 。</p>
+<p>接著我們從 Response 物件的 isException() 方法來判斷輸出的結果是不是一個 Exception ，是的話就透過 Response 物件的 renderExceptions() 方法設定是否要顯示 Exception 。如果在這裡 renderExceptions() 方法的參數被設定為 false 時，那麼 Front Controller 就會呼叫預設模組底下 ErrorController 中的 errorAction() 方法，這樣就不會讓前端的瀏覽者看到程式錯誤，而是我們自訂的錯誤頁。</p>
+<p>註：這個功能在上線環境中特別重要，你可以在這裡用 Response 物件的 getException() 方法取得 Exception 的內容然後寫入 Log 中，而最後只顯示自訂的 Error 頁面。</p>
+<p>最後我們再呼叫 Response 物件的 sendResponse() 方法來將輸出的結果傳送給瀏覽器或 Console ，不論它是不是個 Exception 。</p>
+<h2 id="結論">結論</h2><p>以往我們在寫程式時，最頭痛的就是一開始的流程要怎麼寫？程式出現錯誤時要如何呈現？上線環境和開發環境要如何區別？而 Front Controller 正好為我們解決了許多這樣的麻煩；不過相對的它的使用方式也容易讓一般開發者感到迷惑，很多剛接觸的朋友就會在這裡受到很多挫折 (我剛好也是其中之一) 。 </p>
+<p>其實 Zend Framework 的 Front Controller 是非常靈活且強大的，這裡僅僅只介紹了它的基本應用方式。後面如果有空的話，我會再介紹其他相關的功能。 </p>
+<h2 id="範例下載">範例下載</h2><p>照慣例，範例的下載位址在<a href="/resources/zf_controller_front/front_controller.rar">這裡</a>。 </p>
+</span>
       
     </div>
 
@@ -288,22 +316,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +395,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +428,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什麼是_Front_Controller"><span class="nav-number">1.</span> <span class="nav-text">什麼是 Front Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本的_Front_Controller_用法"><span class="nav-number">2.</span> <span class="nav-text">基本的 Front Controller 用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#進階的_Front_Controller_用法"><span class="nav-number">3.</span> <span class="nav-text">進階的 Front Controller 用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#設定部份"><span class="nav-number">3.1.</span> <span class="nav-text">設定部份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#執行部份"><span class="nav-number">3.2.</span> <span class="nav-text">執行部份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例下載"><span class="nav-number">5.</span> <span class="nav-text">範例下載</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +444,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +466,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +476,6 @@
 
   
   
-
   
     
     
@@ -489,21 +505,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +674,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +704,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

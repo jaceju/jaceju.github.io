@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,50 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
+<meta name="description" content="PHP
+Late static binding….sorta :/
 
+看來 PHP 5.3 的 static 繼承還沒達到 Mike Lively 的期待。
 
+Serialize and Unserialize SimpleXML in php
 
-
-<meta name="description">
+serialize 及 unserialize 兩個函式似乎無法正確地作用在 SimpleXml 物件上，有人提出用 stdClass 來解決；不過作者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Web] 連結分享">
 <meta property="og:url" content="http://jaceju.net/2007/09/30/269/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="PHP
+Late static binding….sorta :/
+
+看來 PHP 5.3 的 static 繼承還沒達到 Mike Lively 的期待。
+
+Serialize and Unserialize SimpleXML in php
+
+serialize 及 unserialize 兩個函式似乎無法正確地作用在 SimpleXml 物件上，有人提出用 stdClass 來解決；不過作者">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Web] 連結分享">
-<meta name="twitter:description">
+<meta name="twitter:description" content="PHP
+Late static binding….sorta :/
 
+看來 PHP 5.3 的 static 繼承還沒達到 Mike Lively 的期待。
+
+Serialize and Unserialize SimpleXML in php
+
+serialize 及 unserialize 兩個函式似乎無法正確地作用在 SimpleXml 物件上，有人提出用 stdClass 來解決；不過作者">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [Web] 連結分享 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +150,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +160,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +170,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +190,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +249,88 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.ds-o.com/archives/65-Late-static-binding....sorta.html" target="_blank" rel="external">Late static binding….sorta :/</a></li>
+</ul>
+<p>看來 PHP 5.3 的 static 繼承還沒達到 <a href="http://www.ds-o.com/authors/1-Mike-Lively" target="_blank" rel="external">Mike Lively</a> 的期待。</p>
+<ul>
+<li><a href="http://blog.makemepulse.com/2007/09/27/serialize-and-unserialize-simplexml-in-php/" target="_blank" rel="external">Serialize and Unserialize SimpleXML in php</a></li>
+</ul>
+<p>serialize 及 unserialize 兩個函式似乎無法正確地作用在 SimpleXml 物件上，有人<a href="http://theserverpages.com/php/manual/en/ref.simplexml.php#52761" target="_blank" rel="external">提出用 stdClass 來解決</a>；不過作者卻覺得還是有點不太好，所以自行再建立 serializemmp 和 unserializemmp 兩個函式來解決問題。 </p>
+<ul>
+<li><p><a href="http://bitfilm.net/?p=11" target="_blank" rel="external">Tips for faster PHP scripts</a></p>
+</li>
+<li><p><a href="http://bitfilm.net/?p=17" target="_blank" rel="external">More Tips for faster PHP scripts</a></p>
+</li>
+</ul>
+<p>這些加速 PHP 執行效率的小技巧，三不五時就會有人寫。有空的話要多注意一下自己在寫程式時，這些技巧能不能派上用場。</p>
+<ul>
+<li><p><a href="http://blog.agoraproduction.com/index.php?/archives/51-Namespaces-has-PHP-5.3-Or-the-other-way-around.html" target="_blank" rel="external">Namespaces has PHP 5.3 (Or the other way around)</a></p>
+</li>
+<li><p><a href="http://blog.agoraproduction.com/index.php?/archives/47-PHP-Namespaces-Part-1-Basic-usage-gotchas.html" target="_blank" rel="external">PHP Namespaces (Part 1: Basic usage &amp; gotchas)</a></p>
+</li>
+<li><p><a href="http://blog.agoraproduction.com/index.php?/archives/48-PHP-Namespaces-Part-2-Namespace-constants.html" target="_blank" rel="external">PHP Namespaces (Part 2: Namespace constants)</a></p>
+</li>
+<li><p><a href="http://www.sofee.cn/blog/2007/09/30/118/" target="_blank" rel="external">PHP 5.3将支持namespace命名空间</a></p>
+</li>
+</ul>
+<p>雖然這不是什麼新聞了，但是還是趁現在瞭解一下 PHP 的 Namespaces 要怎麼用。不過 5.2.x 還是會繼續維護，所以也不用太擔心 5.3 以後所帶來的巨大變化。</p>
+<ul>
+<li><a href="http://paul-m-jones.com/blog/?p=262" target="_blank" rel="external">Memory Leaks With Objects in PHP 5</a></li>
+</ul>
+<p>看來 PHP5 的 GC (Garbage Collection ) 還是有一些效能上的問題，後面的 comments 也滿值得參考的。</p>
+<p>不過一般我也是用 $object = null 來代替 unset($object) ，這個在其他語言好像也是同樣的作法。</p>
+<ul>
+<li><a href="http://blog.phpdeveloper.org/?p=73" target="_blank" rel="external">Gettin’ SOAPy with PHP5</a></li>
+</ul>
+<p>利用 PHP5 實作簡單的 SOAP 。 </p>
+<h2 id="Zend_Framework">Zend Framework</h2><ul>
+<li><a href="http://devzone.zend.com/article/2531-Form-Handling-With-the-Zend_Form-Proposal-Implementation" target="_blank" rel="external">Form Handling With the Zend_Form Proposal Implementation</a></li>
+</ul>
+<p>Zend_Form 的實作參考。</p>
+<ul>
+<li><a href="http://naneau.nl/2007/09/27/fun-with-the-viewrenderer/" target="_blank" rel="external">Fun with the ViewRenderer</a></li>
+</ul>
+<p>還是很多人對 ViewRenderer 搞不清楚，所以 <a href="http://naneau.nl/" target="_blank" rel="external">Naneau</a> 為我們帶來很棒的解說。</p>
+<ul>
+<li>ViewRenderer 主要的功能是協助我們在 Action 處理完畢後，自動顯示對應的樣版。 </li>
+</ul>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.jibbering.com/faq/faq_notes/closures.html" target="_blank" rel="external">Javascript Closures</a></li>
+</ul>
+<p>這是 <a href="http://www.ithome.com.tw/plog/index.php?blogId=257" target="_blank" rel="external">fillano</a> <a href="http://www.ithome.com.tw/plog/index.php?op=ViewArticle&amp;articleId=11011&amp;blogId=257" target="_blank" rel="external">介紹</a>的，一篇還滿詳細的 JavaScript Closures 說明。</p>
+<ul>
+<li><a href="http://www.crockford.com/javascript/inheritance.html" target="_blank" rel="external">Classical Inheritance in JavaScript</a></li>
+</ul>
+<p>這也是  fillano <a href="http://www.ithome.com.tw/plog/index.php?op=ViewArticle&amp;articleId=11009&amp;blogId=257" target="_blank" rel="external">介紹</a>的，也是很詳細的 JavaScript 在繼承上的說明。fillano 自己也有一篇<a href="http://www.ithome.com.tw/plog/index.php?op=ViewArticle&amp;articleId=10909&amp;blogId=257" target="_blank" rel="external">迷霧中的javascript的建構子</a>，同樣也值得參考。</p>
+<ul>
+<li><a href="http://www.hedgerwow.com/360/dhtml/ie6-css-hack-import-js.html" target="_blank" rel="external">Import Javascript into CSS for IE6</a></li>
+</ul>
+<p>為什麼我會覺得它很危險？如 <a href="http://blog.hedgerwow.com/" target="_blank" rel="external">hedgerwang</a> 說的， IE6 真的是令人又愛又恨。</p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.jakpsatweb.cz/css/css-vertical-center-solution.html" target="_blank" rel="external">Vertical Centering in CSS</a></li>
+</ul>
+<p>如何讓元素在區塊垂直居中？主要是 IE 上會有一些問題。不過利用在屬性名前加上 # 號的這個技巧，可以在 IE 上達到類似的效果。 </p>
+<h2 id="SQL">SQL</h2><ul>
+<li><a href="http://shiflett.org/blog/2007/sep/the-unexpected-sql-injection" target="_blank" rel="external">The Unexpected SQL Injection</a></li>
+</ul>
+<p>不是用了 mysql_real_escape_string() 來處理字串後就能避免 SQL 隱碼攻擊，只要是使用者提供任何數據都有可能潛藏危機。 </p>
+<p>原文為 <a href="by Alexander Andonov">Alexander Andonov</a> 所著，然後 <a href="http://shiflett.org/about" target="_blank" rel="external">Chris Shiflett</a> 也整理了他的<a href="http://shiflett.org/blog/2007/sep/the-unexpected-sql-injection" target="_blank" rel="external">心得</a>。 </p>
+<ul>
+<li><a href="http://www.infoq.com/cn/news/2007/08/denormalization" target="_blank" rel="external">数据正规化真的那么好吗？</a></li>
+</ul>
+<p>雖然學校都教我們設計資料庫時要做正規化，但事實上在大流量網站上，正規化反而會帶來效能上的影響。</p>
+<p><a href="http://www.dualface.com/" target="_blank" rel="external">廖宇雷</a>也整理了一下自己的<a href="http://www.dualface.com/blog/?p=450" target="_blank" rel="external">心得</a>，可以參考看看。</p>
+<h2 id="Other">Other</h2><ul>
+<li><a href="http://en.wikipedia.org/wiki/Design_pattern_%28computer_science%29" target="_blank" rel="external">Design pattern (computer science)</a></li>
+</ul>
+<p>這篇 Wiki 上的文章，除了整理了 GoF 23 個 Patterns 外，也搜羅了一些常見的 Patterns 。 </p>
+<ul>
+<li><a href="http://www.santosj.name/projects/web-application-installerupgrader/" target="_blank" rel="external">Web Application Installer/Upgrader</a></li>
+</ul>
+<p>三種安裝 Web Application 的方式：   SVN 、 PEAR 、 HTTP。我也滿喜歡 SVN 這種很方便的更新方式，只要客戶允許的話。 </p>
+</span>
       
     </div>
 
@@ -288,22 +375,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +454,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +487,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP"><span class="nav-number">1.</span> <span class="nav-text">PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zend_Framework"><span class="nav-number">2.</span> <span class="nav-text">Zend Framework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript"><span class="nav-number">3.</span> <span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">4.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">5.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other"><span class="nav-number">6.</span> <span class="nav-text">Other</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +503,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +525,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +535,6 @@
 
   
   
-
   
     
     
@@ -489,21 +564,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +733,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +763,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

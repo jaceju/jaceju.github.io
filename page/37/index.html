@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,30 +27,20 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
 
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
+  <meta name="keywords" content="Hexo,next" />
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
 
 
 <meta name="description">
@@ -68,14 +54,14 @@
 <meta name="twitter:description">
 
 
-
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -144,7 +130,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -154,7 +140,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -164,7 +150,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -184,8 +170,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
   <section id="posts" class="posts-expand">
     
       
@@ -249,7 +234,32 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>再分享幾個連結：</p>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.ibm.com/developerworks/web/library/os-php-multitask/?ca=dgr-lnxw06PHP5multitasking" target="_blank" rel="external">Develop multitasking applications with PHP V5</a> </li>
+</ul>
+<p>用 <a href="http://tw.php.net/manual/en/function.stream-select.php" target="_blank" rel="external">stream_select()</a> 函式實現多工，還滿有趣的一個技術。</p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Creating-Image-Streams-from-Existing-Graphics-with-the-GD-Library-in-PHP/" target="_blank" rel="external">Creating Image Streams from Existing Graphics with the GD Library in PHP</a></li>
+</ul>
+<p>教你如何使用 GD 建立影像，這個雖然算是 GD 基礎，不過可以看看傳統函式如何與 PHP5 的 try-catch 機制搭配。</p>
+<ul>
+<li><a href="http://www.oracle.com/technology/global/cn/pub/articles/oracle_php_cookbook/mckay_objects.html" target="_blank" rel="external">在 Oracle 中完成 PHP5 對象的持久</a></li>
+</ul>
+<p>這篇是從 <a href="http://blog.xxiyy.com/index.php/archives/46" target="_blank" rel="external">mikespook</a> 那邊看到的，改天來試試用 MySQL 實作。</p>
+<h2 id="Database">Database</h2><ul>
+<li><a href="http://planet-soc.com/node/2273" target="_blank" rel="external">Auto detecting referenced field</a></li>
+</ul>
+<p>這個是 <a href="http://pear.php.net/package/MDB2" target="_blank" rel="external">PEAR::MDB2</a> 裡會用到的， <a href="http://pear.php.net/package/MDB2" target="_blank" rel="external">PEAR::MDB2</a> 是用來取代 <a href="http://pear.php.net/package/DB" target="_blank" rel="external">PEAR::DB</a> 的另一種資料庫抽象層。</p>
+<ul>
+<li><a href="http://www.mysqlperformanceblog.com/2007/08/18/how-fast-can-you-sort-data-with-mysql/" target="_blank" rel="external">How fast can you sort data with MySQL ?</a> </li>
+</ul>
+<p>微調 sort_buffer_size 來測試 MySQL 在排序上的效率。</p>
+<h2 id="電子商務">電子商務</h2><ul>
+<li><a href="http://blog.yoren.info/2007/08/19/473/" target="_blank" rel="external">10個常見的網站購物車設計問題</a></li>
+</ul>
+<p>其實裡面有一些都有和 Neo 討論過了，尤其庫存這項在搶購出現時，的確是非常難解的一件事。 </p>
+
             
           </span>
         
@@ -331,7 +341,25 @@
         
           <span itemprop="articleBody">
             
-              
+              <ul>
+<li><a href="http://www.fitzblog.com/tabid/17782/bid/2127/Nine-Javascript-Gotchas.aspx" target="_blank" rel="external">Nine Javascript Gotchas</a> (中譯：<a href="http://realazy.org/blog/2007/08/20/nine-javascript-gotchas/" target="_blank" rel="external">JavaScrip的9个陷阱及评点</a> by Realazy) </li>
+</ul>
+<p>該文所列的大部份問題我大部份都遇過了，可以參考我在 <a href="http://blog.roodo.com/jaceju/archives/cat_13834.html" target="_blank" rel="external">JavaScript</a> 分類的文章。 </p>
+<ul>
+<li><p><a href="http://www.stubbles.org/archives/27-Return-type-hints.html" target="_blank" rel="external">Return type hints</a></p>
+</li>
+</ul>
+<p>在 PHP5 類別中使用 __toString() 方法時要小心，不要回傳非字串型態的值。不過談到這個我倒是想討論看看以下兩個問題：</p>
+<ul>
+<li>PHP5 需不需要在方法前加入回傳型態宣告？</li>
+</ul>
+<p>我的看法是 Interface 會需要它。 </p>
+<ul>
+<li>PHP5 需不需要加入一個真的 mixed 型態？ </li>
+</ul>
+<p>我的看法是當上面的問題成立後，就會需要這樣的型態。</p>
+<p>不過真的是這樣的話， PHP5 就會變得很複雜，變成「走味的咖啡」了。 歡迎大家討論看看 :) </p>
+
             
           </span>
         
@@ -413,7 +441,12 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>在 MySQL 4.1 以上版本怎麼把某個 table 的 COUNT 總數複製到另一個 table 對應的欄位裡呢？ </p>
+<p>假設這裡有 a 和 b 兩個 table ，其中 b 表有一個欄位 a_id 對應到 a 表的 id 主鍵，而 a 表有個欄位 total 要記錄在 b 表中屬於 a 表的記錄總共有多少筆。一直記得 SQL 可以很簡單做到，可以一下子就是想不起來。 </p>
+<p>感謝 Neo 一語驚醒夢中人，用 Sub Query 就搞定了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;UPDATE&#60;/strong&#62; a, (&#60;strong&#62;SELECT&#60;/strong&#62; a_id, &#60;strong&#62;COUNT&#60;/strong&#62;(*) &#60;strong&#62;AS&#60;/strong&#62; total&#10;&#60;strong&#62;FROM&#60;/strong&#62; b&#10;&#60;strong&#62;GROUP&#60;/strong&#62; &#60;strong&#62;BY&#60;/strong&#62; a_id) &#60;strong&#62;AS&#60;/strong&#62; c&#10;&#60;strong&#62;SET&#60;/strong&#62; a.total = c.total&#10;&#60;strong&#62;WHERE&#60;/strong&#62; a.id = c.a_id;</span><br></pre></td></tr></table></figure>
+<p>這裡記下來先，不然到時候又忘了；可能有更好的方法，不過目前先完成工作要緊。 :) </p>
+
             
           </span>
         
@@ -495,7 +528,28 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<ul>
+<li><a href="http://greg.chiaraquartet.net/archives/16-Incredible-Zend-ZDE-debugging-trick-for-debugging-CLI-apps.html" target="_blank" rel="external">Incredible Zend ZDE debugging trick for debugging CLI apps</a></li>
+</ul>
+<p>用以下方式來 Debug PHP CLI 應用程式，我只能說作者真的很天才。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62; set &#34;QUERY_STRING=start_debug=1&#38;amp;debug_host=192.168.0.102&#38;amp;debug_port=10000&#38;amp;debug_stop=1&#34;</span><br></pre></td></tr></table></figure>
+<p>有機會應該來試試看才對。</p>
+<ul>
+<li><a href="http://pixelated-dreams.com/archives/313-AJAX-and-PHP-End-to-End-Debugging.html" target="_blank" rel="external">AJAX and PHP End-to-End Debugging</a></li>
+</ul>
+<p>參考上一篇文章的方式，這次用來 Debug Ajax ；也就是把上面的 QUERY_STRING 系統變數當做 Ajax 的 GET 參數。 </p>
+<ul>
+<li><a href="http://www.rooftopsolutions.nl/article/148" target="_blank" rel="external">PHP: Arrays vs. Objects</a></li>
+</ul>
+<p>又是一篇比較 PHP 陣列和物件效率的文章，我個人是認為效率相差不大的狀況下，應該挑選適合程序的方式來用，而不是固執於一種形式。</p>
+<ul>
+<li><a href="http://blog.agoraproduction.com/index.php?/archives/47-PHP-Namespaces-Part-1-Basic-usage-gotchas.html" target="_blank" rel="external">PHP Namespaces (Part 1: Basic usage &amp; gotchas)</a></li>
+</ul>
+<p>這篇告訴你為什麼要用 Namespaces ，而 Mark 在中文化 dotProject 時也遇過同樣的問題。 </p>
+<li><br><br><a href="http://php100.wordpress.com/2007/08/17/namespaces-faq/" target="_blank" rel="external">Namespaces FAQ</a><br><br>經典：<br><blockquote><br><br> Q: PHP 為什麼需要 Namespaces ？<br><br>A: 因為 PEAR_Form_Loader_Validate_Table_Element_Validator_Exception 實在是太 TMD 長了。 (嗯…這句是我瞎掰的 XD)<br></blockquote><br></li>
+
+
             
           </span>
         
@@ -577,7 +631,15 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>老實說，我不是很懂 SEO 。</p>
+<p>之所以喜歡 <a href="http://framework.zend.com/" target="_blank" rel="external">Zend Framewrok</a> 的 Url Router 倒也不是因為 SEO ，而是因為自己寫一個是件很麻煩的事情。不過以下幾個連結可以讓對 Zend 加 SEO 有興趣的朋友參考看看：</p>
+<ul>
+<li><a href="http://devzone.zend.com/article/949-Search-Engine-Friendly-Websites-with-the-Zend-Framework" target="_blank" rel="external">Search Engine Friendly Websites with the Zend Framework</a></li>
+<li><a href="http://blog.calevans.com/2007/07/29/just-say-no-to-seo/" target="_blank" rel="external">Just Say No to SEO</a></li>
+<li><a href="http://www.wormus.com/aaron/stories/2007/08/16/zf-and-seo.html" target="_blank" rel="external">ZF and SEO</a></li>
+</ul>
+<p>不過這年頭為什麼對機器好比對人好重要呀？大概是人比較難搞的關係吧？</p>
+
             
           </span>
         
@@ -659,7 +721,18 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>JavaScript 越來越神奇了，從大家都認為只是小玩意的技術，搖身一變成為高手們競相研究的對象。</p>
+<p>以下兩個連結就可以看出 JavaScript 真的是非常有趣的一門語言：</p>
+<ul>
+<li><a href="http://osteele.com/archives/2006/04/javascript-memoization" target="_blank" rel="external">One-Line JavaScript Memoization</a></li>
+<li><a href="http://peter.michaux.ca/article/3556" target="_blank" rel="external">Lazy Function Definition Pattern</a> (<a href="http://realazy.org/blog/2007/08/16/lazy-function-definition-pattern/" target="_blank" rel="external">簡體中文版</a> by <a href="http://realazy.org/blog/" target="_blank" rel="external">Realazy</a>)</li>
+</ul>
+<p>順便附上幾個 JavaScript 相關技術的文章：</p>
+<ul>
+<li><a href="http://yuiblog.com/blog/2007/06/12/module-pattern/" target="_blank" rel="external">A JavaScript Module Pattern</a></li>
+<li><a href="http://www.jibbering.com/faq/faq_notes/not_browser_detect.html" target="_blank" rel="external">Browser Detecting (and what to do Instead)</a></li>
+</ul>
+
             
           </span>
         
@@ -741,7 +814,17 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>剛剛看到一篇很有用的 PHP 技巧整理，主要在說明如何結合 cURL 和 DOM 來解析網頁中的連結：</p>
+<p><a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/" target="_blank" rel="external">Scraping Links With PHP</a></p>
+<p>節錄如下：</p>
+<blockquote><br><br>### What You’ll Learn<br><br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#curl_content" target="_blank" rel="external">How to use cURL</a> to get the content from a website (URL).
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#php_dom" target="_blank" rel="external">Call PHP DOM functions</a> to parse the HTML so you can extract links.<br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#xpath_easy" target="_blank" rel="external">Use XPath to grab links</a> from specific parts of a page.
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#store_links" target="_blank" rel="external">Store the scraped links</a> in a MySQL database.<br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#put_together" target="_blank" rel="external">Put it all together into a link scraper.</a>
+</em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#more_uses" target="_blank" rel="external">What else you could use a scraper for.</a><br><em> <a href="http://www.merchantos.com/makebeta/php/scraping-links-with-php/#legal_issues" target="_blank" rel="external">Legal issues</a> associated with scraping content.<br><br><br>### What You Will Need
+
+</em> Basic knowledge of <a href="http://php.net/" target="_blank" rel="external">PHP</a> and <a href="http://dev.mysql.com/doc/refman/5.0/en/" target="_blank" rel="external">MySQL</a>.<br><em> A web server running PHP 5.
+</em> The <a href="http://us.php.net/curl" target="_blank" rel="external">cURL</a> extension for PHP.<br>* MySQL - if you want to store the links.<br><br></blockquote>
+
             
           </span>
         
@@ -823,7 +906,31 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>steve 網友問到了 jQuery 有什麼特點，其實我才疏學淺，沒能給什麼好建議。</p>
+<p>不過剛剛恰好看到一篇 <a href="http://simonwillison.net/2007/Aug/15/jquery/" target="_blank" rel="external">jQuery for JavaScript programmers</a> ，這裡推薦給對 jQuery 有興趣的朋友參考看看。</p>
+<p>順便整理一下一些有關 jQuery 的連結：</p>
+<ul>
+<li><a href="http://jquery.com" target="_blank" rel="external">jQuery</a></li>
+</ul>
+<p>官方網站</p>
+<li>
+
+<p><a href="http://www.learningjquery.com/" target="_blank" rel="external">Learning jQuery</a>::<a href="http://www.learningjquery.com/2007/08/what-is-this" rel="external" title="Permanent Link: What is <em>this</em>?" target="_blank">What is <em>this</em>?</a></p>
+<p>簡單的 jQuery 介紹。<br></p></li><p></p>
+<ul>
+<li><a href="http://jquery.bassistance.de/api-browser/" target="_blank" rel="external">jQuery API Browser (for jQuery 1.1.2)</a> </li>
+</ul>
+<p>API 查詢，也有提供範例。</p>
+<ul>
+<li><a href="http://visualjquery.com/" target="_blank" rel="external">Visual jQuery (for jQuery 1.1.2)</a></li>
+</ul>
+<p>和上面一樣也是 API 查詢，只是介面不同。</p>
+<ul>
+<li><a href="http://www.n-bp.com/jquery_cheat_sheet/v11_catalog_extra/" target="_blank" rel="external">jQuery.com 1.1 - Cheat Sheet</a></li>
+</ul>
+<p>作弊小抄….啊，不是，是速查表。不過我還是喜歡上面的 API Browser ，比 cheat sheet 方便。</p>
+<p>不過基本上我都是看官方網站找 plugins ，然後查一下 API Browser 而已。比較深入研究的話，就要找<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>，他是個 JavaScript 高手。 :) </p>
+
             
           </span>
         
@@ -905,7 +1012,16 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>感謝 <a href="http://www.php5.idv.tw/" target="_blank" rel="external">PHP 5知識交換中心</a>的總理大臣長久以來提供空間讓我存放 Smarty 入門，不過因為部份內容有所變動，所以我決定把它放回來自己的 Blog 。</p>
+<p>主要是有幾個改變：</p>
+<ul>
+<li>因為之前用的資料庫是自己寫的 DB 類別，不過這會讓一般 PHPer 看不懂我在寫什麼；所以這裡我改用 MySQLi 來存取資料庫。</li><li>把原來的 &lt;{ 和 }&gt; 標示符號改成預設的 { 和 } 。</li>
+<li>提供範例下載，但不含資料庫 Schema 。 </li>
+</ul>
+<p>沒買過書的朋友，可以先看看再決定要不要學 Smarty 。</p>
+<p>再強調一次：<strong>學 PHP 不是非學 Smarty 不可，它只是一個工具，請確認它對你的工作有幫助再使用它；也請不要隨意評斷別人的技術是玩具或垃圾，它並不會因為你的批評而從這世界上消失。</strong> </p>
+<p><a href="http://www.jaceju.net/blog/archives/23" target="_blank" rel="external">Smarty 入門文章連結</a> </p>
+
             
           </span>
         
@@ -985,11 +1101,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>前陣子看到一篇分頁樣式的文章，趁最近在寫文件時順便整理一下：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/08/15/223/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1016,14 +1133,11 @@
   </nav>
 
 
-
-        </div>
-
-        
-
+ </div>
 
         
 
+        
       </div>
 
       
@@ -1081,17 +1195,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -1123,8 +1233,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1146,8 +1255,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1157,7 +1265,6 @@
 
   
   
-
   
     
     
@@ -1185,25 +1292,39 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -1211,5 +1332,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

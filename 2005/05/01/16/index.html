@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,38 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="雖然我覺得自己編譯 Apache 模組是一件很重要的事，但是我還是遇到了一些問題。
+不過還好我找到了這個網站：http://gknw.itex.at/development/apache/
+mod_gzip以下我們來介紹一個簡單的模組：mod_gzip 。
+mod_gzip 可以將 Apache 輸出的網頁文字內容先作壓縮後，再傳送到用戶端 (就是瀏覽器啦) 。因此可以減少大量的頻寬，增加線路的轉">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache 伺服器非官方已編譯模組">
 <meta property="og:url" content="http://jaceju.net/2005/05/01/16/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="雖然我覺得自己編譯 Apache 模組是一件很重要的事，但是我還是遇到了一些問題。
+不過還好我找到了這個網站：http://gknw.itex.at/development/apache/
+mod_gzip以下我們來介紹一個簡單的模組：mod_gzip 。
+mod_gzip 可以將 Apache 輸出的網頁文字內容先作壓縮後，再傳送到用戶端 (就是瀏覽器啦) 。因此可以減少大量的頻寬，增加線路的轉">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache 伺服器非官方已編譯模組">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="雖然我覺得自己編譯 Apache 模組是一件很重要的事，但是我還是遇到了一些問題。
+不過還好我找到了這個網站：http://gknw.itex.at/development/apache/
+mod_gzip以下我們來介紹一個簡單的模組：mod_gzip 。
+mod_gzip 可以將 Apache 輸出的網頁文字內容先作壓縮後，再傳送到用戶端 (就是瀏覽器啦) 。因此可以減少大量的頻寬，增加線路的轉">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> Apache 伺服器非官方已編譯模組 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +138,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +148,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +158,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +178,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +237,20 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>雖然我覺得自己編譯 Apache 模組是一件很重要的事，但是我還是遇到了一些問題。</p>
+<p>不過還好我找到了這個網站：<a href="http://gknw.itex.at/development/apache/" target="_blank" rel="external">http://gknw.itex.at/development/apache/</a></p>
+<h2 id="mod_gzip">mod_gzip</h2><p>以下我們來介紹一個簡單的模組：mod_gzip 。</p>
+<p>mod_gzip 可以將 Apache 輸出的網頁文字內容先作壓縮後，再傳送到用戶端 (就是瀏覽器啦) 。因此可以減少大量的頻寬，增加線路的轉輸效率。</p>
+<p>當然，首先我們得先安裝好 Apache2(win32) ，這我就不多提了。然後我們連到上述的網址後，找到 Apache 2.0 webserver -&gt; Win32 -&gt; modules 的連結。點選後，在新頁面找到 <code>mod_gzip-2.0.xx-w32.zip</code> 並下載它。</p>
+<p>解開 <code>mod_gzip-2.0.xx-w32.zip</code> 後，找到 <code>Release</code> 資料夾下的 <code>mod_gzip.so</code> 檔；接著將它複製到 Apache2 安裝目錄下的 <code>modules</code> 資料夾下。</p>
+<p>再來我們在 Apache2 安裝目錄下的 conf 資料夾內，用文字編輯器開啟 <code>httpd.conf</code> ，找到 LoadModule 區；然後加入此行：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword"><span class="common">LoadModule</span></span> gzip_module modules/mod_gzip.so</span><br></pre></td></tr></table></figure>
+<p>最後儲存 <code>httpd.conf</code> ，再重新啟動 Apache ，然後試試看頁面瀏覽的速度有沒有變快。</p>
+<h2 id="補充">補充</h2><p>果然網路上高手眾多，有網友推薦使用 Apache2 內建的 mod_deflate ，它和 mod_gzip 同樣是用來壓縮傳輸內容的。</p>
+<p>我找到了一篇還不錯的介紹，所以這裡就不寫了：<a href="http://ying.homedns.org/wp/archives/2005/08/13/21/28/00/" target="_blank" rel="external">精神奕奕 &raquo; Apache2 使用 mod_deflate 增進傳輸效能</a>。</p>
+<p>感謝 Arthur 的資訊 ~~</p>
+<p>Apache 的官方說明：<a href="http://httpd.apache.org/docs/2.0/mod/mod_deflate.html" target="_blank" rel="external">Apache Module mod_deflate</a>。</p>
+</span>
       
     </div>
 
@@ -290,22 +297,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +376,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +409,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mod_gzip"><span class="nav-number">1.</span> <span class="nav-text">mod_gzip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#補充"><span class="nav-number">2.</span> <span class="nav-text">補充</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +425,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +447,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +457,6 @@
 
   
   
-
   
     
     
@@ -491,21 +486,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +655,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +685,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

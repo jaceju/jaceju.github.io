@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,30 +27,20 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
 
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
+  <meta name="keywords" content="Hexo,next" />
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
 
 
 <meta name="description">
@@ -68,14 +54,14 @@
 <meta name="twitter:description">
 
 
-
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -144,7 +130,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -154,7 +140,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -164,7 +150,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -184,8 +170,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
   <section id="posts" class="posts-expand">
     
       
@@ -249,7 +234,42 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Using-the-Observer-Design-Pattern-with-Static-Data-in-PHP-5/3/" target="_blank" rel="external">Using the Observer Design Pattern with Static Data in PHP 5</a></li>
+</ul>
+<p>這篇可以學到怎麼利用 Observer Pattern 來處理表單資訊，不過我覺得如果直接利用 PHP5 的 SplObserver 介面來實作的話應該會比較有趣一點。</p>
+<ul>
+<li><a href="http://devzone.zend.com/article/2514-Refactoring-PHP-Code" target="_blank" rel="external">Refactoring PHP Code</a></li>
+</ul>
+<p>除了 Martin 大師的重構方式以外，這篇提到了一篇適用於 PHP 的重構手法。可惜 PHP 沒有一個好的 IDE 可以協助我們作重構，希望未來可以看到。</p>
+<ul>
+<li><a href="http://www.khankennels.com/blog/index.php/archives/2007/09/17/streams-gem/" target="_blank" rel="external">streams gem</a></li>
+</ul>
+<p>又是 stream ，簡單又好用。</p>
+<li><br><br><a href="http://akrabat.com/2007/09/17/view-helpers-case-notes/" target="_blank" rel="external">View Helper Case Notes</a><br><br>用 Zend Framework 要注意很多大小寫的問題，這篇提到的 View Helper 只是其中之一。另外分享幾個也是要注意的大小寫問題：<br><br>* 在 Linux 系統下，在繼承 Zend_Db_Table_Abstract 的類別裡， $_name 屬性指定的 Table 名稱，其大小寫要和 MySQL 存放在檔案系統裡的資料檔名大小寫一致。<br><br></li><li><br><br>在 Linux 系統下， Action Controller 的命名在 Controller 前一定是首個字母大寫，其他小寫。例如 <strong>ArticleCategory</strong>Controller 是錯的，要寫成 <strong>Articlecategory</strong>Controller 才對。<br></li>
+
+<p></p>
+<ul>
+<li><a href="http://blog.astrumfutura.com/archives/305-Eclipse-PDT-PHP-Development-Tools-1.0-Released-Today.html" target="_blank" rel="external">Eclipse PDT (PHP Development Tools) 1.0 Released Today</a></li>
+</ul>
+<p>PDT 釋出了 1.0 版，大概也是因為 Zend Studio Neon 的關係吧。可以看一下 <a href="http://download.eclipse.org/tools/pdt/downloads/drops/R20070917/changelog.html" target="_blank" rel="external">ChangeLog</a> ，看看有什麼新特色。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.marchbox.com/blog/2-things-about-dom-events-model/" target="_blank" rel="external">关于DOM事件模型的两件事</a></li>
+</ul>
+<p>這篇解釋 DOM 的 event 處理方式，可以搭配 Realazy 的這篇「<a href="http://realazy.org/blog/2007/04/09/javascript-bubble-demo/" target="_blank" rel="external">如果你还不理解JavaScript的事件冒泡</a>」範例一起看。</p>
+<h2 id="CSS">CSS</h2><ul>
+<li><p><a href="http://www.cssplay.co.uk/boxes/transparent_borders" target="_blank" rel="external">Transparent Borders for IE5.5 and IE6</a></p>
+</li>
+<li><p><a href="http://www.cssplay.co.uk/boxes/border_error" target="_blank" rel="external">Transparent Border Error in IE7</a></p>
+</li>
+</ul>
+<p>透明邊框，在 IE5.5 和 IE6 也可以用，不過 IE7 就似乎有些問題。 </p>
+<h2 id="Other">Other</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2007/09/18/best-of-august-2007/" target="_blank" rel="external">Best of August 2007</a></li>
+</ul>
+<p>到 2007 年 8 月為止，一些不錯的 Web 服務與技術文章。 </p>
+
             
           </span>
         
@@ -331,7 +351,44 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://akrabat.com/2007/09/14/zend_filter_input-zend_validate-messages/" target="_blank" rel="external">Zend_Filter_Input / Zend_Validate Messages</a></li>
+</ul>
+<p>這篇介紹了 Zend_Filter_Input ，這個也是我覺得 Zend Framework 在用法上較難理解的部份。</p>
+<ul>
+<li><a href="http://devzone.zend.com/article/2046-Announcing-PHP-Abstract-DevZones-new-PodCast-for-PHP-Developers" target="_blank" rel="external">Announcing PHP Abstract, DevZone’s new PodCast for PHP Developers</a></li>
+</ul>
+<p>一些 PHP 的 PodCast ，還滿值得聽聽的… 不曉得有沒有比較有經驗的前輩能指導一下，怎麼把它們抓到 MP3 Player 裡呀？</p>
+<ul>
+<li><a href="http://www.dotvoid.com/view.php?id=78" target="_blank" rel="external">Reordering nested sets using PHP and Javascript</a></li>
+</ul>
+<p>這個技術在建立樹狀分類的時候也許用得到，記下來先。</p>
+<ul>
+<li><a href="http://www.gen-x-design.com/archives/uploading-large-files-with-php" target="_blank" rel="external">Uploading Large Files With PHP</a></li>
+</ul>
+<p>PHP 上傳大檔時要注意的一些設定，如果因為部份因素而不能在 php.ini 上設定時，可以考慮用 <a href="http://www.php.net/manual/en/configuration.changes.php" target="_blank" rel="external">.htaccess</a> 來指定或用 <a href="http://www.php.net/manual/en/function.ini-set.php" target="_blank" rel="external">ini_set</a> 函式來設定 <a href="http://tw2.php.net/manual/en/ini.core.php#ini.upload-max-filesize" target="_blank" rel="external">upload_max_filesize</a> 。 </p>
+<ul>
+<li><a href="http://www.alexatnet.com/node/73" target="_blank" rel="external">Optimize PHP memory usage: eliminate circular references</a></li>
+</ul>
+<p>排除物件間循環參考所帶來記憶體耗用， <a href="http://www.php.net/manual/en/function.memory-get-peak-usage.php" target="_blank" rel="external">memory_get_peak_usage</a> 和 <a href="http://www.php.net/manual/en/function.memory-get-usage.php" target="_blank" rel="external">memory_get_usage</a> 兩個函式是觀察 PHP 記憶體用量的好幫手。</p>
+<ul>
+<li><a href="http://paul-m-jones.com/blog/?p=256" target="_blank" rel="external">php|works 2007 Teaser: Framework Benchmarks!</a></li>
+</ul>
+<p>比較各 PHP Framework 之間的效能，有 <a href="http://paul-m-jones.com/benchmarking-2007.pdf" target="_blank" rel="external">PDF</a> 可以下載參考。</p>
+<h2 id="SQL">SQL</h2><ul>
+<li><a href="http://pooteeweet.org/blog/854" target="_blank" rel="external">The ugly duckling rollback</a></li>
+</ul>
+<p>好像看得懂又好像看不懂的一篇文章，看來我的 MySQL 還得再多多研究…不曉得有沒有哪位先進能幫忙解釋一下。</p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li>The Elements of JavaScript Style (<a href="http://javascript.crockford.com/style1.html" target="_blank" rel="external">Part1</a>, <a href="http://javascript.crockford.com/style2.html" target="_blank" rel="external">Part2</a>, 簡體中文簡譯： <a href="http://realazy.org/blog/" target="_blank" rel="external">Realazy</a>::<a href="http://realazy.org/blog/2007/09/17/the-elements-of-javascript-style/" target="_blank" rel="external">JavaScript风格要素</a>)</li>
+</ul>
+<p>上面這些 JavaScript 的寫作技巧大部份已經都被採用了，不過還是很具有參考價值。 </p>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://akrabat.com/2007/09/03/image-resizing-done-right/" target="_blank" rel="external">Image Resizing Done Right</a></li>
+</ul>
+<p>很酷的縮圖技術，不同於以往僅是尺寸的縮放，這種技術能去除不想要的空間，讓主要景色能保留下來。</p>
+
             
           </span>
         
@@ -413,7 +470,12 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>觀望得果然沒錯， jQuery 1.2.1 釋出了。</p>
+<p><a href="http://jquery.com/blog/2007/09/16/jquery-121-quick-fixes-for-12/" target="_blank" rel="external">jQuery 1.2.1: Quick Fixes for 1.2</a></p>
+<p>1.2.1 版解決了一些 IE 上 Ajax 的<a href="http://dev.jquery.com/report/17" target="_blank" rel="external">問題</a>， 然後也把 eq() 這個方法又放了回來，免得有一堆 plugins 不能用。</p>
+<p>看來 jQuery 1.2 這個版本大概要到 1.2.2 才會穩定，暫時我還是保留觀望的態度好了。</p>
+<p>話說<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>好像很<a href="http://racklin.blogspot.com/2007/09/gre.html" target="_blank" rel="external">忙</a>，還沒看到他對 jQuery 的新版本表示一下意見。 </p>
+
             
           </span>
         
@@ -495,7 +557,27 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>隨著 jQuery 1.2.1 的推出，一個 <a href="http://interface.eyecon.ro/" target="_blank" rel="external">Interface</a> 的後繼者也出現了，它叫做 <a href="http://ui.jquery.com/" target="_blank" rel="external">jQuery UI</a> 。 </p>
+<p><a href="http://jquery.com/blog/2007/09/17/jquery-ui-interactions-and-widgets/" target="_blank" rel="external">jQuery UI: Interactions and Widgets</a></p>
+<p>小試了一下它的 DEMO ，還是有一些 Bug ，不過整體來說還是非常不錯。</p>
+<p>主要有以下的功能：</p>
+<ul>
+<li><a href="http://docs.jquery.com/UI/Draggables" target="_blank" rel="external">Draggables</a></li>
+<li><a href="http://docs.jquery.com/UI/Droppables" target="_blank" rel="external">Droppables</a> (有 Bug) </li>
+<li><a href="http://docs.jquery.com/UI/Sortables" target="_blank" rel="external">Sortables</a></li>
+<li><a href="http://docs.jquery.com/UI/Selectables" target="_blank" rel="external">Selectables</a></li>
+<li><a href="http://docs.jquery.com/UI/Resizables" target="_blank" rel="external">Resizables</a></li>
+<li><a href="http://docs.jquery.com/UI/Accordion" target="_blank" rel="external">Accordion</a></li>
+<li><a href="http://docs.jquery.com/Plugins/Calendar" target="_blank" rel="external">Calendar</a> (有 Bug) </li>
+<li><a href="http://docs.jquery.com/UI/Dialog" target="_blank" rel="external">Dialog</a></li>
+<li><a href="http://docs.jquery.com/UI/Slider" target="_blank" rel="external">Slider</a></li>
+<li><a href="http://docs.jquery.com/Plugins/Tablesorter" target="_blank" rel="external">Tablesorter</a></li>
+<li><a href="http://docs.jquery.com/UI/Tabs" target="_blank" rel="external">Tabs</a></li>
+<li><a href="http://docs.jquery.com/UI/Magnifier" target="_blank" rel="external">Magnifier</a></li>
+<li><a href="http://docs.jquery.com/UI/Shadow" target="_blank" rel="external">Shadow</a></li>
+</ul>
+<p>文件在<a href="http://docs.jquery.com/UI" target="_blank" rel="external">這裡</a>，然後應用的 DEMO 在<a href="http://dev.jquery.com/view/trunk/plugins/ui/apps/gallery_advanced/" target="_blank" rel="external">這裡</a>。 </p>
+
             
           </span>
         
@@ -575,11 +657,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>Rob 帶來了一個好消息，那就是 <a href="http://framework.zend.com">Zend Framework</a> 要出書囉！它叫： <a href="http://www.manning.com/allen/">Zend Framework in Action</a> 。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/09/13/256/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -657,11 +740,16 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <h2 id="問題">問題</h2><p>Mark 和我兩個人在研究怎麼把對外的 Port 9000 轉移到內部的 Port 80 ，結果我這個 Linux 新手搞了半天還是搞不出來。</p>
+<h2 id="環境">環境</h2><p>我的環境是這樣的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">           |-- (DMZ) --&#62; Linux Server 1(192.168.1.1)&#10;IP &#20998;&#20139;&#22120; -|&#10;           |-----------&#62; Linux Server 2(192.168.1.2)</span><br></pre></td></tr></table></figure>
+<p>註：之前示意圖畫錯了，更正一下。</p>
+<p>然後從外面來的 Port 9000 要 Forward 到 Linux Server 2 的 Port 80 。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/09/13/255/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -741,7 +829,37 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><p><a href="http://www.devshed.com/c/a/PHP/Handling-Static-Data-with-PHP-5/" target="_blank" rel="external">Handling Static Data with PHP 5</a></p>
+</li>
+<li><p><a href="http://www.devshed.com/c/a/PHP/Understanding-Static-Properties-with-PHP-5/" target="_blank" rel="external">Understanding Static Properties with PHP 5</a></p>
+</li>
+</ul>
+<p>用例子解釋 PHP5 的 static 屬性。</p>
+<ul>
+<li><p><a href="http://pixelated-dreams.com/archives/319-PHP-Streams-Rock-my-World!.html" target="_blank" rel="external">PHP Streams Rock my World!</a></p>
+</li>
+<li><p><a href="http://elizabethmariesmith.com/2007/05/04/php-user-streams-why-doesnt-anyone-use-them/" target="_blank" rel="external">Php User Streams - why doesn’t anyone use them?</a></p>
+</li>
+</ul>
+<p><a href="http://tw.php.net/manual/en/ref.stream.php" target="_blank" rel="external">PHP Streams</a> 會用的話其實是很棒的功能，上面兩篇文章簡單介紹了一下它的用法。</p>
+<h2 id="Programming">Programming</h2><ul>
+<li><p><a href="http://www.javaworld.com.tw/roller/page/qing?entry=%E9%A1%9E%E5%88%A5%E7%89%A9%E4%BB%B6%E7%9A%84%E7%94%9F%E6%88%90_1_%E7%9B%B4%E6%8E%A5%E7%94%9F%E6%88%90%E7%89%A9%E4%BB%B6_vs_%E9%96%93%E6%8E%A5%E7%94%9F%E6%88%90%E7%89%A9%E4%BB%B6" target="_blank" rel="external">類別物件的生成（1）直接生成物件 vs. 間接生成物件</a></p>
+</li>
+<li><p><a href="http://www.javaworld.com.tw/roller/page/qing?entry=2007_9_11_%E9%A1%9E%E5%88%A5%E7%89%A9%E4%BB%B6%E7%9A%84%E7%94%A2%E7%94%9F_2_%E7%B0%A1%E5%96%AE%E7%9A%84%E7%B0%A1%E6%8E%A5_simple_factory" target="_blank" rel="external">類別物件的產生（2）簡單的間接－Simple Factory Method</a></p>
+</li>
+</ul>
+<p>聽聽 <a href="http://www.javaworld.com.tw/roller/page/qing" target="_blank" rel="external">Qing</a> 談生成模式，我個人覺得還滿淺顯易懂的。 </p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2007/09/12/reinvigorates-snoop-experiencing-user-events-instantly/" target="_blank" rel="external">Reinvigorate’s Snoop: Real-Time Web Analytics</a></li>
+</ul>
+<p><a href="http://www.reinvigorate.net/" target="_blank" rel="external">Reinvigorate Snoop</a> 是一套即時的 Web 分析工具，有 Mac 和 Win32 兩種版本可選擇。和 Google Analytics 一樣也是利用 JavaScript 來接收頁面相關資訊，然後在 Client 端的程式中分析。 </p>
+<ul>
+<li><a href="http://www.456bereastreet.com/archive/200709/10_colour_contrast_checking_tools_to_improve_the_accessibility_of_your_design/" target="_blank" rel="external">10 colour contrast checking tools to improve the accessibility of your design</a></li>
+</ul>
+<p>顏色的對比在 Web Design 是很重要的課題，好的顏色設計能讓人在觀看文字時很舒服。上面的文章提供了十個線上顏色對比工具來讓我們即時觀看調整後的顏色，讓我們在設計時能夠參考。 </p>
+
             
           </span>
         
@@ -823,7 +941,27 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<ul>
+<li><a href="http://blog.ruckusing.com/index.php/2007/09/03/database-migrations-for-php5/" target="_blank" rel="external">Database Migrations for PHP5</a></li>
+</ul>
+<p>RoR 有很棒的資料庫遷移機制， PHP 高手 <a href="http://blog.ruckusing.com/" target="_blank" rel="external">Cody Caughlan</a> 也不干示弱地寫了一個給 PHP 用，它叫做 <a href="http://code.google.com/p/ruckusing/" target="_blank" rel="external">ruckusing</a> ，真是厲害呀~~</p>
+<p>有關資料庫遷移的觀念可以參考：「<a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=9789861812397&amp;sid=38282" target="_blank" rel="external">碼上就會：Rails敏捷開發網站</a>」第 16 章。 </p>
+<li>
+
+<p><a href="http://www.phpied.com/file_get_contents-for-php4/" target="_blank" rel="external">file_get_contents() for PHP4</a> (作者寫錯標題了，應該是 file_put_contents ) </p>
+<p><a href="http://www.php.net/manual/tw/function.file-put-contents.php" target="_blank" rel="external">file_put_contents</a> 這個函式只有在 PHP5 才提供，如果想要在 PHP4 用的話，可以參考以下方式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;if (!function_exists(&#39;file_put_contents&#39;)) &#123;&#10;function file_put_contents($filename, $data) &#123;&#10;$f = @fopen($filename, &#39;w&#39;);&#10;if (!$f) &#123;&#10;return false;&#10;&#125; else &#123;&#10;$bytes = fwrite($f, $data);&#10;fclose($f);&#10;return $bytes;&#10;&#125;&#10;&#125;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>或是如果有用 PEAR 的話，可以安裝 <a href="http://pear.php.net/package/PHP_Compat" target="_blank" rel="external">PHP_Compat</a> 。<br></p></li><p></p>
+<ul>
+<li><a href="http://www.php-learn-it.com/php_cookies.html" target="_blank" rel="external">Cooking Cookies with PHP</a></li>
+</ul>
+<p>簡單的 Cookies 教學。 </p>
+<ul>
+<li><a href="http://blog.adaniels.nl/?p=48" target="_blank" rel="external">Wrong PHP prediction: you don’t need to patch PHP to run multiple versions</a></li>
+</ul>
+<p>上次提到 <a href="http://fosterburgess.com/kimsal/?p=317" target="_blank" rel="external">Michael Kimsals</a> 預言會有一個工具協助我們同時執行 PHP4 和 PHP5 ， <a href="http://blog.adaniels.nl/?author=1" target="_blank" rel="external">Arnold Daniels</a> 提出反駁的論點。 </p>
+
             
           </span>
         
@@ -905,7 +1043,11 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>果然 jQuery 1.1.4 剛出沒多久， jQuery 1.2 就跑出來湊熱鬧了 </p>
+<p><a href="http://jquery.com/blog/2007/09/10/jquery-12-jqueryextendawesome/" target="_blank" rel="external">jQuery 1.2: jQuery.extend(“Awesome”)</a></p>
+<p>主要的改變像是把 XPath 的解析方式拆成 plugin 、 Cross-Domain getScript 、  Namespaced Events 等等；不過還是等看看阿土伯的技術分析好了，我乖乖地偷學就行 XD </p>
+<p>註：又搶先<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>一步了 XD (呃… GSLin <a href="http://blog.gslin.org/archives/2007/09/11/1308/" target="_blank" rel="external">偷跑</a>… Orz)</p>
+
             
           </span>
         
@@ -987,7 +1129,42 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><li>
+
+<p><a href="http://www.colder.ch/news/08-24-2007/28/late-static-bindings-expl.html" target="_blank" rel="external">Late Static Bindings Explained</a></p>
+<p>這個功能會出現在 PHP6 上，不過也可能會在 PHP5 的新版本實作出來。簡單說明一下：</p>
+<p>以往我們在繼承 Class 後，是不可能覆寫 (override) static method 的，例如： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;    public static function test()&#10;    &#123;&#10;        self::who();&#10;    &#125;&#10;&#125;&#10;class B extends A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;&#125;&#10;B::test(); // A</span><br></pre></td></tr></table></figure>
+<p>在 PHP6 裡提供了一個 static 關鍵字，用來表示繼承後的類別 (self 保留給目前的類別使用) ： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;    public static function test()&#10;    &#123;&#10;        static::who();&#10;    &#125;&#10;&#125;&#10;class B extends A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;&#125;&#10;B::test(); // B</span><br></pre></td></tr></table></figure>
+<p>看起來相當方便，就是不知道實際用起來如何了。<br></p></li><p></p>
+<ul>
+<li><a href="http://elizabethmariesmith.com/2007/09/08/perverting-windows-with-php/" target="_blank" rel="external">Perverting windows with PHP</a></li>
+</ul>
+<p>介紹一些 PHP 在 Windows 上的 Solution ，也包含 <a href="http://winbinder.org/" target="_blank" rel="external">Winbinder</a> 。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://blog.yoren.info/2007/09/09/475/" target="_blank" rel="external"> [jQuery] 依連結的檔案類型秀出圖示</a></li>
+</ul>
+<p>這也是很常用的功能， <a href="http://blog.yoren.info/" target="_blank" rel="external">yoren</a> 也解釋得很詳細喔。</p>
+<h2 id="SQL">SQL</h2><ul>
+<li><a href="http://www.khankennels.com/blog/index.php/archives/2007/04/20/getting-joins/" target="_blank" rel="external">“Getting” Joins</a></li>
+</ul>
+<p>用圖形來表示 SQL 中的 JOIN 語法，如果搞不清楚 INNER JOIN 、 OUTER JOIN 或 LEFT JOIN 等關係時，不妨參考看看。 </p>
+<ul>
+<li><a href="http://www.databasecolumn.com/" target="_blank" rel="external">The Database Column</a></li>
+</ul>
+<p>一個新的 Blog ，專門介紹 Database 相關資訊。</p>
+<ul>
+<li><a href="http://postgresql-chinese.blogspot.com/" target="_blank" rel="external">PostgreSQL ::國際中文社群網誌::</a></li>
+</ul>
+<p>這個應該不用多說了吧，有用 PostgreSQL 的話應該常逛。 :)</p>
+<h2 id="Other">Other</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2007/09/10/20-alternate-ways-to-focus-on-users/" target="_blank" rel="external">20 (Alternate) Ways to Focus on Users</a></li>
+</ul>
+<p>我覺得這篇文章是「如何設計好網站」的進階濃縮版本。然後我的感想 (也可以說是經驗) 是：如果這個網站連你自己都不想用，那就別指望客戶會掏錢給你。 </p>
+<p>註：不過世事無絕對，就是有那種天兵客戶願意花錢叫你做一些你想砸電腦的功能。</p>
+
             
           </span>
         
@@ -1016,14 +1193,11 @@
   </nav>
 
 
-
-        </div>
-
-        
-
+ </div>
 
         
 
+        
       </div>
 
       
@@ -1081,17 +1255,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -1123,8 +1293,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1146,8 +1315,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1157,7 +1325,6 @@
 
   
   
-
   
     
     
@@ -1185,25 +1352,39 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -1211,5 +1392,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,40 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="常常我們會需要在頁面上佈置一些可互動的 UI 元件，像是連動式下拉選單或是 CAPTCHA 驗證元件等等。這些元件既要能夠用 Ajax 和後端溝通，又要能夠融入一般表單的流程中，最重要的是它們還要能夠重複使用，而不是跟專案綁在一起。
+在 Zend Framework 中，還沒提供這樣的機制讓我們使用；因此我便自己製作一個 Weblet 的功能，用以實現這個想法。
+註：其實一開始我是用 Widget">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Weblet on Zend Framework">
 <meta property="og:url" content="http://jaceju.net/2010/07/10/1283/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="常常我們會需要在頁面上佈置一些可互動的 UI 元件，像是連動式下拉選單或是 CAPTCHA 驗證元件等等。這些元件既要能夠用 Ajax 和後端溝通，又要能夠融入一般表單的流程中，最重要的是它們還要能夠重複使用，而不是跟專案綁在一起。
+在 Zend Framework 中，還沒提供這樣的機制讓我們使用；因此我便自己製作一個 Weblet 的功能，用以實現這個想法。
+註：其實一開始我是用 Widget">
+<meta property="og:image" content="http://jaceju.net/resources/zf_weblet/login_form.png">
+<meta property="og:image" content="http://jaceju.net/resources/zf_weblet/weblet_flow.png">
+<meta property="og:image" content="http://jaceju.net/resources/zf_weblet/login_form.png">
+<meta property="og:image" content="http://jaceju.net/resources/zf_weblet/load_jquery.png">
+<meta property="og:image" content="http://jaceju.net/resources/zf_weblet/post_with_ajax.png">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Weblet on Zend Framework">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="常常我們會需要在頁面上佈置一些可互動的 UI 元件，像是連動式下拉選單或是 CAPTCHA 驗證元件等等。這些元件既要能夠用 Ajax 和後端溝通，又要能夠融入一般表單的流程中，最重要的是它們還要能夠重複使用，而不是跟專案綁在一起。
+在 Zend Framework 中，還沒提供這樣的機制讓我們使用；因此我便自己製作一個 Weblet 的功能，用以實現這個想法。
+註：其實一開始我是用 Widget">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> Weblet on Zend Framework | 網站製作學習誌 </title>
 </head>
@@ -143,7 +140,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +150,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +160,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +180,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +239,121 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>常常我們會需要在頁面上佈置一些可互動的 UI 元件，像是連動式下拉選單或是 CAPTCHA 驗證元件等等。這些元件既要能夠用 Ajax 和後端溝通，又要能夠融入一般表單的流程中，最重要的是它們還要能夠重複使用，而不是跟專案綁在一起。</p>
+<p>在 Zend Framework 中，還沒提供這樣的機制讓我們使用；因此我便自己製作一個 Weblet 的功能，用以實現這個想法。</p>
+<p>註：其實一開始我是用 Widget 這個名稱，不過 Widget 指的是 Web 頁面或視窗桌面上的小玩意；後來想到 let 這個字含有小東西的意思，因此就稱這個機制為 Weblet 。</p>
+<a id="more"></a>
+<h2 id="概念">概念</h2><p>Weblet 主要概念就是要在 Web 頁面上放置一個 UI 元件，或是可獨立操作的小區塊，而它的資料處理邏輯和樣版則可以完全與專案分離。</p>
+<p>例如一般會員網站上都會提供一個登入區塊，例如：</p>
+<p><a href="/resources/zf_weblet/login_form.png"><img src="/resources/zf_weblet/login_form.png" alt="登入表單示意圖"></a></p>
+<p>而這個登入區塊通常都是直接用 POST 到某個處理 login 的 PHP 程式，或是 MVC 中的 Action 。如果我們可以把這個登入區塊的樣版與處理登入的邏輯獨立於專案之外，不就可以重複利用了？</p>
+<p>而如果這個登入區塊也能夠有自己一套獨立的 AJAX 流程，不必與現有的 MVC 架構混合在一起，那麼在使用上的彈性就更大了。</p>
+<p>在以往 Zend Framework 中處理這些元件 Ajax 的部份時，我們都需要在當前的 Action Controller 中建立一個 Action 來對應。而這個元件如果要重複使用的話，那我們還必須建立一個獨立的 Action Controller 來處理特別處理 Ajax Request ；每換一個專案也得將這個 Action Controller 一起搬過去，開發上相當麻煩。</p>
+<p>所以如果我們能將處理這些元件的 Ajax 流程獨立於目前的 Action Controller 之外，也不需要特別建立一個 Action Controller 來對應，這樣不是很好嗎？也因此我就有了以下的構思：</p>
+<ul>
+<li><p>Weblet 可以在任意的樣版上佈置 Weblet 的 HTML ，並支援 Ajax 呼叫。</p>
+</li>
+<li><p>Weblet 不須綁定 Action Controller ，所以也就不需要關連到特定的網址。</p>
+</li>
+<li><p>Weblet 可以執行不同的動作，也可以指定輸出的格式 (例如 HTML 、 JSON 或是圖片等) 。 </p>
+</li>
+</ul>
+<p>簡單來說， Weblet 就是建構在 Zend Framework MVC 上的一個小型 MVC 架構，在 Model 及 Controller 上的運作是獨立在 Zend Framework 之外的。</p>
+<h2 id="流程與架構">流程與架構</h2><p>依照上面的想法，我大致將實際的流程整理如下圖：</p>
+<p><a href="/resources/zf_weblet/weblet_flow.png"><img src="/resources/zf_weblet/weblet_flow.png" alt="Weblet 流程"></a></p>
+<p>主要的重點如下：</p>
+<ul>
+<li><p>利用 Zend_View 顯示 Weblet 的 View 層。</p>
+</li>
+<li><p>利用 Controller Plugin 管理 Post Back 後的 Weblet 的 Model 層及 Controller 層。</p>
+</li>
+<li><p>Controller Plugin 也會判斷該次需求是否為 Ajax ，如果是的話，就不再執行原有的 Action Controller ，以加速 Ajax 效能。</p>
+</li>
+</ul>
+<p>因此依照上面流程，我規劃了以下幾個類別：</p>
+<ul>
+<li><p>Wacow_Weblet_Abstract ： Weblet 抽象類，之後專案裡要實作的 Weblet 都需要繼承此類別。而它主要是包含了 Weblet 的 Model 層及 Controller 層。</p>
+</li>
+<li><p>Wacow_Weblet_Broker ： 用來管理 Weblet 群集的類別，負責建立、載入及設定 Weblet 。</p>
+</li>
+<li><p>Wacow_Application_Resource_Weblet ：用來初始化 Weblet 相關物件的類別。</p>
+</li>
+<li><p>Wacow_Controller_Plugin_Weblet ：控管 Weblet 流程的主要類別，會透過 Broker 來與 Weblet 溝通。</p>
+</li>
+<li><p>Wacow_Controller_Action_Helper_Weblet ：可以在一般的 Action Controller 裡，透過這個 Helper 類別取得指定的 Weblet 。</p>
+</li>
+<li><p>Wacow_View_Helper_Weblet ：可以在 View Script 中，透過這個 Helper 類別顯示指定的 Weblet 。</p>
+</li>
+</ul>
+<p>註：未來我打算再實作一個 Provider 類別來自動建立 Weblet 。</p>
+<h2 id="安裝">安裝</h2><p>請先建立好一個 Zend Framework 專案，也就是在 Command Line 模式下輸入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">zf create project project_name</span><br></pre></td></tr></table></figure>
+<p>接著下載 <a href="/resources/zf_weblet/weblet-0.1-wacow-3.0.zip">Wacow_Weblet 套件</a>，解開後放到 php.ini 中 include_path 指定的目錄，或是專案的 library 目錄裡即可。</p>
+<p>然後在 application/configs/application.ini 的 [production] 區段中加入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Autoloadernamespaces[] = &#34;Wacow_&#34;&#10;pluginPaths.Wacow_Application_Resource_ = &#34;Wacow/Application/Resource&#34;&#10;pluginPaths.Wacow_Weblet_ = &#34;Wacow/Weblet&#34;&#10;resources.frontController.plugins.weblet.class = &#34;Wacow_Controller_Plugin_Weblet&#34;&#10;resources.frontController.actionHelperPaths.Wacow_Controller_Action_Helper = &#34;Wacow/Controller/Action/Helper&#34;&#10;resources.view.basePath = APPLICATION_PATH &#34;/&#34;&#10;resources.view.helperPath.Wacow_View_Helper_ = &#34;Wacow/View/Helper&#34;&#10;resources.weblet.webletPath.Application_Weblet_ = APPLICATION_PATH &#34;/weblets&#34;</span><br></pre></td></tr></table></figure>
+<p>這樣就安裝好 Weblet 套件了。</p>
+<h2 id="用法與範例">用法與範例</h2><p>接下來我直接用範例說明，首先在 application/ 下建立這樣的目錄結構：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">application/&#10;  |&#10;  |- weblets&#10;       |&#10;       |- scripts</span><br></pre></td></tr></table></figure>
+<p>其中， weblets 是放置 Weblet 類別， scripts 則是放置 Weblet 的 HTML 樣版。</p>
+<p>以下我們直接用一個 Login Weblet 做為範例，請將以下的內容存為 application/weblets/Login.php ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Application_Weblet_Login extends Wacow_Weblet_Abstract&#10;&#123;&#10;    // &#22914;&#26524; Weblet &#26377;&#24517;&#35201;&#30340;&#36039;&#26009;&#38917;&#65292;&#35201;&#25918;&#22312; $_data &#36889;&#20491;&#23660;&#24615;&#20013;&#10;    protected $_data = array(&#10;        &#39;account&#39; =&#62; null,&#10;        &#39;password&#39; =&#62; null,&#10;    );&#10;    protected $_session = null;&#10;    // &#21021;&#22987;&#21270;&#10;    public function init()&#10;    &#123;&#10;        // &#35373;&#23450; Session &#29289;&#20214;&#10;        if (null === $this-&#62;_session) &#123;&#10;            $this-&#62;_session = new Zend_Session_Namespace(&#39;login&#39;);&#10;        &#125;&#10;        // &#24050;&#32147;&#30331;&#20837;&#30340;&#35441;&#65292;&#23601;&#21462;&#24471; Session &#20013;&#30340; account &#36039;&#35338;&#10;        if ($this-&#62;_session-&#62;isLogin) &#123;&#10;            $this-&#62;account = $this-&#62;_session-&#62;account;&#10;        &#125;&#10;    &#125;&#10;    // &#38928;&#35373;&#26371;&#22519;&#34892;&#30340;&#21205;&#20316;&#10;    public function defaultAction() &#123;&#125;&#10;    // &#21028;&#26039;&#24115;&#34399;&#23494;&#30908;&#10;    public function checkAction()&#10;    &#123;&#10;        // &#24050;&#32147;&#30331;&#20837;&#23601;&#19981;&#38656;&#24448;&#19979;&#34389;&#29702;&#10;        if ($this-&#62;isLogin()) &#123; return; &#125;&#10;        // &#21069;&#31471;&#20659;&#32102; Weblet &#30340;&#36039;&#26009;&#10;        $account = trim(strtolower($this-&#62;account));&#10;        $password = trim($this-&#62;password);&#10;        // &#30331;&#20837;&#25104;&#21151;&#10;        if (&#39;jaceju&#39; === $account&#10;                &#38;amp;&#38;amp; &#39;123&#39; === $password) &#123;&#10;            $this-&#62;_session-&#62;isLogin = true;&#10;            $this-&#62;_session-&#62;account = $this-&#62;account;&#10;        &#125; else &#123;&#10;            $this-&#62;getView()-&#62;assign(&#39;message&#39;, &#39;&#24115;&#34399;&#25110;&#23494;&#30908;&#37679;&#35492;&#39;);&#10;        &#125;&#10;    &#125;&#10;    // &#26159;&#21542;&#24050;&#32147;&#30331;&#20837;&#10;    public function isLogin()&#10;    &#123;&#10;        return $this-&#62;_session-&#62;isLogin;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這個 Login 類別主要是模擬一個登入流程，它必須繼承 Wacow_Weblet_Abstract 這個抽象類，而 Application_Weblet_Login 這個類別名稱是因為我們在 application.ini 中加入了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">resources.weblet.webletPath.Application_Weblet_ = APPLICATION_PATH &#34;/weblets&#34;</span><br></pre></td></tr></table></figure>
+<p>這樣 Wacow_Weblet_Broker 就會知道要去哪裡載入 Weblet ，同時這個設定也會定義 Weblet Template 放置的路徑 (也就是在 weblet 類別所在目錄下的 scripts 目錄 ) 。</p>
+<p>接下來說明 Application_Weblet_Login 的程式結構。</p>
+<ul>
+<li><p>$_data ：這個屬性定義於 Wacow_Weblet_Abstract 類別中，我們可以在子類別覆寫它； $_data 主要是用來定義讓前端的 HTML 和後端的 Weblet PHP 程式碼溝通的資料項目，也就是說從前端接收到的資料如果包含了 $_data 所定義的索引時，其對應的資料就會被載入到 $_data 中 ，這裡即為 account 及 password 。</p>
+</li>
+<li><p>$_session ：此 Login 類別所需要的 Session 物件，這個屬性是自訂的。</p>
+</li>
+<li><p>init() ： Wacow_Weblet_Broker 在建立 weblet 後，會立刻呼叫這個方法，以完成 weblet 的初始化；預設是空實作。</p>
+</li>
+<li><p>defaultAction() ： Weblet 預設會執行的方法，可以透過更改 $_action 屬性來改變。 (稍後會提到如何更改 $_action 值)</p>
+</li>
+<li><p>checkAction() ：此 Login 類別用來驗證使用者輸入的帳號與密碼，這個方法是自訂的。</p>
+</li>
+<li><p>isLogin() ：此 Login 類別用來判斷使用者是否已經登入，這個屬性是自訂的。</p>
+</li>
+</ul>
+<p>註：這只是應用範例，開發時還是要按照實際需求來撰寫驗證帳號與密碼的方式。</p>
+<p>接著是 HTML 樣板，請將以下內容存為 application/weblets/scripts/login.phtml ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;div class=&#34;webletLogin&#34; id=&#34;&#60;?php echo $this-&#62;weblet-&#62;id(); ?&#62;&#34;&#62;&#10;&#60;?php if ($this-&#62;weblet-&#62;isLogin()): ?&#62;&#10;&#60;p&#62;&#27489;&#36814;&#20320;&#65292; &#60;?php echo $this-&#62;escape($this-&#62;weblet-&#62;account); ?&#62;&#60;/p&#62;&#10;&#60;?php else: ?&#62;&#10;&#60;fieldset&#62;&#10;&#60;legend&#62;&#30331;&#20837;&#60;/legend&#62;&#10;&#60;form method=&#34;post&#34; class=&#34;webletLoginForm&#34; action=&#34;&#34;&#62;&#10;    &#60;p&#62;&#60;label&#62;&#24115;&#34399;&#60;/label&#62;&#60;input type=&#34;text&#34;&#10;                               name=&#34;&#60;?php echo $this-&#62;weblet-&#62;fn(&#39;account&#39;); ?&#62;&#34;&#10;                               value=&#34;&#60;?php echo $this-&#62;weblet-&#62;account; ?&#62;&#34; /&#62;&#60;/p&#62;&#10;    &#60;p&#62;&#60;label&#62;&#23494;&#30908;&#60;/label&#62;&#60;input type=&#34;password&#34;&#10;                               name=&#34;&#60;?php echo $this-&#62;weblet-&#62;fn(&#39;password&#39;); ?&#62;&#34; /&#62;&#60;/p&#62;&#10;    &#60;p&#62;&#60;input type=&#34;submit&#34; value=&#34;&#30331;&#20837;&#34; /&#62;&#60;/p&#62;&#10;    &#60;?php echo $this-&#62;weblet-&#62;fields(&#39;login&#39;, &#39;html&#39;); ?&#62;&#10;&#60;/form&#62;&#10;&#60;/fieldset&#62;&#10;&#60;?php endif; ?&#62;&#10;&#60;/div&#62;</span><br></pre></td></tr></table></figure>
+<p>這個樣版用到了幾個 Weblet 的特色：</p>
+<ul>
+<li><p>$this-&gt;weblet ：會自動指向我們目前調用的 Login 類別所對應的 weblet 物件。</p>
+</li>
+<li><p>$this-&gt;weblet-&gt;id() ：取得 weblet 物件的 id 屬性值， id 的值可以自訂，稍後我們會談到如何更改這個值。</p>
+</li>
+<li><p>$this-&gt;weblet-&gt;fn(‘xxx’) ：用來產生 weblet<a href="xxx">weblet-name</a> 這樣的 HTML 表單欄位名稱，主要是配合各式表單欄位使用。</p>
+</li>
+<li><p>$this-&gt;weblet-&gt;fields(action, format) ：用來產生 weblet 相關資訊的隱藏欄位。第一個參數是 action 名稱，用以呼叫對應的 action ；第二個參數是 format ，主要是在透過 AJAX 呼叫時所要輸出的格式，預設可以使用 HTML 和 JSON 兩種格式。</p>
+</li>
+</ul>
+<p>有了這兩個檔案後，我們只要在主要的 View Script 上佈置 weblet 就可以了。</p>
+<p>請開啟 application/views/scripts/index/index.phtml ，並在 <body> … </body> 之間加入以下程式碼：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php echo $this-&#62;weblet(&#39;login&#39;, &#39;login-01&#39;); ?&#62;</span><br></pre></td></tr></table></figure>
+<p>這行程式主要是透過 Wacow_View_Helper_Weblet 這個類別中的 weblet 方法來建立並顯示 Login Weblet ；第一個參數就是 weblet 的名稱，它會自動找出符合名稱的 Weblet ；而第二個參數就是 weblet 的 id ，主要是用來讓後端的 PHP 程式可以得知要對應的 weblet 。</p>
+<p>接著開啟瀏覽器並瀏覽 Zend Framework 專案的主要頁面後，就會產生以下 HTML ：</p>
+<p><a href="/resources/zf_weblet/login_form.png"><img src="/resources/zf_weblet/login_form.png" alt="登入表單示意圖"></a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;div class=&#34;webletLogin&#34; id=&#34;login-01&#34;&#62;&#10;&#60;fieldset&#62;&#10;&#60;legend&#62;&#30331;&#20837;&#60;/legend&#62;&#10;&#60;form method=&#34;post&#34; class=&#34;webletLoginForm&#34; action=&#34;&#34;&#62;&#10;    &#60;p&#62;&#60;label&#62;&#24115;&#34399;&#60;/label&#62;&#60;input type=&#34;text&#34;&#10;                               name=&#34;weblet[login-01](account)&#34;&#10;                               value=&#34;&#34; /&#62;&#60;/p&#62;&#10;    &#60;p&#62;&#60;label&#62;&#23494;&#30908;&#60;/label&#62;&#60;input type=&#34;password&#34;&#10;                               name=&#34;weblet[login-01](password)&#34; /&#62;&#60;/p&#62;&#10;    &#60;p&#62;&#60;input type=&#34;submit&#34; value=&#34;&#30331;&#20837;&#34; /&#62;&#60;/p&#62;&#10;        &#60;input type=&#34;hidden&#34; name=&#34;weblet[login-01](_name)&#34; value=&#34;login&#34; /&#62;&#10;&#60;input type=&#34;hidden&#34; name=&#34;weblet[login-01](_format)&#34; value=&#34;html&#34; /&#62;&#10;&#60;input type=&#34;hidden&#34; name=&#34;weblet[login-01](_action)&#34; value=&#34;check&#34; /&#62;&#10;&#60;input type=&#34;hidden&#34; name=&#34;weblet[login-01](_guid)&#34; value=&#34;4644df4f-d8fc-36c8-9338-0000098eaa0b&#34; /&#62;&#10;&#60;/form&#62;&#10;&#60;/fieldset&#62;&#10;&#60;/div&#62;</span><br></pre></td></tr></table></figure>
+<p>最後可以試試看操作這個表單，若沒有問題的話，應該會如預期般顯示出「歡迎你， jaceju 」或是在表單下方顯示「帳號或密碼錯誤」。</p>
+<h2 id="加入_Ajax">加入 Ajax</h2><p>在上面的例子中， Login 表單使用的還是傳統的 POST ，這裡我們可以改用 AJAX 來傳送。</p>
+<p>首先在 application/weblets/scripts/login.phtml 的  標籤下方加入以下程式碼：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php $this-&#62;headScript()-&#62;appendFile(&#39;http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js&#39;); ?&#62;&#10;&#60;?php $this-&#62;headScript()-&#62;captureStart() ?&#62;&#10;$(function () &#123;&#10;$(&#39;form.webletLoginForm&#39;).live(&#39;submit&#39;, function () &#123;&#10;    $this = $(this);&#10;    $container = $this.parents(&#39;div.webletLogin&#39;);&#10;    $.ajax(&#123;&#10;        type: &#39;POST&#39;,&#10;        url: &#39;&#60;?php echo $this-&#62;baseUrl(); ?&#62;/&#39;,&#10;        data: $this.serializeArray(),&#10;        success: function (html) &#123;&#10;            $container.replaceWith(html);&#10;        &#125;,&#10;        dataType: &#39;html&#39;&#10;    &#125;);&#10;    return false;&#10;&#125;);&#10;&#125;);&#10;&#60;?php $this-&#62;headScript()-&#62;captureEnd() ?&#62;</span><br></pre></td></tr></table></figure>
+<p>上面的 JavaScript 中我透過 jQuery 來傳送 AJAX Request ，如果成功的話就以回傳的 HTML 結果取代目前的 Weblet 畫面。</p>
+<p>然後在 application/views/scripts/index/index.phtml 的  標籤上面加入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php echo $this-&#62;headScript(); ?&#62;</span><br></pre></td></tr></table></figure>
+<p>最後再瀏覽一次專案首頁，成功的話應該會載入 jQuery ：</p>
+<p><a href="/resources/zf_weblet/load_jquery.png"><img src="/resources/zf_weblet/load_jquery.png" alt="載入 jQuery"></a></p>
+<p>註：這裡我是透過 Firefox 配合 Firebug 套件來查看瀏覽器載入的資源。</p>
+<p>如果這時我們直接按下「登入」鈕，那麼頁面就會透過 AJAX 更新：</p>
+<p><a href="/resources/zf_weblet/post_with_ajax.png"><img src="/resources/zf_weblet/post_with_ajax.png" alt="AJAX 更新畫面"></a></p>
+<p>是不是很簡單呢？</p>
+<p>當然這個架構還沒有被嚴格測試過，在正式使用上一定還有未盡完善之處，希望大家能給我一些建議，讓這個機制更加好用。</p>
+<h2 id="參考">參考</h2><ul>
+<li><a href="http://blog.johnpupu.tw/2010/05/13/zend-framework-widget/" target="_blank" rel="external">Zend Framework Widget</a></li>
+</ul>
+</span>
       
     </div>
 
@@ -290,22 +400,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +479,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +512,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程與架構"><span class="nav-number">2.</span> <span class="nav-text">流程與架構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">3.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法與範例"><span class="nav-number">4.</span> <span class="nav-text">用法與範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入_Ajax"><span class="nav-number">5.</span> <span class="nav-text">加入 Ajax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考"><span class="nav-number">6.</span> <span class="nav-text">參考</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +528,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +550,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +560,6 @@
 
   
   
-
   
     
     
@@ -491,21 +589,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +758,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +788,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

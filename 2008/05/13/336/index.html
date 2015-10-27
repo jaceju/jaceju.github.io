@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,38 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="有時候寫 jQuery 時，常會發現一些簡單的效果可以重複利用。只是每次用 Copy &amp;amp; Paste 大法似乎不是件好事，有沒有什麼方法可以讓我們把這些效果用到其他地方呢？
+沒錯，就是用 jQuery 的 Plugin 機制。
+不過 jQuery 的 Plugin 機制好像很難懂？其實一點也不。以下我用最簡單的方式來為大家解說如何自製一個簡單的 Plugin 。
+當然在此之前，你得先瞭解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[jQuery] 自製 jQuery Plugin - Part 1">
 <meta property="og:url" content="http://jaceju.net/2008/05/13/336/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="有時候寫 jQuery 時，常會發現一些簡單的效果可以重複利用。只是每次用 Copy &amp;amp; Paste 大法似乎不是件好事，有沒有什麼方法可以讓我們把這些效果用到其他地方呢？
+沒錯，就是用 jQuery 的 Plugin 機制。
+不過 jQuery 的 Plugin 機制好像很難懂？其實一點也不。以下我用最簡單的方式來為大家解說如何自製一個簡單的 Plugin 。
+當然在此之前，你得先瞭解">
 <meta property="og:updated_time" content="2015-06-02T02:29:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[jQuery] 自製 jQuery Plugin - Part 1">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="有時候寫 jQuery 時，常會發現一些簡單的效果可以重複利用。只是每次用 Copy &amp;amp; Paste 大法似乎不是件好事，有沒有什麼方法可以讓我們把這些效果用到其他地方呢？
+沒錯，就是用 jQuery 的 Plugin 機制。
+不過 jQuery 的 Plugin 機制好像很難懂？其實一點也不。以下我用最簡單的方式來為大家解說如何自製一個簡單的 Plugin 。
+當然在此之前，你得先瞭解">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [jQuery] 自製 jQuery Plugin - Part 1 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +138,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +148,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +158,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +178,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +237,52 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>有時候寫 jQuery 時，常會發現一些簡單的效果可以重複利用。只是每次用 Copy &amp; Paste 大法似乎不是件好事，有沒有什麼方法可以讓我們把這些效果用到其他地方呢？</p>
+<p>沒錯，就是用 jQuery 的 Plugin 機制。</p>
+<p>不過 jQuery 的 Plugin 機制好像很難懂？其實一點也不。以下我用最簡單的方式來為大家解說如何自製一個簡單的 Plugin 。</p>
+<p>當然在此之前，你得先瞭解 JavaScript 的 class 、 object 、 variables scope 還有 anonymous function  等基礎，這些可以參考「<a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=9789866840036&amp;sid=37518" target="_blank" rel="external"> JavaScript 大全</a>」一書。</p>
+<a id="more"></a>
+<h2 id="Plugin_樣版">Plugin 樣版</h2><p>寫 jQuery 的 Plugin 最快的方法就是拿現成的 Plugin 來改，只是在那麼多的 Plugin 中怎麼找到好的範例呢？別擔心，這邊我提供一個最簡單的範例樣版：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">jQuery.fn.mytoolbox = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>首先， <code>mytoolbox</code> 就是我們的 plugin 名稱，利用 <code>jQuery.fn</code> 我們可以將它註冊為 jQuery 的 plugin 。然後我們把  <code>jQuery.fn.mytoolbox</code> 指向一個匿名函式 (anonymous function) ，又稱為 callback ；而這個 callback 的內容很簡單，就是利用 jQuery 的 <code>each</code> 方法，來一一執行對應的動作。</p>
+<p>特別要注意匿名函式裡的 <code>this</code> 關鍵字，它會指向一個 jQuery 物件；而這個 jQuery 物件則是我們要指定的，稍後我會再進一步說明。</p>
+<h2 id="使用_Plugin">使用 Plugin</h2><p>現在將上面的樣版存成 mytoolbox.js ，和 jquery.js 放在一起。然後建立一個 HTML 測試檔案，內容如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>jQuery TEST<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css"></span><br><span class="line"><span class="class">.test</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#CCC</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">cursor</span>:<span class="value">pointer</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">3px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"test1"</span> <span class="attribute">class</span>=<span class="value">"test"</span>&gt;</span></span><br><span class="line">點我！</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"test2"</span> <span class="attribute">class</span>=<span class="value">"test"</span>&gt;</span></span><br><span class="line">點我！</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"debug"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"jquery/1.2.3.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"jquery/mytoolbox.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">'.test'</span>).mytoolbox();</span><br><span class="line">&#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先 HTML 中引用了 jQuery 函式庫及我們寫的 Plugin 檔案，然後我在畫面上佈置了兩個 class 為 <code>test</code> 的 div 元素。接著我們用以下程式碼來呼叫我們的 Plugin ：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">'.test'</span>).mytoolbox();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>這邊的用意就是將上面那兩個 div 套上 mytoolbox 這個 Plugin ，這樣 Plugin 就能動了，很簡單吧？</p>
+<h2 id="加入動作">加入動作</h2><p>當然，這個 Plugin 什麼事都還沒開始做，是個空骨架而已。現在我們要為它加血添肉，讓它動起來。</p>
+<p>先簡單在 <code>each</code> 的 callback 裡加入一行：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">jQuery.fn.mytoolbox = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.id); <span class="comment">// 加入此行</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>再重新瀏覽測試用的 HTML 檔，你會發現頁面自動跳出了兩次訊息視窗，內容分別是 test1 和 test2 ；這證明了我們的 Plugin 的確有套用在 class 為 <code>test</code> 的兩個 div 上面。</p>
+<p>不過現在有兩個 <code>this</code> ，它們是一樣的東西嗎？不，因為 scope 及觸發對象的不同，它們兩個是不同的東西。在外面的 <code>this</code> 是一個 jQuery 物件，指向我們指定的 <code>$(&#39;.test&#39;)</code> 這個物件；而 <code>each</code> callback 裡的 <code>this</code> 則是 div 元素，因為 <code>each</code> 是個 iterator function ，因此 <code>alert(this.id)</code> 會執行兩次。在第一次的 <code>this</code> 會指向 <code>#test1</code> 這個 div ，第二次則指向 <code>#test2</code> 這個 div 。</p>
+<p>註：這裡我用 <code>#test1</code> 表示 id 為 <code>test1</code> 的元素。</p>
+<p>現在我希望改成按下 div 元素後才會 alert 該元素的 id ，這要怎麼做呢？我們要改用 click 事件，做法如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">jQuery.fn.mytoolbox = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        jQuery(<span class="keyword">this</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.id);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>由於 <code>each</code> callback 裡的 <code>this</code> 是 DOM 元素，所以我們要用 jQuery() 把 <code>this</code> 包起來，這樣才能方便指定該元素的 click 事件。現在重新瀏覽頁面，點選任何一個 div ，應該就會跳出對應的訊息視窗了。</p>
+<h2 id="再包一層">再包一層</h2><p>如果在 <code>each</code> 的 callback 裡會呼叫到多次的 jQuery 的話，一直寫 <code>jQuery</code> 這幾個字實在是很累人的一件事；而且 <code>jQuery</code> 不是可以簡寫成 <code>$</code> 號嗎？不能直接用嗎？當然可以，只是這樣可能會和其他 JavaScript Library 發生衝突；所以我們要改用以下的方式來包覆我們的 Plugin ：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">    $.fn.mytoolbox = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="keyword">this</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                alert(<span class="keyword">this</span>.id);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<p>JavaScript 可以直接用一組小括號 <code>()</code> 包覆一個匿名函式，然後後面再接一組小括號 <code>()</code>  表示呼叫這個匿名函式；而第二組小括號中就可以放置這個匿名函式的參數。所以在上面的程式碼中，我們把 Plugin 的程式碼用一個匿名函式包覆起來，然後參數就用我們常用的 <code>$</code> 符號；接著在利用前述的原理，將 <code>jQuery</code> 這個類別導入給我們的 Plugin ，這樣我們就可以很快樂地在 Plugin 中使用我們熟悉的 <code>$</code> 符號了。至於最前面的分號 <code>;</code> ，主要是考慮這個 Plugin 檔案會和其他 JS 檔合併壓縮而放進來的。</p>
+<p>註： <code>$</code> 在 JavaScript 裡是合法的變數名稱。</p>
+<p>後面的說明我會略過這個包覆動作，在實際檔案中請別忘了加。</p>
+<h2 id="加入選項設定">加入選項設定</h2><p>接下來我希望讓 <code>each</code> 的 callback 函式能讓使用者自訂，因此我需要一個讓使用者能設定的選項。就像其他的 Plugin 一樣，我們讓我們的 <code>mytoolbox</code> 可以接受一個 <code>settings</code> 物件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.fn.mytoolbox = <span class="function"><span class="keyword">function</span>(<span class="params">settings</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _defaultSettings = &#123;</span><br><span class="line">        callback: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> _settings = $.extend(_defaultSettings, settings);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        $(<span class="keyword">this</span>).click(_settings.callback);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>首先我們為 Plugin 加入 <code>settings</code> 參數，也就是一般 Plugin 常見的設定值。然後則是 <code>_defaultSettings</code> ，它能幫我們在使用者沒有指定任何設定值給 <code>settings</code> 時，還能夠提供預設的設定值。</p>
+<p>接著我用 jQuery 提供的 <code>extend</code> 方法，將 <code>settings</code> 中有設定的值覆蓋掉 <code>_defaultSettings</code> 所設定的預設值，再把結果存放在 <code>_settings</code> 這個變數中；後面我們就會用新的 <code>_settings</code> 變數當做我們的設定值。</p>
+<p>現在我們在 <code>_settings</code> 中指定了一個 callback 項目 (預設是用 <code>alert</code> ) ，然後將它指定給 div 元素的 <code>click</code> 觸發器。現在我要在 HTML 頁面中更改這個事件處理器，使它不再使用 <code>alert</code> ，而是把結果顯示在 <code>div#debug</code> 裡。程式如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> debug = $(<span class="string">'#debug'</span>);</span><br><span class="line">    $(<span class="string">'.test'</span>).mytoolbox(&#123;</span><br><span class="line">        callback: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            debug.html(debug.html() + <span class="keyword">this</span>.id + <span class="string">'&lt;br /&gt;'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>再重新瀏覽一次頁面，看看效果是不是依照我們想像的完成呢？</p>
+<h2 id="修改觸發事件">修改觸發事件</h2><p>假設現在我們不想用 <code>click</code> ，而是想讓滑鼠移過就觸發 callback 呢？這時就要借重 jQuery 的 <code>bind</code> 方法了：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.fn.mytoolbox = <span class="function"><span class="keyword">function</span>(<span class="params">settings</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _defaultSettings = &#123;</span><br><span class="line">        bind: <span class="string">'click'</span>,</span><br><span class="line">        callback: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> _settings = $.extend(_defaultSettings, settings);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        $(<span class="keyword">this</span>).bind(_settings.bind, _settings.callback);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>這裡我加入一個 <code>bind</code> 設定項目，預設是用 click 事件觸發。回到 HTML 頁面，我們改用 <code>mouseover</code> 來觸發 callback ：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> debug = $(<span class="string">'#debug'</span>);</span><br><span class="line">    $(<span class="string">'.test'</span>).mytoolbox(&#123;</span><br><span class="line">        bind: <span class="string">'mouseover'</span>,</span><br><span class="line">        callback: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            debug.html(debug.html() + <span class="keyword">this</span>.id + <span class="string">'&lt;br /&gt;'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>重新瀏覽 HTML 頁面，當滑鼠移過 div 元素時，是不是會出現對應的 id 呢？</p>
+<p>到這裡，相信大家都應該大致瞭解如何建立一個 jQuery Plugin 了吧？接下來，我將透過實際的例子為大家介紹更多自製 jQuery Plugin 所需要注意的地方。</p>
+<p>請觀賞 <a href="/2008/05/16/337/">Part 2</a> 。</p>
+<h2 id="參考網址">參考網址</h2><ul>
+<li><a href="http://www.learningjquery.com/2007/10/a-plugin-development-pattern" target="_blank" rel="external">A Plugin Development Pattern</a></li>
+</ul>
+</span>
       
     </div>
 
@@ -290,22 +329,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +408,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +441,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugin_樣版"><span class="nav-number">1.</span> <span class="nav-text">Plugin 樣版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用_Plugin"><span class="nav-number">2.</span> <span class="nav-text">使用 Plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入動作"><span class="nav-number">3.</span> <span class="nav-text">加入動作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再包一層"><span class="nav-number">4.</span> <span class="nav-text">再包一層</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入選項設定"><span class="nav-number">5.</span> <span class="nav-text">加入選項設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改觸發事件"><span class="nav-number">6.</span> <span class="nav-text">修改觸發事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考網址"><span class="nav-number">7.</span> <span class="nav-text">參考網址</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +457,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +479,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +489,6 @@
 
   
   
-
   
     
     
@@ -491,21 +518,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +687,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +717,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

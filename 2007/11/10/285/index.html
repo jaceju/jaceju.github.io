@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,65 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
+<meta name="description" content="PHP
+PHP 5.2.5 Released
+
+修正一些 Bug ，也加強了部份函式的效能，詳情請看 ChangeLog 。 
+
+PHP shutdown sequence
 
 
+這篇介紹當 PHP Script 在結束前，是以什麼樣的順序來呼叫相關的程序。在 5.2.0 是這樣的：
 
-
-<meta name="description">
+register_shutdown_function
+Object destructor 
+Output buff">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Web] 連結分享">
 <meta property="og:url" content="http://jaceju.net/2007/11/10/285/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="PHP
+PHP 5.2.5 Released
+
+修正一些 Bug ，也加強了部份函式的效能，詳情請看 ChangeLog 。 
+
+PHP shutdown sequence
+
+
+這篇介紹當 PHP Script 在結束前，是以什麼樣的順序來呼叫相關的程序。在 5.2.0 是這樣的：
+
+register_shutdown_function
+Object destructor 
+Output buff">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Web] 連結分享">
-<meta name="twitter:description">
+<meta name="twitter:description" content="PHP
+PHP 5.2.5 Released
 
+修正一些 Bug ，也加強了部份函式的效能，詳情請看 ChangeLog 。 
+
+PHP shutdown sequence
+
+
+這篇介紹當 PHP Script 在結束前，是以什麼樣的順序來呼叫相關的程序。在 5.2.0 是這樣的：
+
+register_shutdown_function
+Object destructor 
+Output buff">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [Web] 連結分享 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +165,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +175,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +185,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +205,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +264,137 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.php.net/releases/5_2_5.php" target="_blank" rel="external">PHP 5.2.5 Released</a></li>
+</ul>
+<p>修正一些 Bug ，也加強了部份函式的效能，詳情請看 <a href="http://www.php.net/ChangeLog-5.php#5.2.5" target="_blank" rel="external">ChangeLog</a> 。 </p>
+<ul>
+<li><p><a href="http://www.rooftopsolutions.nl/article/160" target="_blank" rel="external">PHP shutdown sequence</a></p>
+</li>
+</ul>
+<p>這篇介紹當 PHP Script 在結束前，是以什麼樣的順序來呼叫相關的程序。在 5.2.0 是這樣的：</p>
+<ul>
+<li>register_shutdown_function</li>
+<li>Object destructor </li>
+<li>Output buffer callback</li>
+<li>Session write</li>
+<li>Session close</li>
+</ul>
+<ul>
+<li><a href="http://sbae.jlu.edu.cn/Blogs/tidyfox/?p=3" target="_blank" rel="external">PHP PEAR::Spreadsheet_Excel_Writer 生成多工作表Excel文件</a></li>
+</ul>
+<p>這是不依賴 Windows 的 COM 環境下所寫出來的 PHP::PEAR 原生套件，不過目前只有 <a href="http://pear.php.net/package/Spreadsheet_Excel_Writer" target="_blank" rel="external">Writer</a> ；而 <a href="http://sourceforge.net/projects/phpexcelreader/" target="_blank" rel="external">Spreadsheet_Excel_Reader</a> 雖然還在 <a href="http://pear.php.net/pepr/pepr-proposal-show.php?id=304" target="_blank" rel="external">Proposal</a> 階段，但已經可以用了。 </p>
+<ul>
+<li><a href="http://netevil.org/blog/2007/11/php-objective-c-bridge" target="_blank" rel="external">PHP Objective-C Bridge</a></li>
+</ul>
+<p>這個是還在開發中的技術，雖然還沒用到的機會，不過記下來先。</p>
+<ul>
+<li><a href="http://www.garfieldtech.com/blog/magic-benchmarks" target="_blank" rel="external">Benchmarking magic</a></li>
+</ul>
+<p>又是測效能的文章，使用 PHP 的魔術方法會慢一點。但是 Jeff 告訴我們<a href="http://www.procata.com/blog/archives/2007/11/04/benchmarking-phps-magic-methods/" target="_blank" rel="external">比較正確的觀念</a>。</p>
+<ul>
+<li><a href="http://blog.agoraproduction.com/index.php?/archives/53-Quick-Tip-PHP,-SimpleXML-and-CDATA.html" target="_blank" rel="external">Quick Tip: PHP, SimpleXML and CDATA</a></li>
+</ul>
+<p>在 PHP 中用 SimpleXML 處理 XML CDATA 資料的技巧。</p>
+<ul>
+<li><a href="http://blog.agoraproduction.com/index.php?/archives/54-Namespaces-part-1.2-Namespaces-import-renamed-to-use.html" target="_blank" rel="external">Namespaces part 1.2: Namespaces “import” renamed to “use”</a></li>
+</ul>
+<p>原來在 namespaces 的 import … as 關鍵字可能不用了，因為會和現有的應用程式衝突，所以之後也許會改用 use … as 。</p>
+<ul>
+<li><a href="http://tech.blog.box.net/2007/06/20/how-to-debug-php-with-vim-and-xdebug-on-linux/" target="_blank" rel="external">How to Debug PHP with Vim and XDebug on Linux</a></li>
+</ul>
+<p>雖然我也很少在 Linux 底下開發，但這篇還是很有參考價值。另外這篇 <a href="http://pixelated-dreams.com/archives/328-Debugging-from-Firefox-with-xdebug-and-Komodo.html" target="_blank" rel="external">Debugging from Firefox with xdebug and Komodo</a> 也不錯！ </p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Constructing-MultiLine-PDF-Documents-with-PHP-5/" target="_blank" rel="external">Constructing Multi-Line PDF Documents with PHP 5</a></li>
+</ul>
+<p>有用到再來看看。</p>
+<ul>
+<li><a href="http://www.sitepoint.com/article/caching-php-performance" target="_blank" rel="external">Cache it! Solve PHP Performance Problems</a></li>
+</ul>
+<p>這篇介紹了從前端到後端的快取技術，很值得一看！ (前端是指瀏覽器，後端是指伺服器) </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://blog.reindel.com/2007/10/30/how-to-choose-a-javascript-framework/" target="_blank" rel="external">How to choose a JavaScript framework</a></li>
+</ul>
+<p>從穩定性、適用性及成熟度…等等角度去討論如何選擇一個 JavaScript 框架。</p>
+<ul>
+<li><a href="http://www.c6software.com/Products/PopBox/Default.aspx" target="_blank" rel="external">Javascript Image Magnification 2.4</a></li>
+</ul>
+<p>可以動態放大圖片，跟我們一般點選連結到大圖的方式不同。</p>
+<ul>
+<li><a href="http://www.thethirdpart.com/blog/?p=189" target="_blank" rel="external">Prototype UI</a></li>
+</ul>
+<p>雖然也是沒在用 Prototype ，不過還是記下來先。</p>
+<ul>
+<li><a href="http://blog.thinkature.com/index.php/2006/11/26/escaping-the-javascript-call-stack-with-settimeout/" target="_blank" rel="external">Escaping the JavaScript call stack with setTimeout</a></li>
+</ul>
+<p>上次 ericsk 提到的<a href="http://blog.ericsk.org/archives/800" target="_blank" rel="external">時間差</a>問題，其實是 JavaScript call stack 的問題，可以利用 setTimeout(…., 0) 來避掉。 </p>
+<ul>
+<li><a href="http://d.hatena.ne.jp/KAZUMiX/20071105/meltdown" target="_blank" rel="external">[PC]HTML崩壊 meltdown.js</a></li>
+</ul>
+<p>點一下這個<a href="javascript: (function(" target="_blank" rel="external">連結</a>{var s=document.createElement(“script”);s.charset=”UTF-8”;var da=new Date();s.src=”<a href="http://www.rr.iij4u.or.jp/~kazumix/d/javascript/meltdown/meltdown.js?&quot;+da.getTime(" target="_blank" rel="external">http://www.rr.iij4u.or.jp/~kazumix/d/javascript/meltdown/meltdown.js?&quot;+da.getTime(</a>); document.body.appendChild(s)})();)試試看就知道了。</p>
+<ul>
+<li><a href="http://unixpapa.com/js/key.html" target="_blank" rel="external">JavaScript Madness: Keyboard Events</a></li>
+</ul>
+<p>各瀏覽器 Keyboard Events 的介紹。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.dezinerfolio.com/2007/10/17/creating-liquid-css-tabs-for-menus/" target="_blank" rel="external">Creating Liquid CSS Tabs for Menus</a></li>
+</ul>
+<p>這篇用圖解教你怎麼做 Tabs ，很容易懂喔。</p>
+<ul>
+<li><a href="http://css-tricks.com/make-a-secret-message-with-css-positioning-and-transparency/" target="_blank" rel="external">Make a “Secret Message” with CSS Positioning and Transparency</a> </li>
+</ul>
+<p>很有趣的 position: fixed 應用。</p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://css-tricks.com/what-beautiful-html-code-looks-like/" target="_blank" rel="external">What Beautiful HTML Code Looks Like</a> </li>
+</ul>
+<p>什麼才是漂亮的 HTML 程式結構？該文能給你最好的解答！</p>
+<ul>
+<li><p><a href="http://www.refly.net/blog/2007/11/05/%e5%9c%a8htaccess%e7%95%b6%e4%b8%ad%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e7%9a%84regular-expression-1/" target="_blank" rel="external">在.htaccess當中可以使用的Regular Expression - 1</a></p>
+</li>
+<li><p><a href="http://www.refly.net/blog/2007/11/05/%e5%9c%a8htaccess%e7%95%b6%e4%b8%ad%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e7%9a%84regular-expression-2/" target="_blank" rel="external">在.htaccess當中可以使用的Regular Expression - 2 </a></p>
+</li>
+<li><p><a href="http://www.refly.net/blog/2007/11/05/%e5%9c%a8htaccess%e7%95%b6%e4%b8%ad%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e7%9a%84regular-expression-3/" target="_blank" rel="external">在.htaccess當中可以使用的Regular Expression - 3</a></p>
+</li>
+</ul>
+<p>這個在自訂網址或重導向時很常用喔。</p>
+<ul>
+<li><a href="http://www.gnucitizen.org/blog/content-disposition-hacking" target="_blank" rel="external">Content-Disposition Hacking</a></li>
+</ul>
+<p>這篇講得有點深，我也沒辦法完全瞭解它的說明。</p>
+<ul>
+<li><a href="http://www.rooftopsolutions.nl/article/161" target="_blank" rel="external">Flash Uploader on Mac not triggering onComplete event</a></li>
+</ul>
+<p>這個是在 Mac 上使用 SWFUpload 要注意的事情，不過沒 Mac 可以測，先記下來好了。</p>
+<ul>
+<li><a href="http://www.456bereastreet.com/archive/200711/posh_plain_old_semantic_html/" target="_blank" rel="external">POSH - Plain Old Semantic HTML</a></li>
+</ul>
+<p>外國人又在創造縮寫了，是打算成為 AJAX 第二嗎？</p>
+<ul>
+<li><a href="http://www.softwareprojects.com/resources/building-content/t-website-development-6-must-have-pages-1428.html" target="_blank" rel="external">Website Development: 6 Must-have Pages</a></li>
+</ul>
+<p>六個網站必備的頁面。 </p>
+<h2 id="SQL">SQL</h2><ul>
+<li><a href="http://pooteeweet.org/blog/0/892#m892" target="_blank" rel="external">SQL (un)-pattern slides</a></li>
+</ul>
+<p>很棒的 SQL 常見模式介紹。 </p>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://blog.markplace.net/marks_place/15/2007/11/05/305" target="_blank" rel="external">在 svn 的 post-commit hook 中使用 Gmail SMTP</a></li>
+</ul>
+<p>有成員 Commit 程式碼時，可以利用 Gmail 發信通知。</p>
+<ul>
+<li><a href="http://blog.urdada.net/2007/11/07/63/" target="_blank" rel="external">Subversion: revert a commit [時光倒轉]</a></li>
+</ul>
+<p>利用 Subversion 把程式回復到某個版本的步驟。 </p>
+<ul>
+<li><a href="http://blog.assembleron.com/2007/11/06/programming-tips-1-dont-repeat-yourself/" target="_blank" rel="external">Programming Tips #1 “Don’t Repeat Yourself”</a></li>
+</ul>
+<p>就是常見的 DRY ，不自己重造輪子的意思。 </p>
+<h2 id="Other">Other</h2><ul>
+<li><a href="http://moustix.dyndns.org/fred/index.php/2006/06/18/6-osinfo-14" target="_blank" rel="external">osinfo 1.4</a></li>
+</ul>
+<p>好東西！可以幫你找出 Linux 正確的發行版本！ </p>
+</span>
       
     </div>
 
@@ -288,22 +439,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +518,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +551,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP"><span class="nav-number">1.</span> <span class="nav-text">PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript"><span class="nav-number">2.</span> <span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">3.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web"><span class="nav-number">4.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">5.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Programming"><span class="nav-number">6.</span> <span class="nav-text">Programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other"><span class="nav-number">7.</span> <span class="nav-text">Other</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +567,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +589,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +599,6 @@
 
   
   
-
   
     
     
@@ -489,21 +628,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +797,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +827,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

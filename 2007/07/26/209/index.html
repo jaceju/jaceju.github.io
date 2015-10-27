@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="在 Spanner 看到一篇 MySQL 語法的效能比較，記下來先：
+## PHP Mysql tipsContinuing from my earlier post on PHP performance, I thought I’d share a few Mysql tips that I’ve learnt over the years. Hope it helps someone and">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[SQL] PHP MySQL Tips">
 <meta property="og:url" content="http://jaceju.net/2007/07/26/209/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="在 Spanner 看到一篇 MySQL 語法的效能比較，記下來先：
+## PHP Mysql tipsContinuing from my earlier post on PHP performance, I thought I’d share a few Mysql tips that I’ve learnt over the years. Hope it helps someone and">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SQL] PHP MySQL Tips">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="在 Spanner 看到一篇 MySQL 語法的效能比較，記下來先：
+## PHP Mysql tipsContinuing from my earlier post on PHP performance, I thought I’d share a few Mysql tips that I’ve learnt over the years. Hope it helps someone and">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [SQL] PHP MySQL Tips | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,9 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>在 <a href="http://www.thespanner.co.uk/" target="_blank" rel="external">Spanner</a> 看到<a href="http://www.thespanner.co.uk/2007/07/23/php-mysql-tips/" target="_blank" rel="external">一篇 MySQL 語法的效能比較</a>，記下來先：</p>
+<blockquote><br><br>## PHP Mysql tips<br><br>Continuing from my earlier post on PHP performance, I thought I’d share a few Mysql tips that I’ve learnt over the years. Hope it helps someone and please leave a comment with your own tips or provide any corrections to the ones mentioned.<br><br>### Word searching<br><br>1.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; MATCH &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;`field`&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; AGAINST &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;Keyword&#39;&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fastest)<br><br>2.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; MATCH &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;`field`&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; AGAINST &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;+Keyword&#39;&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;IN&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;BOOLEAN&#60;/span&#62; MODE&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fast)<br><br>3.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;RLIKE&#60;/span&#62; &#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;(^| +)Keyword($| +)&#39;&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>OR<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62;&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;RLIKE&#60;/span&#62; &#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;([[:space:]]|[[:&#60;:]])Keyword([[:space:]]|[[:&#62;:]])&#39;&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Slow)<br><br>### Contains searching<br><br>1.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; MATCH &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;`field`&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; AGAINST &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;Keyword*&#39;&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;IN&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;BOOLEAN&#60;/span&#62; MODE&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fastest)<br><br>2.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FIELD&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LIKE&#60;/span&#62; &#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;Keyword%&#39;&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fast)<br><br>3.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; MATCH &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;`field`&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; AGAINST &#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;*Keyword*&#39;&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;IN&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;BOOLEAN&#60;/span&#62; MODE&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Slow)<br><br>4.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FIELD&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LIKE&#60;/span&#62; &#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#39;%Keyword%&#39;&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Slow)<br><br>### Recordsets<br><br>1.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; SQL_CALC_FOUND_ROWS * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; Condition &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LIMIT&#60;/span&#62; &#60;span style=&#34;color: rgb(204, 102, 204);&#34;&#62;0&#60;/span&#62;, &#60;span style=&#34;color: rgb(204, 102, 204);&#34;&#62;10&#60;/span&#62;&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; FOUND_ROWS&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fastest)<br><br>2.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; Condition &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LIMIT&#60;/span&#62; &#60;span style=&#34;color: rgb(204, 102, 204);&#34;&#62;0&#60;/span&#62;, &#60;span style=&#34;color: rgb(204, 102, 204);&#34;&#62;10&#60;/span&#62;&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; COUNT&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;PrimaryKey&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;TABLE&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; Condition</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Fast)<br><br>3.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(0, 0, 255);&#34;&#62;$result&#60;/span&#62; = &#60;span style=&#34;color: rgb(0, 0, 102);&#34;&#62;mysql_query&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(255, 0, 0);&#34;&#62;&#34;SELECT * FROM table&#34;&#60;/span&#62;, &#60;span style=&#34;color: rgb(0, 0, 255);&#34;&#62;$link&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;;&#10;&#60;span style=&#34;color: rgb(0, 0, 255);&#34;&#62;$num_rows&#60;/span&#62; = &#60;span style=&#34;color: rgb(0, 0, 102);&#34;&#62;mysql_num_rows&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;(&#60;/span&#62;&#60;span style=&#34;color: rgb(0, 0, 255);&#34;&#62;$result&#60;/span&#62;&#60;span style=&#34;color: rgb(102, 204, 102);&#34;&#62;)&#60;/span&#62;;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>(Very slow)<br><br>### Joins<br><br>Use an INNER JOIN when you want the joining table to only have matching records that you specify in the join. Use LEFT JOIN when it doesn’t matter if the records contain matching records or not.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; products&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;INNER&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;JOIN&#60;/span&#62; suppliers &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;ON&#60;/span&#62; suppliers.SupplierID = products.SupplierID</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>Returns all products with a matching supplier.<br><div class="wp_syntax"><br><div class="code"><br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;SELECT&#60;/span&#62; * &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;FROM&#60;/span&#62; products&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;LEFT&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;JOIN&#60;/span&#62; suppliers &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;ON&#60;/span&#62; suppliers.SupplierID = products.SupplierID&#10;&#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;WHERE&#60;/span&#62; suppliers.SupplierID &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;IS&#60;/span&#62; &#60;span style=&#34;color: rgb(153, 51, 51); font-weight: bold;&#34;&#62;NULL&#60;/span&#62;</span><br></pre></td></tr></table></figure><br><br></div><br></div><br><br>Returns all products without a matching supplier.<br><br>### Best practice<br><br>1. Always use lowercase for table names. (If you use different OS’s this is a must)<br>2. Always prepend the table name to the field. E.g. ProductName, SupplierPostCode.<br>This makes multiple joins very easy.<br>3. Always create a primary id field with the name of the table followed by the id. e.g. ProductID<br>4. Index fields used for joins.<br>5. Use a separate logging table or transactions for logs of table updates, deletes etc.<br></blockquote>
+</span>
       
     </div>
 
@@ -288,22 +278,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +357,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +390,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +406,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +428,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +438,6 @@
 
   
   
-
   
     
     
@@ -489,21 +467,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +636,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +666,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

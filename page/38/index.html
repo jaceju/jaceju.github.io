@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,30 +27,20 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
 
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
+  <meta name="keywords" content="Hexo,next" />
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
 
 
 <meta name="description">
@@ -68,14 +54,14 @@
 <meta name="twitter:description">
 
 
-
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -144,7 +130,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -154,7 +140,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -164,7 +150,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -184,8 +170,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
   <section id="posts" class="posts-expand">
     
       
@@ -249,7 +234,54 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>剛剛看到一個還不錯的網站：<a href="http://builtwith.com/" target="_blank" rel="external">BuiltWith</a> 。 </p>
+<p>它可以分析包含 JavaScript 、 Server Language 等等技術，同時也會統計目前已查詢過的網站中，這些技術所佔的比重。</p>
+<p>舉 <a href="http://builtwith.com/default.aspx?cakephp.org" target="_blank" rel="external">CakePHP.org</a> 為例：</p>
+<h4>Javascript Libraries</h4>
+
+<ul>
+<li>PNG Fix (嗯，很常見) </li>
+</ul>
+<h4>Frameworks</h4>
+
+<ul>
+<li>PHP (沒錯， PHP 本身也是個 Framework) </li>
+<li>CakePHP (喔，雖然是預料之中，但是這個也能判斷出來還不錯) </li>
+</ul>
+<h4>Payment Services</h4>
+
+<ul>
+<li>PayPal (是會自己去看貼紙嗎？ XD)</li>
+</ul>
+<h4>Document Information</h4>
+
+<ul>
+<li>XHTML Transitional (慢慢成為趨勢了) </li>
+<li>Conditional Comments (就是 IE 獨創的條件式註解)</li>
+<li>Cascading Style Sheets (這也很流行) </li>
+<li>Javascript (沒它的話網站就不好玩了) </li>
+</ul>
+<h4>Encoding</h4>
+
+<ul>
+<li>UTF-8 (這也是趨勢) </li>
+</ul>
+<p>另外右邊是 Server 的資訊，CakePHP 用的是 Apache ，這裡就不詳列了。 </p>
+<p>再來看看 <a href="http://builtwith.com/default.aspx?framework.zend.com" target="_blank" rel="external">Zend Framework</a> 的官方網站：</p>
+<h4>Javascript Libraries</h4>
+
+<ul>
+<li>JQuery (嗯，跟我選的一樣)</li>
+</ul>
+<h4> Frameworks</h4>
+
+<ul>
+<li>ASP.NET (啊，這是什麼碗糕！？ )</li>
+</ul>
+<p>再看一下右邊的 Web Server ，是 Apache ！ </p>
+<p>為什麼 Zend Framework 官方網站會是用 Apache + ASP.NET 搭的呀！？ XD</p>
+<p>註：當然這不是什麼奇怪的事，很多網站會利用 HTTP 的 Header 來改掉自己網站輸出的資訊，以免成為惡意程式用在攻擊上的判斷依據。例如我們可以用 X-Powered-By 來設定使用的伺服端技術，而 framework.zend.com 就是改成了 ASP.NET 。只是這也改得太大了吧？</p>
+
             
           </span>
         
@@ -331,7 +363,71 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>最近沒空寫東西了，光文件就快讓我忙不過來了。</p>
+<p>再搜集幾個連結，有些是從 Neo 的「<a href="http://www.neo.com.tw/archives/001088.html" target="_blank" rel="external">用 PHP 實作 ActiveRecord</a> 」那邊看來的：</p>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.advogato.org/article/470.html" target="_blank" rel="external">Mixins in PHP</a></li>
+</ul>
+<p>和我的<a href="http://www.jaceju.net/blog/archives/163" target="_blank" rel="external">實作</a>滿像的，不過有用到 <a href="http://tw.php.net/manual/en/language.oop5.reflection.php" target="_blank" rel="external">Reflection API</a> 。另外看了人家的程式後，我發現我的實作忘了要 return 結果。</p>
+<ul>
+<li><a href="http://www.scriptorama.nl/tips-tricks/re-mixins-in-php" target="_blank" rel="external">Re: mixins in PHP</a></li>
+</ul>
+<p>這個有用到 <a href="http://tw.php.net/manual/en/ref.runkit.php" target="_blank" rel="external">runkit</a> 。</p>
+<ul>
+<li><a href="http://www.actsasflinn.com/articles/2007/08/08/php-and-activerecord" target="_blank" rel="external">PHP and ActiveRecord</a></li>
+</ul>
+<p>解釋了為什麼 Ruby 適合實作 ActiveRecord ，但是 PHP 則很難實現。不過 PHP 不好做的話也別氣餒， Zend Framework 的 <a href="http://framework.zend.com/manual/en/zend.db.table.html" target="_blank" rel="external">Table Data Gateway</a> 和 <a href="http://framework.zend.com/manual/en/zend.db.table.row.html" target="_blank" rel="external">Row Data Gateway</a> 就是一種不錯的實作了。</p>
+<ul>
+<li><a href="http://blog.adaniels.nl/?p=40" target="_blank" rel="external">PHP != Ruby (and why PHP needs more advanced OO stuff)</a></li>
+</ul>
+<p>從上一篇延伸而來的，作者解釋可以用 runkit 來實現很多 PHP 原來做不到的事情，用排序來做為範例。</p>
+<ul>
+<li><a href="http://www.actsasflinn.com/articles/2007/08/10/php-and-activerecord-continued" target="_blank" rel="external">PHP and ActiveRecord (continued)</a></li>
+</ul>
+<p>PHP and ActiveRecord 的作者又根據上篇文章回應了，他是希望 PHP6 可以加入一些真正有用的功能。可以參考：<a href="http://livepipe.net/blog/programming/what_php6_actually_needs" target="_blank" rel="external">What PHP6 Actually Needs</a> 。</p>
+<ul>
+<li><a href="http://www.sitepoint.com/blogs/2007/08/13/ptest-php-unit-tester-in-9-lines-of-code/" target="_blank" rel="external">pTest: PHP Unit Tester in 9 Lines Of Code</a></li>
+</ul>
+<p>九行實作一個測試用的 assertTrue 函式。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**&#10;* pTest - PHP Unit Tester&#10;* @param mixed $test Condition to test, evaluated as boolean&#10;* @param string $message Descriptive message to output upon test&#10;*/&#10;function assertTrue($test, $message)&#10;&#123;&#10;static $count;&#10;if (!isset($count)) $count = array(&#39;pass&#39;=&#62;0, &#39;fail&#39;=&#62;0, &#39;total&#39;=&#62;0);&#10;$mode = $test ? &#39;pass&#39; : &#39;fail&#39;;&#10;printf(&#34;%s: %s (%d of %d tests run so far have %sed)\n&#34;,&#10;strtoupper($mode), $message, ++$count[$mode], ++$count[&#39;total&#39;], $mode);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><a href="http://devzone.zend.com/article/2442-PHP-and-RIA" target="_blank" rel="external">PHP and RIA</a></p>
+</li>
+</ul>
+<p>介紹一些 Zend Framework 和 Ajax 的結合，有範例可以下載參考。</p>
+<ul>
+<li><p><a href="http://devzone.zend.com/node/view/id/1234" target="_blank" rel="external">Part 1: Introduction, The Zend Framework</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1280" target="_blank" rel="external">Part 2:Prototype, Scriptaculous, Application HTML</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1326" target="_blank" rel="external">Part 3:Storage Medium, XML and the Message Process</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1387" target="_blank" rel="external">Part 4: IndexController MessageAction() and JSON Encoding</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1407" target="_blank" rel="external">Part 5: The Javascript, Sending Chat Messages, Screen Name Changes</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1532" target="_blank" rel="external">Part 6: Updating the User List</a></p>
+</li>
+<li><p><a href="http://devzone.zend.com/node/view/id/1580" target="_blank" rel="external">Part 7: Usability Improvements</a></p>
+</li>
+</ul>
+<ul>
+<li><a href="http://www.rooftopsolutions.nl/article/145" target="_blank" rel="external">PHPRPC and PHP frameworks</a><br>把 PHPRPC 提交到目前作者認為是 PHP 主流的框架與類庫裡。這個 PHPRPC 好像跟對岸 <a href="http://www.coolcode.cn/author/andot/" target="_blank" rel="external">andot</a> 開發的 <a href="http://www.coolcode.cn/andot/phprpc-11-protocol/107" target="_blank" rel="external">PHPRPC</a> 兩者是不一樣的東西？</li>
+</ul>
+<p>註： <a href="http://www.coolcode.cn/author/andot/" target="_blank" rel="external">andot</a> 的 <a href="http://www.phprpc.org/" target="_blank" rel="external">PHPRPC</a> 已經搞到其他開發環境裡了，簡單來說就是「撈過界」了啦。 XD</p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.hedgerwow.com/360/dhtml/css-menu-separator.html" target="_blank" rel="external">Menu Separators 101</a></li>
+</ul>
+<p>如何在不使用 first class 或 CSS pseudo selector 的情況下，把第一個元素的背景隱藏起來。</p>
+<ul>
+<li><a href="http://www.hedgerwow.com/360/dhtml/css-flex-input-boxes.html" target="_blank" rel="external">Flex input box layout</a></li>
+</ul>
+<p>如果常常煩惱怎麼讓輸入欄位的寬度自動符合視窗寬度的話，這篇可以參考看看。</p>
+<h2 id="Windows">Windows</h2><ul>
+<li><a href="http://www.alexatnet.com/node/54" target="_blank" rel="external">Create and delete users using windows scripting host (jscript)</a></li>
+</ul>
+<p>用 Windows Scripting Host (JScript) 來新增、刪除 Windows 使用者。</p>
+
             
           </span>
         
@@ -413,7 +509,30 @@
         
           <span itemprop="articleBody">
             
-              
+              <ul>
+<li><a href="http://www.ibm.com/developerworks/web/library/x-html5/index.html" target="_blank" rel="external">New elements in HTML 5</a> (<a href="http://realazy.org/blog/2007/08/10/new-elements-in-html-5/" target="_blank" rel="external">HTML 5新增的元素</a>) </li>
+</ul>
+<p>HTML 5 加強語意與結構的改進，當然視覺效果還是交給 CSS 。</p>
+<ul>
+<li><p><a href="http://www.killerphp.com/articles/why-php-business-perspective/" target="_blank" rel="external">Why PHP is the choice language - a business owners perspective.</a></p>
+</li>
+</ul>
+<p>從商業經營者的角度來看 PHP 。</p>
+<ul>
+<li>Is the language reliable? </li>
+<li>Does the language have a strong community? </li>
+<li>Is it easy to find programmers who use that language? </li>
+<li>Is the language productive? </li>
+</ul>
+<ul>
+<li><a href="http://blogoscoped.com/archive/2007-08-10-n75.html" target="_blank" rel="external">SEO Speak Translated: The Real SEO Glossary</a></li>
+</ul>
+<p>SEO 業者的謊言？我個人覺得還是充實網站內容比較重要，排名不能代表一切。</p>
+<ul>
+<li><a href="http://dean.edwards.name/weblog/2007/08/base2-doc/" target="_blank" rel="external">Documentation for base2</a> (<a href="http://base2.googlecode.com/svn/trunk/src/apps/doc/base2.html" target="_blank" rel="external">link</a>) </li>
+</ul>
+<p>Dean 終於為他的 JavaScript Library 寫了一份文件了，可以看看人家是怎麼用 JavaScript 的。 </p>
+
             
           </span>
         
@@ -493,11 +612,17 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>今天看到對岸兩位網友對 <a href="http://framework.zend.com">Zend Framework</a> 有趣的評論，收錄如下：</p>
+<ul>
+<li><a href="http://hi.baidu.com/thinkinginlamp">Thinking In LAMP</a>::<a href="http://hi.baidu.com/thinkinginlamp/blog/item/6282d539d96198f13a87ced1.html">我眼中的ZF</a></li>
+<li><a href="http://blog.xxiyy.com/">Some reminiscences, some memories</a>::<a href="http://blog.xxiyy.com/index.php/archives/42">小议 Zend Framework 的三宗罪</a></li>
+</ul>
+<p>基本上，我個人比較偏向 mikespook 的說法。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/08/09/217/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -577,7 +702,12 @@
         
           <span itemprop="articleBody">
             
-              
+              <h2 id="Blueprint_CSS_framework">Blueprint CSS framework</h2><ul>
+<li><a href="http://bjorkoy.com/blueprint/tutorial.html" target="_blank" rel="external">舊的專案網頁</a></li>
+<li><a href="http://code.google.com/p/blueprintcss/" target="_blank" rel="external">新的專案網頁</a> (放在 Google Code 裡) </li>
+</ul>
+<p>看起來是滿有趣的東西，有空可以試試看。</p>
+
             
           </span>
         
@@ -657,11 +787,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>以後要自己編譯最新的 Zend Framework CHM 格式的參考手冊了，這裡記一下完整的步驟。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/08/07/215/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -741,7 +872,17 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>再記兩篇 PHP 相關連結：</p>
+<ul>
+<li><a href="http://www.killerphp.com/articles/php-classes-and-objects-video-tutorial/" target="_blank" rel="external">PHP Classes and Objects video tutorial</a></li>
+</ul>
+<p>PHP 類別和物件的視頻教學，觀念部份不難，主要是練一下聽力。</p>
+<ul>
+<li><a href="http://www.reiersol.com/blog/index.php?op=ViewArticle&amp;articleId=24&amp;blogId=1" target="_blank" rel="external">Anonymous functions  for testing</a></li>
+</ul>
+<p>呼應上次提到的<a href="http://mikenaberezny.com/archives/76" target="_blank" rel="external">函式測試</a>，這次來測試匿名函式。</p>
+<p>突然發現好多事要做，可是又好懶 Orz</p>
+
             
           </span>
         
@@ -823,7 +964,35 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>這兩天 Blog 中的一些討論，有些讓我覺得高手過招真是不同凡響，有些真的讓我囧到一個極點…</p>
+<p>再記幾個連結…</p>
+<p><li><br><a href="http://hasin.wordpress.com/2007/08/01/performance-tips-for-web-applications/" target="_blank" rel="external">Performance tips for web applications</a></li></p>
+<p>重點如下，翻得不好請見諒 Orz </p>
+<ul>
+<li>Make Fewer HTTP Requests (減少 HTTP 請求數) </li>
+<li>Use a Content Delivery Network (使用 <a href="http://en.wikipedia.org/wiki/Content_Delivery_Network" target="_blank" rel="external">CDN</a>) </li>
+<li>Add an Expires Header (加上期限標頭) </li>
+<li>Gzip Components (使用 gzip 壓縮) </li>
+<li>Put CSS at the Top (將 CSS 放在頁面開頭) </li>
+<li>Move Scripts to the Bottom (將 JavaScritp 放在最後) </li>
+<li>Avoid CSS Expressions (避免 IE 中可執行程式的 CSS 語法) </li>
+<li>Make JavaScript and CSS External (將 JavaScript 及 CSS 從 HTML 頁面中分離出來) </li>
+<li>Reduce DNS Lookups (減少 DNS 查詢) </li><li> Minify JavaScript (<del>減少 JavaScript 的使用</del>壓縮 JavaScript 檔案) </li>
+<li>Avoid Redirects (避免網址重導) </li>
+<li>Remove Duplicate Scripts (移除重複的 Script 引入) </li>
+<li>Configure ETags (設定 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19" target="_blank" rel="external">ETags</a>) </li>
+</ul>
+<p>才疏學淺，連 CDN 和 ETag 都沒聽過，慚愧慚愧…<br></p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/MySQL/Paginating-Result-Sets-for-a-Search-Engine-Built-with-MySQL-and-PHP-5/" target="_blank" rel="external">Paginating Result Sets for a Search Engine Built with MySQL and PHP 5</a></li>
+</ul>
+<p>用 MySQL 和 PHP 將搜尋引擎的結果做分頁。</p>
+<ul>
+<li><a href="http://mikenaberezny.com/archives/76" target="_blank" rel="external">Wrapping PHP Functions for Testability</a></li>
+</ul>
+<p>將內建的 PHP 函式包裝起來以便測試，其實概念還滿簡單的。</p>
+<p>房間終於有冷氣了…我準備好當個假日宅男了 XD</p>
+
             
           </span>
         
@@ -905,7 +1074,12 @@
         
           <span itemprop="articleBody">
             
-              
+              <p><a href="http://devzone.zend.com/article/2389-Zend-Framework-1.0.1-Releases" target="_blank" rel="external">Zend Framework 釋出 1.0.1 版了</a>，修正了 33 個 <a href="http://framework.zend.com/changelog" target="_blank" rel="external">issues</a> 。看起來跟我目前開發的專案沒有什麼大衝突，先跑幾天試試看，沒問題的話再更新。</p>
+<p>另外昨天有個網友問了一些有關 ZF 的問題，讓我有個很深的感觸。</p>
+<p>我不禁要問：不熟 PHP 能學好 ZF 嗎？ </p>
+<p>雖然一樣是寫程式，觀念其實也都差不多，但是每種語言的開發環境畢竟還是有所不同。總不能說為什麼 XXX 語言可以這樣做，為什麼 PHP 不行？再者 ZF 是基於 PHP5 開發的，所以 PHP5 的特性以及包含了哪些 library 最好也要搞清楚。而且不論是學習 .NET 或是 Java ，不都是熟悉該語言的基礎後才有辦法去運用它們的框架嗎？ </p>
+<p>牢騷就發到這裡了…睡覺去…</p>
+
             
           </span>
         
@@ -987,7 +1161,33 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>最近太忙，記幾個 PHP 相關連結先：</p>
+<ul>
+<li><p><a href="http://www.killerphp.com/articles/object-oriented-php-videos/" target="_blank" rel="external">Object Oriented PHP Videos are now out!</a></p>
+</li>
+</ul>
+<p>重點整理：</p>
+<ul>
+<li><a href="http://www.killerphp.com/videos/oop_php_introduction/01_oop_php_introduction.html" target="_blank" rel="external">Introduction to Object Oriented PHP</a></li>
+<li><a href="http://www.killerphp.com/videos/oop_why_learn_oop/why_learn_oop.html" target="_blank" rel="external">Why learn Object Oriented PHP</a></li>
+</ul>
+<ul>
+<li><a href="http://labuschin.com/journal/software-tools-downloads/performance_problem-von-zend-loesen" target="_blank" rel="external">Performance-Problem von Zend lösen</a> (<a href="http://64.233.179.104/translate_c?hl=en&amp;langpair=de%7Cen&amp;u=http://labuschin.com/journal/software-tools-downloads/performance_problem-von-zend-loesen" target="_blank" rel="external">英譯版</a>) </li>
+</ul>
+<p>重點整理：</p>
+<ul>
+<li>Tools &gt; Preferences &gt; Desktop &gt; 關掉 Use OS Look and Feel ，這樣會比較穩也比較快一點。</li>
+<li>更新到最新版的 JRE 。</li>
+</ul>
+<ul>
+<li><a href="http://sandro.groganz.com/weblog/2007/07/30/does-php-5-hurt-php/" target="_blank" rel="external">Does PHP 5 Hurt PHP?</a></li>
+</ul>
+<p>慢慢看…</p>
+<ul>
+<li><a href="http://www.alexatnet.com/node/29" target="_blank" rel="external">Java-like events in PHP</a></li>
+</ul>
+<p>請教了 <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> ，他說是觀察者模式，通常可以用在觸發 event 後並通知相關 plugin 的機制上。 Java 部份我不太瞭解作用是什麼，不曉得像<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>這樣的 Java 高手能不能為我解惑一下。</p>
+
             
           </span>
         
@@ -1016,14 +1216,11 @@
   </nav>
 
 
-
-        </div>
-
-        
-
+ </div>
 
         
 
+        
       </div>
 
       
@@ -1081,17 +1278,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -1123,8 +1316,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1146,8 +1338,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1157,7 +1348,6 @@
 
   
   
-
   
     
     
@@ -1185,25 +1375,39 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -1211,5 +1415,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

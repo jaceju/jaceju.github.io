@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。
+因此，凡事還是要自己動手做過才會明白，所以我就趁著在開發新的 Library 時，真正地去落實測試與重構。
+以下就是我大致的心得，供大家參考。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="將測試融入開發，讓程式擁有品質">
 <meta property="og:url" content="http://jaceju.net/2010/06/12/1228/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。
+因此，凡事還是要自己動手做過才會明白，所以我就趁著在開發新的 Library 時，真正地去落實測試與重構。
+以下就是我大致的心得，供大家參考。">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="將測試融入開發，讓程式擁有品質">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。
+因此，凡事還是要自己動手做過才會明白，所以我就趁著在開發新的 Library 時，真正地去落實測試與重構。
+以下就是我大致的心得，供大家參考。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 將測試融入開發，讓程式擁有品質 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,26 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。</p>
+<p>因此，凡事還是要自己動手做過才會明白，所以我就趁著在開發新的 Library 時，真正地去落實測試與重構。</p>
+<p>以下就是我大致的心得，供大家參考。</p>
+<a id="more"></a>
+<h2 id="我的測試驅動開發流程">我的測試驅動開發流程</h2><h3 id="第一步：準備好工具">第一步：準備好工具</h3><p><a href="http://www.jaceju.net/blog/archives/1152" target="_blank" rel="external">之前提過的 NetBeans 所提供的 PHPUnit 整合</a>，就是個很不錯的自動化測試工具。</p>
+<p>在寫類別時，按下 Ctrl + F6 就會自動執行這個類別的測試 (當然前提是要已經先建立好測試類別) ；而如果是在撰寫測試類別時，可以按下 Shift + F6 ，這樣 NetBeans 就會自動執行測試類別了。這兩個快速鍵如果記住的話，會有助於我們加快做測試的動作。</p>
+<h3 id="第二步：草圖階段">第二步：草圖階段</h3><p>和設計階段的 UML 圖不一樣，這個階段算是撰寫程式碼了，所以要先想好你的程式要怎麼動，然後用畫個簡單的流程圖將它記下來。然後在圖塊上標明你會用到什麼資料，越詳細越好。</p>
+<p>而流程圖不一定要是圖，也可以是步驟的表列，總之能表現出程式的意圖即可。至於畫在哪裡都可以，像我就習慣使用最單純的紙和筆。而草圖也不需要畫得多好看，除非你想向正妹展示你的繪圖天份。</p>
+<h3 id="第三步：撰寫測試">第三步：撰寫測試</h3><p>在草圖畫好後，就可以用測試去呈現它。測試的寫法先不用寫得太好，把概念呈現出來就可以了。這個動作主要的目的是讓我們對要測試的類別有個大致的輪廓，讓寫出來的程式碼不致於發散到我們無法掌控的地步。</p>
+<h3 id="第四步：撰寫程式">第四步：撰寫程式</h3><p>寫好第一個測試後，就可以開始寫程式去符合測試了。在這個過程中，最好能找個人一起討論，也就是所謂的 Pair Programming 。找正妹一起 Pair Programming 是會增加興奮度，但不會讓你的程式寫得更好。</p>
+<p>另外，程式碼以快速產出為主，除了遵守 Coding Style 外，邏輯上並不用寫得多漂亮；因為如果有正妹在旁邊一起寫程式時，你的腦袋一定不會百分之百運轉，所以等等再重構就好。</p>
+<h3 id="第五步：停下思考">第五步：停下思考</h3><p>當程式碼在可以符合測試後，就停下來想想這樣的設計是不是符合原先的想法。</p>
+<p>不符合的話，就再重來，因為我們只前進了一小步，所以不必擔心花太多時間，畢竟找出不良的設計也是一種進展。符合的話，就再往下走；也就是撰寫下一個測試，然後再撰寫程式符合它。</p>
+<h3 id="第六步：重構">第六步：重構</h3><p>完成一小階段後，就馬上回頭重構我們的程式碼，這時有測試當靠山，就不用怕出問題。</p>
+<p>而當程式碼重構完後，看就再回頭看看測試碼，如果有需要的話就重構它；因為測試本身也是程式，一定也會有壞味道。例如我們可以用 PHPUnit 的 @dataProvider 機制，去重構要驗證不同資料集但流程卻重複的測試；或是用 Template Method 去重構大部份流程相同，只有少部份流程有差異的測試。</p>
+<p>而重構測試碼的時候，我們的程式碼就可以做為測試的測試，用來驗證重構後的測試。</p>
+<p>完成這個步驟後，就可以繼續進行下一個小階段了。</p>
+<h2 id="心得">心得</h2><p>真正將 TDD 落實到平常的開發後，我發現這樣的方式會幫助我的思考清晰，考試都一百分 (因為我沒正妹在旁邊一起 Pair Programming …) 。而且另一個好處就是不論是一開始的撰寫或是事後的重構，我都可以精簡我的程式碼。</p>
+<p>不過我並無法保證 TDD 一定適合你，因為每個人的開發習慣不一定相同，不過還是推薦大家試試吧。</p>
+</span>
       
     </div>
 
@@ -292,22 +302,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -374,17 +381,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -411,10 +414,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我的測試驅動開發流程"><span class="nav-number">1.</span> <span class="nav-text">我的測試驅動開發流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：準備好工具"><span class="nav-number">1.1.</span> <span class="nav-text">第一步：準備好工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：草圖階段"><span class="nav-number">1.2.</span> <span class="nav-text">第二步：草圖階段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：撰寫測試"><span class="nav-number">1.3.</span> <span class="nav-text">第三步：撰寫測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：撰寫程式"><span class="nav-number">1.4.</span> <span class="nav-text">第四步：撰寫程式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步：停下思考"><span class="nav-number">1.5.</span> <span class="nav-text">第五步：停下思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六步：重構"><span class="nav-number">1.6.</span> <span class="nav-text">第六步：重構</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">2.</span> <span class="nav-text">心得</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -429,8 +430,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -452,8 +452,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -463,7 +462,6 @@
 
   
   
-
   
     
     
@@ -493,21 +491,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -659,20 +660,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -680,5 +690,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

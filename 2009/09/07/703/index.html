@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="前陣子把部份測試主機環境升級到 PHP 5.3 來跑一些專案，整體上沒什麼狀況，所以我就決定讓公司的工作環境全部都轉移到 PHP 5.3 上了。
+本文主要介紹如何在 Windows XP 上建置 Apache 2.2 + PHP 5.3 + MySQL 5.1 的開發環境，以供有興趣的朋友參考。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Server] 在 Windows 上安裝 PHP 5.3 開發環境">
 <meta property="og:url" content="http://jaceju.net/2009/09/07/703/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="前陣子把部份測試主機環境升級到 PHP 5.3 來跑一些專案，整體上沒什麼狀況，所以我就決定讓公司的工作環境全部都轉移到 PHP 5.3 上了。
+本文主要介紹如何在 Windows XP 上建置 Apache 2.2 + PHP 5.3 + MySQL 5.1 的開發環境，以供有興趣的朋友參考。">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Server] 在 Windows 上安裝 PHP 5.3 開發環境">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="前陣子把部份測試主機環境升級到 PHP 5.3 來跑一些專案，整體上沒什麼狀況，所以我就決定讓公司的工作環境全部都轉移到 PHP 5.3 上了。
+本文主要介紹如何在 Windows XP 上建置 Apache 2.2 + PHP 5.3 + MySQL 5.1 的開發環境，以供有興趣的朋友參考。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [Server] 在 Windows 上安裝 PHP 5.3 開發環境 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,148 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>前陣子把部份測試主機環境升級到 PHP 5.3 來跑一些專案，整體上沒什麼狀況，所以我就決定讓公司的工作環境全部都轉移到 PHP 5.3 上了。</p>
+<p>本文主要介紹如何在 Windows XP 上建置 Apache 2.2 + PHP 5.3 + MySQL 5.1 的開發環境，以供有興趣的朋友參考。</p>
+<a id="more"></a>
+<h2 id="下載">下載</h2><h3 id="Apache_2-2">Apache 2.2</h3><p>Apache 2.2 可以在以下網址下載，因為我們多數網站都需要 SSL 支援，所以請記得抓取包含 OpenSSL 的版本。</p>
+<p><a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">http://httpd.apache.org/download.cgi</a> (Win32 Binary including OpenSSL)</p>
+<p>註：<a href="http://httpd.apache.org/docs/2.2/new_features_2_2.html" target="_blank" rel="external">Apache 2.2 特色概觀</a>。</p>
+<h3 id="PHP_5-3">PHP 5.3</h3><p>如果要讓 PHP 5.3 作為 Apache 2.2 的 module 來執行，那麼記得我們要抓取的是 VC6 x86 Thread Safe 的版本。</p>
+<p>而因為我們是要手動安裝，所以需要下載的是沒有安裝檔的 PHP 5.3 zip package ，可從以下網址找到： </p>
+<p> <a href="http://windows.php.net/download/" target="_blank" rel="external">http://windows.php.net/download/</a> (VC6 x86 Thread Safe)</p>
+<h3 id="MySQL_5-1">MySQL 5.1</h3><p>MySQL 因為我們也要手動安裝，所以同樣也是用沒有安裝程式的 zip package ，可以從以下的網址下載：</p>
+<p><a href="http://dev.mysql.com/downloads/mysql/5.1.html#win32" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/5.1.html#win32</a> (Without installer)</p>
+<h3 id="Xdebug_2-0">Xdebug 2.0</h3><p>這是開發 PHP 時很好用的除錯工具，可以從以下的網址下載： </p>
+<p><a href="http://www.xdebug.org/download.php" target="_blank" rel="external">http://www.xdebug.org/download.php</a> (Windows binaries: 5.3 VC6 (32 bit))</p>
+<p>註：不要下載到 Xdebug 2.0.4 版，這個版本會沒辦法被 PHP 載入。</p>
+<h2 id="安排目錄結構並設定環境變數">安排目錄結構並設定環境變數</h2><p>和之前一樣，我打算把相關的程式放在 D:\AppServ 底下，以下是我所規劃的目錄結構：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:&#10;|&#10;|- AppServ (&#20282;&#26381;&#22120;&#30456;&#38364;&#31243;&#24335;)&#10;|  |&#10;|  |- Apache2.2 ( Apache &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- php ( PHP &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- mysql ( MySQL &#30340;&#20027;&#35201;&#31243;&#24335;&#27284;)&#10;|  |&#10;|  |- data ( MySQL &#36039;&#26009;&#27284;)&#10;|&#10;|- WEB&#10;|  |&#10;|  |- wwwroot (&#38928;&#35373;&#32178;&#31449;&#30340;&#20027;&#35201;&#26681;&#30446;&#37636;)&#10;|&#10;|- Temp&#10;   |&#10;   |- php (&#35731; PHP &#23384;&#25918;&#26283;&#23384;&#27284;&#26696;&#30340;&#22320;&#26041;)&#10;      |&#10;      |- upload (&#19978;&#20659;&#27284;&#26696;&#30340;&#26283;&#23384;&#20301;&#32622;)&#10;      |&#10;      |- session ( Session &#27284;&#30340;&#26283;&#23384;&#20301;&#32622;)&#10;      |&#10;      |- xdebug ( Xdebug &#20998;&#26512;&#27284;&#30340;&#23384;&#25918;&#20301;&#32622;)</span><br></pre></td></tr></table></figure>
+<p>這裡我會把預設網站的根目錄放在 D:\WEB\wwwroot ，各位可以依自己的喜好決定它的位置。</p>
+<p>接著把 Apache 、 PHP 及 MySQL 的執行檔所在路徑預先加入系統變數 PATH 裡，這樣方便到時候直接使用指令來設定服務，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\AppServ\Apache2.2\bin;D:\AppServ\php;D:\AppServ\mysql\bin;%SystemRoot%....</span><br></pre></td></tr></table></figure>
+<p>註：放在 D: (或其他非 C: 分割區) 的好處是不用擔心重灌後，資料及相關設定會消失。</p>
+<h2 id="安裝_Apache_2-2">安裝 Apache 2.2</h2><h3 id="第一次安裝">第一次安裝</h3><p>首先執行 apache_2.2.xx-win32-x86-openssl-0.9.xx.msi ，大部份的都是直接選「 Next 」。不過特別注意安裝位置，這裡我會把它安裝在 D:\AppServ\Apache2.2 下，方法如下：</p>
+<ul>
+<li><p>安裝到 Setup Type 時選 Custom ，並按 Next 。 </p>
+</li>
+<li><p>把 Apache HTTP Server 2.2.xx 的 Install to 改到 D:\AppServ ，這樣下方 Apache Runtime 的 Install to 會自動變成 D:\AppServ\Apache2.2 。 </p>
+</li>
+</ul>
+<p>至於其他選項就按照當時情況自行決定囉。</p>
+<p>註：這裡我假設各位已經不使用 IIS 了，所以後面的說明將會以 Port 80 為主。</p>
+<p>至於 Apache 的設定部份，我們在完成安裝 PHP 後再一起修改。 </p>
+<h3 id="重灌系統後的安裝">重灌系統後的安裝</h3><p>假設我們的 D:\AppServ\Apache2.2 底下已經 Apache 的程式檔，只是重灌後使得系統設定消失。這樣的話，我們要先把D:\AppServ\Apache2.2\bin 加入系統變數 PATH 裡，接著再用以下方式重新建立服務 (粗體字部份) ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;httpd -k install -D Apache2.2</span><br></pre></td></tr></table></figure>
+<p>最後用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;httpd -k start</span><br></pre></td></tr></table></figure>
+<p>來啟動服務。</p>
+<h2 id="安裝_MySQL_5-1">安裝 MySQL 5.1</h2><p>MySQL 安裝的步驟也很簡單：</p>
+<ul>
+<li><p>將下載回來的 mysql-noinstall-5.1.xx-win32.zip 解壓縮到 D:\AppServ 下，然後把 mysql-5.1.xx-win32 這個資料夾名稱改為 mysql 。</p>
+</li>
+<li><p>把 mysql/data 這個資料夾往上搬到 AppServ 資料夾下，這樣到時候更新 MySQL 版本時，就不用擔心會不小心覆蓋到資料庫。</p>
+</li>
+<li><p>複製 D:\AppServ\mysql\my-medium.ini (或其他) 為 my.ini 。</p>
+</li>
+</ul>
+<p>註：寫這篇文章的時候， MySQL 最新的版本是 5.1.38 ，然後我用 —defaults-file 指定外部的 my.ini ，但卻一直無法讓 MySQL 啟動；因此我就放棄用外部 my.ini 了，直接讓 MySQL 抓取安裝目錄下的 my.ini 。</p>
+<p>然後找到 my.ini 裡的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/tmp/mysql.sock</span><br></pre></td></tr></table></figure>
+<p>改為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:/Temp/mysql.sock</span><br></pre></td></tr></table></figure>
+<p>註：在 [client] 和 [mysqld] 區段裡各有一個，都要改。</p>
+<p>Temp 路徑請自行決定。</p>
+<ul>
+<li>然後在 [mysqld] 下一行加入：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">basedir = &#34;d:/AppServ/mysql&#34;&#10;datadir = &#34;d:/AppServ/data&#34;</span><br></pre></td></tr></table></figure>
+<p>以設定 MySQL 的執行路徑及資料庫存放路徑。</p>
+<p>註： MySQL 在 Win32 的新版本似乎在解析路徑上會有問題，所以磁碟機代號一定要小寫，而路徑分隔符號要用「 / 」。</p>
+<ul>
+<li>接著在 DOS 命令列下執行：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;mysqld --install</span><br></pre></td></tr></table></figure>
+<p>註： MySQL 5.1.21 以後的版本就沒有 mysqld-nt 這支程式了。</p>
+<ul>
+<li>然後再執行：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;NET START MYSQL</span><br></pre></td></tr></table></figure>
+<p>或用服務管理員來啟動 MySQL</p>
+<ul>
+<li>如果要移除服務，就用：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;mysqld --remove</span><br></pre></td></tr></table></figure>
+<p>這樣就能完成 MySQL 的安裝了。</p>
+<h2 id="安裝_PHP_5-3">安裝 PHP 5.3</h2><h3 id="安裝程式部份">安裝程式部份</h3><ul>
+<li><p>將下載回來的 php-5.3.x-Win32.zip 解壓縮到 D:\AppServ\php 底下。</p>
+</li>
+<li><p>將下載回來的 php_xdebug-2.0.x-5.3-vc6.dll 複製到 D:\AppServ\php\ext 底下。</p>
+</li>
+<li><p>把 D:\AppServ\php\php.ini-development 複製成 php.ini ，然後將它放到 D:\AppServ 底下。</p>
+</li>
+<li><p>將以下內容存成 IniFilePath.reg ，然後執行：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\PHP]&#10;&#34;IniFilePath&#34;=&#34;D:\\AppServ\\&#34;</span><br></pre></td></tr></table></figure>
+<p>這會讓 PHP.exe 在執行時，知道要到哪裡去找 php.ini 。</p>
+<ul>
+<li>如果透過 IniFilePath.reg 無法成功讓 Command Line 模式取得 D:\AppServ\php.ini 時，那麼就要改用 PHPRC 這個系統環境變數。 PHPRC 指的是 PHP Runtime Configuration ，也就是 PHP 執行時期的配置。做法是在系統環境變數中，加入 PHPRC 這個變數，其值為 D:\AppServ 就可以了。</li>
+</ul>
+<h3 id="修改_php-ini">修改 php.ini</h3><p>因為我們要建立開發環境，所以像錯誤訊息、 Xdebug 等相關偵錯用的機制都要打開，請修改以下的設定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">error_log = &#34;D:/Temp/php/error.log&#34; (&#35201;&#35352;&#24471;&#25343;&#25481;&#21069;&#38754;&#30340;&#20998;&#34399;&#35387;&#35299;)</span><br></pre></td></tr></table></figure>
+<p>PHP 5 以後需要預先設定 timezone ，否則程式會一直出現警告。請找到 date.timezone ，並修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date.timezone = Asia/Taipei</span><br></pre></td></tr></table></figure>
+<p>另外一些上傳的設定也要一起修改：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">post_max_size = 100M (&#36889;&#35041;&#35531;&#33258;&#34892;&#27770;&#23450;&#22823;&#23567;)&#10;upload_max_filesize = 50M (&#36890;&#24120;&#26371;&#27604; post_max_size &#23567;)</span><br></pre></td></tr></table></figure>
+<p>接下來是相關的路徑：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upload_tmp_dir = &#34;D:\Temp\php\upload&#34; (&#19978;&#20659;&#26283;&#23384;&#36335;&#24465;)&#10;include_path = &#34;.;D:\AppServ\php\pear&#34; (&#21152;&#20837; PEAR &#30340;&#24341;&#29992;&#36335;&#24465;)&#10;session.save_path = &#34;D:\Temp\php\session&#34; ( Session &#26283;&#23384;&#36335;&#24465;)&#10;extension_dir = &#34;D:\AppServ\php\ext&#34; (extension &#36617;&#20837;&#36335;&#24465;)</span><br></pre></td></tr></table></figure>
+<p>然後是常會用到的延伸套件的部份 (把前面的分號註解去掉即可) ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">extension=php_curl.dll&#10;extension=php_gd2.dll&#10;extension=php_mbstring.dll&#10;extension=php_mysql.dll&#10;extension=php_mysqli.dll&#10;extension=php_pdo_mysql.dll ( Zend Framework &#24314;&#35696;&#20351;&#29992; PDO)&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite.dll&#10;extension=php_sqlite3.dll</span><br></pre></td></tr></table></figure>
+<p>其他套件則視狀況加入。</p>
+<p>最後我們要把 Xdebug 加入，也就是在 php.ini 的最後加入以下設定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Xdebug]&#10;zend_extension=&#34;D:\AppServ\php\ext\php_xdebug-2.0.x-5.3-vc6.dll&#34;&#10;xdebug.profiler_enable=on&#10;;xdebug.show_exception_trace=on&#10;xdebug.show_local_vars=on&#10;xdebug.trace_output_dir=&#34;D:/TEMP/php/xdebug&#34;&#10;xdebug.profiler_output_dir=&#34;D:/TEMP/php/xdebug&#34;</span><br></pre></td></tr></table></figure>
+<h2 id="修改_httpd-conf">修改 httpd.conf</h2><h3 id="讓_Apache_認識_PHP">讓 Apache 認識 PHP</h3><p>上面雖然安裝好了 PHP ，但是 Apache 還不認得 PHP 長什麼樣子，以下我們要修改 D:\AppServ\Apache2.2\conf\httpd.conf 來讓 PHP 變成 Apache 的模組。</p>
+<p>把以下設定加到 httpd.conf 的最後面：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LoadModule php5_module D:/AppServ/php/php5apache2_2.dll&#10;AddType application/x-httpd-php .php</span><br></pre></td></tr></table></figure>
+<p>或是分別放在 LoadModule 及 AddType 區段 (用搜尋即可找到) 。</p>
+<p>然後修改 DirectoryIndex ，加入粗體字部份：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DirectoryIndex index.html index.htm index.php</span><br></pre></td></tr></table></figure>
+<p>這樣 Apache 2 就會以 Module 模式來執行 PHP 了。</p>
+<p>如果 Apache 找不到 php.ini ，那麼可以再加入以下指令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PHPIniDir &#34;D:/AppServ/php&#34;</span><br></pre></td></tr></table></figure>
+<h3 id="其他設定">其他設定</h3><p>接著有些設定要修改，首先是加入 mod_rewrite 模組 (去掉井字號註解即可) ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LoadModule rewrite_module modules/mod_rewrite.so</span><br></pre></td></tr></table></figure>
+<p>然後修改預設網站的根目錄，也就是把：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:/AppServ/Apache2.2/htdocs</span><br></pre></td></tr></table></figure>
+<p>全部改成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:/WEB/wwwroot</span><br></pre></td></tr></table></figure>
+<p>最後要啟用 .htaccess ，找到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;Directory /&#62;&#10;Options FollowSymLinks&#10;AllowOverride None&#10;&#60;/Directory&#62;</span><br></pre></td></tr></table></figure>
+<p>把 None 改成 All 。</p>
+<p>而 <directory "d:="" web="" wwwroot"=""> 區段裡的 AllowOverride None 的 None 也改成 All 。 </directory></p>
+<h2 id="測試">測試</h2><p>測試前請先重新開機，讓所有的設定能生效。</p>
+<p>測試有沒有安裝成功的方式很簡單，只要在 D:\WEB\wwwroot 下建立一個 index.php 檔，然後寫入以下內容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;phpinfo();</span><br></pre></td></tr></table></figure>
+<p>然後用瀏覽器查看 <a href="http://localhost/" target="_blank" rel="external">http://localhost/</a> ，如果有顯示 PHP 的相關設定資訊就算成功了。</p>
+<p>當然我們也能透過 phpinfo() 查看相關 PHP 套件是不是有安裝成功，如果沒有的話，請看下面的常見問題。</p>
+<h2 id="常見問題">常見問題</h2><ul>
+<li>問：為什麼改了 php.ini 或 httpd.conf 後，畫面重整後還是沒有任何改變？</li>
+</ul>
+<p>答：因為要重新啟動 Apache 服務。</p>
+<ul>
+<li>問：為什麼重新啟動了 Apache 服務，有些 PHP 的套件還是沒有載入？</li>
+</ul>
+<p>答：Apache 似乎會快取系統變數 PATH (猜想)，所以要重新開機才能讓 Apache 知道 PATH 路徑，並正確載入這些套件。</p>
+<ul>
+<li>問：為什麼 PHP 的路徑要加在 PATH 的最前面？</li>
+</ul>
+<p>答：Apache/PHP 會以 PATH 的先後順序來尋找相關檔案，所以這樣會避免掉一些檔案版本衝突的問題。</p>
+<ul>
+<li>問：為什麼不在 httpd.conf 裡加入「PHPIniDir “D:/AppServ/“」來指定 php.ini 的位置？</li>
+</ul>
+<p>答：當然也可以採用這樣的方式來指定 php.ini 的位置，只是這裡我為了在 DOS 模式下也可以使用 D:\AppServ\php.ini ，所以才會利用 Registry 的方式。不然我們也可以在每次執行 DOS 底下的 PHP 時，使用以下指令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62; php -c d:\AppServ\ test.php</span><br></pre></td></tr></table></figure>
+</span>
       
     </div>
 
@@ -288,22 +417,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +496,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +529,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下載"><span class="nav-number">1.</span> <span class="nav-text">下載</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache_2-2"><span class="nav-number">1.1.</span> <span class="nav-text">Apache 2.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP_5-3"><span class="nav-number">1.2.</span> <span class="nav-text">PHP 5.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL_5-1"><span class="nav-number">1.3.</span> <span class="nav-text">MySQL 5.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xdebug_2-0"><span class="nav-number">1.4.</span> <span class="nav-text">Xdebug 2.0</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安排目錄結構並設定環境變數"><span class="nav-number">2.</span> <span class="nav-text">安排目錄結構並設定環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝_Apache_2-2"><span class="nav-number">3.</span> <span class="nav-text">安裝 Apache 2.2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次安裝"><span class="nav-number">3.1.</span> <span class="nav-text">第一次安裝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重灌系統後的安裝"><span class="nav-number">3.2.</span> <span class="nav-text">重灌系統後的安裝</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝_MySQL_5-1"><span class="nav-number">4.</span> <span class="nav-text">安裝 MySQL 5.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝_PHP_5-3"><span class="nav-number">5.</span> <span class="nav-text">安裝 PHP 5.3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝程式部份"><span class="nav-number">5.1.</span> <span class="nav-text">安裝程式部份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改_php-ini"><span class="nav-number">5.2.</span> <span class="nav-text">修改 php.ini</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改_httpd-conf"><span class="nav-number">6.</span> <span class="nav-text">修改 httpd.conf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#讓_Apache_認識_PHP"><span class="nav-number">6.1.</span> <span class="nav-text">讓 Apache 認識 PHP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他設定"><span class="nav-number">6.2.</span> <span class="nav-text">其他設定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試"><span class="nav-number">7.</span> <span class="nav-text">測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常見問題"><span class="nav-number">8.</span> <span class="nav-text">常見問題</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +545,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +567,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +577,6 @@
 
   
   
-
   
     
     
@@ -489,21 +606,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +775,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +805,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="問題描述現在 CSS 排版技術越來越盛行，很多網頁設計師為更精準地控制頁面呈現效果，都會使用 reset.css 來將 HTML 元素在瀏覽器的預設呈現效果給移除 (例如 YUI 的 reset.css 或 Eric Meyer 的 reset.css ) 。
+雖然這個技術很好用，但在需要讓客戶自訂畫面的專案上就會遇到一個問題：如何讓客戶的 HTML 呈現出瀏覽器原本預設的效果？
+像 YUI 有提">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JavaScript] 如何讓 reset.css 和 HTML 預覽功能並存？">
 <meta property="og:url" content="http://jaceju.net/2009/01/15/382/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="問題描述現在 CSS 排版技術越來越盛行，很多網頁設計師為更精準地控制頁面呈現效果，都會使用 reset.css 來將 HTML 元素在瀏覽器的預設呈現效果給移除 (例如 YUI 的 reset.css 或 Eric Meyer 的 reset.css ) 。
+雖然這個技術很好用，但在需要讓客戶自訂畫面的專案上就會遇到一個問題：如何讓客戶的 HTML 呈現出瀏覽器原本預設的效果？
+像 YUI 有提">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JavaScript] 如何讓 reset.css 和 HTML 預覽功能並存？">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="問題描述現在 CSS 排版技術越來越盛行，很多網頁設計師為更精準地控制頁面呈現效果，都會使用 reset.css 來將 HTML 元素在瀏覽器的預設呈現效果給移除 (例如 YUI 的 reset.css 或 Eric Meyer 的 reset.css ) 。
+雖然這個技術很好用，但在需要讓客戶自訂畫面的專案上就會遇到一個問題：如何讓客戶的 HTML 呈現出瀏覽器原本預設的效果？
+像 YUI 有提">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [JavaScript] 如何讓 reset.css 和 HTML 預覽功能並存？ | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,31 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><h2 id="問題描述">問題描述</h2><p>現在 CSS 排版技術越來越盛行，很多網頁設計師為更精準地控制頁面呈現效果，都會使用 reset.css 來將 HTML 元素在瀏覽器的預設呈現效果給移除 (例如 YUI 的 <a href="http://developer.yahoo.com/yui/reset/" target="_blank" rel="external">reset.css</a> 或 Eric Meyer 的 <a href="http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/" target="_blank" rel="external">reset.css</a> ) 。</p>
+<p>雖然這個技術很好用，但在需要讓客戶自訂畫面的專案上就會遇到一個問題：如何讓客戶的 HTML 呈現出瀏覽器原本預設的效果？</p>
+<p>像 YUI 有提供一個 base.css ，可以稍微幫我們將 HTML 元素回復原本的呈現方式。但我們有時只是需要在畫面上一小部份轉換為原來的效果，這時就勢必得修改 base.css ，在它的各項元素定義前加上某區塊的 class 或 id ；不過這不是一個好選項，因為大多數狀況我們還是沒辦法百分之百讓畫面呈現它原本的樣子。</p>
+<a id="more"></a>
+<h2 id="解決方案">解決方案</h2><p>其實用 iframe 就可以幫我們解決這個問題。</p>
+<p>步驟很簡單：</p>
+<pre><code><span class="bullet">* </span>建立一個動態 iframe 。
+<span class="bullet">* </span>將原本的 html 內容指定給 iframe 的 document 。
+<span class="bullet">* </span>把 iframe 高度調整至和 html 內容一般高。 
+</code></pre><p>這裡我用 jQuery 來實作囉。</p>
+<h3 id="建立一個動態_iframe">建立一個動態 iframe</h3><p>假設我們的 html 內容已經放在 div.htmlContent 這個區塊中，我們可以用以下程式來動態建立一個 iframe ，並將它 append 在  div.htmlContent 中。當然也別忘記把原來的內容清掉：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(function () &#123;&#10;    var $iframe = $(&#39;&#60;iframe src=&#34;about:blank&#34; width=&#34;100%&#34; height=&#34;300&#34; frameborder=&#34;0&#34;&#62;&#60;/iframe&#62;&#39;);&#10;    var $htmlContent = $(&#39;div.htmlContent&#39;);&#10;    var html = $htmlContent.html();&#10;    $htmlContent.html(&#39;&#39;);&#10;    $htmlContent.append($iframe);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這裡要注意一點，就是 iframe 的高度一定要設定一個大於 0 的整數值，不然等一下 IE 在自動調整高度時會出問題。 (別問我為什麼…我也是自己試出來的 Orz) </p>
+<p>至於 iframe 的來源，我們設定為 about:blank 就好，也就是瀏覽器預設的空白頁。 </p>
+<h3 id="將原本的_html_內容指定給_iframe_的_document">將原本的 html 內容指定給 iframe 的 document</h3><p>在建立好動態的 iframe 之後，我們要先等它將內容載完。在載完之後，我們就可以將原來的 html 放到 iframe 裡的 docuement 物件的 body 中。 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$iframe.load(function () &#123;&#10;    var iframeDocument = getIframeDocument($iframe.get(0));&#10;    $(iframeDocument.body).html(html).css(&#123; margin: &#39;0&#39;, padding: &#39;0&#39; &#125;);&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<p>這裡用到了一個自訂函式 getIframeDocument ， 它可以幫我們取得 iframe 裡的 document 物件，而且是跨瀏覽器的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getIframeDocument(iframeObject) &#123;&#10;    if (iframeObject.contentWindow) &#123;&#10;        return iframeObject.contentWindow.document;&#10;    &#125; else if (iframeObject.contentDocument) &#123;&#10;        return iframeObject.contentDocument.document;&#10;    &#125;&#10;    return null;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>註：getIframeDocument 暫時不支援 Google Chrome 和 Safari 。 </p>
+<h3 id="把_iframe_高度調整至和_html_內容一般高">把 iframe 高度調整至和 html 內容一般高</h3><p>接著我們要調整 iframe 的高度，讓它能完整呈現出 html 的內容。 </p>
+<p>在 html 載入完畢後，body 的 offsetHeight 就會是我們所需要的內容高度：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$iframe.load(function () &#123;&#10;    var iframeDocument = $.wacow.getIframeDocument($iframe.get(0));&#10;    $(iframeDocument.body).html(html).css(&#123; margin: &#39;0&#39;, padding: &#39;0&#39; &#125;);&#10;    setTimeout(function () &#123;&#10;        var bodyHeight = iframeDocument.body.offsetHeight + 20;&#10;        $iframe.height(bodyHeight);&#10;    &#125;, 0);&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<p>這裡有個小技巧，就是重新指定 html 內容時， load 事件並不會被觸發，所以我們要利用 setTimeout 來確定 html 已經全部加載完畢 (讓它跳離到另一個執行空間) 。</p>
+<p>到這裡就大功告成啦~謝謝收看~</p>
+</span>
       
     </div>
 
@@ -288,22 +303,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +382,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +415,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#問題描述"><span class="nav-number">1.</span> <span class="nav-text">問題描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解決方案"><span class="nav-number">2.</span> <span class="nav-text">解決方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立一個動態_iframe"><span class="nav-number">2.1.</span> <span class="nav-text">建立一個動態 iframe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#將原本的_html_內容指定給_iframe_的_document"><span class="nav-number">2.2.</span> <span class="nav-text">將原本的 html 內容指定給 iframe 的 document</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把_iframe_高度調整至和_html_內容一般高"><span class="nav-number">2.3.</span> <span class="nav-text">把 iframe 高度調整至和 html 內容一般高</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +431,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +453,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +463,6 @@
 
   
   
-
   
     
     
@@ -489,21 +492,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +661,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +691,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

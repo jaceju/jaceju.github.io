@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="之前分享了初探 Require.JS一文後，對 RequireJS 已經有一定的瞭解，但後來實際應用到 Backbone.js 程式上時，發現了一些要特別注意的事項。
+以下便是我在整合兩者時的筆記。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 RequireJs 將 Backbone.js 程式模組化">
 <meta property="og:url" content="http://jaceju.net/2012/04/12/requirejs-x-backbone/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="之前分享了初探 Require.JS一文後，對 RequireJS 已經有一定的瞭解，但後來實際應用到 Backbone.js 程式上時，發現了一些要特別注意的事項。
+以下便是我在整合兩者時的筆記。">
 <meta property="og:updated_time" content="2015-05-11T07:03:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 RequireJs 將 Backbone.js 程式模組化">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="之前分享了初探 Require.JS一文後，對 RequireJS 已經有一定的瞭解，但後來實際應用到 Backbone.js 程式上時，發現了一些要特別注意的事項。
+以下便是我在整合兩者時的筆記。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 利用 RequireJs 將 Backbone.js 程式模組化 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,81 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>之前分享了<a href="http://www.jaceju.net/blog/archives/beginning-requirejs/" target="_blank" rel="external">初探 Require.JS</a>一文後，對 RequireJS 已經有一定的瞭解，但後來實際應用到 Backbone.js 程式上時，發現了一些要特別注意的事項。</p>
+<p>以下便是我在整合兩者時的筆記。</p>
+<a id="more"></a>
+<h2 id="baseUrl_選項">baseUrl 選項</h2><p>在 <a href="http://www.jaceju.net/blog/archives/beginning-requirejs/" target="_blank" rel="external">初探 Require.JS</a> 的範例中，我是這樣寫的：</p>
+<figure class="highlight javascript"><figcaption><span>js/main.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>(&#123;</span><br><span class="line">  paths: &#123;</span><br><span class="line">    <span class="string">"order"</span>: <span class="string">"../lib/requirejs/order"</span>,</span><br><span class="line">    <span class="string">"lib"</span>: <span class="string">"../lib"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>([</span><br><span class="line">  <span class="string">'app'</span>,</span><br><span class="line">  <span class="string">'order!lib/jquery/jquery-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/underscore/underscore-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/backbone/backbone-min'</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">App</span>) </span>&#123;</span><br><span class="line">  App.initialize();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>事實上這會影響我們在用 <code>r.js</code> 時的編譯，所以第一步我們先加上 baseUrl 選項：</p>
+<figure class="highlight javascript"><figcaption><span>js/main.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>(&#123;</span><br><span class="line">  baseUrl: <span class="string">'./'</span>,</span><br><span class="line">  paths: &#123;</span><br><span class="line">    order: <span class="string">'lib/requirejs/order'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>([</span><br><span class="line">  <span class="string">'js/old_app'</span>,</span><br><span class="line">  <span class="string">'order!lib/jquery/jquery-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/underscore/underscore-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/backbone/backbone-min'</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">App</span>) </span>&#123;</span><br><span class="line">  App.initialize();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>baseUrl</code> 是指讓 RequireJS 搜尋模組路徑時的起始位置；如果是用 <code>./</code> 的話，指的就是 index.html 所在的網址。</p>
+<p>這樣一來我們就不用設定 <code>lib</code> 的別名了。</p>
+<p>註：接下來的範例裡，除非必要，否則將不會特別提到選項的部份。</p>
+<h2 id="第三方套件載入時機">第三方套件載入時機</h2><p>先前我們的 <code>js/app.js</code> 是這樣寫的：</p>
+<figure class="highlight javascript"><figcaption><span>js/app.js</span></figcaption><table><tr><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    initialize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> Model = Backbone.Model.extend(&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">var</span> View = Backbone.View.extend(&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">var</span> model = <span class="keyword">new</span> Model();</span><br><span class="line">      <span class="keyword">var</span> view = <span class="keyword">new</span> View(&#123;</span><br><span class="line">        model: model</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 <code>initialize</code> 方法裡我把所有的程式碼都塞在這裡，而當我想把 model/view 分離出來時，卻遇到了很大的難題。</p>
+<p>首先我想把 Model 分離出來，所以加入一個 <code>js/model/Model.js</code> 如下：</p>
+<figure class="highlight javascript"><figcaption><span>js/model/Model.js</span></figcaption><table><tr><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> Backbone.Model.extend(&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>然後把 <code>js/app.js</code> 改寫成：</p>
+<figure class="highlight javascript"><figcaption><span>js/app.js</span></figcaption><table><tr><td class="code"><pre><span class="line">define([</span><br><span class="line">  <span class="string">'js/model/Model'</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">Model</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    initialize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> View = Backbone.View.extend(&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">var</span> model = <span class="keyword">new</span> Model();</span><br><span class="line">      <span class="keyword">var</span> view = <span class="keyword">new</span> View(&#123;</span><br><span class="line">        model: model</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>重新執行，結果瀏覽器告訴我： <code>Backbone is not defined</code> 。</p>
+<p>怎麼回事呢？</p>
+<p>原因是 js 檔案的載入順序，以及 factory 執行的時機。我們來分析一下整個程式的載入流程：</p>
+<ol>
+<li>載入 js/app.js 。</li>
+<li>載入 js/model/Config.js 。</li>
+<li>執行 js/model/Config.js 的工廠方法。</li>
+<li>載入 jQuery 。</li>
+<li>載入 underscore.js 。</li>
+<li>載入 Backbone.js 。</li>
+<li>執行 js/app.js 的工廠方法。</li>
+<li>執行 js/app.js 的 <code>initialize</code> 方法。</li>
+</ol>
+<p>還記得 <code>define</code> API 會在相依的模組完載入後就執行工廠方法嗎？</p>
+<p>這裡我們的 <code>js/model/Config.js</code> 因為沒有指定相依模組，所以載入後就會直接執行其工廠方法。但是因為 Backbone.js 等第三方套件還沒載入，所以在第三個步驟時，瀏覽器就噴錯誤給我們了。</p>
+<p>怎麼解決呢？第一個方法是把 <code>js/main.js</code> 中的 <code>&#39;js/app&#39;</code> 移到第三方套件後載入，不過得再加入不必要的 namespace ：</p>
+<figure class="highlight javascript"><figcaption><span>js/main.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>([</span><br><span class="line">  <span class="string">'order!lib/jquery/jquery-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/underscore/underscore-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/backbone/backbone-min'</span>,</span><br><span class="line">  <span class="string">'order!js_1/app'</span>,</span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">_jQuery, _Underscore, _Backbone, App</span>) </span>&#123;</span><br><span class="line">  App.initialize();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>註：要記得相依的 js 模組會與 callback 的參數從左至右一一對應。</p>
+<p>這樣確實就可以讓模組依照我們相要的順序依序載入了。</p>
+<p>不過那些用不到的 namespace 真的很礙眼，還好 JavaScript 可以讓我們不需要寫它們；我們直接改用 <code>arguments</code> 來將 <code>App</code> 載入：</p>
+<figure class="highlight javascript"><figcaption><span>js/main.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>([</span><br><span class="line">  <span class="string">'order!lib/jquery/jquery-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/underscore/underscore-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/backbone/backbone-min'</span>,</span><br><span class="line">  <span class="string">'order!js/app'</span>,</span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  App = _.last(<span class="built_in">arguments</span>);</span><br><span class="line">  App.initialize();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>這樣就看不到那些無用的 namespace 了。</p>
+<h2 id="物件還是建構式">物件還是建構式</h2><p>仔細比較 <code>js/app.js</code> 與 <code>js/model/Model.js</code> ，一個是回傳純物件 <code>{...}</code> ，一個是回傳 <code>Backbone.Model.extend({...})</code> ，這兩者有什麼不同呢？</p>
+<p>純物件的方式，我們可以直接使用它的方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App.initialize();</span><br></pre></td></tr></table></figure>
+<p>而 <code>Backbone.Model.extend({...})</code> 回傳的則是一個建構函式，我們要用 <code>new</code> 關鍵字來使用它：</p>
+<figure class="highlight javascript"><figcaption><span>js/app.js</span></figcaption><table><tr><td class="code"><pre><span class="line">define([</span><br><span class="line">  <span class="string">'js/model/Model'</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">Model</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    initialize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> model = <span class="keyword">new</span> Model();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>另外千萬不要直接回傳 new 之後的 Model 或是 View ，也就是：</p>
+<figure class="highlight javascript"><figcaption><span>js/model/Model.js</span></figcaption><table><tr><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Backbone.Model.extend(&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>因為這樣一來回傳的是物件，而非建構函式，開發上就會造成問題。</p>
+<h2 id="錯誤的_order_plugin_用法">錯誤的 order plugin 用法</h2><p>RequireJS 的 order plugin 可以讓我們依序載入模組，但它卻還是有所限制。</p>
+<p>假設我把前面的第三方套件放到 <code>js/vendor.js</code> 裡面：</p>
+<figure class="highlight javascript"><figcaption><span>js/vendor.js</span></figcaption><table><tr><td class="code"><pre><span class="line">define([</span><br><span class="line">  <span class="string">'order!lib/jquery/jquery-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/underscore/underscore-min'</span>,</span><br><span class="line">  <span class="string">'order!lib/backbone/backbone-min'</span>,</span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
+<p>然後把 <code>js/main.js</code> 改成：</p>
+<figure class="highlight javascript"><figcaption><span>js/main.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>([</span><br><span class="line">  <span class="string">'order!js/vendor'</span>,</span><br><span class="line">  <span class="string">'order!js/app'</span>,</span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">Vendor, App</span>) </span>&#123;</span><br><span class="line">  App.initialize();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>這時我發現程式處於一種不穩定的狀態，也就是時好時壞。</p>
+<p>這是因為我們使用的是非同步載入的方式，但 order plugin 只能確保同一個檔案裡的載入順序，當跨到不同檔案時， order plugin 就會失效了。</p>
+<h2 id="r-js_注意事項">r.js 注意事項</h2><p>原本以為 <code>r.js</code> 能夠取用 <code>js/main.js</code> 裡的設定，但後來測試的結果是不行。所以在使用 <code>r.js</code> 編譯檔案時，如果有以下的設定：</p>
+<figure class="highlight javascript"><figcaption><span>js/main.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>(&#123;</span><br><span class="line">  baseUrl: <span class="string">'./'</span>,</span><br><span class="line">  paths: &#123;</span><br><span class="line">    order: <span class="string">'lib/requirejs/order'</span>,</span><br><span class="line">    text: <span class="string">'lib/requirejs/text'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>那麼在下 <code>r.js</code> 指令時，就要把它們都加入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">r.js -o \</span><br><span class="line">name=js/main \</span><br><span class="line">out=js/main-built.js \</span><br><span class="line">baseUrl=<span class="string">"./"</span> \</span><br><span class="line">paths.order=<span class="string">"lib/requirejs/order"</span> \</span><br><span class="line">paths.text=<span class="string">"lib/requirejs/text"</span></span><br></pre></td></tr></table></figure>
+<p>這樣一來，才能編出正確的單一壓縮 js 檔案。</p>
+<p>不過每次要下這麼長的指令還真麻煩，還好 <code>r.js</code> 也提供了方便的用法，就是建立一個 build profile ；我們只需要在專案根目錄加上一個 <code>build.js</code> ：</p>
+<figure class="highlight javascript"><figcaption><span>build.js</span></figcaption><table><tr><td class="code"><pre><span class="line">(&#123;</span><br><span class="line">  baseUrl: <span class="string">'./'</span>,</span><br><span class="line">  name: <span class="string">'js/main'</span>,</span><br><span class="line">  out: <span class="string">'main-built.js'</span>,</span><br><span class="line">  paths: &#123;</span><br><span class="line">    order: <span class="string">'lib/requirejs/order'</span>,</span><br><span class="line">    text: <span class="string">'lib/requirejs/text'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>然後利用 <code>build.js</code> 來重新最佳化：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">r.js -o build.js</span><br></pre></td></tr></table></figure>
+<p>效果就是一樣的了。</p>
+<p>build profile 的其他選項請參考官方提供的 <a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js" target="_blank" rel="external">build.js 範例</a>。</p>
+<h2 id="text_plugin">text plugin</h2><p>RequireJS 提供了一個很棒的非同步樣版載入模組，名為 <code>text</code> ；它可以幫我們把外部的 html 檔案載入，並當做字串使用。用法如下：</p>
+<figure class="highlight javascript"><figcaption><span>js/view/View.js</span></figcaption><table><tr><td class="code"><pre><span class="line">define([</span><br><span class="line">  <span class="string">'text!template/view_template.html'</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">viewTemplate</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> Backbone.View.extend(&#123;</span><br><span class="line">    initialize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.$el.html(viewTemplate);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>註： <code>text</code> 是 <code>lib/requirejs/text</code> 的別名。</p>
+<p>有趣的是，它在透過 <code>r.js</code> 編譯時，就會把樣版檔直接編譯為字串，而不再經外部載入。</p>
+<p>假設 <code>template/view_template.html</code> 的內容為：</p>
+<figure class="highlight html"><figcaption><span>template/view_template.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span>This is template.<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>那麼透過 <code>r.js</code> 編譯後的結果如下： (已經有重新格式化)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* other modules */</span>, define(<span class="string">"text!template/view_template.html"</span>, [], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"&lt;p&gt;This is template.&lt;/p&gt;"</span></span><br><span class="line">&#125;), define(<span class="string">"js/view/View"</span>, [<span class="string">"text!template/view_template.html"</span>], <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> Backbone.View.extend(&#123;</span><br><span class="line">    initialize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.$el.html(a)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>從上面的範例就可以看到 text plugin 把 <code>template/view_template.html</code> 變成一個會回傳字串的模組了。</p>
+</span>
       
     </div>
 
@@ -290,22 +352,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +431,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +464,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#baseUrl_選項"><span class="nav-number">1.</span> <span class="nav-text">baseUrl 選項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方套件載入時機"><span class="nav-number">2.</span> <span class="nav-text">第三方套件載入時機</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件還是建構式"><span class="nav-number">3.</span> <span class="nav-text">物件還是建構式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#錯誤的_order_plugin_用法"><span class="nav-number">4.</span> <span class="nav-text">錯誤的 order plugin 用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#r-js_注意事項"><span class="nav-number">5.</span> <span class="nav-text">r.js 注意事項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#text_plugin"><span class="nav-number">6.</span> <span class="nav-text">text plugin</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +480,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +502,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +512,6 @@
 
   
   
-
   
     
     
@@ -491,21 +541,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +710,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +740,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

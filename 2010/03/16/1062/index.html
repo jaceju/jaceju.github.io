@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,33 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素的…還好先前在製作購物車時，已經把單元測試放到架構裡，因此後面就只要專心應付演算法邏輯就好了。
+雖然這樣的規劃聽起來不錯，但單元測試這件事說到底我的實務經驗還是太少，在這次的專案項目裡，才讓我真正有了較為深入的體會。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHPUnit 實務入門簡介">
 <meta property="og:url" content="http://jaceju.net/2010/03/16/1062/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素的…還好先前在製作購物車時，已經把單元測試放到架構裡，因此後面就只要專心應付演算法邏輯就好了。
+雖然這樣的規劃聽起來不錯，但單元測試這件事說到底我的實務經驗還是太少，在這次的專案項目裡，才讓我真正有了較為深入的體會。">
+<meta property="og:image" content="http://jaceju.net/resources/phpunit/draft.jpg">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHPUnit 實務入門簡介">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素的…還好先前在製作購物車時，已經把單元測試放到架構裡，因此後面就只要專心應付演算法邏輯就好了。
+雖然這樣的規劃聽起來不錯，但單元測試這件事說到底我的實務經驗還是太少，在這次的專案項目裡，才讓我真正有了較為深入的體會。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> PHPUnit 實務入門簡介 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +133,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +143,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +153,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +173,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +232,48 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素的…還好先前在製作購物車時，已經把單元測試放到架構裡，因此後面就只要專心應付演算法邏輯就好了。</p>
+<p>雖然這樣的規劃聽起來不錯，但單元測試這件事說到底我的實務經驗還是太少，在這次的專案項目裡，才讓我真正有了較為深入的體會。</p>
+<a id="more"></a>
+<h2 id="先對要測試的事情有一個概觀">先對要測試的事情有一個概觀</h2><p>其實測試一開始真的很難下手，主要是因為我們不知道我們要測些什麼東西。因此，我們需要對需要測試的東西有個概觀。</p>
+<p>就以這次的例子來說吧，我要測試的東西就是「折價券攤提的演算法邏輯」，那它裡面重要的東西是什麼？</p>
+<p>在跟客戶討論，我們得知折價券面額要分攤到的商品上時有一定的規則；這時我們就要先在紙上作業，用簡單的例子跟客戶確認清楚規則。</p>
+<p><a href="/resources/phpunit/draft.jpg"><img src="/resources/phpunit/draft.jpg" alt="草圖"></a></p>
+<p>確認了方向之後，因為我之前已經測試架構準備好了，所以接下來就只要針對要測試的部份撰寫程式碼即可。但如果一開始還沒有準備好測試架構的話，這裡給大家幾個建置環境的簡易流程：</p>
+<ul>
+<li><p>在專案裡開個 tests 資料夾，這裡就是放置測試案例的地方。</p>
+</li>
+<li><p>準備一個 init.php ，目的是用來設置 include_path 及 autoload 機制。</p>
+</li>
+<li><p>按照 PHPUnit 官方的建議，建立一個 AllTests.php 的 Test Suite 。</p>
+</li>
+</ul>
+<p>註：這裡我就不列出程式碼了，讓大家自己試試看。</p>
+<p>然後每次測試就用以下指令即可：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; phpunit AllTests.php</span><br></pre></td></tr></table></figure>
+<p>之後我會以「跑測試」來表示執行這個指令。</p>
+<h2 id="描繪程式的輪廓">描繪程式的輪廓</h2><p>接下來我們就要把整個系統的測試架構定義出來，不過這時候其實我們還沒開始寫程式，只是把流程和相關的方法先定義出來。</p>
+<p>這裡的方法很簡單，就是先透過註解和方法介面來描述整個流程，而不是先寫細部的程式碼。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Shop_Cart_Plugin_Coupon extends Shop_Cart_Plugin&#10;&#123;&#10;    // ... &#30053; ...&#10;    // &#28436;&#31639;&#27861;&#35336;&#31639;&#24460;&#30340;&#32080;&#26524;&#10;    protected $_sharedCouponData = array();&#10;    // &#21462;&#24471;&#28436;&#31639;&#27861;&#35336;&#31639;&#24460;&#30340;&#32080;&#26524;&#65292;&#20063;&#21487;&#20379;&#28204;&#35430;&#20358;&#39511;&#35657;&#10;    public functino getSharedCouponData()&#10;    &#123;&#10;        return $this-&#62;_sharedCouponData;&#10;    &#125;&#10;    // &#20027;&#35201;&#30340;&#22519;&#34892;&#26041;&#27861;&#10;    public function doCheckout()&#10;    &#123;&#10;        $this-&#62;_getCouponData(); // &#21462;&#24471;&#10;        $this-&#62;_getProductData(); // &#21462;&#24471;&#21830;&#21697;&#36039;&#26009;&#10;        $this-&#62;_initData(); // &#21021;&#22987;&#21270;&#35201;&#25892;&#25552;&#30340;&#36039;&#26009;&#10;        $this-&#62;_shareCouponToProduct(); // &#38283;&#22987;&#25892;&#25552;&#10;    &#125;&#10;    // ... &#30053; ...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>當然這些都是大概的輪廓，因為可能在我們寫好測試執行時，會再額外加入新的方法及介面。</p>
+<p>還有一個要先定義好的是測試用的比對數據格式，它對我們稍後要測試的程式寫法會有影響。</p>
+<h2 id="寫第一個測試">寫第一個測試</h2><p>到這裡，我們就可以開始寫第一個測試，而接下來的程式碼，都是先以這個測試可以成功為目的。而這個測試要怎麼寫呢？就是把一開始我們在紙上作業的數字拿進來套用。</p>
+<p>當然這裡我的 setUp 和 tearDown 也已經在之前準備測試架構時寫好了，它們會讓我們每次的測試數據都能夠獨立。我們關心的就是第一個測試案例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Shop_Cart_Plugin_CouponTest extends PHPUnit_Framework_TestCase&#10;&#123;&#10;    // ... &#30053; ...&#10;    public function setUp()&#10;    &#123;&#10;        // ... &#30053; ...&#10;    &#125;&#10;    public function tearDown()&#10;    &#123;&#10;        // ... &#30053; ...&#10;    &#125;&#10;    public function testDoCheckout()&#10;    &#123;&#10;        $this-&#62;_plugin-&#62;setValue(array(&#10;           1 =&#62; 1, // C1, ProductCoupon for P1, $100&#10;           2 =&#62; 2, // C2, ProductCoupon for P1, P2, $100&#10;        ));&#10;        $this-&#62;_cart-&#62;addItems(array(&#10;            &#39;P1&#39; =&#62; 1, // $200&#10;            &#39;P2&#39; =&#62; 1, // $300&#10;        ))-&#62;refresh();&#10;        $this-&#62;assertEquals(300, $this-&#62;_cart-&#62;getTotal());&#10;        $this-&#62;_plugin-&#62;doCheckout();&#10;        $resultDataList = $this-&#62;_plugin-&#62;getSelectedOrderCouponDataList();&#10;        $this-&#62;assertEquals(-100, $resultDataList[&#39;P1-C1&#39;](&#39;discountPrice&#39;));&#10;        $this-&#62;assertEquals(-25,  $resultDataList[&#39;P1-C2&#39;](&#39;discountPrice&#39;));&#10;        $this-&#62;assertEquals(-75,  $resultDataList[&#39;P2-C2&#39;](&#39;discountPrice&#39;));&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這裡因為我們在上一步就定義好比對用的數據，所以測試時就是用這個輸出的數據來與我們預期的數字相比較。</p>
+<p>接下來就先跑跑測試，看看這個 TestCase 有沒有執行錯誤的地方 (例如物件沒有正確初始化或是變數名稱誤寫等等) ；當然如果沒有出現預期值是正常的，因為我們根本還沒有寫計算公式。</p>
+<h2 id="繼續完成演算法">繼續完成演算法</h2><p>現在回到 Shop_Cart_Plugin_Coupon ，我們就要把剛剛那些只有骨頭的方法開始添血添肉，這裡就請大家自行發擇。</p>
+<p>接著只要你覺得程式差不多了，就先跑一下測試，看看是不是符合測試的預期結果。</p>
+<p>當你完成第一個測試時，程式的就差不多完成百分之五十啦，到這裡別忘了先把程式 commit 到版本控制系統裡。</p>
+<h2 id="加入新測試並修改程式">加入新測試並修改程式</h2><p>完成第一個測試時，當然不是沒事了，我們要針對不同的狀況再加入其他的測試數據。</p>
+<p>這裡我們就可以開始考慮把第一個測試以 PHPUnit 提供的 Data Provider 改寫，讓我們不必重複過多的程式碼。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Shop_Cart_Plugin_CouponTest extends PHPUnit_Framework_TestCase&#10;&#123;&#10;    // ... &#30053; ...&#10;    public function setUp()&#10;    &#123;&#10;        // ... &#30053; ...&#10;    &#125;&#10;    public function tearDown()&#10;    &#123;&#10;        // ... &#30053; ...&#10;    &#125;&#10;    /**&#10;     * @dataProvider provider&#10;     */&#10;    public function testDoCheckout($selectedCouponIdList, $productSkuNumberList, $total, $discountDataList)&#10;    &#123;&#10;        $this-&#62;_plugin-&#62;setValue($selectedCouponIdList);&#10;        $this-&#62;_cart-&#62;addItems($productSkuNumberList)-&#62;refresh();&#10;        $this-&#62;assertEquals($total, $this-&#62;_cart-&#62;getTotal());&#10;        $this-&#62;_plugin-&#62;doCheckout();&#10;        $resultDataList = $this-&#62;_plugin-&#62;getSharedCouponData();&#10;        foreach ($discountDataList as $key =&#62; $value) &#123;&#10;        &#9;$this-&#62;assertEquals($value, $resultDataList[$key](&#39;discountPrice&#39;));&#10;        &#125;&#10;    &#125;&#10;&#10;    public function provider()&#10;    &#123;&#10;        return array( // &#31532;&#19968;&#20491;&#28204;&#35430;&#10;            array(array(&#10;                1 =&#62; 1, // C1, ProductCoupon for P1, $100&#10;                2 =&#62; 2, // C2, ProductCoupon for P1, P2, $100&#10;            ), array(&#10;                &#39;P1&#39; =&#62; 1, // $200&#10;                &#39;P2&#39; =&#62; 1, // $300&#10;            ), 300, array(&#10;                &#39;P1-C1&#39; =&#62; -100,&#10;                &#39;P1-C2&#39; =&#62; -25,&#10;                &#39;P2-C2&#39; =&#62; -75,&#10;            )),&#10;            array( // &#31532;&#20108;&#20491;&#28204;&#35430;&#10;                // ... &#30053; ...&#10;            ),&#10;            // ... &#30053; ...&#10;        );&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>而加入新測試之後，就可以跑跑測試，看看我們剛寫好的演算法是否正確動作？通常這時候才真正是考驗的開始。因為這時候前面寫好的程式碼可能只對第一個測試正常，接下來的測試也許就會出錯了。</p>
+<p>所以我們就會需要修改或重構程式碼，讓後面的測試也能正常執行。當然改過的程式也要讓第一個測試正常運作，才是正確的修改。</p>
+<p>當然演算法寫好後，就要真正上到 Web 畫面去測試。至此，你會發現你花在寫測試上的心力都有了回報，因為通常如果你已經定義好介面，而這次的修改只是改寫一個小類別的話，那麼就會發現程式會非常順利地運作了。</p>
+<h2 id="心得">心得</h2><p>每次寫購物車時，最麻煩的就是測試時要開啟購物車網頁，把一個一個的商品加進來，再加入不同的折價券條件…</p>
+<p>而有單元測試之後，我就可以省去一大堆開啟網頁，點選連結的功夫，專心地撰寫計算邏輯…只能說…單元測試真的個超級便利的工具呀。</p>
+</span>
       
     </div>
 
@@ -288,22 +318,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +397,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +430,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先對要測試的事情有一個概觀"><span class="nav-number">1.</span> <span class="nav-text">先對要測試的事情有一個概觀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描繪程式的輪廓"><span class="nav-number">2.</span> <span class="nav-text">描繪程式的輪廓</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寫第一個測試"><span class="nav-number">3.</span> <span class="nav-text">寫第一個測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#繼續完成演算法"><span class="nav-number">4.</span> <span class="nav-text">繼續完成演算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入新測試並修改程式"><span class="nav-number">5.</span> <span class="nav-text">加入新測試並修改程式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">6.</span> <span class="nav-text">心得</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +446,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +468,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +478,6 @@
 
   
   
-
   
     
     
@@ -489,21 +507,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +676,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +706,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

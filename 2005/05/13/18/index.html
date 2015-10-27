@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,34 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="如果說浮動 (float) 是 CSS 排版的重要技巧之一，實在一點也不為過；很多著名的 CSS 版型都會用到浮動技巧。本文就來介紹浮動所需要注意的地方，以及可能會碰到的問題。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS 排版觀念：Float">
 <meta property="og:url" content="http://jaceju.net/2005/05/13/18/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="如果說浮動 (float) 是 CSS 排版的重要技巧之一，實在一點也不為過；很多著名的 CSS 版型都會用到浮動技巧。本文就來介紹浮動所需要注意的地方，以及可能會碰到的問題。">
+<meta property="og:image" content="http://jaceju.net/resources/css_float/float1.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_float/float2.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_float/float3.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_float/float4.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_float/float5.png">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 排版觀念：Float">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="如果說浮動 (float) 是 CSS 排版的重要技巧之一，實在一點也不為過；很多著名的 CSS 版型都會用到浮動技巧。本文就來介紹浮動所需要注意的地方，以及可能會碰到的問題。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> CSS 排版觀念：Float | 網站製作學習誌 </title>
 </head>
@@ -143,7 +134,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +144,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +154,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +174,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +233,27 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>如果說浮動 (float) 是 CSS 排版的重要技巧之一，實在一點也不為過；很多著名的 CSS 版型都會用到浮動技巧。本文就來介紹浮動所需要注意的地方，以及可能會碰到的問題。</p>
+<a id="more"></a>
+<p>浮動是設定元素的 <code>float</code> 屬性，我們能設定向左 (<code>left</code>) 或向右 (<code>right</code>) 浮動。浮動基本上會使得元素在有足夠的空間時，往父元素的左邊或右邊靠緊。接著原本跟在這個元素後面的其他元素，就會自動往上跑。 (不過這裡會有部份要考量的地方，稍後再談。)</p>
+<p>當元素被設定浮動時，會自動變成區塊顯示元素 (<code>display: block</code>) ，這時候我們就可以設定元素的 <code>width</code> 和 <code>height</code> 了。</p>
+<p>不過要注意一點：當我們把 <code>position</code> 設為 <code>absolute</code> 時，浮動會失效。</p>
+<p>浮動會因為元素先後順序而有所影響，例如我們有 A 、 B 兩個區塊顯示元素如下圖，其中虛線部份的內部為父元素的內容區：</p>
+<p><img src="/resources/css_float/float1.png" alt=""></p>
+<p>如果我們把 A 元素設為向右浮動，那麼 B 元素就會自動往上跑，如下圖：</p>
+<p><img src="/resources/css_float/float2.png" alt=""></p>
+<p>而把 B 元素向右浮動的話， A 元素並不會受到干擾， B 元素也不會往父元素的上邊靠，如下圖：</p>
+<p><img src="/resources/css_float/float3.png" alt=""></p>
+<p>那如果不往右浮動，而是向左浮動呢？那就非常複雜了。為什麼呢？因為各家瀏覽器的實作不同！如果我們試著把 A 元素向左浮動，就會發現 IE 會讓 B 元素跑到 A 元素的右邊；可是在 Firefox 和 Opera 上，雖然 A 元素會靠到父元素內容區的左邊，但是則會讓 B 的 Content 區被擠到 A 元素的下方 (詭異的是 B 元素的背景區卻靠向父元素內容區的上方) 。所以在排版時，要特別注意這種情況。</p>
+<p>如果我們不希望在緊跟在 A 元素及 B 元素後面的元素被浮動所影響，那麼就該對此元素設定 <code>clear: both;</code> 。</p>
+<p>另外元素的 Box Model 也會影響元素的浮動，我在 <a href="/blog/archives/17">CSS 排版觀念：Box Model</a> 裡提到了一些要點，這裡再說明一下。</p>
+<p>Box Model 正確的寬度，通常就是影響浮動是否能正常的關鍵。如下圖，是我們常見的置中兩欄式 float 排版。 Sidebar 往左浮動， Content 則是往右浮動。</p>
+<p><img src="/resources/css_float/float4.png" alt=""></p>
+<p>在浮動 Sidebar 時，如果沒有考慮好 Content 的 <code>margin</code> 和 <code>padding</code> ，或是 Content 裡的內容過長無法折行時， Sidebar 的部份就會整個往下掉，如下圖。</p>
+<p><img src="/resources/css_float/float5.png" alt=""></p>
+<p>因此在利用浮動製作版面時，一定也要記得和 Box Model 相互搭配，這樣才能夠製作正確而實用的版型。</p>
+<p>總而言之，浮動技巧是 CSS 排版中非常重要的一門學問。下次我們就來正式挑戰一些常見的版型，不但告訴你怎麼做，還告訴你為什麼要這樣做。</p>
+</span>
       
     </div>
 
@@ -288,22 +298,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +377,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +410,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +426,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +448,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +458,6 @@
 
   
   
-
   
     
     
@@ -489,21 +487,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +656,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +686,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

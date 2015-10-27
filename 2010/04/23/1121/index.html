@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。
+而在 PHP5 之後，除了以往的 Error Handling 之外，還多了 Exception Handling ，使得程式變得更難去處理錯誤；所以大多數的開發者只能雙手一攤，讓這些錯誤訊息大剌剌地出現在使用者面前。
+有沒有什麼好方法可以讓我們好好控制 Err">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何在 PHP 中平順地處理 Error 及 Exception ？">
 <meta property="og:url" content="http://jaceju.net/2010/04/23/1121/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。
+而在 PHP5 之後，除了以往的 Error Handling 之外，還多了 Exception Handling ，使得程式變得更難去處理錯誤；所以大多數的開發者只能雙手一攤，讓這些錯誤訊息大剌剌地出現在使用者面前。
+有沒有什麼好方法可以讓我們好好控制 Err">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在 PHP 中平順地處理 Error 及 Exception ？">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。
+而在 PHP5 之後，除了以往的 Error Handling 之外，還多了 Exception Handling ，使得程式變得更難去處理錯誤；所以大多數的開發者只能雙手一攤，讓這些錯誤訊息大剌剌地出現在使用者面前。
+有沒有什麼好方法可以讓我們好好控制 Err">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 如何在 PHP 中平順地處理 Error 及 Exception ？ | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,35 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。</p>
+<p>而在 PHP5 之後，除了以往的 Error Handling 之外，還多了 Exception Handling ，使得程式變得更難去處理錯誤；所以大多數的開發者只能雙手一攤，讓這些錯誤訊息大剌剌地出現在使用者面前。</p>
+<p>有沒有什麼好方法可以讓我們好好控制 Error 和 Exception 呢？</p>
+<a id="more"></a>
+<h2 id="傳統的做法">傳統的做法</h2><p>在很多書籍和網路範例裡，當程式出錯時就是讓程序直接死掉，最常見的就是資料庫連線：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$link = mysql_connect(&#39;localhost&#39;, &#39;mysql_user&#39;, &#39;mysql_password&#39;);&#10;if (!$link) &#123;&#10;    die(&#39;Could not connect: &#39; . mysql_error());&#10;&#125;&#10;echo &#39;Connected successfully&#39;;&#10;mysql_close($link);</span><br></pre></td></tr></table></figure>
+<p>或是在送出導向 header 後，就直接 exit ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">header(&#34;Location: http://www.example.com/&#34;); /* Redirect browser */&#10;/* Make sure that code below does not get executed when we redirect. */&#10;exit;</span><br></pre></td></tr></table></figure>
+<p>這些都不是好做法，因為有些流量較大的網站裡可能有多個資料庫連線，或是檔案的 handler 仍在開啟中；如果直接讓程序死亡或離開的話，就沒辦法將這些已經開啟的資源給正常關閉掉，進而造成系統的不穩定。</p>
+<h2 id="Exception_的處理">Exception 的處理</h2><p>PHP5 中，有個 <a href="http://www.php.net/manual/en/function.set-exception-handler.php" target="_blank" rel="external">set_exception_handler</a> 這個函式，它可以幫我們處理 Exception ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function exception_handler($exception)&#10;&#123;&#10;  echo &#34;Uncaught exception: &#34; , $exception-&#62;getMessage(), &#34;\n&#34;;&#10;&#125;&#10;set_exception_handler(&#39;exception_handler&#39;);&#10;throw new Exception(&#39;Uncaught Exception&#39;);&#10;echo &#34;Not Executed\n&#34;;</span><br></pre></td></tr></table></figure>
+<p>不過我個人認為用 <a href="http://www.php.net/manual/en/language.exceptions.php" target="_blank" rel="external">try…catch</a> 會讓我們在程式流程上的彈性更大：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function inverse($x)&#10;&#123;&#10;    if (!$x) &#123;&#10;        throw new Exception(&#39;Division by zero.&#39;);&#10;    &#125;&#10;    else return 1/$x;&#10;&#125;&#10;try &#123;&#10;    echo inverse(5) . &#34;\n&#34;;&#10;    echo inverse(0) . &#34;\n&#34;;&#10;&#125; catch (Exception $e) &#123;&#10;    echo &#39;Caught exception: &#39;,  $e-&#62;getMessage(), &#34;\n&#34;;&#10;&#125;&#10;// Continue execution&#10;echo &#39;Hello World&#39;;</span><br></pre></td></tr></table></figure>
+<p>而在我研究過 Zend Framework 的做法後，發現它在處理 Exception 上更加聰明。 Zend Framework 在 Controller 中引入一個 Response 物件，所有對瀏覽器的輸出都要經過它 (例如 Header 、 Content Body 等等) ；而這個 Reponse 物件也同時控管著 Exception 是否要被輸出到瀏覽器端，讓程式開發者能有更大的空間處理 Exception 。</p>
+<p>以下我簡單把 Zend Framework 在 Response 物件中處理 Exception 的概念整理成一個自製的 Response 類別：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Response&#10;&#123;&#10;    private $_exceptions = array();&#10;    private $_renderExceptions = false;&#10;    public function setException(Exception $e)&#10;    &#123;&#10;        $this-&#62;_exceptions[] = $e;&#10;    &#125;&#10;    public function getExceptions()&#10;    &#123;&#10;        return $this-&#62;_exceptions;&#10;    &#125;&#10;    public function isException()&#10;    &#123;&#10;        return !empty($this-&#62;_exceptions);&#10;    &#125;&#10;    public function renderExceptions($flag = null)&#10;    &#123;&#10;        if (null !== $flag) &#123;&#10;            $this-&#62;_renderExceptions = $flag ? true : false;&#10;        &#125;&#10;        return $this-&#62;_renderExceptions;&#10;    &#125;&#10;    public function sendResponse()&#10;    &#123;&#10;        echo &#34;Header sending...\n&#34;;&#10;        $exception = &#39;&#39;;&#10;        if ($this-&#62;isException() &#38;amp;&#38;amp; $this-&#62;renderExceptions()) &#123;&#10;            foreach ($this-&#62;getExceptions() as $e) &#123;&#10;                $exception .= $e-&#62;getMessage() . &#34;\n&#34;;&#10;            &#125;&#10;            echo $exception;&#10;        &#125;&#10;        echo &#34;Body sending...\n&#34;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>主要的概念很簡單，就是 Response 物件先把 Exception 先收集起來，然後再視狀況如何處理，例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$response = new Response();&#10;$response-&#62;renderExceptions(true); // &#35731; Exception &#21576;&#29694;&#20986;&#20358;&#10;try &#123;&#10;    // &#36889;&#35041;&#34389;&#29702;&#25105;&#20497;&#30495;&#27491;&#35201;&#22519;&#34892;&#30340;&#21205;&#20316;&#10;    throw new Exception(&#39;TEST&#39;); // &#19999;&#20986;&#19968;&#20491;&#28204;&#35430;&#29992;&#30340;&#20363;&#22806;&#10;&#125; catch (Exception $e) &#123;&#10;    $response-&#62;setException($e); // &#25910;&#38598;&#20363;&#22806;&#10;&#125;&#10;if ($response-&#62;isException()) &#123;&#10;    // &#21487;&#20197;&#22312;&#36889;&#35041;&#35352;&#37636; Exception&#10;&#125;&#10;$response-&#62;sendResponse(); // &#39023;&#31034;&#25152;&#26377;&#32080;&#26524; (&#21253;&#21547; Header, Exception, Body &#31561;)</span><br></pre></td></tr></table></figure>
+<p>透過了 Response 物件來管理 Exception ，就可以不必因為 Exception 而中斷我們的程式碼。</p>
+<h2 id="PHP_Error_的處理">PHP Error 的處理</h2><p>雖然 Exception 可以用 try…catch 控制程式流程，但 PHP Error 卻不行。</p>
+<p>因為一般處理 PHP Error 的方法是透過 <a href="http://www.php.net/manual/en/function.set-error-handler.php" target="_blank" rel="external">set_error_handler</a>，而當執行完自訂的 Error Handler 後，我們卻只能選擇繼續執行下一行程式碼或將程式中斷離開，不然就是要利用全域變數來設定錯誤旗標以達到控制的目的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$error = false;&#10;function exceptionErrorHandler($errno, $errstr, $errfile, $errline)&#10;&#123;&#10;    global $error;&#10;    $error = true;&#10;    echo $errstr, &#34;\n&#34;;&#10;    return true;&#10;&#125;&#10;set_error_handler(&#34;exceptionErrorHandler&#34;);&#10;strpos();&#10;if (!$error) &#123;&#10;    echo &#34;Do normal process here.\n&#34;;&#10;&#125;&#10;echo &#34;end.\n&#34;;</span><br></pre></td></tr></table></figure>
+<p>不過 PHP5 也幫我們想好了，我們可以在 Error Handler 裡丟出 <a href="http://www.php.net/manual/en/class.errorexception.php" target="_blank" rel="external">ErrorException</a> ，就可以配合前面提到的 Response 物件做到更平順的 Exception 處理：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function exceptionErrorHandler($errno, $errstr, $errfile, $errline )&#10;&#123;&#10;    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);&#10;&#125;&#10;set_error_handler(&#34;exceptionErrorHandler&#34;);&#10;$response = new Response();&#10;$response-&#62;renderExceptions(true); // &#35731; Exception &#21576;&#29694;&#20986;&#20358;&#10;try &#123;&#10;    // &#36889;&#35041;&#34389;&#29702;&#25105;&#20497;&#30495;&#27491;&#35201;&#22519;&#34892;&#30340;&#21205;&#20316;&#10;    trigger_error(&#39;TEST&#39;, E_USER_ERROR); // &#25913;&#29992; trigger_error &#20358;&#19999;&#20986;&#28204;&#35430;&#29992;&#37679;&#35492;&#10;&#125; catch (Exception $e) &#123;&#10;    $response-&#62;setException($e); // &#25910;&#38598;&#20363;&#22806;&#10;&#125;&#10;if ($response-&#62;isException()) &#123;&#10;    // &#21487;&#20197;&#22312;&#36889;&#35041;&#35352;&#37636; Exception&#10;&#125;&#10;$response-&#62;sendResponse(); // &#39023;&#31034;&#25152;&#26377;&#32080;&#26524; (&#21253;&#21547; Header, Exception, Body &#31561;)</span><br></pre></td></tr></table></figure>
+<p>這邊最棒的是 Error Handler 丟出 ErrorException 後， try…catch 就會發生作用，而不再像 set_error_handler 這樣又返回中斷的地方繼續執行，一切就像行雲流水般那麼自然。</p>
+<h2 id="結論">結論</h2><p>一個運作良好的系統必須要對錯誤的發生有最大的掌控權，而不是放任它讓系統墜毀在五里霧之中。</p>
+<p>雖然前面提到的處理方式也許不是最佳的，但希望透過這樣的介紹，讓大家能夠思考自己的程式應該如何去處理錯誤這件事。</p>
+<p>就寫到這裡吧，收工~</p>
+</span>
       
     </div>
 
@@ -290,22 +309,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +388,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +421,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#傳統的做法"><span class="nav-number">1.</span> <span class="nav-text">傳統的做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exception_的處理"><span class="nav-number">2.</span> <span class="nav-text">Exception 的處理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP_Error_的處理"><span class="nav-number">3.</span> <span class="nav-text">PHP Error 的處理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +437,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +459,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +469,6 @@
 
   
   
-
   
     
     
@@ -491,21 +498,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +667,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +697,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

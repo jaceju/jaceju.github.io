@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="為了避免類別重覆宣告，我想盡辦法做了一些調整，但都不如已意。後來我回想起自己曾經找過一篇動態載入 ASP 程式的文章，那時因為它無法達到我的需求而放棄，但是現在它卻有新的用法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ASP 物件設計手法 (4) - 動態載入類別">
 <meta property="og:url" content="http://jaceju.net/2005/12/10/57/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="為了避免類別重覆宣告，我想盡辦法做了一些調整，但都不如已意。後來我回想起自己曾經找過一篇動態載入 ASP 程式的文章，那時因為它無法達到我的需求而放棄，但是現在它卻有新的用法。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ASP 物件設計手法 (4) - 動態載入類別">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="為了避免類別重覆宣告，我想盡辦法做了一些調整，但都不如已意。後來我回想起自己曾經找過一篇動態載入 ASP 程式的文章，那時因為它無法達到我的需求而放棄，但是現在它卻有新的用法。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> ASP 物件設計手法 (4) - 動態載入類別 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,33 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>為了避免類別重覆宣告，我想盡辦法做了一些調整，但都不如已意。後來我回想起自己曾經找過一篇<a href="http://www.blueidea.com/tech/program/2003/101.asp" target="_blank" rel="external">動態載入 ASP 程式的文章</a>，那時因為它無法達到我的需求而放棄，但是現在它卻有新的用法。</p>
+<a id="more"></a>
+<h2 id="載入文件">載入文件</h2><p>首先透過 ADODB.Stream ，我們可以把一份文字檔載入記憶體：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LoadFile.asp&#10;&#60;%&#10;Public Function LoadFile(sFilePath)&#10;    Dim oStream&#10;    On Error Resume Next&#10;    Set oStream = Server.CreateObject(&#34;ADODB.Stream&#34;)&#10;    With oStream&#10;        .Type = 2&#10;        .Mode = 3&#10;        .CharSet = &#34;BIG5&#34;&#10;        .Open&#10;        .LoadFromFile Server.MapPath(sFilePath)&#10;        If Err.Number &#60;&#62; 0 Then&#10;            Err.Clear&#10;            Response.Write &#34;[FUNCTION] LoadFile Error - &#25214;&#19981;&#21040;&#27284;&#26696;&#65306;&#34; &#38;amp; sFilePath&#10;            Response.End&#10;        End If&#10;        LoadFile = .ReadText&#10;        .Close&#10;    End With&#10;    Set oStream = Nothing&#10;End Function&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>有些人習慣使用 FileSystemObject 來載入檔案內容，但是利用 ADODB.Stream 的效率會比較好。</p>
+<h2 id="動態載入_ASP_類別檔">動態載入 ASP 類別檔</h2><p>以下的程式就是從前面那篇文章所提供的程式修改而來的，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Include.asp&#10;&#60;!-- #include file = &#34;LoadFile.asp&#34; --&#62;&#10;&#60;%&#10;Public Const ASP_LEFT = &#34;&#60;%&#34;&#10;Public Const ASP_RIGHT = &#34;%\&#62;&#34;&#10;Public Function Include(sFileName)&#10;    Dim sContent : sContent = LoadFile(sFileName)&#10;    Dim iEnd : iEnd = 1&#10;    Dim iStart : iStart = InStr(iEnd, sContent, ASP_LEFT) + 2&#10;    Do While iStart &#62; iEnd + 1&#10;        iEnd = InStr(iStart, sContent, ASP_RIGHT) + 2&#10;        ExecuteGlobal(Mid(sContent, iStart, iEnd - iStart - 2))&#10;        iStart = InStr(iEnd, sContent, ASP_LEFT) + 2&#10;    Loop&#10;End Function&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>其中 “%>“ 是為了避開 ASP 解譯程式上的錯誤。主要的概念就是利用 <a href="http://msdn.microsoft.com/library/en-us/script56/html/vsstmExecuteGlobal.asp" target="_blank" rel="external">ExecuteGlobal</a> 來執行 ASP 檔案中的 &lt;% 及 %&gt; 兩個符號間的內容，如果使用 <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/script56/html/vsstmExecute.asp" target="_blank" rel="external">Execute</a> 的話，會發生找不到 Class 的錯誤。 </p>
+<h2 id="建立物件">建立物件</h2><p>還記得前面所介紹的類別命名規則和工廠方法嗎？這裡就派上用場了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GetObject.asp&#10;&#60;!-- #include file=&#34;Include.asp&#34; --&#62;&#10;&#60;%&#10;Public Const CLASS_DIR = &#34;&#34;&#10;Public Function GetObject(sClassName)&#10;    Dim sFileName&#10;    sFileName = Replace(sClassName, &#34;_&#34;, &#34;/&#34;) &#38;amp; &#34;.asp&#34;&#10;    Set GetObject = Nothing&#10;    On Error Resume Next&#10;    Include sFileName&#10;    Execute &#34;Set GetObject = New &#34; &#38;amp; sClassName&#10;    On Error Goto 0&#10;End Function&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>首先我們把類別名稱中的 “_” (底線) 換成 “/“ (斜線) 再加上 “.asp” ，然後利用工廠方法來回傳建立好的物件。</p>
+<p>註：因為 ASP (VBScript) 沒有內建 GetObject 函式，所以我們可以這樣寫。如果是在 WScript 裡面就不能用 GetObject ，因為它是內建函式。</p>
+<p>以下就是簡單的測試方式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!-- #include file=&#34;GetObject.asp&#34; --&#62;&#10;&#60;%&#10;Dim oCache1 : Set oCache1 = GetObject(&#34;HTML_Cache&#34;)&#10;Response.Write TypeName(oCache1) &#38;amp; &#34;&#60;br /&#62;&#34; &#38;amp; vbCrLf&#10;oCache1.SetExpire 10&#10;If oCache1.IsCached Then&#10;    Response.Write &#34;File1 is cached.&#60;br /&#62;&#34; &#38;amp; vbCrLf&#10;End If&#10;Set oCache1 = Nothing&#10;&#10;Dim oCache2 : Set oCache2 = GetObject(&#34;HTML_Cache&#34;)&#10;Response.Write TypeName(oCache2) &#38;amp; &#34;&#60;br /&#62;&#34; &#38;amp; vbCrLf&#10;If oCache2.IsCached Then&#10;    Response.Write &#34;File2 is cached.&#60;br /&#62;&#34; &#38;amp; vbCrLf&#10;End If&#10;Set oCache2 = Nothing&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>而測試用的類別檔如下 (我簡化了許多不必要的程式) ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HTML\Cache.asp&#10;&#60;%&#10;Class HTML_Cache&#10;    Private Expire&#10;&#10;    Public Function IsCached()&#10;        IsCached = True&#10;    End Function&#10;&#10;    Public Sub SetExpire(iSecond)&#10;        Expire = iSecond&#10;    End Sub&#10;End Class&#10;%&#62;</span><br></pre></td></tr></table></figure>
+<p>測試一下，是不是很有趣呢？</p>
+<h2 id="總結">總結</h2><p>對我而言，如果把複雜的事情簡化，是一種學習的動力。透過這些步驟，我能夠很輕鬆地載入我想要的類別，而不必再煩惱是不是載入了重複的類別檔案。這系列的文章如果能對某些想要學習的人有用，那麼就值得了。</p>
+<h2 id="相關文章">相關文章</h2><ul>
+<li><a href="http://www.jaceju.net/blog/archives/51/" target="_blank" rel="external">ASP 物件導向 (1) - 基礎</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/52/" target="_blank" rel="external">ASP 物件導向 (2) - 初級技巧</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/54/" target="_blank" rel="external">ASP 物件導向 (3) - 進階技巧</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/57/" target="_blank" rel="external">ASP 物件導向 (4) - 動態載入類別</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/59/" target="_blank" rel="external">ASP 物件導向 (5) - Me 關鍵字</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/76/" target="_blank" rel="external">ASP 物件導向 (6) - 單元測試</a></li>
+</ul>
+</span>
       
     </div>
 
@@ -288,22 +299,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +378,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +411,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#載入文件"><span class="nav-number">1.</span> <span class="nav-text">載入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#動態載入_ASP_類別檔"><span class="nav-number">2.</span> <span class="nav-text">動態載入 ASP 類別檔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立物件"><span class="nav-number">3.</span> <span class="nav-text">建立物件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#總結"><span class="nav-number">4.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相關文章"><span class="nav-number">5.</span> <span class="nav-text">相關文章</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +427,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +449,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +459,6 @@
 
   
   
-
   
     
     
@@ -489,21 +488,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +657,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +687,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

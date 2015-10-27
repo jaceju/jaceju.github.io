@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="來上 TDD 課的學員問到一個 Laravel 程式碼重構的問題，這裡簡單地做分享。未來如果有好的實戰範例，這系列就會延續下去。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例">
 <meta property="og:url" content="http://jaceju.net/2015/10/05/simple-refatoring-example-01/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="來上 TDD 課的學員問到一個 Laravel 程式碼重構的問題，這裡簡單地做分享。未來如果有好的實戰範例，這系列就會延續下去。">
 <meta property="og:updated_time" content="2015-10-05T05:01:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="來上 TDD 課的學員問到一個 Laravel 程式碼重構的問題，這裡簡單地做分享。未來如果有好的實戰範例，這系列就會延續下去。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,30 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>來上 TDD 課的學員問到一個 Laravel 程式碼重構的問題，這裡簡單地做分享。未來如果有好的實戰範例，這系列就會延續下去。</p>
+<a id="more"></a>
+<h2 id="開始重構">開始重構</h2><p>當然重構前，我們必須先有測試做保障。在每個步驟完成後，我們都應該確保修改後的程式碼能通過測試的驗證。</p>
+<p>接下來開始重構，這是原本的程式碼：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Step 0</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$errorRedirectViewType</span> == <span class="string">'create'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> Redirect::route(<span class="keyword">self</span>::__module . <span class="string">'.'</span> . <span class="keyword">self</span>::__function . <span class="string">'.'</span> . <span class="variable">$errorRedirectViewType</span>)</span><br><span class="line">        -&gt;with(<span class="string">'message'</span>, <span class="string">'一樣的 message'</span>)</span><br><span class="line">        -&gt;withInput(<span class="variable">$allInput</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> Redirect::route(<span class="keyword">self</span>::__module . <span class="string">'.'</span> . <span class="keyword">self</span>::__function . <span class="string">'.'</span> . <span class="variable">$errorRedirectViewType</span>, [<span class="string">'id'</span> =&gt; <span class="variable">$allInput</span>[<span class="string">'id'</span>]])</span><br><span class="line">        -&gt;with(<span class="string">'message'</span>, <span class="string">'一樣的 message'</span>)</span><br><span class="line">        -&gt;withInput(<span class="variable">$allInput</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一步我們引入一個 <code>$redirect</code> 變數：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Step 1</span></span><br><span class="line"><span class="variable">$redirect</span> = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$errorRedirectViewType</span> == <span class="string">'create'</span>) &#123;</span><br><span class="line">    <span class="variable">$redirect</span> = Redirect::route(<span class="keyword">self</span>::__module . <span class="string">'.'</span> . <span class="keyword">self</span>::__function . <span class="string">'.'</span> . <span class="variable">$errorRedirectViewType</span>)</span><br><span class="line">        -&gt;with(<span class="string">'message'</span>, <span class="string">'一樣的 message'</span>)</span><br><span class="line">        -&gt;withInput(<span class="variable">$allInput</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$redirect</span> = Redirect::route(<span class="keyword">self</span>::__module . <span class="string">'.'</span> . <span class="keyword">self</span>::__function . <span class="string">'.'</span> . <span class="variable">$errorRedirectViewType</span>, [<span class="string">'id'</span> =&gt; <span class="variable">$allInput</span>[<span class="string">'id'</span>]])</span><br><span class="line">        -&gt;with(<span class="string">'message'</span>, <span class="string">'一樣的 message'</span>)</span><br><span class="line">        -&gt;withInput(<span class="variable">$allInput</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="variable">$redirect</span>;</span><br></pre></td></tr></table></figure>
+<p>第二步我們把共用的部份移出 <code>if...else</code> 外：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Step 2</span></span><br><span class="line"><span class="variable">$redirect</span> = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$errorRedirectViewType</span> == <span class="string">'create'</span>) &#123;</span><br><span class="line">    <span class="variable">$redirect</span> = Redirect::route(<span class="keyword">self</span>::__module . <span class="string">'.'</span> . <span class="keyword">self</span>::__function . <span class="string">'.'</span> . <span class="variable">$errorRedirectViewType</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$redirect</span> = Redirect::route(<span class="keyword">self</span>::__module . <span class="string">'.'</span> . <span class="keyword">self</span>::__function . <span class="string">'.'</span> . <span class="variable">$errorRedirectViewType</span>, [<span class="string">'id'</span> =&gt; <span class="variable">$allInput</span>[<span class="string">'id'</span>]]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="variable">$redirect</span></span><br><span class="line">        -&gt;with(<span class="string">'message'</span>, <span class="string">'一樣的 message'</span>)</span><br><span class="line">        -&gt;withInput(<span class="variable">$allInput</span>);</span><br></pre></td></tr></table></figure>
+<p>第三步把 <code>if...else</code> 提煉成 <code>redirectByViewType</code> 方法：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Step 3</span></span><br><span class="line"><span class="comment">// Extracted method</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">redirectByViewType</span><span class="params">(<span class="variable">$errorRedirectViewType</span>, <span class="variable">$id</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$redirect</span> = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$errorRedirectViewType</span> == <span class="string">'create'</span>) &#123;</span><br><span class="line">        <span class="variable">$redirect</span> = Redirect::route(<span class="keyword">self</span>::__module . <span class="string">'.'</span> . <span class="keyword">self</span>::__function . <span class="string">'.'</span> . <span class="variable">$errorRedirectViewType</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$redirect</span> = Redirect::route(<span class="keyword">self</span>::__module . <span class="string">'.'</span> . <span class="keyword">self</span>::__function . <span class="string">'.'</span> . <span class="variable">$errorRedirectViewType</span>, [<span class="string">'id'</span> =&gt; <span class="variable">$id</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$redirect</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然後改用新的 <code>redirectByViewType</code> 方法：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Step 3</span></span><br><span class="line"><span class="variable">$redirect</span> = <span class="variable">$this</span>-&gt;redirectByViewType(<span class="variable">$errorRedirectViewType</span>, <span class="variable">$allInput</span>[<span class="string">'id'</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="variable">$redirect</span></span><br><span class="line">        -&gt;with(<span class="string">'message'</span>, <span class="string">'一樣的 message'</span>)</span><br><span class="line">        -&gt;withInput(<span class="variable">$allInput</span>);</span><br></pre></td></tr></table></figure>
+<p>至於第二步到第三步要不要做，就看我們有沒有 reuse 這段邏輯的需求；但一般我會做，因為程式碼看起來好讀，後面也可以再做其他重構。</p>
+<p>第四步就可以把原來的 <code>$redirect</code> 拿掉，因為不需要了。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Step 4</span></span><br><span class="line"><span class="keyword">return</span> <span class="variable">$this</span>-&gt;redirectByViewType(<span class="variable">$errorRedirectViewType</span>, <span class="variable">$allInput</span>[<span class="string">'id'</span>])</span><br><span class="line">        -&gt;with(<span class="string">'message'</span>, <span class="string">'一樣的 message'</span>)</span><br><span class="line">        -&gt;withInput(<span class="variable">$allInput</span>);</span><br></pre></td></tr></table></figure>
+<p>這種先引入一個臨時變數讓重構好進行的方式，是很常見的。而什麼時候應該需要使用這個技巧？這就要多累積經驗。通常你可以想像一下重構後的程式碼，大致與重構前會有什麼樣的差異，再判斷是否需要引用一個臨時變數。</p>
+<p>第五步，我們把 <code>redirectByViewType</code> 重複的程式碼再引用一個解釋用的變數 <code>$routeName</code> ：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Step 5</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">redirectByViewType</span><span class="params">(<span class="variable">$errorRedirectViewType</span>, <span class="variable">$id</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$redirect</span> = <span class="keyword">null</span>;</span><br><span class="line">    <span class="variable">$routeName</span> = <span class="keyword">self</span>::__module . <span class="string">'.'</span> .</span><br><span class="line">               <span class="keyword">self</span>::__function . <span class="string">'.'</span> .</span><br><span class="line">               <span class="variable">$errorRedirectViewType</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$errorRedirectViewType</span> == <span class="string">'create'</span>) &#123;</span><br><span class="line">        <span class="variable">$redirect</span> = Redirect::route(<span class="variable">$routeName</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$redirect</span> = Redirect::route(<span class="variable">$routeName</span>, [<span class="string">'id'</span> =&gt; <span class="variable">$id</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$redirect</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這樣程式碼就更容易被理解了。</p>
+<h2 id="後記">後記</h2><p>希望這個小例子可以讓大家瞭解到，實戰中的重構其實是很簡單的。它就是在不更改原有邏輯的狀態下，一步一步讓你的程式碼變得更易讀也更易維護。</p>
+<p>當初因為是臨時示範給學員看，所以並沒有特別加上測試，也沒有用 PhpStorm 來協助重構；結果後來我發現在 extract method 時，忘了把 <code>$allInput[&#39;id&#39;]</code> 帶到 <code>redirectByViewType</code> 裡面。</p>
+<p>這就是一種工程師很容易忽略的盲點，就是太容易相信自己的想法，而不是真正去驗證它。在沒有測試和工具的輔助下，千萬要特別小心這種小錯誤。</p>
+</span>
       
     </div>
 
@@ -290,22 +298,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +377,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +410,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#開始重構"><span class="nav-number">1.</span> <span class="nav-text">開始重構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">2.</span> <span class="nav-text">後記</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +426,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +448,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +458,6 @@
 
   
   
-
   
     
     
@@ -491,21 +487,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +656,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +686,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

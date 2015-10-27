@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="在前一篇安裝好 CI 平台後，接著我們就要來建立一個新的 CI 專案了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 持續整合簡介 – 專案設定篇">
 <meta property="og:url" content="http://jaceju.net/2011/01/14/1543/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="在前一篇安裝好 CI 平台後，接著我們就要來建立一個新的 CI 專案了。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 持續整合簡介 – 專案設定篇">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="在前一篇安裝好 CI 平台後，接著我們就要來建立一個新的 CI 專案了。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> PHP 持續整合簡介 – 專案設定篇 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,69 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>在<a href="http://www.jaceju.net/blog/archives/1538" target="_blank" rel="external">前一篇</a>安裝好 CI 平台後，接著我們就要來建立一個新的 CI 專案了。</p>
+<a id="more"></a>
+<h2 id="準備工作">準備工作</h2><p>首先在建立一個 CI 專案前，我們必須讓程式碼進入版本控制系統中，我個人習慣使用 <a href="http://subversion.apache.org/" target="_blank" rel="external">Subversion</a> ，並在 Repository 建立 trunk 、 branches 及 tags 三個目錄。</p>
+<p>然後我會把正在最新的程式碼放在 trunk 主幹下，正在開發的版本分支則放在 branches 下，最後 tags 裡是放置已經穩定不再變動的版本。</p>
+<p>以下我假設專案名稱為 MyFirstProject ， Subversion 的 Repository 路徑就用 <a href="http://host/svn/my-first-project/trunk" target="_blank" rel="external">http://host/svn/my-first-project/trunk</a> 做為示範。</p>
+<h3 id="加入建置指令檔">加入建置指令檔</h3><p>接著我們要在 <a href="http://host/svn/my-first-project/trunk" target="_blank" rel="external">http://host/svn/my-first-project/trunk</a> 下加入一個 build.xml 檔，到時候 Phing 會主動讀取這個檔案來做建置動作。 build.xml 的內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;&#10; &#60;project name=&#34;test&#34; basedir=&#34;.&#34; default=&#34;app&#34;&#62;&#10;    &#60;property name=&#34;builddir&#34; value=&#34;$&#123;ws&#125;/build&#34; /&#62;&#10;    &#60;target name=&#34;prepare&#34;&#62;&#10;        &#60;echo msg=&#34;Prepare...&#34; /&#62;&#10;        &#60;mkdir dir=&#34;$&#123;builddir&#125;&#34; /&#62;&#10;        &#60;mkdir dir=&#34;$&#123;builddir&#125;/logs&#34; /&#62;&#10;        &#60;mkdir dir=&#34;$&#123;builddir&#125;/logs/coverage&#34; /&#62;&#10;        &#60;mkdir dir=&#34;$&#123;builddir&#125;/docs&#34; /&#62;&#10;        &#60;mkdir dir=&#34;$&#123;builddir&#125;/app&#34; /&#62;&#10;    &#60;/target&#62;&#10;    &#60;target name=&#34;clean&#34;&#62;&#10;        &#60;echo msg=&#34;Clean...&#34; /&#62;&#10;        &#60;delete dir=&#34;$&#123;builddir&#125;&#34; /&#62;&#10;    &#60;/target&#62;&#10;&#10;    &#60;!-- Deploy app --&#62;&#10;    &#60;target name=&#34;app&#34;&#62;&#10;        &#60;echo msg=&#34;We do nothing yet!&#34; /&#62;&#10;    &#60;/target&#62;&#10;    &#60;!-- PHP API Documentation --&#62;&#10;    &#60;target name=&#34;phpdoc&#34;&#62;&#10;        &#60;echo msg=&#34;PHP Documentor...&#34; /&#62;&#10;        &#60;phpdoc title=&#34;API Documentation&#34;&#10;                destdir=&#34;$&#123;builddir&#125;/docs&#34;&#10;                sourcecode=&#34;yes&#34;&#10;                defaultpackagename=&#34;MHTest&#34;&#10;                output=&#34;HTML:Smarty:PHP&#34;&#62;&#10;            &#60;fileset dir=&#34;$&#123;ws&#125;/source/app&#34;&#62;&#10;                &#60;include name=&#34;**/*.php&#34; /&#62;&#10;            &#60;/fileset&#62;&#10;        &#60;/phpdoc&#62;&#10;    &#60;/target&#62;&#10;    &#60;!-- PHP copy/paste analysis --&#62;&#10;    &#60;target name=&#34;phpcpd&#34;&#62;&#10;        &#60;echo msg=&#34;PHP Copy/Paste...&#34; /&#62;&#10;        &#60;phpcpd&#62;&#10;            &#60;fileset dir=&#34;$&#123;ws&#125;/source&#34;&#62;&#10;                &#60;include name=&#34;**/*.php&#34; /&#62;&#10;            &#60;/fileset&#62;&#10;            &#60;formatter type=&#34;pmd&#34; outfile=&#34;$&#123;builddir&#125;/logs/pmd.xml&#34;/&#62;&#10;        &#60;/phpcpd&#62;&#10;    &#60;/target&#62;&#10;    &#60;!-- PHP CodeSniffer --&#62;&#10;    &#60;target name=&#34;phpcs&#34;&#62;&#10;        &#60;echo msg=&#34;PHP CodeSniffer...&#34; /&#62;&#10;        &#60;phpcodesniffer standard=&#34;Zend&#34; showWarnings=&#34;false&#34;&#62;&#10;            &#60;fileset dir=&#34;$&#123;ws&#125;/source&#34;&#62;&#10;                &#60;include name=&#34;**/*.php&#34;/&#62;&#10;            &#60;/fileset&#62;&#10;            &#60;formatter type=&#34;checkstyle&#34; outfile=&#34;$&#123;builddir&#125;/logs/checkstyle.xml&#34;/&#62;&#10;        &#60;/phpcodesniffer&#62;&#10;    &#60;/target&#62;&#10;    &#60;!-- PHP dependency checker --&#62;&#10;    &#60;target name=&#34;pdepend&#34;&#62;&#10;        &#60;echo msg=&#34;PHP Depend...&#34; /&#62;&#10;        &#60;exec command=&#34;pdepend --jdepend-xml=$&#123;builddir&#125;/logs/jdepend.xml $&#123;ws&#125;/source&#34; escape=&#34;false&#34; /&#62;&#10;    &#60;/target&#62;&#10;    &#60;!-- Unit Tests &#38;amp; coverage analysis --&#62;&#10;    &#60;target name=&#34;phpunit&#34;&#62;&#10;        &#60;echo msg=&#34;PHPUnit...&#34; /&#62;&#10;        &#60;exec command=&#34;phpunit --log-junit $&#123;builddir&#125;/logs/phpunit.xml --coverage-clover $&#123;builddir&#125;/logs/coverage/clover.xml --coverage-html $&#123;builddir&#125;/logs/coverage/ $&#123;ws&#125;/source/tests&#34;/&#62;&#10;    &#60;/target&#62;&#10;&#60;/project&#62;</span><br></pre></td></tr></table></figure>
+<p>詳細的 build.xml 格式介紹請參考 <a href="http://phing.info/docs/guide/stable/" target="_blank" rel="external">Phing 官方手冊</a>，這邊我簡單介紹一下在 build.xml 中有用到的標籤。</p>
+<h3 id="Phing_標籤簡介">Phing 標籤簡介</h3><dl><br><dt><a href="http://phing.info/docs/guide/stable/chapters/ProjectComponents.html#Projects" target="_blank" rel="external">project</a></dt><br><dd><br>為 build.xml 的根元素，定義了專案的名稱 (name) 、目錄 (basedir) 及預設的執行動作 (default) 。</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/appendixes/AppendixB-CoreTasks.html#PropertyTask" target="_blank" rel="external">property</a></dt><br><dd><br>用來定義專案的屬性，主要可定義屬性名稱 (name) 及屬性值 (value) ；之後可以在整個 XML 中透過 ${property-name} 來取得該屬性值。這邊我定義了 builddir 屬性，主要是用來放置建置後所產生的相關 log 檔及文件檔。</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/ProjectComponents.html#Targets" target="_blank" rel="external">target</a></dt><br><dd><br>這是指要建置的目標，可以把它想成是一組命令集合。每個 target 都會有一個名稱 (name) ，方便我們在執行建置動作時可以指定是否執行這個 target ；另外 target 也可以設定相依性 (depends) ，也就是在執行該 target 前，所需要先執行的 target 。</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/appendixes/AppendixB-CoreTasks.html#EchoTask" target="_blank" rel="external">echo</a></dt><br><dd><br>輸出訊息。</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/appendixes/AppendixB-CoreTasks.html#DeleteTask" target="_blank" rel="external">delete</a></dt><br><dd><br>刪除目錄或檔案。</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/appendixes/AppendixB-CoreTasks.html#MkdirTask" target="_blank" rel="external">mkdir</a></dt><br><dd><br>建立目錄。</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/appendixes/AppendixB-CoreTasks.html#ExecTask" target="_blank" rel="external">exec</a></dt><br><dd><br>執行系統命令，命令要放在 command 屬性裡；這邊是用來執行 PHP_Depend 及 PHPUnit 兩個工具的命令列指令。</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/appendixes/AppendixC-OptionalTasks.html#PhpDocumentorTask" target="_blank" rel="external">phpdoc</a></dt><br><dd><br>這是 Phing 支援 PHPDocumentor 的標籤</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/appendixes/AppendixC-OptionalTasks.html#PHPCPDTask" target="_blank" rel="external">phpcpd</a></dt><br><dd><br>這是 Phing 支援 PHP Copy/Paste Detector 的標籤。</dd><br><dt><a href="http://phing.info/docs/guide/stable/chapters/appendixes/AppendixC-OptionalTasks.html#PhpCodeSnifferTask" target="_blank" rel="external">phpcs</a></dt><br><dd><br>這是 Phing 支援 PHP_CodeSniffer 的標籤。</dd><br></dl>
+
+<p>註：其實 Phing 也有專門支援 PHP_Depend 及 PHPUnit 的標籤，但我實測的結果會有問題，因此就不介紹給大家了。</p>
+<p>另外這裡有個 ${ws} 變數值得注意，它指的是 Hudson CI 專案的工作目錄 (workspace) ，稍後我們會從外部把這個變數值傳進來。</p>
+<h3 id="Phing_指令說明">Phing 指令說明</h3><p>以下是各個 target 的工作內容：</p>
+<dl><br><dt>prepare</dt><br><dd><br>建立 build 資料夾以及其下的 logs 、 docs 及 app 資料夾。</dd><br><dt>clean</dt><br><dd><br>刪除掉 build 資料夾。</dd><br><dt>app</dt><br><dd><br>主要的 target ，這邊可以處理我們專案要佈署的方式。</dd><br><dt>phpdoc</dt><br><dd><br>分析 source/app 資料夾下的 PHP 程式並產生 API 文件，然後將它們放在 build/docs 目錄下。</dd><br><dt>phpcpd</dt><br><dd><br>分析整個 source 資料夾下是否有複製貼上的 PHP 程式碼，並且產生 build/logs/pmd.xml 紀錄檔。</dd><br><dt>phpcs</dt><br><dd><br>以 Zend 型態的程式碼規範來檢查整個 source 資料夾下的程式碼，並以 checkstyle 型態產生 build/logs/checkstyle.xml 紀錄檔。</dd><br><dt>pdepend</dt><br><dd><br>呼叫 pdepend 命令來分析 source 資料夾下的類別相依性，並產生 JDepend 格式的 build/logs/jdepend.xml 紀錄檔。</dd><br><dt>phpunit</dt><br><dd><br>呼叫 phpunit 命令來做自動化測試及分析程式覆蓋率，並產生 JUnit 格式的 build/logs/phpunit.xml 自動化測試紀錄檔，以及 clover 格式的 build/logs/coverage/clover.xml 覆蓋率紀錄檔；同時也一併產生 PHPUnit 專屬的 HTML 覆蓋率報表。</dd><br></dl>
+
+<h3 id="執行_Phing">執行 Phing</h3><p>在還沒有使用 CI 之前，我們可以手動執行 Phing 來建置專案，例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">phing prepare app phpcs phpcpd phpunit pdepend phpdoc -Dws=~/workspace</span><br></pre></td></tr></table></figure>
+<p>在 phing 指令後，我們可以接上任意個 target ，然後用 -Dname=value 來指定 build.xml 內會用到的 property ，例如上述的 ${ws} 。</p>
+<p>註：別忘了把 phing 指令程式的路徑加到 PATH 系統環境變數裡。</p>
+<p>簡單的 Phing 就先介紹到此，準備工作也差不多了，接下來我們正式來建立 CI 專案。</p>
+<h2 id="建立_CI_專案">建立 CI 專案</h2><p>以下直接說明建立的步驟：</p>
+<ul>
+<li><p>在瀏覽器開啟 Hudson 的起始頁，選擇 create new jobs 以建立 CI 專案。</p>
+</li>
+<li><p>接下來在「 Job name (工作名稱) 」的地方輸入專案名稱，例如： My First Project 。然後在下方選擇「 Build a free-style software project 」後，按下「 OK 」鈕。</p>
+</li>
+<li><p>跳到「 Source Code Management 」區塊，選擇「 Subversion 」，然後在「 Repository URL 」後輸入我們專案的檔案庫網址：「 <a href="http://host/svn/my-first-project/trunk" target="_blank" rel="external">http://host/svn/my-first-project/trunk</a> 」；接著在「 Local module directory 」後輸入：「 source 」，這樣 Hudson 就會在工作目錄中產生一個 source 資料夾，並透過 svn 指令把我們的程式 checkout 到這個資料夾裡。</p>
+</li>
+<li><p>再跳到「 Build Triggers 」區塊，勾選「 Poll SCM 」，並在「 Schedule 」的後面輸入：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0 * * * *&#10;30 * * * *</span><br></pre></td></tr></table></figure>
+<p>這樣每隔三十分鐘， CI 伺服器就會啟動這個建置工作。</p>
+<ul>
+<li>接著跳到「 Build 」區塊，這裡我們要指定建置指令，也就是 Phing 要執行的動作。按下「 Add build step 」，選擇「 Invoke Phing targets 」；在「 Phing Version 」 (如果有設定多個 Phing 版本時會出現) 的後面保持「 (Default) 」，並在「 Targets 」之後輸入「 prepare app phpdoc phpcs phpcpd pdepend phpunit 」，這樣 Phing 會按照順序執行我們指定的 targets 。</li>
+</ul>
+<p>接著再點選「 Advanced 」，在「 Phing Build File 」的後面留白，這樣預設會讀取 build.xml ；最後在「 Properties 」輸入「 ws=%WORKSPACE% 」，這樣就會把當前的工作目錄的路徑以 ws 變數帶入 build.xml 。</p>
+<p>註：在 Windows 系統下，命令列變數的格式是「 %name% 」；而在 Unin Like 系統下，而要改成「 $name 」。</p>
+<p>如果 Phing 不是採用 PEAR 安裝的話，可以在「 Phing Version 」 的地方選擇手動安裝的版本，例如「 Phing 2.4.4 」。不過我在 Windows 系統下測試的結果，似乎沒辦法正常取得 %WORKSPACE% 的值，這時就要改用另一種建構方式。</p>
+<p>按下「 Add build step 」，選擇「 Execute Windows batch command 」，然後在「 Command (命令) 」的後面輸入：「 /path/to/phing.bat -f %WORKSPACE%/source/build.xml prepare app phpdoc phpcs phpcpd pdepend phpunit -Dws=%WORKSPACE% 」，這其實就是上面的動作會組成的指令。</p>
+<ul>
+<li>最後我們要把 Phing 建置完成後的紀錄檔轉換成報表，這邊就得靠 Hudson 的 Plugins 來幫忙。</li>
+</ul>
+<p>跳到「 Post-build Actions 」區塊，這邊是要設定完成建置後的後續動作。</p>
+<p>勾選「 Publish Checkstyle analysis results 」，並在「 Checkstyle results 」後輸入「 build/logs/checkstyle.xml 」，這邊會將 PHP_CodeSniffer 的紀錄檔轉換成報表。</p>
+<p>勾選「 Publish duplicate code analysis results 」，並在「 Duplicate code results 」後輸入「 build/logs/phpunit.pmd-cpd.xml 」，這邊會將 PHP Copy/Paste Detector 產生的紀錄檔轉換成報表。</p>
+<p>勾選「 Publish Javadoc 」，並在「 Javadoc directory 」後輸入「 build/docs/ 」，這邊會產生連往 API 文件檔的連結。</p>
+<p>勾選「 Publish Clover Coverage Report 」，並在「 Clover report directory 」後輸入「 build/logs/coverage 」以及在「 Clover report file name 」後輸入「 clover.xml 」，這樣就會產生程式碼覆蓋率報表。</p>
+<p>勾選「 Publish testing tools result report 」，再點選「 Add (新增) 」後選擇「 PHPUnit 」，並在「 PHPUnit Pattern 」後輸入「 build/logs/phpunit.xml 」 ，這樣一來就會將 PHPUnit 產生的紀錄檔轉換成分析報表了。</p>
+<p>完成後就將頁面拉到最下方，按下「 Save (儲存) 」，這樣就建立好一個 CI 專案囉。</p>
+<h2 id="執行專案建置">執行專案建置</h2><p>在專案首頁的右方選單，我們可以點選「 Build Now (馬上建構) 」來立刻執行建置工作。流程如下：</p>
+<ul>
+<li><p>Hudson 會更新工作區的 source ，並執行 build 動作。 build 即透過 Phing 來執行相關工具指令，並產生 log 檔或 doc 檔。 </p>
+</li>
+<li><p>在 build 過程中， Hudson 會依照 Phing 執行的結果來確認 build 是否成功。</p>
+</li>
+<li><p>Hudson 會在 build 執行完成之後，透過指定的 plugins 來處理這些 log 檔或 doc 檔，這樣我們就可以在上面看到每次建置的結果了。</p>
+</li>
+</ul>
+<h2 id="結論">結論</h2><p>特續整合是確保程式品質一個很重要的環節，而透過 CI 平台的自動化建置更能減輕我們在這方面的負擔；這樣我們只要關心不成功的建置問題在哪裡，可以更快速地找出應對的方式。</p>
+<p>當然或許目前在 Web 開發上還不太容易看到持續整合能對我們的專案有任何立竿見影的效果，但不表示它不值得去研究。有些技術總是要踏出第一步，我們才能瞭解它是否真正適合我們。</p>
+<p>繼續往前進吧！</p>
+</span>
       
     </div>
 
@@ -290,22 +337,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +416,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +449,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#準備工作"><span class="nav-number">1.</span> <span class="nav-text">準備工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加入建置指令檔"><span class="nav-number">1.1.</span> <span class="nav-text">加入建置指令檔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phing_標籤簡介"><span class="nav-number">1.2.</span> <span class="nav-text">Phing 標籤簡介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phing_指令說明"><span class="nav-number">1.3.</span> <span class="nav-text">Phing 指令說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#執行_Phing"><span class="nav-number">1.4.</span> <span class="nav-text">執行 Phing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立_CI_專案"><span class="nav-number">2.</span> <span class="nav-text">建立 CI 專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#執行專案建置"><span class="nav-number">3.</span> <span class="nav-text">執行專案建置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +465,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +487,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +497,6 @@
 
   
   
-
   
     
     
@@ -491,21 +526,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +695,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +725,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

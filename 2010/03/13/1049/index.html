@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="這兩天突然心血來潮，安裝了 Ubuntu 9.10 來玩，安裝完後才發現最重要的 PHP 測試環境沒有搭建起來。
+因此我就上網找了幾篇文章，東拼西湊下終於把 PHP 5.3 環境設定好了，以下就來簡單記錄我設定的過程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Ubuntu 9.10 上安裝 PHP 5.3 測試環境">
 <meta property="og:url" content="http://jaceju.net/2010/03/13/1049/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="這兩天突然心血來潮，安裝了 Ubuntu 9.10 來玩，安裝完後才發現最重要的 PHP 測試環境沒有搭建起來。
+因此我就上網找了幾篇文章，東拼西湊下終於把 PHP 5.3 環境設定好了，以下就來簡單記錄我設定的過程。">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Ubuntu 9.10 上安裝 PHP 5.3 測試環境">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="這兩天突然心血來潮，安裝了 Ubuntu 9.10 來玩，安裝完後才發現最重要的 PHP 測試環境沒有搭建起來。
+因此我就上網找了幾篇文章，東拼西湊下終於把 PHP 5.3 環境設定好了，以下就來簡單記錄我設定的過程。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 在 Ubuntu 9.10 上安裝 PHP 5.3 測試環境 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,58 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>這兩天突然心血來潮，安裝了 Ubuntu 9.10 來玩，安裝完後才發現最重要的 PHP 測試環境沒有搭建起來。</p>
+<p>因此我就上網找了幾篇文章，東拼西湊下終於把 PHP 5.3 環境設定好了，以下就來簡單記錄我設定的過程。</p>
+<a id="more"></a>
+<h2 id="安裝_Ubuntu_環境">安裝 Ubuntu 環境</h2><p>Ubuntu 的安裝我就不介紹了，實在是太簡單了  (謎：明明就是你懶) ；安裝完後別忘了再安裝 <a href="http://sites.google.com/site/lazyscripts/" target="_blank" rel="external">LazyScripts</a> 這個好用的工具集，它可以讓 Ubuntu 更好用。</p>
+<p>註：安裝完 LazyScripts 要立刻查看自己的家目錄的 owner 是不是被改成 root 了，不過這應該是我耍笨用 sudo 安裝的關係。</p>
+<p>接下來就是安裝 SSH Server 和 VIM ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo aptitude install openssh-server vim</span><br></pre></td></tr></table></figure>
+<p>剩下的環境細部調整就請大家自行發揮囉。</p>
+<h2 id="安裝_Apache_及_MySQL">安裝 Apache 及 MySQL</h2><p>因為我不太瞭解 Ubuntu 怎麼去設定原始碼編輯環境，又加上 Ubuntu 其實已經可以安裝 Apache 2.2 及 MySQL 5.1 ，所以我就決定直接用 APT 來安裝啦。</p>
+<h3 id="安裝_Apache_2-2_相關套件">安裝 Apache 2.2 相關套件</h3><p>輸入以下指令就可以自動安裝好 Apache 2.2 了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo aptitude install apache2 apache2-mpm-prefork apache2-prefork-dev \&#10;apache2-utils apache2.2-common</span><br></pre></td></tr></table></figure>
+<p>安裝完成後， Apache 的設定檔位置會在 /etc/apache2/ 底下，不過它不再是以往的 httpd.conf 了，而是 apache2.conf 。</p>
+<p>如果需要 mod_rewrite 的話，就輸入以下指令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo cd /etc/apache2/mods-enabled/&#10;&#62; sudo ln -s ../mods-available/rewrite.load rewrite.load</span><br></pre></td></tr></table></figure>
+<h4>安裝 MySQL 5.1 相關套件</h4>
+
+<p>安裝 MySQL 也很簡單，輸入以下指令即可：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo aptitude install mysql-server-5.1 mysql-common mysql-client-5.1</span><br></pre></td></tr></table></figure>
+<p>安裝好後， MySQL 設定檔會放在 /etc/mysql/my.cnf ；而資料庫檔案則是放在 /var/lib/mysql/ 底下。</p>
+<h2 id="安裝_PHP_5-3">安裝 PHP 5.3</h2><p>因為 Ubuntu 9.10 如果直接安裝 PHP 5 的話，會是採用 PHP 5.2.x 的版本，因此我們需要透過一些方法來讓它改為安裝 PHP 5.3 。</p>
+<p>首先，我們要安裝一些必要套件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo aptitude install libtidy-dev curl libcurl4-openssl-dev \&#10;libcurl3 libcurl3-gnutls zlib1g zlib1g-dev libxslt1-dev libzip-dev libzip1 \&#10;libxml2 libsnmp-base libsnmp15 libxml2-dev libsnmp-dev libjpeg62 libjpeg62-dev \&#10;libpng12-0 libpng12-dev zlib1g zlib1g-dev libfreetype6 libfreetype6-dev \&#10;libbz2-dev libxpm4-dev libmcrypt-dev libmcrypt4</span><br></pre></td></tr></table></figure>
+<p>接下來直接透過以下的方法來改變預設 PHP 版本的安裝：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; cd /tmp&#10;&#62; sudo mkdir php53 &#38;amp;&#38;amp; cd php53&#10;&#62; sudo wget http://us.archive.ubuntu.com/ubuntu/pool/main/k/krb5/libkrb53_1.6.dfsg.4~beta1-5ubuntu2_i386.deb&#10;&#62; sudo wget http://us.archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu38_3.8-6ubuntu0.2_i386.deb&#10;&#62; sudo dpkg -i *.deb&#10;&#62; sudo echo &#34;deb http://php53.dotdeb.org stable all&#34; &#62;&#62; /etc/apt/sources.list&#10;&#62; sudo aptitude update</span><br></pre></td></tr></table></figure>
+<h3 id="安裝_PHP5_的_Apache_模組">安裝 PHP5 的 Apache 模組</h3><p>現在我們就可以把 Apache 2.2 的 PHP5 模組裝上去了，注意這裡安裝的是 PHP 5.3.2 的版本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo aptitude install libapache2-mod-php5=5.3.2 apache2</span><br></pre></td></tr></table></figure>
+<p>安裝好後， Apache 模組會用到的 PHP 設定檔是 /etc/php5/apache2/php.ini 。</p>
+<h3 id="安裝_PHP_CLI_、_PEAR_套件及其他需要的_extensions">安裝 PHP CLI 、 PEAR 套件及其他需要的 extensions</h3><p>另外我還會用 CLI 模式來使用 PHP ，而且也會用 PEAR 來管理 PHP 模組；不過因為我是用套件來安裝 PHP5 ，所以沒辦法用傳統的方式來使用 CLI 及 PEAR 。</p>
+<p>還有 GD 和 cURL 在預設的狀況下也沒有安裝，我們也將它一併安裝進來：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo aptitude install php5-gd php5-curl php5-cli php-pear</span><br></pre></td></tr></table></figure>
+<p>安裝好後， CLI 模式的 PHP 設定檔為 /etc/php5/cli/php.ini ；而這裡所安裝的 PHP 版本也都會是 PHP 5.3.2 相關版本，要特別注意。</p>
+<h3 id="安裝_Xdebug">安裝 Xdebug</h3><p>安裝 Xdebug 時，會使用到 pecl 指令，而 PECL 編譯時則需要以下套件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo aptitude install autoconf automake automake1.4 autotools-dev m4 shtool libtool</span><br></pre></td></tr></table></figure>
+<p>然後我們才可以安裝含有 phpize 指令的套件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo aptitude install php5-dev</span><br></pre></td></tr></table></figure>
+<p>安裝完 php5-dev 後就可以再安裝 Xdebug 了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo pecl install xdebug</span><br></pre></td></tr></table></figure>
+<p>然後我們要找出 xdebug.so 安裝在哪裡：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo find / -name &#39;xdebug.so&#39; 2&#62; /dev/null&#10;/usr/lib/php5/20060613+lfs/xdebug.so</span><br></pre></td></tr></table></figure>
+<p>取得路徑後，就修改 /etc/php5/apache2/php.ini 及 /etc/php5/cli/php.ini ，在檔案的最後加上：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[xdebug]&#10;zend_extension=&#34;/usr/lib/php5/20060613+lfs/xdebug.so&#34;</span><br></pre></td></tr></table></figure>
+<p>最後別忘了重新啟動 Apache ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62; sudo /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure>
+<p>如果有更好的方法，也請大家不吝指教。</p>
+<p>打完收工。</p>
+<h2 id="參考文章">參考文章</h2><ul>
+<li><a href="http://snippets.notmyidea.org/2009/12/13/install-php-5-3-apache-on-ubuntu-9-10-using-dotdeb-repositories-via-apt-get/" target="_blank" rel="external">Install PHP 5.3 + Apache on ubuntu 9.10 using   dotdeb repositories, via apt-get</a></li>
+<li><a href="http://www.brandonsavage.net/installing-php-5-3-on-ubuntu/" target="_blank" rel="external">Installing   PHP 5.3 On Ubuntu</a></li>
+<li><a href="http://drupal.org/node/134439" target="_blank" rel="external">Apache 2 on Ubuntu</a></li>
+<li><a href="http://ubuntuforums.org/showthread.php?t=525257" target="_blank" rel="external">HOWTO: Install xdebug for PHP5</a></li>
+</ul>
+</span>
       
     </div>
 
@@ -288,22 +327,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +406,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +439,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝_Ubuntu_環境"><span class="nav-number">1.</span> <span class="nav-text">安裝 Ubuntu 環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝_Apache_及_MySQL"><span class="nav-number">2.</span> <span class="nav-text">安裝 Apache 及 MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_Apache_2-2_相關套件"><span class="nav-number">2.1.</span> <span class="nav-text">安裝 Apache 2.2 相關套件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.1.</span> <span class="nav-text">安裝 MySQL 5.1 相關套件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝_PHP_5-3"><span class="nav-number">3.</span> <span class="nav-text">安裝 PHP 5.3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_PHP5_的_Apache_模組"><span class="nav-number">3.1.</span> <span class="nav-text">安裝 PHP5 的 Apache 模組</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_PHP_CLI_、_PEAR_套件及其他需要的_extensions"><span class="nav-number">3.2.</span> <span class="nav-text">安裝 PHP CLI 、 PEAR 套件及其他需要的 extensions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_Xdebug"><span class="nav-number">3.3.</span> <span class="nav-text">安裝 Xdebug</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考文章"><span class="nav-number">4.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +455,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +477,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +487,6 @@
 
   
   
-
   
     
     
@@ -489,21 +516,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +685,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +715,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

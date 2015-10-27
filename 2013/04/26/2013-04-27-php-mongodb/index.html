@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="這陣子被 MongoDB 的低效與不穩定性搞得焦頭爛額，但查了很多文件與資訊，都發現 MongoDB 的表現不應該如此不堪。而且查看系統的運作狀況，其實 CPU 連 30% 都沒跑到。為什麼會這樣呢？
+而最常發生的問題就是大量寫入時，總是會出現 No candidate servers found 的訊息，然後程式就中斷了。幾經檢查，才發現是舊的第三方 mongodb library 寫法不能跟新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP + MongoDB 設定心得">
 <meta property="og:url" content="http://jaceju.net/2013/04/26/2013-04-27-php-mongodb/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="這陣子被 MongoDB 的低效與不穩定性搞得焦頭爛額，但查了很多文件與資訊，都發現 MongoDB 的表現不應該如此不堪。而且查看系統的運作狀況，其實 CPU 連 30% 都沒跑到。為什麼會這樣呢？
+而最常發生的問題就是大量寫入時，總是會出現 No candidate servers found 的訊息，然後程式就中斷了。幾經檢查，才發現是舊的第三方 mongodb library 寫法不能跟新">
 <meta property="og:updated_time" content="2015-05-11T06:20:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP + MongoDB 設定心得">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="這陣子被 MongoDB 的低效與不穩定性搞得焦頭爛額，但查了很多文件與資訊，都發現 MongoDB 的表現不應該如此不堪。而且查看系統的運作狀況，其實 CPU 連 30% 都沒跑到。為什麼會這樣呢？
+而最常發生的問題就是大量寫入時，總是會出現 No candidate servers found 的訊息，然後程式就中斷了。幾經檢查，才發現是舊的第三方 mongodb library 寫法不能跟新">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> PHP + MongoDB 設定心得 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,24 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>這陣子被 MongoDB 的低效與不穩定性搞得焦頭爛額，但查了很多文件與資訊，都發現 MongoDB 的表現不應該如此不堪。而且查看系統的運作狀況，其實 CPU 連 30% 都沒跑到。為什麼會這樣呢？</p>
+<p>而最常發生的問題就是大量寫入時，總是會出現 <code>No candidate servers found</code> 的訊息，然後程式就中斷了。幾經檢查，才發現是舊的第三方 mongodb library 寫法不能跟新的 PHP Mongo Native Driver 匹配。</p>
+<p>以下就把我的設定心得記下來，供大家參考。</p>
+<a id="more"></a>
+<h2 id="設定注意事項">設定注意事項</h2><p>使用 PHP Mongo Native Driver 來存取 MongoDB Replica Set 架構時，最基本的部份有以下幾點要注意：</p>
+<ul>
+<li><a href="http://www.php.net/manual/en/book.mongo.php" target="_blank" rel="external">PHP MongoDB Native Driver</a> 要升級到 1.3.4 以上版本。 ( <code>pecl upgrade mongo</code> )</li>
+<li>程式裡要用 <a href="http://www.php.net/manual/en/mongoclient.construct.php" target="_blank" rel="external">MongoClient</a> 類別來連接，而不要用舊版的 MongoDB ， <a href="http://www.php.net/manual/en/class.mongodb.php" target="_blank" rel="external">MongoDB</a> 在新版本裡已經是不同的用途了。</li>
+<li>不要用 hostname 來存取 (像是 <code>localhost</code> ) ，要直接給 <code>IP:PORT</code> 位址。</li>
+<li>在 <a href="http://www.php.net/manual/en/mongoclient.construct.php" target="_blank" rel="external">MongoClient</a> 的 <code>server</code> 參數，要把所有可以連結到的 Secondary <code>IP:PORT</code> 都設定上去。</li>
+<li>雖然手冊上沒寫，但 <a href="http://www.php.net/manual/en/mongoclient.construct.php" target="_blank" rel="external">MongoClient</a> 的 <code>options</code> 參數裡， <code>slaveOkay</code> 一定要設定為 <code>true</code> 。而原來的 <code>MongoDB::setSlaveOkay()</code> 方法已經被廢棄了，不建議再用。</li>
+<li><code>readPreference</code> 要設定為 <code>MongoClient::RP_SECONDARY_PREFERRED</code> 。</li>
+<li>檢查程式中所用的 MongoDB library 是不是符合以上的設定。有些 library 是採用舊版的 mongo driver 寫法，效能會大打折扣。</li>
+</ul>
+<p>其他有關效能的部份，像是 Collection 的 Indexes ，都可以參考<a href="http://docs.mongodb.org/manual/" target="_blank" rel="external">線上手冊</a>的說明。</p>
+<h2 id="範例">範例</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$hosts</span> = implode(<span class="string">','</span>, [</span><br><span class="line">    <span class="string">'127.0.0.1:27017'</span>,</span><br><span class="line">    <span class="string">'127.0.0.1:27018'</span>,</span><br><span class="line">    <span class="string">'127.0.0.1:27019'</span>,</span><br><span class="line">]);</span><br><span class="line"><span class="variable">$m</span> = <span class="keyword">new</span> MongoClient(<span class="string">'mongodb://'</span> . <span class="variable">$hosts</span>, [</span><br><span class="line">    <span class="string">'replicaSet'</span>     =&gt; <span class="string">'rsname'</span>,</span><br><span class="line">    <span class="string">'slaveOkay'</span>      =&gt; <span class="keyword">true</span>,</span><br><span class="line">    <span class="string">'readPreference'</span> =&gt; MongoClient::RP_SECONDARY_PREFERRED,</span><br><span class="line">]);</span><br><span class="line"><span class="variable">$db</span> = <span class="variable">$m</span>-&gt;selectDB(<span class="string">"dbname"</span>);</span><br></pre></td></tr></table></figure>
+<p>當然這些可能還是有不足的地方，也歡迎大家能分享自己的設定心得。</p>
+</span>
       
     </div>
 
@@ -290,22 +295,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +374,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#設定注意事項"><span class="nav-number">1.</span> <span class="nav-text">設定注意事項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例"><span class="nav-number">2.</span> <span class="nav-text">範例</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +423,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +445,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +455,6 @@
 
   
   
-
   
     
     
@@ -491,21 +484,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +653,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +683,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="前言從 Web Framework 這個觀念開始大行其道之後，許多 PHP Framework 開始展露出它們的頭角。這些 Framework 都是強調快速建置與開發容易，因此它們提供的功能也是多到讓開發者的工具袋滿了出來；不過也因為這樣，這些 Framework 的體積實在是太大了。
+就拿我在公司用的 Zend Framework 來說吧，它的原始碼就佔了二十幾 MB 的容量，而裡面有些功能是我">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PHP] GoEz Framework">
 <meta property="og:url" content="http://jaceju.net/2009/11/30/891/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="前言從 Web Framework 這個觀念開始大行其道之後，許多 PHP Framework 開始展露出它們的頭角。這些 Framework 都是強調快速建置與開發容易，因此它們提供的功能也是多到讓開發者的工具袋滿了出來；不過也因為這樣，這些 Framework 的體積實在是太大了。
+就拿我在公司用的 Zend Framework 來說吧，它的原始碼就佔了二十幾 MB 的容量，而裡面有些功能是我">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[PHP] GoEz Framework">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="前言從 Web Framework 這個觀念開始大行其道之後，許多 PHP Framework 開始展露出它們的頭角。這些 Framework 都是強調快速建置與開發容易，因此它們提供的功能也是多到讓開發者的工具袋滿了出來；不過也因為這樣，這些 Framework 的體積實在是太大了。
+就拿我在公司用的 Zend Framework 來說吧，它的原始碼就佔了二十幾 MB 的容量，而裡面有些功能是我">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [PHP] GoEz Framework | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,35 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><h2 id="前言">前言</h2><p>從 Web Framework 這個觀念開始大行其道之後，許多 PHP Framework 開始展露出它們的頭角。這些 Framework 都是強調快速建置與開發容易，因此它們提供的功能也是多到讓開發者的工具袋滿了出來；不過也因為這樣，這些 Framework 的體積實在是太大了。</p>
+<p>就拿我在公司用的 Zend Framework 來說吧，它的原始碼就佔了二十幾 MB 的容量，而裡面有些功能是我們很多時候都用不到的。而且如果有些時候我們只是要做一些小活動或小功能，這樣的 Framework 在開發上就更顯得大而無當。</p>
+<p>當然網路上還有其他一些相當不錯的輕量級 Framework ，但它們包含的功能還是太複雜了；讓團隊裡的成員去瞭解這些 Framework 的時間，或許早就已經可以讓他們完成更多工作了。</p>
+<p>其實對某些超小型專案來說，純 PHP 也許就是個好選擇；只是每次都要去處理一些資料庫、樣版引擎和資料安全等等問題，對想要快速完成工作的開發者也是一種不小的負擔。</p>
+<p>到底有沒有什麼好的方法可以解決這些問題呢？</p>
+<a id="more"></a>
+<h2 id="一個簡易_MVC_Framework_的誕生">一個簡易 MVC Framework 的誕生</h2><p>寫了幾個小活動的程式碼後，我發現其實可以把一些常用的功能整理起來，所以我就有了這個想法：「或許可以自己開發一個簡易的 Framework 來應付這些小活動？」</p>
+<p>於是我便開始仿照其他 Framework 的 MVC 架構，打造了一個超簡易超輕量的 <a href="http://code.google.com/p/goezframework/" target="_blank" rel="external">GoEz Framework</a> ！</p>
+<p>註：為什麼要叫 GoEz Framework ？就是「夠 Easy ！」 :P</p>
+<p>GoEz Framework 主要包含了以下特色：</p>
+<ul>
+<li>整合 Smarty 的簡易 MVC 框架</li>
+<li>可切換環境的設定檔</li>
+<li>POST, GET 輸入安全檢查</li>
+<li>預先整合 jQuery ，並提供將 PHP 變數轉換為 JavaScript 變數使用的樣版 </li>
+</ul>
+<p>不過為了讓開發者能自由整合其他的套件， GoEz Framework 目前沒有把資料庫操作這部份整合進來；也就是說開發者可以自行決定要使用 PDO 或是 ADOdb 等任何一種自己慣用的方式來操作資料庫。</p>
+<p>註：其實說穿了， GoEz Framework 也只是為開發者以 MVC 架構包裝了既有的 PHP Web 開發模式而已，比起目前網路上的 Web Framework 的強大功能，仍然是相差十萬八千里。</p>
+<h2 id="GoEz_Framework_未來的展望">GoEz Framework 未來的展望</h2><p>就目前來說， GoEz Framework 並不會再往上發展成為怪獸級的 Framework ，因為它本身強調的就是容易瞭解與應用。</p>
+<p>所以剛學習 Framework 的開發者也可以從 GoEz Framework 去瞭解目前時下流行的 MVC 架構的原理，增加對其他 Framework 學習上的信心。</p>
+<p>目前正在開發中的是通用型的 SQL 語法產生器，主要的目的是減少大家產生 SQL 語法時的手誤與被 SQL Injection 攻擊的風險。另一個正在構思的是簡易的 CRUD Scaffolding ，讓開發者能夠簡易地處理資料表。</p>
+<p>未來我也會把遇到的活動類型整理成模組，讓開發者能夠很快地安裝及修改，這應該是 GoEz Framework 最大的發展限度。</p>
+<p>註：如果大家需要更複雜的功能時，還是可以尋找其他更強大更值得使用的 Framework 。</p>
+<p>總之，我希望 GoEz Framework 能讓大家在開發上擁有最大的自由度，又不失去基本的安全性。</p>
+<p>希望大家能多給我一些意見，讓 GoEz Framework 能夠更加的穩固與易用！</p>
+<h2 id="相關資訊">相關資訊</h2><ul>
+<li><a href="http://code.google.com/p/goezframework/wiki/TableOfContents" target="_blank" rel="external">GoEz Framework 使用者手冊</a></li>
+</ul>
+</span>
       
     </div>
 
@@ -288,22 +304,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +383,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +416,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一個簡易_MVC_Framework_的誕生"><span class="nav-number">2.</span> <span class="nav-text">一個簡易 MVC Framework 的誕生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GoEz_Framework_未來的展望"><span class="nav-number">3.</span> <span class="nav-text">GoEz Framework 未來的展望</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相關資訊"><span class="nav-number">4.</span> <span class="nav-text">相關資訊</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +432,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +454,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +464,6 @@
 
   
   
-
   
     
     
@@ -489,21 +493,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +662,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +692,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

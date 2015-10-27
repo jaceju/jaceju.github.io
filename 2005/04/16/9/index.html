@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="以往，網頁開發者都會碰到這樣的問題：有時候他們會在網頁上擺放一些圖層 (像是滑鼠移過去就會出現的下拉式選單) ，但這些圖層的位置都是絕對的 ( position: absolute ) 。因此只要他們把整個版面置中後，就會發現圖層沒有跟著跑，所以這些網頁開發者僅能選擇把整個版型往左靠。但是為了符合一般瀏覽者的螢幕寬度 (800 x 600) ，就必須把版面的寬度固定 (例如 760px) ，所以當">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何正確實作出固定寬度且置中的版型">
 <meta property="og:url" content="http://jaceju.net/2005/04/16/9/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="以往，網頁開發者都會碰到這樣的問題：有時候他們會在網頁上擺放一些圖層 (像是滑鼠移過去就會出現的下拉式選單) ，但這些圖層的位置都是絕對的 ( position: absolute ) 。因此只要他們把整個版面置中後，就會發現圖層沒有跟著跑，所以這些網頁開發者僅能選擇把整個版型往左靠。但是為了符合一般瀏覽者的螢幕寬度 (800 x 600) ，就必須把版面的寬度固定 (例如 760px) ，所以當">
+<meta property="og:image" content="http://jaceju.net/resources/css_center/css_center_1.gif">
+<meta property="og:image" content="http://jaceju.net/resources/css_center/css_center_2.gif">
+<meta property="og:image" content="http://jaceju.net/resources/css_center/css_center_3.gif">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何正確實作出固定寬度且置中的版型">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="以往，網頁開發者都會碰到這樣的問題：有時候他們會在網頁上擺放一些圖層 (像是滑鼠移過去就會出現的下拉式選單) ，但這些圖層的位置都是絕對的 ( position: absolute ) 。因此只要他們把整個版面置中後，就會發現圖層沒有跟著跑，所以這些網頁開發者僅能選擇把整個版型往左靠。但是為了符合一般瀏覽者的螢幕寬度 (800 x 600) ，就必須把版面的寬度固定 (例如 760px) ，所以當">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 如何正確實作出固定寬度且置中的版型 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,37 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>以往，網頁開發者都會碰到這樣的問題：有時候他們會在網頁上擺放一些圖層 (像是滑鼠移過去就會出現的下拉式選單) ，但這些圖層的位置都是絕對的 ( <code>position: absolute</code> ) 。因此只要他們把整個版面置中後，就會發現圖層沒有跟著跑，所以這些網頁開發者僅能選擇把整個版型往左靠。但是為了符合一般瀏覽者的螢幕寬度 (800 x 600) ，就必須把版面的寬度固定 (例如 760px) ，所以當螢幕可以顯示的範圍較大時 (1024 x 768) ，你就會看到右邊有一大塊空白的區域了。</p>
+<p>傳統的作法，都是用表格排版來解決這種問題。但是表格畢竟不是用來排版的，而且一但使用表格排版，頁面的版型就定死了，毫無靈活度可言；因此我將把表格排版這項解決方案丟到垃圾筒，改以 CSS 作為我排版的利器。</p>
+<a id="more"></a>
+<h2 id="調整_HTML">調整 HTML</h2><p>如何用 CSS 正確實作出固定寬度且置中的版型呢？我們有兩種方式可以達到這樣的目的。不過在此之前，我們必須先將所有的網頁內容用一個 <code>div</code> 標籤包起來，就像下面這樣：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span>[略]<span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span></span><br><span class="line">[網頁內容]</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我們指定這個 <code>div</code> 標籤的 <code>id</code> 屬性為 <code>container</code> ， <code>id</code> 屬性在整個頁面裡必須是唯一的。雖然大部份瀏覽器不限制頁面裡的標籤可以擁有重覆的 <code>id</code> 屬性，但我不建議這麼做，因為透過 JavaScript (ECMA Script)  的 <code>document.getElementById</code> 抓取標籤元素時，重覆的 <code>id</code> 屬性會造成混亂。</p>
+<h2 id="第一種方法">第一種方法</h2><p>第一種方式純粹使用 CSS 屬性來控制版面置中，請看下面的 CSS ：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">html</span>, <span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#container</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">760px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">text-align</span>:<span class="value"> left</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我們一行一行解釋：</p>
+<p><strong>html, body</strong> - 這行表示我們對 <code>html</code> 及 <code>body</code> 標籤做樣式設定。大部份瀏覽器的頁面內容都是以 <code>body</code> 為基準，但某些瀏覽器則是以 <code>html</code> 為基準，所以我兩個都指定。</p>
+<p><strong>margin: 0;</strong> - 一般我們都會在 <code>body</code> 加上 <code>topmargin=&quot;0&quot;</code> 及 <code>leftmargin=&quot;0&quot;</code> ，使得頁面內容和瀏覽器邊緣間沒有空隙。但是 <code>topmargin</code> 和 <code>leftmargin</code> 屬性都已被 W3C 廢棄了，所以我改用 CSS 的 <code>margin</code> 屬性來指定。</p>
+<p><strong>text-align: center;</strong> - 重點之一，有些瀏覽器無法很正確地使版型置中，透過這個屬性，我們可以使 <code>body</code> 內的<strong>所有內容置中</strong>。注意，我說的是所有內容，包含所有的標籤、文字、圖片等，所以等會我們必須把它調整回來。</p>
+<p><strong>#container</strong> - 這行表示我們將會<strong>一</strong>個 id 屬性值為 <code>container</code> 的標籤做設定。也可以這樣寫： <code>div#container</code> ，如此就很明確地指定是一個 id 屬性值為 <code>container</code> 的 <code>div</code> 標籤。</p>
+<p><strong>position: relative;</strong> - 將元素指定為相對定位。其實這行有沒有並無太大關係，但為了相容性，我還是指定了這個屬性。絕對定位和相對定位的差別我以後有空再說明。</p>
+<p><strong>margin: 0 auto;</strong> - 重點之二，這會使得 div#container 這個元素與 <code>body</code> 標籤的上下邊界空間設為 0 ，而左右兩邊則自動調整。完整的寫法是 <code>margin: 0 auto 0 auto;</code> ，不過如果有重覆的設定時， CSS 可以讓我們只寫一次，因此 <code>0 auto 0 auto</code> 就可以等於 <code>0 auto</code> 。</p>
+<p><strong>width: 760px;</strong> - 這就是我們所要指定的版面寬度囉。</p>
+<p><strong>text-align: left;</strong> - 重點之三，因為我們在 <code>body</code> 標籤中指定所有內容置中，而這個設定讓我們把 <code>div</code> 標籤裡的所有內容又回到靠左對齊的狀態。</p>
+<p>註：這種方法在 Dreamweaver 裡能夠正常顯示，但是下面的第二種方法就不行了。</p>
+<h2 id="第二種方法">第二種方法</h2><p>第二種方式採用位移來控制版本的置中，它的 CSS 如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">html</span>, <span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#container</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin-left</span>:<span class="value"> -<span class="number">380px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">760px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>這個方式也可以達到同樣的效果，我們挑重點解釋：</p>
+<p><strong>html, body { margin: 0; }</strong> - 我們在這裡拿掉了 <code>text-align: center</code> ，因為第二種方式沒有用到自動調整邊界。另外 CSS 可以讓我們把多個屬性設定值寫在一行裡，但是如果屬性值太多的話，建議你還是拆開成多行，比較容易維護。</p>
+<p><strong>#container</strong> - 我們拿掉了 <code>margin: 0 auto;</code> 及 <code>text-align: left;</code> 。因為第二種方式是以位置的移動來達到置中的目的，所以我們加入了 <code>left: 50%;</code> 及 <code>margin-left: -380px;</code> 。注意我們保留了 <code>position: relative;</code> ，這樣 <code>left</code> 屬性才會有作用。</p>
+<p><strong>left: 50%;</strong> - 將 <code>div#container</code> 的左邊的相對位置，置於畫面的中央。圖 1 是原本 <code>div#container</code> 應該在的位置，當我們設定 <code>left: 50%</code> 後，就會像圖 2 一樣了。</p>
+<p><img src="/resources/css_center/css_center_1.gif" alt="圖一 left: 0;"></p>
+<p><img src="/resources/css_center/css_center_2.gif" alt="圖二 left: 50%;"></p>
+<p><strong>margin-left: -380px;</strong> - 這個設定比較難解釋，簡單說就是把整個元素的左邊界往回拉 380px (記得負值就是往回拉的意思) 。如圖三所示，我們可以看到整個版面置中了。</p>
+<p><img src="/resources/css_center/css_center_3.gif" alt="圖三 margin-left: -380px;"></p>
+<p>註：第二種方法在瀏覽器可視範圍比頁面寬度還小時，在 <code>div#container</code> 的左邊部分就會被遮住了，所以使用上要特別小心。</p>
+<p>OK ，這兩種方式就能夠使版面置中。而且因為我們將所有頁面內容包在 <code>div#container</code> 元素裡，所以在它裡面的所有元素，其絕對位置都會以 <code>div#container</code> 為基準。因此以後如果有下拉式選單的話，也不用擔心它會跑位囉。</p>
+</span>
       
     </div>
 
@@ -288,22 +306,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +385,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +418,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#調整_HTML"><span class="nav-number">1.</span> <span class="nav-text">調整 HTML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一種方法"><span class="nav-number">2.</span> <span class="nav-text">第一種方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二種方法"><span class="nav-number">3.</span> <span class="nav-text">第二種方法</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +434,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +456,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +466,6 @@
 
   
   
-
   
     
     
@@ -489,21 +495,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +664,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +694,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

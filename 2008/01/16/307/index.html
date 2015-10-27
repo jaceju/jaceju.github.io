@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,50 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
+<meta name="description" content="說明這個實驗主要是探討在 TWPUG 上的這篇 FIEND 寫的： [原創] [分享] 小弟寫的 cakephp 換頁 排序 功能 (第一版) 。
+幾個實驗重點如下：
+
+FIEND 提到兩次 Query 不是一個好方式，他的做法是用一次 Query 配合 while + mysql_result 就能做到分頁效果。
 
 
 
-
-<meta name="description">
+另外 shirock 從 PHP 原始碼的部份解釋 PHP 和 MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PHP] mysql_query 的記憶體使用與分頁方式">
 <meta property="og:url" content="http://jaceju.net/2008/01/16/307/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="說明這個實驗主要是探討在 TWPUG 上的這篇 FIEND 寫的： [原創] [分享] 小弟寫的 cakephp 換頁 排序 功能 (第一版) 。
+幾個實驗重點如下：
+
+FIEND 提到兩次 Query 不是一個好方式，他的做法是用一次 Query 配合 while + mysql_result 就能做到分頁效果。
+
+
+
+另外 shirock 從 PHP 原始碼的部份解釋 PHP 和 MySQL">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[PHP] mysql_query 的記憶體使用與分頁方式">
-<meta name="twitter:description">
+<meta name="twitter:description" content="說明這個實驗主要是探討在 TWPUG 上的這篇 FIEND 寫的： [原創] [分享] 小弟寫的 cakephp 換頁 排序 功能 (第一版) 。
+幾個實驗重點如下：
 
+FIEND 提到兩次 Query 不是一個好方式，他的做法是用一次 Query 配合 while + mysql_result 就能做到分頁效果。
+
+
+
+另外 shirock 從 PHP 原始碼的部份解釋 PHP 和 MySQL">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [PHP] mysql_query 的記憶體使用與分頁方式 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +150,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +160,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +170,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +190,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +249,52 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><h2 id="說明">說明</h2><p>這個實驗主要是探討在 TWPUG 上的這篇 FIEND 寫的： <a href="http://twpug.net/modules/newbb/viewtopic.php?topic_id=3094&amp;forum=35" target="_blank" rel="external">[原創] [分享] 小弟寫的 cakephp 換頁 排序 功能 (第一版)</a> 。</p>
+<p>幾個實驗重點如下：</p>
+<ul>
+<li>FIEND 提到兩次 Query 不是一個好方式，他的做法是用一次 Query 配合 while + mysql_result 就能做到分頁效果。</li>
+</ul>
+<li>
+
+<p>另外 shirock 從 PHP 原始碼的部份<a href="http://blog.roodo.com/rocksaying/archives/4986803.html" target="_blank" rel="external">解釋 PHP 和 MySQL 抓資料後的處理方式</a>，但 FIEND 卻說「<strong><a href="http://twpug.net/modules/newbb/viewtopic.php?post_id=11749#forumpost11749" target="_blank" rel="external">用屁股想都知道 PHP 不可能把 QUERY 結果 全部拉回 PHP 端記憶體</a></strong>」。<br></p></li><p></p>
+<ul>
+<li>還有 shirock 提到：「參考文章中已經很明白指出 mysql_query 跳過 PHP 內建記憶體配置機制，而直接使用 mysql C library 的函數儲存資料在 PHP 程序這端。而 memory_limit 只會管制到 PHP 內建記憶體配置機制的使用上限。所以 mysql_query 查詢大量資料時，不會受到 memory_limit 的限制。」 </li>
+</ul>
+<p>基本上我從來不知道屁股可以用來思考，所以我還是要實事求是，用 FIEND 的方法實驗一次。</p>
+<p>註：不過我老是在上廁所時想到一些靈感…Orz</p>
+<a id="more"></a>
+<h2 id="環境">環境</h2><ul>
+<li>Windows XP</li>
+<li>PHP 5.2.5</li>
+<li>MySQL 5.0.45</li>
+<li>memory_limit = 16M (in php.ini)</li>
+</ul>
+<p>另外我準備了一個資料庫，裡面包含了四個資料表：</p>
+<table border="1" cellspacing="1" cellpadding="3" summary="測試用資料表"><br><tr><br><th>資料表 </th><br><th>筆數</th><br><th>硬碟空間</th><br></tr><br><tr><br><td align="right">r1000</td><br><td align="right">一千筆</td><br><td align="right">75KB</td><br></tr><br><tr><br><td align="right">r10000</td><br><td align="right">一萬筆</td><br><td align="right">743KB</td><br></tr><br><tr><br><td align="right">r100000</td><br><td align="right">十萬筆</td><br><td align="right">7,422KB</td><br></tr><br><tr><br><td align="right">r1000000</td><br><td align="right">一百萬筆</td><br><td align="right">74,219KB</td><br></tr><br></table>
+
+<p>資料表欄位為一個 id 欄位和一個 value 欄位；而 value 欄位為 varchar(64) ，其內容存的是兩個隨機的 md5 函式結果所組合的字串。可以用以下程式產生：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;echo &#34;CREATE DATABASE `page_test`;\n&#34;;&#10;echo &#34;USE `page_test`;\n&#34;;&#10;foreach (array(1000, 10000, 100000, 1000000) as $r) &#123;&#10;    $sql = &#60;&#60;&#60;SQL&#10;CREATE TABLE IF NOT EXISTS `r$r` (&#10;`id` int(10) unsigned NOT NULL auto_increment,&#10;`value` varchar(64) NOT NULL,&#10;PRIMARY KEY  (`id`)&#10;) ENGINE=MyISAM;&#10;SQL;&#10;    echo $sql, &#34;\n&#34;;&#10;    for ($i = 1; $i &#60;= $r; $i ++) &#123;&#10;        $value = md5(rand(0, 9999)) . md5(rand(0, 9999));&#10;        echo &#34;INSERT INTO `r$r` (`value`) VALUES (&#39;$value&#39;);\n&#34;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="程式">程式</h2><p>程式部份很簡單，就是按照 FIEND 說的步驟來寫的。只是我這裡改用 CLI 模式執行，以避掉 Apache 的影響。 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;echo ini_get(&#39;memory_limit&#39;), &#34;\n&#34;; // 16M&#10;echo &#34;\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;echo &#34;Start.\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;sleep(10);&#10;$link = mysql_connect(&#39;localhost&#39;, &#39;username&#39;, &#39;password&#39;);&#10;mysql_select_db(&#39;page_test&#39;, $link);&#10;$result = mysql_query(&#39;SELECT * FROM r1000000&#39;, $link);&#10;echo &#34;\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;echo &#34;mysql_query\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;sleep(10);&#10;$count  = mysql_num_rows($result);&#10;echo &#39;count: &#39;, $count, &#34;\n&#34;;&#10;echo &#34;\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;echo &#34;mysql_num_rows\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;sleep(10);&#10;$start = rand(0, $count - 1);&#10;$end   = $start + 10;&#10;$i     = $start;&#10;echo &#39;start: &#39; . $start, &#34;\n&#34;;&#10;echo &#39;end: &#39; . $end, &#34;\n&#34;;&#10;echo &#34;\n&#34;;&#10;while ($id = mysql_result($result, $i, &#39;id&#39;)) &#123;&#10;echo $i, &#39;: &#39;, $id, &#34;\n&#34;;&#10;$i ++;&#10;if ($i &#62;= $end || $i &#62;= $count) break;&#10;&#125;&#10;echo &#34;\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;echo &#34;while &#38;amp; mysql_result\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;sleep(10);&#10;mysql_free_result($result);&#10;echo &#34;\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;echo &#34;mysql_free_result\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;sleep(10);&#10;mysql_close($link);&#10;echo &#34;\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;echo &#34;mysql_close\n&#34;;&#10;echo &#34;========================\n&#34;;&#10;sleep(10);</span><br></pre></td></tr></table></figure>
+<p>而記憶體的觀察我是用 Windows 的工作管理員，然後查看 php.exe 所使用的記憶體大小。在什麼都沒有執行的狀況下， php.exe 會佔用掉約 8MB 的記憶體 (在我的環境下) 。 </p>
+<p>結果如下 (每項執行 5 次後再取平均值) ：</p>
+<table border="1" cellspacing="1" cellpadding="3" summary="程式執行時的記憶體用量比較"><br><tr><br><th>資料表</th><br><th>程式啟動</th><br><th>mysql_query</th><br><th>mysql_num_rows</th><br><th>while &amp; mysql_result</th><br><th>mysql_free_result</th><br><th>mysql_close</th><br></tr><br><tr><br><td align="right">r1000</td><br><td align="right">8,196KB</td><br><td align="right">8,592KB</td><br><td align="right">8,596KB</td><br><td align="right">8,656KB</td><br><td align="right">8,568KB</td><br><td align="right">8,556KB</td><br></tr><br><tr><br><td align="right">r10000</td><br><td align="right">8,196KB</td><br><td align="right">9,496KB</td><br><td align="right">9,500KB</td><br><td align="right">9,560KB</td><br><td align="right">8,592KB</td><br><td align="right">8,580KB</td><br></tr><br><tr><br><td align="right">r100000</td><br><td align="right">8,192KB</td><br><td align="right">18,840KB</td><br><td align="right">18,844KB</td><br><td align="right">18,904KB</td><br><td align="right">8,584KB</td><br><td align="right">8,596KB</td><br></tr><br><tr><br><td align="right">r1000000</td><br><td align="right">8,192KB</td><br><td align="right">110,684KB</td><br><td align="right">110,688KB</td><br><td align="right">110,748KB</td><br><td align="right">8,796KB</td><br><td align="right">8,784KB</td><br></tr><br></table>
+
+<p>然後我比較 mysql_query 用掉的記憶體和原來資料表使用的硬碟空間： </p>
+<table border="1" cellspacing="1" cellpadding="3" summary="比較 mysql_query 用掉的記憶體和原來資料表使用的硬碟空間"><br><tr><br><th>資料表</th><br><th>mysql_query</th><br><th>硬碟空間</th><br></tr><br><tr><br><td align="right">r1000</td><br><td align="right">396KB</td><br><td align="right">75KB</td><br></tr><br><tr><br><td align="right">r10000</td><br><td align="right">1,300KB</td><br><td align="right">743KB</td><br></tr><br><tr><br><td align="right">r100000</td><br><td align="right">10,648KB</td><br><td align="right">7,422KB</td><br></tr><br><tr><br><td align="right">r1000000</td><br><td align="right">102,492KB</td><br><td align="right">74,219KB</td><br></tr><br></table>
+
+<p>很明顯地 mysql_query 所得到的 resource 佔的記憶體空間比 MySQL 使用的硬碟大小還多，這證明了 <strong>mysql_query 是有把資料內容抓到 PHP 這邊來</strong><del>；至於為什麼 MySQL 的反而比較小，我想這應該是 MySQL 將資料做壓縮的關係</del>。</p>
+<p><strong>補充：</strong>我上面在 MySQL 壓縮的部份沒有任何根據，應該是錯誤的推論；因此我想就以 normansu 給我的說明為準： </p>
+<blockquote><br><br><a href="http://twpug.net/modules/newbb/viewtopic.php?post_id=11784#forumpost11784" target="_blank" rel="external">normansu 提到</a>：<br><br>應該不是.<br>執行 mysql_store_result 的時候,<br>在 result 和每一筆 record 都會多一個 Header 的空間,<br>大小不一定(看 field count).<br><br>所以使用的記憶體會比實際 mysql table 大.<br>在 source 中沒有看到任何 compress 的動作.<br><br><br>mysql 的這個流程讓我嚇一跳,<br>以往大部份用的是 mssql 和 oracle,<br>在 client 和 server 間的 data cache 機制都做得比較好,<br>看起來 mysql 像是把結果算出來後就直接全部丟出來.<br><br>所以使用 mysql 要比用 mssql 或oracle 要來得更小心一點.<br><br></blockquote>
+
+<p>然後由於在上面的實驗裡我已經將 php.ini 的 memory_limit 設為 16M ，也用過 php -i 檢查過了。但在執行一百萬筆測試時，卻沒有受到任何影響，因此也證明了 shirock 說的「<strong>所以 mysql_query 查詢大量資料時，不會受到 memory_limit 的限制。</strong>」 </p>
+<h2 id="結論">結論</h2><p>從上面的實驗可以看到一次 Query 並取得資料總筆數雖是可行的，但這個<strong>前提是建立在 mysql_query 已經把資料內容全部放到 php.exe 的記憶體中</strong>。除非我誤解了 FIEND 的意思，不然他的作法看起來實在不適用於他所說的「存取大量資料的環境」。 </p>
+<p>所以一般常見的做法是採用就是 tokimeki 提到的<a href="http://twpug.net/modules/newbb/viewtopic.php?post_id=11671#forumpost11671" target="_blank" rel="external">兩次 Query 的方式</a>，第一次先利用 SQL 的 COUNT() 指令取得我們所需要的總筆數，第二次再配合 LIMIT 去取得我們所要的資料。不用 LIMIT 的後果就是每當執行一次 script ，我們就要冒著記憶體使用量爆增的後果。</p>
+<p>註：雖然 MySQL 有 <a href="http://www.tblog.com.cn/index.php/archives/659" target="_blank" rel="external">Query Cache</a> ，但對 php 端已經爆增的記憶體也於事無補了。</p>
+<p>而我也贊成 tokimeki 說的：「另外之二，假設內容資料是非常龐大的，且必須利用查詢內容作某些運算（例如：矩陣運算之類的），那麼這樣的應用不該由PHP程式來完成，應由其他的方式來作計算（例如：資料庫作OLAP或是Server上某個用C/C++寫的程式定期跑），Web這邊只做顯示以及計算排程即可。」</p>
+<p>其他不想多說了，被某人看不起也不是一天兩天的事了。我自知自己還有很多東西要學，而這些還有望其他高手前輩們給予我指教。</p>
+<p>不過最後這個實驗也證明一件事：屁股不是用來想事情的。 </p>
+</span>
       
     </div>
 
@@ -288,22 +339,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +418,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +451,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#說明"><span class="nav-number">1.</span> <span class="nav-text">說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#環境"><span class="nav-number">2.</span> <span class="nav-text">環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程式"><span class="nav-number">3.</span> <span class="nav-text">程式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +467,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +489,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +499,6 @@
 
   
   
-
   
     
     
@@ -489,21 +528,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +697,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +727,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

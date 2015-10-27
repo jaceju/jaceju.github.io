@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,30 +27,20 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
 
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
+  <meta name="keywords" content="Hexo,next" />
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
 
 
 <meta name="description">
@@ -68,14 +54,14 @@
 <meta name="twitter:description">
 
 
-
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -144,7 +130,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -154,7 +140,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -164,7 +150,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -184,8 +170,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
   <section id="posts" class="posts-expand">
     
       
@@ -247,11 +232,14 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>剛接觸 Zend Framework 的朋友，大概會覺得它的架構非常複雜，光是要用 require/include 來載入一個類別就要寫好長的路徑。所幸 Zend Framework 提供了一套自動載入類別的機制，幫助我們直接在程式裡使用類別，而不需要事先引入它們的宣告。</p>
+<p>但是自動載入類別機制本身卻令人頭大，因為它常常會以非常理的方式去自動找到我們所要的類別，入門的朋友大概在這邊就會陣亡或選擇投降了吧。</p>
+<p>因此本文就先為大家介紹 Zend Framework 自動載入機制的原理，以下我們一一來看吧。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/02/16/1645/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -329,11 +317,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。</p>
+<p>以下我們分四個部份來初步認識 Zend Framework 的 View 層。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/02/13/1628/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -411,11 +401,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>在「<a href="http://www.jaceju.net/blog/archives/1600">建立 Portable 的 ZF 專案</a>」一文中，已經讓我們可以將 Zend Framework 專案佈署到其他機器上而不需要修改 Apache 的 Virtual Host 設定檔；但是這樣卻會造成某些問題，以下我們來一一分析及解決。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/02/12/1619/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -493,11 +484,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>一般我們都會將設定檔獨立在程式之外，而 Zend Framework 預設的專案架構，也是將專案的設定獨立在 application/configs/application.ini 中。而當我們在產生一個新的 Zend_Application 物件時，就可以指定這個 application.ini 做為執行時期的設定。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/02/11/1612/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -575,11 +567,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>Zend Framework 的安裝除了手動下載之外，其實也可以透過 PEAR 來安裝。</p>
+<p>如果大家有使用 XAMPP 或其他有預先設定好 PEAR 套件管理機制的 AMP 系統時，就可以很簡單的安裝或更新 Zend Framework 了。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/02/09/1597/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -657,11 +651,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>除了用 <a href="http://www.jaceju.net/blog/archives/1597">PEAR 安裝 Zend Framework</a> 外，如果需要同時在開發環境裡使用多個不同版本的 Zend Framework 時，手動安裝會是一個比較好的選擇。</p>
+<p>以下我以 Windows 系統為介紹，如果各位使用的是 Unix-Like 環境的話，請自行舉一反三。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/02/09/1604/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -739,11 +735,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>使用 Zend Framework 的 Zend_Tool 所建立出來的專案預設是需要設定 Virtual Host 才能順利執行的，但通常我們很少能直接更動 Apache 的 Virtual Host 設定。因此若是能讓 Zend Framework 專案能不必更改設定而到處都能執行的話，就會是開發和佈署上的一大優勢。</p>
+<p>接下來我就來介紹如何建立一個 Portable 的 ZF 專案。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/02/09/1600/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -821,11 +819,14 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>在 PHP 中，傳遞物件是很容易的事；我們只需要將物件的狀態封裝起來後，以字串的方式傳遞給另一端的程式還原執行即可。物件的傳遞用途很多，例如我們在 Gearman 中，就可以在 client 把物件當做是 job data 傳遞給 Server 。</p>
+<p>註： Gearman 的介紹可以參考拙作：<a href="http://www.jaceju.net/blog/archives/1211">Gearman 心得</a>。</p>
+<p>以下我們來看看範例。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/02/03/1592/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -905,7 +906,171 @@
         
           <span itemprop="articleBody">
             
-              
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://test.ical.ly/2011/01/17/batchprocessing-using-php-5-3-closures/" target="_blank" rel="external">Batchprocessing using PHP 5.3 closures</a></li>
+<li><a href="http://ralphschindler.com/2011/01/18/php-component-and-library-api-design-overview" target="_blank" rel="external">PHP Component and Library API Design Overview</a></li>
+<li><a href="http://gonzalo123.wordpress.com/2011/01/17/php-template-engine-comparison/" target="_blank" rel="external">PHP Template Engine Comparison</a></li>
+<li><a href="http://devzone.zend.com/article/12829-Using-the-Stack-Exchange-API-with-PHP-part-1" target="_blank" rel="external">Using the Stack Exchange API with PHP (part 1)</a></li>
+<li><a href="http://devzone.zend.com/article/12943-Using-the-Stack-Exchange-API-with-PHP-part-2" target="_blank" rel="external">Using the Stack Exchange API with PHP (part 2)</a></li>
+<li><a href="http://edorian.posterous.com/creating-your-custom-phpunit-output-formats" target="_blank" rel="external">Creating your custom PHPUnit output formats</a></li>
+<li><a href="http://blogs.sitepoint.com/2011/01/20/be-more-asssertive-getting-to-know-phpunits-assertions/" target="_blank" rel="external">Be More Asssertive: Getting to Know PHPUnit’s Assertions</a></li>
+<li><a href="http://blog.ulf-wendel.de/?p=298" target="_blank" rel="external">PHP: Transparent load balancing and sharding with mysqlnd</a></li>
+<li><a href="http://qafoo.com/blog/016_struct_classes_in_php.html" target="_blank" rel="external">Struct classes in PHP</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/how-to-send-text-messages-with-php/" target="_blank" rel="external">How to Send Text Messages with PHP</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Plugin-Pattern-in-PHP-and-JavaScript/" target="_blank" rel="external">Plug-in Pattern in PHP and JavaScript</a></li>
+<li><a href="http://viralpatel.net/blogs/2011/01/dynamic-unread-count-favicon-in-php.html" target="_blank" rel="external">Dynamic favicon PHP. Dynamic Unread count favicon in PHP</a></li>
+<li><a href="http://shameerc.com/2011/01/why-kohana-is-an-awesome-framework.html" target="_blank" rel="external">Why Kohana is an awesome framework</a></li>
+<li><a href="http://www.ibm.com/developerworks/opensource/library/os-5waystunelamp/index.html" target="_blank" rel="external">Five simple ways to tune your LAMP application</a></li>
+<li><a href="http://www.killerphp.com/articles/password-protecting-pages-with-php/" target="_blank" rel="external">Password Protecting Pages with PHP</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/20-ways-to-save-kittens-and-learn-php/" target="_blank" rel="external">20 Ways to Save Kittens and Learn PHP</a></li>
+<li><a href="http://huoding.com/2011/01/30/43" target="_blank" rel="external">PHP數組交集的優化</a></li>
+<li><a href="http://bohuco.net/blog/2011/01/php5-websocket-example-a-simple-chat/" target="_blank" rel="external">PHP5 WebSocket Example – A Simple Chat</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Create-A-ClientSide-Cache-in-PHP/" target="_blank" rel="external">Create A Client-Side Cache in PHP</a></li>
+</ul>
+<h2 id="Zend_Framework">Zend Framework</h2><ul>
+<li><a href="http://www.prodevtips.com/2011/01/18/parsing-cookies-with-zend-http-client-and-cookiejar/" target="_blank" rel="external">Parsing cookies with Zend Http Client and CookieJar</a></li>
+<li><a href="http://www.ibm.com/developerworks/opensource/library/os-php-zend1/index.html" target="_blank" rel="external">Understanding the Zend Framework, Part 1: The basics</a></li>
+<li><a href="http://www.littlehart.net/atthekeyboard/2011/01/19/smarter-db-migrations-using-zend-framework-and-doctrine-1-2/" target="_blank" rel="external">Smarter DB Migrations Using Zend Framework and Doctrine 1.2</a></li>
+<li><a href="http://www.zend.com/en/resources/webinars/framework?src=dragonbe.com" target="_blank" rel="external">Zend Framework Webinars</a></li>
+<li><a href="http://www.peacocksuit.com/blog/2008/08/30/populate-a-zend_form-select-with-mysql-returned-data/" target="_blank" rel="external">Populate a Zend_Form select with database returned data</a></li>
+<li><a href="http://www.rmauger.co.uk/2010/01/keeping-your-html-valid-with-zend-framework-tidy-and-firebug/" target="_blank" rel="external">Keeping your HTML valid with Zend Framework, Tidy and Firebug</a></li>
+</ul>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="https://twitter.com/#!/gskinner/status/24695778207338496" target="_blank" rel="external">JavaScript Array Merge Trick</a></li>
+<li><a href="http://www.webdesignbooth.com/15-really-useful-web-based-html-editors/" target="_blank" rel="external">15 Really Useful Web-based HTML Editors</a></li>
+<li><a href="http://www.designer-daily.com/jquery-prototype-mootool-tooltips-12632" target="_blank" rel="external">12 plugins to create tooltips with popular javascript frameworks</a></li>
+<li><a href="http://coolshell.cn/articles/3540.html" target="_blank" rel="external">一段Javascript的代码</a></li>
+<li><a href="http://hacks.mozilla.org/2011/01/ecmascript-5-strict-mode-in-firefox-4/" target="_blank" rel="external">ECMAScript 5 strict mode in Firefox 4</a></li>
+<li><a href="http://javascript.infogami.com/Javascript_in_Ten_Minutes" target="_blank" rel="external">Javascript in Ten Minutes (Javascript)</a></li>
+<li><a href="http://msdn.microsoft.com/zh-tw/scriptjunkie/gg602402.aspx" target="_blank" rel="external">How to Write Maintainable OO JavaScript Code</a></li>
+</ul>
+<h2 id="jQuery">jQuery</h2><ul>
+<li><a href="http://www.denbagus.net/jquery-plugin-for-web-apps" target="_blank" rel="external">14 Really Useful jQuery Plugin for Create Web Apps</a></li>
+<li><a href="http://addyosmani.com/blog/jquery-performance-tips-2011/" target="_blank" rel="external">jQuery Performance Tips And Tricks – A Free 30 Minute Talk</a></li>
+<li><a href="http://embedded-help.net/" target="_blank" rel="external">Embedded Help System</a></li>
+<li><a href="http://jscrollpane.kelvinluck.com/" target="_blank" rel="external">jScrollPane - cross browser styleable scrollbars with jQuery and CSS</a></li>
+<li><a href="http://www.queness.com/post/6455/10-innovative-jquery-plugins-you-need-to-know" target="_blank" rel="external">10 Innovative jQuery Plugins You Need to Know</a></li>
+<li><a href="http://webdesign14.com/30-calendar-and-date-picker-jquery-plugins/" target="_blank" rel="external">30 Calendar and Date Picker jQuery Plugins</a></li>
+<li><a href="http://thenerdary.net/articles/entry/beautiful_element_creation_with_jquery#When:16:29:12Z" target="_blank" rel="external">Beautiful Element Creation with jQuery</a></li>
+<li><a href="http://thomasjbradley.ca/lab/signature-pad" target="_blank" rel="external">Signature Pad</a></li>
+<li><a href="http://savedelete.com/75-most-useful-jquery-plugins-of-year-2010.html" target="_blank" rel="external">75 Most Useful jQuery Plugins of Year 2010</a></li>
+<li><a href="http://renesd.blogspot.com/2011/01/jquery-15-promises-better-future.html" target="_blank" rel="external">JQuery 1.5 promises a better future.</a></li>
+<li><a href="http://www.senamion.com/blog/jmultiselect2side.html" target="_blank" rel="external">multiselect2side (multiple select double side) plugin</a></li>
+<li><a href="http://webdesignledger.com/freebies/10-useful-jquery-plugins-for-images" target="_blank" rel="external">10 Useful jQuery Plugins for Images</a></li>
+<li><a href="http://webdesign14.com/50-jquery-form-plugins-tutorials-and-resources/" target="_blank" rel="external">50 jQuery Form Plugins, Tutorials and Resources</a></li>
+<li><a href="http://hpyer.cn/visit-remote-data-with-jsonp-in-javascript.html" target="_blank" rel="external">利用 jsonp 进行 Javascript 的跨域数据访问</a></li>
+<li><a href="http://webdesign14.com/30-tutorials-and-plugins-jquery-scroll/" target="_blank" rel="external">30 Tutorials and Plugins Jquery Scroll</a></li>
+<li><a href="http://aquantum-demo.appspot.com/file-upload" target="_blank" rel="external">jQuery File Upload Demo</a></li>
+<li><a href="http://pelfusion.com/tutorials/45-useful-jquery-tutorials-and-techniques-for-better-ui/" target="_blank" rel="external">45 Useful jQuery Tutorials And Techniques For Better UI</a></li>
+<li><a href="http://www.dustindiaz.com/about-that-slowness-on-twitter/" target="_blank" rel="external">About that slowness on Twitter…</a></li>
+<li><a href="http://ejohn.org/blog/learning-from-twitter/" target="_blank" rel="external">Learning from Twitter</a></li>
+<li><a href="http://addyosmani.com/blog/modern-javascript-development-boris-moore-talks-jquery-templates/" target="_blank" rel="external">Boris Moore talks jQuery Templates</a></li>
+<li><a href="http://www.queness.com/post/6480/create-an-attractive-before-and-after-photo-effect-with-jquery" target="_blank" rel="external">Create an Attractive Before and After Photo Effect with jQuery</a></li>
+<li><a href="http://www.victorcisneiros.com/blog/2011/01/22/mimicking-the-steam-holiday-sale-book-widget-using-jquery/" target="_blank" rel="external">Mimicking the Steam Holiday Sale Book Widget using jQuery</a></li>
+<li><a href="http://creativefan.com/10-premium-jquery-slider-plugins/" target="_blank" rel="external">10 Premium jQuery Slider Plugins</a></li>
+<li><a href="http://www.zurb.com/playground/reveal-modal-plugin" target="_blank" rel="external">Reveal: jQuery Modal Plugin from ZURB</a></li>
+<li><a href="http://css-tricks.com/ajax-load-container-contents/" target="_blank" rel="external">Ajax Load Container Contents</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/javascript-ajax/spotlight-jquery-replacetext/" target="_blank" rel="external">jQuery replaceText</a></li>
+<li><a href="http://scottonwriting.net/sowblog/archive/2011/02/01/select-a-textbox-s-text-on-focus-using-jquery.aspx" target="_blank" rel="external">Select a textbox’s text on focus using jQuery</a></li>
+<li><a href="http://www.designyourway.net/blog/resources/65-jquery-tutorials-to-help-you-customize-your-site/" target="_blank" rel="external">65 jQuery Tutorials To Help You Customize Your Site</a></li>
+<li><a href="http://www.denbagus.net/amazing-jquery-plugins" target="_blank" rel="external">Best jQuery Plugins in January 2011</a></li>
+<li><a href="http://www.keyframesandcode.com/resources/javascript/deconstructed/jquery/" target="_blank" rel="external">jQuery Deconstructed</a></li>
+<li><a href="http://vard-lokkur.blogspot.com/2011/01/jquery-templates-and-json.html" target="_blank" rel="external">jQuery Templates and JSON</a></li>
+<li><a href="http://www.erichynds.com/jquery/using-deferreds-in-jquery/" target="_blank" rel="external">Using Deferreds in jQuery 1.5</a></li>
+</ul>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.qianduan.net/before-and-before-the-difference-between.html" target="_blank" rel="external">:before和::before的区别</a></li>
+<li><a href="http://nicolasgallagher.com/css-background-image-hacks/" target="_blank" rel="external">CSS background image hacks</a></li>
+<li><a href="http://www.456bereastreet.com/archive/201101/css_validator_to_report_vendor-specific_extensions_as_warnings_not_errors/" target="_blank" rel="external">CSS Validator to report vendor-specific extensions as warnings, not errors</a></li>
+<li><a href="http://meyerweb.com/eric/thoughts/2011/01/26/reset-v2-0/" target="_blank" rel="external">Reset v2.0</a></li>
+<li><a href="http://www.designdim.com/2011/02/8-best-css-sprites-generator-resources/" target="_blank" rel="external">8 Best CSS Sprites Generator Resources</a></li>
+</ul>
+<h2 id="Python">Python</h2><ul>
+<li><a href="http://self.maluke.com/style" target="_blank" rel="external">Python Coding Style Guidelines</a></li>
+</ul>
+<h2 id="Ruby">Ruby</h2><ul>
+<li><a href="http://blogs.sitepoint.com/2011/02/01/getting-started-with-rails-3-part-1/" target="_blank" rel="external">Getting Started with Rails 3: Part 1</a></li>
+<li><a href="http://blogs.sitepoint.com/2011/02/02/getting-started-with-rails-3-part-2/" target="_blank" rel="external">Getting Started with Rails 3: Part 2</a></li>
+</ul>
+<h2 id="Database">Database</h2><ul>
+<li><a href="http://www.poornerd.com/2010/12/07/database-migration-with-liquibase-and-dbunit/" target="_blank" rel="external">Database Migration with Liquibase and DbUnit</a></li>
+</ul>
+<h2 id="HTML5&amp;CSS3">HTML5&amp;CSS3</h2><ul>
+<li><a href="http://www.qianduan.net/webkit-style-syntax-for-the-gradient-update-css3.html" target="_blank" rel="external">webkit对于CSS3渐变样式语法的更新</a></li>
+<li><a href="http://videojs.com/" target="_blank" rel="external">HTML5 Video Player | VideoJS</a></li>
+<li><a href="http://blogs.sitepoint.com/2011/01/18/webkit-updates-css3-gradient-support-matches-mozilla-syntax/" target="_blank" rel="external">WebKit Updates CSS3 Gradient Support, Matches Mozilla Syntax</a></li>
+<li><a href="http://blogs.sitepoint.com/2011/01/18/dont-forget-about-html5s-little-guys/" target="_blank" rel="external">Don’t Forget About HTML5’s “Little Guys”</a></li>
+<li><a href="http://badassjs.com/post/1461943420/face-detection-in-javascript-via-html5-canvas" target="_blank" rel="external">Face Detection in JavaScript via HTML5 Canvas</a></li>
+<li><a href="http://www.debeterevormgever.nl/html5-ie-without-javascript/" target="_blank" rel="external">HTML5 elements in Internet Explorer without Javascript</a></li>
+<li><a href="http://www.cssplay.co.uk/menus/css3-icon-slide.html" target="_blank" rel="external">Sliding Icons Menu</a></li>
+<li><a href="http://hacks.mozilla.org/2011/01/zooming-and-rotating-for-video-in-html5-and-css3/" target="_blank" rel="external">Zooming and rotating for video in HTML5 and CSS3</a></li>
+<li><a href="http://playpcesor.blogspot.com/2011/01/klowdz-html-5.html" target="_blank" rel="external">Klowdz 史上真正的雲端繪圖工具，HTML 5實現雲上畫素描夢想</a></li>
+<li><a href="http://www.riatube.com/2011/01/18/learn-about-css3/" target="_blank" rel="external">Learn About CSS3</a></li>
+<li><a href="http://www.smashingmagazine.com/2011/01/21/falling-for-html5-finding-love-in-the-little-things/" target="_blank" rel="external">Falling for HTML5: Finding Love in the Little Things</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/discover-cutting-edge-css3-techniques-free-premium-series/" target="_blank" rel="external">Discover Cutting Edge CSS3 Techniques: Free Premium Series</a></li>
+<li><a href="http://csswizardry.com/2011/01/html5-and-text-level-semantics/" target="_blank" rel="external">HTML(5) and text-level semantics</a></li>
+<li><a href="http://www.webdesignerdepot.com/2011/01/50-awesome-css3-techniques-for-better-designs/" target="_blank" rel="external">50+ Awesome CSS3 Techniques for Better Designs</a></li>
+<li><a href="http://www.noupe.com/tutorial/css3-tutorials-to-brighten-up-your-day.html" target="_blank" rel="external">CSS3 Tutorials to Brighten Up Your Day</a></li>
+<li><a href="http://www.ajaxline.com/interesting-css3-and-html5-tutorials" target="_blank" rel="external">Interesting CSS3 and HTML5 Tutorials</a></li>
+<li><a href="http://davidwalsh.name/css-explode" target="_blank" rel="external">Create an Exploding Logo with CSS3 and MooTools or jQuery</a></li>
+<li><a href="http://speckyboy.com/2011/01/24/beginners-study-guide-to-html5-microformats/" target="_blank" rel="external">Beginner’s Study Guide to HTML5 Microformats</a></li>
+<li><a href="http://www.shayhowe.com/tutorial/css3-animated-owl-tutorial/" target="_blank" rel="external">CSS3 Transforms, Transitions, &amp; Aminations</a></li>
+<li><a href="http://blogs.msdn.com/b/ie/archive/2011/01/26/html5-blizzard-full-hardware-acceleration-in-action.aspx" target="_blank" rel="external">HTML5 Blizzard: Full Hardware Acceleration in Action</a></li>
+<li><a href="http://lrbabe.github.com/jquery.transition.js/index.html" target="_blank" rel="external">CSS3 transition tests and discussion</a></li>
+<li><a href="http://cssglobe.com/post/9579/styling-full-width-tabs-with-css3" target="_blank" rel="external">Styling Full Width Tabs with CSS3</a></li>
+<li><a href="http://www.webdesignerwall.com/tutorials/html5-grayscale-image-hover/" target="_blank" rel="external">HTML5 Grayscale Image Hover</a></li>
+<li><a href="http://www.splashnology.com/blog/html5/968.html" target="_blank" rel="external">Useful HTML5 &amp; CSS3 Toolbox For Web Developers</a></li>
+<li><a href="http://davidwalsh.name/css-link-nudging" target="_blank" rel="external">Link Nudging with CSS3 Animations</a></li>
+<li><a href="http://www.owainlewis.com/blog/post/html5_canvas_bar_graphs/" target="_blank" rel="external">HTML5 Canvas Bar Graphs</a></li>
+<li><a href="http://www.queness.com/community-news/6580/21-of-best-jquery-and-css3-tutorials" target="_blank" rel="external">21 of Best jQuery And CSS3 Tutorials</a></li>
+<li><a href="http://webdesigneraid.com/html5-canvas-graphing-solutions-every-web-developers-must-know/" target="_blank" rel="external">HTML5 Canvas Graphing Solutions Every Web Developers Must Know</a></li>
+</ul>
+<h2 id="Web_Development">Web Development</h2><ul>
+<li><a href="http://www.1stwebdesigner.com/design/wireframing-mockup-prototyping-tools-plan-designs/" target="_blank" rel="external">18 Wireframing, Mockup And Prototyping Tools To Plan Designs</a></li>
+<li><a href="http://www.laruence.com/2011/01/20/1844.html" target="_blank" rel="external">HTTP 204和205的应用</a></li>
+<li><a href="http://advancedphptutorial.blogspot.com/2011/01/6-new-file-managers-based-on-jquery.html" target="_blank" rel="external">6 New File Managers Based on jQuery, Ajax, php</a></li>
+<li><a href="http://www.cakemail.com/blog/the-iframe-cross-domain-policy-problem/" target="_blank" rel="external">The iframe cross-domain policy problem</a></li>
+<li><a href="http://code.google.com/intl/zh-TW/more/table/" target="_blank" rel="external">Google APIs &amp; Developer Products</a></li>
+<li><a href="http://www.9lessons.info/2011/01/facebook-graph-api-connect-with-php-and.html" target="_blank" rel="external">Facebook Graph API Connect with PHP and Jquery</a></li>
+<li><a href="http://www.queness.com/post/6539/30-beautiful-and-detailed-web-layout-tutorials" target="_blank" rel="external">30 Beautiful and Detailed Web Layout Tutorials</a></li>
+<li><a href="http://tutorialzine.com/2011/01/getting-started-with-google-app-engine/" target="_blank" rel="external">Getting Started with Google App Engine</a></li>
+<li><a href="http://www.topdesignmag.com/10-useful-tools-for-optimizing-your-website/" target="_blank" rel="external">10 Useful Tools For Optimizing Your Website</a></li>
+<li><a href="http://www.webdesignerdepot.com/2011/01/changes-to-the-apple-com-design/" target="_blank" rel="external">Changes to the Apple.com Design</a></li>
+<li><a href="http://net.tutsplus.com/articles/news/admin-panels-that-dont-suck-slides/" target="_blank" rel="external">Admin Panels That Don’t Suck!</a></li>
+</ul>
+<h2 id="Mobile_Development">Mobile Development</h2><ul>
+<li><a href="http://www.anscamobile.com/corona/" target="_blank" rel="external">Corona Overview</a></li>
+<li><a href="http://naveenbalani.com/index.php/2011/01/getting-started-with-android-creating-android-application/" target="_blank" rel="external">Getting Started with Android – Creating Android Application</a></li>
+<li><a href="http://blog.chinatimes.com/tomsun/archive/2007/11/03/213763.html" target="_blank" rel="external">Android 課程講義懶人包</a></li>
+<li><a href="http://programming-android.labs.oreilly.com/" target="_blank" rel="external">Programming Android</a></li>
+<li><a href="http://www.noupe.com/how-tos/tutorials-for-making-your-website-mobile-friendly.html" target="_blank" rel="external">Tutorials for Making Your Website Mobile Friendly</a></li>
+</ul>
+<h2 id="Design">Design</h2><ul>
+<li><a href="http://www.noupe.com/design/40-ui-design-tools-and-resources.html" target="_blank" rel="external">40 UI Design Tools and Resources</a></li>
+<li><a href="http://www.designer-daily.com/mega-drop-down-navigation-menus-12796" target="_blank" rel="external">15 good examples of mega drop-down navigation menus</a></li>
+</ul>
+<h2 id="Internet">Internet</h2><ul>
+<li><a href="http://socialcompare.com/en" target="_blank" rel="external">SocialCompare</a></li>
+</ul>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://www.jobbole.com/entry.php/469" target="_blank" rel="external">「Hello World！」的十個問題</a></li>
+<li><a href="http://jeffkreeftmeijer.com/2011/testing-code-thats-testing-itself/#" target="_blank" rel="external">Testing code that’s testing itself</a></li>
+</ul>
+<h2 id="SCM">SCM</h2><ul>
+<li><a href="http://www.ghostunix.org/?p=41" target="_blank" rel="external">git入门与实践(一)</a></li>
+</ul>
+<h2 id="Security">Security</h2><ul>
+<li><a href="http://nealpoole.com/blog/2010/11/preventing-csrf-attacks-with-ajax-and-http-headers/" target="_blank" rel="external">Preventing CSRF Attacks with AJAX and HTTP Headers</a></li>
+</ul>
+<h2 id="Software">Software</h2><ul>
+<li><a href="http://umairj.com/191/cloning-a-virtual-machine-in-virtualbox/" target="_blank" rel="external">Cloning a Virtual Machine in VirutalBox</a></li>
+<li><a href="http://www.webresourcesdepot.com/16-stable-free-ides-for-designers-developers/" target="_blank" rel="external">16 Stable &amp; Free IDEs For Designers/Developers</a></li>
+</ul>
+<h2 id="WordPress">WordPress</h2><ul>
+<li><a href="http://kray.jp/blog/wordpress-tuning/" target="_blank" rel="external">WordPressを100倍速くする！ MySQLの調整やnginx proxy cache</a></li>
+</ul>
+
             
           </span>
         
@@ -985,11 +1150,14 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>在 Firefox 4 Beta 版出來後，我一直很想試用看看；但是我個人偏好在電腦上安裝穩定的版本，而且有幾個我還滿常用到的 addons 還不能在 Firefox 4 上運作，這使得我遲遲無法接受讓 Firefox 4 進入我的開發生活。</p>
+<p>後來我找到了一個方法可以讓 Firefox 3 和 Firefox 4 並存，而且可以同時執行；所以這邊也一併分享給大家，以下就是操作的步驟。</p>
+<p>註：這個方法是在 Windows 試出來的，其他作業系統我就不太清楚了。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/01/23/1568/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1016,14 +1184,11 @@
   </nav>
 
 
-
-        </div>
-
-        
-
+ </div>
 
         
 
+        
       </div>
 
       
@@ -1081,17 +1246,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -1123,8 +1284,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1146,8 +1306,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1157,7 +1316,6 @@
 
   
   
-
   
     
     
@@ -1185,25 +1343,39 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -1211,5 +1383,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

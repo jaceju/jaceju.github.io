@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="通常在物件導向的開發過程裡，我們常會將類別的屬性隱藏起來，然後透過設值及取值函式來存取它們，也就是我們常說的 setter/getter 。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PHP] 觀念教室 - 取值函式">
 <meta property="og:url" content="http://jaceju.net/2008/08/31/351/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="通常在物件導向的開發過程裡，我們常會將類別的屬性隱藏起來，然後透過設值及取值函式來存取它們，也就是我們常說的 setter/getter 。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[PHP] 觀念教室 - 取值函式">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="通常在物件導向的開發過程裡，我們常會將類別的屬性隱藏起來，然後透過設值及取值函式來存取它們，也就是我們常說的 setter/getter 。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [PHP] 觀念教室 - 取值函式 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,35 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>通常在物件導向的開發過程裡，我們常會將類別的屬性隱藏起來，然後透過設值及取值函式來存取它們，也就是我們常說的 setter/getter 。</p>
+<a id="more"></a>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class SampleClass&#10;&#123;&#10;    private $_attr = 0;&#10;    public function setAttr($value)&#10;    &#123;&#10;        $this-&#62;_attr = (int) $value;&#10;    &#125;&#10;    public function getAttr()&#10;    &#123;&#10;        return $this-&#62;_attr;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>不過設值函式並不是本文的重點，這裡我先略過不談。</p>
+<p>從上面的程式碼裡可以看到，取值函式似乎是一段再簡單不過的程式碼，它只是很單純的把物件內部的屬性值回傳而已。</p>
+<p>但如果今天我們的屬性值是需要經過計算才能夠回傳的話，怎麼辦呢？我們應該把計算的邏輯寫在取值函式裡嗎？</p>
+<p>在討論之前，我們先來假設一個簡單的狀況：</p>
+<p>「現在有一個購物車程式，在使用者購買金額未超過 500 元時，我們要在總金額上加上運費 100 元；然而當總金額滿 500 元時，就不需要加入運費了。」</p>
+<p>以下就是這個簡化過的購物車程式碼：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * &#36092;&#29289;&#36554;&#39006;&#21029;&#10; *&#10; */&#10;class Cart&#10;&#123;&#10;    /**&#10;     * &#36092;&#29289;&#36554;&#38917;&#30446;&#21015;&#34920;&#10;     *&#10;     * @var array&#10;     */&#10;    private $_itemList = array();&#10;    /**&#10;     * &#32317;&#37329;&#38989;&#10;     *&#10;     * @var int&#10;     */&#10;    private $_total = 0;&#10;    /**&#10;     * &#21152;&#20837;&#36092;&#29289;&#36554;&#38917;&#30446;&#10;     *&#10;     * @param array $item&#10;     * @return Cart&#10;     */&#10;    public function addItem($item)&#10;    &#123;&#10;        $this-&#62;_itemList[] = $item;&#10;        return $this;&#10;    &#125;&#10;    /**&#10;     * &#26356;&#26032;&#36092;&#29289;&#36554;&#10;     *&#10;     * @return Cart&#10;     */&#10;    public function refresh()&#10;    &#123;&#10;        $this-&#62;_total = 0;&#10;        foreach ($this-&#62;_itemList as $item) &#123;&#10;            $this-&#62;_total += $item[&#39;subTotal&#39;];&#10;        &#125;&#10;        return $this;&#10;    &#125;&#10;    /**&#10;     * &#28165;&#31354;&#36092;&#29289;&#36554;&#10;     *&#10;     * @return void&#10;     */&#10;    public function clearAll()&#10;    &#123;&#10;        $this-&#62;_itemList = array();&#10;        $this-&#62;_total = 0;&#10;    &#125;&#10;    /**&#10;     * &#21462;&#24471;&#32317;&#37329;&#38989;&#10;     *&#10;     * @return int&#10;     */&#10;    public function getTotal()&#10;    &#123;&#10;        if ($this-&#62;_total &#60; 500) &#123;&#10;            $this-&#62;_total += 100;&#10;        &#125;&#10;        return $this-&#62;_total;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>註：我故意省略掉數量、單價等資訊。</p>
+<p>在邏輯上，這段程式碼似乎沒有什麼問題，在取得總金額時判斷是否應該加上運費看起來是很合理的。</p>
+<p>是嗎？</p>
+<p>相信有經驗的朋友，思考一下就能看出這個程式的邏輯錯誤。</p>
+<p>看不出來的朋友也沒關係，我簡單寫個測試程式來說明：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require &#39;Cart.php&#39;;&#10;// &#24314;&#31435;&#36092;&#29289;&#36554;&#29289;&#20214;&#10;$cart = new Cart();&#10;// &#39023;&#31034;&#32317;&#37329;&#38989; (&#37329;&#38989;&#28858; 520 &#20803;&#65292;&#22823;&#26044; 500 &#20803;&#65292;&#25925;&#19981;&#21152;&#19978;&#36939;&#36027;)&#10;echo $cart&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;1&#39;, &#39;subTotal&#39; =&#62; 120))&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;2&#39;, &#39;subTotal&#39; =&#62; 100))&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;3&#39;, &#39;subTotal&#39; =&#62; 50))&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;4&#39;, &#39;subTotal&#39; =&#62; 70))&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;5&#39;, &#39;subTotal&#39; =&#62; 80))&#10;        -&#62;refresh()&#10;        -&#62;getTotal(), &#34;\n&#34;;&#10;// &#20877;&#39023;&#31034;&#19968;&#27425;&#32317;&#37329;&#38989; (&#27491;&#30906;&#39023;&#31034; 520 &#20803;)&#10;echo $cart-&#62;getTotal(), &#34;\n&#34;;&#10;// &#20808;&#28165;&#31354;&#36092;&#29289;&#36554;&#10;$cart-&#62;clearAll();&#10;// &#39023;&#31034;&#32317;&#37329;&#38989; (&#37329;&#38989;&#28858; 340 &#20803;&#65292;&#23567;&#26044; 500 &#20803;&#65292;&#25925;&#21152;&#19978; 100 &#20803;&#36939;&#36027;)&#10;echo $cart&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;1&#39;, &#39;subTotal&#39; =&#62; 120))&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;2&#39;, &#39;subTotal&#39; =&#62; 100))&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;3&#39;, &#39;subTotal&#39; =&#62; 50))&#10;        -&#62;addItem(array(&#39;name&#39; =&#62; &#39;&#21830;&#21697;4&#39;, &#39;subTotal&#39; =&#62; 70))&#10;        -&#62;refresh()&#10;        -&#62;getTotal(), &#34;\n&#34;;&#10;// &#20877;&#39023;&#31034;&#19968;&#27425;&#32317;&#37329;&#38989; (&#37679;&#20102;&#65281;&#31455;&#28982;&#35722;&#25104; 540 &#20803;&#65281;)&#10;echo $cart-&#62;getTotal(), &#34;\n&#34;;</span><br></pre></td></tr></table></figure>
+<p>從上面的程式可以發現，當我們購買金額小於 500 元時， Cart::getTotal 這個取值函式會幫我們自動加上運費。但是我們第二次呼叫 Cart::getTotal 時，程式竟然又幫我們加上了一次運費！</p>
+<p>原因我想大家都看出來了，也就是說我們根本不應該在 Cart::getTotal 中加入運費判斷這件事情。這裡正確的做法是應該把運費判斷的條件寫在 Cart::refresh 這個方法裡，而 Cart::getTotal 應該要很單純地只是回傳 $_total 這個屬性值，也就是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**&#10; * &#26356;&#26032;&#36092;&#29289;&#36554;&#10; *&#10; * @return Cart&#10; */&#10;public function refresh()&#10;&#123;&#10;    $this-&#62;_total = 0;&#10;    foreach ($this-&#62;_itemList as $item) &#123;&#10;        $this-&#62;_total += $item[&#39;subTotal&#39;];&#10;    &#125;&#10;    // &#23559;&#36939;&#36027;&#21028;&#26039;&#25913;&#21040;&#36889;&#35041;&#10;    if ($this-&#62;_total &#60; 500) &#123;&#10;        $this-&#62;_total += 100;&#10;    &#125;&#10;    return $this;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>或許有人會問，什麼狀況下你會去呼叫兩次 Cart::getTotal ？其實答案很多，例如有時候在 MVC 模式下，我們常會用 Model 的取值函式來呈現其對應的值，這時我們就可能會多次去呼叫 Cart::getTotal ；也有可能其他團隊成員並不知道 Cart::getTotal 的運作方式，他們一直很快樂地使用著 Cart::getTotal 來取得總金額，直到慘劇的發生…</p>
+<p>所以這裡我們暫時得到一個結論：取值函式不應該參與運算邏輯。</p>
+<p>是嗎？</p>
+<p>其實這樣的結論還是有問題的，接下來我們來看看以下這個計時器類別：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Timer&#10;&#123;&#10;    public function getTime()&#10;    &#123;&#10;        return time();&#10;    &#125;&#10;&#125;&#10;$timer = new Timer();&#10;echo $timer-&#62;getTime(), &#34;\n&#34;;&#10;sleep(2);&#10;echo $timer-&#62;getTime(), &#34;\n&#34;;</span><br></pre></td></tr></table></figure>
+<p>很明顯的，對計時器這種物件來說，即時性是很重要的，也就是說每一次取得的時間是會變動的。在這裡，取值函式就參與了時間的計算。</p>
+<p>因此，我們要修正剛剛的結論，為它加入一個但書：除非有即時性的需求，否則取值函式不應該參與運算邏輯。</p>
+<p>有其他想法嗎？歡迎大家一起討論。</p>
+</span>
       
     </div>
 
@@ -288,22 +301,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +380,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +413,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +429,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +451,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +461,6 @@
 
   
   
-
   
     
     
@@ -489,21 +490,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +659,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +689,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

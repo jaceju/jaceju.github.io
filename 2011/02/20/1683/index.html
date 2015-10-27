@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="當我們在 Zend Framework 專案的執行過程中出現 Error 時，如果其錯誤類型是 E_ERROR 或 E_USER_ERROR 的話，就會中斷掉整個程式的執行。這種錯誤發生的方式，會使得有些已經建立好的資源 (例如資料庫) 沒有正常關閉，進而造成系統可能出現無法預期的問題。
+接著我們來簡單做個小實驗，看看這問題實際發生的狀況為何。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="讓 Zend Framework 把 Error 當做 Exception 處理">
 <meta property="og:url" content="http://jaceju.net/2011/02/20/1683/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="當我們在 Zend Framework 專案的執行過程中出現 Error 時，如果其錯誤類型是 E_ERROR 或 E_USER_ERROR 的話，就會中斷掉整個程式的執行。這種錯誤發生的方式，會使得有些已經建立好的資源 (例如資料庫) 沒有正常關閉，進而造成系統可能出現無法預期的問題。
+接著我們來簡單做個小實驗，看看這問題實際發生的狀況為何。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="讓 Zend Framework 把 Error 當做 Exception 處理">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="當我們在 Zend Framework 專案的執行過程中出現 Error 時，如果其錯誤類型是 E_ERROR 或 E_USER_ERROR 的話，就會中斷掉整個程式的執行。這種錯誤發生的方式，會使得有些已經建立好的資源 (例如資料庫) 沒有正常關閉，進而造成系統可能出現無法預期的問題。
+接著我們來簡單做個小實驗，看看這問題實際發生的狀況為何。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 讓 Zend Framework 把 Error 當做 Exception 處理 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,27 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>當我們在 Zend Framework 專案的執行過程中出現 Error 時，如果其錯誤類型是 E_ERROR 或 E_USER_ERROR 的話，就會中斷掉整個程式的執行。這種錯誤發生的方式，會使得有些已經建立好的資源 (例如資料庫) 沒有正常關閉，進而造成系統可能出現無法預期的問題。</p>
+<p>接著我們來簡單做個小實驗，看看這問題實際發生的狀況為何。</p>
+<a id="more"></a>
+<h2 id="實驗">實驗</h2><p>請先建立好一個新的 ZF 專案，並切換到 development 模式下，然後在 IndexController::indexAction() 中加入以下的程式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    public function indexAction()&#10;    &#123;&#10;        trigger_error(&#39;TEST&#39;, E_USER_ERROR); // &#21152;&#20837;&#27492;&#34892;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>瀏覽專案首頁執行的結果會是一個 Fatal error ，並且會讓程式停止；如果是 production 模式下，那麼畫面將會是一片空白。</p>
+<p>怎麼解決它呢？在「<a href="http://www.jaceju.net/blog/archives/1121" target="_blank" rel="external">如何在 PHP 中平順地處理 Error 及 Exception ？</a>」一文裡，我曾經介紹過使用 PHP 內建的 ErrorException 來將 Error 視做 Exception 處理；所以在 ZF 中我也沿用相同的觀念來將 Error 做適當的處理。</p>
+<h2 id="加入_Error_處理">加入 Error 處理</h2><p>方法很簡單，只要我們在 index.php (入口) 建立 Zend_Application 物件前加入以下程式碼即可：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// ... &#30053; ...&#10;// Set Error Handler&#10;set_error_handler(&#39;errorExceptionHandler&#39;);&#10;function errorExceptionHandler($errNo, $errMsg, $errFile, $errLine)&#10;&#123;&#10;    if (in_array($errNo, array(E_USER_ERROR, E_ERROR))) &#123;&#10;        throw new ErrorException($errMsg, 0, $errNo, $errFile, $errLine);&#10;    &#125;&#10;    return false; // &#22238;&#24489;&#28858;&#38928;&#35373;&#30340;&#37679;&#35492;&#34389;&#29702;&#27231;&#21046;&#10;&#125;&#10;// &#21152;&#20837;&#20197;&#19978;&#30340;&#31243;&#24335;&#30908;&#10;/** Zend_Application */&#10;require_once &#39;Zend/Application.php&#39;;&#10;// ... &#30053; ...</span><br></pre></td></tr></table></figure>
+<p>這樣一來，在發生嚴重錯誤時，就會讓 Zend Framework 切換到預設的 error 頁面去顯示 Exception 了。</p>
+<h2 id="有_Layout_時的處理方式">有 Layout 時的處理方式</h2><p>在專案啟用 Layout 後，通常會把頁面的天跟地放在 application/layout/layout.phtml 裡，而把 body 標籤內的部份挖空留給 Action Controller 所輸出的內容；但是預設的 application/views/scripts/error/error.phtml 已經是一個完整的 HTML 頁面了，所以會在輸出 Exception 畫面時造成兩次的 html 標籤宣告。這時候有兩種處理方式：</p>
+<ul>
+<li><p>拿掉 error.phtml 不必要的部份，例如 doctype 、 html 、 header 及 body 等標籤。</p>
+</li>
+<li><p>關掉 ErrorController 的 layout 。</p>
+</li>
+</ul>
+<p>那麼要怎麼關掉 ErrorController 的 layout 呢？方法很簡單，只要在 ErrorHandler 裡加入以下程式即可：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ErrorController extends Zend_Controller_Action&#10;&#123;&#10;    // &#21152;&#20837;&#27492;&#26041;&#27861;&#10;    public function init()&#10;    &#123;&#10;        $this-&#62;_helper-&#62;layout()-&#62;disableLayout();&#10;    &#125;&#10;    // ... &#30053; ...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>當然可能還有其他可以處理錯誤的方式，但基本原理大致上就是如此了，提供給大家參考。</p>
+</span>
       
     </div>
 
@@ -290,22 +298,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +377,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +410,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#實驗"><span class="nav-number">1.</span> <span class="nav-text">實驗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入_Error_處理"><span class="nav-number">2.</span> <span class="nav-text">加入 Error 處理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有_Layout_時的處理方式"><span class="nav-number">3.</span> <span class="nav-text">有 Layout 時的處理方式</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +426,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +448,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +458,6 @@
 
   
   
-
   
     
     
@@ -491,21 +487,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +656,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +686,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

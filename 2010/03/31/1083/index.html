@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,34 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="因為我個人偏好使用 Smarty ，而 1.8 版以後的 Zend Framework 的專案架構又有相當大的調整，因此本文將介紹 Smarty 如何整合到新架構的 Zend Framework 上。
+不過因為在 Smarty 3 目前還是 beta 版的狀況下，包含了太多未知數，所以這裡我還是選用 Smarty 2 來做為整合的對象。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Smarty 2 整合到 Zend Framework 1.10 的重點整理">
 <meta property="og:url" content="http://jaceju.net/2010/03/31/1083/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="因為我個人偏好使用 Smarty ，而 1.8 版以後的 Zend Framework 的專案架構又有相當大的調整，因此本文將介紹 Smarty 如何整合到新架構的 Zend Framework 上。
+不過因為在 Smarty 3 目前還是 beta 版的狀況下，包含了太多未知數，所以這裡我還是選用 Smarty 2 來做為整合的對象。">
+<meta property="og:image" content="http://jaceju.net/resources/smarty_zf/my_directories.png">
+<meta property="og:image" content="http://jaceju.net/resources/smarty_zf/adapter.png">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smarty 2 整合到 Zend Framework 1.10 的重點整理">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="因為我個人偏好使用 Smarty ，而 1.8 版以後的 Zend Framework 的專案架構又有相當大的調整，因此本文將介紹 Smarty 如何整合到新架構的 Zend Framework 上。
+不過因為在 Smarty 3 目前還是 beta 版的狀況下，包含了太多未知數，所以這裡我還是選用 Smarty 2 來做為整合的對象。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> Smarty 2 整合到 Zend Framework 1.10 的重點整理 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +134,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +144,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +154,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +174,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +233,64 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>因為我個人偏好使用 Smarty ，而 1.8 版以後的 Zend Framework 的專案架構又有相當大的調整，因此本文將介紹 Smarty 如何整合到新架構的 Zend Framework 上。</p>
+<p>不過因為在 Smarty 3 目前還是 beta 版的狀況下，包含了太多未知數，所以這裡我還是選用 Smarty 2 來做為整合的對象。</p>
+<a id="more"></a>
+<h2 id="建立專案">建立專案</h2><h3 id="產生_ZF_專案">產生 ZF 專案</h3><p>請在網站實體根目錄下 (假設為 D:\wwwroot ) 輸入以下指令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\wwwroot&#62;zf create project smarty&#10;Creating project at D:/wwwroot/smarty&#10;Note: This command created a web project, for more information setting up your VHOST, please see docs/README&#10;D:\wwwroot&#62;cd smarty&#10;D:\wwwroot\smarty&#62;zf enable layout&#10;Layouts have been enabled, and a default layout created at D:\wwwroot\smarty/application/layouts/scripts/layout.phtml&#10;A layout entry has been added to the application config file.&#10;D:\wwwroot\smarty&#62;mkdir application\temp&#10;D:\wwwroot\smarty&#62;mkdir application\temp\compiled</span><br></pre></td></tr></table></figure>
+<p>後面我會用 D:\wwwroot\smarty 當做專案目錄來做說明，使用 Linux 的朋友請自行舉一反三。</p>
+<p>另外別忘了這兩件事：</p>
+<ul>
+<li>參考 docs/README.txt ，在 httpd.conf 裡加入 VHOST 設定。</li>
+<li>把 Zend Framework 的套件路徑加到 php.ini 的 include_path 裡。</li>
+</ul>
+<p>註：如果對 Zend Framework 提供的命令列工具來建立專案不是很清楚的話，可以參考拙作： <a href="http://www.jaceju.net/blog/archives/536" target="_blank" rel="external">Zend Framework 1.8 初探</a>。</p>
+<h3 id="加入_Smarty_套件">加入 Smarty 套件</h3><p>在建立好 Zend Framework 的專案後，就可以下載 Smarty 的壓縮檔回來並將它解開，把 libs 改名為 Smarty 後放置在 D:\wwwroot\smarty\library 下。</p>
+<h3 id="加入_My_資料夾">加入 My 資料夾</h3><p>請在 D:\wwwroot\smarty\library 下再建立如下圖的資料結構，這裡到時候要放置我們的 Smarty 外掛程式。</p>
+<p><img src="/resources/smarty_zf/my_directories.png" alt="My directories"></p>
+<h2 id="整合_Smarty">整合 Smarty</h2><p>要把 Smarty 2 整合到新架構的 Zend Framework 專案上有幾個重點：</p>
+<ul>
+<li>透過 Adapter 模式整合。</li>
+<li>透過 Controller Plugin 處理 template_dir 及 compile_dir 問題。</li>
+<li>透過 Bootstrap 處理 Zend_Layout 及預設的 template_dir 。</li>
+</ul>
+<h3 id="Adapter_模式">Adapter 模式</h3><p>我們採用的 Adapter 模式可以用下圖來說明：</p>
+<p><img src="/resources/smarty_zf/adapter.png" alt="Adapter"></p>
+<p>從這裡看得出來， My_View_Smarty 主要是把原來系統交給 Zend_View 處理的資料，透過 My_View_Smarty 來轉包給 Smarty 處理。</p>
+<p>My_View_Smarty (D:\wwwroot\smarty\library\My\View\Smarty.php) 原始碼如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Smarty/Smarty.class.php&#39;;&#10;class My_View_Smarty extends Zend_View_Abstract&#10;&#123;&#10;    /**&#10;     * Smarty object&#10;     *&#10;     * @var My_Smarty&#10;     */&#10;    protected $_smarty = null;&#10;    /**&#10;     * Constructor&#10;     *&#10;     * @ Param array $config Configuration data&#10;     */&#10;    public function __construct($config = array())&#10;    &#123;&#10;        $this-&#62;_smarty = new Smarty();&#10;        foreach ($config[&#39;params&#39;] as $key =&#62; $value) &#123;&#10;            if (&#39;plugins_dir&#39; === $key) &#123;&#10;                $this-&#62;_smarty-&#62;plugins_dir[] = $value;&#10;            &#125; else &#123;&#10;                $this-&#62;_smarty-&#62;$key = $value;&#10;            &#125;&#10;        &#125;&#10;        $this-&#62;setScriptPath($config[&#39;scriptPath&#39;]);&#10;        // Path to the helpers&#10;        foreach ($config[&#39;helperDirs&#39;] as $path =&#62; $prefix) &#123;&#10;            $this-&#62;addHelperPath($path, $prefix);&#10;        &#125;&#10;        $this-&#62;_smarty-&#62;assign(&#39;this&#39;, $this);&#10;    &#125;&#10;    /**&#10;     * Returns an object Smarty&#10;     *&#10;     * @ Return My_Smarty&#10;     */&#10;    public function getEngine()&#10;    &#123;&#10;        return $this-&#62;_smarty;&#10;    &#125;&#10;    /**&#10;     * Set the path to the templates&#10;     *&#10;     * @ Param string $path path&#10;     */&#10;    public function setScriptPath($path)&#10;    &#123;&#10;        if (null === $path) &#123;&#10;            return;&#10;        &#125;&#10;        $this-&#62;_smarty-&#62;template_dir = $path;&#10;    &#125;&#10;    /**&#10;     * Gets the path to the templates&#10;     *&#10;     * @ Return array array paths&#10;     */&#10;    public function getScriptPaths()&#10;    &#123;&#10;        return array($this-&#62;getScriptPath(null));&#10;    &#125;&#10;    /**&#10;     * Returns the path to the file tpl&#10;     *&#10;     * @ Return string path&#10;     */&#10;    public function getScriptPath($name)&#10;    &#123;&#10;        return $this-&#62;_smarty-&#62;template_dir;&#10;    &#125;&#10;    /**&#10;     * Setting&#10;     *&#10;     * @ Param string $key Key&#10;     * @ Param mixed $value value&#10;     */&#10;    public function setParam($key, $value)&#10;    &#123;&#10;        $this-&#62;_smarty-&#62;$key = $value;&#10;    &#125;&#10;    /**&#10;     * Set the variable in view&#10;     *&#10;     * @ Param string $key name of the variable&#10;     * @ Param mixed $value value of variable&#10;     */&#10;    public function __set($key, $value)&#10;    &#123;&#10;        parent::__set($key, $value);&#10;        $this-&#62;_smarty-&#62;assign($key, $value);&#10;    &#125;&#10;    /**&#10;     * Gets a variable from the view&#10;     *&#10;     * @ Param string $key name of the variable&#10;     * @ Return mixed value of the variable&#10;     */&#10;    public function __get($key)&#10;    &#123;&#10;        return $this-&#62;_smarty-&#62;get_template_vars($key);&#10;    &#125;&#10;    /**&#10;     * Check whether a variable is set in a view&#10;     *&#10;     * @ Param string $key name of the variable&#10;     * @ Return boolean whether the variable is set&#10;     */&#10;    public function __isset($key)&#10;    &#123;&#10;        return null === $this-&#62;_smarty-&#62;get_template_vars($key);&#10;    &#125;&#10;    /**&#10;     * Remove the variable from the view&#10;     *&#10;     * @ Param string $key name of the variable&#10;     */&#10;    public function __unset($key)&#10;    &#123;&#10;        $this-&#62;_smarty-&#62;clear_assign($key);&#10;    &#125;&#10;    /**&#10;     * Assign variables to view&#10;     *&#10;     * @ Param string | array $var variable name Luch array pairs (key =&#62; value)&#10;     * @ Param mixed $value value of variable&#10;     */&#10;    public function assign($var, $value = null)&#10;    &#123;&#10;        if (is_array($var)) &#123;&#10;            $this-&#62;_smarty-&#62;assign($var);&#10;            return;&#10;        &#125;&#10;        $this-&#62;_smarty-&#62;assign($var, $value);&#10;    &#125;&#10;    /**&#10;     * Remove all the variables assigned to the view&#10;     */&#10;    public function clearVars()&#10;    &#123;&#10;        $this-&#62;_smarty-&#62;clear_all_assign();&#10;    &#125;&#10;    /**&#10;      * Rendering a template&#10;      *&#10;      * @ Param string $name the name of the template&#10;      * @ Return string rendered template&#10;      */&#10;    public function render($name)&#10;    &#123;&#10;        if (file_exists($this-&#62;getScriptPath($name) . $name)) &#123;&#10;            return $this-&#62;_smarty-&#62;fetch($name);&#10;        &#125;&#10;        return null;&#10;    &#125;&#10;    /**&#10;      * Extension of the abstract parent class method&#10;      */&#10;    protected function _run()&#10;    &#123;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>在 __construct() 方法裡有個很重要的程式碼：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;_smarty-&#62;assign(&#39;this&#39;, $this);</span><br></pre></td></tr></table></figure>
+<p>它主要是用來幫我們把樣版檔裡的 $this 變數，指向 My_View_Smarty 物件，這樣一來我們就可以透過它來存取 Zend Framework 內建的 View Helper 了。</p>
+<h3 id="處理_template_dir_及_compile_dir_問題">處理 template_dir 及 compile_dir 問題</h3><p>因為我們到時候會有 module 的關係，所以我們必須要讓 Smarty 動態切換 template_dir 和 compile_dir 。</p>
+<p>所以我們要利用 Controller Plugin 幫我們處理這些事情，主要的原理就是在 FrontController 的 dispatchLoopStartup 動作發生時，取得當前的 module 名稱，再動態地把 template_dir 和 compile_dir 指向新的位置。</p>
+<p>My_Controller_Plugin_Smarty (D:\wwwroot\smarty\library\My\Controller\Plugin\Smarty.php) 原始碼如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class My_Controller_Plugin_Smarty extends Zend_Controller_Plugin_Abstract&#10;&#123;&#10;    public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)&#10;    &#123;&#10;        // Set ViewRenderer&#10;        $frontController = Zend_Controller_Front::getInstance();&#10;        $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper(&#39;ViewRenderer&#39;);&#10;        $smarty = $viewRenderer-&#62;view-&#62;getEngine();&#10;        $viewScriptPathSpec = &#39;views/scripts/:controller/:action.:suffix&#39;;&#10;        if ($frontController-&#62;getDefaultModule() != $request-&#62;getModuleName()) &#123;&#10;            $viewScriptPathSpec = &#39;modules/:module/&#39; . $viewScriptPathSpec;&#10;            $smarty-&#62;compile_dir .= &#39;/&#39; . $this-&#62;getRequest()-&#62;getModuleName();&#10;            if (!file_exists($smarty-&#62;compile_dir)) &#123;&#10;                mkdir($smarty-&#62;compile_dir);&#10;            &#125;&#10;        &#125;&#10;        $viewRenderer-&#62;setViewScriptPathSpec($viewScriptPathSpec);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這裡借重了 ViewRenderer 這個 Action Helper 來幫我們動態設定樣版路徑，它是一個可以幫我們處理 Action 自動顯示樣版的工具。</p>
+<h2 id="改寫_Bootstrap">改寫 Bootstrap</h2><p>接著就是要把上面的兩個類別整合到我們的專案裡了，重點有兩個：</p>
+<ul>
+<li>加入 My 這個 namespace ，讓 Zend Framework 可以找到我們剛剛建立的類別。</li><li>初始化 Smarty ，這個動作包含：<strong>建立 Smarty 物件</strong>、<strong>設定 Controller Plugin</strong> 、<strong>設定樣版副檔名</strong>、<strong>設定 Smarty 給 ViewRenderer</strong> 及<strong>設定 Zend_Layout </strong>。</li>
+
+
+
+</ul>
+<p>Bootstrap (D:\wwwroot\smarty\application\Bootstrap.php) 原始碼如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Bootstrap extends Zend_Application_Bootstrap_Bootstrap&#10;&#123;&#10;    /**&#10;     * &#21152;&#20837; &#34;My&#34; Namespace&#10;     *&#10;     */&#10;    protected function _initMy()&#10;    &#123;&#10;        $autoloader = Zend_Loader_Autoloader::getInstance();&#10;        $autoloader-&#62;registerNamespace(&#39;My_&#39;);&#10;    &#125;&#10;    /**&#10;     * &#21021;&#22987;&#21270; Smarty&#10;     *&#10;     */&#10;    protected function _initSmarty()&#10;    &#123;&#10;        $view = new My_View_Smarty(array(&#10;            &#39;scriptPath&#39; =&#62; APPLICATION_PATH . &#39;/&#39;,&#10;            &#39;params&#39; =&#62; array(&#10;                &#39;left_delimiter&#39; =&#62; &#39;&#60;%&#39;, // &#25913;&#25104;&#20320;&#24931;&#29992;&#30340;&#10;                &#39;right_delimiter&#39; =&#62; &#39;%&#62;&#39;, // &#25913;&#25104;&#20320;&#24931;&#29992;&#30340;&#10;                &#39;plugins_dir&#39; =&#62; APPLICATION_PATH . &#39;/lib/My/Smarty/plugins&#39;, // &#33258;&#35330;&#30340; Smarty plugins &#21487;&#20197;&#25918;&#36889;&#35041;&#10;                &#39;compile_dir&#39; =&#62; APPLICATION_PATH . &#39;/temp/compiled&#39;&#10;            ),&#10;            &#39;helperDirs&#39; =&#62; array(&#10;                &#39;My/View/Helper&#39; =&#62; &#39;My_View_Helper_&#39;, // &#22914;&#26524;&#23559;&#20358;&#38656;&#35201;&#33258;&#24049;&#30340; View Helper &#65292;&#21487;&#20197;&#25918;&#22312;&#36889;&#35041;&#10;                &#39;Zend/View/Helper&#39; =&#62; &#39;Zend_View_Helper_&#39;&#10;            ),&#10;        ));&#10;        // Controller Plugin&#10;        Zend_Controller_Front::getInstance()-&#62;registerPlugin(new My_Controller_Plugin_Smarty());&#10;        // View Renderer&#10;        Zend_Controller_Action_HelperBroker::getStaticHelper(&#39;ViewRenderer&#39;)&#10;            -&#62;setViewSuffix(&#39;tpl.htm&#39;) // &#21487;&#20197;&#25913;&#25104;&#24931;&#29992;&#30340;&#27171;&#29256;&#21103;&#27284;&#21517;&#10;            -&#62;setView($view);&#10;        // Zend Layout&#10;        $view-&#62;layout = Zend_Layout::startMvc(array(&#10;            &#39;inflectorTarget&#39; =&#62; &#39;layouts/scripts/:script.:suffix&#39;,&#10;            &#39;layout&#39; =&#62; &#39;layout&#39;,&#10;            &#39;viewSuffix&#39; =&#62; &#39;tpl.htm&#39;, // &#21487;&#20197;&#25913;&#25104;&#24931;&#29992;&#30340;&#27171;&#29256;&#21103;&#27284;&#21517;&#10;        ))-&#62;setView($view);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>詳細的設定可以參考上面程式的註解說明。</p>
+<h2 id="改寫_Template">改寫 Template</h2><p>最後因為我們改用了 Smarty ，所以原來 Zend Framework 提供的樣版檔也要改寫。</p>
+<p>首先是 D:\wwwroot\smarty\application\layouts\scripts\layout.phtml 要改名為 layout.tpl.htm ，並修改其內容為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;Smarty Test&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;% assign var=layout value=$this-&#62;layout() %&#62;&#10;&#60;% $layout-&#62;content %&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>接下來是 D:\wwwroot\smarty\application\views\scripts\error\error.phtml 要改名為 error.tpl.htm ，並修改其內容為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Strict//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;  &#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;  &#60;title&#62;Zend Framework Default Application&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;  &#60;h1&#62;An error occurred&#60;/h1&#62;&#10;  &#60;h2&#62;&#60;% $message %&#62;&#60;/h2&#62;&#10;  &#60;% if $exception %&#62;&#10;  &#60;h3&#62;Exception information:&#60;/h3&#62;&#10;  &#60;p&#62;&#10;      &#60;b&#62;Message:&#60;/b&#62; &#60;% $exception-&#62;getMessage() %&#62;&#10;  &#60;/p&#62;&#10;  &#60;h3&#62;Stack trace:&#60;/h3&#62;&#10;  &#60;pre&#62;&#60;% $exception-&#62;getTraceAsString() %&#62;&#10;  &#60;/pre&#62;&#10;  &#60;h3&#62;Request Parameters:&#60;/h3&#62;&#10;  &#60;pre&#62;&#60;% $this-&#62;request-&#62;getParams()|@var_export:true %&#62;&#10;  &#60;/pre&#62;&#10;  &#60;% /if %&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>這樣就大功告成啦！</p>
+<h2 id="心得">心得</h2><p>這次為了整合 Smarty ，所以好好地把 Zend Framework 的新架構再重新瞭解一次；不但發現許多有趣的特色，也深深覺得 Zend Framework 的自訂性真的非常強大。</p>
+<p>不過其實我比較想加入 Smarty 3 ，因為 Smarty 3 的新語法更為強大！只是 Smarty 3 目前還在 beta 中，整合起來有太多的風險；等將來正式版推出後，我會再找時間整合它們。</p>
+<p>註：參考文章裡的 Smarty 3 整合到 Zend Framework ，在 Smarty 3 beta 6 以後就不能用了。</p>
+<p>下次有空會再介紹如何在新架構下建立模組 (Module) ，這也是非常有趣的一個課題。</p>
+<h2 id="參考文章">參考文章</h2><ul>
+<li><a href="http://technology.mediovski.pl/2009/11/20/smarty-3-zend-framework/lang/en/" target="_blank" rel="external">Smarty 3 + Zend Framework</a></li>
+</ul>
+</span>
       
     </div>
 
@@ -290,22 +337,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +416,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +449,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立專案"><span class="nav-number">1.</span> <span class="nav-text">建立專案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#產生_ZF_專案"><span class="nav-number">1.1.</span> <span class="nav-text">產生 ZF 專案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入_Smarty_套件"><span class="nav-number">1.2.</span> <span class="nav-text">加入 Smarty 套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入_My_資料夾"><span class="nav-number">1.3.</span> <span class="nav-text">加入 My 資料夾</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合_Smarty"><span class="nav-number">2.</span> <span class="nav-text">整合 Smarty</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Adapter_模式"><span class="nav-number">2.1.</span> <span class="nav-text">Adapter 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#處理_template_dir_及_compile_dir_問題"><span class="nav-number">2.2.</span> <span class="nav-text">處理 template_dir 及 compile_dir 問題</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改寫_Bootstrap"><span class="nav-number">3.</span> <span class="nav-text">改寫 Bootstrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改寫_Template"><span class="nav-number">4.</span> <span class="nav-text">改寫 Template</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">5.</span> <span class="nav-text">心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考文章"><span class="nav-number">6.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +465,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +487,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +497,6 @@
 
   
   
-
   
     
     
@@ -491,21 +526,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +695,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +725,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。
+以下我們分四個部份來初步認識 Zend Framework 的 View 層。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初探 Zend Framework 的 View 層">
 <meta property="og:url" content="http://jaceju.net/2011/02/13/1628/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。
+以下我們分四個部份來初步認識 Zend Framework 的 View 層。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初探 Zend Framework 的 View 層">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。
+以下我們分四個部份來初步認識 Zend Framework 的 View 層。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 初探 Zend Framework 的 View 層 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,74 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>在 WebMVC 中， View 的部份通常是由兩個部份組成的：樣版引擎及樣版；而 Zend Framework 也是以此基礎來實作，而且功能更加強大而複雜。</p>
+<p>以下我們分四個部份來初步認識 Zend Framework 的 View 層。</p>
+<a id="more"></a>
+<h2 id="Zend_View_的基礎">Zend_View 的基礎</h2><p>在 Zend Framework 裡，樣版引擎的部份就是由 Zend_View 擔當，基本的樣版引擎功能都可以在 Zend_View 見到。</p>
+<p> Zend_View 是可以單獨使用的，用法也相當簡單。假設我們有個 view_test.php 內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require &#39;Zend/View.php&#39;;&#10;$data = array(&#10;    array(&#10;        &#39;author&#39; =&#62; &#39;Jace Ju&#39;,&#10;        &#39;title&#39; =&#62; &#39;PHP Smarty Template Engine&#39;,&#10;    ),&#10;);&#10;$view = new Zend_View();&#10;$view-&#62;setBasePath(realpath(&#39;.&#39;));&#10;$view-&#62;books = $data;&#10;echo $view-&#62;render(&#39;booklist.php&#39;);</span><br></pre></td></tr></table></figure>
+<p>程式一開始除了建立要輸出的 $data 資料外，我們還建立了一個 Zend_View 物件。但其他的程式又分別代表什麼意思呢？以下我們來一一解釋。</p>
+<h3 id="Base_Path">Base Path</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$view-&#62;setBasePath(realpath(&#39;.&#39;));</span><br></pre></td></tr></table></figure>
+<p>與大部份樣版引擎相同，我們要先指定 Zend_View 所能讀取的樣版路徑。但我們要先解釋一下 Zend_View 在樣版路徑上的一個設計，請先參考下圖：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Base Path&#10;   |- filters (Filter Path)&#10;   |- helpers (Helper Path)&#10;   |- scripts (Script Path)</span><br></pre></td></tr></table></figure>
+<p>基本上 Zend_View 需要一個 Base Path 用來放置 filters 、 helpers 及 scripts 等三個目錄，這三個目錄的名稱是固定的。<strong>而 scripts 就是用來放置樣版的目錄</strong>，其他兩個目錄則較少用到，有機會會再為大家介紹。</p>
+<p>一個 Zend_View 物件可以同時擁有多個 Base Paths ，因此在讀取樣版時， Zend_View 會逐一在這些 Base Paths 中尋找樣版。</p>
+<p>設定 Base Path 的方法是 setBasePath() 或 addBasePath() 這兩個方法，一般用途下這兩者並沒有差異。唯一的差異在於 setBasePath() 方法會先清空原先已經設定的 Base Path 組合後，再新增一組新的 Base Path ；而 addBasePath() 方法則是再新增另一組 Base Path 。</p>
+<p>另外透過 addScriptPath() 方法也可以讓我們直接指定 Script Path ，這時 Zend_View 就不受限於 scripts 這個名稱的影響了，例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$view-&#62;addScriptPath(realpath(&#39;./tpl&#39;));</span><br></pre></td></tr></table></figure>
+<h3 id="指定樣版變數">指定樣版變數</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$view-&#62;books = $data;</span><br></pre></td></tr></table></figure>
+<p>然後我們可以用設定屬性值的方式，將資料指定成 View 物件的樣版變數 (因為用了 __set() 這個魔術方法) ；或是我們也可以改用 assign() 方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$view-&#62;assign(&#39;books&#39;, $data);</span><br></pre></td></tr></table></figure>
+<p>不論是指定物件屬性或是呼叫 assign() 方法，都是一樣的效果。</p>
+<h3 id="輸出內容">輸出內容</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo $view-&#62;render(&#39;booklist.php&#39;);</span><br></pre></td></tr></table></figure>
+<p>最後我們可以透過 render() 方法來得到最終的結果，再用 echo 來輸出它。這裡 render() 方法中的樣版並不需要給它完整路徑，只要指定相對於 Script Path 的路徑即可。因此這行程式的意思就是找到相對於 view_test.php 的 scripts/booklist.php ，然後在處理完後顯示結果。</p>
+<p>另外要注意的是，獨立運作時的 Zend_View ，其樣版的副檔名是沒有限制的。不過在 Zend Framework 預設 MVC 架構下，副檔名預設會是 phtml ，稍後我們再解釋為什麼。</p>
+<h3 id="樣版內容">樣版內容</h3><p>Zend_View 在樣版的部份一般就是指 HTML ，不過通常我們也可改用其他格式的樣版，例如 XML 。 Zend Framework 將樣版稱為 View Scripts ，基本的語法就是 PHP 本身。</p>
+<p>所以上面的 booklist.php 就是我們的 View Script ，其內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;ul&#62;&#10;&#60;?php foreach ($this-&#62;books as $book): ?&#62;&#10;&#60;li&#62;Author: &#60;?php echo $this-&#62;escape($book[&#39;author&#39;]); ?&#62;&#60;/li&#62;&#10;&#60;li&#62;Title: &#60;?php echo $this-&#62;escape($book[&#39;title&#39;]); ?&#62;&#60;/li&#62;&#10;&#60;?php endforeach; ?&#62;&#10;&#60;/ul&#62;</span><br></pre></td></tr></table></figure>
+<p>對 View Script 來說，這裡的 $this 就是我們在 view_test.php 裡所建立的 View 物件；其他敘述的用法也都跟一般寫 PHP 沒什麼兩樣，但建議使用 PHP 的 <a href="http://php.net/manual/en/control-structures.alternative-syntax.php" target="_blank" rel="external">Alternative syntax for control structures</a> ，會讓 View Script 較為容易理解與維護。</p>
+<p>另外很重要的是，當我們在輸出變數的值時，一定要記得用 Zend_View 內建的 escape() 方法來避免被 XSS 攻擊，這是一般初學者最常忽略的地方。</p>
+<p>當然 View Script 還可以使用更多方便的功能，之後會再對這些功能做較為深入的介紹。</p>
+<h2 id="專案架構中的_View_Script">專案架構中的 View Script</h2><p>在 Zend Framework 預設的專案架構中使用 View Script 前，我們要先知道 View Script 的位置是怎麼安排的。</p>
+<p>在預設的專案結構裡， Zend_View 的 Base Path 路徑設定即為 application/views 。參考前面的說明，可以知道預設的 View Script 就會被安排在 application/views/scripts 這個目錄下。</p>
+<p>在 scripts 這個目錄下又會再區分出多個子目錄，每個子目錄其實就是對應一個 Action Controller 。例如 application/views/scripts/index 目錄就是對應 IndexController 這個 Action Controller 類別；同理，如果是 BlogController 這個類別，那邊它就會對應到 application/views/scripts/blog 。</p>
+<p>而子目錄就是存放 View Script 的地方，預設每個 View Script 都對應到一個 Action Controller 的 action 方法。例如 application/views/scripts/index/index.phtml 就是對應 IndexController 類別中的 indexAction 方法；同理 IndexController 類別的 articleAction() 方法就會對應到 application/views/scripts/index/article.phtml 這個 View Script 。</p>
+<p>不過一個 action 還可以對應到好幾個不同格式的 View Script ，這點在另一篇「<a href="http://www.jaceju.net/blog/archives/1188" target="_blank" rel="external">初探 Zend Framework 上的 Context 輸出</a>」有說明，這裡不再詳述。</p>
+<h2 id="Controller_與_View_的溝通方式">Controller 與 View 的溝通方式</h2><p>預設在 Action Controller 中已經預先建立好一個 Zend_View 物件並做好初始化了，我們可以直接使用。</p>
+<p>註：當然除了預設的 Zend_View 之外，我們也可以改用第三方的樣版引擎；例如 Smarty 等知名的樣版引擎，其整合可以參考「 <a href="http://www.jaceju.net/blog/archives/1083" target="_blank" rel="external">Smarty 2 整合到 Zend Framework 1.10 的重點整理</a>」一文。</p>
+<p>我們可以在 Action Controller 裡使用 $this-&gt;view 這個屬性，來直接存取已經初始化好的 Zend_View 物件；例如最上面的例子，我們在 IndexController 類別裡的 indexAction() 中就可以直接這麼寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function indexAction()&#10;&#123;&#10;    $data = array(&#10;        array(&#10;            &#39;author&#39; =&#62; &#39;Jace Ju&#39;,&#10;            &#39;title&#39; =&#62; &#39;PHP Smarty Template Engine&#39;,&#10;        ),&#10;    );&#10;    $this-&#62;view-&#62;books = $data;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>當然別忘了把 application/views/scripts/index/index.phtml 改成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;ul&#62;&#10;&#60;?php foreach ($this-&#62;books as $book): ?&#62;&#10;&#60;li&#62;Author: &#60;?php echo $this-&#62;escape($book[&#39;author&#39;]); ?&#62;&#60;/li&#62;&#10;&#60;li&#62;Title: &#60;?php echo $this-&#62;escape($book[&#39;title&#39;]); ?&#62;&#60;/li&#62;&#10;&#60;?php endforeach; ?&#62;&#10;&#60;/ul&#62;</span><br></pre></td></tr></table></figure>
+<p>然後瀏覽專案首頁，就可以看到跟上例一模一樣的效果。</p>
+<p>這裡最酷的地方在於 Action Controller 不需要呼叫 View 物件的 render() 方法來輸出樣版，這件事完全由 Zend Framework 的 MVC 框架自動處理掉了；而在自動處理的過程中， Zend Framework 也會幫我們找出 Action 對應的 View Script 路徑，並以預設的 phtml 為副檔名。因此我們只要專心在怎麼去取得資料，並將資料放到 View 物件裡，其他的事全部會由 Zend Framework 幫我們完成。</p>
+<p>註：自動完成的原理，之後有機會再詳述。</p>
+<h2 id="基本的_View_Helper">基本的 View Helper</h2><p>有如 Smarty 的 Plugin 一般， Zend_View 也支援所謂的 View Helper 。 View Helper 主要是協助我們快速地對樣版上的元素做處理，以下介紹兩個剛開始就會用到的 View Helper 。</p>
+<h3 id="BaseUrl">BaseUrl</h3><p>在 Portable ZF 專案中，我們常需要知道目前專案根目錄相對於網站根目錄的路徑，以便取得 CSS 、 JavaScript 或 Image 等公開資源相對於網站根目錄的路徑。這個路徑一般稱為 Base Url ；假設現在我們的 ZF 專案首頁網址為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://localhost/portable/</span><br></pre></td></tr></table></figure>
+<p>那麼 Base Url 就是 /portable 。</p>
+<p>而 <strong>BaseUrl</strong> 這個 View Helper 就是協助我們取得 Base Url 資訊的好幫手，在 View Script 裡面的我們只需要用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php echo $this-&#62;baseUrl(); ?&#62;</span><br></pre></td></tr></table></figure>
+<p>就可以取得 Base Url 了。而 BaseUrl 也接受一個相對路徑的參數，例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php echo $this-&#62;baseUrl(&#39;/css/style.css&#39;); ?&#62;</span><br></pre></td></tr></table></figure>
+<p>就會得到 /portable/css/style.css 。</p>
+<h3 id="Url">Url</h3><p>這個 View Helper 會協助我們處理內連網址，例如以 portable 這個專案來說，在 View Script 中如果呼叫了 Url 這個 View Helper ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php echo $this-&#62;url(array(&#10;    &#39;controller&#39; =&#62; &#39;index&#39;,&#10;    &#39;action&#39; =&#62; &#39;user&#39;,&#10;), null, true); ?&#62;</span><br></pre></td></tr></table></figure>
+<p>這樣就會輸出 /portable/index/user 這個相對網址。</p>
+<p>各位一定會好奇，那為什麼不直接使用 Base Url 加上 /index/user 就好了呢？原因是為了能讓 View Script 輸出反向編譯後的 Route 網址。假設我們在 application.ini 中有設定以下的 Route ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">resources.router.routes.author.route = &#34;author/:username&#34;&#10;resources.router.routes.author.defaults.controller = &#34;index&#34;&#10;resources.router.routes.author.defaults.action = &#34;user&#34;</span><br></pre></td></tr></table></figure>
+<p>那麼我們可以直接在網址列輸入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://localhost/portable/author/jaceju</span><br></pre></td></tr></table></figure>
+<p>這樣的網址會讓程式連到 IndexController 的 userAction() 去執行。反過來如果我們希望在 View Script 中產生這樣的網址，如果不使用 url 的話就是這樣寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php echo $this-&#62;baseUrl(&#39;author/jaceju&#39;); ?&#62;</span><br></pre></td></tr></table></figure>
+<p>這樣有個缺點，那就是如果 Route 的規則修改了的話，那麼有輸出這種網址的 View Script 全部都要改。但是如果改用 Url 這個 View Helper 的話，就可以避免掉這個問題：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php echo $this-&#62;url(array(&#10;    &#39;username&#39; =&#62; &#39;jaceju&#39;,&#10;), &#39;author&#39;); ?&#62;</span><br></pre></td></tr></table></figure>
+<p>Url View Helper 的第一個參數是告訴 Url 要將 :username 替換成 jaceju 這個值，第二個參數則是告訴 Url 要使用 author 這個 Route 的反向編譯。這麼一來我們就算修改了 author 這個 Route 的規則，也不必再更動所有的 View Scripts 了。</p>
+<p>註： Route 機制有機會的話，會再向大家作介紹。</p>
+<h2 id="小結">小結</h2><p>瞭解 Zend Framework 的 View 層是進入 Zend Framework 世界的基本功夫，學會它的基礎後，我們就可以很容易地處理資料所要呈現的方式。</p>
+<p>本文介紹了 Zend_View 這個套件的基本用法，還有 Action Controller 是如何跟 View 互動的；另外也介紹了兩個最常用的 View Helper ： BaseUrl 及 Url 。這些都是 Zend Framework 入門時需要先瞭解的知識。</p>
+<p>當然 Zend_View 還有其他可以繼續深入研究的功能，往後有機會的話，我會再一一為大家介紹。</p>
+</span>
       
     </div>
 
@@ -290,22 +345,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +424,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +457,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Zend_View_的基礎"><span class="nav-number">1.</span> <span class="nav-text">Zend_View 的基礎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Base_Path"><span class="nav-number">1.1.</span> <span class="nav-text">Base Path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定樣版變數"><span class="nav-number">1.2.</span> <span class="nav-text">指定樣版變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#輸出內容"><span class="nav-number">1.3.</span> <span class="nav-text">輸出內容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#樣版內容"><span class="nav-number">1.4.</span> <span class="nav-text">樣版內容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#專案架構中的_View_Script"><span class="nav-number">2.</span> <span class="nav-text">專案架構中的 View Script</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller_與_View_的溝通方式"><span class="nav-number">3.</span> <span class="nav-text">Controller 與 View 的溝通方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本的_View_Helper"><span class="nav-number">4.</span> <span class="nav-text">基本的 View Helper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BaseUrl"><span class="nav-number">4.1.</span> <span class="nav-text">BaseUrl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Url"><span class="nav-number">4.2.</span> <span class="nav-text">Url</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">5.</span> <span class="nav-text">小結</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +473,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +495,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +505,6 @@
 
   
   
-
   
     
     
@@ -491,21 +534,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +703,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +733,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

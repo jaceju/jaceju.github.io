@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="今天看到鳥毅老大提了一個問題：PHP 為什麼快呢？本來想回應在他的 Blog 上，不過寫一寫又太長了，就貼在自己家吧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 為什麼快？">
 <meta property="og:url" content="http://jaceju.net/2007/06/22/196/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="今天看到鳥毅老大提了一個問題：PHP 為什麼快呢？本來想回應在他的 Blog 上，不過寫一寫又太長了，就貼在自己家吧。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 為什麼快？">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="今天看到鳥毅老大提了一個問題：PHP 為什麼快呢？本來想回應在他的 Blog 上，不過寫一寫又太長了，就貼在自己家吧。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> PHP 為什麼快？ | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,21 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>今天看到<a href="http://blog.tenyi.com/" target="_blank" rel="external">鳥毅</a>老大提了一個問題：<a href="http://blog.tenyi.com/2007/06/php.html" target="_blank" rel="external">PHP 為什麼快呢？</a>本來想回應在他的 Blog 上，不過寫一寫又太長了，就貼在自己家吧。</p>
+<a id="more"></a>
+<p>這個問題我想有一部份原因是因為大多數 PHP 函式是直接包裝 C 函式的關係吧？不然光只有 PHP Script 的話 (看看現在的框架應該可以略知一二) ，速度其實也就還好。所以很多時候會聽到一些 PHP 高手告誡我們：如果有現成的 PHP 函式能用的話就用，千萬不要自己寫一個。</p>
+<p>另外 PHP 簡單我想也真的是一個重點，鳥毅老大是這麼說的：</p>
+<blockquote><br><br>Java Servlet或是ASP.Net的overhead都太重，因此對於簡單的需求時會像背著厚重殼的烏龜，PHP就像輕穎的兔子；這也是約耳喜歡ASP的原因吧？若只要寫個九九乘法表還需要寫一堆class、呼叫笨重的VM，實在不是聰明的做法。因此只需要在shell下執行的小程式，我也試著用不熟悉的駱駝文寫些簡單的script；只有在需要連結資料庫或做大量運算時才用Java。雖然qing老大強調OO帶來的overhead已經很小，可是我還是覺得有個肥VM的東西就是很慢呀… eg. Java v.s. VB6<br></blockquote>
+
+<p>例如一個 echo 指令，從解譯到把結果交給 Web Server ，其過程所要處理的東西遠比 ASP.NET 或是 Java Solution 來的少 (它們都需要類別或物件來處理) 。就算是已經編譯好的 opcode ，也是得透過 VM 來執行。而 PHP 有時候就直接利用 C 函式產生結果，然後丟給 Web Server 或 CLI 等 console ；因此少了一層包裝，其效能就好很多。 </p>
+<p>換句話說： <strong>PHP 作弊</strong>。</p>
+<p> PHP 原本就是靠 Web Server Script 起家的，能儘量利用現有的東西來組合是它的特色也是優點。而現在 PHP5 及未來的版本為了兼顧維護與效能，就漸漸地靠攏 Java ，將物件導向特性包含進來；但是這只是讓 PHP5 語法在表面上看起來像是物件導向語言，但它骨子裡仍然不是。</p>
+<p>註：昨天也和 <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> 討論到 (他希望我不要再叫他老大 XD ) ， 我們還是希望 PHP 不要<a href="http://mk.netgenes.org/archives/546/" target="_blank" rel="external">完全變成 Java</a> (|||orz 被騙得很慘)，而是要像 JavaScript (<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank" rel="external">ECMAScript</a>) ，這樣能結合靜態語言及動態語言的長處 (也許有人抱持和我不一樣的看法，歡迎指教) 。 </p>
+<p>而提到了維護，傳統 PHP 寫法難以維護也是真的。因為沒有像 <a href="http://www.rubyonrails.org/" target="_blank" rel="external">RoR</a> 這種統一的架構，變成每個 PHPer 有自己一套開發風格；就算一律採用 <a href="http://smarty.php.net" target="_blank" rel="external">Smarty</a> 及 <a href="http://adodb.sourceforge.net/" target="_blank" rel="external">ADOdb</a> 或其他類別庫來開發，每個 PHPer 在架構上的規劃還是大相逕庭。而且雖然現在 PHP 也有框架了，不過在選擇上也是令人眼花撩亂，更別提每個框架的開發者都認為自己的框架才是經過千錘百煉的。</p>
+<p>註：大概很少有人會拿我書裡面的 Smarty 架構做專案吧？我個人強烈建議各位要自己修改，不要照抄 XD 。 </p>
+<p>PHP 有它的優點，當然也有缺點；我想任何語言也是一樣的。其實我也不喜歡爭論孰優孰劣，只要這套語言仍是我所熟稔且能應用自如的話，那麼它就是我目前最佳的選擇了。 </p>
+<p>以上是我個人的看法與經驗，不一定正確，希望各位先進能不吝指教。</p>
+</span>
       
     </div>
 
@@ -288,22 +287,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +366,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +399,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +415,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +437,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +447,6 @@
 
   
   
-
   
     
     
@@ -489,21 +476,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +645,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +675,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

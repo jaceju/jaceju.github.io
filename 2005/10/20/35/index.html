@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="我在 PHP Twbb 台灣論壇資源網回答一個多型的問題：以下有三種不同的多型實作方式，有什麼不同呢？
+我的見解如下：
+&amp;#60;?php&amp;#10;class shape&amp;#10;&amp;#123;&amp;#10;function niceDrawing($temp)&amp;#10;&amp;#123;&amp;#10;$temp-&amp;#62;draw();&amp;#10;&amp;#125;&amp;#10;function draw()&amp;#10;&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="關於PHP的多型">
 <meta property="og:url" content="http://jaceju.net/2005/10/20/35/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="我在 PHP Twbb 台灣論壇資源網回答一個多型的問題：以下有三種不同的多型實作方式，有什麼不同呢？
+我的見解如下：
+&amp;#60;?php&amp;#10;class shape&amp;#10;&amp;#123;&amp;#10;function niceDrawing($temp)&amp;#10;&amp;#123;&amp;#10;$temp-&amp;#62;draw();&amp;#10;&amp;#125;&amp;#10;function draw()&amp;#10;&amp;#">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="關於PHP的多型">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="我在 PHP Twbb 台灣論壇資源網回答一個多型的問題：以下有三種不同的多型實作方式，有什麼不同呢？
+我的見解如下：
+&amp;#60;?php&amp;#10;class shape&amp;#10;&amp;#123;&amp;#10;function niceDrawing($temp)&amp;#10;&amp;#123;&amp;#10;$temp-&amp;#62;draw();&amp;#10;&amp;#125;&amp;#10;function draw()&amp;#10;&amp;#">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 關於PHP的多型 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,18 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>我在 <a href="http://www.twbb.org/?topic=4673.0" target="_blank" rel="external">PHP Twbb 台灣論壇資源網</a>回答一個多型的問題：以下有三種不同的多型實作方式，有什麼不同呢？</p>
+<p>我的見解如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class shape&#10;&#123;&#10;function niceDrawing($temp)&#10;&#123;&#10;$temp-&#62;draw();&#10;&#125;&#10;function draw()&#10;&#123;&#10;//do nothing;&#10;&#125;&#10;&#125;&#10;class Circle&#10;&#123;&#10;function draw()&#10;&#123;&#10;echo &#39;circle&#39;;&#10;&#125;&#10;&#125;&#10;class Rectangle&#10;&#123;&#10;function draw()&#10;&#123;&#10;echo &#39;rec&#39;;&#10;&#125;&#10;&#125;&#10;$board = new shape();&#10;$obj = new Circle();&#10;$obj2 = new Rectangle();&#10;$board-&#62;niceDrawing($obj); //will call the draw method of Circle.&#10;$board-&#62;niceDrawing($obj2); //will call the draw method of Rectangle.&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>第 1 種方式沒有用到繼承，只是很單純的委託別的類別來處理事情。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class shape&#10;&#123;&#10;var $temp;&#10;function niceDrawing()&#10;&#123;&#10;$this-&#62;draw();&#10;&#125;&#10;function draw()&#10;&#123;&#10;//do nothing;&#10;&#125;&#10;&#125;&#10;class Circle&#10;&#123;&#10;function Circle()&#10;&#123;&#10;shape::niceDrawing();&#10;&#125;&#10;function draw()&#10;&#123;&#10;echo &#39;circle&#39;;&#10;&#125;&#10;&#125;&#10;class Rectangle&#10;&#123;&#10;function Rectangle()&#10;&#123;&#10;shape::niceDrawing();&#10;&#125;&#10;function draw()&#10;&#123;&#10;echo &#39;rec&#39;;&#10;&#125;&#10;&#125;&#10;$obj = new Circle();&#10;$obj2 = new Rectangle();&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p> 第 2 種方式也是一樣，只不過採用呼叫 shape 的靜態方法，使物件在初始化時就開始動作。 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Message &#123;&#10;var $message;&#10;function setMessage($message)&#10;&#123;&#10;$this-&#62;message = $message;&#10;&#125;&#10;function getMessage()&#10;&#123;&#10;return $this-&#62;message;&#10;&#125;&#10;&#125;&#10;class PoliteMessage extends Message &#123;&#10;function PoliteMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;How are you today?&#39;);&#10;&#125;&#10;&#125;&#10;class TerseMessage extends Message &#123;&#10;function TerseMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;Howzit?&#39;);&#10;&#125;&#10;&#125;&#10;class RudeMessage extends Message &#123;&#10;function RudeMessage()&#10;&#123;&#10;$this-&#62;setMessage(&#39;You look like *%&#38;amp;* today!&#39;);&#10;&#125;&#10;&#125;&#10;class MessageReader &#123;&#10;var $messages;&#10;function MessageReader(&#38;amp;$messages)&#10;&#123;&#10;$this-&#62;messages = &#38;amp;$messages;&#10;$this-&#62;readMessages();&#10;&#125;&#10;function readMessages()&#10;&#123;&#10;foreach ($this-&#62;messages as $message)&#10;&#123;&#10;if (is_a($message, &#39;Message&#39;))&#10;echo $message-&#62;getMessage() . &#39;&#60;br /&#62;&#39;;&#10;&#125;&#10;&#125;&#10;&#125;&#10;$classNames = array(&#39;PoliteMessage&#39;, &#39;TerseMessage&#39;, &#39;RudeMessage&#39;);&#10;$messages = array();&#10;srand((float)microtime() * 1000000); // Prepares random shuffle&#10;for ($i = 0; $i &#60; 10; $i++)&#10;&#123;&#10;shuffle($classNames);&#10;$messages[] = new $classNames[0]();&#10;&#125;&#10;$messageReader = new MessageReader($messages);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>第 3 種方式用到了繼承，這是常見的多形技巧。 MessageReader 能接受一個 Message 類別所產生的物件，當然 Message 的子類別也同樣地能被 MessageReader 接受。對 MessageReader 來說， &#036;messages 陣列裡所有的類別都繼承於 Message 類別，但因為它們在實作方法上有所不同，故在執行期間能夠產生不同的動作，所以能夠被稱之為多型。</p>
+<p> 第 3 種方式從比較廣義的角度來說，可以稱為「策略模式」。 MessageReader 在執行期間，不必在乎 &#036;messages 陣列裡的物件的實作 (也就是演算法) ，只要這些物件屬於 Message 類別，那麼它就能呼叫 Message 類別中的 getMessage 方法。</p>
+<p> 不過實際上， PHP4 並沒有比較漂亮的辦法在傳入參數時就分別出 &#036;messages 陣列中的物件是否真的屬於 Message 類別 (只能在函式中用 is_a ) ，在 PHP5 就能夠用 Type Hinting 來辨認。</p>
+<p>我不一定是對的，所以歡迎大家提出不同的見解。</p>
+</span>
       
     </div>
 
@@ -288,22 +290,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +369,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +402,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +418,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +440,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +450,6 @@
 
   
   
-
   
     
     
@@ -489,21 +479,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +648,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +678,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="這裡把我在 Linux 上安裝 PHP 5.3 測試環境的步驟記錄下來，所有內容都是參考以前寫的「在 Linux 上建構 PHP5 開發與測試環境 」 一文。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Linux 上建構 PHP 5.3 測試環境">
 <meta property="og:url" content="http://jaceju.net/2010/02/12/1027/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="這裡把我在 Linux 上安裝 PHP 5.3 測試環境的步驟記錄下來，所有內容都是參考以前寫的「在 Linux 上建構 PHP5 開發與測試環境 」 一文。">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Linux 上建構 PHP 5.3 測試環境">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="這裡把我在 Linux 上安裝 PHP 5.3 測試環境的步驟記錄下來，所有內容都是參考以前寫的「在 Linux 上建構 PHP5 開發與測試環境 」 一文。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 在 Linux 上建構 PHP 5.3 測試環境 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,130 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>這裡把我在 Linux 上安裝 PHP 5.3 測試環境的步驟記錄下來，所有內容都是參考以前寫的「<a href="http://www.jaceju.net/blog/archives/178" target="_blank" rel="external">在 Linux 上建構 PHP5 開發與測試環境</a> 」 一文。</p>
+<a id="more"></a>
+<h2 id="安裝目標">安裝目標</h2><p>以下就是我這次要安裝的平台：</p>
+<ul>
+<li>Linux 平台 (採用 CentOS) </li>
+<li>Apache 2.2.x</li>
+<li>MySQL 5.1.x</li>
+<li>PHP 5.3.x</li>
+</ul>
+<h2 id="目錄配置">目錄配置</h2><p>以下依照一些先進的經驗，加上個人的喜好，將平台中相關目錄配置如下：</p>
+<table style="border-collapse: collapse;" border="1" width="90%" summary="相關目錄配置"><br><tbody><br><tr><br><th style="width:50%;">原始碼存放位置</th><br><td style="width:50%;">/usr/local/src</td><br></tr><br><tr><br><th style="width:50%;">Apache 網站根目錄</th><br><td style="width:50%;">/home/www/wwwroot</td><br></tr><br><tr><br><th style="width:50%;">MySQL 數據庫位置</th><br><td style="width:50%;">/var/mysql/data</td><br></tr><br><tr><br><th style="width:50%;">MySQL 設定檔 </th><br><td style="width:50%;">/etc/my.cnf</td><br></tr><br><tr><br><th style="width:50%;">PHP 設定檔 </th><br><td style="width:50%;">/etc/php.ini</td><br></tr><br></tbody><br></table>
+
+<h2 id="建立_Linux_平台">建立 Linux 平台</h2><h3 id="下載_CentOS">下載 CentOS</h3><p>我選擇的 Linux 平台是 CentOS ，目前其穩定的版本為 5.4 (2010-12) 。可以透過以下網址，下載 ServerDVD ISO 檔：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://ftp.isu.edu.tw/pub/Linux/CentOS/5.4/isos/i386/CentOS-5.4-i386-bin-DVD.iso</span><br></pre></td></tr></table></figure>
+<p>下載回來後，我將它燒錄成 DVD 光碟以便安裝。</p>
+<h3 id="安裝簡述">安裝簡述</h3><p>基本上安裝步驟就是參考<a href="http://linux.vbird.org/" target="_blank" rel="external">鳥哥的網站</a>，而詳細的步驟就按照安裝畫面一一設定即可。但特別要注意 SELinux 要先<a href="http://linux.vbird.org/linux_server/0240network-secure-1.php" target="_blank" rel="external">關掉</a>，免得到時候遇到一堆網路問題。</p>
+<p>由於這是測試用的環境，所以其實也不用安裝太多不必要的服務。不過有兩個服務要預先安裝，那就是 vsftpd 和 sshd 。這樣後面要操作系統及存取檔案時，會比較容易一些。</p>
+<p>另外就是 httpd 、 mysql 和 php 也都不要勾選，因為後面我們要採用 tarball 的方式來安裝。</p>
+<p>註：另外也要注意防火牆有沒有擋掉 WWW 服務。</p>
+<h3 id="定時校正伺服器時間">定時校正伺服器時間</h3><p>接下來要定時將伺服器的時間做校正動作，這裡要先安裝 ntp 套件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># yum install ntp</span><br></pre></td></tr></table></figure>
+<p>安裝好後，我們要修改排程表：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># crontab -e</span><br></pre></td></tr></table></figure>
+<p>加入以下這行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0 23 * * * /usr/sbin/ntpdate time.stdtime.gov.tw &#62; /dev/null 2&#62;&#38;amp;1</span><br></pre></td></tr></table></figure>
+<p>完成後存檔，這樣伺服器就會在每天的 23:00 根據<a href="http://www.stdtime.gov.tw/" target="_blank" rel="external">國家時間與頻率標準實驗室</a>的 NTP 伺服器來自動校準時間。</p>
+<p>註：以上設定 CentOS 的步驟也可以參考<a href="http://apt.nc.hcc.edu.tw/web/student_server_centos/student_server_centos.html" target="_blank" rel="external">學生用伺服器建置流程（CentOS 5 版）</a>，這篇教學在 CentOS 的設定上寫的比較完整。</p>
+<h3 id="設定_FTP_伺服器">設定 FTP 伺服器</h3><p>首先要建一個 www 帳號，專門用來上傳 web 程式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># useradd www</span><br></pre></td></tr></table></figure>
+<p>然後編輯 /etc/vsftpd/vsftpd.conf ，參考鳥哥的 <a href="http://linux.vbird.org/linux_server/0410vsftpd.php" target="_blank" rel="external">vsFTPd 檔案伺服器</a>，我將設定調整如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">anonymous_enable=NO&#10;local_enable=YES&#10;write_enable=YES&#10;local_umask=000&#10;connect_from_port_20=YES&#10;chown_uploads=YES&#10;chown_username=nobody&#10;ascii_upload_enable=YES&#10;ascii_download_enable=YES&#10;ftpd_banner=Welcome to My FTP service.&#10;chroot_local_user=YES&#10;chroot_list_enable=YES&#10;pam_service_name=vsftpd&#10;userlist_enable=YES&#10;userlist_deny=YES&#10;userlist_file=/etc/vsftpd/user_list&#10;listen=YES&#10;tcp_wrappers=YES&#10;use_localtime=YES</span><br></pre></td></tr></table></figure>
+<h3 id="安裝編譯套件">安裝編譯套件</h3><p>因為後面需要編譯 Tarball 原始碼，因此這裡我們需要先把編譯所需要的相關套件用 yum 指令來安裝好：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># yum install \&#10;gcc gcc-c++ gcc-g77 flex bison autoconf \&#10;automake bzip2-devel zlib-devel ncurses-devel \&#10;gd gd-devel \&#10;libjpeg-devel libpng-devel libtiff-devel libxml2-devel freetype-devel pam-devel \&#10;sqlite curl curl-devel</span><br></pre></td></tr></table></figure>
+<p>這些套件因為較無版本問題，而且如果自行編譯會比較麻煩；因此這裡採用 yum 安裝會快一點。</p>
+<p>小提示：以 xxx-devel 為名的，就是用來協助編譯的套件，它們通常會包含一些編譯用的表頭檔。</p>
+<h2 id="編譯安裝目標套件">編譯安裝目標套件</h2><p>編譯 Tarball 可以參考鳥哥網站裡的<a href="http://linux.vbird.org/linux_basic/0520source_code_and_tarball.php" target="_blank" rel="external">原始碼與 Tarball 套件管理員</a>，大致的步驟如下：</p>
+<ul>
+<li>下載套件原始檔，並放到 /usr/local/src 底下。 </li>
+<li>解開套件原始檔，然後進到解開後的目錄。</li>
+<li>設定套件相關選項。</li>
+<li>編譯與安裝。</li>
+</ul>
+<p>特別要注意設定套件相關選項時，一定要仔細考慮清楚自己所要的配置。如果有任何不清楚的地方，可以在設定前輸入以下指令來瞭解各個選項的意義：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ./configure --help</span><br></pre></td></tr></table></figure>
+<h3 id="編譯與安裝_MySQL_5-1-x">編譯與安裝 MySQL 5.1.x</h3><p>MySQL 5.1 也是要在 PHP 5.3 之前安裝，這裡參考的是官方的<a href="http://dev.mysql.com/doc/refman/5.1/en/quick-install.html" target="_blank" rel="external">安裝說明</a>。首先要先建立執行 MySQL 時所需要的帳號：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># groupadd mysql&#10;# useradd -g mysql mysql</span><br></pre></td></tr></table></figure>
+<p>然後就按照標準程序安裝：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cd /usr/local/src&#10;# wget http://dev.mysql.com/get/Downloads/MySQL-5.1/mysql-5.1.x.tar.gz/from/http://mysql.ntu.edu.tw/&#10;# tar xvzf mysql-5.1.x.tar.gz&#10;# cd mysql-5.1.x&#10;# ./configure \&#10;--prefix=/usr/local \&#10;--localstatedir=/var/mysql/data \&#10;--enable-thread-safe-client&#10;# make &#38;amp;&#38;amp; make install</span><br></pre></td></tr></table></figure>
+<p>有關 configure 選項的說明如下： (參考自官方網站的 <a href="http://dev.mysql.com/doc/refman/5.1/en/configure-options.html" target="_blank" rel="external">2.3.2. Typical configure  Options</a>)</p>
+<table style="border-collapse: collapse;" border="1" width="90%" summary="MySQL ./configure 選項說明"><br><thead><br><tr><br><th>選項</th><br><th>說明</th><br></tr><br></thead><br><tbody><br><tr><br><td>—prefix=/usr/local</td><br><td>MySQL 的安裝目錄</td><br></tr><br><tr><br><td>—localstatedir=/var/mysql/data</td><br><td>資料庫的存放路徑</td><br></tr><br><tr><br><td>—enable-thread-safe-client</td><br><td>啟用 thread safe 的用戶連結方式</td><br></tr><br></tbody><br></table>
+
+<p>註：我在參考對岸網友的安裝心得時，到最後都一直無法成功安裝預設資料庫。後來在 ./configure 中使用以上的選項後，才順利把 MySQL 安裝起來。</p>
+<p>編譯安裝完成後，接下來要將 MySQL 設定檔複製到預設的位置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cp support-files/my-medium.cnf /etc/my.cnf</span><br></pre></td></tr></table></figure>
+<p>然後安裝預設的資料庫，這裡要特別注意權限的設定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cd /usr/local&#10;# mkdir /var/mysql&#10;# mkdir /var/mysql/data&#10;# bin/mysql_install_db --user=mysql</span><br></pre></td></tr></table></figure>
+<p>安裝好預設資料庫後，我們要將 MySQL 加入伺服器的啟動服務項目裡：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cp share/mysql/mysql.server /etc/rc.d/init.d/mysqld&#10;# chmod 755 /etc/rc.d/init.d/mysqld&#10;# chkconfig --add mysqld&#10;# chkconfig mysqld on</span><br></pre></td></tr></table></figure>
+<p>接下來啟動 MySQL ，並設定 root 的密碼：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># service mysqld start&#10;# bin/mysqladmin -u root password &#34;password_for_root&#34;&#10;# service mysqld stop</span><br></pre></td></tr></table></figure>
+<h3 id="編譯與安裝_Apache_2-2-x">編譯與安裝 Apache 2.2.x</h3><p>因為後面的套件在安裝時需要夠知道 Apache 安裝的目錄，所以這裡要先安裝 Apache 。 Apache 的安裝基本上也是採用標準步驟：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cd /usr/local/src&#10;# wget http://ftp.mirror.tw/pub/apache/httpd/httpd-2.2.x.tar.gz&#10;# tar zxvf httpd-2.2.x.tar.gz&#10;# cd httpd-2.2.x&#10;# ./configure \&#10;--prefix=/usr/local \&#10;--enable-module=so \&#10;--enable-dav=shared \&#10;--enable-deflate=shared \&#10;--enable-expires=shared \&#10;--enable-rewrite=shared \&#10;--enable-authn-dbm=shared \&#10;--enable-authn-anon=shared \&#60;!-- - - enable-authn-dbd=shared \ --&#62;&#10;--enable-auth-basic=shared \&#10;--enable-cache \&#10;--enable-file-cache \&#10;--enable-mem-cache \&#10;--enable-disk-cache \&#10;--enable-static-support \&#10;--enable-static-htpasswd \&#10;--enable-static-htdigest \&#10;--enable-static-rotatelogs \&#10;--enable-static-logresolve \&#10;--enable-static-htdbm \&#10;--enable-static-ab \&#10;--enable-static-checkgid&#10;# make &#38;amp;&#38;amp; make install</span><br></pre></td></tr></table></figure>
+<p>有關 configure 選項的說明如下： (參考自 <a href="http://httpd.apache.org/docs/2.0/programs/configure.html#options" target="_blank" rel="external">Apache HTTP Server Documentation::configure - Configure the source tree</a>)</p>
+<table style="border-collapse: collapse;" border="1" width="90%" summary="Apache ./configure 選項說明"><br><thead><br><tr><br><th>選項</th><br><th>說明</th><br></tr><br></thead><br><tbody><br><tr><br><td>—prefix=/usr/local</td><br><td>Apache 的安裝目錄</td><br></tr><br><tr><br><td>—enable-module=so</td><br><td>啟用 so 模組，可以讓 Apache 支援 DSO</td><br></tr><br><tr><br><td>—enable-dav=shared</td><br><td>啟用 WebDAV ，Subversion 需要用到</td><br></tr><br><tr><br><td>—enable-deflate=shared</td><br><td>啟用網頁壓縮</td><br></tr><br><tr><br><td>—enable-expires=shared</td><br><td>啟用 HTTP 控制</td><br></tr><br><tr><br><td>—enable-rewrite=shared</td><br><td>啟用網址重寫</td><br></tr><br><tr><br><td>—enable-cache</td><br><td>啟用快取</td><br></tr><br><tr><br><td>—enable-file-cache</td><br><td>啟用檔案快取</td><br></tr><br><tr><br><td>—enable-mem-cache</td><br><td>啟用記憶體快取</td><br></tr><br><tr><br><td>—enable-disk-cache</td><br><td>啟用磁碟快取</td><br></tr><br><tr><br><td>—enable-static-support</td><br><td>啟用靜態支援</td><br></tr><br><tr><br><td>—enable-static-htpasswd</td><br><td>編譯 htpasswd - 管理採用基本認證的檔案</td><br></tr><br><tr><br><td>—enable-static-htdigest</td><br><td>編譯 htdigest - 管理採用摘要認證方式的檔案</td><br></tr><br><tr><br><td>—enable-static-rotatelogs</td><br><td>編譯 rotatelogs - 輪替 Apache 紀錄的管道日誌程序</td><br></tr><br><tr><br><td>—enable-static-logresolve</td><br><td>編譯 logresolve - 解析 Apache 紀錄中的 IP 地址為主機名</td><br></tr><br><tr><br><td>—enable-static-htdbm</td><br><td>編譯 htdbm - 操作 DBM 密碼數據庫</td><br></tr><br><tr><br><td>—enable-static-ab</td><br><td>編譯 ab - Apache HTTP 服務器性能測試工具</td><br></tr><br><tr><br><td>—enable-static-checkgid</td><br><td>編譯 checkgid</td><br></tr><br></tbody><br></table>
+
+<p>接下來要將 Apache 設為伺服器的啟動服務項目，首先把 Apache 的控制程式複製成伺服器的服務項目：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cp /usr/local/bin/apachectl /etc/rc.d/init.d/httpd</span><br></pre></td></tr></table></figure>
+<p>然後編輯這個服務項目：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># vi /etc/rc.d/init.d/httpd</span><br></pre></td></tr></table></figure>
+<p>然後在 #!/bin/sh 下面加入以下兩行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chkconfig: 2345 10 90&#10;# description: Activates/Deactivates Apache Web Server</span><br></pre></td></tr></table></figure>
+<p>註：能讓 chkconfig 辨認出 httpd 的關鍵在是 chkconfig: 2345 10 90 這一行，第一個數字 2345 表示讓 Apache 在 2345 這四個級別都自動運行；第二個數字 10 表示程序啟動的優先級；第三個數字 90 表示程序停止的優先級。</p>
+<p>然後就可以把 Apache 加到系統的啟動服務裡面：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># chkconfig --add httpd&#10;# chkconfig httpd on</span><br></pre></td></tr></table></figure>
+<h3 id="編譯與安裝_PHP_5-3-x">編譯與安裝 PHP 5.3.x</h3><p>PHP5 的安裝也是採用標準模式，然後也要記得將 php.ini-recommend 複製成 /etc/php.ini</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cd /usr/local/src&#10;# wget http://tw2.php.net/get/php-5.3.x.tar.gz/from/tw.php.net/mirror&#10;# tar zxvf php-5.3.x.tar.gz&#10;# cd php-5.3.x&#10;# cp php.ini-development /etc/php.ini&#10;# ./configure \&#10;--prefix=/usr/local \&#10;--with-apxs2=/usr/local/bin/apxs \&#10;--with-zlib \&#10;--with-bz2 \&#10;--with-libxml-dir \&#10;--with-gd \&#10;--with-freetype-dir \&#10;--with-jpeg-dir \&#10;--with-png-dir \&#10;--with-mysql \&#10;--with-mysqli \&#10;--with-pdo-mysql \&#10;--with-config-file-path=/etc \&#10;--with-iconv \&#10;--with-curl \&#10;--disable-ipv6 \&#10;--enable-mbstring \&#10;--enable-ftp&#10;# make &#38;amp;&#38;amp; make install</span><br></pre></td></tr></table></figure>
+<p>有關 configure 選項的說明如下：</p>
+<table style="border-collapse: collapse;" border="1" width="90%" summary="PHP ./configure 選項說明"><br><thead><br><tr><br><th>選項</th><br><th>說明</th><br></tr><br></thead><br><tbody><br><tr><br><td>—prefix=/usr/local</td><br><td>PHP 的安裝目錄</td><br></tr><br><tr><br><td>—with-apxs2=/usr/local/bin/apxs</td><br><td>指定 Apache2 的執行檔路徑 </td><br></tr><br><tr><br><td>—with-zlib</td><br><td>啟用 zlib 支援 </td><br></tr><br><tr><br><td>—with-bz2 </td><br><td>啟用 bz2 支援 </td><br></tr><br><tr><br><td>—with-libxml-dir</td><br><td>啟用 libxml 支援 </td><br></tr><br><tr><br><td>—with-gd</td><br><td>啟用 gd2 支援</td><br></tr><br><tr><br><td>—with-freetype-dir</td><br><td>啟用 freetype 支援 </td><br></tr><br><tr><br><td>—with-jpeg-dir</td><br><td>啟用 jpeg 支援 </td><br></tr><br><tr><br><td>—with-png-dir</td><br><td>啟用 png 支援 </td><br></tr><br><tr><br>  <td>—with-mysql</td><br>  <td>啟用 mysql 支援</td><br></tr><br><tr><br><td>—with-mysqli</td><br><td>啟用 mysqli 支援 </td><br></tr><br><tr><br><td>—with-pdo-mysql</td><br><td>啟用 pdo_mysql</td><br></tr><br><tr><br><td>—with-config-file-path=/etc</td><br><td>指定設定檔 php.ini 的路徑 </td><br></tr><br><tr><br><td>—with-iconv</td><br><td>啟用 iconv 支援 </td><br></tr><br><tr><br><td>—disable-ipv6</td><br><td>關閉 ipv6 支援 </td><br></tr><br><tr><br><td>—enable-mbstring</td><br><td>啟用 mbstring 支援 </td><br></tr><br><tr><br><td>—enable-ftp</td><br><td>啟用 ftp 支援 </td><br></tr><br></tbody><br></table>
+
+<p>接下來要把 PHP 整合到 Apache 裡，先編輯 Apache 的設定檔：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># vi /usr/local/conf/httpd.conf</span><br></pre></td></tr></table></figure>
+<p>找到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">User daemon&#10;Group daemon</span><br></pre></td></tr></table></figure>
+<p>改為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">User www&#10;Group www</span><br></pre></td></tr></table></figure>
+<p>在最後一行或是 AddType 區段加上：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AddType application/x-httpd-php .php</span><br></pre></td></tr></table></figure>
+<p>然後要設定預設文件，一樣在 httpd.conf 中尋找：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DirectoryIndex index.html</span><br></pre></td></tr></table></figure>
+<p>改為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DirectoryIndex index.php index.htm index.html</span><br></pre></td></tr></table></figure>
+<p>然後修改網站根目錄，找到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DocumentRoot &#34;/usr/local/htdocs&#34;</span><br></pre></td></tr></table></figure>
+<p>改為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DocumentRoot &#34;/home/www/wwwroot&#34;</span><br></pre></td></tr></table></figure>
+<p>然後再找到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;Directory &#34;/usr/local/htdocs&#34;&#62;</span><br></pre></td></tr></table></figure>
+<p>改成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;Directory &#34;/home/www/wwwroot&#34;&#62;</span><br></pre></td></tr></table></figure>
+<p>接下來要讓 .htaccess 可以作用，在上面的 <directory "="" home="" www="" wwwroot"=""> 往下幾行可以找到：</directory></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AllowOverride none</span><br></pre></td></tr></table></figure>
+<p>將它更改為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AllowOverride all</span><br></pre></td></tr></table></figure>
+<p>最後將 httpd.conf 存檔並退出 vi 編輯器。</p>
+<p>接著要更改 php.ini 的時區：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># vi /etc/php.ini</span><br></pre></td></tr></table></figure>
+<p>找到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">;date.timezone =</span><br></pre></td></tr></table></figure>
+<p>改為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date.timezone = Asia/Taipei</span><br></pre></td></tr></table></figure>
+<p>儲存後離開。</p>
+<h2 id="測試開發環境">測試開發環境</h2><p>在最後的步驟裡，我們要測試剛剛建立的環境是否能正常動作。</p>
+<p>首先要建立網站根目錄位置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cd /home/www&#10;# mkdir wwwroot&#10;# chown www.www -R wwwroot</span><br></pre></td></tr></table></figure>
+<p>接著再建立一個測試檔：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># vi /home/www/wwwroot/index.php</span><br></pre></td></tr></table></figure>
+<p>內容為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$link = mysql_connect(&#39;localhost&#39;, &#39;root&#39;, &#34;ikolp;[&#39;&#34;) or die(mysql_error());&#10;phpinfo();&#10;mysql_close($link);</span><br></pre></td></tr></table></figure>
+<p>再把伺服器啟動：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># service httpd start&#10;# service mysqld start</span><br></pre></td></tr></table></figure>
+<p>然後開啟瀏覽器，在網址列輸入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://test_server_ip/</span><br></pre></td></tr></table></figure>
+<p>查看是否會正常出現 phpinfo 的內容即可。</p>
+</span>
       
     </div>
 
@@ -290,22 +398,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +477,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +510,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝目標"><span class="nav-number">1.</span> <span class="nav-text">安裝目標</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目錄配置"><span class="nav-number">2.</span> <span class="nav-text">目錄配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立_Linux_平台"><span class="nav-number">3.</span> <span class="nav-text">建立 Linux 平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下載_CentOS"><span class="nav-number">3.1.</span> <span class="nav-text">下載 CentOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝簡述"><span class="nav-number">3.2.</span> <span class="nav-text">安裝簡述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定時校正伺服器時間"><span class="nav-number">3.3.</span> <span class="nav-text">定時校正伺服器時間</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定_FTP_伺服器"><span class="nav-number">3.4.</span> <span class="nav-text">設定 FTP 伺服器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝編譯套件"><span class="nav-number">3.5.</span> <span class="nav-text">安裝編譯套件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#編譯安裝目標套件"><span class="nav-number">4.</span> <span class="nav-text">編譯安裝目標套件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#編譯與安裝_MySQL_5-1-x"><span class="nav-number">4.1.</span> <span class="nav-text">編譯與安裝 MySQL 5.1.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#編譯與安裝_Apache_2-2-x"><span class="nav-number">4.2.</span> <span class="nav-text">編譯與安裝 Apache 2.2.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#編譯與安裝_PHP_5-3-x"><span class="nav-number">4.3.</span> <span class="nav-text">編譯與安裝 PHP 5.3.x</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試開發環境"><span class="nav-number">5.</span> <span class="nav-text">測試開發環境</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +526,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +548,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +558,6 @@
 
   
   
-
   
     
     
@@ -491,21 +587,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +756,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +786,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

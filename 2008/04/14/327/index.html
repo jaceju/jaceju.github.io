@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,29 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="這篇積在我電腦裡很久了，一直沒公開…這次趁著要幫我的 Library 加料，順便拿出來分享一下心得。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PHP] 在 PHP5 中實作 AOP 的概念">
 <meta property="og:url" content="http://jaceju.net/2008/04/14/327/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="這篇積在我電腦裡很久了，一直沒公開…這次趁著要幫我的 Library 加料，順便拿出來分享一下心得。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[PHP] 在 PHP5 中實作 AOP 的概念">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="這篇積在我電腦裡很久了，一直沒公開…這次趁著要幫我的 Library 加料，順便拿出來分享一下心得。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> [PHP] 在 PHP5 中實作 AOP 的概念 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +129,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +139,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +149,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +169,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +228,65 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>這篇積在我電腦裡很久了，一直沒公開…這次趁著要幫我的 Library 加料，順便拿出來分享一下心得。 </p>
+<a id="more"></a>
+<h2 id="什麼是_AOP">什麼是 AOP</h2><p> AOP 全名為 Aspect-Oriented Programming ，基本的觀念可以參考良葛格的 AOP 入門：</p>
+<li><span id="text145561"><a href="http://caterpillar.onlyfun.net/Gossip/SpringGossip/FromProxyToAOP.html" target="_blank" rel="external">從代理機制初探 AOP</a></span></li><br><li><span><a href="http://caterpillar.onlyfun.net/Gossip/SpringGossip/DynamicProxy.html" target="_blank" rel="external">動態代理</a></span></li><br><li><span><a href="http://caterpillar.onlyfun.net/Gossip/SpringGossip/AOPConcept.html" target="_blank" rel="external">AOP 觀念與術語</a></span></li>
+
+
+<p>這裡我簡單提一下 AOP 的基本想法：</p>
+<p>假設當我們呼叫物件的某些方法 (或是<strong>業務流程</strong>) 之後，會想要把相關的資訊記錄到 log 檔裡，我們也許會這樣寫：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * Test&#10; */&#10;class Test&#10;&#123;&#10;    /**&#10;     * &#26576;&#20491;&#26041;&#27861;&#10;     */&#10;    public function doSomething()&#10;    &#123;&#10;        // &#24314;&#31435; Log &#29289;&#20214;&#10;        $logger = new Log();&#10;        // &#23531;&#20837;&#21069;&#32622; Log&#10;        $logger-&#62;save(&#39;before do something.&#39;);&#10;        // &#20027;&#35201;&#30340;&#21205;&#20316;&#10;        // ...&#10;        // &#23531;&#20837; Log&#10;        $logger-&#62;save(&#39;before do something.&#39;);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>可是如果今天這個記錄 log 的這個動作只是臨時的，或是在未來可能會需要再加入不同的動作時 (例如寄信) ，難道我們還要在原有方法的程式碼裡修修改改嗎？有沒有什麼方式能協助我們動態地把記錄的動作插在原有動作之後呢？</p>
+<p>AOP 就是從這個角度所延伸出來的一種觀念，它能協助我們在不侵入原有類別程式碼的狀況下，動態地為類別方法新增額外的權責；簡單來說， AOP 主要的目的就是<strong>切入類別原有方法執行之前或之後，並安插我們想要執行的動作</strong>。</p>
+<p>註： IT 界似乎很喜歡發明深奧的名詞來詮釋一個簡單的概念，然後像我這樣不學無術的開發者就常被唬得一楞一楞的。</p>
+<h2 id="AOP_和_Decorator">AOP 和 Decorator</h2><p>先介紹幾篇實作 AOP 的文章：</p>
+<ul>
+<li><a href="http://racklin.blogspot.com/2007/08/aop-for-jquery.html" target="_blank" rel="external">AOP for jQuery</a></li>
+<li><a href="http://blog.jonnay.net/archives/637-Aspect-Oriented-Programming-in-PHP-as-a-contrast-to-other-languages..html" target="_blank" rel="external">Aspect Oriented Programming in PHP as a contrast to other languages.</a></li>
+<li><a href="http://wiki.jonnay.net/bunny/bunnyaspectsphp" target="_blank" rel="external">Bunny Aspects</a></li>
+<li><a href="http://jaxn.org/article/2004/10/16/more-on-aspect-oriented-php/" target="_blank" rel="external">More on Aspect Oriented PHP</a></li>
+<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/864a0ef46d93b86eddc474f3.html" target="_blank" rel="external">在PHP里利用魔术方法实现准AOP</a></li>
+<li><a href="http://sushener.spaces.live.com/blog/cns!BB54050A5CFAFCDD!546.entry" target="_blank" rel="external">AOP在PHP中的实现方式</a></li>
+<li><a href="http://www.phpclasses.org/browse/package/2633.html" target="_blank" rel="external">Class: AOP Library for PHP</a></li>
+</ul>
+<p>其實一開始我以為 AOP 和 Decorator 模式在 PHP 上的實作方式是差不多的，不過實際上還有是些許的差別。</p>
+<p>一般在 Decorator 模式中，具體類別和 Wrapper 類別都會有個共同的祖先，亦即一個抽象類別或介面，因此所產生出來的物件對 Client 程式來說，其抽象型態可以說是一樣的。</p>
+<p>但是在 AOP in PHP 中，我們必須透過一個代理類別來切入原有的類別方法裡，雖然這個代理類別也能夠提供原有類別中的所有方法，但是實際上它卻已經失去了與原有類別所擁有的抽象型態了。</p>
+<h2 id="用_PHP_實作_AOP">用 PHP 實作 AOP</h2><p>首先我們來看看還沒有切入任何事件的目標類別：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * Test class&#10; *&#10; */&#10;class TestClass&#10;&#123;&#10;    /**&#10;     * Method 1&#10;     *&#10;     * @param string $message&#10;     */&#10;    public function method1($message)&#10;    &#123;&#10;        echo &#34;\n&#34;, __METHOD__, &#34;:\n&#34;, $message, &#34;\n&#34;;&#10;    &#125;&#10;    /**&#10;     * Method 2&#10;     *&#10;     * @return int&#10;     */&#10;    public function method2()&#10;    &#123;&#10;        echo &#34;\n&#34;, __METHOD__, &#34;:\n&#34;;&#10;        return rand(1, 10);&#10;    &#125;&#10;    /**&#10;     * Method 3&#10;     *&#10;     * @throws Exception&#10;     */&#10;    public function method3()&#10;    &#123;&#10;        echo &#34;\n&#34;, __METHOD__, &#34;:\n&#34;;&#10;        throw new Exception(&#39;Test Exception.&#39;);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這個類別提供了三個方法，其中 method1 和 method2 只是簡單的顯示資料而已，而 method3 則會丟出一個異常。</p>
+<p>另外我們需要一個 Log 類別：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * Log&#10; *&#10; */&#10;class Log&#10;&#123;&#10;    /**&#10;     * log message&#10;     *&#10;     * @param string $message&#10;     */&#10;    public function save($message)&#10;    &#123;&#10;        echo $message, &#34;\n&#34;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這個 Log 類別只提供一個 save() 方法，以顯示 log 訊息。 </p>
+<p>現在我們要完成的目標如下：</p>
+<ul>
+<li><p>在 method1 執行前呼叫 Log::save() 。</p>
+</li>
+<li><p>在 method2 執行後呼叫 Log::save() 。</p>
+</li>
+<li><p>在 method3 發生異常時呼叫 Log::save() 。 </p>
+</li>
+</ul>
+<p>這裡我用很簡單的方式來做，那就是直接使用一個 Aspect 類別：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * Aspect&#10; *&#10; */&#10;class Aspect&#10;&#123;&#10;    /**&#10;     * Name of target class&#10;     *&#10;     * @var string&#10;     */&#10;    private $_className = null;&#10;    /**&#10;     * Target object&#10;     *&#10;     * @var object&#10;     */&#10;    private $_target = null;&#10;    /**&#10;     * Event callback&#10;     *&#10;     * @var array&#10;     */&#10;    private $_eventCallbacks = array();&#10;    /**&#10;     * Add object&#10;     *&#10;     * @param object $target&#10;     * @return Aspect&#10;     */&#10;    public static function addObject($target)&#10;    &#123;&#10;        return new Aspect($target);&#10;    &#125;&#10;    /**&#10;     * Contructor&#10;     *&#10;     * @param object $target&#10;     */&#10;    public function __construct($target)&#10;    &#123;&#10;        if (is_object($target)) &#123;&#10;            $this-&#62;_target = $target;&#10;            $this-&#62;_className = get_class($this-&#62;_target);&#10;        &#125;&#10;    &#125;&#10;    /**&#10;     * Register event&#10;     *&#10;     * @param string $eventName&#10;     * @param string $methodName&#10;     * @param callback $callback&#10;     */&#10;    private function _registerEvent($eventName, $methodName, $callback, $args)&#10;    &#123;&#10;        if (!isset($this-&#62;_eventCallbacks[$methodName])) &#123;&#10;            $this-&#62;_eventCallbacks[$methodName] = array();&#10;        &#125;&#10;        if (!is_callable(array($this-&#62;_target, $methodName))) &#123;&#10;            throw new Exception(get_class($this-&#62;_target) . &#39;::&#39; . $methodName . &#39; is not exists.&#39;);&#10;        &#125;&#10;        if (is_callable($callback)) &#123;&#10;            $this-&#62;_eventCallbacks[$methodName]($eventName) = array($callback, $args);&#10;        &#125; else &#123;&#10;            $callbackName = Aspect::getCallbackName($callback);&#10;            throw new Exception($callbackName . &#39; is not callable.&#39;);&#10;        &#125;&#10;    &#125;&#10;    /**&#10;     * Register &#39;before&#39; handler&#10;     *&#10;     * @param string $methodName&#10;     * @param callback $callback&#10;     */&#10;    public function before($methodName, $callback, $args = array())&#10;    &#123;&#10;        $this-&#62;_registerEvent(&#39;before&#39;, $methodName, $callback, (array) $args);&#10;    &#125;&#10;    /**&#10;     * Register &#39;after&#39; handler&#10;     *&#10;     * @param string $methodName&#10;     * @param callback $callback&#10;     */&#10;    public function after($methodName, $callback, $args = array())&#10;    &#123;&#10;        $this-&#62;_registerEvent(&#39;after&#39;, $methodName, $callback, (array) $args);&#10;    &#125;&#10;    /**&#10;     * Register &#39;on catch exception&#39; handler&#10;     *&#10;     * @param string $methodName&#10;     * @param callback $callback&#10;     */&#10;    public function onCatchException($methodName, $callback, $args = array())&#10;    &#123;&#10;        $this-&#62;_registerEvent(&#39;onCatchException&#39;, $methodName, $callback, (array) $args);&#10;    &#125;&#10;    /**&#10;     * Trigger event&#10;     *&#10;     * @param string $eventName&#10;     */&#10;    private function _trigger($eventName, $methodName, $target)&#10;    &#123;&#10;        if (isset($this-&#62;_eventCallbacks[$methodName]($eventName))) &#123;&#10;            list($callback, $args) = $this-&#62;_eventCallbacks[$methodName]($eventName);&#10;            $args[] = $target;&#10;            call_user_func_array($callback, $args);&#10;        &#125;&#10;    &#125;&#10;    /**&#10;     * Execute method&#10;     *&#10;     * @param string $methodName&#10;     * @param array $args&#10;     * @return mixed&#10;     */&#10;    public function __call($methodName, $args)&#10;    &#123;&#10;        if (is_callable(array($this-&#62;_target, $methodName))) &#123;&#10;            try &#123;&#10;                $this-&#62;_trigger(&#39;before&#39;, $methodName, $this-&#62;_target);&#10;                $result = call_user_func_array(array($this-&#62;_target, $methodName), $args);&#10;                $this-&#62;_trigger(&#39;after&#39;, $methodName, $this-&#62;_target);&#10;                return $result ? $result : null;&#10;            &#125; catch (Exception $e) &#123;&#10;                $this-&#62;_trigger(&#39;onCatchException&#39;, $methodName, $e);&#10;                throw $e;&#10;            &#125;&#10;        &#125; else &#123;&#10;            throw new Exception(&#34;Call to undefined method &#123;$this-&#62;_className&#125;::$methodName.&#34;);&#10;        &#125;&#10;    &#125;&#10;    /**&#10;     * Get name of callback&#10;     *&#10;     * @param callback $callback&#10;     * @return string&#10;     */&#10;    public static function getCallbackName($callback)&#10;    &#123;&#10;        $className  = &#39;&#39;;&#10;        $methodName = &#39;&#39;;&#10;        if (is_array($callback) &#38;amp;&#38;amp; 2 == count($callback)) &#123;&#10;            if (is_object($callback[0])) &#123;&#10;                $className = get_class($callback[0]);&#10;            &#125; else &#123;&#10;                $className = (string) $callback[0];&#10;            &#125;&#10;            $methodName = (string) $callback[1];&#10;        &#125; elseif (is_string($callback)) &#123;&#10;            $methodName = $callback;&#10;        &#125;&#10;        return $className . (($className) ? &#39;::&#39; : &#39;&#39;) . $methodName;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這個類別有點小長，簡單說明如下：</p>
+<ul>
+<li><p>我們利用 Aspect::addObject() 方法來指定要被切入的物件； addObject() 方法會回傳一個透明的 Aspect 物件。</p>
+</li>
+<li><p>利用 before 、 after 和 onCatchException 三個方法來指定切入的時機，它們會呼叫 _registerEvent() 方法來註冊要執行的回呼函式 (callback) 。</p>
+</li>
+<li><p>執行原來被切入物件的方法，這時會觸動 Aspect 的 __call() 方法，並在指定的切入時機呼叫 _trigger() 方法來執行我們所切入的回呼函式。 </p>
+</li>
+</ul>
+<p>先來看看還沒有使用 AOP 前，我們對 TestClass 類別的測試：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;TestClass.php&#39;;&#10;$test = new TestClass();&#10;/* @var $test TestClass */&#10;echo &#34;=======\n&#34;;&#10;$test-&#62;method1(&#39;abc&#39;);&#10;echo &#34;=======\n&#34;;&#10;echo $test-&#62;method2(), &#34;\n&#34;;&#10;echo &#34;=======\n&#34;;&#10;$test-&#62;method3();&#10;echo &#34;=======\n&#34;;&#10;/* &#22519;&#34892;&#32080;&#26524;&#65306;&#10;=======&#10;TestClass::method1:&#10;abc&#10;=======&#10;TestClass::method2:&#10;2&#10;=======&#10;TestClass::method3:&#10;Exception: Test Exception. in TestClass.php on line 38&#10;*/</span><br></pre></td></tr></table></figure>
+<p>接下來我們利用 Aspect 類別來對 TestClass 物件的三個方法切入 Log::save() ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Aspect.php&#39;;&#10;require_once &#39;TestClass.php&#39;;&#10;require_once &#39;Log.php&#39;;&#10;$test = Aspect::addObject(new TestClass());&#10;$logger = new Log();&#10;$test-&#62;before(&#39;method1&#39;, array($logger, &#39;save&#39;), &#39;Log saved (method1).&#39;);&#10;$test-&#62;after(&#39;method2&#39;, array($logger, &#39;save&#39;), &#39;Log saved (method2).&#39;);&#10;$test-&#62;onCatchException(&#39;method3&#39;, array($logger, &#39;save&#39;), &#39;Log saved (method3).&#39;);&#10;/* @var $test TestClass */&#10;echo &#34;=======\n&#34;;&#10;$test-&#62;method1(&#39;abc&#39;);&#10;echo &#34;=======\n&#34;;&#10;echo $test-&#62;method2(), &#34;\n&#34;;&#10;echo &#34;=======\n&#34;;&#10;$test-&#62;method3();&#10;echo &#34;=======\n&#34;;&#10;/* &#22519;&#34892;&#32080;&#26524;&#65306;&#10;=======&#10;Log saved (method1).&#10;TestClass::method1:&#10;abc&#10;=======&#10;TestClass::method2:&#10;Log saved (method2).&#10;8&#10;=======&#10;TestClass::method3:&#10;Log saved (method3).&#10;Exception: Test Exception. in TestClass.php on line 38&#10;*/</span><br></pre></td></tr></table></figure>
+<h2 id="結論">結論</h2><p>我們可以從範例看到， AOP 能幫我們在某類別的方法中插入一些額外的動作，同時又能不破壞原有類別的程式碼。而它與 Decorator 最大的不同是， Decorator 必須用很多小類別來完成相同的動作，但是 AOP 則透過 PHP 的動態特性解決了這個問題。</p>
+<p>當然 AOP 也不是萬靈丹，像在本文的實作裡它就不能接觸目標類別的非公開屬性。而之前也跟 <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> 聊了一下，其實 AOP 偏向於程式的整體設計，所以這裡的範例尚不能用於實戰之中，僅僅只是我個人一個概念的實作而已。</p>
+<p>供大家參考看看吧。也歡迎一起討論~</p>
+</span>
       
     </div>
 
@@ -288,22 +331,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +410,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +443,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什麼是_AOP"><span class="nav-number">1.</span> <span class="nav-text">什麼是 AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP_和_Decorator"><span class="nav-number">2.</span> <span class="nav-text">AOP 和 Decorator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用_PHP_實作_AOP"><span class="nav-number">3.</span> <span class="nav-text">用 PHP 實作 AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +459,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +481,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +491,6 @@
 
   
   
-
   
     
     
@@ -489,21 +520,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +689,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +719,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

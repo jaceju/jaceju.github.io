@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,48 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="上次在看了 P 董寫的「使用 Titanium 開發 iOS 噗浪 App 」後，發現 Titanium 比 Objective-C + Cocoa Framework 好入門許多，因此我打算先以 Titanium 來進行 iOS 開發之旅。
+以下就先簡單記錄開發環境的建置過程，圖多，請耐心等候。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mobile 應用程式開發利器 Titanium - 安裝篇">
 <meta property="og:url" content="http://jaceju.net/2011/07/08/1818/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="上次在看了 P 董寫的「使用 Titanium 開發 iOS 噗浪 App 」後，發現 Titanium 比 Objective-C + Cocoa Framework 好入門許多，因此我打算先以 Titanium 來進行 iOS 開發之旅。
+以下就先簡單記錄開發環境的建置過程，圖多，請耐心等候。">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/001.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/002.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/003.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/004.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/005.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/006.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/007.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/008.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/009.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/010.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/011.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/012.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/013.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/014.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/015.png">
+<meta property="og:image" content="http://jaceju.net/resources/titanium/016.png">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mobile 應用程式開發利器 Titanium - 安裝篇">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="上次在看了 P 董寫的「使用 Titanium 開發 iOS 噗浪 App 」後，發現 Titanium 比 Objective-C + Cocoa Framework 好入門許多，因此我打算先以 Titanium 來進行 iOS 開發之旅。
+以下就先簡單記錄開發環境的建置過程，圖多，請耐心等候。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> Mobile 應用程式開發利器 Titanium - 安裝篇 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +148,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +158,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +168,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +188,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +247,76 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>上次在看了 P 董寫的「<a href="http://deep.tw/others/ios/titanium-plurk-app.html" target="_blank" rel="external">使用 Titanium 開發 iOS 噗浪 App</a> 」後，發現 Titanium 比 Objective-C + Cocoa Framework 好入門許多，因此我打算先以 Titanium 來進行 iOS 開發之旅。</p>
+<p>以下就先簡單記錄開發環境的建置過程，圖多，請耐心等候。</p>
+<a id="more"></a>
+<h2 id="需求">需求</h2><p>開發基本的 Titanium iOS App 需要先準備以下幾樣東西：</p>
+<ul>
+<li><p>可以執行 Mac OS 的機器 (例如 MacBook Pro/Air 等) 。</p>
+</li>
+<li><p>一組 Apple ID 。</p>
+</li>
+<li><p>iOS 模擬器，這個要從 Xcode 3.2.6 + iOS SDK 4.3 或更新的版本裡取得。 [<a href="https://developer.apple.com/devcenter/download.action?path=/Developer_Tools/xcode_3.2.6_and_ios_sdk_4.3__final/xcode_3.2.6_and_ios_sdk_4.3.dmg" target="_blank" rel="external">直接從 Apple 官方網站下載安裝</a>]</p>
+</li>
+<li><p>Titanium Studio IDE ，以下會介紹如何下載。</p>
+</li>
+</ul>
+<h2 id="準備工作">準備工作</h2><p>先安裝 Xcode + iOS SDK ，這會連帶 iOS 模擬器一起幫我們裝好。</p>
+<h2 id="註冊開發帳號">註冊開發帳號</h2><p>在下載 Titanium Studio IDE 之前，要先註冊一個開發者帳號；但我們得先連上 <a href="http://www.appcelerator.com/products/download/" target="_blank" rel="external">Download Titanium</a> ，從這邊開始註冊。</p>
+<p>帳號分成三個等級： Indie 、 Professional 及 Community ；當然我們就先選免費的 Community 來註冊。</p>
+<p><a href="/resources/titanium/001.png"><img src="/resources/titanium/001.png" alt="帳號類型選擇"></a></p>
+<p>點選 Community 的「 Get started 」後，就會出現要填寫註冊資料的畫面：</p>
+<p><a href="/resources/titanium/002.png"><img src="/resources/titanium/002.png" alt="註冊表單"></a></p>
+<p>先在右方填寫好基本資料，按下「 Sign Up 」，系統就會寄一封確認信到我們所填寫的 Email 裡，內容如下：</p>
+<p><a href="/resources/titanium/003.png"><img src="/resources/titanium/003.png" alt="註冊表單"></a></p>
+<p>按下信件的第一個連結，來啟用我們的帳號。</p>
+<h2 id="下載">下載</h2><p>在啟用開發者帳號後，應該會自動開啟瀏覽器，並回到註冊表單頁面；這次我們就在畫面的左方直接輸入帳號密碼來登入。</p>
+<p>登入後就會出現以下畫面：</p>
+<p><a href="/resources/titanium/004.png"><img src="/resources/titanium/004.png" alt="下載頁面"></a></p>
+<p>當然我們要下載的就是 OS X 版本。</p>
+<h2 id="安裝">安裝</h2><p>下載 dmg 檔回來並打開後，就會看到以下畫面：</p>
+<p><a href="/resources/titanium/005.png"><img src="/resources/titanium/005.png" alt="安裝畫面"></a></p>
+<p>別懷疑，就是把 Titanium Studio 這個圖示拖曳到 Applications 這個資料夾裡就安裝好了。</p>
+<h2 id="第一次使用">第一次使用</h2><p>接著打開 Applications 資料夾，會看到裡面還有 Titanium Studio 資料夾；執行該資料夾下的 TitaniumStudio 程式，就會出現以下畫面：</p>
+<p><a href="/resources/titanium/006.png"><img src="/resources/titanium/006.png" alt="登入畫面"></a></p>
+<p>這裡填入我們剛剛申請的開發者帳號 (Email) 及密碼，再按下「 Login 」即可，程式就會開始載入了：</p>
+<p><a href="/resources/titanium/007.png"><img src="/resources/titanium/007.png" alt="啟動畫面"></a></p>
+<p>接下來會問我們預設的 Workspace (這是以 Eclipse 為基礎的 IDE 特色) ，使用預設值即可：</p>
+<p><a href="/resources/titanium/008.png"><img src="/resources/titanium/008.png" alt="選擇 Workspace"></a></p>
+<p>設定好 Workspace 之後，就會出現以下的初始畫面：</p>
+<p><a href="/resources/titanium/009.png"><img src="/resources/titanium/009.png" alt="初始畫面"></a></p>
+<p>以下我們來建立一個新的測試用專案，在上圖的左方工具視窗中切換到 App Explorer 頁籤，並按下「 Create Project 」，就會跳出以下視窗：</p>
+<p><a href="/resources/titanium/010.png"><img src="/resources/titanium/010.png" alt="選擇專案類型"></a></p>
+<p>選擇「 Titanium Mobile Project 」，然後參考以下說明來輸入內容：</p>
+<ul>
+<li><p>Project Name - 應用程式的名稱，這會顯示在畫面上；必填。</p>
+</li>
+<li><p>App Id - 判別用的識別名稱；可以先隨便填。</p>
+</li>
+<li><p>Company/Personal URL - 可以找到該應用程式資訊的網址；可以先隨便填。</p>
+</li>
+<li><p>Titanium SDK Version - 沒有特別需求的話，通常就選最新版本即可。 iPad / iPhone 則是在有安裝 iOS SDK 後才能勾選。</p>
+</li>
+</ul>
+<p><a href="/resources/titanium/011.png"><img src="/resources/titanium/011.png" alt="專案設定"></a></p>
+<p>接著按下「 Next 」，會出現以下畫面，詢問我們要用哪一種類型的專案樣版：</p>
+<p><a href="/resources/titanium/012.png"><img src="/resources/titanium/012.png" alt="專案樣板"></a></p>
+<p>通常是不用選的，直接按下「 Finish 」。</p>
+<p>完成後我們就會看到以下畫面， Titanium Studio 預設會幫我們開啟 Resources/app.js 及 tiapp.xml 這兩個檔案。</p>
+<p><a href="/resources/titanium/013.png"><img src="/resources/titanium/013.png" alt="TiApp Editor"></a></p>
+<p>tiapp.xml 主要是用來記錄專案的屬性，開啟後會直接使用 Titanium Studio 的 TiApp Editor 來編輯。</p>
+<p>app.js 則是整個應用程式的核心， Titanium 會從這裡開始執行整個程式。</p>
+<p><a href="/resources/titanium/014.png"><img src="/resources/titanium/014.png" alt="app.js"></a></p>
+<p>app.js 預設已經有幫我們建立好一些內容了，所以我們只要按下 Titanium Studio 的「 Run 」鍵 (綠色圓圈裡包著一個白色三角形的鈕) 就可以測試看看了。</p>
+<p>按下「 Run 」之後會先問我們要以哪一個 iOS 模擬器來執行應用程式：</p>
+<p><a href="/resources/titanium/015.png"><img src="/resources/titanium/015.png" alt="選擇 iOS 模擬器"></a></p>
+<p>選擇「 iPhone Simulator 」後，程式就會開始編譯了。視機器等級，大約一至三分鐘後，就會跳出以下的畫面：</p>
+<p><a href="/resources/titanium/016.png"><img src="/resources/titanium/016.png" alt="執行中的畫面"></a></p>
+<p>這樣就完成開發環境的建置了。</p>
+<h2 id="參考">參考</h2><ul>
+<li><a href="http://deep.tw/others/ios/titanium-plurk-app.html" target="_blank" rel="external">使用 Titanium 開發 iOS 噗浪 App</a></li>
+</ul>
+</span>
       
     </div>
 
@@ -290,22 +363,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +442,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +475,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#準備工作"><span class="nav-number">2.</span> <span class="nav-text">準備工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#註冊開發帳號"><span class="nav-number">3.</span> <span class="nav-text">註冊開發帳號</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載"><span class="nav-number">4.</span> <span class="nav-text">下載</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">5.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次使用"><span class="nav-number">6.</span> <span class="nav-text">第一次使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考"><span class="nav-number">7.</span> <span class="nav-text">參考</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +491,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +513,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +523,6 @@
 
   
   
-
   
     
     
@@ -491,21 +552,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +721,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +751,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

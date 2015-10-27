@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="Zend Framework 在開發上算是滿自由的一套 Framework ，但也因此它在目錄結構的安排 (Directory Layout) 就成了一個很讓初學者困擾的問題；而且不論是官方或是社群都推薦了很多方法，更讓剛接觸 Zend Framework 的朋友難以適從。
+本文將探討 Zend Framework 目錄結構的特點以及幾個常見的目錄結構，讓各位開發者能夠對它們有所認知。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="目錄結構的安排">
 <meta property="og:url" content="http://jaceju.net/2008/02/29/318/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="Zend Framework 在開發上算是滿自由的一套 Framework ，但也因此它在目錄結構的安排 (Directory Layout) 就成了一個很讓初學者困擾的問題；而且不論是官方或是社群都推薦了很多方法，更讓剛接觸 Zend Framework 的朋友難以適從。
+本文將探討 Zend Framework 目錄結構的特點以及幾個常見的目錄結構，讓各位開發者能夠對它們有所認知。">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="目錄結構的安排">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="Zend Framework 在開發上算是滿自由的一套 Framework ，但也因此它在目錄結構的安排 (Directory Layout) 就成了一個很讓初學者困擾的問題；而且不論是官方或是社群都推薦了很多方法，更讓剛接觸 Zend Framework 的朋友難以適從。
+本文將探討 Zend Framework 目錄結構的特點以及幾個常見的目錄結構，讓各位開發者能夠對它們有所認知。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 目錄結構的安排 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,66 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>Zend Framework 在開發上算是滿自由的一套 Framework ，但也因此它在目錄結構的安排 (Directory Layout) 就成了一個很讓初學者困擾的問題；而且不論是官方或是社群都推薦了很多方法，更讓剛接觸 Zend Framework 的朋友難以適從。</p>
+<p>本文將探討 Zend Framework 目錄結構的特點以及幾個常見的目錄結構，讓各位開發者能夠對它們有所認知。</p>
+<a id="more"></a>
+<h2 id="為什麼要有目錄結構">為什麼要有目錄結構</h2><p>目錄結構主要目的如下：</p>
+<ul>
+<li>將程式及相關文件分門別類，以便於管理。</li>
+<li>便於設定相關存取權限。</li>
+<li>讓開發者很快能找到要修改的檔案。</li>
+</ul>
+<p>因此選定一個好的目錄結構，將會為你的專案開發帶來高效率且易維護等好處。</p>
+<h2 id="專案目錄要放在哪裡">專案目錄要放在哪裡</h2><p>有些目錄結構需要有修改 Apache httpd.conf 的權限，有些則不需要；也因此專案目錄的存放位置也變得很重要，因為這會牽扯到安全性的問題。</p>
+<p>一般來說，需要修改 httpd.conf 權限的目錄結構類型，我們可以放在檔案系統的任何地方，並確定它能讓 Apache 正確存取與執行。而不需要修改 httpd.conf 的類型，通常是為了因應專案的可攜性或是開發者缺少系統管理權；這時專案目錄就要放在 Apache 預設提供可以存取的位置，例如 /home/username/htdocs 。 </p>
+<h2 id="常見的目錄結構">常見的目錄結構</h2><p>以下我們來看看幾個常見的目錄結構。</p>
+<h3 id="類型一：官方手冊的版本">類型一：官方手冊的版本</h3><p>官方手冊的「 <a href="http://framework.zend.com/manual/en/zend.controller.html#zend.controller.quickstart" target="_blank" rel="external">7.1. Zend_Controller Quick Start</a> 」一節裡提供了一個參考用的 Directory Layout ，我稍微做了一些修改，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">application/&#10;  controllers/&#10;    IndexController.php&#10;    ErrorController.php&#10;  models/&#10;  views/&#10;    scripts/&#10;      index/&#10;        index.phtml&#10;      error/&#10;        error.phtml&#10;    helpers/&#10;    filters/&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;html/&#10;  scripts/&#10;  images/&#10;  styles/&#10;  .htaccess (&#23566;&#21521; index.php)&#10;  index.php</span><br></pre></td></tr></table></figure>
+<h4>說明</h4>
+
+<p>這是一個需要修改 httpd.conf 的目錄結構，也僅適用於單一功能的應用程式 (也就是單一模組) 。在安裝時我們必須修改 httpd.conf ，將專案的 Document Root 指向 html 這個目錄。 html 目錄除了做為 Document Root 外，其目地就是存放可公開的檔案，像是圖片、 JavaScript 或樣式表等等。而 application 目錄即為預設的模組，存放著 MVC 等三種類型的檔案 (即 controllers 、 models 及 views 等三個目錄) 。至於 library 目錄就比較隨意，我們只要確定它的執行權限，並且讓 PHP 能夠找到裡面所需要的類別即可。 </p>
+<p>在預設模組中， controllers 目錄裡的 IndexController.php 與 ErrorController.php 都是一定要的，另外 views/scripts/index/index.phtml 和 views/scripts/error/error.phtml 也是如此；而原因可以參考 <a href="http://blog.roodo.com/jaceju/archives/5602901.html" target="_blank" rel="external">Front Controller 的基本應用技</a>一文，這裡不再詳述。</p>
+<p>這裡要特別說明 application/views 這個目錄，其中還區分成 scripts 、 helpers 及 filters 三個目錄。 scripts 主要放的就是 templates ，底下可以用小寫的 controller name 做為資料夾名稱以做為區別；而 helpers 和 filters 其實在實際應用上比較少用，所以通常我會把它們從結構中拿掉。</p>
+<p>註：為了節省篇幅，在呈現目錄結構時，預設模組的相關必要檔案我會略掉，但實際應用時請記得加回去。 </p>
+<p>另外 .htaccess (導向 index.php) 的實際內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteEngine on&#10;RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php&#10;php_flag magic_quotes_gpc off&#10;php_flag register_globals off</span><br></pre></td></tr></table></figure>
+<p>在 .htaccess 的第一行中，由於 Zend Framework 支援自訂網址的功能，所以我們啟用了 RewriteEngine ，也就是設定為 on 。接著第二行我們加入一個 RewriteRule ，讓 index.php 處理所有非公開資源的 request 。</p>
+<p>註：不過 Zend Framework 也支援沒有 mod_rewrite 的環境，我們只要在 Front Controller 中將 baseUrl 設定好就沒問題了，這點有機會再探討。</p>
+<p>剩下兩行是 PHP 的設定，這邊就不再加以說明。</p>
+<p>這種目錄結構最大的特色是將 index.php 放在 html 目錄下， 這樣的好處在於能提高對 application 目錄的安全掌控度，因為 application 目錄並不會直接曝露給外部的瀏覽者。但是這樣的結構也有一個很大的缺點，那就是可攜性很差！換句話說如果在測試環境所使用的網址是 <a href="http://localhost/myproject/" target="_blank" rel="external">http://localhost/myproject/</a> ，而正式上線的環境卻是 <a href="http://www.myproject.com/" target="_blank" rel="external">http://www.myproject.com/</a> ，那麼就要修改 httpd.conf 讓 html 目錄對應到正確的網址，這樣才有辦法讓程式正確執行。 </p>
+<h3 id="類型二：_Rob_Allen_的版本">類型二： Rob Allen 的版本</h3><p>在 Rob 的 <a href="http://akrabat.com/zend-framework-tutorial/" target="_blank" rel="external">Getting Started with the Zend Framework</a> 一文中，他採用了和官方不同的目錄結構：</p>
+<p>註： Rob Allen 新版本的目錄結構已經跟官方網站一樣了，所以以下的解說請當做參考即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">application/&#10;  .htaccess (deny from all)&#10;  controllers/&#10;  models/&#10;  views/&#10;    filters/&#10;    helpers/&#10;    scripts/&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;  .htaccess (deny from all)&#10;public/&#10;  .htaccess (RewriteEngine off)&#10;  images/&#10;  scripts/&#10;  styles/&#10;.htaccess (&#23566;&#21521; index.php)&#10;index.php</span><br></pre></td></tr></table></figure>
+<h4>說明</h4>
+
+<p>這種目錄結構也是屬於單一功能 (模組) 的類型，它的特色是不必在 httpd.conf 中指定 Document Root 。這種目錄結構將 application 、 library 、 public (即第一種版本的 html) 以及 index.php 放在同一層的專案根目錄下，再利用 .htaccess 去控制每個目錄結構的存取權。 </p>
+<p>.htaccess (導向 index.php) 內容和官方版相同，請參考上面的說明。比較特別的是 application/.htacess 的內容為 deny from all ，這是要避免用戶直接從網址瀏覽 application 內的檔案；而 public/.htaccess 的內容則是 RewriteEngine off ，亦即關閉原本 .htaccess (導向 index.php) 對此目錄的影響，讓用戶可以直接瀏覽 public 內的檔案 (就是圖片、 JavaScript 及樣式表等等) 。 </p>
+<p>index.php 則是從 public 目錄中往外移至專案根目錄，這樣就可以讓用戶直接存取 (因為一般我們會在 Apache 設定 index.php 為預設執行頁) 。</p>
+<p>這種目錄結構剛好和官方版本相反，它非常俱有可攜性，也是一般開發 Zend Framework 專案常用的目錄結構型態。不過它也有很大的缺點，那就是當 mod_rewrite 被關閉或是 .htaccess 不被解析時，這種目錄會將 application 及 library 兩個目錄曝露出來，在安全性上就大打折扣；不過通常這樣的 httpd.conf 設定比較少見，也因此一般開發 Zend Framework 專案時，大多都會採用這種目錄結構。 </p>
+<h3 id="類型三：_Gavin_Vess_的_Conventional_Modular_版本">類型三： Gavin Vess 的 Conventional Modular 版本</h3><p>前面兩種版本都是單一功能 (模組) ，不過如果專案需要前後台或多種功能時，通常就會使用模組機制。Zend Framework 支援了模組機制，因此在目錄結構上也需要做一些改變。</p>
+<p>有一篇 Gavin Vess 所寫的 <a href="http://framework.zend.com/wiki/display/ZFDEV/Choosing+Your+Application%27s+Directory+Layout" target="_blank" rel="external">Choosing Your Application’s Directory Layout</a> 也討論到了有關 Zend Framework 在模組上的目錄結構安排。文章中有個 Conventional Modular 版本，我也做稍做了修改，如下： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">application/&#10;  config/ (&#38750;&#24517;&#35201;)&#10;  default/&#10;    config/ (&#38750;&#24517;&#35201;)&#10;    controllers/&#10;    models/&#10;    views/&#10;  (module 1)/&#10;    controllers/&#10;    models/&#10;    views/&#10;  (module 2)/&#10;    controllers/&#10;    models/&#10;    views/&#10;htdocs/&#10;  images/&#10;  scripts/&#10;  styles/&#10;  .htaccess (&#23566;&#21521; index.php)&#10;  index.php&#10;library/&#10;  Zend/&#10;  (other libraries)/&#10;tmp/&#10;  sessions/&#10;  cache/&#10;  view_compiles/</span><br></pre></td></tr></table></figure>
+<h4>說明</h4>
+
+<p>很明顯地，這個版本是從官方版本演化而來的；它的主要特色是將原來 application 中的 MVC 三個目錄拿掉了，取而代之的是 default 、 module1 、 module2 等 MVC 模組。 </p>
+<p>前面兩個版本都是以 application 為預設模組，因此我們不必在程式裡特別設定。但是在多模組的狀況下，我們需要指定 application 下的某個模組為預設模組；這部份的程式碼可以參考我在 「<a href="http://blog.roodo.com/jaceju/archives/5602901.html" target="_blank" rel="external">Front Controller 的基本應用技</a>」一文中所提到的「進階的 Front Controller 用法」。 </p>
+<p>其他的目錄也都能望名生義，這裡不再解說。</p>
+<h3 id="類型四：我的版本">類型四：我的版本</h3><p>最後介紹我自己所採用的版本 (Wacow Framework 2.2) 。基本上它可以算是模組化的 Rob 版本，只是我為了專案開發需求，又再加入一些特別的目錄結構。 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">app/&#10;  .htaccess (deny from all)&#10;  cron/&#10;  etc/&#10;  lib/&#10;    App/&#10;    Zend/&#10;  tmp/&#10;    cache/&#10;  mod/&#10;    common/&#10;      controllers/&#10;      models/&#10;      views/&#10;    default/&#10;      controllers/&#10;      views/&#10;    (other module)/&#10;      controllers/&#10;      views/&#10;pub/&#10;  .htaccess (RewriteEngine off)&#10;  img/&#10;  js/&#10;  css/&#10;.htaccess (&#23566;&#21521; index.php)&#10;index.php</span><br></pre></td></tr></table></figure>
+<h4>說明</h4>
+
+<p>首先我將 application 及 public 的名稱分別縮短為 app 及 pub ，其它目錄名稱也改為較短的名稱。而所有的 .htaccess 則和 Rob 版的相同，因此也會有同樣的限制。 </p>
+<p>另外我把放置 Zend Framwork 及其他 library 所在的 lib 目錄移入 app 目錄中以方便管理，  Gavin Vess 的 config 我也改成了 etc ，這點算是仿照 Gavin Vess 的 Classical (Unix/Linux-like) 版本。</p>
+<p>在我自己的新版本裡，也將 include_path 減少到只剩 app/lib/ 和 app/mod/common/models/ 兩個，以加快程式執行速度。</p>
+<p>其他幾個特點如下：</p>
+<ul>
+<li>加入了 cron 目錄，這是用來存放排程程式的地方。</li>
+<li>加入了 tmp 目錄，視需要使用。</li>
+</ul>
+<p>註：以上的特色是在累積了多個 Zend Framework 專案經驗後所得出的結論，但或許各位所開發的專案屬性會和我的不同，因此這些特色僅供參考。</p>
+<h2 id="結論">結論</h2><p>Zend Framework 目錄結構的安排其實有很大的學問，在規劃得當的情況下，它能為我們帶來事半功倍的開發效率。本文簡單地為大家分析了幾種常見的目錄結構，也說明了它們的一些優缺點。各位朋友不妨多參考其他版本的目錄結構，並在瞭解專案的屬性後，選擇一個適合專案的目錄結構。</p>
+<p>希望這篇文章能為各位在學習 Zend Framework 時帶來一些幫助，同時也希望對 Framework 有深入研究的朋友也能不吝指正我的謬誤。</p>
+</span>
       
     </div>
 
@@ -290,22 +337,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +416,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,10 +449,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#為什麼要有目錄結構"><span class="nav-number">1.</span> <span class="nav-text">為什麼要有目錄結構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#專案目錄要放在哪裡"><span class="nav-number">2.</span> <span class="nav-text">專案目錄要放在哪裡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常見的目錄結構"><span class="nav-number">3.</span> <span class="nav-text">常見的目錄結構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#類型一：官方手冊的版本"><span class="nav-number">3.1.</span> <span class="nav-text">類型一：官方手冊的版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.1.</span> <span class="nav-text">說明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#類型二：_Rob_Allen_的版本"><span class="nav-number">3.2.</span> <span class="nav-text">類型二： Rob Allen 的版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.1.</span> <span class="nav-text">說明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#類型三：_Gavin_Vess_的_Conventional_Modular_版本"><span class="nav-number">3.3.</span> <span class="nav-text">類型三： Gavin Vess 的 Conventional Modular 版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.3.1.</span> <span class="nav-text">說明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#類型四：我的版本"><span class="nav-number">3.4.</span> <span class="nav-text">類型四：我的版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.4.1.</span> <span class="nav-text">說明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,8 +465,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +487,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +497,6 @@
 
   
   
-
   
     
     
@@ -491,21 +526,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +695,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +725,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

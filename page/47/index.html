@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,30 +27,20 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
 
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
+  <meta name="keywords" content="Hexo,next" />
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
 
 
 <meta name="description">
@@ -68,14 +54,14 @@
 <meta name="twitter:description">
 
 
-
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -144,7 +130,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -154,7 +140,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -164,7 +150,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -184,8 +170,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
   <section id="posts" class="posts-expand">
     
       
@@ -247,11 +232,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>文章網址：<a href="http://hasin.wordpress.com/2006/10/17/bring-some-rubyprototype-flavour-in-your-php-array/">Bring some Ruby/Prototype flavour in your PHP array</a></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2006/10/17/130/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -331,7 +317,21 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>網友 giorno 問了一個這樣的<a href="http://blog.roodo.com/jaceju/archives/2237311.html#comment-3222051" target="_blank" rel="external">問題</a>：</p>
+<p>在執行 testSmartyInstall.php 時，出現了以下的訊息：</p>
+<p><img src="/resources/smarty_book/install_001.gif" alt=""></p>
+<p>這是因為 PHP 在 5.1 以後有個時區的設定 (date.timezone) ，會預設為美國時區。所以當我們的程式在執行時，就會出現上面的錯誤。</p>
+<p>正確的解決方式是在 PHP.INI 中指定正確的時區  (<a href="http://www.php.net/manual/en/timezones.php" target="_blank" rel="external">參考</a>) ，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date.timezone = Asia/Taipei</span><br></pre></td></tr></table></figure>
+<p>也可以在 ch03 目錄下放置一個 .htaccess ，內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php_value date.timezone Asia/Taipei</span><br></pre></td></tr></table></figure>
+<p>或是在建立 Smarty 物件前，直接用 <a href="http://www.php.net/manual/en/function.date-default-timezone-set.php" target="_blank" rel="external">date_default_timezone_set()</a> 在程式直接指定時區： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date_default_timezone_set(&#39;Asia/Taipei&#39;);</span><br></pre></td></tr></table></figure>
+<p>然後 giorno 又發現一個<a href="http://blog.roodo.com/jaceju/archives/2237311.html#comment-3266913" target="_blank" rel="external">問題</a>，雖然我不太瞭解他的意思，不過為什麼在他回復程式後，第二次又可以執行這點我倒是可以解釋一下。</p>
+<p>這是因為第一次正常執行後， Smarty 就會在 templates_c 裡建立一個供 testSmartyInstall.php 用的暫存檔，所以第二次執行時，只要 testSmartyInstall.tpl.htm 沒有任何更動，那麼 Smarty 就會使用該暫存檔來執行。</p>
+<p>註：相關的運作流程可以查看拙作的第 2-3 頁。 </p>
+<p>這應該是 Smarty 在 PHP 5.1 上的相容性問題，只要設定好相關配置之後，應該就不會再發生了。</p>
+
             
           </span>
         
@@ -413,7 +413,14 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>文章網址：<a href="http://blogs.msdn.com/ie/archive/2006/10/06/IE7-Is-Coming-This-Month_2E002E002E00_Are-you-Ready_3F00_.aspx" target="_blank" rel="external">IE7 Is Coming This Month…Are you Ready?</a></p>
+<p>怎麼辦？這麼醜的工具，以後我還是得用…真是要命呀…|||orz</p>
+<p>另外開發中的專案在 IE7 上有一些問題要克服，例如現行在 IE6 「看起來」正常的頁面，到 IE7 時會變調。因為 IE7 已經「支援」了某些 IE 6 所無法解讀的 CSS 語法，所以如果有用到一些 CSS Hacks 的話就得注意一下了。</p>
+<p>然後呢…我大概可以預見一些不瞭解狀況的使用者發出抱怨的聲音…然後呢…我們就得加班…然後呢…做不好就會被客戶罵到臭頭…然後…</p>
+<p>雖然微軟就提供了 <a href="http://go.microsoft.com/fwlink/?linkid=64421" target="_blank" rel="external">Internet Explorer 7 Readiness Toolkit</a> ，幫助我們瞭解自家產品在 IE7 上會有什麼要的問題，以及要如何去改善…但是台灣有幾個 Web 開發者會真的去看這種東西呀！</p>
+<p>就算我求你吧！大爺…直接支援 W3C 標準就好了…省得我們這些苦命工程師每天要提心吊膽的過日子…</p>
+<p>心酥啥郎栽…</p>
+
             
           </span>
         
@@ -495,7 +502,17 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>我一直把「遵守標準來開發網站」這件事當成是一種樂趣，而今天就在 <a href="http://jas9.blogspot.com/2006/10/blog-post_115994096811755888.html" target="_blank" rel="external">Jas9</a> 那邊看到了一個好物： <a href="http://accessify.com/tools-and-wizards/developer-tools/markup-maker/default.php" target="_blank" rel="external">Makeup Maker</a> 。</p>
+<p>引用 Jas9 的介紹：</p>
+<blockquote><br><br>利用Markup Maker，網頁設計師可以很方便地輸入網站資訊架構：<br><br><em> wrapper
+</em> header<br><em> logo
+</em> search<br><em> links
+</em> body<br><em> entry
+</em> entry_footer<br>* footer<br><br><br>點選「Convert to XHTML」鍵之後， Markup Maker 便會自動生成 CSS 及 HTML 語法，接著只要著手編輯 CSS 控制樣式或填色、製圖，很快就能製作出符合 W3C 標準的網頁，便利度其實一點也不亞於 FrontPage 、 Dreamweaver 。<br></blockquote>
+
+<p>我在想如果有工具可以把這項工作原理反轉過來，<a href="http://www.wretch.cc/blog/renyoh" target="_blank" rel="external">風痕影</a>就不用自己辛苦地去<a href="http://www.wretch.cc/blog/renyoh&amp;article_id=4241647" target="_blank" rel="external">找網頁的結構</a>了。</p>
+<p>總之就是讚到一個不行！ XD </p>
+
             
           </span>
         
@@ -575,11 +592,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>簡單說明一下如何在 Windows 安裝測試用的 MySQL 伺服器，這是給我自己備忘用的。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2006/10/02/125/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -657,11 +675,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>PEAR::PHPUnit 的作者 Sebastian Bergmann 在他的 Blog 發表了一篇文章：<a href="http://www.sebastian-bergmann.de/blog/archives/586-PHPUnit-Support-in-PHPEclipse.html">PHPUnit Support in PHPEclipse</a> ，主要是介紹 PHPUnit2 3.0 可以借用 <a href="http://www.lastcraft.com/simple_test.php">SimpleTest</a> 的 eclipse plugin 來讓 PHPUnit2 也可以在 Eclipse 上執行。</p>
+<p>當然這對我這個使用 PHP Development Studio 的人來說是個好消息，因為 <a href="http://www.joomlatwork.com/products/free_products_for_joomla/php_development_studio_2.0.html">PHP Development Studio</a> 本來就是 Base 在 <a href="http://www.eclipse.org/">Eclipse</a> 和 <a href="http://www.phpeclipse.de/">PHPEclipse</a> 上的整合環境。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2006/09/29/124/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -741,7 +761,13 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>在<a href="http://www.hkpug.net/" target="_blank" rel="external">香港 PHP 用家社區</a>看來的，<a href="http://www.hkpug.net/2006/09/19/php-development-studio-pro-2.0" target="_blank" rel="external">整合式 PHP 開發環境</a> (就是 IDE 啦) ： <a href="http://www.joomlatwork.com/products/free_products_for_joomla/php_development_studio_2.0.html" target="_blank" rel="external">PHP Development Studio v 2.0</a>。 </p>
+<p>真是一個好物，它可以幫你在撰寫程式時，就把相關語法錯誤找出來；而且也能夠幫你找出當前物件的屬性及方法，還有一堆函式的語法。重點是，它不但支援中文，而且還是免費的！</p>
+<p>其實 PHP Development Studio 就是把之前 <a href="http://download.eclipse.org/eclipse/downloads/drops/R-3.1.2-200601181600/index.php" target="_blank" rel="external">Eclipse</a> 上的 <a href="http://www.phpeclipse.de/" target="_blank" rel="external">PHPEclipse</a> 和其他一些相關套件整合進來，並且幫我們把它們的相依性處理好。</p>
+<p>註：另外還有一個付費的 Pro 版，功能上差不多；只是 Pro 版有額外加上一些套件與系統，一次搞定你的開發環境。 </p>
+<p>安裝方式也很簡單，解開後就可以用了；不過我建議大家可以再加裝 Eclipse 的<a href="http://download.eclipse.org/eclipse/downloads/drops/L-3.2_Language_Packs-200607121700/index.php" target="_blank" rel="external">中文語言套件</a>，一樣也是解開後，覆蓋掉 PHP Development Studio 的 eclipse 目錄即可。</p>
+<p>執行方式更簡單，只要在 eclipse/eclipse.exe 點兩下就可以了。只是要記得到工具列上的「視窗 / 喜好設定」裡，去調整一下相關的配置選項，這裡我就不多說了。 </p>
+
             
           </span>
         
@@ -821,11 +847,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>這裡記錄如何在 Windows 上安裝 Subversion 獨立伺服器，如果我有寫錯或觀念不對的地方，歡迎指正我。至於 Subversion 是做什麼用或是合不合用等其他問題，請自行參考 <a href="http://twpug.net/docs/Subversion/">Version Control with Subversion</a> 這篇文章 (正體中文) 。</p>
+<p>註：會這樣設定是因為系統沒有安裝 Apache 2 ，事實上 Subversion 配合 Apache 2 在功能面上會比較多樣化。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2006/09/15/122/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -905,7 +933,15 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>開發網站的我一直想試試 IE7 ，又擔心它還不穩定，而且也還不能把 IE6 移除，怎麼辦呢？</p>
+<p>在 <a href="http://www.simplebits.com/" target="_blank" rel="external">SimpleBits</a> 看到的 IE7 RC1 in standalone mode 可以讓我們不必移除 IE6 ，卻可以測試 IE7 的功能。</p>
+<p>網址： <a href="http://tredosoft.com/IE7_standalone" target="_blank" rel="external">IE7 RC1 in standalone mode</a></p>
+<p>連到上面的網頁後，把畫面拉到頁面中間部份，找到 Download Internet Explorer 7.0 RC1 Standalone Installer ( 428 KB + 14.59 MB for IE7) ，把 IE7S-setup.exe 下載回來安裝即可。</p>
+<p>註：安裝好後是英文版本。</p>
+<p>不過因為我把系統的 Theme 關掉了，所以看到的 IE7 實在是…有夠醜的…</p>
+<p><a href="/resources/ie7_standalone/1.jpg"><img src="/resources/ie7_standalone/1.jpg" alt="IE7 Standalone"></a> </p>
+<p>參考看看吧。</p>
+
             
           </span>
         
@@ -987,7 +1023,18 @@
         
           <span itemprop="articleBody">
             
-              
+              <p>在 <a href="http://www.real-blog.com/" target="_blank" rel="external">Real-Blog</a>::<a href="http://www.real-blog.com/programming/231" target="_blank" rel="external">Regular Expression 模擬器</a> 看到的，一個用 AJAX 技術所完成的 Regular Expression 模擬器。</p>
+<p>網址：<a href="http://www.rexv.org/" target="_blank" rel="external">Rex V</a> </p>
+<p>用法：</p>
+<ul>
+<li>在左方的 PHP PCRE Modifiers 中勾選需要的 Modifier 。 </li>
+<li>在 Regular Expression 處輸入 Pattern (&nbsp;不用包含 delimiter ) 。 </li>
+<li>在 Replacement string 處輸入要用來取代的字串。</li>
+<li>在下方的 Target 處輸入要比對的文字。</li>
+<li>當 focus 離開 Target 後，中間的 Matches &amp; Replacements 還有 Matched Groups 就會顯示結果。 </li>
+</ul>
+<p>這個可以用來練習 PHP 及 JavaScript 的正規表示式，大家多練習一下吧。</p>
+
             
           </span>
         
@@ -1016,14 +1063,11 @@
   </nav>
 
 
-
-        </div>
-
-        
-
+ </div>
 
         
 
+        
       </div>
 
       
@@ -1081,17 +1125,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -1123,8 +1163,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1146,8 +1185,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1157,7 +1195,6 @@
 
   
   
-
   
     
     
@@ -1185,25 +1222,39 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -1211,5 +1262,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

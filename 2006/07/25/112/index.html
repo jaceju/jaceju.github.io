@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="最近試用了 prototype.js ，實在是非常好用。複雜的 AJAX 以及事件處理， prototype.js 都包裝好了。
+ prototype.js 也為 JavaScript 原來的 String 、 Array 物件擴充了一些功能，使得我們在使用這些物件時能更方便。
+不過我卻遇到了一個小麻煩，因為在我負責的專案裡，有用到了一個 HtmlArea 的線上 HTML 編輯器。原來嵌有 Ht">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 小陷阱 (3) - prototype.js 讀取陣列的方式">
 <meta property="og:url" content="http://jaceju.net/2006/07/25/112/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="最近試用了 prototype.js ，實在是非常好用。複雜的 AJAX 以及事件處理， prototype.js 都包裝好了。
+ prototype.js 也為 JavaScript 原來的 String 、 Array 物件擴充了一些功能，使得我們在使用這些物件時能更方便。
+不過我卻遇到了一個小麻煩，因為在我負責的專案裡，有用到了一個 HtmlArea 的線上 HTML 編輯器。原來嵌有 Ht">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 小陷阱 (3) - prototype.js 讀取陣列的方式">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="最近試用了 prototype.js ，實在是非常好用。複雜的 AJAX 以及事件處理， prototype.js 都包裝好了。
+ prototype.js 也為 JavaScript 原來的 String 、 Array 物件擴充了一些功能，使得我們在使用這些物件時能更方便。
+不過我卻遇到了一個小麻煩，因為在我負責的專案裡，有用到了一個 HtmlArea 的線上 HTML 編輯器。原來嵌有 Ht">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> JavaScript 小陷阱 (3) - prototype.js 讀取陣列的方式 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,30 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>最近試用了 <a href="http://prototype.conio.net/" target="_blank" rel="external">prototype.js</a> ，實在是非常好用。複雜的 AJAX 以及事件處理， prototype.js 都包裝好了。</p>
+<p> prototype.js 也為 JavaScript 原來的 String 、 Array 物件擴充了一些功能，使得我們在使用這些物件時能更方便。</p>
+<p>不過我卻遇到了一個小麻煩，因為在我負責的專案裡，有用到了一個 HtmlArea 的線上 HTML 編輯器。原來嵌有 HtmlArea 的頁面，運作上非常順利；直到加入 prototype.js 後，就會出現 JS Error 了。</p>
+<a id="more"></a>
+<p>以下是我模擬出問題的程式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;Test Array in prototype.js&#60;/title&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;j/prototype.js&#34;&#62;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;var toolbar = [&#10;[&#39;linebreak&#39;],&#10;[&#39;aaa&#39;, &#39;bbbb&#39;, &#39;cccc&#39;, &#39;dddd&#39;],&#10;[&#39;111&#39;, &#39;2222&#39;, &#39;3333&#39;, &#39;4444&#39;],&#10;[&#39;linebreak&#39;],&#10;[&#39;hhh&#39;, &#39;ggg&#39;],&#10;];&#10;for (var i in toolbar) &#123;&#10;if (toolbar[i].length == 1 &#38;amp;&#38;amp;&#10;toolbar[i](0).toLowerCase() == &#34;linebreak&#34;) &#123;&#10;document.write(&#39;check: &#39; + toolbar[i](0) + &#39;&#60;br /&#62;&#39;);&#10;&#125;&#10;&#125;&#10;//--&#62;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>如果你在瀏覽器 (IE 或 Firefox 皆可) 上執行上面的程式時，就會出現錯誤訊息：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#37679;&#35492;: &#39;toolbar[...].0&#39; &#26159; null &#25110;&#19981;&#26159;&#19968;&#20491;&#29289;&#20214; (IE)&#10;toolbar[i](0) has no properties (Firefox)</span><br></pre></td></tr></table></figure>
+<p>原因出在這裡：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var i in toolbar)</span><br></pre></td></tr></table></figure>
+<p>因為 prototype.js 擴充了陣列物件，因此如果使用 for…in 敘述的話，會使得 i 除了抓到我們定義的陣列索引值之外，還會抓到 prototype.js 所擴充的函式指標。</p>
+<p>不信的話，我們可以試著先將 i 寫出來：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var i in toolbar) &#123;&#10;document.write(i + &#39;&#60;br /&#62;&#39;);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>結果為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0&#10;1&#10;2&#10;3&#10;4&#10;each&#10;all&#10;...[&#30053;]...&#10;compact&#10;flatten&#10;without</span><br></pre></td></tr></table></figure>
+<p>在使用 prototype.js 後，當我們存取到 toolbar 這個陣列的第一個函式指標時， toolbar<a href="0">i</a> 是不存在的，所以就會發生錯誤；也因此我們就不能使用 for…in 來列舉陣列了。 </p>
+<p>那麼要怎麼在使用 prototype.js 後列舉陣列值呢？第一種是傳統的方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var i = 0; i &#60; toolbar.length; i ++) &#123;&#10;document.write(toolbar[i] + &#39;&#60;br /&#62;&#39;);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>這時候 i 是索引值，因此要取得元素值就要用 toolbar[i] 。 </p>
+<p>第二種是用 prototype.js 擴充的 each 方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">toolbar.each(function(e) &#123;&#10;document.write(e + &#39;&#60;br /&#62;&#39;); // &#36889;&#37002;&#30340; e &#30456;&#30070;&#26044;&#19978;&#38754;&#30340; toolbar[i]&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用 each 方法時，可以傳給它一個函式實字 (function literal) ，這個函式的唯一參數就是陣列的元素值。 each 方法在會自動跑遍陣列裡的元素，然後把元素值傳給剛剛丟給它的函式實字去執行。</p>
+<p>參考文章： <a href="http://blog.metawrap.com/blog/WhyIDontUseThePrototypejsJavaScriptLibrary.aspx" target="_blank" rel="external">Why I Don’t Use The prototype.js JavaScript Library</a></p>
+</span>
       
     </div>
 
@@ -288,22 +302,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +381,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +414,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +430,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +452,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +462,6 @@
 
   
   
-
   
     
     
@@ -489,21 +491,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +660,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +690,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

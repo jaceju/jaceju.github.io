@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,36 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS 排版觀念：Box Model">
 <meta property="og:url" content="http://jaceju.net/2005/05/09/17/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。">
+<meta property="og:image" content="http://jaceju.net/resources/css_boxmodel/boxdim.gif">
+<meta property="og:image" content="http://jaceju.net/resources/css_boxmodel/border1.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_boxmodel/padding1.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_boxmodel/margin1.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_boxmodel/margin2.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_boxmodel/margin3.png">
+<meta property="og:image" content="http://jaceju.net/resources/css_boxmodel/margin4.png">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 排版觀念：Box Model">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> CSS 排版觀念：Box Model | 網站製作學習誌 </title>
 </head>
@@ -143,7 +136,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +146,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +156,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +176,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +235,52 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。</p>
+<a id="more"></a>
+<p>Box Model 的意思是說，每一個元素我們都可視它為一個 Box 。一個 Box 由以下屬性組成： <code>margin</code> 、 <code>padding</code> 、 <code>border</code> 、 <code>content</code> 。</p>
+<p>註： <code>content</code> 非真的可用的 CSS 屬性，這裡只是為了方便說明。</p>
+<p>而一個 Box 的實際寬度 (高度) 是由 <code>padding</code> + <code>border</code> + <code>width</code> (<code>height</code>) 所組成，如下圖 (取自 <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnie60/html/cssenhancements.asp" target="_blank" rel="external">MSDN</a>)：</p>
+<p><img src="/resources/css_boxmodel/boxdim.gif" alt="IE Box Model"></p>
+<p>所以一般我們指定的 <code>width</code> 和 <code>height</code> 是 content 的寬和高，而沒有包含 <code>border</code> 和 <code>padding</code> 。換句話說，一個元素真正佔用的視覺空間，應該是 content + <code>padding</code> + <code>border</code> ，這是標準的 CSS 規範。</p>
+<p> 不過在 IE5/5.5 時代，一個元素的寬高則包含了 content + padding + border 。這個錯誤的實作，造成現今許多 CSS 排版上的困擾，但是也不是沒不是沒有辦法解決。 <a href="http://tantek.com/CSS/Examples/boxmodelhack.html" target="_blank" rel="external">Box Model Hack</a> 提供了解決之道，重點在於利用 IE5/5.5 對 CSS 解讀上的 Bug ，讓我們所希望之元素正確的寬高能正確地在 IE5/5.5 顯示出來。</p>
+<p>對於 <code>absolute</code> 和 <code>fixed</code> 而言，錯誤的 Box Model 或許影響較小 (不過也絕對不是沒有影響，像是如果要正確控制圖層的寬度時)；但對 <code>relative</code> 和 <code>static</code> 來說，因為它們都還是會保留其所佔有的空間。因此如何正確地調整 content 的大小，就會影響到我們的排版。</p>
+<p>以下我們來看看 Box Model 的各個組成分子。</p>
+<p>請特別注意：我在以下圖示中，元素上色的部份，除了有特別說明外，都是包含 border + padding + content ，這點非常重要！因為除了 <code>body</code> 標籤外，元素的 <code>background</code> 屬性的作用都不會包含 <code>margin</code> 。</p>
+<h2 id="border">border</h2><p><code>border</code> 是一個「加上去」的屬性，換句話說，一般都是用來區隔元素與元素用的。 <code>border</code> 的外圍即為元素的最外圍，因此計算元素實際的寬高時，就一定要將 <code>border</code> 納入。換句話說， <code>border</code> 會佔有空間，所以在計算精細的版面時，一定要將 <code>border</code> 的影響考慮進去。</p>
+<p>如下圖，黑色虛線部份即為 <code>border</code> ：</p>
+<p><img src="/resources/css_boxmodel/border1.png" alt="border"></p>
+<p>還有一點要特別注意，如果我們在元素上設定背景色時， IE 是作用在 padding + content ，而 Firefox 則是作用在 border + padding + content 上。</p>
+<h2 id="padding">padding</h2><p><code>padding</code> 會在元素內容的周圍加上我們所指定大小的空間；而如果我們沒有指定元素的寬高時，那麼該元素的內容就會受到 <code>padding</code> 所擠壓。如下圖：</p>
+<p><img src="/resources/css_boxmodel/padding1.png" alt="padding"></p>
+<p>如果元素的內容中有行內顯示元素時，我們可以利用 padding 的設定來讓它們在我們想要的地方折行，而不用對 content 指定寬度；這樣的技巧我用在全版面的兩欄式版面上，使得我不用對難用的 <code>width</code> 屬性傷腦筋。</p>
+<p>其實 <code>padding</code> 就這麼簡單，不過可別小看它，在 CSS 排版裡， <code>padding</code> 加上 <code>margin</code> 的設定，就能夠使版面千變萬化。</p>
+<h2 id="margin">margin</h2><p><code>margin</code> 的意義就是該元素與其他元素間的邊界距離，它的應用大概也算是 CSS 排版很重要的技術之一。所以我打算多花一點時間解釋它。</p>
+<p>我們可以分以下兩種狀況解釋：「元素與相鄰元素的距離」及「元素與父元素間的距離」。</p>
+<p>「元素與相鄰元素的距離」指得是元素間是緊鄰的 (不論是區塊顯示元素或行內顯示元素) ，而沒有階層關係。例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"i1"</span>&gt;</span>行內顯示元素1<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"i2"</span>&gt;</span>行內顯示元素2<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這兩個 <code>span</code> 標籤就是緊鄰關係。而 <code>span</code> 標籤預設屬於行內顯示元素 (<code>display: inline</code>) ，因此它們的邊界距離就是 <code>i1</code> 的 <code>margin-right</code> 加上 <code>i2</code> 的 <code>margin-left</code> ，如下圖。</p>
+<p><img src="/resources/css_boxmodel/margin1.png" alt="行內 margin"></p>
+<p>另一種緊鄰關係是區塊顯示元素，例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b1"</span>&gt;</span>區塊顯示元素1<span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b2"</span>&gt;</span>區塊顯示元素2<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>div</code> 標籤預設屬於區塊顯示元素，也就是在它的前後會加入換行的控制。要注意的是，區塊顯示元素它們的邊界距離是重疊的！而當 <code>b1</code> 的 <code>margin-bottom</code> 大於 <code>b2</code> 的 <code>margin-top</code> 時， <code>b1</code> 和 <code>b2</code> 實際的距離就以 <code>b1</code> 的 <code>margin-bottom</code> 為準，如下圖。</p>
+<p><img src="/resources/css_boxmodel/margin2.png" alt="區塊 margin"></p>
+<p>還有一種緊鄰關係是浮動元素，基本上它會是個區塊顯示元素，但 <code>margin</code> 的呈現關係和行內顯示元素是很像的，這我會在介紹浮動元素時再加以說明。</p>
+<p>「元素與父元素間的距離」就是指元素之間有階層關係時的邊界距離。例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b3"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"b4"</span>&gt;</span>內部區塊<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中 b3 就是父元素， b4 則是子元素。 它們的邊界關係如下圖：</p>
+<p><img src="/resources/css_boxmodel/margin3.png" alt="父子元素 margin"></p>
+<p>我們可以看到，子元素的邊界起始會以父元素的 Content 區為基準。</p>
+<p>上面我們都是將 margin 設為正值，例如將元素的 <code>margin-top</code> 設為 <code>20px</code> ，那麼元素上面就會多出 <code>20px</code> 的空間。注意，我是說多出空間，而非向下移動！有什麼差別呢？</p>
+<p>向下移動的定義是我們讓元素成為區塊顯示 (<code>display: block</code>) 或是它原本就是區塊顯示元素，然後指定它的 <code>position</code> 屬性為 <code>relative</code> ，最後設定它的 <code>top</code> 屬性為正值。</p>
+<p>而多出空間則不論它的 <code>position</code> 屬性設定為何，硬是擠進我們指定的空間。而且設定 <code>margin</code> 之後，頁面內容超過螢幕顯示範圍，即時有捲軸也無法呈現完整的內容。</p>
+<p>不過 IE6 和 FireFox 兩者對 Box Model 在 margin 的實作又有點不太一樣。 IE6 就算指定了父元素的 <code>height</code> 屬性，如果子元素的高度超過父元素的 <code>height</code> ，父元素就會被撐大，然後保留子元素 <code>margin-bottom</code> 的空間；而 FireFox 就不會。哪個實作是對的，我也不太清楚。</p>
+<p>margin 也可以指定為負值，例如我在這篇「<a href="/blog/archives/9">如何正確實作出固定寬度且置中的版型？</a>」裡，運用到了將 <code>margin-left</code> 設定為負值的技巧。這裡我再加以說明，將 <code>margin</code> 設定為負值是怎麼一回事。</p>
+<p>在「元素與元素間緊鄰」時，我們將 <code>margin</code> 設定為負值，會使得 <code>margin</code> 設定為負值的元素「疊」到另一個元素上 (不過還是要視另一個元素所設定的邊界距離而定) 。例如，我們將 A 區塊的 <code>margin-bottom</code> 設為 0 ， B 區塊的 <code>margin-top</code> 設為 -10px ，那麼 B 區塊的文字就會疊到 A 區塊的文字上。</p>
+<p>「元素間有階層性關係」時的關係，如果子元素的所指定的 margin 負值的絕對值大於父元素的 border + padding 時，就會使得子元素跑到父元素的外部去了。如圖，我們指定藍色元素的 <code>margin-left</code> 為 <code>-100px</code> ，那麼該元素就會往左跑 <code>100px</code> ；這時如果其父元素 (淺黃色) 的 <code>border-left</code> 和 <code>padding-left</code> 相加小於 <code>100px</code> ，我們就會看到該元素就會突出於父元素的左邊。</p>
+<p><img src="/resources/css_boxmodel/margin4.png" alt="negative margin"></p>
+<p>總而言之，將 <code>margin</code> 指定為負值在 CSS 排版上有非常大的用處，如果能將它了然於胸，相信你在 CSS 排版的功力一定會大增的。</p>
+<p>這篇我僅描述了 CSS Box Model 的一些基本觀念，雖然不是非常深入，但希望能夠讓大家對它們有基本的認知。而 CSS 排版除了 <a href="/blog/archives/15">Position</a> 和 Box Model 外，還有一樣非常值得探討的技術，就是浮動 (float) ；我將會在下次的文章中談到它。</p>
+</span>
       
     </div>
 
@@ -288,22 +325,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +404,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,10 +437,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
             
-            
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#border"><span class="nav-number">1.</span> <span class="nav-text">border</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding"><span class="nav-number">2.</span> <span class="nav-text">padding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin"><span class="nav-number">3.</span> <span class="nav-text">margin</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,8 +453,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +475,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +485,6 @@
 
   
   
-
   
     
     
@@ -489,21 +514,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +683,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +713,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

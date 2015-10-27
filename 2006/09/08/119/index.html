@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,32 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="XCache 是一套華人所開發的 PHP 加速器，號稱穩定性高。可到台灣 PHP 聯盟去看看進一步的介紹。
+以下簡單記錄它在 Windows 上的安裝方式：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Win32 安裝 XCache">
 <meta property="og:url" content="http://jaceju.net/2006/09/08/119/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="XCache 是一套華人所開發的 PHP 加速器，號稱穩定性高。可到台灣 PHP 聯盟去看看進一步的介紹。
+以下簡單記錄它在 Windows 上的安裝方式：">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Win32 安裝 XCache">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="XCache 是一套華人所開發的 PHP 加速器，號稱穩定性高。可到台灣 PHP 聯盟去看看進一步的介紹。
+以下簡單記錄它在 Windows 上的安裝方式：">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 在 Win32 安裝 XCache | 網站製作學習誌 </title>
 </head>
@@ -143,7 +132,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +142,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +152,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +172,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +231,23 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p><a href="http://trac.lighttpd.net/xcache/" target="_blank" rel="external">XCache</a> 是一套華人所開發的 PHP 加速器，號稱穩定性高。可到<a href="http://twpug.net/modules/newbb/viewtopic.php?topic_id=1571&amp;forum=14&amp;post_id=8054" target="_blank" rel="external">台灣 PHP 聯盟</a>去看看進一步的介紹。</p>
+<p>以下簡單記錄它在 Windows 上的安裝方式：</p>
+<a id="more"></a>
+<ul>
+<li>依照 PHP 版本至 XCache::<a href="http://210.51.190.228/pub/XCache/snapshots/win32autobuilds/" target="_blank" rel="external">Win32AutoBuilds</a> 下載最新的 XCache ，這裡我用的是 XCache-trunk-php-5.1.6-Win32-r142.zip 。</li>
+<li>解開 XCache-trunk-php-5.1.6-Win32-r142.zip ，裡面會有一個 Release_Ts 的目錄。</li>
+<li>在網站根目錄下建立一個 xcache 子目錄，然後將 Release_Ts 下的 admin 及 coverager 複製 (或移動) 到 xcache 目錄下。</li>
+<li>將 Release_Ts 下的 php_xcache.dll 複製 (或移動) 到 PHP5 安裝目錄下的 ext 子目錄。</li>
+<li>將 Release_Ts 下的 xcache.ini 裡所有內容複製到 php.ini 的最下方。</li>
+<li>在 php.ini 找到 xcache 的區段，然後按照以下的說明來設定各個項目：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; &#21855;&#29992; XCache &#27169;&#32068;&#12290;&#10;extension = php_xcache.dll&#10;; XCache &#31649;&#29702;&#20171;&#38754;&#30340;&#20351;&#29992;&#32773;&#24115;&#34399;&#12290;&#10;xcache.admin.user = &#34;username&#34;&#10;; XCache &#31649;&#29702;&#20171;&#38754;&#30340;&#20351;&#29992;&#32773;&#23494;&#30908;&#12290;&#35201;&#29992; md5 &#35336;&#31639;&#36942;&#30340;&#32080;&#26524;&#12290;&#10;xcache.admin.pass = &#34;xxxxxxxxxxxxxxxxxxxxxxxxx&#34;&#10;; &#21855;&#29992; Opcode Cache &#12290;&#10;; &#23567;&#24515;&#35373;&#24471;&#22826;&#22823;&#25110;&#22826;&#23567;&#37117;&#26371;&#20351; Web &#20282;&#26381;&#22120;&#28961;&#27861;&#21855;&#21205;&#65292;&#35531;&#33258;&#34892;&#25214;&#21040;&#19968;&#20491;&#36969;&#30070;&#30340;&#20540;&#12290;&#10;xcache.size = 5M&#10;; &#21855;&#29992; Variable Cache &#12290;&#10;; &#23567;&#24515;&#35373;&#24471;&#22826;&#22823;&#25110;&#22826;&#23567;&#37117;&#26371;&#20351; Web &#20282;&#26381;&#22120;&#28961;&#27861;&#21855;&#21205;&#65292;&#35531;&#33258;&#34892;&#25214;&#21040;&#19968;&#20491;&#36969;&#30070;&#30340;&#20540;&#12290;&#10;xcache.var_size = 5M&#10;; &#35373;&#23450;&#19968;&#20491;&#26377;&#23531;&#20837;&#27402;&#38480;&#30340;&#36335;&#24465;&#10;xcache.coredump_directory = &#34;D:/Temp/php/xcache&#34;&#10;; &#35373;&#23450;&#19968;&#20491;&#26377;&#35712;&#21462;&#27402;&#38480;&#30340;&#36335;&#24465;&#10;xcache.coveragedump_directory = &#34;D:/Temp/php/xcache&#34;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新啟動 Web 伺服器，並查看 phpinfo() 資訊，檢查是否已啟動 XCache 。</li>
+<li>可用 <a href="http://localhost/xcache/admin/" target="_blank" rel="external">http://localhost/xcache/admin/</a> 及 <a href="http://localhost/xcache/coverager/" target="_blank" rel="external">http://localhost/xcache/coverager/</a> 來管理相關的資訊。</li>
+</ul>
+</span>
       
     </div>
 
@@ -290,22 +294,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -372,17 +373,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -409,8 +406,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -427,8 +422,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,8 +444,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,7 +454,6 @@
 
   
   
-
   
     
     
@@ -491,21 +483,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,20 +652,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -678,5 +682,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,44 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="大部份在 Windows 平台有安裝 PEAR 的人大概都知道以下兩種安裝方式 (以 PHP 5.1.2 為例) ：
+X:\php&amp;#62;go-pear.bat
+以及，
+X:\php\PEAR&amp;#62;php go-pear.phar
+(註：在 5.0 以前是用 go-pear.php) 
+但是這兩種安裝方式的預設安裝路徑有些不同，這會影響 include_path 的設定！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="哪個才是正確 PEAR 的安裝路徑">
 <meta property="og:url" content="http://jaceju.net/2006/02/09/74/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="大部份在 Windows 平台有安裝 PEAR 的人大概都知道以下兩種安裝方式 (以 PHP 5.1.2 為例) ：
+X:\php&amp;#62;go-pear.bat
+以及，
+X:\php\PEAR&amp;#62;php go-pear.phar
+(註：在 5.0 以前是用 go-pear.php) 
+但是這兩種安裝方式的預設安裝路徑有些不同，這會影響 include_path 的設定！">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="哪個才是正確 PEAR 的安裝路徑">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="大部份在 Windows 平台有安裝 PEAR 的人大概都知道以下兩種安裝方式 (以 PHP 5.1.2 為例) ：
+X:\php&amp;#62;go-pear.bat
+以及，
+X:\php\PEAR&amp;#62;php go-pear.phar
+(註：在 5.0 以前是用 go-pear.php) 
+但是這兩種安裝方式的預設安裝路徑有些不同，這會影響 include_path 的設定！">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> 哪個才是正確 PEAR 的安裝路徑 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +144,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +154,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +164,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +184,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +243,29 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>大部份在 Windows 平台有安裝 PEAR 的人大概都知道以下兩種安裝方式 (以 PHP 5.1.2 為例) ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X:\php&#62;go-pear.bat</span><br></pre></td></tr></table></figure>
+<p>以及，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X:\php\PEAR&#62;php go-pear.phar</span><br></pre></td></tr></table></figure>
+<p>(註：在 5.0 以前是用 go-pear.php) </p>
+<p>但是這兩種安裝方式的預設安裝路徑有些不同，這會影響 include_path 的設定！</p>
+<a id="more"></a>
+<p>以第一種方式來說，執行畫面如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X:\PHP&#62;go-pear.bat&#10;Are you installing a system-wide PEAR or a local copy?&#10;(system|local) [system] :[Enter]&#10;Below is a suggested file layout for your new PEAR installation. To&#10;change individual locations, type the number in front of the&#10;directory. Type &#39;all&#39; to change all of them or simply press Enter to&#10;accept these locations.&#10;1. Installation base ($prefix) : &#60;strong&#62;X:\php&#60;/strong&#62;&#10;2. Binaries directory : X:\php&#10;3. PHP code directory ($php_dir) : X:\php\pear&#10;4. Documentation directory : X:\php\pear\docs&#10;5. Data directory : X:\php\pear\data&#10;6. Tests directory : X:\php\pear\tests&#10;7. Name of configuration file : X:\php\PEAR\pear.ini&#10;8. Path to CLI php.exe : X:\php&#10;1-8, &#39;all&#39; or Enter to continue:</span><br></pre></td></tr></table></figure>
+<p>而第二種則會像這樣：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X:\php\PEAR&#62;php go-pear.phar&#10;Are you installing a system-wide PEAR or a local copy?&#10;(system|local) [system] :&#10;Below is a suggested file layout for your new PEAR installation. To&#10;change individual locations, type the number in front of the&#10;directory. Type &#39;all&#39; to change all of them or simply press Enter to&#10;accept these locations.&#10;1. Installation base ($prefix) : &#60;strong&#62;X:\php\PEAR&#60;/strong&#62;&#10;2. Binaries directory : X:\php\PEAR&#10;3. PHP code directory ($php_dir) : X:\php\PEAR\pear&#10;4. Documentation directory : X:\php\PEAR\pear\docs&#10;5. Data directory : X:\php\PEAR\pear\data&#10;6. Tests directory : X:\php\PEAR\pear\tests&#10;7. Name of configuration file : X:\php\PEAR\pear.ini&#10;8. Path to CLI php.exe : X:\php&#10;1-8, &#39;all&#39; or Enter to continue:</span><br></pre></td></tr></table></figure>
+<p>注意紅色粗體的部份，你會發現安裝路徑是不同的！</p>
+<p>依照官方手冊的說法，第一種方式是正確的作法，而第二種方式則是當你需要把 PEAR 安裝在不同路徑時使用。例如虛擬主機沒有安裝 PEAR ，而你想自行安裝時，就可以採用第二種方式。</p>
+<p>這兩種安裝方式也會造成 PHP.INI 中 include_path 設定上的不同，例如第一種我們要設成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">include_path = &#34;.;X:\php\PEAR&#34;</span><br></pre></td></tr></table></figure>
+<p>第二種要設成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">include_path = &#34;.;X:\php\PEAR\pear&#34;</span><br></pre></td></tr></table></figure>
+<p><del>由於我們公司採用的是第二種，所以我一直覺得很奇怪，為什麼要有兩層 PEAR 呢？何況第二層 pear 底下還有一層 PEAR (PEAR 類別群的同名資料夾) ！這大概是很久以前的習慣吧 (我自己在不瞭解前也是採第二種方式安裝) 。</del></p>
+<p><strong>補充：我的同事糾正我，公司採用的是第一種方式。我想應該是我自己搞錯了，特此更正。 (所以發表文章前一定要先查證呀！) </strong></p>
+<p>另外這兩種設定方式在 Windows 的 PATH 環境變數設定上也會有影響。第一種方式我們只要在 PATH 中把 X:\php 加入即可，但第二種方式則要再加入 X:\php\PEAR 。這是因為第二種方式會將 pear.bat <del>( 5.1.x 預設為 peardev.bat )</del> 和 pecl.bat 會被放到 X:\php\PEAR 資料夾裡。 </p>
+<p><strong>補充：5.1.x  會把舊的 pear.bat 更名成 pear.bat_old ，可是這樣第一次安裝的話，就會找不到 pear.bat 了。解決方式很簡單，把 pear.bat_old 更名成 pear.bat 即可。 </strong></p>
+<p>所以結論是：採用 go-pear.bat 吧！ (我想大部份有經驗的高手們已經是這樣做了，很高興我的同事們也是高手，我要多多學習 ^^ ) </p>
+</span>
       
     </div>
 
@@ -288,22 +310,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +389,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +422,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +438,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +460,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +470,6 @@
 
   
   
-
   
     
     
@@ -489,21 +499,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +668,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +698,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,12 +18,7 @@
 
 
 
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -31,12 +27,9 @@
   
 
 
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
 
@@ -47,36 +40,35 @@
 
 
 
-
-
-
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-
-
-
-
-<meta name="description">
+<meta name="description" content="也是在 Tim Club 回答的問題，記在這裡自己備忘用。
+一位網友問到，想把以下的文字：
+[code:07318bb522](/code:07318bb522)&amp;#10;[color=blue:8841ec98ad](/color:a76c137a60)&amp;#10;[b:8841ec98ad] [/b:6e4e964058]&amp;#10;[quote=&amp;#34;Anonymous&amp;#34;] [/qu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 小實驗 (2) - 正規表示式">
 <meta property="og:url" content="http://jaceju.net/2006/06/03/103/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description">
+<meta property="og:description" content="也是在 Tim Club 回答的問題，記在這裡自己備忘用。
+一位網友問到，想把以下的文字：
+[code:07318bb522](/code:07318bb522)&amp;#10;[color=blue:8841ec98ad](/color:a76c137a60)&amp;#10;[b:8841ec98ad] [/b:6e4e964058]&amp;#10;[quote=&amp;#34;Anonymous&amp;#34;] [/qu">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 小實驗 (2) - 正規表示式">
-<meta name="twitter:description">
-
+<meta name="twitter:description" content="也是在 Tim Club 回答的問題，記在這裡自己備忘用。
+一位網友問到，想把以下的文字：
+[code:07318bb522](/code:07318bb522)&amp;#10;[color=blue:8841ec98ad](/color:a76c137a60)&amp;#10;[b:8841ec98ad] [/b:6e4e964058]&amp;#10;[quote=&amp;#34;Anonymous&amp;#34;] [/qu">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
+
+
 
   <title> PHP 小實驗 (2) - 正規表示式 | 網站製作學習誌 </title>
 </head>
@@ -143,7 +135,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home"></i> <br />
             
             首頁
           </a>
@@ -153,7 +145,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -163,7 +155,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags"></i> <br />
             
             標籤
           </a>
@@ -183,8 +175,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
@@ -243,7 +234,44 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>也是在 Tim Club 回答的<a href="http://timteam.org/?TIM=FORUM&amp;FORUM=1&amp;ShowDocument=14269" target="_blank" rel="external">問題</a>，記在這裡自己備忘用。</p>
+<p>一位網友問到，想把以下的文字：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[code:07318bb522](/code:07318bb522)&#10;[color=blue:8841ec98ad](/color:a76c137a60)&#10;[b:8841ec98ad] [/b:6e4e964058]&#10;[quote=&#34;Anonymous&#34;] [/quote:6e4e964058]</span><br></pre></td></tr></table></figure>
+<p>換成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[code](/code)&#10;[color=blue](/color)&#10;[b] [/b]&#10;[quote] [/quote]</span><br></pre></td></tr></table></figure>
+<p>其實這個就是所謂的 BBCode ，只是我很少看過第一種表示形式。</p>
+<p>怎麼轉換呢？</p>
+<a id="more"></a>
+<p>首先可以先想到的，是用替換的方式，也就是 str_replace() 。不過這裡有個問題，那就是標籤名稱後的冒號與英數混合字串是非固定的，所以我們就不能用 str_replace() 這種單一的替代函式，要另外想辦法解決。</p>
+<p>雖然說是不固定的文字，但總是能找到一點脈絡，其組合大概能分成以下幾種：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[&#27161;&#31844;&#21517;&#31281;:&#33521;&#25976;&#28151;&#21512;&#23383;&#20018;]&#20013;&#38291;&#30340;&#25991;&#23383;[/&#27161;&#31844;&#21517;&#31281;:&#33521;&#25976;&#28151;&#21512;&#23383;&#20018;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[&#27161;&#31844;&#21517;&#31281;=&#23660;&#24615;&#20540;:&#33521;&#25976;&#28151;&#21512;&#23383;&#20018;]&#20013;&#38291;&#30340;&#25991;&#23383;[/&#27161;&#31844;&#21517;&#31281;:&#33521;&#25976;&#28151;&#21512;&#23383;&#20018;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[&#27161;&#31844;&#21517;&#31281;=&#34;&#23660;&#24615;&#20540;&#34;]&#20013;&#38291;&#30340;&#25991;&#23383;[/&#27161;&#31844;&#21517;&#31281;:&#33521;&#25976;&#28151;&#21512;&#23383;&#20018;]</span><br></pre></td></tr></table></figure>
+<p>轉換後就要變成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[&#27161;&#31844;&#21517;&#31281;]&#20013;&#38291;&#30340;&#25991;&#23383;[/&#27161;&#31844;&#21517;&#31281;]</span><br></pre></td></tr></table></figure>
+<p>不過 color 標籤比較特別，要轉換成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[&#27161;&#31844;&#21517;&#31281;=&#23660;&#24615;]&#20013;&#38291;&#30340;&#25991;&#23383;[/&#27161;&#31844;&#21517;&#31281;]</span><br></pre></td></tr></table></figure>
+<p>像這樣有規則可循的替換，我們就能使用 <span id="pageTitle">Regular Expression</span> (正規表示式) 來完成它。</p>
+<p>在 <span id="pageTitle">Regular Expression</span> 裡，替換函式是 preg_replace() ，所以我寫了以下的程式測試：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$document = &#60;&#60;&#60;EOD&#10;[code:07318bb522](/code:07318bb522)&#10;[color=blue:8841ec98ad](/color:a76c137a60)&#10;[b:8841ec98ad] [/b:6e4e964058]&#10;[quote=&#34;Anonymous&#34;] [/quote:6e4e964058]&#10;EOD;&#10;$pattern = array(&#10;&#34;/\[([a-z]+)([=\w]*):[\w]*\](.*?)\[\/\\1:[\w]*\]/i&#34;,&#10;&#34;/\[([a-z]+)=\&#34;[\w]*\&#34;\](.*?)\[\/\\1:[\w]*\]/i&#34;,&#10;);&#10;$replace = array(&#10;&#34;[\\1\\2]\\3[/\\1]&#34;,&#10;&#34;[\\1]\\2[/\\1]&#34;,&#10;);&#10;$text = preg_replace($pattern, $replace, $document);&#10;print $text;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>preg_replace() 第一個參數是要搜尋的 Pattern ，可以是一個字串，也可以是陣列；第二個參數則是要替換的文字，一樣可為字串或陣列。當兩個參數皆使用陣列時， preg_replace() 會幫我們以一對一的方式將 $pattern 陣列中比對到的文字，用 $replace 陣列來替換掉。</p>
+<p>回到上面的程式，第一個 Pattern 是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/\[([a-z]+)([=\w]*):[\w]*\](.*?)\[\/\\1:[\w]*\]/i</span><br></pre></td></tr></table></figure>
+<p>我先比對前面的標籤好了，首先是左方括號 [ ，因為它屬於特殊字元，所以要用反斜線將它脫逸 (Escape) ；然後是標籤 ([a-z]+) ，再比對可有可無的屬性 ([=\w]<em>) ，接著是冒號加上英數混合字串 [\w]</em> ，最後是右方括號 ] ；這樣就會比對出 [code:07318bb522] 、 [color=blue:8841ec98ad] 及 [b:8841ec98ad] 。</p>
+<p>而中間的文字是可有可無的，我就用 (.*?) 來將它比對出來。</p>
+<p>最後是後面的標籤，方括號、冒號及英數混合字串是和上面一樣的比對方式；然而這裡用到一個 \1 ，指的是把前面第一個小括號裡所比對到的文字拿來再比一次，這就是所謂的 Back references (中文我不會翻) ；也就是說，如果我前面比對到的標籤名稱是 color ，那麼 \1 就會再用 color 來比對，以達到兩兩對稱的目的。 </p>
+<p>那第二個 Pattern 是作什麼用的？不是還有一個 quote 標籤還沒比到嗎？我比較笨，在第一個 Pattern 中我並沒辦法完全比對到 quote=”Anonymous” ，所以我只好透過第二個 Pattern 來將它比對出來。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/\[([a-z]+)=\&#34;[\w]*\&#34;\](.*?)\[\/\\1:[\w]*\]/i</span><br></pre></td></tr></table></figure>
+<p>只看前面的標籤就行了，後面的標籤和第一個 Pattern 是一樣的。略過方括號不提，先用 ([a-z]+) 比對標籤名稱，然後是等號 = ，接著是 \”[\w]*\” 比對出帶有雙引號的屬性。</p>
+<p>比對完之後，接著就是要將它替換掉了。在替換的字串裡，我們不需要再對特殊字元做脫逸，不過 Back references 仍然有用。 Back references 會對應到 Pattern 內有小括號的地方，然後依次替換，所以對第一個 Pattern ，我就用以下的字串來替換：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[\\1\\2]\\3[/\\1]</span><br></pre></td></tr></table></figure>
+<p>這時候 \1 就是標籤名稱， \2 則是等號及屬性， \3 當然就是中間的文字。</p>
+<p>而第二個 Pattern 就用以下字串替換：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[\\1]\\2[/\\1]</span><br></pre></td></tr></table></figure>
+<p>原理就和上面是一樣的。</p>
+<p>當然以上的替換方式還不是很周全，應該有很多狀況無法處理。不過我想基本原理掌握後，應該能夠舉一反三吧。</p>
+<p>請大家指教。</p>
+</span>
       
     </div>
 
@@ -288,22 +316,19 @@
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
       </div>
 
       
@@ -370,17 +395,13 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+                  <i class="fa fa-github"></i> GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
+                  <i class="fa fa-twitter"></i> Twitter
                 </a>
               </span>
             
@@ -407,8 +428,6 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
-              
-            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,8 +444,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,8 +466,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,7 +476,6 @@
 
   
   
-
   
     
     
@@ -489,21 +505,24 @@
 
 
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,20 +674,29 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
 
   
   
@@ -676,5 +704,15 @@
   
   
 
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>
