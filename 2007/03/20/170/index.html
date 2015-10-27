@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="之前提過 PHP Development Studio ，它是基於 Ecplise + PHPEclipse 的一套 PHP 開發工具。然而後來 EClipse 官方自己也推了一個 PHP 開發工具計畫，它就叫 PDT - PHP Development Tools 。
-我試用的結果它在 Eclipse 的支援程度比 PHPEclipse 好很多 (廢話，有官方支援當然好) ，而且比 PHPEcl">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Eclipse 上的 PHP 開發工具 - 安裝篇">
 <meta property="og:url" content="http://jaceju.net/2007/03/20/170/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="之前提過 PHP Development Studio ，它是基於 Ecplise + PHPEclipse 的一套 PHP 開發工具。然而後來 EClipse 官方自己也推了一個 PHP 開發工具計畫，它就叫 PDT - PHP Development Tools 。
-我試用的結果它在 Eclipse 的支援程度比 PHPEclipse 好很多 (廢話，有官方支援當然好) ，而且比 PHPEcl">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Eclipse 上的 PHP 開發工具 - 安裝篇">
-<meta name="twitter:description" content="之前提過 PHP Development Studio ，它是基於 Ecplise + PHPEclipse 的一套 PHP 開發工具。然而後來 EClipse 官方自己也推了一個 PHP 開發工具計畫，它就叫 PDT - PHP Development Tools 。
-我試用的結果它在 Eclipse 的支援程度比 PHPEclipse 好很多 (廢話，有官方支援當然好) ，而且比 PHPEcl">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> Eclipse 上的 PHP 開發工具 - 安裝篇 | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,27 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>之前<a href="http://blog.roodo.com/jaceju/archives/2176654.html" target="_blank" rel="external">提過 PHP Development Studio</a> ，它是基於 <a href="http://www.eclipse.org/" target="_blank" rel="external">Ecplise</a> + <a href="http://www.phpeclipse.de" target="_blank" rel="external">PHPEclipse</a> 的一套 PHP 開發工具。然而後來 EClipse 官方自己也推了一個 PHP 開發工具計畫，它就叫 <a href="http://www.eclipse.org/pdt/" target="_blank" rel="external">PDT</a> - PHP Development Tools 。</p>
-<p>我試用的結果它在 Eclipse 的支援程度比 PHPEclipse 好很多 (廢話，有官方支援當然好) ，而且比 PHPEclipse 多了很多功能 (像預先載入類別庫或更為完整的程式碼提示等) 。如果有需要免費的 PHP 開發環境的話， PDT 是個不錯的選擇。<br>剛好 <a href="http://www.neo.com.tw" target="_blank" rel="external">Neo</a> 大對它也有興趣，那我就野人獻曝，簡單介紹一下它的安裝方式。</p>
-<a id="more"></a>
-<h2 id="下載">下載</h2><p>Eclipse 除了主要平台程式外，大部份套件都可以從線上直接下載安裝 (有些套件沒有提供線上安裝網址) 。以下就是需要下載的程式：</p>
-<h3 id="Eclipse_Platform">Eclipse Platform</h3><p>這就是主要的執行平台，下載網址為 <a href="http://www.eclipse.org/downloads/" target="_blank" rel="external"> http://www.eclipse.org/downloads/</a> 。建議下載較為穩定的版本，這裡我以 3.2.2 為例。</p><h3>PDT<p></p>
-<p>基本上 PDT 不用下載，但是如果你會用到 Xdebug 的話，就得下載 0.7 RC2 這個版本；這是因為  Xdebug for PDT 目前只支援這個版本，它在其他版本上會使得 Eclipse 出現錯誤。</p>
-<p>PDT 0.7 RC2 的下載網址為 <a href="http://download.eclipse.org/tools/pdt/downloads/?release=S20070130-RC2" target="_blank" rel="external">http://download.eclipse.org/tools/pdt/downloads/?release=S20070130-RC2</a> (檔名為 org.eclipse.php_feature-S20070130_RC2.zip ) 。 </p>
-<h3 id="Xdebug_for_PDT">Xdebug for PDT</h3><p>這是給 PDT 用的 Xdebug 外掛，下載網址為 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=169408" target="_blank" rel="external">https://bugs.eclipse.org/bugs/show_bug.cgi?id=169408</a> 。這裡我下載的是 <a href="https://bugs.eclipse.org/bugs/attachment.cgi?id=60871" target="_blank" rel="external">Prebuilt Binary of XDebug With Path Mapper V0.1.4 (PDT RC2) [.ZIP]</a> (檔名為 org.eclipse.php.xdebug_0.1.4.zip ) 。注意這個套件是非必要的，就算不安裝也不會影響 PDT 的執行。</p>
-<p>註：另外也建議再下載 <a href="https://bugs.eclipse.org/bugs/attachment.cgi?id=56322" target="_blank" rel="external">Prebuilt Binary which provides XDebug Support for PHP IDE</a> (檔名 XDebugBinContrib_0.1.1.zip ) ，裡面有個 PDF 檔案會教你如何使用這個套件。 </p>
-<h2 id="安裝">安裝</h2><p>這裡我把安裝步驟分成主要平台和套件兩個部份來說明。</p>
-<h3 id="Eclipse_主要平台">Eclipse 主要平台</h3><p>主要平台的安裝步驟如下：<em> 先把 eclipse-SDK-3.2.2-win32.zip 解開，這裡我將它解開到 D:\Programes\Eclipse 。</em> Eclipse 在 Win32 平台的執行檔是 eclipse.exe ，我們可以在桌面上為它建立一個捷徑。<br>這樣就完成主要平台的安裝了。</p>
-<p>註：這裡我不會安裝中文語言套件。</p>
-<h3 id="安裝必要套件">安裝必要套件</h3><p>在安裝 PDT 前，有一些套件是必須安裝的： <em> GEF - Graphical Editing Framework</em> EMF - Eclipse Modeling Framework<em> JEM - Java EMF Modeling SDK</em> WTP - Web Tools Platform<br>而在 Eclipse 中套件的安裝方式分成：<em> Remote Site (線上安裝，來源可分為內建或自訂) </em> Local Site (本地安裝)<em> Archived Site (壓縮檔安裝)<br>所以通常上面的套件可以全部下載回來再用本地安裝，不過這裡我將會採用線上安裝；因為這樣可以保持最小化的安裝方式，以加速 Eclipse 的啟動速度。<br>必要套件安裝步驟如下：</em> 執行 eclipse.exe 以啟動 Eclipse 。<em> 第一次執行會詢問我們 Workspace 的路徑，這裡我先指定「 ..\workspace 」。</em> 主畫面開啟後，選擇功能表上的「 Help / Software Updates / Find and Install… 」。<em> 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。 </em> 在 Update sites to visit 的「 Site to include in search 」欄裡勾選「 Callisto Discovery Site 」，然後按下「 Finish 」。<br>註：「 Callisto Discovery Site 」是 Eclipse 內建的線上安裝來源，是無法刪除的。* 在 Update Site Mirrors 視窗中選擇較近 (或較快) 的更新網站後，按「 OK 」。<li></li></p>
-<p>在 Updates 視窗中的「 Select the features to install 」欄裡勾選以下項目 (勾選粗體項目即可) ：<li>Enabling Features</li><li><strong>Batik</strong></li><li>Graphical Editor and Frameworks</li><li><strong>Visual Editor</strong></li><li><strong>Graphical Editing Framework</strong></li><li>Models and Model Development</li><li><strong>Eclipse Modeling Frameworks (EMF) Runtime + End-User Tools</strong></li><li><strong>XML Schema Infoset Model (XSD) Runtime + End-User Tools</strong></li><li><strong>Graphical Modeling Framework</strong></li><li><strong>Java EMF Model</strong> </li><li>Web and J2EE Development</li><li><strong>Web Standard Tools (WST) Project</strong></li><br>                註：上面的套件是一定要安裝的，因為它們都具有相依性。不過這些套件也許會因為版本不同而有所改變，請特別注意。</p>
-<ul>
-<li>在 Install 視窗中，選擇「 I accept the terms in the license agreements 」後，按「 Next 」後再按「 Finish 」。<em> 接下來安裝程式會花很長一段時間 (約半個小時到一個小時，視網路連線速度而定) 來下載套件，請耐心等候。</em> 下載完成後，會詢問要是不是要安裝，這時選擇「 Install All 」後就會開始安裝了。 * 安裝完成後， Eclipse 會問要不要重新啟動，選 「 Yes 」。 <h3 id="安裝_PDT">安裝 PDT</h3>如果決定不使用 Xdebug for PDT 的話，那麼在這裡就可以採用自訂的線上安裝，步驟如下： <em> 選擇功能表上的「 Help / Software Updates / Find and Install… 」。</em> 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。 </li><li><br>按下「 New Remote Site 」，在 New Update Site 視窗中的 Name 欄位輸入「<strong> PDT</strong> (可以隨便填) 」，而 URL 欄位則填入「 <strong><a href="http://download.eclipse.org/tools/php/updates/" target="_blank" rel="external">http://download.eclipse.org/tools/php/updates/</a></strong> 」。</li><em> 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 PDT 」項目。這時除了「 PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。</em> 接下來的步驟就和上面必要套件安裝步驟是一樣的，這裡略過。<br>如果想使用 Xdebug for PDT ，那麼這邊 PDT 就要改用本地安裝的方式來安裝，步驟如下：<em> 解開  PDT 0.7 RC2 ( org.eclipse.php_feature-S20070130_RC2.zip ) ，假設這裡我解開到「 D:\Temp\PDT\eclipse 」。 </em> 選擇功能表上的「 Help / Software Updates / Find and Install… 」。<em> 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。 </em> 按下「 New Local Site 」，這時安裝程式會要我們選擇一個資料夾，這裡就選「 D:\Temp\PDT\eclipse 」。 <li><br>在 Edit Local Site 視窗中的 Name 欄位輸入「<strong> PDT</strong> (可以隨便填) 」。</li><em> 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 PDT 」項目。這時除了「 PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。</em> 接下來的步驟就和上面套件安裝步驟是一樣的，這裡略過。<h3 id="安裝_Aptana">安裝 Aptana </h3></ul></h3><a href="http://www.aptana.com/" target="_blank" rel="external">Aptana</a> 是一個很強大的 Web 前端開發工具，它也是基於 Eclipse 所開發的。因此它除了有獨立執行版本外，也可以當做是 Eclipse 的外掛套件。<br>如果要在 Eclipse 上安裝 Aptana 的話，也是採用自訂的線上安裝，只是遠端網址要改為「 <strong><a href="http://update.aptana.com/install/" target="_blank" rel="external">http://update.aptana.com/install/</a></strong> 」。至於安裝步驟則是和 PDT 一樣，這裡就不再多做說明。<br>註： Aptana 套件是非必要的，不過功能強大，建議是裝上去的好。 <h3>安裝 Subclipse 
-
-<p><a href="http://subclipse.tigris.org/" target="_blank" rel="external">Subclipse</a> 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採用自訂線上更新，它的遠端網址是「 <strong><a href="http://subclipse.tigris.org/update_1.2.x" target="_blank" rel="external">http://subclipse.tigris.org/update_1.2.x</a></strong> 」。<br>註： Subclipse 套件也是非必要的，團隊裡用有 Subversion 管理的話再裝即可。 </p>
-<h3 id="安裝_Xdebug_For_PDT">安裝 Xdebug For PDT</h3><p>Xdebug for PDT 是提供 PDT 偵錯功能的套件，因為它沒有提供線上更新網址，所以這裡要採用本地安裝。安裝步驟如下：<br>註：要先安裝好 PDT 0.7 RC2 才能再裝 Xdebug for PDT 。 <em> 解開 Xdebug for PDT ( org.eclipse.php.xdebug_0.1.4.zip ) ，假設這裡我解開到「 D:\Temp\PDT\xdebug\eclipse 」。 </em> 選擇功能表上的「 Help / Software Updates / Find and Install… 」。<em> 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。 </em> 按下「 New Local Site 」，這時安裝程式會要我們選擇一個資料夾，這裡就選「 D:\Temp\PDT\xdebug\eclipse 」。 <li><br>在 Edit Local Site 視窗中的 Name 欄位輸入「<strong> Xdebug for PDT</strong> (可以隨便填) 」。</li><em> 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 Xdebug for PDT 」項目。這時除了「 Xdebug for PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。</em> 接下來的步驟就和上面套件安裝步驟是一樣的，這裡略過。<br>註：一般都是使用 <a href="http://dd.cron.ru/dbg/" target="_blank" rel="external">PHP Debugger</a> ，不過我個人偏好使用 Xdebug 。<br>以上就完成全部的套件安裝了，參考手冊的設定方式請參考石頭成老大這篇 <a href="http://blog.roodo.com/rocksaying/archives/2711065.html" target="_blank" rel="external">Development within Eclipse PHP IDE (PDT)</a> 裡的說明。</p>
-<p>最後要提醒一點，因為 Eclipse 是使用 Java 開發的，在差一點的機器上執行速度會有點慢，而且第一次啟用時間也會比較久。強烈建議小專案直接使用 PSPad 或其他輕量級的文字編輯器就可以了，架構龐大且類別層級複雜的專案再考慮使用 PDT 。</p>
-</h3></span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -296,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -375,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -408,24 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下載"><span class="nav-number">1.</span> <span class="nav-text">下載</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Eclipse_Platform"><span class="nav-number">1.1.</span> <span class="nav-text">Eclipse Platform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">PDT
-基本上 PDT 不用下載，但是如果你會用到 Xdebug 的話，就得下載 0.7 RC2 這個版本；這是因為  Xdebug for PDT 目前只支援這個版本，它在其他版本上會使得 Eclipse 出現錯誤。
-PDT 0.7 RC2 的下載網址為 http://download.eclipse.org/tools/pdt/downloads/?release=S20070130-RC2 (檔名為 org.eclipse.php_feature-S20070130_RC2.zip ) 。 
-Xdebug for PDT這是給 PDT 用的 Xdebug 外掛，下載網址為 https://bugs.eclipse.org/bugs/show_bug.cgi?id=169408 。這裡我下載的是 Prebuilt Binary of XDebug With Path Mapper V0.1.4 (PDT RC2) [.ZIP] (檔名為 org.eclipse.php.xdebug_0.1.4.zip ) 。注意這個套件是非必要的，就算不安裝也不會影響 PDT 的執行。
-註：另外也建議再下載 Prebuilt Binary which provides XDebug Support for PHP IDE (檔名 XDebugBinContrib_0.1.1.zip ) ，裡面有個 PDF 檔案會教你如何使用這個套件。 
-安裝這裡我把安裝步驟分成主要平台和套件兩個部份來說明。
-Eclipse 主要平台主要平台的安裝步驟如下： 先把 eclipse-SDK-3.2.2-win32.zip 解開，這裡我將它解開到 D:\Programes\Eclipse 。 Eclipse 在 Win32 平台的執行檔是 eclipse.exe ，我們可以在桌面上為它建立一個捷徑。這樣就完成主要平台的安裝了。
-註：這裡我不會安裝中文語言套件。
-安裝必要套件在安裝 PDT 前，有一些套件是必須安裝的：  GEF - Graphical Editing Framework EMF - Eclipse Modeling Framework JEM - Java EMF Modeling SDK WTP - Web Tools Platform而在 Eclipse 中套件的安裝方式分成： Remote Site (線上安裝，來源可分為內建或自訂)  Local Site (本地安裝) Archived Site (壓縮檔安裝)所以通常上面的套件可以全部下載回來再用本地安裝，不過這裡我將會採用線上安裝；因為這樣可以保持最小化的安裝方式，以加速 Eclipse 的啟動速度。必要套件安裝步驟如下： 執行 eclipse.exe 以啟動 Eclipse 。 第一次執行會詢問我們 Workspace 的路徑，這裡我先指定「 ..\workspace 」。 主畫面開啟後，選擇功能表上的「 Help / Software Updates / Find and Install… 」。 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。  在 Update sites to visit 的「 Site to include in search 」欄裡勾選「 Callisto Discovery Site 」，然後按下「 Finish 」。註：「 Callisto Discovery Site 」是 Eclipse 內建的線上安裝來源，是無法刪除的。* 在 Update Site Mirrors 視窗中選擇較近 (或較快) 的更新網站後，按「 OK 」。
-在 Updates 視窗中的「 Select the features to install 」欄裡勾選以下項目 (勾選粗體項目即可) ：Enabling FeaturesBatikGraphical Editor and FrameworksVisual EditorGraphical Editing FrameworkModels and Model DevelopmentEclipse Modeling Frameworks (EMF) Runtime + End-User ToolsXML Schema Infoset Model (XSD) Runtime + End-User ToolsGraphical Modeling FrameworkJava EMF Model Web and J2EE DevelopmentWeb Standard Tools (WST) Project                註：上面的套件是一定要安裝的，因為它們都具有相依性。不過這些套件也許會因為版本不同而有所改變，請特別注意。
-
-在 Install 視窗中，選擇「 I accept the terms in the license agreements 」後，按「 Next 」後再按「 Finish 」。 接下來安裝程式會花很長一段時間 (約半個小時到一個小時，視網路連線速度而定) 來下載套件，請耐心等候。 下載完成後，會詢問要是不是要安裝，這時選擇「 Install All 」後就會開始安裝了。 * 安裝完成後， Eclipse 會問要不要重新啟動，選 「 Yes 」。 安裝 PDT如果決定不使用 Xdebug for PDT 的話，那麼在這裡就可以採用自訂的線上安裝，步驟如下：  選擇功能表上的「 Help / Software Updates / Find and Install… 」。 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。 按下「 New Remote Site 」，在 New Update Site 視窗中的 Name 欄位輸入「 PDT (可以隨便填) 」，而 URL 欄位則填入「 http://download.eclipse.org/tools/php/updates/ 」。 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 PDT 」項目。這時除了「 PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。 接下來的步驟就和上面必要套件安裝步驟是一樣的，這裡略過。如果想使用 Xdebug for PDT ，那麼這邊 PDT 就要改用本地安裝的方式來安裝，步驟如下： 解開  PDT 0.7 RC2 ( org.eclipse.php_feature-S20070130_RC2.zip ) ，假設這裡我解開到「 D:\Temp\PDT\eclipse 」。  選擇功能表上的「 Help / Software Updates / Find and Install… 」。 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。  按下「 New Local Site 」，這時安裝程式會要我們選擇一個資料夾，這裡就選「 D:\Temp\PDT\eclipse 」。 在 Edit Local Site 視窗中的 Name 欄位輸入「 PDT (可以隨便填) 」。 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 PDT 」項目。這時除了「 PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。 接下來的步驟就和上面套件安裝步驟是一樣的，這裡略過。安裝 Aptana </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xdebug_for_PDT"><span class="nav-number">1.3.</span> <span class="nav-text">Xdebug for PDT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">2.</span> <span class="nav-text">安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Eclipse_主要平台"><span class="nav-number">2.1.</span> <span class="nav-text">Eclipse 主要平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝必要套件"><span class="nav-number">2.2.</span> <span class="nav-text">安裝必要套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_PDT"><span class="nav-number">2.3.</span> <span class="nav-text">安裝 PDT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_Aptana"><span class="nav-number">2.4.</span> <span class="nav-text">安裝 Aptana </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.</span> <span class="nav-text">安裝 Subclipse 
-
-Subclipse 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採用自訂線上更新，它的遠端網址是「 http://subclipse.tigris.org/update_1.2.x 」。註： Subclipse 套件也是非必要的，團隊裡用有 Subversion 管理的話再裝即可。 
-安裝 Xdebug For PDTXdebug for PDT 是提供 PDT 偵錯功能的套件，因為它沒有提供線上更新網址，所以這裡要採用本地安裝。安裝步驟如下：註：要先安裝好 PDT 0.7 RC2 才能再裝 Xdebug for PDT 。  解開 Xdebug for PDT ( org.eclipse.php.xdebug_0.1.4.zip ) ，假設這裡我解開到「 D:\Temp\PDT\xdebug\eclipse 」。  選擇功能表上的「 Help / Software Updates / Find and Install… 」。 在 Feature Updates 視窗中，選擇「 Search for new features to install 」後按「 Next 」。  按下「 New Local Site 」，這時安裝程式會要我們選擇一個資料夾，這裡就選「 D:\Temp\PDT\xdebug\eclipse 」。 在 Edit Local Site 視窗中的 Name 欄位輸入「 Xdebug for PDT (可以隨便填) 」。 回到 Feature Updates 視窗後，「 Site to include in search 」欄中應該會多出一個已經被勾選的「 Xdebug for PDT 」項目。這時除了「 Xdebug for PDT 」外，請取消勾選其他項目，然後再按下「 Finish 」。 接下來的步驟就和上面套件安裝步驟是一樣的，這裡略過。註：一般都是使用 PHP Debugger ，不過我個人偏好使用 Xdebug 。以上就完成全部的套件安裝了，參考手冊的設定方式請參考石頭成老大這篇 Development within Eclipse PHP IDE (PDT) 裡的說明。
-最後要提醒一點，因為 Eclipse 是使用 Java 開發的，在差一點的機器上執行速度會有點慢，而且第一次啟用時間也會比較久。強烈建議小專案直接使用 PSPad 或其他輕量級的文字編輯器就可以了，架構龐大且類別層級複雜的專案再考慮使用 PDT 。
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝_Xdebug_For_PDT"><span class="nav-number">2.6.</span> <span class="nav-text">安裝 Xdebug For PDT</span></a></li></ol></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -440,7 +425,8 @@ Subclipse 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採�
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -462,7 +448,8 @@ Subclipse 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採�
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -472,6 +459,7 @@ Subclipse 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採�
 
   
   
+
   
     
     
@@ -501,24 +489,21 @@ Subclipse 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採�
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -670,29 +655,20 @@ Subclipse 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採�
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -700,15 +676,5 @@ Subclipse 是 Subversion 在 Eclipse 的用戶端介面套件，也是可以採�
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

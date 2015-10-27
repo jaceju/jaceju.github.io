@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="自從學習開發 Web 程式以來，我的工作就離不開購物車了。從模仿其他網站的購物機制開始，到接觸了物件導向後的所寫的購物車架構，每一次的經驗都讓我成長不少。
-不過每次所寫出來的購物車系統，不論是在新增功能或是修改上都讓我覺得非常麻煩；只要客戶有些稍微複雜一點的需求，常讓我改程式改到想翻桌。
-後來接觸設計模式、 MVC 及 UnitTest 之後，一個新的購物車架構漸漸在我腦海裡成形。一來我不想再讓商">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="購物車程式架構簡介">
 <meta property="og:url" content="http://jaceju.net/2010/12/23/1438/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="自從學習開發 Web 程式以來，我的工作就離不開購物車了。從模仿其他網站的購物機制開始，到接觸了物件導向後的所寫的購物車架構，每一次的經驗都讓我成長不少。
-不過每次所寫出來的購物車系統，不論是在新增功能或是修改上都讓我覺得非常麻煩；只要客戶有些稍微複雜一點的需求，常讓我改程式改到想翻桌。
-後來接觸設計模式、 MVC 及 UnitTest 之後，一個新的購物車架構漸漸在我腦海裡成形。一來我不想再讓商">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="購物車程式架構簡介">
-<meta name="twitter:description" content="自從學習開發 Web 程式以來，我的工作就離不開購物車了。從模仿其他網站的購物機制開始，到接觸了物件導向後的所寫的購物車架構，每一次的經驗都讓我成長不少。
-不過每次所寫出來的購物車系統，不論是在新增功能或是修改上都讓我覺得非常麻煩；只要客戶有些稍微複雜一點的需求，常讓我改程式改到想翻桌。
-後來接觸設計模式、 MVC 及 UnitTest 之後，一個新的購物車架構漸漸在我腦海裡成形。一來我不想再讓商">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 購物車程式架構簡介 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,15 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>自從學習開發 Web 程式以來，我的工作就離不開購物車了。從模仿其他網站的購物機制開始，到接觸了物件導向後的所寫的購物車架構，每一次的經驗都讓我成長不少。</p>
-<p>不過每次所寫出來的購物車系統，不論是在新增功能或是修改上都讓我覺得非常麻煩；只要客戶有些稍微複雜一點的需求，常讓我改程式改到想翻桌。</p>
-<p>後來接觸設計模式、 MVC 及 UnitTest 之後，一個新的購物車架構漸漸在我腦海裡成形。一來我不想再讓商品加入購物車、更改商品數量、促銷活動或是結帳等機制散落在各個 PHP 程式中，但我也不想讓它們完全集中在一個類別裡，那麼適當的架構分離就顯得非常重要。</p>
-<p>於是乎，集合了多年的經驗，我在某個專案裡試做了一個新的購物車架構；而經過一段時間的線上測試後，事實證明它非常容易增加功能及修改功能，也更容易讓我們釐清整個購物流程。而且如果在良好的設計安排下，它也能做到模組化的功能抽換。我心中不由得吶喊：「就是它了！」</p>
-<p>當然，這個機制並不是最好的，也可能無法因應所有網站的需求；但是這至少是我自己在電子商務技術這個領域的經驗，以及經過多次挫敗後所得到的成果。因此在以下的投影片裡，我將單純地就這個購物車機制來做一些探討，希望能為大家在架構的設計上，帶來一些不同的想法。</p>
-<p>另外要提醒大家，這裡所提到的購物車架構，並沒有涉及所謂的後台商品上稿或是前台商品陳列等機制；換句話說，它不是一般我們所定義的購物車模組，請大家要先瞭解這一點。</p>
-<a id="more"></a>
-<div style="width:425px" id="__ss_6312192"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/jaceju/ss-6312192" target="_blank" rel="external">購物車程式架構簡介</a></strong><object id="__sse6312192" width="425" height="355"><br><br><br><embed name="__sse6312192" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=random-101223013624-phpapp01&stripped_title=ss-6312192&userName=jaceju" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></object></div>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -291,19 +292,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -370,13 +374,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -403,6 +411,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -419,7 +429,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -441,7 +452,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -451,6 +463,7 @@
 
   
   
+
   
     
     
@@ -480,24 +493,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -649,29 +659,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -679,15 +680,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

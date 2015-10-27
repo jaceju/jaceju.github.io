@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="說明這兩天是 Zend 的研討會，有很多大師級人物主講。其中 Best Practices of PHP Development 是 10/31 號的一個議題，提到了一些在 PHP 開發上比較好的規則，大家可以參考看看。
-其他還有很多不錯的議題，有空再去收集相關的資訊。
-重點節錄### Source Documentation PHPDoc is the defacto documentation">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 開發最佳實踐">
 <meta property="og:url" content="http://jaceju.net/2006/10/31/135/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="說明這兩天是 Zend 的研討會，有很多大師級人物主講。其中 Best Practices of PHP Development 是 10/31 號的一個議題，提到了一些在 PHP 開發上比較好的規則，大家可以參考看看。
-其他還有很多不錯的議題，有空再去收集相關的資訊。
-重點節錄### Source Documentation PHPDoc is the defacto documentation">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 開發最佳實踐">
-<meta name="twitter:description" content="說明這兩天是 Zend 的研討會，有很多大師級人物主講。其中 Best Practices of PHP Development 是 10/31 號的一個議題，提到了一些在 PHP 開發上比較好的規則，大家可以參考看看。
-其他還有很多不錯的議題，有空再去收集相關的資訊。
-重點節錄### Source Documentation PHPDoc is the defacto documentation">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> PHP 開發最佳實踐 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,27 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="說明">說明</h2><p>這兩天是 Zend 的研討會，有很多大師級人物主講。其中 Best Practices of PHP Development 是 10/31 號的一個議題，提到了一些在 PHP 開發上比較好的規則，大家可以參考看看。</p>
-<p>其他還有很多不錯的議題，有空再去收集相關的資訊。</p>
-<h2 id="重點節錄">重點節錄</h2><blockquote><br><br>### Source Documentation<br><br><em> PHPDoc is the defacto documentation standard, it can be parsed by PHPDocumentor and Doxygen 
-</em> Use @category and  @package to manage your documentation<br><em> Using PHPDoc allows all developers to immediately understand your code<br><br><br>### Unit Testing
-
-</em> Focusing on PHPUnit<br><em> Test religiously
-</em> Without tests, code is fragile and will regress - there is nothing to tell you when you break your code.<br><em> You are not wasting time by creating tests, you’re wasting time by peppering your code with var_dump() and trying to debug code manually.
-</em> Learning to write good object oriented code that is testable takes practice and discipline. Learn to design for usability.<br><em> Test-First methodology allows the tests to become the specification of code you are writing. 
-</em> Using Classes is not Object Oriented Design<br><br><br>### Source Control<br><br><em> Source control was on the benefits of using SVN to manage your code.
-</em> Learn to use tagging and branching instead of committing everything to HEAD<br><em> Trac is cool (I caught up on emails during this section - great wifi)<br><br><br>### Deployment
-
-</em> Never edit code on the server<br><em> Check out tagged branches from your svc software
-</em> Deploy to a staging server on your production server, test first then modify the symlink.<br><em> Write acceptance and integration tests: <a href="http://manuals.rubyonrails.com/read/book/17" target="_blank" rel="external">http://manuals.rubyonrails.com/read/book/17</a>)
-</em> Monitor Health of Servers: <a href="http://www.plope.com/software/supervisor/" target="_blank" rel="external">http://www.plope.com/software/supervisor/</a><br>* Store schema of your database by committing the schema into your svc server - suggestion: <a href="http://www.mysqldiff.org/" target="_blank" rel="external">http://www.mysqldiff.org/</a> and pre-commit hooks<br><br></blockquote>
-
-<h2 id="參考網址">參考網址</h2><ul>
-<li><a href="http://www.phpdeveloper.org/news/6606" target="_blank" rel="external">ZendCon 2006 Notes: Best Practices for PHP Development</a></li>
-<li><a href="http://www.zendcon.com/speakers_list.php" target="_blank" rel="external">Session Schedule</a></li>
-</ul>
-<h2 id="投影片下載">投影片下載</h2><p><a href="http://mikenaberezny.com/archives/60" target="_blank" rel="external">Best Practices of PHP Development</a></p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -299,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -378,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -411,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#說明"><span class="nav-number">1.</span> <span class="nav-text">說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重點節錄"><span class="nav-number">2.</span> <span class="nav-text">重點節錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考網址"><span class="nav-number">3.</span> <span class="nav-text">參考網址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#投影片下載"><span class="nav-number">4.</span> <span class="nav-text">投影片下載</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -449,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,6 +459,7 @@
 
   
   
+
   
     
     
@@ -488,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -687,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

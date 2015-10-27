@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,20 +31,30 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
 
 
 <meta name="description">
@@ -54,14 +68,14 @@
 <meta name="twitter:description">
 
 
+
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -130,7 +144,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -140,7 +154,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -150,7 +164,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -170,7 +184,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
   <section id="posts" class="posts-expand">
     
       
@@ -232,13 +247,11 @@
 
       
         
-          <p><a href="http://trac.lighttpd.net/xcache/">XCache</a> 是一套華人所開發的 PHP 加速器，號稱穩定性高。可到<a href="http://twpug.net/modules/newbb/viewtopic.php?topic_id=1571&amp;forum=14&amp;post_id=8054">台灣 PHP 聯盟</a>去看看進一步的介紹。</p>
-<p>以下簡單記錄它在 Windows 上的安裝方式：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/09/08/119/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -318,10 +331,7 @@
         
           <span itemprop="articleBody">
             
-              <p>外國人好像還滿喜歡把函式庫整理成一張表來參考，這次發現有位仁兄把 <a href="http://prototype.conio.net/" target="_blank" rel="external">prototype.js</a> 1.5.0_pre0 的 API 做成了一張 Cheat Sheet 。 </p>
-<p>文章網址： <a href="http://www.snook.ca/archives/000531.php" target="_blank" rel="external">Prototype Dissected</a></p>
-<p>註： Cheat Sheet 有點像小抄的意思， <a href="http://blog.markplace.net/marks_place/1/2006/06/17/102" target="_blank" rel="external">Mark</a> 把它譯為取巧圖解。 </p>
-
+              
             
           </span>
         
@@ -401,13 +411,11 @@
 
       
         
-          <p>以前的同事問了我一個問題：</p>
-<blockquote><br><br>在 A 視窗 (list.asp) 中會用 window.open 開啟子視窗 B (edit.asp) ，然後 B 視窗上的表單資料會 submit 到一支 C 程式 (save.asp) 。<br><br>而 當 C 程式做完存檔動作後，在最後面程式碼裡加上了：<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;alert(&#39;&#23384;&#27284;&#25104;&#21151;&#65281;&#39;);&#10;window.opener.location.reload();&#10;window.close();&#10;//--&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure><br><br>理論上 A 視窗會重新整理，然後子視窗 B 會關掉；但是現在 A 視窗會出現以下訊息 (IE) ：<br><br><img src="/resources/location_reload/1.gif" alt=""><br><br>或是在 Firefox 中出現：<br><br><img src="/resources/location_reload/2.gif" alt=""><br></blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/08/28/117/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -485,14 +493,11 @@
 
       
         
-          <p>先前提過一篇 <a href="http://jjgod.3322.org/2005/07/31/a-mysql-41-story/">A MySQL 4.1 Story</a> ，裡面把 MySQL 4.1的編碼解釋的還滿清楚的；但是我想還是有很多人在使用 MySQL 4.0 (或以下的版本)，因此裡面的解法就不適用了。</p>
-<p>所以這次就來好好做個實驗吧！我將會把我遇到的所有狀況列舉出來，並且提出解決的方法。</p>
-<p>不過往下看之前，請先確定你會使用 PHP 操作 MySQL ，也曉得 MySQL 版本之間的差異；最重要的是，你得知道 big5 、 latin1 及 utf8 是什麼東西。 </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/08/25/116/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -572,10 +577,7 @@
         
           <span itemprop="articleBody">
             
-              <p>利用 PHP5 的特性，打造一個簡易的 MVC 系統。 </p>
-<p>文章網址：<a href="http://www.phpit.net/article/simple-mvc-php5/" target="_blank" rel="external">Building a simple MVC system with PHP5</a> 。</p>
-<p>個人認為，這一篇看完之後，可以讓沒碰過 PHP5 的人或一知半解的人，對 PHP5 有進一步的瞭解。 </p>
-
+              
             
           </span>
         
@@ -657,11 +659,7 @@
         
           <span itemprop="articleBody">
             
-              <p>解釋如何利用 Unit Test 來測試各層級的 PHP 程式。</p>
-<p>文章網址：<a href="http://www-128.ibm.com/developerworks/opensource/library/os-php-unit/" target="_blank" rel="external">Check your PHP code at every level with unit tests</a> </p>
-<p>重點提示：</p>
-<blockquote><br><br>It’s 3 a.m. Do you know if your code is still working?<br></blockquote>
-
+              
             
           </span>
         
@@ -743,12 +741,7 @@
         
           <span itemprop="articleBody">
             
-              <p>好啦，上次推薦的 Ajax in action 中文譯本終於推出了，沒看過英文版的朋友可以買來參考看看。 (咦，好像是說我自己？)</p>
-<h3 style="clear: both;"> <a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=9789861810362&amp;sid=31801" target="_blank" rel="external">Ajax 實戰手冊</a> by <a href="http://www.javaworld.com.tw/roller/page/caterpillar" target="_blank" rel="external">林信良</a></h3>
-
-<p><img src="http://www.tenlong.com.tw/BookSearch/cover/02/resize/9789861810362.jpg" alt="Ajax 實戰手冊 by 林信良"><br>(圖片取自天瓏書局)</p>
-<p>這本內容應該會比較進階一些，適合已經玩過一陣子 Ajax 的朋友閱讀。</p>
-
+              
             
           </span>
         
@@ -828,14 +821,11 @@
 
       
         
-          <p>最近試用了 <a href="http://prototype.conio.net/">prototype.js</a> ，實在是非常好用。複雜的 AJAX 以及事件處理， prototype.js 都包裝好了。</p>
-<p> prototype.js 也為 JavaScript 原來的 String 、 Array 物件擴充了一些功能，使得我們在使用這些物件時能更方便。</p>
-<p>不過我卻遇到了一個小麻煩，因為在我負責的專案裡，有用到了一個 HtmlArea 的線上 HTML 編輯器。原來嵌有 HtmlArea 的頁面，運作上非常順利；直到加入 prototype.js 後，就會出現 JS Error 了。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/07/25/112/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -915,10 +905,7 @@
         
           <span itemprop="articleBody">
             
-              <p>該文簡單介紹了 PHP 各家樣版引擎，有興趣的朋友不妨參考看看。</p>
-<p>文章網址： <a href="http://www.whenpenguinsattack.com/2006/07/19/php-template-engine-roundup/" target="_blank" rel="external"> php template engine roundup</a> 。</p>
-<p>當然每種樣版引擎都有優缺點，適不適用全然看你所開發的架構，它們本身絕對沒有什麼好壞之分。</p>
-
+              
             
           </span>
         
@@ -998,20 +985,11 @@
 
       
         
-          <p>這也是為 Tim 的網友回答的一篇：<a href="http://timteam.org/?TIM=FORUM&amp;FORUM=1&amp;ShowDocument=14350">用  imageCreate 產生出來的圖怎麼設連結？</a></p>
-<p>解這個問題之前，要先建立三個觀念：</p>
-<ul>
-<li>利用 <a href="http://tw2.php.net/manual/en/function.imagecreate.php">imageCreate</a> 或 <a href="http://tw2.php.net/manual/en/function.imagecreatefromgif.php">imageCreateFromGif</a> 建立的不是圖片，而是一個 PHP 的 Resource 而已，輸出圖片要用 <a href="http://tw2.php.net/manual/en/function.imagegif.php">imageGif</a> 或同類型的圖片輸出函式。</li>
-<li><a href="http://tw2.php.net/manual/en/function.imagegif.php">imageGif</a> 輸出的格式是圖片 (Binary) ，而不是 HTML (Text) 。<li> &lt;<a href="http://www.htmlhelp.com/reference/html40/special/img.html">img</a> src=”xxx” /&gt; 中的 src 可以指向一個 php 程式 (事實上可以是任何輸出圖片格式的網址) 。</li>
-
-
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/07/15/110/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -1038,11 +1016,14 @@
   </nav>
 
 
- </div>
+
+        </div>
 
         
 
+
         
+
       </div>
 
       
@@ -1100,13 +1081,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -1138,7 +1123,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1160,7 +1146,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1170,6 +1157,7 @@
 
   
   
+
   
     
     
@@ -1197,39 +1185,25 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -1237,15 +1211,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

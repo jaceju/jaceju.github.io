@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,38 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="以後可能會三不五時測試一些小東西，以驗證自己的想法。
-今天實驗的是以下的寫法會不會造成效能上的影響：
-if ($x == TRUE) &amp;#123; //... &amp;#125;
-常看到很多程式員會有這種寫法，我個人認為除非改用三個等號 (即全相等) 來強制認定 $x 一定要是布林值外，否則這是不必要的動作。因為如果有時候 $x 是非零整數值或非空字串的話，程式也還是會認為它是 TRUE ，不必特意用相">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 小實驗 (1) - 等號的差異">
 <meta property="og:url" content="http://jaceju.net/2006/04/06/90/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="以後可能會三不五時測試一些小東西，以驗證自己的想法。
-今天實驗的是以下的寫法會不會造成效能上的影響：
-if ($x == TRUE) &amp;#123; //... &amp;#125;
-常看到很多程式員會有這種寫法，我個人認為除非改用三個等號 (即全相等) 來強制認定 $x 一定要是布林值外，否則這是不必要的動作。因為如果有時候 $x 是非零整數值或非空字串的話，程式也還是會認為它是 TRUE ，不必特意用相">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 小實驗 (1) - 等號的差異">
-<meta name="twitter:description" content="以後可能會三不五時測試一些小東西，以驗證自己的想法。
-今天實驗的是以下的寫法會不會造成效能上的影響：
-if ($x == TRUE) &amp;#123; //... &amp;#125;
-常看到很多程式員會有這種寫法，我個人認為除非改用三個等號 (即全相等) 來強制認定 $x 一定要是布林值外，否則這是不必要的動作。因為如果有時候 $x 是非零整數值或非空字串的話，程式也還是會認為它是 TRUE ，不必特意用相">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> PHP 小實驗 (1) - 等號的差異 | 網站製作學習誌 </title>
 </head>
@@ -138,7 +143,7 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -148,7 +153,7 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -158,7 +163,7 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -178,7 +183,8 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -237,21 +243,7 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
       
 
       
-        <span itemprop="articleBody"><p>以後可能會三不五時測試一些小東西，以驗證自己的想法。</p>
-<p>今天實驗的是以下的寫法會不會造成效能上的影響：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if ($x == TRUE) &#123; //... &#125;</span><br></pre></td></tr></table></figure>
-<p>常看到很多程式員會有這種寫法，我個人認為除非改用三個等號 (即全相等) 來強制認定 $x 一定要是布林值外，否則這是不必要的動作。因為如果有時候 $x 是非零整數值或非空字串的話，程式也還是會認為它是 TRUE ，不必特意用相等運算來判斷。 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if ($x === TRUE) &#123; //... &#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>而且我認為這種方式也可能會影響效能，因為程式必須執行相等運算。為了證明這件事，我就寫了一個小程式來驗證看看：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$start_time = (float) microtime(TRUE);&#10;$is_checked = 0;&#10;for ($i = 0; $i &#60; 2000000; $i ++)&#10;&#123;&#10;if ($is_checked)&#10;&#123;&#10;echo &#34;OK!\n&#34;;&#10;&#125;&#10;&#125;&#10;$end_time = (float) microtime(TRUE);&#10;echo &#34;Spent Time: &#34;, ($end_time - $start_time), &#34;(s)\n&#34;;&#10;$start_time = 0.0;&#10;$end_time = 0.0;&#10;$start_time = (float) microtime(TRUE);&#10;$is_checked = 0;&#10;for ($i = 0; $i &#60; 2000000; $i ++)&#10;&#123;&#10;if (TRUE == $is_checked)&#10;&#123;&#10;echo &#34;OK!\n&#34;;&#10;&#125;&#10;&#125;&#10;$end_time = (float) microtime(TRUE);&#10;echo &#34;Spent Time: &#34;, ($end_time - $start_time), &#34;(s)\n&#34;;&#10;$start_time = 0.0;&#10;$end_time = 0.0;&#10;$start_time = (float) microtime(TRUE);&#10;$is_checked = 0;&#10;for ($i = 0; $i &#60; 2000000; $i ++)&#10;&#123;&#10;if (TRUE === $is_checked)&#10;&#123;&#10;echo &#34;OK!\n&#34;;&#10;&#125;&#10;&#125;&#10;$end_time = (float) microtime(TRUE);&#10;echo &#34;Spent Time: &#34;, ($end_time - $start_time), &#34;(s)\n&#34;;&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<p>我習慣把要判斷的常數值放在等式的左邊，這樣一來可以防止我不小心把兩個等號 (相等) 寫成一個等號 (指定) 。</p>
-<p>以上程式在我的電腦上的執行結果如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Spent Time: 1.7956340312958(s)&#10;Spent Time: 6.9031929969788(s)&#10;Spent Time: 5.9217112064362(s)</span><br></pre></td></tr></table></figure>
-<p>這是把執行時間放大後的結果，我們可以發現沒有等號快得多，而使用相等 (==) 就會慢三倍多；至於全相等 (===) 雖然也比沒有等號慢了三倍，但卻比相等來得快一點點。</p>
-<p>其實 PHP 在底層的部份大都做了一些最佳化，我們多數時候並不需要特別去找它的麻煩。所以多瞭解語言的特性，會有助於寫出簡明與效能兼顧的程式。</p>
-<p>歡迎大家討論與指正。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -296,19 +288,22 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -375,13 +370,17 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -408,6 +407,8 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -424,7 +425,8 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -446,7 +448,8 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -456,6 +459,7 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
 
   
   
+
   
     
     
@@ -485,24 +489,21 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -654,29 +655,20 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -684,15 +676,5 @@ if ($x == TRUE) &amp;#123; //... &amp;#125;
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

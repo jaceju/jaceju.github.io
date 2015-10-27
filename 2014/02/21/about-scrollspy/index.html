@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="在 Single Page Design 中，我們常會把落落長的頁面分成幾個區塊，然後在上方或側邊選單中以這些區塊的標題來做為選單項目。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ScrollSpy 簡介">
 <meta property="og:url" content="http://jaceju.net/2014/02/21/about-scrollspy/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="在 Single Page Design 中，我們常會把落落長的頁面分成幾個區塊，然後在上方或側邊選單中以這些區塊的標題來做為選單項目。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T06:20:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ScrollSpy 簡介">
-<meta name="twitter:description" content="在 Single Page Design 中，我們常會把落落長的頁面分成幾個區塊，然後在上方或側邊選單中以這些區塊的標題來做為選單項目。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> ScrollSpy 簡介 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,23 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>在 Single Page Design 中，我們常會把落落長的頁面分成幾個區塊，然後在上方或側邊選單中以這些區塊的標題來做為選單項目。</p>
-<a id="more"></a>
-<p>而當我們點選選單項目時，頁面會自動跳到 (或捲動到) 該區塊，而選單項目會反白。反過來如果我們捲動到該區塊時 (即該區塊佔了螢幕一定比例的大小，或是標頭到達某一特定位置) ，對應該區塊的選單項目也會自動反白。</p>
-<p>這個效果就稱為「 ScrollSpy 」。</p>
-<p>以下連結分享了許多已經採用 ScrollSpy 特效的網站，大家不妨參考看看：</p>
-<p><a href="http://www.hongkiat.com/blog/scrollspy-navigation-websites/" target="_blank" rel="external">http://www.hongkiat.com/blog/scrollspy-navigation-websites/</a></p>
-<p>目前有很多套件可以做到 ScrollSpy 的效果了，例如 Bootstrap 3 就包含了這個套件：</p>
-<p><a href="http://getbootstrap.com/javascript/#scrollspy" target="_blank" rel="external">http://getbootstrap.com/javascript/#scrollspy</a></p>
-<p>另外也有獨立的 jQuery Plugin ：</p>
-<ul>
-<li><a href="https://github.com/thesmart/jquery-scrollspy" target="_blank" rel="external">https://github.com/thesmart/jquery-scrollspy</a></li>
-<li><a href="https://github.com/sxalexander/jquery-scrollspy" target="_blank" rel="external">https://github.com/sxalexander/jquery-scrollspy</a></li>
-<li><a href="http://www.dynamicdrive.com/dynamicindex1/ddscrollspymenu.htm" target="_blank" rel="external">http://www.dynamicdrive.com/dynamicindex1/ddscrollspymenu.htm</a></li>
-</ul>
-<p>如果你不想用 jQuery 或是想瞭解 ScrollSpy 的原理，以下便是一個使用純 JavaScript 所寫的 ScrollSpy 類別：</p>
-<p><a href="https://gist.github.com/pascaldevink/2380129" target="_blank" rel="external">https://gist.github.com/pascaldevink/2380129</a></p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -289,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -368,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -401,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -417,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -439,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -449,6 +459,7 @@
 
   
   
+
   
     
     
@@ -478,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -647,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -677,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

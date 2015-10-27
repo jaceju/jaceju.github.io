@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,38 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="今天遇到了一個怪異的問題，就是在 IE6 底下 window 的 onresize 這個事件竟然會在視窗大小沒有改變的情況下被連續觸發；試了一下 Firefox 和 IE7 都沒有這個問題，所以我便懷疑是 IE6 有實作上的錯誤。
-為了查證，我 Google 了一下，找到了以下這篇文章：
-IE Fires Onresize When Body Resizes
-原來 IE6 會在 body 被 re">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JavaScript] window.onresize 連續觸發的問題">
 <meta property="og:url" content="http://jaceju.net/2007/09/28/268/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="今天遇到了一個怪異的問題，就是在 IE6 底下 window 的 onresize 這個事件竟然會在視窗大小沒有改變的情況下被連續觸發；試了一下 Firefox 和 IE7 都沒有這個問題，所以我便懷疑是 IE6 有實作上的錯誤。
-為了查證，我 Google 了一下，找到了以下這篇文章：
-IE Fires Onresize When Body Resizes
-原來 IE6 會在 body 被 re">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JavaScript] window.onresize 連續觸發的問題">
-<meta name="twitter:description" content="今天遇到了一個怪異的問題，就是在 IE6 底下 window 的 onresize 這個事件竟然會在視窗大小沒有改變的情況下被連續觸發；試了一下 Firefox 和 IE7 都沒有這個問題，所以我便懷疑是 IE6 有實作上的錯誤。
-為了查證，我 Google 了一下，找到了以下這篇文章：
-IE Fires Onresize When Body Resizes
-原來 IE6 會在 body 被 re">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [JavaScript] window.onresize 連續觸發的問題 | 網站製作學習誌 </title>
 </head>
@@ -138,7 +143,7 @@ IE Fires Onresize When Body Resizes
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -148,7 +153,7 @@ IE Fires Onresize When Body Resizes
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -158,7 +163,7 @@ IE Fires Onresize When Body Resizes
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -178,7 +183,8 @@ IE Fires Onresize When Body Resizes
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -237,19 +243,7 @@ IE Fires Onresize When Body Resizes
       
 
       
-        <span itemprop="articleBody"><p>今天遇到了一個怪異的問題，就是在 IE6 底下 window 的 onresize 這個事件竟然會在視窗大小沒有改變的情況下被連續觸發；試了一下 Firefox 和 IE7 都沒有這個問題，所以我便懷疑是 IE6 有實作上的錯誤。</p>
-<p>為了查證，我 Google 了一下，找到了以下這篇文章：</p>
-<p><a href="http://snook.ca/archives/javascript/ie6_fires_onresize/" target="_blank" rel="external">IE Fires Onresize When Body Resizes</a></p>
-<p>原來 IE6 會在 body 被 resize 時，同時觸發 window 的 resize 事件。</p>
-<a id="more"></a>
-<p>不過 body 什麼時候會被 resize 呢？通常就是利用 display 來顯示或隱藏元素的時候，例如： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34;&#10;content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;window.onresize&#60;/title&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;var link  = null;&#10;var block = null;&#10;var resizeWindow = function () &#123;&#10;    alert(&#39;resized&#39;);&#10;&#125;;&#10;window.onload = function () &#123;&#10;    link  = document.getElementById(&#39;link&#39;);&#10;    block = document.getElementById(&#39;block&#39;);&#10;    link.onmouseover = function () &#123;&#10;    block.style.display = &#39;block&#39;&#10;&#125;;&#10;link.onmouseout  = function () &#123;&#10;    block.style.display = &#39;none&#39;&#10;&#125;;&#10;window.onresize = resizeWindow;&#10;&#125;;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;window.onresize.html&#34; id=&#34;link&#34;&#62;Link&#60;/a&#62;&#10;&#60;div id=&#34;block&#34; style=&#34;display:none;&#34;&#62;&#10;&#60;p&#62;Show something.&#60;/p&#62;&#10;&#60;/div&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>這時候當滑鼠移到 Link 上時，因為元素會有消長，所以 body 的 resize 就會被觸發 (也即 <a href="http://realazy.org/blog/2007/09/09/reflow/" target="_blank" rel="external">reflow</a> 這個觀念) ，只是這時候 IE6 就會很雞婆地一起觸發 window 的 resize 事件，而且會一直連續觸發；如果這時我們在 window.onresize 有設定要處理某些東西的話 (例如上面的 resizeWindow 函式) ，就會使得真正的 mouseover 和 mouseout 事件無法正常動作。</p>
-<p>而我會遇到這個狀況是因為我需要在 window.onresize 裡處理一些排版上的問題，也就是在視窗大小變化後，有些透過 JavaScript 來調整寬度的選單就需要重新調整。但是這時如果連續觸發了 window 的 resize 事件，就會造成整個程式執行起來頓頓的。</p>
-<p>還好上面找到的文章提供了一個解法，那就是判斷 document.documentElement.clientHeight 是不是有被改變了。所以我只要把 resizeWindow 這個事件改成以下的樣子就可以了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var currentClientHeight = 0;&#10;var resizeWindow = function () &#123;&#10;if (currentClientHeight != document.documentElement.clientHeight) &#123;&#10;alert(&#39;resized&#39;);&#10;&#125;&#10;currentClientHeight = document.documentElement.clientHeight;&#10;&#125;;</span><br></pre></td></tr></table></figure>
-<p>雖然 window 的 resize 事件還是會被連續觸發，但是至少觸發時所需要執行的動作減少了，這樣就不會讓程式執行起來感覺頓頓的了。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -294,19 +288,22 @@ IE Fires Onresize When Body Resizes
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -373,13 +370,17 @@ IE Fires Onresize When Body Resizes
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -406,6 +407,8 @@ IE Fires Onresize When Body Resizes
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -422,7 +425,8 @@ IE Fires Onresize When Body Resizes
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -444,7 +448,8 @@ IE Fires Onresize When Body Resizes
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -454,6 +459,7 @@ IE Fires Onresize When Body Resizes
 
   
   
+
   
     
     
@@ -483,24 +489,21 @@ IE Fires Onresize When Body Resizes
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -652,29 +655,20 @@ IE Fires Onresize When Body Resizes
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -682,15 +676,5 @@ IE Fires Onresize When Body Resizes
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

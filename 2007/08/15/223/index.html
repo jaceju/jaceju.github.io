@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="前陣子看到一篇分頁樣式的文章，趁最近在寫文件時順便整理一下：">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[CSS] 多種分頁樣式範例">
 <meta property="og:url" content="http://jaceju.net/2007/08/15/223/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="前陣子看到一篇分頁樣式的文章，趁最近在寫文件時順便整理一下：">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[CSS] 多種分頁樣式範例">
-<meta name="twitter:description" content="前陣子看到一篇分頁樣式的文章，趁最近在寫文件時順便整理一下：">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [CSS] 多種分頁樣式範例 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,14 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>前陣子看到一篇分頁樣式的文章，趁最近在寫文件時順便整理一下：</p>
-<a id="more"></a>
-<p>HTML 長成這樣子：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;div class=&#34;pagination digg&#34;&#62;&#10;&#60;ul&#62;&#10;&#60;li class=&#34;disabled&#34;&#62;&#31532;&#19968;&#38913;&#60;/li&#62;&#10;&#60;li class=&#34;disabled&#34;&#62;&#19978;&#19968;&#38913;&#60;/li&#62;&#10;&#60;li class=&#34;current&#34;&#62;1&#60;/li&#62;&#10;&#60;li&#62;&#60;a href=&#34;?page=2&#34;&#62;2&#60;/a&#62;&#60;/li&#62;&#10;&#60;li&#62;&#60;a href=&#34;?page=3&#34;&#62;3&#60;/a&#62;&#60;/li&#62;&#10;&#60;li&#62;&#60;a href=&#34;?page=4&#34;&#62;4&#60;/a&#62;&#60;/li&#62;&#10;&#60;li&#62;&#60;a href=&#34;?page=5&#34;&#62;5&#60;/a&#62;&#60;/li&#62;&#10;&#60;li&#62;&#60;a href=&#34;?page=2&#34;&#62;&#19979;&#19968;&#38913;&#60;/a&#62;&#60;/li&#62;&#10;&#60;li&#62;&#60;a href=&#34;?page=5&#34;&#62;&#26368;&#24460;&#19968;&#38913;&#60;/a&#62;&#60;/li&#62;&#10;&#60;/ul&#62;&#10;&#60;/div&#62;</span><br></pre></td></tr></table></figure>
-<p>其中 digg 就是可以代換的樣式，可以用的樣式我都整理到一個 <a href="/resources/pagination_styles/pagination.zip">CSS</a> 檔了。至於怎麼產生這個 HTML ，就請大家自行發揮所長囉。 </p>
-<p>以下是每個樣式長的樣子：</p>
-<iframe frameborder="0" width="530" height="2500" src="/resources/pagination_styles/"></iframe>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -280,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -359,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -392,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -408,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -430,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -440,6 +459,7 @@
 
   
   
+
   
     
     
@@ -469,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -638,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -668,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

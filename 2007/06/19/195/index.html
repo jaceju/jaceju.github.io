@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="前陣子才在和 Mark 老大談論到 PHP 的 Application 層，今天就看到有人做出類似的東西了。
-請參考： Application Server in PHP? well… Yes!
-文章中主要是利用 SCGI 這個協定實作了一個 SCGI_Application 類別讓我們的應用程式繼承，這樣一來這個 Application 就會像是一個伺服器一樣，使用 9999 (預設值) 這個">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 的 Application 層">
 <meta property="og:url" content="http://jaceju.net/2007/06/19/195/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="前陣子才在和 Mark 老大談論到 PHP 的 Application 層，今天就看到有人做出類似的東西了。
-請參考： Application Server in PHP? well… Yes!
-文章中主要是利用 SCGI 這個協定實作了一個 SCGI_Application 類別讓我們的應用程式繼承，這樣一來這個 Application 就會像是一個伺服器一樣，使用 9999 (預設值) 這個">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 的 Application 層">
-<meta name="twitter:description" content="前陣子才在和 Mark 老大談論到 PHP 的 Application 層，今天就看到有人做出類似的東西了。
-請參考： Application Server in PHP? well… Yes!
-文章中主要是利用 SCGI 這個協定實作了一個 SCGI_Application 類別讓我們的應用程式繼承，這樣一來這個 Application 就會像是一個伺服器一樣，使用 9999 (預設值) 這個">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> PHP 的 Application 層 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,18 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>前陣子才在和 <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> 老大談論到 PHP 的 Application 層，今天就看到有人做出類似的東西了。</p>
-<p>請參考： <a href="http://blog.milkfarmsoft.com/?p=51" target="_blank" rel="external">Application Server in PHP? well… Yes!</a></p>
-<p>文章中主要是利用 <a href="http://python.ca/scgi/" target="_blank" rel="external">SCGI</a> 這個協定實作了一個 SCGI_Application 類別讓我們的應用程式繼承，這樣一來這個 Application 就會像是一個伺服器一樣，使用 9999 (預設值) 這個 Port 來回應 Web 伺服器所傳來的要求。這裡有<a href="http://appserver-in-php.googlecode.com/svn/trunk/examples/scgi/" target="_blank" rel="external">範例</a>可以參考，有興趣的朋友不妨試試。 </p>
-<p>什麼是 Application 層呢？我們都知道 PHP 在處理每一次的用戶要求時，都會重頭執行一次 Script ，然後初始化每個物件 (像是資料庫、樣版引擎或是 Model 物件等等) 。當然在流量小的網站，這樣的方式並沒有什麼不妥；可是一旦流量變大時，每一次的初始化都會浪費掉些許的時間，而累積起來後就會造成伺服器的負擔。這種現象是因為 HTTP 協定的無狀態特性使然，對所有 Web 伺服端技術而言都是一樣的。 </p>
-<p>所以如果能在 Web 伺服器的上面加上一個 Application 伺服器，就能夠利用這個伺服器所產生的抽象 Application 層來保存住這些常用物件。也就是說在 Application 層裡，我們會把共用物件常駐在記憶體裡，避免物件初始化所帶來的效能問題。例如在 Java Tomcat 或 <a href="http://www.caucho.com/resin-3.0/" target="_blank" rel="external">Resin</a> 裡，我們能把 Java Bean 持續地放在記憶體裡保持住它的狀態；如此一來在每一個要求裡所看到的 Bean 物件其實就是同一個。</p>
-<p>然而目前 PHP 因為沒有類似 <a href="http://tomcat.apache.org/" target="_blank" rel="external">Tomcat</a> 這種 Application Server 來協助儲存狀態，所以在效能上就會有所折扣；也因此 PHP 才會有 <a href="http://pecl.php.net/package/APC" target="_blank" rel="external">APC</a> 或是 <a href="http://eaccelerator.net/" target="_blank" rel="external">eAccelerator</a> 這樣的加速器。</p>
-<p>註：<del>雖然</del> Resin 目前也<a href="http://www.caucho.com/resin-3.1/doc/quercus-resin-module.xtp" target="_blank" rel="external">支援 PHP</a> ，<del>不過據 Mark 老大的說法，在 Resin 使用 PHP 就必須採用 JDBC 來連接資料庫。這樣的話，實用價值似乎不大。</del> 它在資料庫存取時會利用 JDBC 來模擬，使 PHP 原有的存取方式可以不用更動。</p>
-<p>除了加速器外，在 PHP 中我們倒是有另一種保持物件的方式，那就是快取。一般來說，我們會利用序列化 (<a href="http://www.php.net/manual/en/function.serialize.php" target="_blank" rel="external">serialize</a>) 把物件狀態存在檔案或記憶體裡，比較常見的方式就是利用 <a href="http://danga.com/memcached/" target="_blank" rel="external">memcached</a> 。不過就算使用了快取，我們其實還是得在 PHP 程式裡初始化相關的快取物件才行，這又回到了前面所談到的問題。</p>
-<p>註：當然加速器也是另一種形態的快取，不過對儲存物件狀態的功效不大。</p>
-<p>另外在 MVC 框架中，會嚴重影響效能的物件就是 Controller 了。像 Front Controller 就必須判斷使用者的要求，進一步將這些要求分派 (dispatch) 到特定的 Action Controller 裡，而每一次的分派其實就會佔用掉大部份的執行時間。所以如果 Controller 能夠編譯並結合到 Application 伺服器的話，那麼程式執行的效率就會進一步的提升。</p>
-<p>當然我本身是希望 PHP 也能提供這樣的機制，或是將 Zend Framework 變成一個 PHP 的 extension 。嗯，也許我是痴人說夢，但我衷心希望有這一天的來臨。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -290,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -369,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -402,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -418,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -440,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -450,6 +459,7 @@
 
   
   
+
   
     
     
@@ -479,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -648,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -678,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

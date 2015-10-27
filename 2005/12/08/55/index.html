@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="昨天研究如何在既有的 PDF 檔案上放入中文字，雖然找到支援中文的 FPDF ，但是有些 Unicode 字集我實在試不出如何顯示 (如：&amp;#22531;) 。
-我的同事建議我用圖形來解決看看，以下就是我的實驗過程 (我用的是 Windows 平台) 。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 FPDI 製作 PDF 檔案">
 <meta property="og:url" content="http://jaceju.net/2005/12/08/55/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="昨天研究如何在既有的 PDF 檔案上放入中文字，雖然找到支援中文的 FPDF ，但是有些 Unicode 字集我實在試不出如何顯示 (如：&amp;#22531;) 。
-我的同事建議我用圖形來解決看看，以下就是我的實驗過程 (我用的是 Windows 平台) 。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 FPDI 製作 PDF 檔案">
-<meta name="twitter:description" content="昨天研究如何在既有的 PDF 檔案上放入中文字，雖然找到支援中文的 FPDF ，但是有些 Unicode 字集我實在試不出如何顯示 (如：&amp;#22531;) 。
-我的同事建議我用圖形來解決看看，以下就是我的實驗過程 (我用的是 Windows 平台) 。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 利用 FPDI 製作 PDF 檔案 | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,22 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>昨天研究如何在既有的 PDF 檔案上放入中文字，雖然找到支援中文的 FPDF ，但是有些 Unicode 字集我實在試不出如何顯示 (如：&#22531;) 。</p>
-<p>我的同事建議我用圖形來解決看看，以下就是我的實驗過程 (我用的是 Windows 平台) 。</p>
-<a id="more"></a>
-<p>我用的相關技術如下：</p>
-<table width="100%" border="1"><br><tr><br><th width="20%">名稱</th><br><th width="50%">說明</th><br><th width="30%">下載網址</th><br></tr><br><tr><br><td>FPDF</td><br><td>PHP 上用來產生 PDF 的第三方套件 </td><br><td><a href="http://www.fpdf.org/" target="_blank" rel="external">http://www.fpdf.org/</a></td><br></tr><br><tr><br><td>FPDI</td><br><td>用來載入一個已存在的 PDF 檔案，以供 FPDF 使用 </td><br><td><a href="http://fpdi.setasign.de/" target="_blank" rel="external">http://fpdi.setasign.de/</a></td><br></tr><br><tr><br><td>香港參考宋體 (DFSongSd.ttf) </td><br><td>包含許多 Windows 內建中文字體所沒有的中文字</td><br><td><a href="http://glyph.iso10646hk.net/index.jsp" target="_blank" rel="external">http://glyph.iso10646hk.net/index.jsp</a></td><br></tr><br><tr><br><td>GD 2 </td><br><td>PHP 產生圖形用的延伸套件</td><br><td>PHP Win32 內建</td><br></tr><br><tr><br><td>iconv</td><br><td>轉換文字編碼</td><br><td>PHP Win32  內建 </td><br></tr><br></table>
-
-<p>首先，我利用 FPDI 來載入一個已存在的 PDF ： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;error_reporting (E_ALL);&#10;require_once (&#39;FPDI/FPDI.php&#39;);&#10;// &#24314;&#31435; FPDI &#29289;&#20214;&#10;$pdf = new FPDI();&#10;// &#36617;&#20837;&#29694;&#22312; PDF &#27284;&#26696;&#10;$page_count = $pdf-&#62;setSourceFile(&#34;test.pdf&#34;);&#10;// &#21295;&#20837;&#29694;&#22312; PDF &#27284;&#26696;&#30340;&#31532;&#19968;&#38913;&#10;$tpl = $pdf-&#62;importPage(1);&#10;// &#22312;&#26032;&#30340; PDF &#19978;&#26032;&#22686;&#19968;&#38913;&#10;$pdf-&#62;addPage();&#10;// &#22312;&#26032;&#22686;&#30340;&#38913;&#38754;&#19978;&#20351;&#29992;&#21295;&#20837;&#30340;&#31532;&#19968;&#38913;&#10;$pdf-&#62;useTemplate($tpl);&#10;// &#36664;&#20986;&#25104;&#26412;&#22320;&#31471; PDF &#27284;&#26696;&#10;$pdf-&#62;output(&#34;final.pdf&#34;, &#34;F&#34;);&#10;// &#32080;&#26463; FPDI &#21078;&#26512;&#22120;&#10;$pdf-&#62;closeParsers();&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<p>FPDI 是繼承自 FPDF 這個類別，所以它本身就算是一個加強型的 FPDF 。上面的程式會把現有 PDF 的第一頁輸出成新的 PDF 檔案。 </p>
-<p>接著我把表單傳送過來的文字，放到一個現有的圖形檔上。這裡有兩種實作方式：如果 HTML 頁面編碼是 Big5 ，那麼我會先把表單傳送過來的文字用 iconv 轉成 UTF-8 編碼；如果 HTML 頁面編碼已經是 UTF-8 ，那麼就不必再用 iconv 轉換。我採用的是第一種方式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$text = isset($_POST[&#39;text&#39;]) ? trim($_POST[&#39;text&#39;]) : NULL;&#10;$is_created = FALSE;&#10;if ($text)&#10;&#123;&#10;// &#29986;&#29983;&#22294;&#29255;&#10;$img = imagecreatefrompng(&#39;test.png&#39;);&#10;// &#35373;&#23450;&#40657;&#33394;&#30059;&#31558;&#10;$black = imagecolorallocate($img, 0, 0, 0);&#10;// &#36681;&#25563;&#25991;&#23383;&#32232;&#30908;&#10;$utf_text = iconv(&#39;big5&#39;, &#39;utf-8&#39;, $text);&#10;// &#32362;&#35069;&#25991;&#23383;&#10;imagettftext($img, 30, 0, 10, 40, $black, &#34;DFSongSd.ttf&#34;, $utf_text);&#10;// &#20786;&#23384;&#22294;&#29255;&#10;imagepng($img, &#39;final.png&#39;);&#10;imagedestroy($img);&#10;$is_created = TRUE;&#10;&#125;&#10;?&#62;&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;&#28204;&#35430;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;form name=&#34;form1&#34; id=&#34;form1&#34; method=&#34;post&#34; action=&#34;&#60;?php echo $_SERVER[&#39;PHP_SELF&#39;]; ?&#62;&#34;&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;text&#34; id=&#34;text&#34; value=&#34;&#60;?php echo $text; ?&#62;&#34; /&#62;&#10;&#60;input type=&#34;submit&#34; name=&#34;Submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;a href=&#34;./&#34;&#62;&#37325;&#26032;&#35069;&#20316;&#60;/a&#62;&#10;&#60;/form&#62;&#10;&#60;?php if ($is_created) &#123; ?&#62;&#10;&#60;img src=&#34;final.png&#34; alt=&#34;&#60;?php echo $text; ?&#62;&#34; /&#62;&#10;&#60;?php &#125; ?&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>如此一來在輸入文字並按下送出鈕後，就會在現有圖片上加上指定的文字。當然文字的位置要加以計算，我是先用最簡單的方式來完成。</p>
-<p>最後就是要將製作好的圖片加到 PDF 上了， FPDF 提供了 image 函式來讓我們可以在 PDF 上放置圖形。實作方式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// &#29986;&#29983;&#22294;&#29255;&#10;$img = imagecreatefrompng(&#39;test.png&#39;);&#10;$black = imagecolorallocate($img, 0, 0, 0);&#10;$utf_text = iconv(&#39;big5&#39;, &#39;utf-8&#39;, $text);&#10;imagettftext($img, 30, 0, 10, 40, $black, &#34;DFSongSd.ttf&#34;, $utf_text);&#10;imagepng($img, &#39;final.png&#39;);&#10;imagedestroy($img);&#10;// &#36617;&#20837;&#29694;&#22312; PDF &#30340;&#31532;&#19968;&#38913;&#10;$pdf = new FPDI();&#10;$page_count = $pdf-&#62;setSourceFile(&#34;test.pdf&#34;);&#10;$tpl = $pdf-&#62;importPage(1);&#10;$pdf-&#62;addPage();&#10;$pdf-&#62;useTemplate($tpl);&#10;// &#25918;&#32622;&#22294;&#24418;&#10;$pdf-&#62;image(&#34;final.png&#34;, 75, 85, 50);&#10;// &#36664;&#20986;&#25104;&#26412;&#22320;&#31471; PDF &#27284;&#10;$pdf-&#62;output(&#34;final.pdf&#34;, &#34;F&#34;);&#10;$pdf-&#62;closeParsers();</span><br></pre></td></tr></table></figure>
-<p>要注意的是，貼上去的圖形可以大一點，這樣縮小並貼到 PDF 時會有比較好的列印效果。而圖形的放置位置和大小，也要經過計算再貼上去。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -291,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -370,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -403,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -419,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -441,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -451,6 +459,7 @@
 
   
   
+
   
     
     
@@ -480,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -649,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -679,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

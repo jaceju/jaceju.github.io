@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,20 +31,30 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
 
 
 <meta name="description">
@@ -54,14 +68,14 @@
 <meta name="twitter:description">
 
 
+
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -130,7 +144,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -140,7 +154,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -150,7 +164,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -170,7 +184,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
   <section id="posts" class="posts-expand">
     
       
@@ -234,60 +249,7 @@
         
           <span itemprop="articleBody">
             
-              <a id="more"></a>
-<h2 id="PHP">PHP</h2><ul>
-<li><a href="http://www.soledadpenades.com/2007/06/05/signs-your-php-needs-refactoring/" target="_blank" rel="external">Signs your PHP needs refactoring</a></li>
-</ul>
-<p>有些技巧比較像是利用 PHP 本身的語法特色，來撰寫出較為易懂的程式碼。</p>
-<ul>
-<li><a href="http://hasin.wordpress.com/2007/10/20/did-you-know-you-can-have-cheese-burger-could-be-a-variable-name/" target="_blank" rel="external">did you know “you can have cheese burger” could be a variable name?</a></li>
-</ul>
-<p>利用大括號 (花括號？) 讓字串可以變成變數名稱。</p>
-<ul>
-<li><a href="http://www.webappers.com/2007/10/20/junction-a-php-5-obejct-persistence-layer/" target="_blank" rel="external">Junction - A PHP 5 Obejct Persistence Layer</a> </li>
-</ul>
-<p>又一個 PHP5 的物件持續層。</p>
-<ul>
-<li><a href="http://www.gnucitizen.org/blog/snippets-of-defense-ptiii" target="_blank" rel="external">Snippets of defense Pt.III</a></li>
-</ul>
-<p>過濾輸入的工具函式。</p>
-<ul>
-<li><a href="http://www.rooftopsolutions.nl/article/152" target="_blank" rel="external">PHP’s DateTime object and unix times..</a></li>
-</ul>
-<p>$time = new DateTime( ‘@123456789’ ); 第一次看到這樣的寫法… </p>
-<ul>
-<li><a href="http://derickrethans.nl/xdebug_201.php" target="_blank" rel="external">Xdebug 2.0.1</a></li>
-</ul>
-<p>在效率上更好了！</p>
-<ul>
-<li><a href="http://www.sitepoint.com/blogs/2007/10/21/dynamic-global-functions-in-php/" target="_blank" rel="external">Dynamic global functions in PHP</a></li>
-</ul>
-<p>動態地重新定義函式？利用 $GLOBALS 變數來切換不同的處理方式。</p>
-<ul>
-<li><a href="http://www.whenpenguinsattack.com/2007/10/21/a-better-way-to-protect-your-phpmysql-queries-from-sql-injection/" target="_blank" rel="external">A better way to Protect Your PHP/MySQL Queries from SQL Injection</a></li>
-</ul>
-<p>利用 sprintf 及 addcslashes 來組合 SQL 語法，以避免 SQL Injection 。 </p>
-<h2 id="Zend_Framework">Zend Framework</h2><ul>
-<li><a href="http://www.nabble.com/Models-and-zend_db_table_*-separation--t4623094s16154.html#a13202749" target="_blank" rel="external">Models and zend<em>db_table</em>* separation?</a></li>
-</ul>
-<p>看來我對領域物件這方面的知識要再加強，不過弄出太多類別也會使得效能降低；也許要儘可能在維護性及效能上取得一定的平衡。</p>
-<h2 id="JavaScript">JavaScript</h2><ul>
-<li><a href="http://www.webappers.com/2007/10/18/photoshop-like-javascript-color-picker/" target="_blank" rel="external">Photoshop-Like Javascript Color Picker</a></li>
-</ul>
-<p>看起來還不錯的顏色選擇器。</p>
-<ul>
-<li><a href="http://www.my-debugbar.com/wiki/CompanionJS/HomePage" target="_blank" rel="external">Companion.JS</a></li>
-</ul>
-<p>一套在 IE7 (試過 IE6 好像不行) 上的 JavaScript Debug 工具，終於可以像 Firebug 一樣中斷在某個錯誤的程式碼上了 (所以要搭配微軟的 <a href="http://www.microsoft.com/downloads/details.aspx?familyid=2f465be0-94fd-4569-b3c4-dffdf19ccd99&amp;displaylang=en" target="_blank" rel="external">Scripting Debugger</a>) 。而 IE 內建那個不是我在說，真的是很難用；只告訴我哪行哪個字元有問題，可是卻不告訴我是哪個檔案！？ 這是要我怎麼找？</p>
-<ul>
-<li><a href="http://blog.ericsk.org/archives/790" target="_blank" rel="external">利用 jQuery 及 Firebug 來 debug web</a></li>
-</ul>
-<p>很棒的方法！ </p>
-<h2 id="Programming">Programming</h2><ul>
-<li><a href="http://www.codinghorror.com/blog/archives/000969.html" target="_blank" rel="external">Revisiting Programming Fonts</a></li>
-</ul>
-<p>介紹一些開發程式時不錯的視覺字型。</p>
-
+              
             
           </span>
         
@@ -369,17 +331,7 @@
         
           <span itemprop="articleBody">
             
-              <p>來一篇無關網站製作的 :)</p>
-<p>我想大部份的朋友應該都去看過「變形金剛」了吧？那想不想買個「博士倫」…不對…「柯博文」回家呀？</p>
-<p>現在<a href="http://cgi.ebay.ca/ws/eBayISAPI.dll?ViewItem&amp;item=230181106980" target="_blank" rel="external">到 eBay 出價 5 萬 5 千 5 百美元以上</a>，就能獲得一台喔！</p>
-<p><img src="http://i231.photobucket.com/albums/ee248/msanto/One-Offs/OptimusPrimePeterbilt.jpg" alt="柯博文卡車"></p>
-<p>心動了嗎？趕快行動！</p>
-<p>參考來源：</p>
-<ul>
-<li><a href="http://technologyexpert.blogspot.com/2007/10/optimus-prime-peterbilt-hits-ebay.html" target="_blank" rel="external">Optimus Prime Peterbilt Hits eBay</a></li>
-<li><a href="http://cgi.ebay.ca/ws/eBayISAPI.dll?ViewItem&amp;item=230181106980" target="_blank" rel="external">Replica of Transformer’s Optimus Prime Peterbilt</a></li>
-</ul>
-
+              
             
           </span>
         
@@ -461,11 +413,7 @@
         
           <span itemprop="articleBody">
             
-              <p>今天一堆 Blog 在講 <a href="http://tw.youtube.com/" target="_blank" rel="external">YouTube 台灣版</a>上線，我不免俗地也去看了一下。</p>
-<p>結果在類別這個項目裡，竟然出現了這個訊息：</p>
-<p><img src="/resources/youtube-tw/youtube_error.gif" alt="YouTube Error"></p>
-<p>我們家也來養幾隻這種猴子好了，看看能不能幫我 Debug 。 XD </p>
-
+              
             
           </span>
         
@@ -547,126 +495,7 @@
         
           <span itemprop="articleBody">
             
-              <a id="more"></a>
-<h2 id="PHP">PHP</h2><ul>
-<li><a href="http://xn--9bi.net/2007/10/13/pear-list/" target="_blank" rel="external">$pear-&gt;list</a></li>
-</ul>
-<p>可以很方便地查看透過 PEAR 安裝的所有套件。</p>
-<ul>
-<li><a href="http://blog.adaniels.nl/?p=57" target="_blank" rel="external">Simple brute force protection with APC</a> </li>
-</ul>
-<p>利用 APC 來阻擋暴力攻擊。 </p>
-<ul>
-<li><a href="http://valokuva.org/?p=59" target="_blank" rel="external">Choosing watermark color based on the background luminosity</a></li>
-</ul>
-<p>Imagick 可以設定浮水印的背景顏色。</p>
-<ul>
-<li><a href="http://valokuva.org/?p=60" target="_blank" rel="external">Creating a simple line graph</a></li>
-</ul>
-<p>Imagick 也可以建立簡單的折線圖。 </p>
-<ul>
-<li><p><a href="http://www.ibm.com/developerworks/library/os-php-fwk1/index.html?ca=drs-" target="_blank" rel="external">PHP frameworks, Part 1: Getting started with three popular frameworks</a></p>
-</li>
-<li><p><a href="http://www.ibm.com/developerworks/library/os-php-fwk2/index.html?ca=drs-" target="_blank" rel="external">PHP frameworks, Part 2: Building the sample application</a></p>
-</li>
-</ul>
-<p>介紹並以實例比較目前三個較為熱門的 PHP 框架，即 Zend Framework 、 Symfony 及 CakePHP 。總共分 5 個部份介紹，目前僅寫到 Part 2 。</p>
-<ul>
-<li><a href="http://sebastian-bergmann.de/archives/702-Data-Providers-in-PHPUnit-3.2.html" target="_blank" rel="external">Data Providers in PHPUnit 3.2</a></li>
-</ul>
-<p>利用註解標記 @dataProvider 來提供資料以便測試， @dataProvider 指定的靜態方法所回傳的值，會一一套用在 testXxxx 方法的參數上。</p>
-<ul>
-<li><a href="http://blog.stuartherbert.com/php/2007/10/16/microsofts-first-php-extension-sql-server-2005-support/" target="_blank" rel="external">Microsoft’s First PHP Extension: SQL Server 2005 Support</a> (<a href="http://www.sofee.cn/blog/2007/10/16/125/" target="_blank" rel="external">Microsoft’s SQL Server 2005 driver for PHP</a> [簡體中文介紹])</li>
-<li><a href="http://www.alexatnet.com/node/93" target="_blank" rel="external">Microsoft’s SQL Server 2005 driver for PHP</a></li>
-</ul>
-<p>微軟提供的 PHP MSSQL 2005 driver ，主要支援 nvarchar (這個常會被問到) 。</p>
-<ul>
-<li><a href="http://www.webappers.com/2007/10/17/opencart-open-source-php-shopping-cart-system/" target="_blank" rel="external">OpenCart - Open Source PHP Shopping Cart System</a></li>
-</ul>
-<p>看起來很漂亮的開源購物平台系統， <a href="http://blog.markplace.net/" target="_blank" rel="external">Mark</a> 說他以前就用過了，看來我真是孤陋寡聞。</p>
-<ul>
-<li><a href="http://bjori.blogspot.com/2007/10/8-reasons-why-you-should-not-write-for.html" target="_blank" rel="external">8 reasons why you should <em>not</em> write for the php.net manual</a></li>
-</ul>
-<p>這篇文章其實是在諷刺某些人，真正有能力的話還是應該幫忙 PHP 這個社群。</p>
-<ul>
-<li><a href="http://www.sanisoft.com/blog/2007/10/15/inspekt-put-a-firewall-in-your-php-applications/" target="_blank" rel="external">Inspekt - put a firewall in your PHP applications</a></li>
-</ul>
-<p>用來過濾輸入字串的套件，避免被不合法的輸入值給攻擊。</p>
-<h2 id="Zend_Framework">Zend Framework</h2><ul>
-<li><a href="http://hi.baidu.com/zhangsilly/blog/item/5088742d56487137359bf753.html" target="_blank" rel="external">使用Zend_Mail收发邮件的一点笔记！</a></li>
-</ul>
-<p>可是我用 Zend_Mail 來發 UTF-8 編碼的信件內容時，標題常會出現錯誤，看來要再試試看是不是有修正了。 </p>
-<h2 id="JavaScript">JavaScript</h2><ul>
-<li><a href="http://dev.jquery.com/wiki/DevelopersGuide" target="_blank" rel="external">Using the jQuery test suite for your own projects</a></li>
-</ul>
-<p>酷！ jQuery 也有自動測試套件。</p>
-<ul>
-<li><a href="http://leandrovieira.com/projects/jquery/lightbox/" target="_blank" rel="external">jQuery lightBox plugin</a></li>
-</ul>
-<p>有別於 ThickBox 的另一種 jQuery Lightbox 效果套件。</p>
-<ul>
-<li><a href="http://www.xml.com/pub/a/2007/10/10/jquery-and-xml.html" target="_blank" rel="external">jQuery and XML</a></li>
-</ul>
-<p>用 jQuery 來處理 Ajax 回傳的 XML 格式內容。</p>
-<ul>
-<li><a href="http://www.jaysalvat.com/jquery/jtageditor/" target="_blank" rel="external">jTagEditor</a></li>
-</ul>
-<p>主要是讓你方便撰寫 Tag 類型的原始碼，像 HTML 、 BBCODE 或 Wiki 等等。</p>
-<ul>
-<li><a href="http://www.456bereastreet.com/archive/200710/autopopulating_text_input_fields_with_javascript/" target="_blank" rel="external">Autopopulating text input fields with JavaScript</a></li>
-</ul>
-<p>輸入欄位通常需要 Label 標籤來輔助說明，但是會造成視覺上的一些影響；這裡透過 CSS 隱藏 Label 欄位，然後在 input value 裡自動加入說明文字。</p>
-<h2 id="CSS">CSS</h2><ul>
-<li><a href="http://css-tricks.com/multiple-remote-linking-an-example-and-how-to/" target="_blank" rel="external">Multiple Remote Linking: An Example and How-To</a></li>
-</ul>
-<p>在某元素上設定滑鼠移過變色的效果時，可以讓另一個對應的元素也產生同樣的效果。</p>
-<p>這個用在挑衣服顏色應該會很有用，而且不用寫一堆 JavaScript 。 </p>
-<ul>
-<li><a href="http://css-tricks.com/fluid-width-and-floating-object-possibilities/" target="_blank" rel="external">Fluid Width and Floating Object Possibilities</a></li>
-</ul>
-<p>讓浮動物件可以隨著寬度改變而調整其位置，不過 IE 不支援。</p>
-<h2 id="SQL">SQL</h2><ul>
-<li><a href="http://www.mysqlperformanceblog.com/2007/10/16/be-careful-when-joining-on-concat/" target="_blank" rel="external">Be careful when joining on CONCAT</a></li>
-</ul>
-<p>用 CONCAT 串接字串或數字時，最好能明確先用 CAST 轉型。 </p>
-<h2 id="Web">Web</h2><ul>
-<li><a href="http://www.thefutureoftheweb.com/talks/2006-10-ajax-experience/slides/" target="_blank" rel="external">Unobtrusive Ajax</a> (<a href="http://www.marchbox.com/blog/unobtrusive-web-development/" target="_blank" rel="external">Unobtrusive的Web开发 [簡體中文]</a>)</li>
-</ul>
-<p>Web 開發分層的觀念真的很重要，目前我正在進行的專案大部份都是朝著這個方向去實現。</p>
-<li>
-
-<p><a href="http://www.sitepoint.com/blogs/2007/08/10/dealing-with-unqualified-href-values" target="_blank" rel="external">Dealing with unqualified HREF values</a> <a href="http://www.sitepoint.com/blogs/2007/10/17/dealing-with-unqualified-href-values-part-2/" target="_blank" rel="external">(Part 2) </a></p>
-<p>處理不合格的 href 屬性值，所謂合格即是如果為本地連結應該從根目錄開始寫起，例如 href=”/path/to/some.css” 。第二部份則介紹當有使用 <base> 標籤及 <iframe> 標籤時該怎麼處理。底下有個高手提供了一個更簡單的方法，就是透過 img 標籤來產生絕對路徑。<br></iframe></p></li><p></p>
-<ul>
-<li><a href="http://www.element-it.com/MultiPowUpload.aspx" target="_blank" rel="external">MultiPowUpload - flash file uploader</a></li>
-</ul>
-<p>免費的 Flash 檔案上傳元件，可以顯示上傳進度及設定可上傳的檔案格式。</p>
-<ul>
-<li><p><a href="http://www.smashingmagazine.com/2007/10/16/best-practices-for-bulletproof-e-mail-delivery/" target="_blank" rel="external">Best Practices For Bulletproof E-Mail Delivery</a></p>
-</li>
-</ul>
-<p>發送 Email 的一些訣竅，諸如：</p>
-<ul>
-<li>Avoid follow-ups, ask for a brief feedback - one word “soon” is enough. (避免直接在信件中使用追蹤技術，而是請收件人做個簡單的回應) </li>
-<li>Don’t attach large files to your first e-mail (不要在第一次發信時就夾帶大型檔案) </li>
-<li>Use a consistent senders’ name and email. (使用一致的姓名及 Email 來寄信，免得別人找不到你)</li>
-<li>Never put a link before important information. (別在重要訊息前放置一個連結，免得收信人遺漏這個訊息)</li>
-<li>Snail mail is bulletproof. (真的很重要的訊息可以考慮再補寄一份真正的郵件)</li>
-<li>Avoid fictional or irrelevant sender’s name. (避免虛構或不相干的寄件人姓名)</li>
-</ul>
-<h2 id="Programming">Programming</h2><ul>
-<li><a href="http://mk.netgenes.org/archives/644/" target="_blank" rel="external">框架與開發</a></li>
-</ul>
-<p>作者所期望的方式，看來 PHP 都能完成，尤其是第 10 點。 </p>
-<ul>
-<li><a href="http://phpv.net/html/1575.html" target="_blank" rel="external">推荐:PHP编辑器常用的几种字体下载</a></li>
-</ul>
-<p>這些字都很漂亮，可是我每次搭配中文字一起顯示時就是會有問題 (ZDE &amp; Dreamweaver) ，真不知道該怎麼解決。</p>
-<h2 id="Software">Software</h2><ul>
-<li><a href="http://www.webappers.com/2007/10/14/performance-and-stress-testing-for-web-application/" target="_blank" rel="external">WAPT - Performance and Stress Testing for Web Application</a></li>
-</ul>
-<p>替 Web 應用程式做最佳化及壓力測試的工具，但這是要錢的。 </p>
-
+              
             
           </span>
         
@@ -746,12 +575,11 @@
 
       
         
-          <p>一下子又不小心積太多連結沒看…這兩天為了內部教育訓練忙翻了…</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2007/10/13/276/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -831,19 +659,7 @@
         
           <span itemprop="articleBody">
             
-              <p>遇到了一個 Subversion 的問題，記下來免得以後忘記。</p>
-<h2 id="問題說明">問題說明</h2><p>現在我有一個專案用到了 Zend Framework 和我自己維護的一個 MyLib 類別庫，而我想要讓它們都維持與官方 SVN 同步時怎麼做呢？</p>
-<p>假設專案目錄結構如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">app/&#10;lib/&#10;Zend/&#10;MyLib/</span><br></pre></td></tr></table></figure>
-<p>現在我要讓 Zend 這個資料夾與 <a href="http://framework.zend.com/svn/framework/trunk/library/Zend" target="_blank" rel="external">http://framework.zend.com/svn/framework/trunk/library/Zend</a> 同步，而 MyLib 則是與 <a href="http://localhost/svn/mylib/trunk" target="_blank" rel="external">http://localhost/svn/mylib/trunk</a> 同步。</p>
-<h2 id="解決方案">解決方案</h2><p>Subversion 有個很用好的屬性稱為 svn:externals ，它可以用來指定讓某個目錄與外部的 SVN 同步，只是我之前僅會用到一個目錄的同步而已。例如我可以在 lib 目錄按下滑鼠右鍵，選擇 TortoiseSVN 的性質；然後在性質視窗建立一個 svn:externals 屬性，其值為： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;Zend&#60;/strong&#62; http://framework.zend.com/svn/framework/trunk/library/Zend</span><br></pre></td></tr></table></figure>
-<p>粗體字即為目錄名稱，然後空一格後面接著外部 SVN 的位置。</p>
-<p>那麼如果要再多一個外部 SVN 的時候怎麼辦呢？我們只要在編輯原來的 svn:externals 屬性，並在原值的下方再加入新的設定值，也就是： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Zend http://framework.zend.com/svn/framework/trunk/library/Zend (&#25563;&#34892;)&#10;&#60;strong&#62;MyLib http://localhost/svn/mylib/trunk &#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>即新增粗體字的部份即可。</p>
-<p>最後再利用 svn 更新一次，這樣就會讓 Zend 和 MyLib 資料夾和外部 SVN 同步了。 </p>
-
+              
             
           </span>
         
@@ -923,12 +739,11 @@
 
       
         
-          <p>快懶得寫說明了…</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2007/10/09/274/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -1008,44 +823,7 @@
         
           <span itemprop="articleBody">
             
-              <a id="more"></a>
-<h2 id="PHP">PHP</h2><ul>
-<li><a href="http://doughboy.wordpress.com/2007/10/04/forcetype-for-nice-urls-with-php/" target="_blank" rel="external">ForceType for nice URLs with PHP</a></li>
-</ul>
-<p>不透過 mod_rewrite來改變網址，而是用 ForceType 來強制讓某個特定檔案被當做 PHP 來執行，而跟在該名稱後面的其他部份就會被放在 $_SERVER[‘PATH_INFO’] 裡。 </p>
-<ul>
-<li><a href="http://nohn.org/blog/view/id/checking_your_smtp_server_with_net_dnsbl_and_nagios" target="_blank" rel="external">Using Net_DNSBL and Nagios to check if your SMTP server is listed in a RBL</a></li>
-</ul>
-<p>利用 PEAR 的 Net_DNSBL 和 Nagios 等套件檢查我們的 SMTP 伺服器是不是有被列在 RBL 裡，如果有的話就是被當成垃圾信發送來源了。</p>
-<ul>
-<li><a href="http://devzone.zend.com/article/2594-Junction----a-new-persistance-layer-for-PHP-5" target="_blank" rel="external">Junction — a new persistance layer for PHP 5</a></li>
-</ul>
-<p><a href="http://junctionphp.com/" target="_blank" rel="external">Junction</a> 是基於 <a href="http://www.hibernate.org/" target="_blank" rel="external">Hibernate</a> (on Java) 所開發的 PHP5 資料庫持久層，看來是可以參考的一個專案；類似的專案還有 <a href="http://propel.phpdb.org/trac/" target="_blank" rel="external">Propel</a> 。 </p>
-<ul>
-<li><a href="http://bakery.cakephp.org/articles/view/detecting-duplicate-entries-when-updating" target="_blank" rel="external">Detecting duplicate entries when updating</a></li>
-</ul>
-<p>當在更新資料時，偵測出是否有重複的資料。雖然這是在 CakePHP 才提供的解決方案，但這個問題我常會遇到，所以觀念上可以參考看看。</p>
-<h2 id="JavaScript">JavaScript</h2><ul>
-<li><a href="http://hax.javaeye.com/blog/126859" target="_blank" rel="external">JS优化原则</a></li>
-</ul>
-<p>這篇談到一些不錯的 JavaScript 最佳化原則，後面寫 jQuery 的 plugins 時可以參考看看。</p>
-<p>大陸有很多 JavaScript 高手，他們透過規格書來探討一些 JavaScript 實作上的議題。如果各位對 JavaScript 有興趣的話，推薦一個對岸的論壇： <a href="http://www.javaeye.com/forums/board/AJAX" target="_blank" rel="external">JavaEye / Ajax</a> ，裡面真的有非常多值得參考的討論。 </p>
-<li><br><br><a href="http://www.phpied.com/ie-has-a-problem-with-getelementsbyname/" target="_blank" rel="external">IE has a problem with getElementsByName</a><br><br>在開發 PHP 時，我們通常習慣使用方括號 [] 來命名可多選的表單欄位，例如 <input type="radio" name="something[]"> 。本文說明這種命名方式在 IE 上使用 document.getElementsByName 時，會使得 length 屬性在某些特定狀況下出現不正確的動作。<br></li>
-
-
-<h2 id="Web">Web</h2><ul>
-<li><a href="http://css-tricks.com/grabbing-hex-codes-for-colors/" target="_blank" rel="external">Grabbing Hex Codes for Colors</a></li>
-</ul>
-<p>本文提供一些方法，讓我們能簡單得知某個顏色的 Hex 碼 (即 #000000 格式) 。 </p>
-<h2 id="Software">Software</h2><ul>
-<li><a href="http://blogs.msdn.com/ie/archive/2007/10/04/internet-explorer-7-update.aspx" target="_blank" rel="external">Internet Explorer 7 Update</a></li>
-</ul>
-<p>在 XP 底下的 IE7 有 Update 了，不過看來都是針對 XP 系統面的一些改進，真失望 (微軟： Web 標準？那能吃嗎？) 。不過已經不用再驗證才能下載安裝了，想擺脫 IE6 荼毒卻又不信任微軟以外廠商的朋友可以去試試看 (只是不想驗證的人會信任微軟嗎？ XD) 。 </p>
-<ul>
-<li><a href="http://playpcesor.blogspot.com/2007/10/defraggler-ccleaner.html" target="_blank" rel="external">Defraggler小而美的磁碟重組軟體-CCleaner最新姊妹作</a></li>
-</ul>
-<p>之前都是用 Windows 內建重組工具，然後再強一點的都要錢。有機會來試試這個，看來還不錯。 </p>
-
+              
             
           </span>
         
@@ -1125,12 +903,11 @@
 
       
         
-          <p>一不留神，就積了太多文章…Orz
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2007/10/04/272/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -1208,13 +985,11 @@
 
       
         
-          <p>本文主要介紹如何在 Windows XP 上建置 Apache 2 + PHP5 + MySQL 5 的開發環境，以供有興趣的朋友參考。</p>
-<p>雖然坊間已經有一些不錯用的整合套件 (像 <a href="http://www.apachefriends.org/">XAMPP</a> ) ，不過我個人偏好掌握住開發環境的底層設定。當然如果不想花太多時間在開發環境上的朋友，我建議直接使用整合套件即可。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2007/10/02/271/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -1241,11 +1016,14 @@
   </nav>
 
 
- </div>
+
+        </div>
 
         
 
+
         
+
       </div>
 
       
@@ -1303,13 +1081,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -1341,7 +1123,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1363,7 +1146,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1373,6 +1157,7 @@
 
   
   
+
   
     
     
@@ -1400,39 +1185,25 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -1440,15 +1211,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

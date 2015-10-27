@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,20 +31,30 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
 
 
 <meta name="description">
@@ -54,14 +68,14 @@
 <meta name="twitter:description">
 
 
+
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -130,7 +144,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -140,7 +154,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -150,7 +164,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -170,7 +184,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
   <section id="posts" class="posts-expand">
     
       
@@ -232,12 +247,11 @@
 
       
         
-          <h2 id="說明">說明</h2><p>memcached 是一個分散式的物件快取系統，只要有適當的 API ，任何有支援的程式語言都可以用它來存放相關的變數資訊。例如我們可以利用 memcached 來管理 PHP 的 Session ，提高 Web 網站的運作效能。 </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/11/06/140/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -315,14 +329,11 @@
 
       
         
-          <p>今天我正在試一個目錄搜尋的程式，想到了 PHP5 在 <a href="http://wiki.cc/php/SPL">SPL</a> (Standard PHP Library) 裡有定義了一個 <a href="http://wiki.cc/php/DirectoryIterator">DirectoryIterator</a> 的類別。而在找尋相關資料時，發現了一個好站： <a href="http://wiki.cc/php/">PHP Wiki</a> 。</p>
-<p><a href="http://wiki.cc/php/">PHP Wiki</a> 介紹了很多 PHP 的資料與教學，我想對 PHP 玩家來說是個很不錯的參考網站。其中 <a href="http://wiki.cc/php/SPL">SPL</a> 分類裡更是提到了很多 SPL 內建類別的用法，讓我這個 PHP5 新手學到了很多有趣的東西。 </p>
-<p>不過要小心一點： PHP 5.1 以後的 SPL 已經改了相當多，有些 PHP Wiki 的範例我在測試時會出現問題。比較好的方法是查看一下 PHP 手冊有關 <a href="http://www.php.net/manual/en/ref.spl.php">SPL</a> 的章節，並在轉換 PHP 版本時使用 <a href="http://tw.php.net/manual/en/function.get-declared-classes.php">get_declared_classes</a> 及 <a href="http://tw.php.net/manual/en/function.get-declared-interfaces.php">get_declared_interfaces</a> 來查看相關已定義的類別與介面。 </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/11/05/139/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -402,33 +413,7 @@
         
           <span itemprop="articleBody">
             
-              <p>順便貼一些 PHP 相關的新聞：</p>
-<ul>
-<li><p><a href="http://www.php.net/" target="_blank" rel="external">PHP 5.2.0 Released</a></p>
-</li>
-<li><p>New memory manager for the Zend Engine with improved performance and a more accurate memory usage tracking.</p>
-</li>
-<li>Input filtering extension was added and enabled by default.</li>
-<li>JSON extension was added and enabled by default.</li>
-<li>ZIP extension for creating and editing zip files was introduced.</li>
-<li>Hooks for tracking file upload progress were introduced.</li>
-<li>Introduced E_RECOVERABLE_ERROR error mode.</li>
-<li>Introduced DateTime and DateTimeZone objects with methods to manipulate date/time information.</li>
-<li>Upgraded bundled SQLite, PCRE libraries.</li>
-<li>Upgraded OpenSSL, MySQL and PostgreSQL client libraries for Windows installations.</li>
-<li>Many performance improvements.</li>
-<li>Over 200 bug fixes.</li>
-</ul>
-<ul>
-<li><a href="http://www.php.net/UPDATE_5_2.txt" target="_blank" rel="external">PHP 5.2 UPDATE INFO</a></li>
-<li><a href="http://www.dotvoid.com/view.php?id=66" target="_blank" rel="external">New help desk application using Zend Framework</a>用 Zend Framework 開發桌面應用程式。</li>
-<li><a href="http://sebastian-bergmann.de/archives/636-Testing-PHP-Applications-with-PHPUnit-3.html" target="_blank" rel="external">Testing PHP Applications with PHPUnit 3</a>用 PHPUnit3 測試 PHP 應用程式的線上投影片。</li>
-<li><a href="http://www.hardened-php.net/advisory_122006.137.html" target="_blank" rel="external">phpMyAdmin - error.php XSS Vulnerability</a>phpMyAdmin 在 error.php 上的安全疑慮，會影響 2.9.0.2 以下的版本。</li>
-<li><a href="http://www.devshed.com/c/a/PHP/Graphical-Interfaces-and-Unit-Testing/" target="_blank" rel="external">Graphical Interfaces and Unit Testing </a>圖形介面與單元測試。</li>
-<li><a href="http://www.gravitonic.com/blog/archives/000227.html" target="_blank" rel="external">Andrei Zmievski: Slides from Zend Conference</a>Andrei Zmievski 在 Zend Conference 演說的投影片。</li>
-</ul>
-<p>PHP 越來越有趣了…可是我為什麼還是得抱著 ASP 呀…|||orz </p>
-
+              
             
           </span>
         
@@ -510,9 +495,7 @@
         
           <span itemprop="articleBody">
             
-              <p>網址： <a href="http://ilia.ws/talks.php" target="_blank" rel="external">http://ilia.ws/talks.php</a></p>
-<p>光看完就要花兩三天了~~</p>
-
+              
             
           </span>
         
@@ -594,18 +577,7 @@
         
           <span itemprop="articleBody">
             
-              <p>今天我訂閱的一些國外有關 PHP 的 Blog ，一直在報導 Zend 和 Microsoft 的相關文章。</p>
-<p>這裡我把相關文章網址列出來，有興趣的朋友可以自己去看看：</p>
-<ul>
-<li><a href="http://blogs.iis.net/bills/archive/2006/10/31/PHP-on-IIS.aspx" target="_blank" rel="external">PHP on IIS7 w/FastCGI</a></li>
-<li><a href="http://blogs.iis.net/bhill/archive/2006/10/31/Annoucning_3A00_-FastCGI-tech-preview-available-for-IIS-5.1_2C00_-6-and-7.aspx" target="_blank" rel="external">Annoucning: FastCGI tech preview available for IIS 5.1, 6 and 7</a></li>
-<li><a href="http://www.iis.net/default.aspx?tabid=1000051" target="_blank" rel="external">FastCGI for IIS</a></li>
-<li><a href="http://blogs.iis.net/rickjames/archive/2006/10/31/IIS-7-FastCGI-Module.aspx" target="_blank" rel="external">IIS 7 FastCGI Module</a></li>
-<li><a href="http://www.zend.com/products/zend_core/windows_preview" target="_blank" rel="external">Zend Core (Windows Technology Preview)</a></li>
-<li><a href="http://andigutmans.blogspot.com/2006/10/making-php-on-windows-work.html" target="_blank" rel="external">Making PHP on Windows work!</a></li>
-<li><a href="http://blogs.iis.net/bills/archive/2006/10/31/IIS-Team-Announces-FastCGI-For-IIS-5.1_2C00_-IIS-6.0-and-IIS7.aspx" target="_blank" rel="external">Microsoft Announces Collaboration with Zend to Improve PHP on Windows and IIS</a></li>
-</ul>
-
+              
             
           </span>
         
@@ -687,27 +659,7 @@
         
           <span itemprop="articleBody">
             
-              <h2 id="說明">說明</h2><p>這兩天是 Zend 的研討會，有很多大師級人物主講。其中 Best Practices of PHP Development 是 10/31 號的一個議題，提到了一些在 PHP 開發上比較好的規則，大家可以參考看看。</p>
-<p>其他還有很多不錯的議題，有空再去收集相關的資訊。</p>
-<h2 id="重點節錄">重點節錄</h2><blockquote><br><br>### Source Documentation<br><br><em> PHPDoc is the defacto documentation standard, it can be parsed by PHPDocumentor and Doxygen 
-</em> Use @category and  @package to manage your documentation<br><em> Using PHPDoc allows all developers to immediately understand your code<br><br><br>### Unit Testing
-
-</em> Focusing on PHPUnit<br><em> Test religiously
-</em> Without tests, code is fragile and will regress - there is nothing to tell you when you break your code.<br><em> You are not wasting time by creating tests, you’re wasting time by peppering your code with var_dump() and trying to debug code manually.
-</em> Learning to write good object oriented code that is testable takes practice and discipline. Learn to design for usability.<br><em> Test-First methodology allows the tests to become the specification of code you are writing. 
-</em> Using Classes is not Object Oriented Design<br><br><br>### Source Control<br><br><em> Source control was on the benefits of using SVN to manage your code.
-</em> Learn to use tagging and branching instead of committing everything to HEAD<br><em> Trac is cool (I caught up on emails during this section - great wifi)<br><br><br>### Deployment
-
-</em> Never edit code on the server<br><em> Check out tagged branches from your svc software
-</em> Deploy to a staging server on your production server, test first then modify the symlink.<br><em> Write acceptance and integration tests: <a href="http://manuals.rubyonrails.com/read/book/17" target="_blank" rel="external">http://manuals.rubyonrails.com/read/book/17</a>)
-</em> Monitor Health of Servers: <a href="http://www.plope.com/software/supervisor/" target="_blank" rel="external">http://www.plope.com/software/supervisor/</a><br>* Store schema of your database by committing the schema into your svc server - suggestion: <a href="http://www.mysqldiff.org/" target="_blank" rel="external">http://www.mysqldiff.org/</a> and pre-commit hooks<br><br></blockquote>
-
-<h2 id="參考網址">參考網址</h2><ul>
-<li><a href="http://www.phpdeveloper.org/news/6606" target="_blank" rel="external">ZendCon 2006 Notes: Best Practices for PHP Development</a></li>
-<li><a href="http://www.zendcon.com/speakers_list.php" target="_blank" rel="external">Session Schedule</a></li>
-</ul>
-<h2 id="投影片下載">投影片下載</h2><p><a href="http://mikenaberezny.com/archives/60" target="_blank" rel="external">Best Practices of PHP Development</a></p>
-
+              
             
           </span>
         
@@ -789,28 +741,7 @@
         
           <span itemprop="articleBody">
             
-              <h2 id="不負責任翻譯">不負責任翻譯</h2><p>Zend Framework 社群釋出 0.2.0 預覽版。此釋出版本包含許多重要的加強功能及新特色：</p>
-<ul>
-<li>新的 MVC 實踐。</li>
-<li>新的 HTTP request 及 response 物件，使得我們更容易在沒有 Web 伺服器的狀況下對 Web 應用程式進行自動單元測試。而且如此一來，我們也可以在 Command-Line 及 PHP-GTK 應用程式開發上使用 MVC 架構。</li>
-<li>加強純 PHP Lucene-compatible 搜尋引擎元件。</li>
-<li>新的  Mysqli DB 轉接器。 </li>
-<li>新的 JSON Server 。 </li>
-<li>新的 REST Client 及 Server 。 </li>
-<li>新的 XmlRpc Client 及 Server 。</li>
-<li>新的 Acl 元件 </li>
-<li>新的 Session 元件</li>
-<li>新的 Web Services Clients ，是給 Delicious 及 Audioscrobbler 用的。 </li>
-<li>新的 Registry 元件</li>
-<li>對其他元件做一些有意義的加強。</li>
-</ul>
-<p>如果有錯誤的地方，請不吝指教。</p>
-<h2 id="參考網址">參考網址</h2><ul>
-<li><a href="http://framework.zend.com/" target="_blank" rel="external">Zend Framework 官方網站</a></li>
-<li><a href="http://www.phpdeveloper.org/" target="_blank" rel="external">PHPDeveloper.org</a> - <a href="http://www.phpdeveloper.org/news/6607" target="_blank" rel="external">Zend Framework Preview Release version 0.2.0 Released</a></li>
-<li><a href="http://www.binzywu.com/blog/" target="_blank" rel="external">Binzy Wu</a> - <a href="http://www.binzywu.com/blog/?p=110" target="_blank" rel="external">Zend Framework Preview 0.2.0 Release</a></li>
-</ul>
-
+              
             
           </span>
         
@@ -890,18 +821,11 @@
 
       
         
-          <h2 id="說明">說明</h2><p>記錄一下自己成功的經驗，因為參考的網址在有些小地方的實作上我不是看得很懂。</p>
-<p>追加以下三個自己的實作紀錄：</p>
-<ul>
-<li>建立 tracd 的帳號</li>
-<li>設定 tracd 的權限。</li>
-<li>將 tracd 註冊成 Windows Service 。</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/10/30/133/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -981,10 +905,7 @@
         
           <span itemprop="articleBody">
             
-              <p>IE7 最終版本終於釋出了，不久後大概也會在 Windows Update 強迫大家安裝。</p>
-<p>文章網址：<a href="http://blogs.msdn.com/ie/archive/2006/10/18/internet-explorer-7-for-windows-xp-available-now.aspx" target="_blank" rel="external">Internet Explorer 7 for Windows XP Available Now</a></p>
-<p>不知這是令人高興還是悲哀的消息…</p>
-
+              
             
           </span>
         
@@ -1066,12 +987,7 @@
         
           <span itemprop="articleBody">
             
-              <p>前陣子就推出了，應該是不錯的書…</p>
-<p>呃…其實我還沒看過，不過有人介紹了：<a href="http://schlitt.info/applications/blog/index.php?/archives/500-Reading-recommendation-PHP-Design-Patterns.html" target="_blank" rel="external">Reading recommendation: PHP Design Patterns</a> 。</p>
-<p>最近被 ASP 搞到快瘋掉，倒不是不會寫，而是看太多亂七八糟的程序性 ASP Code，讓我覺得有頭暈想吐的感覺… (我是男的…)</p>
-<p>一直很想好好用 PHP5 來寫些東西，但是回到家整個人就懶掉了…只能看看書自我安慰一下… (看程式技術的書啦…) </p>
-<p>再等一陣子好了…看看天瓏會不會進… (其實是想等有沒有人翻成中文，雖然原文也能接受…)</p>
-
+              
             
           </span>
         
@@ -1100,11 +1016,14 @@
   </nav>
 
 
- </div>
+
+        </div>
 
         
 
+
         
+
       </div>
 
       
@@ -1162,13 +1081,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -1200,7 +1123,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1222,7 +1146,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1232,6 +1157,7 @@
 
   
   
+
   
     
     
@@ -1259,39 +1185,25 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -1299,15 +1211,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

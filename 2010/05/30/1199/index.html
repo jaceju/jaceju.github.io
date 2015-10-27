@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,42 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="以往我在使用 Zend_Tool 來建構專案時，都是要透過 CLI 環境來執行 zf 指令；這常使得我必須在 NetBeans IDE 視窗和 Command Line 視窗之間切換。還好， NetBeans 從 6.9 版之後就將 Zend Framework 的 Command Line 工具整合進來，這樣一來我們就可以更方便使用 NetBeans 來開發 Zend Framework 專案了">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zend Framework in NetBeans">
 <meta property="og:url" content="http://jaceju.net/2010/05/30/1199/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="以往我在使用 Zend_Tool 來建構專案時，都是要透過 CLI 環境來執行 zf 指令；這常使得我必須在 NetBeans IDE 視窗和 Command Line 視窗之間切換。還好， NetBeans 從 6.9 版之後就將 Zend Framework 的 Command Line 工具整合進來，這樣一來我們就可以更方便使用 NetBeans 來開發 Zend Framework 專案了">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/zend_config/01_zend_config.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/zend_config/02_register_provider.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/zend_config/03_create_config.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/zend_config/04_netbeans_commands_provider.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/zend_config/05_global_include_path.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/create_project/01_create_project.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/create_project/02_project_location.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/create_project/03_run_config.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/create_project/04_select_zf.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/create_project/05_zf_project.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/run_zend_command/01_run_zend_command.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/run_zend_command/02_create_model.png">
-<meta property="og:image" content="http://jaceju.net/resources/netbeans_zf/run_zend_command/03_final_create_model.png">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zend Framework in NetBeans">
-<meta name="twitter:description" content="以往我在使用 Zend_Tool 來建構專案時，都是要透過 CLI 環境來執行 zf 指令；這常使得我必須在 NetBeans IDE 視窗和 Command Line 視窗之間切換。還好， NetBeans 從 6.9 版之後就將 Zend Framework 的 Command Line 工具整合進來，這樣一來我們就可以更方便使用 NetBeans 來開發 Zend Framework 專案了">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> Zend Framework in NetBeans | 網站製作學習誌 </title>
 </head>
@@ -142,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -152,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -162,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -182,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -241,71 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>以往我在使用 Zend_Tool 來建構專案時，都是要透過 CLI 環境來執行 zf 指令；這常使得我必須在 NetBeans IDE 視窗和 Command Line 視窗之間切換。還好， NetBeans 從 6.9 版之後就將 Zend Framework 的 Command Line 工具整合進來，這樣一來我們就可以更方便使用 NetBeans 來開發 Zend Framework 專案了。</p>
-<p>以下我將簡單介紹如何在 NetBeans 中使用 Zend Framework 的整合功能，提供大家參考。</p>
-<a id="more"></a>
-<h2 id="Zend_Framewok_環境建置">Zend Framewok 環境建置</h2><p>更新：建置 Zend Framework 開發環境的部份，我已經獨立到新文章中了，請參考：「<a href="http://www.jaceju.net/blog/archives/1597" target="_blank" rel="external">從 PEAR 安裝 Zend Framework</a> 」及「<a href="http://www.jaceju.net/blog/archives/1604" target="_blank" rel="external">手動建置 Zend Framewok 1.1x 開發環境</a>」。</p>
-<p>另外要注意，用 PEAR 安裝和手動安裝後的 zf 指令路徑是不太一樣的，在 NetBeans 中設定時請特別小心。</p>
-<p>建置完成後，如果已經建立了 .zf.ini 的話，可以將它先刪除，因為後面我們會讓 NetBeans 再幫我們建立一次。</p>
-<h2 id="設定_NetBeans">設定 NetBeans</h2><p>在 NetBeans 的<a href="http://netbeans.org/downloads/index.html" target="_blank" rel="external">官方下載頁</a>將 NetBeans for PHP 下載回來後，就請按照畫面提示進行安裝，安裝好後請開啟執行。</p>
-<p>接著執行 NetBeans 上方工具列的「 Tools &gt; Options &gt; PHP  」開啟 PHP 設定視窗，然後切換到 Zend 頁籤：</p>
-<p><a href="/resources/netbeans_zf/zend_config/01_zend_config.png"><img src="/resources/netbeans_zf/zend_config/01_zend_config.png" alt="設定 Zend Framework"></a></p>
-<p>原則上， NetBeans 應該會自己找到 zf.bat 的檔案路徑，但如果沒有的話，各位可以自行按下「 Search… 」鍵來指定。</p>
-<p>接著為了讓 NetBeans 可以認得 zf 提供的指令，請按下「 Register Provider 」鍵。這時 NetBeans 會呼叫 zf 指令來建立 .zf.ini ，並且將內建的 NetBeansCommandsProvider 註冊進去。完成後會出現下圖：</p>
-<p><a href="/resources/netbeans_zf/zend_config/02_register_provider.png"><img src="/resources/netbeans_zf/zend_config/02_register_provider.png" alt="設定 Zend Framework"></a></p>
-<p>切換到輸出視窗，我們可以看到 NetBeans 其實是呼叫了「 zf create config 」：</p>
-<p><a href="/resources/netbeans_zf/zend_config/03_create_config.png"><img src="/resources/netbeans_zf/zend_config/03_create_config.png" alt="呼叫「 zf create config 」"></a></p>
-<p>在 zf 建立好 .zf.ini 後， NetBeans 會在 php.include_path 補上：「 C:\Program Files\NetBeans 7.0 Beta\php\zend; 」。</p>
-<p>註：如果先前沒有先刪掉 .zf.ini 的話， zf create config 的動作會失敗，這時就要手動將這個路徑補上去。</p>
-<p>接著 NetBeans 會再呼叫「 zf enable config.provider NetBeansCommandsProvider 」：</p>
-<p><a href="/resources/netbeans_zf/zend_config/04_netbeans_commands_provider.png"><img src="/resources/netbeans_zf/zend_config/04_netbeans_commands_provider.png" alt="呼叫「 zf enable config.provider NetBeansCommandsProvider 」"></a></p>
-<p>最後打開 D:\AppServ\ZF.zf.ini ，我們就會看到以下結果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php.include_path = &#34;C:\Program Files\NetBeans 7.0 Beta\php\zend;D:\AppServ\ZF\library;D:\AppServ\php\PEAR;.&#34;&#10;basicloader.classes.0 = &#34;NetBeansCommandsProvider&#34;</span><br></pre></td></tr></table></figure>
-<p>另外也別忘了在 Global Include Path 裡把 library/Zend 加進去：</p>
-<p><a href="/resources/netbeans_zf/zend_config/05_global_include_path.png"><img src="/resources/netbeans_zf/zend_config/05_global_include_path.png" alt="Global Include Path"></a></p>
-<p>至此，我們就完成 Zend Framework 在 NetBeans 上的設定了。</p>
-<h2 id="建立_Zend_Framework_專案">建立 Zend Framework 專案</h2><p>接著我們可以試著建立一個 Zend Framework 專案，請在 NetBeans 工具列上選擇「 File &gt; New Project… 」：</p>
-<p><a href="/resources/netbeans_zf/create_project/01_create_project.png"><img src="/resources/netbeans_zf/create_project/01_create_project.png" alt="建立專案"></a></p>
-<p>接下來就是設定專案名稱及選擇專案位置：</p>
-<p><a href="/resources/netbeans_zf/create_project/02_project_location.png"><img src="/resources/netbeans_zf/create_project/02_project_location.png" alt="選擇專案路徑"></a></p>
-<p>再來是選擇 Web 伺服器及網址：</p>
-<p><a href="/resources/netbeans_zf/create_project/03_run_config.png"><img src="/resources/netbeans_zf/create_project/03_run_config.png" alt="執行設定"></a></p>
-<p>最後就是選擇我們要用哪一種 Web Framework 建立專案，這裡當然就是選 Zend Framework 囉：</p>
-<p><a href="/resources/netbeans_zf/create_project/04_select_zf.png"><img src="/resources/netbeans_zf/create_project/04_select_zf.png" alt="選擇建立 Zend Framework 專案"></a></p>
-<p>完成後就會出現以下畫面， NetBeans 會很貼心地為我們預先開啟需要修改的檔案：</p>
-<p><a href="/resources/netbeans_zf/create_project/05_zf_project.png"><img src="/resources/netbeans_zf/create_project/05_zf_project.png" alt="完成建立專案"></a></p>
-<p>是不是很方便呢？</p>
-<h2 id="在專案上執行_zf_提供的指令">在專案上執行 zf 提供的指令</h2><p>一開始我們花了一點時間設定了 zf 指令的部份，那麼就表示我們應該是可以在在專案上執行 zf 提供的指令。而原先我以為 NetBeans 會在滑鼠右鍵提供相關的指令，不過實際瞭解之後才知道它提供了一個更為強大的介面。</p>
-<p>請大家在 Project 視窗的專案名稱上 (這裡即為 netbeans_zf ) ，按下滑鼠右鍵選擇「 Zend &gt; Run Commands… 」；沒有意外的話，就會出現以下的對話視窗：</p>
-<p><a href="/resources/netbeans_zf/run_zend_command/01_run_zend_command.png"><img src="/resources/netbeans_zf/run_zend_command/01_run_zend_command.png" alt="執行 Zend 命令"></a></p>
-<p>簡單說明一下這個對話視窗中的各輸入欄位：</p>
-<ul>
-<li><p>Fitler ：可以用來過濾要輸入的指令。例如輸入 create 的話，就只會在下方的 Matching Tasks 列出所有開頭為 create 的指令。</p>
-</li>
-<li><p>Parameters ：輸入指令的參數。像是專案、 Controller 或 Model 的名稱等。</p>
-</li>
-<li><p>Matching Tasks ： zf 支援的指令列表。點選任何一個指令後，就會在它下方出現完整的說明。</p>
-</li>
-<li><p>Command ：即將要執行的指令，我們可以在這裡檢查稍後要執行的指令是不是正確的。</p>
-</li>
-<li><p>Keep this dialog opened ：保持這個對話視窗的開啟，方便輸入下個指令。</p>
-</li>
-<li><p>Refresh Commands ：如果 Matching Tasks 沒有出現指令列表的話，可以按一下這個鍵來重新整理。但是如果還是沒有出現的話，就要檢查一下 .zf.ini 有沒有正確的被設定 (也就是要執行 NetBeans 的「Register Provider」功能) 。</p>
-</li>
-<li><p>Run ：執行 Command 欄位中的指令。</p>
-</li>
-</ul>
-<p>我個人非常喜歡這個介面，因為以往我必須在 Command Line 裡去輸入「 zf ? 」來查看每個指令的用途與參數，然而卻因為輸出的訊息非常的多，可能看到後面就忘了前面了；這個對話視窗可以節省我不少滾動滑鼠的時間，強烈建議大家熟悉它的用法。</p>
-<h3 id="範例：建立_Model">範例：建立 Model</h3><p>接下來我們可以試著用這個介面來建立 Model ；在 Filter 裡輸入 create model ，並在 Parameters 中輸入 Test ：</p>
-<p><a href="/resources/netbeans_zf/run_zend_command/02_create_model.png"><img src="/resources/netbeans_zf/run_zend_command/02_create_model.png" alt="建立 Model"></a></p>
-<p>這時候我們應該會在 Command 中看到 zf.bat create model Test 這個完整的指令；按下 Run 鍵之後，我們就會在輸出視窗看到以下結果：</p>
-<p><a href="/resources/netbeans_zf/run_zend_command/03_final_create_model.png"><img src="/resources/netbeans_zf/run_zend_command/03_final_create_model.png" alt="完成建立 Model"></a></p>
-<p>這時候就可以看到在 Projects 視窗中發現 D:\WEB\wwwroot\netbeans_zf\application\models\ 下建立了 Test.php 了。</p>
-<h2 id="心得">心得</h2><p>NetBeans 這次在 Zend Framework 上的支援，可以說是下了一番功夫；不論在建立專案，或是在整合快速建置指令上，都令人非常讚賞。</p>
-<p>不過我個人還是覺得有個小小的缺憾，那就是我無法更方便地用視覺化的方式編輯 .zfproject.xml 這個檔案，也許是因為 zf 指令本身也沒提供的關係吧。</p>
-<p>我希望未來 NetBeans 可以開放模組化的架構，讓其它 PHP Framework 也可以如此便利地透過它來開發；這樣一來，或許 NetBeans 就可以在 PHP IDE 上佔有一席之地了。</p>
-<p>謝謝收看。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -354,19 +292,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -433,13 +374,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -466,8 +411,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Zend_Framewok_環境建置"><span class="nav-number">1.</span> <span class="nav-text">Zend Framewok 環境建置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定_NetBeans"><span class="nav-number">2.</span> <span class="nav-text">設定 NetBeans</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立_Zend_Framework_專案"><span class="nav-number">3.</span> <span class="nav-text">建立 Zend Framework 專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在專案上執行_zf_提供的指令"><span class="nav-number">4.</span> <span class="nav-text">在專案上執行 zf 提供的指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例：建立_Model"><span class="nav-number">4.1.</span> <span class="nav-text">範例：建立 Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">5.</span> <span class="nav-text">心得</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -482,7 +429,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -504,7 +452,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -514,6 +463,7 @@
 
   
   
+
   
     
     
@@ -543,24 +493,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -712,29 +659,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -742,15 +680,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

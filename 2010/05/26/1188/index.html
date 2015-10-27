@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="在 Zend Framework 1.5 版之後就支援了對 Ajax Context 的處理，讓我們可以在 Controller 裡的 Action 輸出不同的格式的內容，以下我將簡單介紹這個功能。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初探 Zend Framework 上的 Context 輸出">
 <meta property="og:url" content="http://jaceju.net/2010/05/26/1188/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="在 Zend Framework 1.5 版之後就支援了對 Ajax Context 的處理，讓我們可以在 Controller 裡的 Action 輸出不同的格式的內容，以下我將簡單介紹這個功能。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初探 Zend Framework 上的 Context 輸出">
-<meta name="twitter:description" content="在 Zend Framework 1.5 版之後就支援了對 Ajax Context 的處理，讓我們可以在 Controller 裡的 Action 輸出不同的格式的內容，以下我將簡單介紹這個功能。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 初探 Zend Framework 上的 Context 輸出 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,50 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>在 Zend Framework 1.5 版之後就支援了對 Ajax Context 的處理，讓我們可以在 Controller 裡的 Action 輸出不同的格式的內容，以下我將簡單介紹這個功能。</p>
-<a id="more"></a>
-<h2 id="Context_的概念與實作">Context 的概念與實作</h2><p>在 Zend Framework 中，不同格式的輸出內容稱為 Context ；每個 Action 都可以輸出不同的 Context ，例如  JSON 、 XML 等等。</p>
-<p>如果同一個 Action 要輸出不同格式的內容時，我們可以透過一個叫做 ContextSwitch 的 Action Helper 來幫我們切換 Context 。 ContextSwitch Helper 主要的原理是看有沒有接收到 format 這個參數，如果有的話，就會以該種格式的 Context 輸出。</p>
-<p> Zend Framework 預設提供可切換的 Context 格式有 JSON 和 XML 兩種，而 HTML 本身雖然也是一種 Context ，但因為它是在沒有 format 這個參數的狀況下的直接輸出，所以並不需要用 ContextSwitch 特別指定；也就是說，不給 format 的話， Zend Framework 預設會拋出該網址的 HTML ，而不是 JSON 或 XML 。</p>
-<h3 id="輸出_JSON">輸出 JSON</h3><p>假設我們有個專案叫 ajaxtest ，它的網址是 <a href="http://localhost/ajaxtest/" target="_blank" rel="external">http://localhost/ajaxtest/</a> 。現在我們想要讓首頁可以輸出 JSON ，我們可以在 Action Controller 的 init 方法中透過 ContextSwitch Helper 設定：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Zend/Controller/Action.php&#39;;&#10;class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    public function init()&#10;    &#123;&#10;        $this-&#62;_helper-&#62;contextSwitch()&#10;                      -&#62;addActionContext(&#39;index&#39;, &#39;json&#39;)&#10;                      -&#62;initContext();&#10;    &#125;&#10;    public function indexAction()&#10;    &#123;&#10;        $this-&#62;view-&#62;test = &#39;TEST&#39;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>透過 ContextSwitch 的 addActionContext ，我們可以幫 indexAction 加入一個 JSON 格式的 Context 輸出；然後再透過 initContext 方法， ContextSwitch Helper 就會判斷目前的網址來做 Context 切換的動作。</p>
-<p>現在我們只要在瀏覽器網址列輸入 <a href="http://localhost/ajaxtest/?format=json" target="_blank" rel="external">http://localhost/ajaxtest/?format=json</a> ，就能得到以下的輸出結果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#34;test&#34;:&#34;TEST&#34;&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="輸出_XML">輸出 XML</h3><p>不過除了 JSON 格式的 Context 預設不需要樣版之外，其他格式的 Context 都預設都需要準備一個對應的樣版；而這些樣版都會使用 Zend_View 來處理，所以如果你的 View 是用 Smarty ，那麼 ZF 也會用 Smarty   來處理 Context 樣版。</p>
-<p>Context 樣版的檔名規則就是 action-name.context-suffix.view-suffix ，這裡的 context-suffix 是 Context 指定的字尾，通常會和 Context 名稱相同；而 view-suffix 就是副檔名，預設是 phtml。</p>
-<p>假設現在我們要讓首頁支援 XML 的輸出，那麼首先我們要在 /path/to/ajaxtest/application/views/scripts/index/ 路徑 (就是放 index.phtml 的那個路徑) 下，再按照前述的規則加入一個 index.xml.phtml 檔，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;&#10;&#60;root&#62;&#10;&#60;test&#62;&#60;?php echo $this-&#62;test; ?&#62;&#60;/test&#62;&#10;&#60;/root&#62;</span><br></pre></td></tr></table></figure>
-<p>註： XML 的內容規格要看實際需求來訂定，這邊提供的是簡易的範例。</p>
-<p>而因為 index.xml.phtml 也是透過 Zend_View 處理，所以這裡我們可以將它當做是 View Script 來處理。</p>
-<p>接著我們在 Controller 的 init 方法裡再加入新的 XML Context ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Zend/Controller/Action.php&#39;;&#10;class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    public function init()&#10;    &#123;&#10;        $this-&#62;_helper-&#62;contextSwitch()&#10;                      -&#62;addActionContext(&#39;index&#39;, &#39;json&#39;)&#10;                      -&#62;addActionContext(&#39;index&#39;, &#39;xml&#39;)&#10;                      -&#62;initContext();&#10;    &#125;&#10;    public function indexAction()&#10;    &#123;&#10;        $this-&#62;view-&#62;test = &#39;TEST&#39;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>完成後在瀏覽器網址列輸入 <a href="http://localhost/ajaxtest/?format=xml" target="_blank" rel="external">http://localhost/ajaxtest/?format=xml</a> ，就能得到以下結果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;&#10;&#60;root&#62;&#10;&#60;test&#62;TEST&#60;/test&#62;&#10;&#60;/root&#62;</span><br></pre></td></tr></table></figure>
-<h2 id="自訂_Context">自訂 Context</h2><p>除了 JSON 和 XML 之外，我們也可以自訂 Context ，例如 RSS 、 ATOM 等。例如我們想讓首頁支援 RSS ，那麼也一樣是在 View Scripts 目錄下放置一個 index.rss.phtml (參照上面的規則) ，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34; ?&#62;&#10;&#60;rss version=&#34;2.0&#34;&#62;&#10;  &#60;channel&#62;&#10;    &#60;item&#62;&#10;    &#60;/item&#62;&#10;  &#60;/channel&#62;&#10;&#60;/rss&#62;</span><br></pre></td></tr></table></figure>
-<p>然後我們要透過 contextSwitch 的 addContext 方法，加入自訂的 RSS Context 格式，當然也別忘了將 RSS Context 格式加入 index Action 裡：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;_helper-&#62;contextSwitch()&#10;              -&#62;addContext(&#39;rss&#39;, array(&#39;suffix&#39; =&#62; &#39;rss&#39;))&#10;              -&#62;addActionContext(&#39;index&#39;, &#39;rss&#39;)&#10;              -&#62;initContext();</span><br></pre></td></tr></table></figure>
-<p>在 addContext 的第二個參數裡，我們可以指定 Context 的規格，一般來說只要加入 suffix 這個規格即可，它就是前面提到的 context-suffix 。</p>
-<h2 id="AjaxContext">AjaxContext</h2><p>在預設打開 Layout 的狀況下， Zend Framework 丟出來的 HTML 是當然是包含 Layout ，而 ContextSwitch 這個 Helper 目前只對有註冊的 Context 關掉 Layout (也就是有指定 format) 。可是當我們指定 format 為 html 時，就會發現程式出現錯誤，因為我們沒有註冊 HTML 這個 Context 。</p>
-<p>而改用 AjaxContext 這個 Action Helper 的話，它就會幫我們註冊 HTML 這個 context ；而它是繼承 ContextSwitch 這個 Helper ，所以也保有它完整的功能。</p>
-<p>但是使用 AjaxContext 要注意幾個地方：</p>
-<ul>
-<li><p>AjaxContext 不會使用預設的 action-name.view-suffix 這個樣版，因為它的 context-suffix 是 ajax ，所以我們要多加一個 View Script 叫 action-name.ajax.view-suffix 。</p>
-</li>
-<li><p>AjaxContext 一定要 Request 是 XMLHttpRequest 才會動作，也就是說必須透過前端 JavaScript 以 XMLHttpRequest 物件來呼叫，這裡和 ContextSwitch 是不一樣的。</p>
-</li>
-</ul>
-<p>AjaxContext 使用方式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;_helper-&#62;ajaxContext()&#10;      -&#62;addActionContext(&#39;index&#39;, &#39;html&#39;)&#10;      -&#62;initContext();</span><br></pre></td></tr></table></figure>
-<p>如果 index.ajax.phtml 和 index.phtml 的內容是一樣的話，那麼可以將  index.ajax.phtml 改為：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php echo $this-&#62;partial(&#39;index/index.phtml&#39;); ?&#62;</span><br></pre></td></tr></table></figure>
-<p>讓它直接抓取  index.phtml 的內容即可。</p>
-<h2 id="心得">心得</h2><p>以前我在處理不同格式輸出時，總是會在 Action 裡加了很多判斷，不僅看起來雜亂，而且也不易維護。</p>
-<p>雖然後來我在自定的架構裡做了自動化，但總覺得還是不夠漂亮。而當我認真將 Zend Framework 在處理 Context 這部份的做法仔細研究之後，發現 Zend Framework 確實是讓這件事變得簡單很多。</p>
-<p>當然這也只是基礎而已，但是只要將這些基本技巧摸熟之後，相信大家一定也可以想出更棒的應用方式！</p>
-<p>謝謝收看。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -318,19 +290,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -397,13 +372,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -430,8 +409,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Context_的概念與實作"><span class="nav-number">1.</span> <span class="nav-text">Context 的概念與實作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#輸出_JSON"><span class="nav-number">1.1.</span> <span class="nav-text">輸出 JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#輸出_XML"><span class="nav-number">1.2.</span> <span class="nav-text">輸出 XML</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自訂_Context"><span class="nav-number">2.</span> <span class="nav-text">自訂 Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AjaxContext"><span class="nav-number">3.</span> <span class="nav-text">AjaxContext</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">4.</span> <span class="nav-text">心得</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -446,7 +427,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -468,7 +450,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -478,6 +461,7 @@
 
   
   
+
   
     
     
@@ -507,24 +491,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -676,29 +657,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -706,15 +678,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

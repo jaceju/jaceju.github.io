@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="一直以來，很多 Web 開發者認為 PHP 不過只是個 Scripting Language ，比不上 JSP 或是 ASP.Net 等重量級的專業開發環境。
-所以你可以看到他們寫的 PHP 幾乎都是把 PHP 程式碼和 HTML 混雜在一起，或是跟著書本按表操課，因為他們覺得這種簡單的工作只要能夠交差了事就行了。
-對他們來說： PHP 會用就好啦！真正專業的技術知識應該要從 Java 、 C#">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 開發迷思 (三) –  PHP 很糟糕？">
 <meta property="og:url" content="http://jaceju.net/2010/01/05/936/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="一直以來，很多 Web 開發者認為 PHP 不過只是個 Scripting Language ，比不上 JSP 或是 ASP.Net 等重量級的專業開發環境。
-所以你可以看到他們寫的 PHP 幾乎都是把 PHP 程式碼和 HTML 混雜在一起，或是跟著書本按表操課，因為他們覺得這種簡單的工作只要能夠交差了事就行了。
-對他們來說： PHP 會用就好啦！真正專業的技術知識應該要從 Java 、 C#">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 開發迷思 (三) –  PHP 很糟糕？">
-<meta name="twitter:description" content="一直以來，很多 Web 開發者認為 PHP 不過只是個 Scripting Language ，比不上 JSP 或是 ASP.Net 等重量級的專業開發環境。
-所以你可以看到他們寫的 PHP 幾乎都是把 PHP 程式碼和 HTML 混雜在一起，或是跟著書本按表操課，因為他們覺得這種簡單的工作只要能夠交差了事就行了。
-對他們來說： PHP 會用就好啦！真正專業的技術知識應該要從 Java 、 C#">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> PHP 開發迷思 (三) –  PHP 很糟糕？ | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,48 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>一直以來，很多 Web 開發者認為 PHP 不過只是個 Scripting Language ，比不上 JSP 或是 ASP.Net 等重量級的<strong>專業</strong>開發環境。</p>
-<p>所以你可以看到他們寫的 PHP 幾乎都是把 PHP 程式碼和 HTML 混雜在一起，或是跟著書本按表操課，因為他們覺得這種簡單的工作只要能夠交差了事就行了。</p>
-<p>對他們來說： <strong>PHP 會用就好啦！真正專業的技術知識應該要從 Java 、 C# 或是其他正統的語言中學習！</strong></p>
-<p>雖然我不意外他們有這樣的想法，但我更希望他們能重新認識 PHP ！</p>
-<a id="more"></a>
-<h2 id="PHP_想做什麼？">PHP 想做什麼？</h2><p>其實一開始， PHP 的確只是一個 Rasmus Lerdorf (PHP 之父) 把 C 語言函式包裝起來的 Scripting Language ，它的目的很單純地是想讓 CGI 變得很簡單。所以嚴格來說， PHP 一開始並不能稱得上是一個語言，它只是一個很像 C + Perl 的  Script Wrapper 。</p>
-<p>然而隨著版本的不斷地演進， PHP 也不再是只能處理 Web CGI 了；它還加入多種執行模式，在應用上變得更加地豐富：</p>
-<ul>
-<li>CLI 模式：PHP 可以用來開發作業系統的 Shell Script (詳情可參考 <a href="http://www.php-cli.com/" target="_blank" rel="external">PHP CLI</a> ) 。</li>
-<li>GUI 應用程式：開發視窗程式也變得非常輕鬆 (詳情可參考 <a href="http://gtk.php.net/" target="_blank" rel="external">PHP-GTK</a> ) 。</li>
-</ul>
-<p>但也因為功能的多樣化，使得原來單純處理 Web 文字的 PHP 語法顯得捉襟見肘。因此，加入更現代化的語法成為 PHP 勢在必行的目標之一。</p>
-<p>註：關於 PHP 詳盡的歷史請參考 Wiki 上的<a href="http://zh.wikipedia.org/zh-tw/PHP" target="_blank" rel="external">說明</a>，這裡我就不再複製貼上囉。</p>
-<h2 id="語法的加強">語法的加強</h2><p> 然而 PHP 有著先天上的語法限制及函式名稱的不統一，使得它招來了許多嫌它醜陋的噓聲。還有 PHP 一開始也沒有想過要變成一個真正的語言，而是在 Web 開發上能夠易學易用；使得它無法像 Python 、 Ruby 一生下來就擁有優雅的語法，也沒有 Java 或 C# 一樣嚴謹的架構。</p>
-<p>為了急起直追， PHP 在每次重大的版本更新後，便不斷加入新的語言特性；現在的 PHP 可以說是揉合了 Perl 、 C 、 Java 、 JavaScript 的一種語言：</p>
-<p><li>Perl: 最大的特色就是以 $ 號為變數開頭，使得<strong>「變數的變數」</strong>這樣的寫法在 PHP 簡單又容易。</li></p>
-<ul>
-<li>C: PHP 的敘述語法採用 C style ，這是大多數程式開發者習慣的語法。</li>
-<li>Java: PHP 5 散發了濃濃的咖啡味，它的物件導向特性有大部份參考自 Java 的類別與介面。</li>
-<li>JavaScript: 在 PHP 5.3 之後，也融入了 Closure 、 Anonymous Function 等 (請參考 <a href="http://www.php.net/manual/en/migration53.new-features.php" target="_blank" rel="external">PHP 5.3 New features</a>  ) 。</li>
-</ul>
-<p>註：當然這麼多特色的改進之下， PHP 似乎成了四不像，所以在程式語言的狂熱者看來， PHP 似乎真的<strong>醜了點</strong>。</p>
-<p>不過 PHP 到底是為什麼要把這麼多特性加進來呢？</p>
-<h2 id="邁向更先進更穩固的開發模式">邁向更先進更穩固的開發模式</h2><p>隨著 Web 的多元化，現代的語言也必須跟著把自己在 Web 開發上的功能變得更強大；所以在 PHP 改版的同時，也不斷地加強它的適應性。像是 Ajax 與 JSON 開始嶄露頭角的時候， PHP 5.2 就馬上把 json_encode() 等相關的方法放到核心裡。</p>
-<p>而軟體工程也漸漸被引入到 PHP 之中，使它擁有了 Design Pattern 、 Unit Test (<a href="http://www.simpletest.org/" target="_blank" rel="external">SimpleTest</a> 、 <a href="http://www.phpunit.de/" target="_blank" rel="external">PHPUnit</a>)、 Refactoring 等觀念與技術；另外 MVC Framework 、 ORM 等加速開發效率的工具也大量地被創建出來，讓開發者能更快速且更有系統地完成他們的工作。</p>
-<p>這些技術都需要有更高階的語言特性才有辦法進行，也因為如此使得 PHP 不得不做出改變。例如：</p>
-<ul>
-<li>更多元的物件導向特性： <a href="http://www.php.net/manual/en/book.reflection.php" target="_blank" rel="external">Reflection</a> 、 <a href="http://www.php.net/manual/en/book.spl.php" target="_blank" rel="external">SPL</a> 等。</li>
-<li>更強大的安全機制： <a href="http://www.php.net/manual/en/book.filter.php" target="_blank" rel="external">Data Filtering</a> 及<a href="http://www.php.net/manual/en/security.php" target="_blank" rel="external">其他相關安全議題的改良</a>等。</li>
-<li>更抽象的資料處理： <a href="http://www.php.net/manual/en/book.pdo.php" target="_blank" rel="external">PDO</a> 等。</li>
-<li>更便利的文件格式操作： <a href="http://www.php.net/manual/en/book.json.php" target="_blank" rel="external">JSON</a> 、 <a href="http://www.php.net/manual/en/book.xml.php" target="_blank" rel="external">XML Parser</a> 、 <a href="http://www.php.net/manual/en/book.dom.php" target="_blank" rel="external">DOM</a> 等。</li>
-</ul>
-<p>而且 PHP 還有更多的 <a href="http://www.php.net/manual/en/funcref.php" target="_blank" rel="external">Extensions</a> 在背後支持著它，這些全都是為了讓開發者能建立強大而穩固的程式！</p>
-<h2 id="結論">結論</h2><p>PHP 與傳統的 ASP 曾經佔有 Web 開發上非常重要的一席之地，因為它們的出發點與開發過程都非常相似；然而在 ASP 已經式微的現在， PHP 卻依然毅立不搖。因為 PHP 不但保留了原有簡單易學的特性，還隨著時代不斷地改變它自己，朝著更好的方向演進。</p>
-<p>當然，或許 PHP 的語法結構不如其他語言來得優美，也或許 PHP 的商業資源不比其他語言來得豐富；但是 PHP 真的不再是往日的吳下阿蒙，它在 Web 開發上的強大與效率就連 Yahoo! 都欣賞，選擇 PHP 來開發自己旗下的網站服務。</p>
-<p>很多不瞭解 PHP 的開發者容易忽略它在各種應用上的強大，而單純只把它當做是和 HTML 混雜撰寫的 Script 語言。希望本文能做為一個楔子，讓大家能重新瞭解 PHP ！</p>
-<h2 id="參考">參考</h2><ul>
-<li><a href="http://zh.wikipedia.org/zh-tw/PHP" target="_blank" rel="external">Wikipedia - PHP</a></li>
-<li><a href="http://www.php.net/manual/en/" target="_blank" rel="external">PHP Manual</a></li>
-<li><a href="http://365codes.cn/article/sort0111/sort0114/info-1519.html" target="_blank" rel="external">PHP：路在何方？</a></li>
-</ul>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -320,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -399,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -432,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP_想做什麼？"><span class="nav-number">1.</span> <span class="nav-text">PHP 想做什麼？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#語法的加強"><span class="nav-number">2.</span> <span class="nav-text">語法的加強</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#邁向更先進更穩固的開發模式"><span class="nav-number">3.</span> <span class="nav-text">邁向更先進更穩固的開發模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考"><span class="nav-number">5.</span> <span class="nav-text">參考</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -448,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -470,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -480,6 +459,7 @@
 
   
   
+
   
     
     
@@ -509,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -678,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -708,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

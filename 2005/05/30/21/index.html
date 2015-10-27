@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,36 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="有時候執行某些 PHP 網頁時，都會覺得很慢，但又不曉得問題出在哪？以下介紹一個好工具，可以讓我們很容易知道我們寫的 PHP 執行瓶頸在哪裡。
-Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上的偵錯訊息、程式執行了哪些區段，以及其他許多有用的資訊。不過這裡我們僅會用到檢視執行效能上的功能。我示範的平台是以 Windows + Apache 2.0 為主，PHP 版本為 5.0.">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="簡單測試 PHP 執行的效能">
 <meta property="og:url" content="http://jaceju.net/2005/05/30/21/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="有時候執行某些 PHP 網頁時，都會覺得很慢，但又不曉得問題出在哪？以下介紹一個好工具，可以讓我們很容易知道我們寫的 PHP 執行瓶頸在哪裡。
-Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上的偵錯訊息、程式執行了哪些區段，以及其他許多有用的資訊。不過這裡我們僅會用到檢視執行效能上的功能。我示範的平台是以 Windows + Apache 2.0 為主，PHP 版本為 5.0.">
-<meta property="og:image" content="http://jaceju.net/resources/xdebug_profile/01.gif">
-<meta property="og:image" content="http://jaceju.net/resources/xdebug_profile/02.gif">
-<meta property="og:image" content="http://jaceju.net/resources/xdebug_profile/03.gif">
-<meta property="og:image" content="http://jaceju.net/resources/xdebug_profile/05.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="簡單測試 PHP 執行的效能">
-<meta name="twitter:description" content="有時候執行某些 PHP 網頁時，都會覺得很慢，但又不曉得問題出在哪？以下介紹一個好工具，可以讓我們很容易知道我們寫的 PHP 執行瓶頸在哪裡。
-Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上的偵錯訊息、程式執行了哪些區段，以及其他許多有用的資訊。不過這裡我們僅會用到檢視執行效能上的功能。我示範的平台是以 Windows + Apache 2.0 為主，PHP 版本為 5.0.">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 簡單測試 PHP 執行的效能 | 網站製作學習誌 </title>
 </head>
@@ -136,7 +143,7 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -146,7 +153,7 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -156,7 +163,7 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -176,7 +183,8 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -235,30 +243,7 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
       
 
       
-        <span itemprop="articleBody"><p>有時候執行某些 PHP 網頁時，都會覺得很慢，但又不曉得問題出在哪？以下介紹一個好工具，可以讓我們很容易知道我們寫的 PHP 執行瓶頸在哪裡。</p>
-<p><a href="http://www.xdebug.org/" target="_blank" rel="external">Xdebug</a> 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上的偵錯訊息、程式執行了哪些區段，以及其他許多有用的資訊。不過這裡我們僅會用到檢視執行效能上的功能。我示範的平台是以 Windows + Apache 2.0 為主，PHP 版本為 5.0.4 。</p>
-<a id="more"></a>
-<h2 id="安裝">安裝</h2><p>首先我們到 <a href="http://www.xdebug.org/download.php" target="_blank" rel="external">Xdebug 官方網站</a> 下載最新的 Xdebug 2.1.0 (請對應你的 PHP 版本)，並將它複製到 PHP 安裝目錄 的 <code>ext</code> 子資料夾裡。</p>
-<p><strong>補充：</strong>請記得設定 <code>php.ini</code> 的 <code>extension_dir=&quot;c:/php5/ext/&quot;</code> ；或是把 Windows 的 PATH 系統變數後面加上 <code>;c:\php5\ext</code> ，然後重新啟動電腦。</p>
-<p><strong>補充：</strong>有時候 Windows 還是不能找到 <code>ext</code> 底下的 dll 檔 (例如 PHP 5.1 就會如此) ，這時候只要把 <code>c:\php5\ext;</code> 改加在 PATH 變數之前就行了。例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">c:\php5;c:\php5\ext;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem</span><br></pre></td></tr></table></figure>
-<p>接著在 PHP.INI 中加入：</p>
-<figure class="highlight"><figcaption><span>php.ini</span></figcaption><table><tr><td class="code"><pre><span class="line">[Xdebug] zend_extension_ts=php_xdebug.dll</span><br><span class="line">xdebug.profiler_enable=on</span><br><span class="line">xdebug.trace_output_dir=“C:/TEMP/php/xdebug”</span><br><span class="line">xdebug.profiler_output_dir=“C:/TEMP/php/xdebug”</span><br></pre></td></tr></table></figure>
-<p>```</p>
-<p>記得重新啟動 Apache ，否則 Xdebug 是不會動作的。</p>
-<p>檢視 <code>phpinfo()</code> ：</p>
-<p><img src="/resources/xdebug_profile/01.gif" alt=""></p>
-<p>出現 Xdebug 的話，就算完成了。</p>
-<h2 id="檢視執行效能">檢視執行效能</h2><p>接下來，我們任意執行一個 PHP 程式，讓 Xdebug 對它做側寫 (profiling) 。然後我們到 <code>C:\TEMP\php\xdebug\</code> 這個資料夾下，就會看到數支 <code>cachegrind.out.xxxxxxx</code> 檔。用文字編輯器開啟它，裡面就是我們剛剛執行的 PHP 檔所產生的相關偵錯資訊。</p>
-<p>不過這樣實在是不容易看懂它，我們可以借重這個工具： <a href="http://sourceforge.net/projects/wincachegrind" target="_blank" rel="external">WinCacheGrind</a> 來將這些文字檔作較好格式的輸出。一樣下載 WinCacheGrind 回來安裝，而安裝步驟很簡單，就是一直按「下一步」就可以安裝完成，這裡我就不多加描述。</p>
-<p>安裝好後，開啟 WinCacheGrind ，我們可以看到以下畫面：</p>
-<p><img src="/resources/xdebug_profile/02.gif" alt=""></p>
-<p>接著選擇 <code>Tools / Options…</code> ，在 <code>Main</code> 頁籤中的 <code>Working folder</code> 選擇 <code>C:\Temp\php\xdebug</code> 後，按下 <code>OK</code> 。</p>
-<p><img src="/resources/xdebug_profile/03.gif" alt=""></p>
-<p>點兩下想查看的 <code>cachegrint.out</code> ，就會顯示出這支程式所執行過的函式、物件、以及它們的執行秒數。</p>
-<p><img src="/resources/xdebug_profile/05.gif" alt=""></p>
-<p>如果大家有發現什麼 Xdebug 有什麼更棒的功能，歡迎分享。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -303,19 +288,22 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -382,13 +370,17 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -415,8 +407,10 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#檢視執行效能"><span class="nav-number">2.</span> <span class="nav-text">檢視執行效能</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -431,7 +425,8 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -453,7 +448,8 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -463,6 +459,7 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
 
   
   
+
   
     
     
@@ -492,24 +489,21 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -661,29 +655,20 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -691,15 +676,5 @@ Xdebug 是 PHP 上的一個擴充模組，它可以協助我們追蹤程式上�
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

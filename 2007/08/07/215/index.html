@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="以後要自己編譯最新的 Zend Framework CHM 格式的參考手冊了，這裡記一下完整的步驟。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="編譯 Zend Framework CHM 檔案">
 <meta property="og:url" content="http://jaceju.net/2007/08/07/215/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="以後要自己編譯最新的 Zend Framework CHM 格式的參考手冊了，這裡記一下完整的步驟。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="編譯 Zend Framework CHM 檔案">
-<meta name="twitter:description" content="以後要自己編譯最新的 Zend Framework CHM 格式的參考手冊了，這裡記一下完整的步驟。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 編譯 Zend Framework CHM 檔案 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,27 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>以後要自己編譯最新的 Zend Framework CHM 格式的參考手冊了，這裡記一下完整的步驟。</p>
-<a id="more"></a>
-<h2 id="步驟_1">步驟 1</h2><p>安裝 <a href="http://www.cygwin.com/" target="_blank" rel="external">cygwin</a> 主程式，並加入套件 autoconf, automake, make, libxml2, libxml2-devel, libxslt ；安裝路徑我改為 d:\cygwin 。</p>
-<p>註：勾選這些套件時，會把相依的套件也一起裝進來。如果沒有的話，可以把在 setup.exe 同一資料夾下的快取資料夾刪除，重新安裝即可。</p>
-<h2 id="步驟_2">步驟 2</h2><p>下載 <a href="http://www.microsoft.com/downloads/info.aspx?na=22&amp;p=1&amp;SrcDisplayLang=en&amp;SrcCategoryId=&amp;SrcFamilyId=&amp;u=/downloads/details.aspx?FamilyID=00535334-c8a6-452f-9aa0-d597d16580cc&amp;DisplayLang=en" target="_blank" rel="external">HTML Help Workshop</a> ，並安裝它。</p>
-<h2 id="步驟_3">步驟 3</h2><p>執行 cygwin ，以初始化 cygwin 環境，然後輸入 exit 離開。這時候 d:\cygwin\home 會多出一個資料夾，名稱即為你目前登入 Windows 的使用者名稱，這裡我假設為 username 。</p>
-<h2 id="步驟_4">步驟 4</h2><p>在 d:\cygwin\home\username 下執行：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ svn co http://framework.zend.com/svn/framework/trunk/documentation/manual/en</span><br></pre></td></tr></table></figure>
-<p>當然也可以用 <a href="http://tortoisesvn.tigris.org/" target="_blank" rel="external">TortoiseSVN</a> 來取出。</p>
-<h2 id="步驟_5">步驟 5</h2><p> 再執行一次 cygwin ，這時候家目錄就是在 /home/username 底下。進入 en 資料夾開始編譯：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd en&#10;$ autoconf&#10;$ ./configure&#10;$ make</span><br></pre></td></tr></table></figure>
-<p>這樣就會在 d:\cygwin\home\username\en\html\ 底下產生所有 chm 會用到的檔案。</p>
-<h2 id="步驟_6">步驟 6</h2><p>用 PSPad 的多重取代功能，把 d:\cygwin\home\username\en\html\ 底下的 html 檔裡面的 UTF-8 的空白字元代換成 ASCII 的空白字元，以免在 chm 搜尋時會看到亂碼。 (感謝 Mark 協助)</p>
-<p>註：新的 SVN 裡已經不用再做此步驟。</p>
-<h2 id="步驟_7">步驟 7</h2><p>下載修改過的<a href="/resources/zf_manual/zf_manual_style.zip">樣式表及官方少附的小圖示</a>，將它解壓到 d:\cygwin\home\username\en\html\ 資料夾下覆蓋過去即可。</p>
-<h2 id="步驟_8">步驟 8</h2><p>開啟 d:\cygwin\home\username\en\html\htmlhelp.hhp ，編譯成 chm 。完成後在同一資料夾就會產生 htmlhelp.chm ，這個就是我們要的檔案了。</p>
-<h2 id="參考">參考</h2><ul>
-<li><a href="http://blog.xxiyy.com/index.php/archives/24" target="_blank" rel="external">如何正确的编译 Zend Framework 手册的 chm 版本</a></li>
-<li><a href="http://www.phpeye.com/article/view/id/55" target="_blank" rel="external">Windows下搭建Docbook环境</a></li>
-</ul>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -293,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -372,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -405,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#步驟_1"><span class="nav-number">1.</span> <span class="nav-text">步驟 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步驟_2"><span class="nav-number">2.</span> <span class="nav-text">步驟 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步驟_3"><span class="nav-number">3.</span> <span class="nav-text">步驟 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步驟_4"><span class="nav-number">4.</span> <span class="nav-text">步驟 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步驟_5"><span class="nav-number">5.</span> <span class="nav-text">步驟 5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步驟_6"><span class="nav-number">6.</span> <span class="nav-text">步驟 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步驟_7"><span class="nav-number">7.</span> <span class="nav-text">步驟 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步驟_8"><span class="nav-number">8.</span> <span class="nav-text">步驟 8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考"><span class="nav-number">9.</span> <span class="nav-text">參考</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -421,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -443,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -453,6 +459,7 @@
 
   
   
+
   
     
     
@@ -482,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -651,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -681,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

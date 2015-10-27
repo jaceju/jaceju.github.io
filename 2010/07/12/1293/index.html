@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,44 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="一般 Web UI 怎麼測試它們運作是不是正確呢？例如說按下某個按鈕後，是不是跑出我們預期的結果？答案其實很簡單，找幾個人來試就可以了。
-的確大部份的 Web 應用程式開發團隊如果不是工程師自己測試 UI ，就是讓工讀生或是負責這個案子的企劃來測試。但大家也都明白，這樣的測試真的是非常花時間，所以大部份的測試都是都是做到 70% 至 80% 就交給客戶了。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web UI 測試的好幫手 - Selenium">
 <meta property="og:url" content="http://jaceju.net/2010/07/12/1293/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="一般 Web UI 怎麼測試它們運作是不是正確呢？例如說按下某個按鈕後，是不是跑出我們預期的結果？答案其實很簡單，找幾個人來試就可以了。
-的確大部份的 Web 應用程式開發團隊如果不是工程師自己測試 UI ，就是讓工讀生或是負責這個案子的企劃來測試。但大家也都明白，這樣的測試真的是非常花時間，所以大部份的測試都是都是做到 70% 至 80% 就交給客戶了。">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/selenium_ide.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/test_case_property.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/record.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/search.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/search_result.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/test_case.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/run_test.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/create_phpunit_testcase.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/start_server.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/phpunit.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/firefox_selenium_rc.png">
-<meta property="og:image" content="http://jaceju.net/resources/selenium/browser.png">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web UI 測試的好幫手 - Selenium">
-<meta name="twitter:description" content="一般 Web UI 怎麼測試它們運作是不是正確呢？例如說按下某個按鈕後，是不是跑出我們預期的結果？答案其實很簡單，找幾個人來試就可以了。
-的確大部份的 Web 應用程式開發團隊如果不是工程師自己測試 UI ，就是讓工讀生或是負責這個案子的企劃來測試。但大家也都明白，這樣的測試真的是非常花時間，所以大部份的測試都是都是做到 70% 至 80% 就交給客戶了。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> Web UI 測試的好幫手 - Selenium | 網站製作學習誌 </title>
 </head>
@@ -144,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -154,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -164,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -184,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -243,99 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>一般 Web UI 怎麼測試它們運作是不是正確呢？例如說按下某個按鈕後，是不是跑出我們預期的結果？答案其實很簡單，找幾個人來試就可以了。</p>
-<p>的確大部份的 Web 應用程式開發團隊如果不是工程師自己測試 UI ，就是讓工讀生或是負責這個案子的企劃來測試。但大家也都明白，這樣的測試真的是非常花時間，所以大部份的測試都是都是做到 70% 至 80% 就交給客戶了。</p>
-<a id="more"></a>
-<p>而如果今天在專案裡又加入了新功能，不確定會不會影響現在系統的執行，或著是想要對系統程式進行重構的話，我們都必須再一次開啟瀏覽器來驗證原有的功能是否還是正確執行。假設頁面操作的步驟很繁雜時，那麼這樣的測試可能就會要了測試人員的小命。</p>
-<p>其實如果可以讓 UI 測試這件事自動化不是很好嗎？也就是說如果我們能把頁面操作流程以及預期它會出現的結果編寫成測試程式碼的話，就可以減少花費在測試人力的成本了。</p>
-<p>Selenium 就是這個概念下誕生的一套測試框架，它最大的特色就是「直接用真實的瀏覽器來為我們測試頁面上的 UI 」。換句話說，我們建立的測試是真的可以反映出瀏覽器操作時的狀況，當然其中也包含 JavaScript ！</p>
-<p>註：不過畫面偏了幾個 pixels 這種問題，就不是 Selenium 能勝任的工作了。</p>
-<p>接下來就是我簡略的研究心得，如果有謬誤之處，還望大家指正。</p>
-<h2 id="Selenium_IDE">Selenium IDE</h2><p>既然 Selenium 是以真實的瀏覽器做為測試工具，那麼我們該如何建立測試案例呢？因此 Selenium 就提供了一個名稱 Selenium IDE 的工具來協助透過瀏覽器來建立測試案例。</p>
-<p>目前 Selenium IDE 是透過 Firefox 的 Add-on 機制來實作，也就是說目前只能用在 Firefox 或能夠安裝 Firefox Add-on 的瀏覽器上。不過它所產生出來的 Script 就不一定只有 Firefox 才能執行了，我們之後可以指定其他類型的瀏覽器來執行測試。</p>
-<h3 id="建立與執行_Test_Case">建立與執行 Test Case</h3><p>首先先以 Firefox 開啟 Selenium 的<a href="http://seleniumhq.org/" target="_blank" rel="external">下載頁</a>，下載並安裝最新的 Selenium IDE 。完成後就可以在上方工具列的「工具 &gt; Selenium IDE 」開啟如下圖的 Selenium IDE 視窗：</p>
-<p><a href="/resources/selenium/selenium_ide.png"><img src="/resources/selenium/selenium_ide.png" alt="Selenium IDE"></a></p>
-<p>詳細的 Selenium IDE 介面介紹可以參考官方手冊的 <a href="http://seleniumhq.org/docs/03_selenium_ide.html#ide-features" target="_blank" rel="external">IDE Features</a> ，這裡簡單介紹怎麼透過 Selenium IDE 錄製測試。</p>
-<p>首先查看右上角的紅色錄製鈕是否正在錄製中，如果是的話，就先按下它以停止錄製。接著在左方的「 Untitled 」上按下滑鼠右鍵，選擇「 Properties… 」後出現下圖：</p>
-<p><a href="/resources/selenium/test_case_property.png"><img src="/resources/selenium/test_case_property.png" alt="設定 Test Case 屬性"></a></p>
-<p>在這裡我們可以為稍後要錄製的 Test Case 命名，這裡先將 Title 欄位的「 Untitled 」改為「 WebTest 」。</p>
-<p>現在按下右上角的紅色錄製按鈕， Selenium IDE 就會開始幫我們記錄下我們操作頁面的步驟。</p>
-<p><a href="/resources/selenium/record.png"><img src="/resources/selenium/record.png" alt="開始錄製 Test Case"></a></p>
-<p>現在我們以 Google 搜尋為測試，首先切換回 Firefox 瀏覽器，接著連上 Google 搜尋首頁，並輸入搜尋關鍵字：</p>
-<p><a href="/resources/selenium/search.png"><img src="/resources/selenium/search.png" alt="開始搜尋"></a></p>
-<p>按下「 Google 搜尋」鍵，並出現搜尋結果，這時我們可以選取預期會出現的字串，然後按下滑鼠右鍵，選擇驗證的方式：</p>
-<p><a href="/resources/selenium/search_result.png"><img src="/resources/selenium/search_result.png" alt="搜尋結果"></a></p>
-<p>在右鍵選單下方會出現幾個常用的驗證方式，我們也可以在「 Show All Available Commands 」的次選單中看到所有可以用的驗證指令。這些指令的意義可以參考官方手冊的 <a href="http://seleniumhq.org/docs/04_selenese_commands.html" target="_blank" rel="external">Selenium Commands</a> 章節，這裡就不再詳細介紹。</p>
-<p>動作完成之後，切換回 Selenium IDE 並按下紅色錄製按鈕以停止錄製。這時我們就可以看到在 Table 頁籤裡已經有我們剛剛所進行的步驟：</p>
-<p><a href="/resources/selenium/test_case.png"><img src="/resources/selenium/test_case.png" alt="完成 Test Case 錄製"></a></p>
-<p>那麼現在來測試一下剛剛錄製的結果，按下綠色三角型的「執行」鍵，應該就能看到瀏覽器自動執行了剛剛的步驟。</p>
-<p><a href="/resources/selenium/run_test.png"><img src="/resources/selenium/run_test.png" alt="執行 Test Case"></a></p>
-<p>而結果驗證無誤時，上面的畫面就會出現全都是綠色的執行結果。&nbsp;</p>
-<p>按照這個方式，我們可以同時建立多組 Test Case ，並將它們存成 HTML 檔，供後續測試用。每個 Test Case 都會被存成一個 HTML ，最後才用一個 Test Suite 的 HTML 將所有的 Test Case HTML 包含進來。</p>
-<p>除了存為 HTML 檔案之外，我們也可以將這些 Test Case 輸出為可以執行的程式碼，讓支援該程式語言的測試框架可以執行，以達完全自動化的效果。</p>
-<h3 id="匯出其他格式的_Script_檔">匯出其他格式的 Script 檔</h3><p>一般來說，在用 Selenium IDE 錄製好 Test Case 後，我們會希望它能夠自動化執行，因此轉換成測試用的程式是可行的方法之一。另外一個用程式語言的優點是，我們可以在測試中加入流程邏輯、錯誤處理以及資料庫整合等等，這些都是 Selenium IDE 所無法完成的。</p>
-<p>Selenium IDE 支援了多種程式語言格式的輸出，我們只要在工具列選單的「 Options &gt; Format 」次選單中，就可以看到多種程式語言的格式。</p>
-<p>當然這裡我就選擇 PHP 了， Selenium IDE 就會自動幫我們轉換為 PHPUnit 可以執行的 Test Case 程式碼：</p>
-<p><a href="/resources/selenium/create_phpunit_testcase.png"><img src="/resources/selenium/create_phpunit_testcase.png" alt="輸出成 PHPUnit Test Case"></a></p>
-<p>然後我們把 Source 複製下來，貼到新的檔案上，假設它是 D:\WebTest.php ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;PHPUnit/Extensions/SeleniumTestCase.php&#39;;&#10;class Example extends PHPUnit_Extensions_SeleniumTestCase&#10;&#123;&#10;  protected function setUp()&#10;  &#123;&#10;    $this-&#62;setBrowser(&#34;*chrome&#34;);&#10;    $this-&#62;setBrowserUrl(&#34;http://change-this-to-the-site-you-are-testing/&#34;);&#10;  &#125;&#10;  public function testMyTestCase()&#10;  &#123;&#10;    $this-&#62;open(&#34;/&#34;);&#10;    $this-&#62;type(&#34;q&#34;, &#34;jaceju&#34;);&#10;    $this-&#62;click(&#34;btnG&#34;);&#10;    $this-&#62;waitForPageToLoad(&#34;30000&#34;);&#10;    $this-&#62;assertTrue($this-&#62;isTextPresent(&#34;&#32178;&#31449;&#35069;&#20316;&#23416;&#32722;&#35468;&#34;));&#10;  &#125;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<p>不過在產生的 Script 中，網址的部份似乎還有 Bug ，因為它不會改寫為我們目前要測試的網址。所以請把：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;setBrowserUrl(&#34;http://change-this-to-the-site-you-are-testing/&#34;);</span><br></pre></td></tr></table></figure>
-<p>改為：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;setBrowserUrl(&#34;http://www.google.com.tw/&#34;);</span><br></pre></td></tr></table></figure>
-<p>另外我們也可以在工具列選單上選擇「檔案 &gt; Export Test Case As 」來輸出其他格式的檔案，省卻複製的這個步驟。</p>
-<p>註：關於 PHPUnit 整合 Selenium 的說明，可以參考 PHPUnit 官方手冊的 <a href="http://www.phpunit.de/manual/current/en/selenium.html" target="_blank" rel="external">PHPUnit and Selenium</a> 一章。</p>
-<p>每個 Test Case 都可以依照這些方式來產生可以用 PHPUnit 測試的 PHP Script 檔，然後將它們放在專案的測試目錄中。</p>
-<p>不過在使用 PHPUnit 來執行這些 Test Case 時，它們要怎麼啟動瀏覽器來測試呢？這就得靠以下所要介紹的 Selenium RC 伺服器來輔助了。</p>
-<h2 id="Selenium_RC">Selenium RC</h2><p>在透過 PHPUnit 或其他 xUnit 來執行我們建立的 Test Case 測試檔時，必須要能夠啟動瀏覽器來測試，這個工作就要交給 Selenium RC Server 來幫我們代勞了。由於 Selenium RC Server 是用 JAVA 所開發的，所以不限制執行的平台，只要這些平台能夠啟動瀏覽器供測試即可。</p>
-<p>請按照以下步驟安裝與執行 Selenium RC Server ：</p>
-<ul>
-<li><p>下載 <a href="http://seleniumhq.org/download/" target="_blank" rel="external">Selenium RC</a> (selenium-remote-control-1.0.x.zip) 。</p>
-</li>
-<li><p>解開，將 selenium-server-1.0.x 解開至 C: (或任何你方便執行的位置) ，並重新命名為 selenium-server 。</p>
-</li>
-<li><p>在 Windows 下，將 Firefox (或其他瀏覽器) 的執行檔所在路徑加入 Path 系統環境變數中。</p>
-</li>
-<li><p>在命令列模式下執行「 java -jar /path/to/selenium-server.jar 」，啟動 Selenium RC Server 。</p>
-</li>
-</ul>
-<p>完成後應該就會出現下圖所示的結果了：</p>
-<p><a href="/resources/selenium/start_server.png"><img src="/resources/selenium/start_server.png" alt="啟動 Selenium RC Server"></a></p>
-<p><a href="http://www.phpunit.de/manual/current/en/selenium.html" target="_blank"></a>接下來重新開啟一個命令列模式，以 phpunit 指令來測試我們的 Test Case ：</p>
-<p>註：在此之前，請先確認已經安裝好 PHPUnit 3 ，請參考 PHPUnit 官方手冊的 <a href="http://www.phpunit.de/manual/current/en/installation.html" target="_blank" rel="external">Installing PHPUnit</a> 一章。</p>
-<p><a href="/resources/selenium/phpunit.png"><img src="/resources/selenium/phpunit.png" alt="執行 PHPUnit Test Case"></a></p>
-<p>在執行測試的過程中，你應該會看到 Selenium RC Sever 自動啟動了我們的 Firefox 瀏覽器：</p>
-<p><a href="/resources/selenium/firefox_selenium_rc.png"><img src="/resources/selenium/firefox_selenium_rc.png" alt="Firefox 啟動 Selenium RC 視窗"></a></p>
-<p>然後進行先前我們錄製的測試：</p>
-<p><a href="/resources/selenium/browser.png"><img src="/resources/selenium/browser.png" alt="自動開啟 Browser"></a></p>
-<p>如果你有注意到我們在 Test Case 裡指定的瀏覽器是「 <em>chrome 」，但 Selenium RC Server 啟動的卻是 Firefox ，請別太訝異。這是因為「 </em>chrome 」在這裡用來執行一個特別模式的 Firefox ，跟 Google 的 Chrome 無關。如果需要用 Google Chrome 的話，就要改用「 *googlechrome 」。</p>
-<p>註：由於我本身對 Selenium RC 也是剛剛入門，所以許多功能還在摸索中；因此如果想瞭解更多有關 Selenium RC 的特色的話，可以參考<a href="http://seleniumhq.org/docs/05_selenium_rc.html" target="_blank" rel="external">官方手冊</a>。</p>
-<h2 id="心得與想法">心得與想法</h2><p>以下是我在研究 Selenium 時的一些想法，或是從前輩那裡聽來的一些經驗，供大家參考。</p>
-<h3 id="用設計樣版建立測試">用設計樣版建立測試</h3><p>在專案初期，我們常常都會先拿到設計人員完成的 HTML 樣版，這些樣版通常已經會設定好連結或表單送出的結果 (當然是假資料) ；這麼做的目的當然是為了讓客戶瞭解網站執行的流程，也可以修正是否有動線不順暢的問題。</p>
-<p>當客戶確認之後，或許我們就可以利用這些樣版，透過 Selenium IDE 來來產生 Test Case ；這樣一來就可以省下一些上線前所要花費用來測試 UI 的人力。</p>
-<p>註：不過也因為有時樣版做得太好，客戶以為離上線時間不遠矣…然後工程師的惡夢就開始了。而且還要小心在程式開發期間，客戶突然對畫面不滿意的狀況發生。</p>
-<h3 id="安排夜間測試">安排夜間測試</h3><p>通常執行 Selenium 測試是很花時間及機器效能的，因為瀏覽器要不停啟動、關閉、啟動、關閉，這樣一來就有可能耗費掉工程師使用機器開發的時間。</p>
-<p>因此如果能將測試全部先寫好，然後安排在下班後的夜間來做測試，應該會是一個比較好的解決方式。當然如果發現問題，也可以依賴 Selenium RC Server 的記錄來檢查。</p>
-<p>當然是否要利用這樣的模式來做 Selenium 測試，還是要看各位實際的狀況與開發經驗，這些想法就供大家參考。</p>
-<h2 id="相關參考文章">相關參考文章</h2><p>目前網路上能找到許多不錯的 Selenium 文章，介紹了更多 Selenium 的有趣特色：</p>
-<ul>
-<li><p><a href="http://scw1109.wordpress.com/2006/07/26/selenium-ide-測試，原來也可以這麼輕鬆/" target="_blank" rel="external">Selenium IDE – 測試，原來也可以這麼輕鬆</a></p>
-</li>
-<li><p><a href="http://repeat.tw/blog/post/26423666" target="_blank" rel="external">Selenium IDE 的一些心得</a></p>
-</li>
-<li><p><a href="http://www.jroller.com/selenium/entry/selenium_overview_tutorial" target="_blank" rel="external">Selenium   tutorial/overview</a> </p>
-</li>
-<li><p><a href="http://stackoverflow.com/questions/1317055/how-to-run-google-chrome-with-selenium-rc" target="_blank" rel="external">How to run Google Chrome with Selenium RC?</a></p>
-</li>
-</ul>
-<p>另外<a href="http://blog.roodo.com/rocksaying" target="_blank" rel="external">石頭成</a>也寫了一些不錯的 Selenium 參考文章，裡面的觀念非常值得一讀：</p>
-<ul>
-<li><p><a href="http://blog.roodo.com/rocksaying/archives/5627955.html" target="_blank" rel="external">以 Apache proxy 與 rewrite modules 解決 Selenium   Core 的運行限制</a></p>
-</li>
-<li><p><a href="http://blog.roodo.com/rocksaying/archives/5895631.html" target="_blank" rel="external">A patch of isEditable of Selenium Core 0.83</a></p>
-</li>
-</ul>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -382,19 +290,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -461,13 +372,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -494,8 +409,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Selenium_IDE"><span class="nav-number">1.</span> <span class="nav-text">Selenium IDE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立與執行_Test_Case"><span class="nav-number">1.1.</span> <span class="nav-text">建立與執行 Test Case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匯出其他格式的_Script_檔"><span class="nav-number">1.2.</span> <span class="nav-text">匯出其他格式的 Script 檔</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selenium_RC"><span class="nav-number">2.</span> <span class="nav-text">Selenium RC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得與想法"><span class="nav-number">3.</span> <span class="nav-text">心得與想法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用設計樣版建立測試"><span class="nav-number">3.1.</span> <span class="nav-text">用設計樣版建立測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安排夜間測試"><span class="nav-number">3.2.</span> <span class="nav-text">安排夜間測試</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相關參考文章"><span class="nav-number">4.</span> <span class="nav-text">相關參考文章</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -510,7 +427,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -532,7 +450,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -542,6 +461,7 @@
 
   
   
+
   
     
     
@@ -571,24 +491,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -740,29 +657,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -770,15 +678,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

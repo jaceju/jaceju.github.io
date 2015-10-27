@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="小魚發現了一個 IE 的表單的問題：
-如果表單上只有一個 text 欄位和多個有 name 屬性的 submit 按鈕，那麼當表單焦點在 text 欄位時，我們按下 Enter 鍵時，瀏覽器預設會把表單送出。
-但是如果是在 IE 上執行這個動作，那麼後端的 PHP 程式只會收到 text 欄位的值，而不會有 submit 按鈕的值；而其他瀏覽器 (如 Firefox ) 則不會有這個問題。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[HTML] IE 表單 Enter 的 Bug">
 <meta property="og:url" content="http://jaceju.net/2008/12/11/367/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="小魚發現了一個 IE 的表單的問題：
-如果表單上只有一個 text 欄位和多個有 name 屬性的 submit 按鈕，那麼當表單焦點在 text 欄位時，我們按下 Enter 鍵時，瀏覽器預設會把表單送出。
-但是如果是在 IE 上執行這個動作，那麼後端的 PHP 程式只會收到 text 欄位的值，而不會有 submit 按鈕的值；而其他瀏覽器 (如 Firefox ) 則不會有這個問題。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[HTML] IE 表單 Enter 的 Bug">
-<meta name="twitter:description" content="小魚發現了一個 IE 的表單的問題：
-如果表單上只有一個 text 欄位和多個有 name 屬性的 submit 按鈕，那麼當表單焦點在 text 欄位時，我們按下 Enter 鍵時，瀏覽器預設會把表單送出。
-但是如果是在 IE 上執行這個動作，那麼後端的 PHP 程式只會收到 text 欄位的值，而不會有 submit 按鈕的值；而其他瀏覽器 (如 Firefox ) 則不會有這個問題。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [HTML] IE 表單 Enter 的 Bug | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,29 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>小魚發現了一個 IE 的表單的問題：</p>
-<p>如果表單上只有一個 text 欄位和多個有 name 屬性的 submit 按鈕，那麼當表單焦點在 text 欄位時，我們按下 Enter 鍵時，瀏覽器預設會把表單送出。</p>
-<p>但是如果是在 IE 上執行這個動作，那麼後端的 PHP 程式只會收到 text 欄位的值，而不會有 submit 按鈕的值；而其他瀏覽器 (如 Firefox ) 則不會有這個問題。</p>
-<a id="more"></a>
-<p>以下是範例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&#62;&#10;&#60;title&#62;Enter Test&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;?php&#10;var_dump($_POST);&#10;?&#62;&#10;&#60;form method=&#34;POST&#34; action=&#34;?&#34;&#62;&#10;&#60;p&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;T1&#34; size=&#34;20&#34;&#62;&#10;&#60;strong&#62;&#60;input type=&#34;submit&#34; value=&#34;Submit1&#34; name=&#34;B1&#34;&#62;&#60;/strong&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;Submit2&#34; name=&#34;B2&#34;&#62;&#10;&#60;/p&#62;&#10;&#60;/form&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>以上程式請存為 iebug.php ，放在網站根目錄下執行。在 IE 執行並在 text 欄位輸入 abc 按下 Enter 鍵後，得到的結果如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;b&#62;array&#60;/b&#62;&#10;&#39;T1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;abc&#39; &#60;i&#62;(length=3)&#60;/i&#62;</span><br></pre></td></tr></table></figure>
-<p>而在 Firefox 結果如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;b&#62;array&#60;/b&#62;&#10;&#39;T1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;abc&#39; &#60;i&#62;(length=3)&#60;/i&#62;&#10;&#39;B1&#39; =&#62; &#60;small&#62;string&#60;/small&#62; &#39;Submit1&#39; &#60;i&#62;(length=7)&#60;/i&#62;</span><br></pre></td></tr></table></figure>
-<p>也就是 Firefox 會將<strong>按下 Enter 鍵當做是按下第一個 Submit 鈕</strong>，而 IE 就不把它當做一回事了。 </p>
-<p>我幫小魚查了一下資料，發現國外已經有人提出這個 IE 的特色 (Bug?) 了：</p>
-<ul>
-<li><a href="http://www.devside.net/blog/linux-windows-bug-feature" target="_blank" rel="external">It’s Not a Bug, It’s a Feature… No, It Really Is. Microsoft vs. Linux</a></li>
-</ul>
-<p>小魚也發現如果在第一個 text 欄位後再放一個 text 欄位，那麼 IE 就會正常 (?) 把按下 Enter 鍵視為按下第一個 Submit 鈕。</p>
-<p>在小魚提出這個發現後，我也剛好查到國外有人提出了相關的解法：</p>
-<ul>
-<li><a href="http://www.thehenrys.net/wp/?p=14" target="_blank" rel="external">IE Bug: One Text Input / Enter Key Doesn’t Submit</a></li>
-</ul>
-<p>做法就是把剛剛額外加的 text 欄位用 style=”visibility:hidden;display:none;” 藏起來。</p>
-<p>以上幫小魚記錄一下這個問題，以後方便她查囉。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -301,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -380,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -413,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -429,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -451,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,6 +459,7 @@
 
   
   
+
   
     
     
@@ -490,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -659,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -689,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

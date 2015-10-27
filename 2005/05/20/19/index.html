@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,40 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="最近遇到的一個問題： IE 上能否解決 div 圖層被 select 下拉式選單遮住的問題？如下圖：
 
-我透過 Google 大神，找到了下面這篇文章，它解決了這個問題：
-Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed controls in IE.">
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解決下拉式選單覆蓋圖層的問題">
 <meta property="og:url" content="http://jaceju.net/2005/05/20/19/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="最近遇到的一個問題： IE 上能否解決 div 圖層被 select 下拉式選單遮住的問題？如下圖：
-
-我透過 Google 大神，找到了下面這篇文章，它解決了這個問題：
-Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed controls in IE.">
-<meta property="og:image" content="http://jaceju.net/resources/select_cover/select1.png">
-<meta property="og:image" content="http://jaceju.net/resources/select_cover/select2.png">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解決下拉式選單覆蓋圖層的問題">
-<meta name="twitter:description" content="最近遇到的一個問題： IE 上能否解決 div 圖層被 select 下拉式選單遮住的問題？如下圖：
+<meta name="twitter:description">
 
-我透過 Google 大神，找到了下面這篇文章，它解決了這個問題：
-Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed controls in IE.">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 解決下拉式選單覆蓋圖層的問題 | 網站製作學習誌 </title>
 </head>
@@ -140,7 +143,7 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -150,7 +153,7 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -160,7 +163,7 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -180,7 +183,8 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -239,23 +243,7 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
       
 
       
-        <span itemprop="articleBody"><p>最近遇到的一個問題： IE 上能否解決 <code>div</code> 圖層被 <code>select</code> 下拉式選單遮住的問題？如下圖：</p>
-<p><img src="/resources/select_cover/select1.png" alt=""></p>
-<p>我透過 Google 大神，找到了下面這篇文章，它解決了這個問題：</p>
-<p><a href="http://dotnetjunkies.com/WebLog/jking/archive/2003/10/30/2975.aspx" target="_blank" rel="external">Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed controls in IE.</a></p>
-<a id="more"></a>
-<p>在 IE 上， <code>select</code> 標籤屬於視窗化控制元件，因此會蓋在所有圖層的上方。解決的方式是用一個空的 <code>iframe</code> 標籤，在圖層出現前，先壓在 <code>select</code> 的上方，然後再將圖層疊上去。</p>
-<p>註：在這篇文章之前有一篇「 How to cover an IE windowed control (Select Box, ActiveX Object, etc.) with a DHTML layer」，不過這篇文章因為被 Spam Attack ，所以會造成瀏覽器無法回應，只能用 Opera 開啟。</p>
-<p>總結了裡面的討論，我參考原作者的 JavaScript ，改良出一個通用的 function 。裡面用到了一些特殊的功能，讓 IE 以外的瀏覽器不透過 <code>iframe</code> 的協助，因為它們並不會有類似的問題。</p>
-<p><img src="/resources/select_cover/select2.png" alt=""></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line"><span class="id">#container</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin-left</span>:<span class="value"> -<span class="number">300px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">600px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="cal"></span><br><span class="line">function showDiv(sDivID, bState) &#123;</span><br><span class="line">    <span class="keyword">var</span> oDiv = document.getElementById(sDivID);</span><br><span class="line">    /*@cc_on</span><br><span class="line">    @<span class="keyword">if</span> (@_jscript_version &gt;= <span class="number">5</span>)</span><br><span class="line">    try &#123;</span><br><span class="line">        <span class="keyword">var</span> oIframe = document.getElementById(<span class="string">'HelpFrame'</span>);</span><br><span class="line">        oIframe.scrolling = <span class="string">'no'</span>;</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        <span class="keyword">var</span> oIframe = document.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">        <span class="keyword">var</span> oParent = oDiv.parentNode;</span><br><span class="line">        oIframe.id = <span class="string">'HelpFrame'</span>;</span><br><span class="line">        oParent.appendChild(oIframe);</span><br><span class="line">    &#125;</span><br><span class="line">    oIframe.frameborder = <span class="number">0</span>;</span><br><span class="line">    oIframe.style.position = <span class="string">'absolute'</span>;</span><br><span class="line">    oIframe.style.top = <span class="number">0</span>;</span><br><span class="line">    oIframe.style.left = <span class="number">0</span>;</span><br><span class="line">    oIframe.style.display = <span class="string">'none'</span>;</span><br><span class="line">    @<span class="keyword">end</span> @*/</span><br><span class="line">    <span class="keyword">if</span> (bState) &#123;</span><br><span class="line">        oDiv.style.display = <span class="string">'block'</span>;</span><br><span class="line">        /*@cc_on</span><br><span class="line">        @<span class="keyword">if</span> (@_jscript_version &gt;= <span class="number">5</span>)</span><br><span class="line">        oIframe.style.top = oDiv.style.top;</span><br><span class="line">        oIframe.style.left = oDiv.style.left;</span><br><span class="line">        oIframe.style.zIndex = oDiv.style.zIndex - <span class="number">1</span>;</span><br><span class="line">        oIframe.style.width = parseInt(oDiv.offsetWidth);</span><br><span class="line">        oIframe.style.height = parseInt(oDiv.offsetHeight);</span><br><span class="line">        oIframe.style.display = <span class="string">'block'</span>;</span><br><span class="line">        @<span class="keyword">end</span> @*/</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        /*@cc_on</span><br><span class="line">        @<span class="keyword">if</span> (@_jscript_version &gt;= <span class="number">5</span>)</span><br><span class="line">        oIframe.style.display = <span class="string">'none'</span>;</span><br><span class="line">        @<span class="keyword">end</span> @*/</span><br><span class="line">        oDiv.style.display = <span class="string">'none'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">option</span>&gt;</span>A Select Box is Born ....<span class="tag">&lt;/<span class="title">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"showDiv('PopupDiv', true); return false;"</span>&gt;</span>Click to show DIV.<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">onclick</span>=<span class="value">"showDiv('PopupDiv', false); return false;"</span>&gt;</span>Click to hide DIV.<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"PopupDiv"</span> <span class="attribute">style</span>=<span class="value">"position:absolute; top:10px; left:50px; height: 40px; padding:4px; display:none; background-color:#000000; color:#ffffff; z-index:100;"</span>&gt;</span> .... and a DIV can cover it up<span class="tag">&lt;<span class="title">br</span> /&gt;</span></span><br><span class="line">through the help of an IFRAME. <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>執行結果：</p>
-<iframe src="/resources/select_cover/frame.htm" width="80%" height="200"></iframe>
-
-<p>有興趣的朋友請自行研究，有使用上的問題也歡迎告知。</p>
-<p>補述：如果在 Dreamweaver 已用內建的圖層隱藏功能的話，直接把 showDiv 函式加在後面即可。例如：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">onmouseover="MM_showHideLayers('Layer1','','show'); showDiv('Layer1', true);"</span><br><span class="line">onmouseout="MM_showHideLayers('Layer1','','hide'); showDiv('Layer1', false);"</span><br></pre></td></tr></table></figure>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -300,19 +288,22 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -379,13 +370,17 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -412,6 +407,8 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -428,7 +425,8 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,7 +448,8 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -460,6 +459,7 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
 
   
   
+
   
     
     
@@ -489,24 +489,21 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -658,29 +655,20 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -688,15 +676,5 @@ Sample for using a DIV IFRAME shim to cover over SELECT Boxes and other windowed
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

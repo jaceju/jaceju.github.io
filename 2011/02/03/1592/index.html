@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="在 PHP 中，傳遞物件是很容易的事；我們只需要將物件的狀態封裝起來後，以字串的方式傳遞給另一端的程式還原執行即可。物件的傳遞用途很多，例如我們在 Gearman 中，就可以在 client 把物件當做是 job data 傳遞給 Server 。
-註： Gearman 的介紹可以參考拙作：Gearman 心得。
-以下我們來看看範例。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PHP] 簡易的物件傳遞方法">
 <meta property="og:url" content="http://jaceju.net/2011/02/03/1592/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="在 PHP 中，傳遞物件是很容易的事；我們只需要將物件的狀態封裝起來後，以字串的方式傳遞給另一端的程式還原執行即可。物件的傳遞用途很多，例如我們在 Gearman 中，就可以在 client 把物件當做是 job data 傳遞給 Server 。
-註： Gearman 的介紹可以參考拙作：Gearman 心得。
-以下我們來看看範例。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[PHP] 簡易的物件傳遞方法">
-<meta name="twitter:description" content="在 PHP 中，傳遞物件是很容易的事；我們只需要將物件的狀態封裝起來後，以字串的方式傳遞給另一端的程式還原執行即可。物件的傳遞用途很多，例如我們在 Gearman 中，就可以在 client 把物件當做是 job data 傳遞給 Server 。
-註： Gearman 的介紹可以參考拙作：Gearman 心得。
-以下我們來看看範例。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [PHP] 簡易的物件傳遞方法 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,20 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>在 PHP 中，傳遞物件是很容易的事；我們只需要將物件的狀態封裝起來後，以字串的方式傳遞給另一端的程式還原執行即可。物件的傳遞用途很多，例如我們在 Gearman 中，就可以在 client 把物件當做是 job data 傳遞給 Server 。</p>
-<p>註： Gearman 的介紹可以參考拙作：<a href="http://www.jaceju.net/blog/archives/1211" target="_blank" rel="external">Gearman 心得</a>。</p>
-<p>以下我們來看看範例。</p>
-<a id="more"></a>
-<p>假設我們有個 Event 類別：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class Event&#10;&#123;&#10;    protected $_name = null;&#10;    public function __construct($name)&#10;    &#123;&#10;        $this-&#62;_name = (string) $name;&#10;    &#125;&#10;    public function getName()&#10;    &#123;&#10;        return $this-&#62;_name;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>然後在 client.php 中我們建立了一個 Event 物件 $event ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Event.php&#39;;&#10;$event = new Event(&#39;test&#39;);&#10;file_put_contents(&#39;event.txt&#39;, serialize($event));</span><br></pre></td></tr></table></figure>
-<p>在這邊我們把 $event 實體用 serialize 這個方法序列化，這樣就能把 $event 實體的狀態封裝起來了。</p>
-<p>最後我們在 server.php 中還原它：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Event.php&#39;;&#10;if (!file_exists(&#39;event.txt&#39;)) &#123;&#10;    exit;&#10;&#125;&#10;$event = unserialize(file_get_contents(&#39;event.txt&#39;));&#10;echo $event-&#62;getName();</span><br></pre></td></tr></table></figure>
-<p>要注意的是，我們必須把 Event 類別的宣告也包含進來，這樣 unserialize 才能正確還原物件。而還原後的 $event 實體，就跟我們在 client.php 建立的 $event 實體的狀態是一模一樣的了。</p>
-<p>當然如果物件裡有些狀態是我們所不想傳遞出去時，這時候可以在類別裡定義 <strong>sleep 這個魔術方法來回傳我們想要保留的屬性，而 </strong>wakeup 方法則可以協助我們在 unserialize 後，執行一些初始化的方法；詳細的說明可以參考官方手冊裡 <a href="http://www.php.net/manual/en/language.oop5.magic.php" target="_blank" rel="external">Magic Method</a> 一節。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -292,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -371,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -404,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -420,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -442,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -452,6 +459,7 @@
 
   
   
+
   
     
     
@@ -481,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -650,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -680,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

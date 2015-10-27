@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="在我從事 Web 開發這段期間，其實一直依賴著很多好用的工具及參考文件；當然也不是所有的工具和文件我都精通，但它們確實幫我節省了很多開發的時間，也讓我學到很多有趣的技術。
-以下我就來分享一些我收集並放在手邊參考的資訊，我也會大略地描述它們的內容與用途。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的 Web 開發工具">
 <meta property="og:url" content="http://jaceju.net/2012/01/23/my-webdev-tools/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="在我從事 Web 開發這段期間，其實一直依賴著很多好用的工具及參考文件；當然也不是所有的工具和文件我都精通，但它們確實幫我節省了很多開發的時間，也讓我學到很多有趣的技術。
-以下我就來分享一些我收集並放在手邊參考的資訊，我也會大略地描述它們的內容與用途。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T06:20:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的 Web 開發工具">
-<meta name="twitter:description" content="在我從事 Web 開發這段期間，其實一直依賴著很多好用的工具及參考文件；當然也不是所有的工具和文件我都精通，但它們確實幫我節省了很多開發的時間，也讓我學到很多有趣的技術。
-以下我就來分享一些我收集並放在手邊參考的資訊，我也會大略地描述它們的內容與用途。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 我的 Web 開發工具 | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,421 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>在我從事 Web 開發這段期間，其實一直依賴著很多好用的工具及參考文件；當然也不是所有的工具和文件我都精通，但它們確實幫我節省了很多開發的時間，也讓我學到很多有趣的技術。</p>
-<p>以下我就來分享一些我收集並放在手邊參考的資訊，我也會大略地描述它們的內容與用途。</p>
-<a id="more"></a>
-<h2 id="Javascript">Javascript</h2><h3 id="Formatter">Formatter</h3><ul>
-<li><p><a href="http://jsbeautifier.org/" target="_blank" rel="external">Online javascript beautifier</a></p>
-<p>用來格式化雜亂無章的 JavaScript 程式碼，通常我都用來偷看別人壓縮過的 JavaScript 是怎麼寫的。</p>
-</li>
-<li><p><a href="http://jscompress.com/" target="_blank" rel="external">Online JavaScript Packer</a></p>
-<p>跟上面那個剛好相反，用來打包 JavaScript 程式碼。當然目前還有很多更好的選擇，能直接整合在開發流程裡，但線上版的總是比較方便。</p>
-</li>
-</ul>
-<h3 id="Library_/_CDN">Library / CDN</h3><ul>
-<li><p><a href="http://www.cdnjs.com/" target="_blank" rel="external">cdn js - the missing cdn</a></p>
-<p>這個網站幫我們很多常見的 JavaScript Library 放在 CDN 服務上。如果 Google Libraries API 找不到的話，可以來這裡找找看。</p>
-</li>
-<li><p><a href="http://microjs.com/" target="_blank" rel="external">Microjs</a></p>
-<p>這個網站收集了很多較不常見的 JavaScript Library ，並且分門別類讓我們可以清楚的瞭解它們的用途。通常我用到的機會不大，但有用到時，就會發現有很多寶可以挖。</p>
-</li>
-<li><p><a href="http://medialize.github.com/URI.js/" target="_blank" rel="external">URI.js - URLs in Javascript</a></p>
-<p>用來解析網址的好工具，我目前是用它來製作 Portable 的 Backbone.js 程式。</p>
-</li>
-</ul>
-<h3 id="JSON">JSON</h3><ul>
-<li><p><a href="http://jsonviewer.stack.hu/" target="_blank" rel="external">Online JSON Viewer</a> / <a href="http://json.parser.online.fr/" target="_blank" rel="external">Json Parser Online</a></p>
-<p>這兩個工具可以用樹狀的方式來呈現 JSON 輸出；除了可以用來驗證 JSON 外，我通常也用來看 JSON 的結構是不是正確的。</p>
-</li>
-</ul>
-<h3 id="Converter">Converter</h3><ul>
-<li><p><a href="http://js2coffee.org/" target="_blank" rel="external">Js2coffee</a></p>
-<p>這個工具可以幫我們把 JavaScript 轉成 CoffeeScript ；有趣的是，它也是 CoffeeScript 寫的。一開始學習 CoffeeScript 時，用到的機會比較多。</p>
-</li>
-</ul>
-<h3 id="Syntax">Syntax</h3><ul>
-<li><p><a href="http://bonsaiden.github.com/JavaScript-Garden/" target="_blank" rel="external">JavaScript Garden</a></p>
-<p>這是收集了一些 JavaScript 常見問題的網站，通常我在遇到某些語法問題時，會來看看。</p>
-</li>
-</ul>
-<h3 id="Online_Tester">Online Tester</h3><ul>
-<li><p><a href="http://jsfiddle.net/" target="_blank" rel="external">jsFiddle</a></p>
-<p>線上測試 JavaScript 的好用服務，而且也提供一些主流 JavaScript Library 的預載。</p>
-</li>
-<li><p><a href="http://tinkerbin.com/" target="_blank" rel="external">Tinkerbin</a></p>
-<p>跟 jsFiddle 一樣的服務，但它直接支援 CoffeeScript/SASS/LESS 等語法。</p>
-</li>
-<li><p><a href="http://jsbin.com/#javascript,html" target="_blank" rel="external">JS Bin</a></p>
-<p>這個服務也可以線上測試 JavaScript ，也支援多數主流 JavaScript Library 。</p>
-</li>
-</ul>
-<h3 id="jQuery">jQuery</h3><ul>
-<li><p><a href="http://api.jquery.com/" target="_blank" rel="external">jQuery API</a></p>
-<p>開發 jQuery 必備參考手冊。</p>
-</li>
-<li><p><a href="http://www.appelsiini.net/projects/lazyload" target="_blank" rel="external">Lazy Load Plugin for jQuery</a></p>
-<p>延遲載圖的 jQuery Plugin ，目前我是用在圖多的網站上。</p>
-</li>
-<li><p><a href="http://jquery.malsup.com/form/" target="_blank" rel="external">jQuery Form Plugin</a></p>
-<p>讓表單支援 Ajax 的好工具，也能使用 Ajax 來處理檔案上傳；它一直是我最愛的 jQuery Plugin 之一。</p>
-</li>
-<li><p><a href="http://www.datatables.net/" target="_blank" rel="external">DataTables (table plug-in for jQuery)</a></p>
-<p>很漂亮且功能強大的 Table Plugin ，而且支援 jQuery UI 的 Theme 。</p>
-</li>
-<li><p><a href="http://pinesframework.org/pnotify/" target="_blank" rel="external">Pines Notify</a></p>
-<p>類似 Mac 上的 Growl ，讓網站可以在網頁右上方顯示通知。</p>
-</li>
-</ul>
-<h3 id="Backbone-js">Backbone.js</h3><ul>
-<li><p><a href="http://documentcloud.github.com/backbone/" target="_blank" rel="external">Backbone.js</a></p>
-<p>Backbone.js 的官方網站，同時也是參考手冊；目前是我最常瀏覽的網站。</p>
-</li>
-<li><p><a href="http://documentcloud.github.com/underscore/" target="_blank" rel="external">Underscore.js</a></p>
-<p>除了是 Backbone.js 必要的 library 外，它裡面提供的很多功能對 JavaScript 開發也非常有用。</p>
-</li>
-<li><p><a href="http://backbonetutorials.com/" target="_blank" rel="external">Backbone.js Tutorials</a></p>
-<p>收集了一些 Backbone.js 的教學文件。</p>
-</li>
-<li><p><a href="https://github.com/documentcloud/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites" target="_blank" rel="external">Tutorials, blog posts and example sites</a></p>
-<p>Backbone.js 官方列出的教學與範例原始碼，我有時會來這裡看高手是怎麼用 Backbone.js 。</p>
-</li>
-<li><p><a href="http://ricostacruz.com/backbone-patterns/" target="_blank" rel="external">Backbone patterns</a></p>
-<p>使用 Backbone.js 可以應用的一些 Patterns ，有很多好用的密技。</p>
-</li>
-<li><p><a href="https://github.com/tbranyen/backbone-boilerplate" target="_blank" rel="external">Backbone Boilerplate</a></p>
-<p>一個結合了後端 Node.js 程式，很完整的 Backbons.js App 範本。</p>
-</li>
-</ul>
-<h2 id="CSS">CSS</h2><h3 id="SASS_Tools">SASS Tools</h3><ul>
-<li><p><a href="http://sass-lang.com/" target="_blank" rel="external">SASS</a></p>
-<p>提供可程式化的 CSS 語法，也是我目前在 Web 開發上的利器。</p>
-</li>
-<li><p><a href="http://compass-style.org/" target="_blank" rel="external">Compass</a></p>
-<p>目前是我製作前端網站必備工具之一，它在 SASS 語法上加入更多方便的外掛，讓我可以很輕鬆地處理很多原本很複雜的 CSS 。</p>
-</li>
-<li><p><a href="http://css2sass.heroku.com/" target="_blank" rel="external">css2sass</a></p>
-<p>這個工具可以把 CSS 轉換成 SASS ，當我需要把某些別人寫好的 CSS 片段放到目前的 SASS 檔案中時，我就會用這個工具來協助我轉換。</p>
-</li>
-</ul>
-<h3 id="Layout">Layout</h3><ul>
-<li><p><a href="http://csscreator.com/version2/pagelayout.php" target="_blank" rel="external">CSS Layout Generator</a></p>
-<p>視覺化的 CSS Layout 產生工具，雖然很久沒用了，但依舊推薦給剛學 CSS Layout 的朋友。</p>
-</li>
-<li><p><a href="http://www.maxdesign.com.au/articles/css-layouts/" target="_blank" rel="external">CSS layouts</a></p>
-<p>這是一個收集 CSS Layout 教學的網站，我之前會在這裡找接近專案需要的版型，再舉一反三地套用到專案上。</p>
-</li>
-</ul>
-<h3 id="Formatter-1">Formatter</h3><ul>
-<li><p><a href="http://procssor.com/process" target="_blank" rel="external">ProCSSor - Advanced CSS Prettifier</a></p>
-<p>用來重新格式化 CSS 的工具，也有選項可以設定。</p>
-</li>
-<li><p><a href="http://cdburnerxp.se/cssparse/css_optimiser.php?lang=zh" target="_blank" rel="external">CSS整形與最佳化工具</a></p>
-<p>利用 CSSTidy 來重整 CSS 程式碼，也提供格式化輸出。</p>
-</li>
-<li><p><a href="http://csslint.net/" target="_blank" rel="external">CSS Lint</a></p>
-<p>這個工具可以用來找出 CSS 寫法上的問題，讓 CSS 可以更加精鍊。</p>
-</li>
-<li><p><a href="http://unused-css.com/" target="_blank" rel="external">Remove unused CSS</a></p>
-<p>可以找出網站沒用到的的 CSS ，並整理出乾淨的 CSS 讓我們下載。</p>
-</li>
-</ul>
-<h3 id="Browser_Support">Browser Support</h3><ul>
-<li><p><a href="http://www.quirksmode.org/css/contents.html" target="_blank" rel="external">CSS - Contents and compatibility</a></p>
-<p>這個網頁整理了目前主流瀏覽器對 CSS 2.1 / CSS 3 各種屬性的支援程度。</p>
-</li>
-</ul>
-<h3 id="Snippets">Snippets</h3><ul>
-<li><p><a href="http://webexpedition18.com/articles/useful-css-snippets/" target="_blank" rel="external">Incredibly Useful CSS Snippets</a></p>
-<p>這是很久以前找到的好用 CSS 程式片段，但後來用了 Compass 後就比較少參考了。</p>
-</li>
-<li><p><a href="http://www.broculos.net/en/article/css-word-wrap" target="_blank" rel="external">CSS Word-wrap</a></p>
-<p>很有用的程式碼片段，它將目前各家瀏覽器支援的 white-space 屬性做了整理。</p>
-</li>
-</ul>
-<h3 id="Framework">Framework</h3><ul>
-<li><p><a href="http://www.formee.org/" target="_blank" rel="external">Formee</a></p>
-<p>表單美化的 CSS Framework ，但目前用到的機會也是很少。</p>
-</li>
-<li><p><a href="http://twitter.github.com/bootstrap/" target="_blank" rel="external">Bootstrap, from Twitter</a></p>
-<p>目前最常用的 CSS Framework 。</p>
-</li>
-<li><p><a href="http://www.martinbean.co.uk/bootstrap-generator/" target="_blank" rel="external">Twitter Bootstrap Generator</a></p>
-<p>如果沒有安裝 LESS 時，這個工具可以用來調整 Twitter-Bootstrap CSS 的參數。如果有裝 LESS 的話，直接改其中的 scaffolding.less 會比較快。</p>
-</li>
-<li><p><a href="http://getskeleton.com/" target="_blank" rel="external">Skeleton</a></p>
-<p>目的跟 Twitter-Bootstrap 很像，也是一個很完整的 CSS Framework 。不過 Skeleton 多了 Media Query 的特色，更適合用在行動裝置上。</p>
-</li>
-</ul>
-<h3 id="CSS3_Generator">CSS3 Generator</h3><ul>
-<li><p><a href="http://css3maker.com/" target="_blank" rel="external">CSS3.0 Maker</a></p>
-<p>這個線上工具大概是我看過最完整的 CSS3 特效產生器了。</p>
-</li>
-<li><p><a href="http://layerstyles.org/" target="_blank" rel="external">Layer Styles</a></p>
-<p>這個 CSS 產生器的介面很類似 Photoshop 的屬性視窗來協助我們調整 Box 的相關屬性。利用它也可以作出很多不錯的按鈕樣式。</p>
-</li>
-<li><p><a href="http://www.css3generator.com/" target="_blank" rel="external">CSS3 Generator</a></p>
-<p>這個 CSS3 產生器也是非常完整，它的特色是會用問答的方式幫我們產生出想要的 CSS3 樣式。</p>
-</li>
-<li><p><a href="http://css3.mikeplate.com/" target="_blank" rel="external">CSS3 Playground</a></p>
-<p>也是支援多種 CSS3 特效的產生器。</p>
-</li>
-<li><p><a href="http://www.css3.me/" target="_blank" rel="external">CSS3 Generator</a></p>
-<p>這個工具的功能就少了一點，但介面很好看。</p>
-</li>
-<li><p><a href="http://www.colorzilla.com/gradient-editor/" target="_blank" rel="external">Ultimate CSS Gradient Generator</a></p>
-<p>專業級的 CSS3 漸層產生器，能設定的選項鉅細靡遺。</p>
-</li>
-<li><p><a href="http://westciv.com/tools/gradients/" target="_blank" rel="external">Linear Gradients</a></p>
-<p>也是用來產生 CSS3 漸層特效的工具，但後來也加入了一些其他 CSS3 效果。</p>
-</li>
-<li><p><a href="http://gradients.glrzad.com/" target="_blank" rel="external">CSS3 Gradient Generator</a></p>
-<p>也是很不錯的 CSS3 漸層產生器，但選項稍微少了點。</p>
-</li>
-</ul>
-<h3 id="Button_Maker">Button Maker</h3><ul>
-<li><p><a href="http://css3button.net/" target="_blank" rel="external">CSS3 Button Generator</a></p>
-<p>很專業的 CSS3 按鈕樣式產生器。</p>
-</li>
-<li><p><a href="http://css-tricks.com/examples/ButtonMaker/" target="_blank" rel="external">Button Maker</a></p>
-<p>也是按鈕產生器，但介面上就沒有上面那個專業。</p>
-</li>
-</ul>
-<h3 id="References">References</h3><ul>
-<li><p><a href="http://www.css3.com/" target="_blank" rel="external">CSS3.com</a></p>
-<p>這個網站就是有關 CSS 的問答網站，也提供了基本的 CSS 參考手冊。</p>
-</li>
-<li><p><a href="http://mediaqueri.es/" target="_blank" rel="external">Media Queries</a></p>
-<p>這個網站收集了很多使用 Media Query 的網站，主要我是用來參考高手們如何在不同尺寸下呈現網站。</p>
-</li>
-</ul>
-<h2 id="HTML5">HTML5</h2><h3 id="Detection">Detection</h3><ul>
-<li><p><a href="http://www.modernizr.com/" target="_blank" rel="external">Modernizr</a></p>
-<p>這個 Library 可以用來偵測瀏覽器對 HTML5 / CSS3 的支援程度，讓開發者可以選擇替代方案。</p>
-</li>
-</ul>
-<h3 id="Template">Template</h3><ul>
-<li><p><a href="http://html5boilerplate.com/" target="_blank" rel="external">HTML5 Boilerplate</a></p>
-<p>提供預先設定好的 HTML5 範本，，讓我們不必從無到有建置 HTML5 網站。</p>
-</li>
-<li><p><a href="http://www.initializr.com/" target="_blank" rel="external">Initializr</a></p>
-<p>基於上面的 HTML5 Boilerplate 的 HTML5 範本，但提供了更多樣化的選項，讓我們可以自訂要加在範本上的元件；它也是目前我製作新網站一定會用到的工具之一。</p>
-</li>
-<li><p><a href="http://switchtohtml5.com/" target="_blank" rel="external">SwitchToHTML5</a></p>
-<p>這個工具可以產生一個簡單的 HTML5 範本，不過目前我很少用了。</p>
-</li>
-</ul>
-<h3 id="Features_List">Features List</h3><ul>
-<li><p><a href="http://html5doctor.com/element-index/" target="_blank" rel="external">Element Index</a></p>
-<p>這個網站把所有 HTML5 支援的 HTML 標籤都列出來；是我剛開始學習 HTML5 時，會來查詢標籤定義的地方。</p>
-</li>
-<li><p><a href="http://html5demos.com/" target="_blank" rel="external">HTML5 Demos and Examples</a></p>
-<p>這個網站展示了很多 HTML5 的新特色；先前 HTML5 剛流行起來時，我會在這裡看看有什麼新玩意兒。</p>
-</li>
-<li><p><a href="http://html5test.com/" target="_blank" rel="external">The HTML5 test</a></p>
-<p>測試瀏覽器對 HTML5 的支援程度，一般是在新瀏覽器版本推出時，我會用這個服務來測試。</p>
-</li>
-<li><p><a href="http://mobilehtml5.org/" target="_blank" rel="external">Mobile HTML5</a></p>
-<p>這個網站列出目前行動裝置對 HTML5 的支援，這是之前在製作 <a href="http://phpconf.tw" target="_blank" rel="external">PHPConf.TW</a> 網站時會參考到的。</p>
-</li>
-<li><p><a href="http://www.findmebyip.com/litmus/" target="_blank" rel="external">CSS3 &amp; HTML5 Browser Support</a></p>
-<p>列出目前主流瀏覽器對 HTML5 及 CSS3 的支援狀況。</p>
-</li>
-</ul>
-<h3 id="Framework-1">Framework</h3><ul>
-<li><p><a href="http://www.limejs.com/" target="_blank" rel="external">LimeJS HTML5 Game Framework</a></p>
-<p>可以用來製作 HTML5 遊戲，目前還沒機會用到。</p>
-</li>
-<li><p><a href="http://bakerframework.com/" target="_blank" rel="external">Baker Ebook Framework 2.0</a></p>
-<p>製作 HTML5 電子書的框架，目前也還沒有機會用到。</p>
-</li>
-</ul>
-<h3 id="Tools">Tools</h3><ul>
-<li><p><a href="http://manifested.dregsoft.com/" target="_blank" rel="external">Manifested</a></p>
-<p>可以幫網站建立離線檔案清單，目前還沒有機會在實戰中使用。</p>
-</li>
-</ul>
-<h3 id="Reference">Reference</h3><ul>
-<li><p><a href="http://www.popstardefense.com/blog/js-development-reading-list" target="_blank" rel="external">HTML5 web dev reading list</a></p>
-<p>這是一份學習 HTML5 的推薦閱讀清單；有時間的話可以全部看看，我目前是挑有興趣的先看。</p>
-</li>
-</ul>
-<h3 id="Cheat_Sheet">Cheat Sheet</h3><ul>
-<li><p><a href="http://blog.nihilogic.dk/2009/02/html5-canvas-cheat-sheet.html" target="_blank" rel="external">HTML5 Canvas Cheat Sheet</a></p>
-<p>把 HTML5 Canvas 的特色精簡成一份小抄，可以在邊開發時邊參考。</p>
-</li>
-<li><p><a href="http://html5sec.org/" target="_blank" rel="external">HTML5 Security Cheatsheet</a></p>
-<p>這個網站把 HTML5 安全方面的問題整理起來，並提供簡單的解決方案。</p>
-</li>
-</ul>
-<h2 id="DOM_Tools">DOM Tools</h2><ul>
-<li><p><a href="http://westciv.com/xray/" target="_blank" rel="external">XRAY</a></p>
-<p>這是很久以前我就一直放在手邊用的 bookmarklet 小工具，可以列出 HTML 元素的一些概況。重要的是它支援各家主流瀏覽器，讓我在沒有 Firebug 時也可以使用。</p>
-</li>
-<li><p><a href="http://westciv.com/mri/" target="_blank" rel="external">MRI</a></p>
-<p>用來測試輸入的 Selector 是不是能找到我們想要的那些元素，尤其在寫 jQuery 時非常方便。</p>
-</li>
-</ul>
-<h2 id="Browser_Tools">Browser Tools</h2><ul>
-<li><p><a href="http://resizemybrowser.com/" target="_blank" rel="external">resizeMyBrowser</a></p>
-<p>這個工具提供了很多常見的行動裝置可視區域大小，點選後可以快速把瀏覽器重設為我們選擇的大小。通常我是用來測試網站能不能在某些行動裝置上看。</p>
-</li>
-<li><p><a href="http://detectmobilebrowsers.com/" target="_blank" rel="external">Detect Mobile Browsers</a></p>
-<p>提供了偵測是否為行動裝置瀏覽器的各種做法，這也是我在做行動網站時會用到的好工具。</p>
-</li>
-</ul>
-<h2 id="PHP">PHP</h2><h3 id="Database_Client">Database Client</h3><ul>
-<li><p><a href="http://www.phpmyadmin.net/home_page/index.php" target="_blank" rel="external">phpMyAdmin</a></p>
-<p>這應該不用多介紹了，幾乎我手邊的機器都會安裝的 MySQL 線上 Client 工具。</p>
-</li>
-</ul>
-<h3 id="Formatter-2">Formatter</h3><ul>
-<li><p><a href="http://beta.phpformatter.com/" target="_blank" rel="external">PHP Formatter</a></p>
-<p>用來格式化 PHP 程式碼的好工具，這是我在寫作時會用到的。</p>
-</li>
-</ul>
-<h3 id="Snippet">Snippet</h3><ul>
-<li><p><a href="http://www.jonasjohn.de/snippets/php/headers.htm" target="_blank" rel="external">PHP Modify HTTP Headers (Examples)</a></p>
-<p>這個也是我常參考的程式片段，不然我每次都記不住 header 的內容該怎麼下。</p>
-</li>
-</ul>
-<h2 id="Design">Design</h2><h3 id="Templates">Templates</h3><ul>
-<li><p><a href="http://zoomzum.com/15-best-sites-to-download-free-web-templates/" target="_blank" rel="external">Free Web Templates</a></p>
-<p>每次有需要做頁面時，我都會在這些網站裡找靈感。</p>
-</li>
-</ul>
-<h3 id="Color">Color</h3><ul>
-<li><p><a href="http://kuler.adobe.com/" target="_blank" rel="external">kuler</a></p>
-<p>Adobe 推出的色彩配置工具，雖然我很少用。</p>
-</li>
-<li><p><a href="http://colorschemedesigner.com/" target="_blank" rel="external">Color Scheme Designer 3</a></p>
-<p>也是非常強大的色彩配置工具。</p>
-</li>
-</ul>
-<h3 id="Icons">Icons</h3><ul>
-<li><p><a href="http://cssload.net/" target="_blank" rel="external">Loading CSS spinners and bars generator for AJAX &amp; JQuery</a></p>
-<p>AJAX 載入圖示的產生器。</p>
-</li>
-<li><p><a href="http://faviconist.com/" target="_blank" rel="external">Faviconist</a></p>
-<p>用單一字元來製作網站的 favicon 。</p>
-</li>
-<li><p><a href="http://www.favicon.cc/" target="_blank" rel="external">favicon.ico Generator</a></p>
-<p>視覺化的 favicon 製作工具，可預覽它在瀏覽器上呈現的樣子。</p>
-</li>
-<li><p><a href="http://favbulous.com/post/774/23-glyph-symbolssimple-icon-sets" target="_blank" rel="external">23 Glyph, Symbols &amp; Simple Icon Sets</a></p>
-<p>這篇文章收集一堆很簡鍊的單色圖示集，也是我在製作網站後台而需要圖示時，會來找尋的地方。</p>
-</li>
-</ul>
-<h3 id="Mockup">Mockup</h3><ul>
-<li><p><a href="http://designmodo.com/free-wireframe-mockup/" target="_blank" rel="external">20 Free Wireframe and Mockup Applications</a></p>
-<p>這篇文章收集了二十種免費 Mockup 工具，不過我並沒有全部都試過；目前我還是以自己手繪為主。</p>
-</li>
-</ul>
-<h2 id="Regular_Expression">Regular Expression</h2><ul>
-<li><p><a href="http://www.gskinner.com/RegExr/" target="_blank" rel="external">RegExr</a></p>
-<p>測試 Regular Expression 的工具，應該適用於大多數有支援 Regular Expression 的語言。</p>
-</li>
-<li><p><a href="http://www.pagecolumn.com/tool/regtest.htm" target="_blank" rel="external">Online Javascript Regular Expression Tester</a></p>
-<p>專為 Javascript Regular Expression 所寫的線上測試工具。</p>
-</li>
-<li><p><a href="http://rubular.com/" target="_blank" rel="external">Rubular</a></p>
-<p>專為 Ruby Regular Expression 所寫的線上測試工具。</p>
-</li>
-</ul>
-<h2 id="Documents">Documents</h2><ul>
-<li><p><a href="http://docpool.co/" target="_blank" rel="external">Docpool.co</a></p>
-<p>收集了一些網站前置作業文件的範本。</p>
-</li>
-</ul>
-<h2 id="Projects">Projects</h2><ul>
-<li><p><a href="http://www.redmine.org/" target="_blank" rel="external">Redmine</a></p>
-<p>最近終於開始有時間研究的一套強大專案管理工具，支援多種版本控制系統。</p>
-</li>
-</ul>
-<h2 id="Site_Tools">Site Tools</h2><ul>
-<li><p><a href="http://martinmelin.se/rewrite-rule-tester/" target="_blank" rel="external">Test your RewriteRules for Apache mod_rewrite</a></p>
-<p>測試 Apache mod_rewrite Rewrite Rules 的服務，不過較複雜的規則可能在判斷上會有問題。</p>
-</li>
-<li><p><a href="http://builtwith.com/" target="_blank" rel="external">BuiltWith</a></p>
-<p>從 Header 判斷網站是用什麼技術製作的。</p>
-</li>
-<li><p><a href="http://loads.in/" target="_blank" rel="external">Loads.in</a></p>
-<p>可以從世界各角落測試網頁載入的時間。</p>
-</li>
-</ul>
-<h2 id="Code">Code</h2><h3 id="Snippets_Share">Snippets Share</h3><ul>
-<li><p><a href="http://chopapp.com/" target="_blank" rel="external">Chop</a></p>
-<p>用來分享一段小程式的服務。</p>
-</li>
-</ul>
-<h3 id="Online_Diff">Online Diff</h3><ul>
-<li><p><a href="http://www.diffnow.com/" target="_blank" rel="external">DiffNow - Compare files online</a></p>
-<p>線上比對檔案差異，也可以把比對結果分享出來。</p>
-</li>
-</ul>
-<h2 id="Git">Git</h2><h3 id="Books">Books</h3><ul>
-<li><p><a href="http://book.git-scm.com/" target="_blank" rel="external">Git Community Book</a></p>
-<p>這是由 Git 社群所共同完成的一本 Git 入門書籍。</p>
-</li>
-<li><p><a href="http://refcardz.dzone.com/refcardz/getting-started-git" target="_blank" rel="external">Getting Started with Git</a></p>
-<p>免費的 Git 入門書。</p>
-</li>
-</ul>
-<h3 id="References-1">References</h3><ul>
-<li><p><a href="http://gitref.org/" target="_blank" rel="external">Git Reference</a></p>
-<p>很有用的 Git 指令參考文件。</p>
-</li>
-<li><p><a href="http://schacon.github.com/git/everyday.html" target="_blank" rel="external">Everyday GIT With 20 Commands Or So</a></p>
-<p>這個也是很棒的 Git 指令參考文件。</p>
-</li>
-<li><p><a href="http://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide" target="_blank" rel="external">Git for beginners: The definitive practical guide</a></p>
-<p>將在 stackoverflow 網站上一些很棒的實戰心得收集起來的文章。如果想要找更多實戰心得的話，可以直接連到： <a href="http://stackoverflow.com/questions/tagged/git?sort=votes" target="_blank" rel="external">Git Questions</a> 。</p>
-</li>
-<li><p><a href="http://rogerdudler.github.com/git-guide/" target="_blank" rel="external">git - the simple guide</a></p>
-<p>簡單明瞭的 Git 入門。</p>
-</li>
-</ul>
-<h3 id="Tips">Tips</h3><ul>
-<li><p><a href="http://caiustheory.com/automatically-deploying-website-from-remote-git-repository" target="_blank" rel="external">Automatically Deploying Website From Remote Git Repository</a></p>
-<p>利用 post-receive hook 來自動化佈署網站。</p>
-</li>
-<li><p><a href="https://plus.google.com/108375073252780151818/posts/8yTDEfYUHDJ" target="_blank" rel="external">如何切換 Git Repo</a></p>
-</li>
-</ul>
-<h2 id="Markdown_Editor">Markdown Editor</h2><ul>
-<li><p><a href="http://www.ctrlshift.net/project/markdowneditor/" target="_blank" rel="external">Online Markdown Editor</a></p>
-<p>在左方輸入 Markdown 語法，就可以在右方即時預覽的 Markdown 編輯器。</p>
-</li>
-<li><p><a href="http://joncom.be/experiments/markdown-editor/edit/" target="_blank" rel="external">Markdown Editor</a></p>
-<p>跟上面一樣，但提供了數種版面配置選項，也可以讓我們上傳 Markdown 文件編輯。</p>
-</li>
-</ul>
-<h2 id="Desktop_App">Desktop App</h2><ul>
-<li><p><a href="http://netbeans.org/" target="_blank" rel="external">NetBeans IDE</a></p>
-<p>這個是目前我最得力的 PHP 開發助手。除了 PHP Class/Function 的自動完成與基本重構功能外，還加上了 PHPUnit/ZF/PHPDoc 等外部指令的支援。</p>
-</li>
-<li><p><a href="http://www.sublimetext.com/" target="_blank" rel="external">Sublime Text 2</a></p>
-<p>號稱可以取代 Textmate 的強大文字編輯器，因為它啟動速度快，又支援 SASS/CoffeeScript 語法，目前是我在 NetBeans 之外的另一個好助手。</p>
-</li>
-<li><p><a href="http://livereload.com/" target="_blank" rel="external">LiveReload</a></p>
-<p>這個 Mac 上的好用工具，可以幫我們監控專案中指定檔案類型的更新；通常是用在 CSS/SASS 及 JavaScript/CoffeeScript 這些檔案上。搭配瀏覽器的外掛程式後，就可以即時預覽這些檔案更動後的變化。</p>
-</li>
-<li><p><a href="http://clickontyler.com/virtualhostx/" target="_blank" rel="external">VirtualHostX</a></p>
-<p>用來管理 Mac 上 Apache VirtualHost 的小工具，這也是我在開發 PHP 專案的利器之一。 (如果是 Rails 開發者的話， <a href="http://www.webmonkey.com/2011/04/pow-simplify-ruby-on-rails-for-os-x/" target="_blank" rel="external">Pow</a> 會是比較好的選擇。)</p>
-</li>
-<li><p><a href="http://www.sequelpro.com/" target="_blank" rel="external">Sequel Pro</a></p>
-<p>免費的圖形化介面 Mac MySQL Client ，是在本機操作中，我用來取代 <a href="http://www.phpmyadmin.net/home_page/index.php" target="_blank" rel="external">phpMyAdmin</a> 的工具。</p>
-</li>
-<li><p><a href="http://www.sourcetreeapp.com/" target="_blank" rel="external">SourceTree</a></p>
-<p>除了用 Terminal 直接操作指令外，它是我在 Mac 上使用 Git 必備的 Client 工具。</p>
-</li>
-<li><p><a href="http://www.syntevo.com/smartsvn/index.html" target="_blank" rel="external">SmartSVN</a></p>
-<p>因為公司的版本控制系統是 Subversion ，因此這個 Mac Subversion Client 工具也是我目前最常使用的。</p>
-</li>
-</ul>
-<p>更多好用的 Desktop 工具，可以參考龍哥 (高見龍) 的這篇文章：<a href="http://blog.eddie.com.tw/2012/01/04/my-toolbox/" target="_blank" rel="external">我的工具箱</a>。</p>
-<h2 id="結論">結論</h2><p>這裡所羅列的資訊其實只是茫茫網海的冰山一角而已，我想一定還有更多更好用的工具與文件等待我們去發掘。</p>
-<p>希望這篇文章能夠幫助大家在 Web 開發這條路上走得更順暢一些，也歡迎大家能夠分享自己常用的工具。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -690,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -769,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -802,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Javascript"><span class="nav-number">1.</span> <span class="nav-text">Javascript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Formatter"><span class="nav-number">1.1.</span> <span class="nav-text">Formatter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Library_/_CDN"><span class="nav-number">1.2.</span> <span class="nav-text">Library / CDN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON"><span class="nav-number">1.3.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Converter"><span class="nav-number">1.4.</span> <span class="nav-text">Converter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Syntax"><span class="nav-number">1.5.</span> <span class="nav-text">Syntax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Online_Tester"><span class="nav-number">1.6.</span> <span class="nav-text">Online Tester</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery"><span class="nav-number">1.7.</span> <span class="nav-text">jQuery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backbone-js"><span class="nav-number">1.8.</span> <span class="nav-text">Backbone.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SASS_Tools"><span class="nav-number">2.1.</span> <span class="nav-text">SASS Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layout"><span class="nav-number">2.2.</span> <span class="nav-text">Layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Formatter-1"><span class="nav-number">2.3.</span> <span class="nav-text">Formatter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Browser_Support"><span class="nav-number">2.4.</span> <span class="nav-text">Browser Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Snippets"><span class="nav-number">2.5.</span> <span class="nav-text">Snippets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Framework"><span class="nav-number">2.6.</span> <span class="nav-text">Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_Generator"><span class="nav-number">2.7.</span> <span class="nav-text">CSS3 Generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Button_Maker"><span class="nav-number">2.8.</span> <span class="nav-text">Button Maker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">2.9.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5"><span class="nav-number">3.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Detection"><span class="nav-number">3.1.</span> <span class="nav-text">Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Template"><span class="nav-number">3.2.</span> <span class="nav-text">Template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Features_List"><span class="nav-number">3.3.</span> <span class="nav-text">Features List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Framework-1"><span class="nav-number">3.4.</span> <span class="nav-text">Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tools"><span class="nav-number">3.5.</span> <span class="nav-text">Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.6.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cheat_Sheet"><span class="nav-number">3.7.</span> <span class="nav-text">Cheat Sheet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM_Tools"><span class="nav-number">4.</span> <span class="nav-text">DOM Tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Browser_Tools"><span class="nav-number">5.</span> <span class="nav-text">Browser Tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP"><span class="nav-number">6.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Database_Client"><span class="nav-number">6.1.</span> <span class="nav-text">Database Client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Formatter-2"><span class="nav-number">6.2.</span> <span class="nav-text">Formatter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Snippet"><span class="nav-number">6.3.</span> <span class="nav-text">Snippet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design"><span class="nav-number">7.</span> <span class="nav-text">Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Templates"><span class="nav-number">7.1.</span> <span class="nav-text">Templates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Color"><span class="nav-number">7.2.</span> <span class="nav-text">Color</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Icons"><span class="nav-number">7.3.</span> <span class="nav-text">Icons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mockup"><span class="nav-number">7.4.</span> <span class="nav-text">Mockup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regular_Expression"><span class="nav-number">8.</span> <span class="nav-text">Regular Expression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Documents"><span class="nav-number">9.</span> <span class="nav-text">Documents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Projects"><span class="nav-number">10.</span> <span class="nav-text">Projects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Site_Tools"><span class="nav-number">11.</span> <span class="nav-text">Site Tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">12.</span> <span class="nav-text">Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Snippets_Share"><span class="nav-number">12.1.</span> <span class="nav-text">Snippets Share</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Online_Diff"><span class="nav-number">12.2.</span> <span class="nav-text">Online Diff</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">13.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Books"><span class="nav-number">13.1.</span> <span class="nav-text">Books</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References-1"><span class="nav-number">13.2.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">13.3.</span> <span class="nav-text">Tips</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown_Editor"><span class="nav-number">14.</span> <span class="nav-text">Markdown Editor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Desktop_App"><span class="nav-number">15.</span> <span class="nav-text">Desktop App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">16.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -818,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -840,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -850,6 +459,7 @@
 
   
   
+
   
     
     
@@ -879,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -1048,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -1078,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

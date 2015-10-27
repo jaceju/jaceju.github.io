@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="問題Mark 和我兩個人在研究怎麼把對外的 Port 9000 轉移到內部的 Port 80 ，結果我這個 Linux 新手搞了半天還是搞不出來。
-環境我的環境是這樣的：
-           |-- (DMZ) --&amp;#62; Linux Server 1(192.168.1.1)&amp;#10;IP &amp;#20998;&amp;#20139;&amp;#22120; -|&amp;#10;           |------">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Linux] Port Foward 的問題">
 <meta property="og:url" content="http://jaceju.net/2007/09/13/255/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="問題Mark 和我兩個人在研究怎麼把對外的 Port 9000 轉移到內部的 Port 80 ，結果我這個 Linux 新手搞了半天還是搞不出來。
-環境我的環境是這樣的：
-           |-- (DMZ) --&amp;#62; Linux Server 1(192.168.1.1)&amp;#10;IP &amp;#20998;&amp;#20139;&amp;#22120; -|&amp;#10;           |------">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Linux] Port Foward 的問題">
-<meta name="twitter:description" content="問題Mark 和我兩個人在研究怎麼把對外的 Port 9000 轉移到內部的 Port 80 ，結果我這個 Linux 新手搞了半天還是搞不出來。
-環境我的環境是這樣的：
-           |-- (DMZ) --&amp;#62; Linux Server 1(192.168.1.1)&amp;#10;IP &amp;#20998;&amp;#20139;&amp;#22120; -|&amp;#10;           |------">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [Linux] Port Foward 的問題 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,31 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="問題">問題</h2><p>Mark 和我兩個人在研究怎麼把對外的 Port 9000 轉移到內部的 Port 80 ，結果我這個 Linux 新手搞了半天還是搞不出來。</p>
-<h2 id="環境">環境</h2><p>我的環境是這樣的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">           |-- (DMZ) --&#62; Linux Server 1(192.168.1.1)&#10;IP &#20998;&#20139;&#22120; -|&#10;           |-----------&#62; Linux Server 2(192.168.1.2)</span><br></pre></td></tr></table></figure>
-<p>註：之前示意圖畫錯了，更正一下。</p>
-<p>然後從外面來的 Port 9000 要 Forward 到 Linux Server 2 的 Port 80 。</p>
-<a id="more"></a>
-<h2 id="嘗試">嘗試</h2><p>我們用的 IP 分享器僅支援單一 Port 對應的功能 (就是 Port 80 就只能對到 Port 80) ，所以只好把腦筋動到 Linux Server 1 上。</p>
-<p>本來以為用 iptables 的 NAT 功能可以用，看了一下<a href="http://linux.vbird.org/linux_server/0250simple_firewall.php" target="_blank" rel="external">鳥哥的 iptables 教學</a>，得到以下的方式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># iptables -t nat -A PREROUTING -p tcp -i eth0 --dport 9000 -j DNAT --to 192.168.1.2:80</span><br></pre></td></tr></table></figure>
-<p>不過加入去以後還是不行…後來 Mark 又找到一篇 <a href="http://linux.tnc.edu.tw/techdoc/firewall/iptables-intro.html" target="_blank" rel="external">iptables 入門</a>，裡面寫了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># iptables -t nat -A PREROUTING -i eth0 -p tcp -d 192.168.1.1 --dport 9000 -j DNAT --to-destination 192.168.1.2:80</span><br></pre></td></tr></table></figure>
-<p>也是沒用…真是令人洩氣…</p>
-<h2 id="解決方案">解決方案</h2><p>後來我問我的同學 (他是個 FreeBSD 強者) ，他給我一個連結： <a href="http://antontw.blogspot.com/2007/05/linux-port-forward.html" target="_blank" rel="external">[Linux] 簡單的 port forward 工具</a>，裡面介紹了 <a href="http://www.linux.org/apps/AppId_865.html" target="_blank" rel="external">redir</a> 這個小程式，似乎符合我的要求。 </p>
-<p>然而我用的 OS 是 CentOS ，要自己編譯 redir ；把 redir 的 source 抓下來後，按照以下方式編譯：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cd /usr/local/src&#10;# wget http://sammy.net/~sammy/hacks/redir-2.2.1.tar.gz&#10;# tar xvzf redir-2.2.1.tar.gz&#10;# cd redir-2.2.1&#10;# make (&#27794;&#26377; install)&#10;# mv redir /usr/local/bin/</span><br></pre></td></tr></table></figure>
-<p>接下來我下的指令是這樣子的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># redir --lport 9000 --caddr=192.168.1.2 --cport=80</span><br></pre></td></tr></table></figure>
-<p>不過還是沒用，而且就 redir 就沒有回應了，因為 redir 主要是跑 Daemon 模式。我想如果加上 Listen 的 Address 應該就可以，所以我把指令改成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># redir --laddr 192.168.1.1  --lport 9000 --caddr=192.168.1.2 --cport=80 &#38;amp;</span><br></pre></td></tr></table></figure>
-<p>沒想到就成功了！讓 Mark 和我著實感動了一陣子。</p>
-<p>最後把它加到 /etc/rc.d/rc.local 裡，讓它能在開機時自動執行就完成了。</p>
-<h2 id="後記">後記</h2><p>雖然我有在玩 Linux ，不過很多技術還是不熟，這次 Mark 出的問題真的讓我學到了不少東西。也感謝我的強者同學，他在 Unix like 方面的知識真的幫了我不少忙。</p>
-<p>另外， redir 真的是不錯的小工具，如果要完全靠 iptables 來處理這個問題的話，我這個新手大概弄個三天三夜也搞不定…Orz</p>
-<p>當然，如果大家有更好的方法的話，也歡迎分享喔。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -305,19 +290,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -384,13 +372,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -417,8 +409,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#問題"><span class="nav-number">1.</span> <span class="nav-text">問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#環境"><span class="nav-number">2.</span> <span class="nav-text">環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嘗試"><span class="nav-number">3.</span> <span class="nav-text">嘗試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解決方案"><span class="nav-number">4.</span> <span class="nav-text">解決方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -433,7 +427,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -455,7 +450,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -465,6 +461,7 @@
 
   
   
+
   
     
     
@@ -494,24 +491,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -663,29 +657,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -693,15 +678,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="compass 是一個很讚的編譯型 CSS Framework ，它可以幫我們把 scss/sass 格式的樣式表轉換成 css ，並且還加入許多好用的 extension ，讓我們能更快開發出非常亮眼的網頁 (當然還是要有一定的美術天份) 。compass 因為是用 ruby 寫的，所以也可以輕鬆地跟 rails 整合。但 compass 還是可以用在其他語言所開發的 Web 專案上，只是手續稍">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何將 compass 整合到 Zend Framework 中">
 <meta property="og:url" content="http://jaceju.net/2011/09/07/1938/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="compass 是一個很讚的編譯型 CSS Framework ，它可以幫我們把 scss/sass 格式的樣式表轉換成 css ，並且還加入許多好用的 extension ，讓我們能更快開發出非常亮眼的網頁 (當然還是要有一定的美術天份) 。compass 因為是用 ruby 寫的，所以也可以輕鬆地跟 rails 整合。但 compass 還是可以用在其他語言所開發的 Web 專案上，只是手續稍">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何將 compass 整合到 Zend Framework 中">
-<meta name="twitter:description" content="compass 是一個很讚的編譯型 CSS Framework ，它可以幫我們把 scss/sass 格式的樣式表轉換成 css ，並且還加入許多好用的 extension ，讓我們能更快開發出非常亮眼的網頁 (當然還是要有一定的美術天份) 。compass 因為是用 ruby 寫的，所以也可以輕鬆地跟 rails 整合。但 compass 還是可以用在其他語言所開發的 Web 專案上，只是手續稍">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 如何將 compass 整合到 Zend Framework 中 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,34 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="http://compass-style.org/" target="_blank" rel="external">compass</a> 是一個很讚的編譯型 CSS Framework ，它可以幫我們把 <a href="http://sass-lang.com/" target="_blank" rel="external">scss/sass</a> 格式的樣式表轉換成 css ，並且還加入許多好用的 extension ，讓我們能更快開發出非常亮眼的網頁 (當然還是要有一定的美術天份) 。<br>compass 因為是用 ruby 寫的，所以也可以輕鬆地跟 rails 整合。但 compass 還是可以用在其他語言所開發的 Web 專案上，只是手續稍嫌複雜了些。<br>這幾天試著把 compass 整合到 Zend Framework 中，以下就是整合的過程。</p>
-<a id="more"></a>
-<h2 id="安裝_compass">安裝 compass</h2><p>這邊假設大家已經已經安裝好了 Ruby 環境，那麼 compass 的安裝就很簡單了，只需要在命令列模式下輸入以下指令即可：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gem install compass</span><br></pre></td></tr></table></figure>
-<p>就是這麼簡單。</p>
-<p>註： Windows 下的 Ruby 環境安裝請參考：<a href="http://www.jaceju.net/blog/archives/1795" target="_blank" rel="external">在 Windows 下使用 LiveReload</a> 。</p>
-<h2 id="建立_compass_專案">建立 compass 專案</h2><p>接下來我們要先建立一個新的 compass 專案，請輸入以下指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">compass create -x sass compass_test</span><br></pre></td></tr></table></figure>
-<p>compass_test 可以隨意命名，不要跟現有的專案名稱重複即可。上面的命令執行後，會出現以下結果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">directory compass_test/&#10;directory compass_test/sass/&#10;directory compass_test/stylesheets/&#10;   create compass_test/config.rb&#10;   create compass_test/sass/screen.sass&#10;   create compass_test/sass/print.sass&#10;   create compass_test/sass/ie.sass&#10;   create compass_test/stylesheets/ie.css&#10;   create compass_test/stylesheets/print.css&#10;   create compass_test/stylesheets/screen.css&#10;...&#10;To import your new stylesheets add the following lines of HTML (or equivalent) to your webpage:&#10;&#60;head&#62;&#10;  &#60;link href=&#34;/stylesheets/screen.css&#34; media=&#34;screen, projection&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&#62;&#10;  &#60;link href=&#34;/stylesheets/print.css&#34; media=&#34;print&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&#62;&#10;  &#60;!--[if IE]&#62;&#10;      &#60;link href=&#34;/stylesheets/ie.css&#34; media=&#34;screen, projection&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&#62;&#10;  &#60;![endif]--&#62;&#10;&#60;/head&#62;</span><br></pre></td></tr></table></figure>
-<p>我們需要的就是那個 config.rb 和 *.sass 檔案囉。</p>
-<h2 id="整合至_Zend_Framework_專案中">整合至 Zend Framework 專案中</h2><p>其實目前任何架構的 Zend Framework 專案都可以整合 compass ，不過這邊我以 <a href="http://www.jaceju.net/blog/archives/1600" target="_blank" rel="external">Portable 的 ZF 專案</a> 來解說。<br>首先我們要把 config.rb 複製到 ZF 專案的根目錄下，假設 ZF 專案的路徑在 /path/to/compass_zf ，請輸入以下指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp /path/to/compass_test/config.rb /path/to/compass_zf</span><br></pre></td></tr></table></figure>
-<p>然後再把 sass 目錄複製到 ZF 專案的根目錄下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp -R /path/to/compass_test/sass /path/to/compass_zf</span><br></pre></td></tr></table></figure>
-<p>接著修改 /path/to/compass_zf/config.rb ，原來的內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Require any additional compass plugins here.&#10;# Set this to the root of your project when deployed:&#10;http_path = &#34;/&#34;&#10;css_dir = &#34;stylesheets&#34;&#10;sass_dir = &#34;sass&#34;&#10;images_dir = &#34;images&#34;&#10;javascripts_dir = &#34;javascripts&#34;&#10;# You can select your preferred output style here (can be overridden via the command line):&#10;# output_style = :expanded or :nested or :compact or :compressed&#10;# To enable relative paths to assets via compass helper functions. Uncomment:&#10;# relative_assets = true&#10;# To disable debugging comments that display the original location of your selectors. Uncomment:&#10;# line_comments = false&#10;preferred_syntax = :sass</span><br></pre></td></tr></table></figure>
-<p>我們要修改的就是第二段的路徑部份，請將它們改成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http_path = &#34;/&#34;&#10;css_dir = &#34;public/css&#34;&#10;sass_dir = &#34;sass&#34;&#10;images_dir = &#34;public/img&#34;&#10;javascripts_dir = &#34;public/js&#34;</span><br></pre></td></tr></table></figure>
-<p>當然也別忘了在 public 下建立好 css 、 img 及 js 等三個目錄。</p>
-<p>註：其實只要修改 config.rb 中的路徑，就可以支援各種架構的 Web 專案了，只是要記得把 config.rb 放在專案根目錄。<br>最後一步，我們要在樣版上加入 CSS 的連結，把剛剛在產生 compass 專案時所建議的 HTML 貼到 ZF 專案的 layout.phtml 的 head 區段中 (或是其他含有 head 標籤的樣版上) ，並將改成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;link href=&#34;&#60;?php echo $this-&#62;baseUrl(); ?&#62;/css/screen.css&#34; media=&#34;screen, projection&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&#62;&#10;&#60;link href=&#34;&#60;?php echo $this-&#62;baseUrl(); ?&#62;/css/print.css&#34; media=&#34;print&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&#62;&#10;&#60;!--[if IE]&#62;&#10;    &#60;link href=&#34;&#60;?php echo $this-&#62;baseUrl(); ?&#62;/css/ie.css&#34; media=&#34;screen, projection&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&#62;&#10;&#60;![endif]--&#62;</span><br></pre></td></tr></table></figure>
-<p>到這邊就完成啦！可以試著用以下指令來試試看 compass 整合後的成果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">compass watch /path/to/compass_zf</span><br></pre></td></tr></table></figure>
-<p>會產生以下結果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#62;&#62;&#62; Change detected to: ie.sass&#10;   create compass_zf/public/css/ie.css&#10;   create compass_zf/public/css/print.css&#10;   create compass_zf/public/css/screen.css&#10;&#62;&#62;&#62; Compass is watching for changes. Press Ctrl-C to Stop.</span><br></pre></td></tr></table></figure>
-<p>現在只要修改 /path/to/compass_zf/sass 下的檔案， compass 就會自動幫你編譯囉。<br>當然我們可以再搭配 LiveReload 來監看檔案，並將變化即時反應到瀏覽器上，是不是很讚呢？</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -300,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -379,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -412,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝_compass"><span class="nav-number">1.</span> <span class="nav-text">安裝 compass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立_compass_專案"><span class="nav-number">2.</span> <span class="nav-text">建立 compass 專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合至_Zend_Framework_專案中"><span class="nav-number">3.</span> <span class="nav-text">整合至 Zend Framework 專案中</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -428,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -460,6 +459,7 @@
 
   
   
+
   
     
     
@@ -489,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -658,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -688,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

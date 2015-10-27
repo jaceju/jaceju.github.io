@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="有位 jocosn 網友問了一個我覺得很棒的問題，我把我的觀點提出來供大家參考。
-註：以下我會以引用區塊的方式來標示該網友的問題，然後以回答該問題的語氣說明。且基於本人龜毛的個性，也會把內容稍作排版。
-如果我有一個 welcome.php，它的樣版檔是 welcome.tpl.htm，但是兩個檔案的編碼不相同，也就是 php 使用  ， tpl.htm 使用 ，結果螢幕顯示時會以  utf-8 編">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="將資料和程式分離">
 <meta property="og:url" content="http://jaceju.net/2007/01/03/152/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="有位 jocosn 網友問了一個我覺得很棒的問題，我把我的觀點提出來供大家參考。
-註：以下我會以引用區塊的方式來標示該網友的問題，然後以回答該問題的語氣說明。且基於本人龜毛的個性，也會把內容稍作排版。
-如果我有一個 welcome.php，它的樣版檔是 welcome.tpl.htm，但是兩個檔案的編碼不相同，也就是 php 使用  ， tpl.htm 使用 ，結果螢幕顯示時會以  utf-8 編">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="將資料和程式分離">
-<meta name="twitter:description" content="有位 jocosn 網友問了一個我覺得很棒的問題，我把我的觀點提出來供大家參考。
-註：以下我會以引用區塊的方式來標示該網友的問題，然後以回答該問題的語氣說明。且基於本人龜毛的個性，也會把內容稍作排版。
-如果我有一個 welcome.php，它的樣版檔是 welcome.tpl.htm，但是兩個檔案的編碼不相同，也就是 php 使用  ， tpl.htm 使用 ，結果螢幕顯示時會以  utf-8 編">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 將資料和程式分離 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,35 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>有位 jocosn 網友問了一個我覺得很棒的問題，我把我的觀點提出來供大家參考。</p>
-<p>註：以下我會以引用區塊的方式來標示該網友的問題，然後以回答該問題的語氣說明。且基於本人龜毛的個性，也會把內容稍作排版。</p>
-<blockquote><br><br>如果我有一個 welcome.php，它的樣版檔是 welcome.tpl.htm，但是兩個檔案的編碼不相同，也就是 php 使用 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> ， tpl.htm 使用 <meta http-equiv="Content-Type" content="text/html; charset=big5">，結果螢幕顯示時會以  utf-8 編碼格式顯示 tpl.htm 檔案，必須再手動挑選 big5，請問這種情況有辦法解決嗎？還是程式這種架構有問題？<br><br>使用 big5 是因為 tpl.htm 檔案有用到 mailto，像這樣：<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;a href=&#39;mailto:h...@yahoo.com.tw?subject=&#20854;&#20182;&#21839;&#38988;&#38;amp;body=&#21839;&#38988;&#25551;&#36848;&#65306;%0A%0A%0A%0A&#32879;&#32097;&#26041;&#24335;%0A&#22320;&#22336;&#65306;%0A&#38651;&#35441;&#65306;%0A&#32879;&#32097;&#20154;&#65306;%0A&#39;&#62;&#23531;&#20449;&#36899;&#32097;&#60;/a&#62;</span><br></pre></td></tr></table></figure><br><br>如果改用 utf8，點下 mailto 開啟 outlook 6 會出現亂碼。所以採用 big5 才會正常顯示中文字。但是 php 檔案因有些部份未使用樣板處理一些簡單的小訊息 (如顯示”檔案建立成功”) ，所以採用 utf8，以免顯示中文像「功」字會出現問題。<br><br>像這種情況下，請問該怎麼處理，或是有更好的解決方式嗎？<br></blockquote>
-
-<p>事實上你的 template 還是可以用 utf-8 的，只不過有些地方要做一些手腳。</p>
-<p>在這之前，先給你一個觀念：把資料和程式分離。怎麼說呢？直接給你看例子好了：</p>
-<p>首先我把 mailto 會用到的中文字另存成一個 ini 檔：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mailto]&#10;subject = &#34;&#20854;&#20182;&#21839;&#38988;&#34;&#10;body = &#34;&#21839;&#38988;&#25551;&#36848;&#65306;\n\n\n\n&#32879;&#32097;&#26041;&#24335;\n&#22320;&#22336;&#65306;\n&#38651;&#35441;&#65306;\n&#32879;&#32097;&#20154;&#65306;\n&#34;</span><br></pre></td></tr></table></figure>
-<p>特別要注意的是，這個 ini 檔是用 <strong>big5</strong> 來存檔的。</p>
-<p>然後我在 index.php 裡把它載入：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$mailto = parse_ini_file(&#39;mailto.ini&#39;);&#10;$subject = urlencode($mailto[&#39;subject&#39;]);&#10;$body = str_replace(&#39;%250A&#39;, &#39;%0A&#39;, urlencode(str_replace(&#39;\n&#39;, &#39;%0A&#39;,  $mailto[&#39;body&#39;])));&#10;include(&#39;template.php&#39;);</span><br></pre></td></tr></table></figure>
-<p>這邊要特別注意的是 php 檔是用 <strong>utf-8</strong> 來存檔 (事實上你也可以用 ANSI 來存) 。</p>
-<p>最後來看看 template.php ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;&#28204;&#35430; mailto&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;mailto:jxxxxxxxxx@gmail.com?subject=&#60;?php echo $subject; ?&#62;&#38;amp;body=&#60;?php echo $body; ?&#62;&#34;&#62;&#23531;&#20449;&#36899;&#32097;&#60;/a&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>這裡一樣也是用 <strong>utf-8</strong> 存檔。</p>
-<p>執行它看看，跑出來的結果是不是符合你的需要呢？</p>
-<p>這裡就導出一個觀念了：<strong> PHP 在處理資料時，其程式檔案的編碼是不會影響資料本身的編碼的。</strong></p>
-<p>在上面的例子裡， parse_ini_file 取得的資料就是 mailto.ini 本身的編碼 (也就是 big5) ，而 PHP 也不會因為自己的檔案編碼是 utf-8 而改變 parse_ini_file 所取得的資料編碼。因此這時候的「其他問題」和「問題描述…」都能夠用在 template 上…</p>
-<p>不過等一下，如果你直接把 $mailto[‘subject’] 和 $mailto[‘body’] 套入 template.php 的話，那就慘了。為什麼呢？因為 big5 編碼的內容在 utf-8 編碼的網頁裡，瀏覽器不知道該怎麼解釋它們 (也就是一堆亂碼啦) 。所以這裡我們要利用 urlencode 這個函式，來將 big5 的文字做 URL 編碼。</p>
-<p>至於 \n 的部份只是個表示方式，實際上我們還是要手動將它換成 %0A (雖然我換的方式還滿醜的) 。</p>
-<p>當然不只是文字檔案，就連資料庫中取出的資料也是相同的道理。這點你可以參考我先前寫的 <a href="http://www.jaceju.net/blog/archives/116" target="_blank" rel="external">MySQL 中文編碼徹底研究</a>，裡面有詳細的內容。</p>
-<blockquote><br><br>再請問，如果用 smarty 時，php 檔案是不是應該儘量只有 php 程式碼？<br></blockquote>
-
-<p>依照上面的觀念，你認為我這裡會給什麼樣的答案呢？想想看吧 :)</p>
-<blockquote><br><br>另外 php 檔案存成 utf-8 或 big5 有差嗎？還是說網頁儘量不要存成 big5，以免特殊中文字會出現錯誤？<br><br>例如 php 檔案中像這樣 $mysmarty-&gt;assign(‘myVar1’,’許蓋功’) ，存成 big5，我在測試時，就會出現錯誤 Parse error: parse error, unexpected T_STRING<br></blockquote>
-
-<p>PHP 引擎會對 &lt;?php ?&gt; 裡面的特殊字元很敏感，所以上面的觀念一樣適用在這裡；當然如果是在 &lt;?php ?&gt; 外的話 (通常是 HTML ) 就沒問題了。</p>
-<p>希望上面的說明能讓你清楚相關的觀念 :)</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -307,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -386,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -419,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -435,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -457,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -467,6 +459,7 @@
 
   
   
+
   
     
     
@@ -496,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -665,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -695,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="有讀者詢問了以下的問題：
-「我把 Smarty 預設的 “{“ 和 “}” 改成 “ &amp;lt;{“ 和 “}&amp;gt;”，並依照依照您書上的方法修改光碟內的Dreamweaver 擴充套件，可是會發生問題…」 (我修飾了一下用詞)">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安裝問題 3">
 <meta property="og:url" content="http://jaceju.net/2005/11/22/46/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="有讀者詢問了以下的問題：
-「我把 Smarty 預設的 “{“ 和 “}” 改成 “ &amp;lt;{“ 和 “}&amp;gt;”，並依照依照您書上的方法修改光碟內的Dreamweaver 擴充套件，可是會發生問題…」 (我修飾了一下用詞)">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝問題 3">
-<meta name="twitter:description" content="有讀者詢問了以下的問題：
-「我把 Smarty 預設的 “{“ 和 “}” 改成 “ &amp;lt;{“ 和 “}&amp;gt;”，並依照依照您書上的方法修改光碟內的Dreamweaver 擴充套件，可是會發生問題…」 (我修飾了一下用詞)">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 安裝問題 3 | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,27 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>有讀者詢問了以下的問題：</p>
-<p>「我把 Smarty 預設的 “{“ 和 “}” 改成 “ &lt;{“ 和 “}&gt;”，並依照依照您書上的方法修改光碟內的Dreamweaver 擴充套件，可是會發生問題…」 (我修飾了一下用詞) </p>
-<a id="more"></a>
-<p>如何讓 Dreamweaver 認得 “&lt;{“ 及 “}&gt;” 呢？其實如果照書上的方法修改，肯定不能動。 (那為什麼要這樣寫呀？) 先別打我，看看以下的原因：</p>
-<ul>
-<li>首先你必須先將原來的套件移除後，再安裝改過的套件，不然會有所衝突。<br></li><li><br>然後找到 smarty.xml ，改用 &amp;lt;{ 及 }&amp;gt; 來代替 { 及 }，因為在 XML 中，角括號是特殊字元，不能直接寫在屬性中。所以絕不能直接用 &lt;{ 及 }&gt; 來代替 { 和 } 。</li><br><li><br>接著在 smarty_include.htm 找到以下程式：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">transArray[4] = LDELIM + &#34;[ \t]*include&#34;;</span><br></pre></td></tr></table></figure>
-<p>改成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">transArray[4] = &#34;\&#60;\&#123;[ \t]*include&#34;; // &#23601;&#26159;&#23559; &#60;&#123; &#25913;&#25104; \&#60;\&#123;</span><br></pre></td></tr></table></figure>
-<p>再找到</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">smartyRegExp = new RegExp(&#34;(&#34; + LDELIM + &#34;[ \t]*include[ \t]+file[ \t]*=[ \t]*[\&#34;|&#39;]( \t)*([^\&#34;^&#39;]*)[ \t]*[\&#34;|&#39;]( \t)*&#34; + RDELIM + &#34;)&#34;, &#34;im&#34;);</span><br></pre></td></tr></table></figure>
-<p>改成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">smartyRegExp = /(\&#60;\&#123;[ \t]*include[ \t]+file[ \t]*=[ \t]*[\&#34;|&#39;]( \t)*([^\&#34;^&#39;]*)[ \t]*[\&#34;|&#39;]( \t)*\&#125;\&#62;)/im;</span><br></pre></td></tr></table></figure>
-<p>會什麼要這樣改，是因為 Javascript 在正規表示式 (Regular Expression) 上對 &lt; 及 { 連在一起有不同的解譯方式所造成的，深入的 Regular Expression 請自行找書參考吧。<br></p>
-<ul>
-<li>剩下檔案的就直接替換吧。</li>
-</ul>
-<p>我把改好的檔案放在這裡：<a href="/resources/smarty_dreamweaver/SMARTY_DW_MX_for_lt_and_gt.zip">下載</a>，<strong>注意這是給 &lt;{ }&gt; 用的版本，不要下載錯了。</strong></p>
-<p>註：還是可能會有一些小問題發生，但基本上應該沒什麼大礙。但是如果還是有問題的話，請拿掉 smarty_include.htm 的支援後，再重新包裝。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -296,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -375,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -408,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -424,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -446,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -456,6 +459,7 @@
 
   
   
+
   
     
     
@@ -485,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -654,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -684,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="最近有數篇文章介紹了 PHP 開發者常見的錯誤，我順手整理如下：">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="整理一些常見的 PHP 錯誤">
 <meta property="og:url" content="http://jaceju.net/2014/07/21/summary-of-common-php-mistakes/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="最近有數篇文章介紹了 PHP 開發者常見的錯誤，我順手整理如下：">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T06:20:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="整理一些常見的 PHP 錯誤">
-<meta name="twitter:description" content="最近有數篇文章介紹了 PHP 開發者常見的錯誤，我順手整理如下：">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 整理一些常見的 PHP 錯誤 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,42 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>最近有數篇文章介紹了 PHP 開發者常見的錯誤，我順手整理如下：</p>
-<a id="more"></a>
-<p><a href="http://www.toptal.com/php/10-most-common-mistakes-php-programmers-make" target="_blank" rel="external">10 Common PHP Coding Errors</a></p>
-<ol>
-<li>在 foreach 迴圈中使用了迭代項目的參考。</li>
-<li>誤用了 isset 。</li>
-<li>搞混了回傳值是傳參考還是傳值。</li>
-<li>在迴圈中執行不必要的 SQL Query 。</li>
-<li>一次取得太多結果，造成不必要的記憶體浪費。</li>
-<li>忽略了 Unicode / UTF-8 問題。</li>
-<li>總是假設 $_POST 會包含 POST 資料。</li>
-<li>沒有注意 PHP 不支援 char 字元型態。</li>
-<li>對編碼標準的忽略，尤其是 PSR 標準 (當然有些依據不見得好，但也是大家討論出來的標準) 。</li>
-<li>誤用了 empty 函式。</li>
-</ol>
-<p><a href="http://afilina.com/common-php-mistakes/" target="_blank" rel="external">Common PHP Mistakes</a></p>
-<ol>
-<li>忘了使用快取機制來減少大量 requests 對系統的衝擊。</li>
-<li>沒有避開 SQL Injection 。</li>
-<li>開發時關掉了錯誤回報。</li>
-<li>表單 POST 後還停留在同一頁。</li>
-<li>沒有善用已經存在的工具，而重造輪子。</li>
-<li>關掉了 timeout 機制，讓 script 沒有停止的依據。</li>
-<li>忽略了網站可用性。</li>
-</ol>
-<p><a href="http://www.sitepoint.com/7-mistakes-commonly-made-php-developers/" target="_blank" rel="external">7 More Mistakes Commonly Made by PHP Developers</a></p>
-<ol>
-<li>使用過時的 mysql extention 。</li>
-<li>沒有使用 PDO 的參數機制來避免 SQL Injection 。</li>
-<li>沒有重寫網址，讓它符合現今的網址守則。</li>
-<li>抑制錯誤訊息的發生。</li>
-<li>在條件判斷式中賦值。</li>
-<li>曝露太多有關系統所使用的 Framework 資訊。</li>
-<li>沒有移除掉開發時的設定檔。</li>
-</ol>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -308,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -387,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -420,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -436,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -458,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -468,6 +459,7 @@
 
   
   
+
   
     
     
@@ -497,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -666,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -696,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

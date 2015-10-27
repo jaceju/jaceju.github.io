@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,20 +31,30 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
 
 
 
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
 
 
 <meta name="description">
@@ -54,14 +68,14 @@
 <meta name="twitter:description">
 
 
+
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 網站製作學習誌 </title>
 </head>
@@ -130,7 +144,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -140,7 +154,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -150,7 +164,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -170,7 +184,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
   <section id="posts" class="posts-expand">
     
       
@@ -234,11 +249,7 @@
         
           <span itemprop="articleBody">
             
-              <p>近來 RoR 話題不斷，以下這篇文章可以讓大家看看反面的意見。至於觀點對不對，我不予評論 (其實沒用過 RoR 的我也沒這個資格評論) ；因為對我而言，技術沒有絕對的對錯，只有使用的時機與環境是不是恰當。</p>
-<p>文章連結：<a href="http://sushener.spaces.msn.com/Blog/cns!BB54050A5CFAFCDD!596.entry" target="_blank" rel="external">RoR 風潮的背後</a> (簡體中文) 。</p>
-<p>重點提示：</p>
-<blockquote>從某種程度上來說，它掩蓋了問題的實質：領域對象的價值！</blockquote>
-
+              
             
           </span>
         
@@ -320,14 +331,7 @@
         
           <span itemprop="articleBody">
             
-              <p>透過實例介紹如何在 PHP 中寫出安全的程式，格式為 Flash 投影片。</p>
-<p>連結：</p>
-<ul>
-<li><a href="http://shiflett.org/archive/241" target="_blank" rel="external">PHP Security by Example 的英文說明。</a></li>
-<li><a href="http://brainbulb.com/talks/php-security-by-example.swf" target="_blank" rel="external">PHP Security by Example 的投影片展示。</a></li>
-<li><a href="http://brainbulb.com/php-security-by-example.tar.gz" target="_blank" rel="external">PHP Security by Example 的範例下載。</a></li>
-</ul>
-
+              
             
           </span>
         
@@ -409,19 +413,7 @@
         
           <span itemprop="articleBody">
             
-              <p>呃…這次這個不是網頁製作的知識，但是我還是把它記下來好了，免得以後忘記。</p>
-<p>在我安裝最新的 nVidia 顯示卡驅動程式 91.31 版後，開機時右下角常會跑出 SLI 已停用的警告訊息 (我的顯示卡是 7800 ) 。不論我使用任何方式，就是無法取消這個訊息。</p>
-<p>求助 Google 大神的結果，我找到了以下這個網址，它提供了一個解法：</p>
-<p><a href="http://technologyexpert.blogspot.com/2006/06/problems-w-nvidias-9131-drivers.html" target="_blank" rel="external"> Problems w/ nVidia’s 91.31 Drivers</a></p>
-<p>請把以下的內容存成一個 nvidia9131.reg ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak\]&#10;&#34;NvCplEnableMultiGPUConfigurationPage&#34;=dword:00000000&#10;[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\MediaCenterTray]&#10;&#34;NvCplDisableBalloonNotifications&#34;=dword:00000001</span><br></pre></td></tr></table></figure>
-<p>接著雙擊這個 reg 檔，將以上的設定匯入系統登錄檔。</p>
-<p>然後執行登錄編輯程式，到：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HKLM\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
-<p>把以下兩個項目刪除：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NvCplDaemon: RUNDLL32.EXE C:\WINDOWS\system32\NvCpl.dll,NvStartup&#10;NvMediaCenter: RunDLL32.exe NvMCTray.dll,NvTaskbarInit</span><br></pre></td></tr></table></figure>
-<p>最後重開機即可解決。</p>
-
+              
             
           </span>
         
@@ -503,9 +495,7 @@
         
           <span itemprop="articleBody">
             
-              <p>在 <a href="http://blog.markplace.net/marks_place/1/2006/06/17/102" target="_blank" rel="external">Mark’s Place</a> 看到的，有國外的開發者把 Smarty 的參考手冊濃縮成一張 A4 大小的圖解，有在使用 Smarty 的人可以參考看看。</p>
-<p>網址：<a href="http://hasin.wordpress.com/2006/06/10/smarty-cheat-sheet-version-20/" target="_blank" rel="external">Smarty Cheat Sheet Version 2.0</a></p>
-
+              
             
           </span>
         
@@ -587,11 +577,7 @@
         
           <span itemprop="articleBody">
             
-              <p>如果大家看過我的書，但是對 Smarty 的一些細節還不是很清楚的話，可以去翻翻 Smarty 的手冊，裡面的資訊是你不應該錯過的。</p>
-<p>不過我想還是有很多人對英文不太行，網路上就有一位非常好心的網友 elie 幫大家把 Smarty 手冊翻譯成了正體中文 (感動吧~~) 。不過譯者也保留了原英文內容，可以讓大家對照用。</p>
-<p>網址：<a href="http://twpug.net/docs/smarty_2.6.9_elie/index.html" target="_blank" rel="external">Smarty 手冊中文翻譯</a> by elie 。</p>
-<p>目前這份文件是放在<a href="http://twpug.net/" target="_blank" rel="external">台灣 PHP 聯盟</a>上，大家對 PHP 有強烈興趣的話，也應該去這個台灣好站朝拜一下 :) </p>
-
+              
             
           </span>
         
@@ -671,13 +657,11 @@
 
       
         
-          <p>你認為你的 JavaScript 知識等級到哪裡了呢？</p>
-<p>剛剛看到這篇 <a href="http://dean.edwards.name/weblog/2006/06/levels/">Levels of JavaScript Knowledge</a> 時覺得非常有趣，以下我自己把它加上一些個人的見解。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/06/03/104/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -755,18 +739,11 @@
 
       
         
-          <p>也是在 Tim Club 回答的<a href="http://timteam.org/?TIM=FORUM&amp;FORUM=1&amp;ShowDocument=14269">問題</a>，記在這裡自己備忘用。</p>
-<p>一位網友問到，想把以下的文字：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[code:07318bb522](/code:07318bb522)&#10;[color=blue:8841ec98ad](/color:a76c137a60)&#10;[b:8841ec98ad] [/b:6e4e964058]&#10;[quote=&#34;Anonymous&#34;] [/quote:6e4e964058]</span><br></pre></td></tr></table></figure>
-<p>換成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[code](/code)&#10;[color=blue](/color)&#10;[b] [/b]&#10;[quote] [/quote]</span><br></pre></td></tr></table></figure>
-<p>其實這個就是所謂的 BBCode ，只是我很少看過第一種表示形式。</p>
-<p>怎麼轉換呢？</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/06/03/103/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -844,17 +821,11 @@
 
       
         
-          <h2 id="簡介">簡介</h2><p>是到了該結帳的時候了，就像你在大賣場買完東西後，要到櫃台付錢是一樣的。但是在購物網站買完東西後，總是要填寫一些個人資料，方便商家能夠把東西寄給你，這是虛擬商店比較不同的地方。</p>
-<p>而要填寫的資料不外乎是購買人資訊、收貨人資訊等等，這些資訊大部份都能在使用者登入成為會員取得，這通常也是一般會員制購物網站的作法。</p>
-<p>不過難題來了，雖然我們建立的是一個會員制購物網站，但是客戶卻希望能讓未註冊的訪客也能夠在這裡先買東西，而到結帳時才選擇是不是要加入會員。當然客戶永遠不會瞭解採取這種方式的難度，他認為你是網站開發人員，你一定會有辦法的。</p>
-<p>先不要翻桌子，解決問題是我們的責任。仔細想想，訪客對購物網站的經營者而言，也可能是潛在的消費者；所以如果能提供便利的方式讓這些人轉變為會員，其實還滿重要的。</p>
-<p>當然我們得提供畫面讓使用者填寫資料，並且把這些資料做適當的處理。不過後續的處理方式我就不多提了，現在我們把重點先放在結帳表單顯示的頁面流程，來看看物件導向思維如何應用在這上面。</p>
-<p>註：這裡我也會略過金流及物流的部份，因為各家金流及物流的實作方式都不太一樣，要寫的話可能又會是落落長。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/05/30/102/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -934,24 +905,7 @@
         
           <span itemprop="articleBody">
             
-              <p>這篇是寫給新同事以及我自己備忘用的，也歡迎大家提出指正。</p>
-<p>在撰寫網頁程式時，有些基本的東西要非常注意，這樣寫出來的程式才不容易出現問題，也才能夠交給客戶。以下就是我自己的開發心得，供大家參考。</p>
-<h2 id="利用明確的指定方式來取得頁面傳來的變數">利用明確的指定方式來取得頁面傳來的變數</h2><p>不管是 GET 或 POST 的參數，我會希望明確地指定它的型態，例如 id 應該是整數， content 是文字等。而且我也常常發現有人把接到這些變數後，沒有事先做處理就直接串到程式中，這是非常危險的一件事情！</p>
-<p>最明顯的例子就是 SQL Injection 了，我想這應該不用多說了。總而言之，不要過份相信用戶端傳來的資訊，把它轉換成你能掌握的型態再用吧。</p>
-<h2 id="資料庫的連結每個頁面只作一次">資料庫的連結每個頁面只作一次</h2><p>資料庫連結是網站頁面常做的事情，但是儘可能不要讓一個頁面產生太多的資料庫連結。我們可以利用 Singleton 模式來取得資料庫連結物件，這樣可以確保程式裡只會用到一個資料庫連結；當然需要連結不同資料庫的話就另當別論。</p>
-<p>所以我們要確定資料庫會在頁面初始化時連結，頁面結束時關閉。這樣有單一的入口與出口，程式也就不容易出現奇怪的問題。</p>
-<h2 id="相同的邏輯不要寫兩遍以上">相同的邏輯不要寫兩遍以上</h2><p>如果發現有兩支程式會用到相同的程式邏輯時，不要猶豫，把它抽出來變成類別或函式 (最好是類別，原因在下一則) 。因為如果哪一天需要更新程式的邏輯時，你只需要更改一支程式即可。對健忘的人來說，這點尤其重要。</p>
-<p>我就遇過有人把產生選單的邏輯重複寫在十多支程式裡，結果有次客戶要求要修正其中一個地方，可憐的維護人員 (就是我啦) 就得一支一支地去翻出來改。</p>
-<h2 id="利用物件來管理錯誤">利用物件來管理錯誤</h2><p>我這裡指的錯誤是任何預期中的狀況，也就是你不希望使用者操作的方式，例如編號不存在或是檔案大小超過限制等。</p>
-<p>當錯誤發生時，不要立刻結束，應該利用錯誤上升機制來讓通知上一層的程式，最後再由頁面控制程式來決定要如何處理錯誤。我常常會遇到有人在函式裡利用 exit 離開程式，但是這時候頁面的資料庫或其他物件等等都還沒釋放掉；雖然程式平台可能會幫你做，但那總是很難預期。</p>
-<p>所以我建議不要使用函式，而改為使用物件的方法，然後利用類似 PEAR::isError() 來判斷是否執行成功；如果失敗的話就把錯誤往上丟，直到頁面能夠控制為止。</p>
-<h2 id="該釋放的要記得釋放">該釋放的要記得釋放</h2><p>不管是物件還是資料庫，都應該在頁面結束前將它們銷毀或關閉，而不要過於依賴程式執行平台。網頁程式是很多人會同時存取的，如果沒有正確地將資源即時釋放掉的話，久而久之就會造成系統效能上的不穩定。</p>
-<p>而釋放的動作要什麼時候做呢？記住一句話：誰開的就誰負責關。例如上面頁面控制程式開啟資料庫連結，那就在頁面控制程式的最後把資料庫連結關閉。類別建構函式產生的物件，就在類別解構程式裡銷毀。函式開的頭，當然就在函式尾收掉；不過有個例外，那就是這個函式如果本身就是要回傳產生的物件時，那就不能把它給釋放囉，而是要改為呼叫這個函式的程式來釋放。</p>
-<h2 id="利用樣版技術">利用樣版技術</h2><p>樣版是用來分離程式邏輯與視覺頁面的，也常常有人用 MVC 這個模式來稱呼它。然而兩者分離除了不相互干擾外，其實還有一個好處：那就是程式可以在錯誤發生後，決定要顯示的結果。就像上面提到的錯誤管理，當我們在頁面控制程式取得錯誤訊息時，我們就可以而用置換樣版來避免掉頁面的錯誤，或者是導向別的處理程式。</p>
-<p>這點我覺得 PHP 的 Smarty 就考慮得很好，因為它是後期頁面綁定 (Binding) ，而不會像傳統樣版引擎在前期就把頁面拉進程式處理，導致錯誤發生時徒然浪費處理時間 (當然要看怎麼設計的) 。</p>
-<h2 id="徹底瞭解開發環境的性質">徹底瞭解開發環境的性質</h2><p>網頁程式和一般應用程式 (例如視窗應用程式) 在本質上是有差異的，這些差異不僅是在操作上，就連執行的過程都非常的不一樣。雖然現在有 AJAX 或其他技術可以縮小彼此的差距，但是它還是建構在 HTTP 這個無狀態協定之上。身為網站程式開發人員，其實應該要瞭解這些基礎，而不要只熟稔某些已經被包裝過的技術就顯得自得意滿。</p>
-<p>最簡單的就是伺服端程式與用戶端程式之間的溝通，例如 PHP 和 JavaScript 。我常常在網路上看見有人問道：要如何讓 PHP 和 JavaScript 之間的變數互通？如果瞭解 HTTP 執行的過程，那麼你就會自己發現這些問題的答案。</p>
-
+              
             
           </span>
         
@@ -1031,12 +985,11 @@
 
       
         
-          <p>最近忙到被鬼抓去，關了好久才有空透透氣。趁著這幾天用公司的名義買了兩本半的 AJAX 的中文書 (因為其中一本只是把以前的 JavaScript 範例活用辭典加上 AJAX 的介紹) ，好好的 K 它一番。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2006/05/06/100/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody">
+            
+              
+            
+          </span>
         
       
     </div>
@@ -1063,11 +1016,14 @@
   </nav>
 
 
- </div>
+
+        </div>
 
         
 
+
         
+
       </div>
 
       
@@ -1125,13 +1081,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -1163,7 +1123,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -1185,7 +1146,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -1195,6 +1157,7 @@
 
   
   
+
   
     
     
@@ -1222,39 +1185,25 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -1262,15 +1211,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

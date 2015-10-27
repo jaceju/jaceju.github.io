@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="先前提過，從 1.8 版之後， Zend Framework 就提供了一個 Zend_Tool 讓我們可以像 CakePHP 一樣，用命令列模式來建立專案。
-但也許是 ZF 剛推出，在其他框架的專案建構器都有非常強大的功能的情況之下， ZF 仍舊僅僅提供很簡單的 project, module, controller, action 及 view 的建立功能，其他像是  model 是 schem">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 Zend_Tool 自訂專案建構器的 Provider (一)">
 <meta property="og:url" content="http://jaceju.net/2009/10/11/775/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="先前提過，從 1.8 版之後， Zend Framework 就提供了一個 Zend_Tool 讓我們可以像 CakePHP 一樣，用命令列模式來建立專案。
-但也許是 ZF 剛推出，在其他框架的專案建構器都有非常強大的功能的情況之下， ZF 仍舊僅僅提供很簡單的 project, module, controller, action 及 view 的建立功能，其他像是  model 是 schem">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 Zend_Tool 自訂專案建構器的 Provider (一)">
-<meta name="twitter:description" content="先前提過，從 1.8 版之後， Zend Framework 就提供了一個 Zend_Tool 讓我們可以像 CakePHP 一樣，用命令列模式來建立專案。
-但也許是 ZF 剛推出，在其他框架的專案建構器都有非常強大的功能的情況之下， ZF 仍舊僅僅提供很簡單的 project, module, controller, action 及 view 的建立功能，其他像是  model 是 schem">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 利用 Zend_Tool 自訂專案建構器的 Provider (一) | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,29 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>先前<a href="http://www.jaceju.net/blog/archives/536" target="_blank" rel="external">提過</a>，從 1.8 版之後， Zend Framework 就提供了一個 Zend_Tool 讓我們可以像 CakePHP 一樣，用命令列模式來建立專案。</p>
-<p>但也許是 ZF 剛推出，在其他框架的專案建構器都有非常強大的功能的情況之下， ZF 仍舊僅僅提供很簡單的 project, module, controller, action 及 view 的建立功能，其他像是  model 是 schema 的建立等功能， ZF 似乎尚未完成。</p>
-<p>註：在 ZF 1.9 提供的 Zend_Tool 原始碼中，倒是保留了許多新功能的骨架，希望未來的版本能看到它們的誕生。</p>
-<p>不過 ZF 最大的特色：自訂一切！ Zend_Tool 倒是很完整地保留了，它讓我們自己定義專案產生器的夢想有實現的可能！</p>
-<p>接下來就讓我們來試試看吧！</p>
-<a id="more"></a>
-<h2 id="設定環境">設定環境</h2><p>註：以下我假定大家已經依照拙作 <a href="http://www.jaceju.net/blog/archives/536" target="_blank" rel="external">[PHP-ZF] Zend Framework 1.8 初探</a>所提到的安裝方式，將 ZF 1.9 安裝好了。</p>
-<p>先在系統環境變數裡加名為 ZF_HOME 的變數，其值指向 ZF 的安裝目錄，這裡我以「 C:\ZF\ 」為例。</p>
-<p>接著在 C:\ZF\ 下建立一個 .zf.ini 檔 (注意 zf 前面還有個 . 號) ，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php.include_path = &#34;C:\ZF\library&#34;&#10;php.error_reporting = 1</span><br></pre></td></tr></table></figure>
-<p>以上動作的目的是因為在 zf.php 執行的過程中，它會自動去找尋環境變數 ZF_HOME 下的 zf.ini 檔來當做執行時期的設定參考。</p>
-<h2 id="撰寫_Provider">撰寫 Provider</h2><p>然後在 C:\ZF\library 下建立一個新目錄，例如 My 。再把以下內容存為 HelloWorldProvider.php ，放在 My 目錄下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Zend/Tool/Project/Provider/Abstract.php&#39;;&#10;require_once &#39;Zend/Tool/Project/Provider/Exception.php&#39;;&#10;class My_HelloWorldProvider extends Zend_Tool_Project_Provider_Abstract&#10;&#123;&#10;   public function say()&#10;   &#123;&#10;        echo &#34;Hello World!&#34;;&#10;   &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>所以現在你應該會有一個 C:\ZF\library\My\HelloWorldProvider.php 了，它只提供了一個很簡單的 say 方法 ，執行結果就是顯示「 Hello World! 」的字樣而已。</p>
-<h2 id="測試">測試</h2><p>首先我們要確定我們自訂的 Provider 已經能被 zf.php 找到，在命令列模式下輸入：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;zf ?</span><br></pre></td></tr></table></figure>
-<p>結果如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Zend Framework Command Line Console Tool v1.9.3PL1&#10;Usage:&#10;    (&#30053;)&#10;Providers and their actions:&#10;  HelloWorld&#10;    zf say hello-world&#10;  (&#20197;&#19979;&#30053;)</span><br></pre></td></tr></table></figure>
-<p>這樣就表示我們的 Provider 被 zf.php 找到了。我們可以輸入以下執行測試看看：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;zf say hello-world&#10;Hello World!</span><br></pre></td></tr></table></figure>
-<p>是不是很簡單呢？</p>
-<p>目前我對 Zend_Tool 的瞭解還不是非常深刻，但至少已經有個概念了。希望未來能對它研究得更深入些，讓後續的系列文章得以分享給大家。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -298,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -377,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -410,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#設定環境"><span class="nav-number">1.</span> <span class="nav-text">設定環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撰寫_Provider"><span class="nav-number">2.</span> <span class="nav-text">撰寫 Provider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試"><span class="nav-number">3.</span> <span class="nav-text">測試</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -426,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -458,6 +459,7 @@
 
   
   
+
   
     
     
@@ -487,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -656,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -686,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

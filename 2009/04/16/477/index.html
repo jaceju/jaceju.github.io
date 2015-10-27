@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,38 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="問題剛剛被問了一個 Cookie 的觀念，這邊簡單分享給大家。
-先來看以下這個程式，請問它第一次執行時結果是什麼？
-setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COOKIE);
-如果你回答的是空陣列的話，那就表示你瞭解 Cookie 的作用了。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Web] Cookie 小觀念">
 <meta property="og:url" content="http://jaceju.net/2009/04/16/477/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="問題剛剛被問了一個 Cookie 的觀念，這邊簡單分享給大家。
-先來看以下這個程式，請問它第一次執行時結果是什麼？
-setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COOKIE);
-如果你回答的是空陣列的話，那就表示你瞭解 Cookie 的作用了。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Web] Cookie 小觀念">
-<meta name="twitter:description" content="問題剛剛被問了一個 Cookie 的觀念，這邊簡單分享給大家。
-先來看以下這個程式，請問它第一次執行時結果是什麼？
-setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COOKIE);
-如果你回答的是空陣列的話，那就表示你瞭解 Cookie 的作用了。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [Web] Cookie 小觀念 | 網站製作學習誌 </title>
 </head>
@@ -138,7 +143,7 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -148,7 +153,7 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -158,7 +163,7 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -178,7 +183,8 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -237,18 +243,7 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
       
 
       
-        <span itemprop="articleBody"><h2 id="問題">問題</h2><p>剛剛被問了一個 Cookie 的觀念，這邊簡單分享給大家。</p>
-<p>先來看以下這個程式，請問它第一次執行時結果是什麼？</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setcookie(&#39;test&#39;, &#39;abc&#39;);&#10;var_dump($_COOKIE);</span><br></pre></td></tr></table></figure>
-<p>如果你回答的是空陣列的話，那就表示你瞭解 Cookie 的作用了。</p>
-<a id="more"></a>
-<h2 id="說明">說明</h2><p>當我們在使用 setcookie 這個函式時，其實是在告訴瀏覽器： <strong>Server 要在它身上註冊一個 cookie 變數，這個變數會在下次瀏覽器連到同一個網站時，被送到 Server 上。</strong></p>
-<p>所以第一次我們傾印 $_COOKIE 這個超全域陣列時是抓不到值的 (注意這個動作是在 Server 端) ，因為這時瀏覽器才剛認識 setcookie 丟出來的 test 變數。</p>
-<p>當第二次瀏覽同一個網站時，瀏覽器就會把記在自己身上的 cookie 丟回 Server (就像 POST 一樣) ，這時 Server (PHP) 才會知道 cookie 的內容，將它塞到 $_COOKIE 陣列裡。</p>
-<p>如果想要第一次執行就取得 $_COOKIE 的值，那麼就得利用 redirect 的方式來處理，如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setcookie(&#39;test&#39;, &#39;abc&#39;);&#10;if (empty($_COOKIE)) header(&#39;Location: ./&#39;);&#10;var_dump($_COOKIE);</span><br></pre></td></tr></table></figure>
-<p>雖然這只是個小觀念，但希望能對大家在使用 Cookie 有進一步的瞭解。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -293,19 +288,22 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -372,13 +370,17 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -405,8 +407,10 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#問題"><span class="nav-number">1.</span> <span class="nav-text">問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#說明"><span class="nav-number">2.</span> <span class="nav-text">說明</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -421,7 +425,8 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -443,7 +448,8 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -453,6 +459,7 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
 
   
   
+
   
     
     
@@ -482,24 +489,21 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -651,29 +655,20 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -681,15 +676,5 @@ setcookie(&amp;#39;test&amp;#39;, &amp;#39;abc&amp;#39;);&amp;#10;var_dump($_COO
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="前幾天遇到了一個 JavaScript 的小問題，就是物件的複製。 
-這個問題主要是我先設定了一個全域變數，然後在函式裡去重新定義一個變數，並將全域變數的內容指定給新變數。
-我以為這樣就是「複製了 JavaScript 的物件」，但事實上是錯的。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JavaScript] 複製物件">
 <meta property="og:url" content="http://jaceju.net/2008/11/17/361/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="前幾天遇到了一個 JavaScript 的小問題，就是物件的複製。 
-這個問題主要是我先設定了一個全域變數，然後在函式裡去重新定義一個變數，並將全域變數的內容指定給新變數。
-我以為這樣就是「複製了 JavaScript 的物件」，但事實上是錯的。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JavaScript] 複製物件">
-<meta name="twitter:description" content="前幾天遇到了一個 JavaScript 的小問題，就是物件的複製。 
-這個問題主要是我先設定了一個全域變數，然後在函式裡去重新定義一個變數，並將全域變數的內容指定給新變數。
-我以為這樣就是「複製了 JavaScript 的物件」，但事實上是錯的。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [JavaScript] 複製物件 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,22 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>前幾天遇到了一個 JavaScript 的小問題，就是物件的複製。 </p>
-<p>這個問題主要是我先設定了一個全域變數，然後在函式裡去重新定義一個變數，並將全域變數的內容指定給新變數。</p>
-<p><strong>我以為這樣就是「複製了 JavaScript 的物件」，但事實上是錯的。 </strong></p>
-<a id="more"></a>
-<p>我特地上網找了一下，發現 JavaScript 本身並沒有提供比較方便的 clone 機制，這時我的腦筋就動到 jQuery 上了。 </p>
-<p>不過這裡我可不是說 jQuery 的 clone 方法，而是 extend 方法。 </p>
-<p>先來看看例子好了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;jquery/1.2.6.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;function w(s) &#123;&#10;    document.write(s + &#39;&#60;br /&#62;\n&#39;);&#10;&#125;&#10;function d(o) &#123;&#10;    var s = &#39;&#39;;&#10;    for (var i in o) &#123;&#10;        s += i + &#39;: &#39; + o[i] + &#39;&#60;br /&#62;\n&#39;;&#10;    &#125;&#10;    w(s);&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;var o1 = &#123;&#10;    a1: &#39;123&#39;,&#10;    a2: &#39;456&#39;&#10;&#125;;&#10;var o2 = o1;&#10;$.extend(o2, &#123; a3: &#39;789&#39; &#125;);&#10;var o3 = $.extend(&#123;&#125;, o1);&#10;$.extend(o3, &#123; a4: &#39;000&#39; &#125;);&#10;w(&#39;o1&#39;);&#10;d(o1);&#10;w(&#39;o2&#39;);&#10;d(o2);&#10;w(&#39;o3&#39;);&#10;d(o3);&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>在上面的程式中，請將重點放在我強調的部份。</p>
-<p>這裡我先定義一個自訂物件 o1 ，然後我將 o2 指定為 o1 ；在 JavaScript 的意義裡， o2 就會是 o1 的「別名」，兩個都指到同一個物件。 </p>
-<p>因此接下來我對 o2 進行任何操作，都會影響到 o1 ；也就是說如果我們要複製 o1 的話，就不能用等號 (=) 。 </p>
-<p>jQuery 的 extend 方法可以幫我們這個忙。</p>
-<p> 原因是 extend 會將第二個參數裡的物件成員，一項一項地複製到第一個參數上。因此我們可以用它來解決 JavaScript 複製物件的問題。</p>
-<p>在 o1 複製到 o3 中，很重要的一個關鍵就是我們需要把 $.extend 的第一個參數設為空物件；這是因為 $.extend 會回傳第一個參數，我們就省掉先行定義 o3 為空物件的動作了。</p>
-<p>接下來我們不論怎麼對 o3 進行處理，也不會影響到 o1 ；換句話說，我們已經成功達成 clone JavaScript Object 的目標啦。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -294,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -373,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -406,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -422,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -444,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -454,6 +459,7 @@
 
   
   
+
   
     
     
@@ -483,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -652,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -682,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

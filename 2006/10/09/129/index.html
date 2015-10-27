@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,45 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="網友 giorno 問了一個這樣的問題：
-在執行 testSmartyInstall.php 時，出現了以下的訊息：
 
-這是因為 PHP 在 5.1 以後有個時區的設定 (date.timezone) ，會預設為美國時區。所以當我們的程式在執行時，就會出現上面的錯誤。
-正確的解決方式是在 PHP.INI 中指定正確的時區  (參考) ，如下：
-date.timezone = Asia/Taipei">
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安裝問題 4">
 <meta property="og:url" content="http://jaceju.net/2006/10/09/129/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="網友 giorno 問了一個這樣的問題：
-在執行 testSmartyInstall.php 時，出現了以下的訊息：
-
-這是因為 PHP 在 5.1 以後有個時區的設定 (date.timezone) ，會預設為美國時區。所以當我們的程式在執行時，就會出現上面的錯誤。
-正確的解決方式是在 PHP.INI 中指定正確的時區  (參考) ，如下：
-date.timezone = Asia/Taipei">
-<meta property="og:image" content="http://jaceju.net/resources/smarty_book/install_001.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝問題 4">
-<meta name="twitter:description" content="網友 giorno 問了一個這樣的問題：
-在執行 testSmartyInstall.php 時，出現了以下的訊息：
+<meta name="twitter:description">
 
-這是因為 PHP 在 5.1 以後有個時區的設定 (date.timezone) ，會預設為美國時區。所以當我們的程式在執行時，就會出現上面的錯誤。
-正確的解決方式是在 PHP.INI 中指定正確的時區  (參考) ，如下：
-date.timezone = Asia/Taipei">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 安裝問題 4 | 網站製作學習誌 </title>
 </head>
@@ -145,7 +143,7 @@ date.timezone = Asia/Taipei">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -155,7 +153,7 @@ date.timezone = Asia/Taipei">
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -165,7 +163,7 @@ date.timezone = Asia/Taipei">
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -185,7 +183,8 @@ date.timezone = Asia/Taipei">
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -244,21 +243,7 @@ date.timezone = Asia/Taipei">
       
 
       
-        <span itemprop="articleBody"><p>網友 giorno 問了一個這樣的<a href="http://blog.roodo.com/jaceju/archives/2237311.html#comment-3222051" target="_blank" rel="external">問題</a>：</p>
-<p>在執行 testSmartyInstall.php 時，出現了以下的訊息：</p>
-<p><img src="/resources/smarty_book/install_001.gif" alt=""></p>
-<p>這是因為 PHP 在 5.1 以後有個時區的設定 (date.timezone) ，會預設為美國時區。所以當我們的程式在執行時，就會出現上面的錯誤。</p>
-<p>正確的解決方式是在 PHP.INI 中指定正確的時區  (<a href="http://www.php.net/manual/en/timezones.php" target="_blank" rel="external">參考</a>) ，如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date.timezone = Asia/Taipei</span><br></pre></td></tr></table></figure>
-<p>也可以在 ch03 目錄下放置一個 .htaccess ，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php_value date.timezone Asia/Taipei</span><br></pre></td></tr></table></figure>
-<p>或是在建立 Smarty 物件前，直接用 <a href="http://www.php.net/manual/en/function.date-default-timezone-set.php" target="_blank" rel="external">date_default_timezone_set()</a> 在程式直接指定時區： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">date_default_timezone_set(&#39;Asia/Taipei&#39;);</span><br></pre></td></tr></table></figure>
-<p>然後 giorno 又發現一個<a href="http://blog.roodo.com/jaceju/archives/2237311.html#comment-3266913" target="_blank" rel="external">問題</a>，雖然我不太瞭解他的意思，不過為什麼在他回復程式後，第二次又可以執行這點我倒是可以解釋一下。</p>
-<p>這是因為第一次正常執行後， Smarty 就會在 templates_c 裡建立一個供 testSmartyInstall.php 用的暫存檔，所以第二次執行時，只要 testSmartyInstall.tpl.htm 沒有任何更動，那麼 Smarty 就會使用該暫存檔來執行。</p>
-<p>註：相關的運作流程可以查看拙作的第 2-3 頁。 </p>
-<p>這應該是 Smarty 在 PHP 5.1 上的相容性問題，只要設定好相關配置之後，應該就不會再發生了。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -303,19 +288,22 @@ date.timezone = Asia/Taipei">
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -382,13 +370,17 @@ date.timezone = Asia/Taipei">
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -415,6 +407,8 @@ date.timezone = Asia/Taipei">
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -431,7 +425,8 @@ date.timezone = Asia/Taipei">
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -453,7 +448,8 @@ date.timezone = Asia/Taipei">
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -463,6 +459,7 @@ date.timezone = Asia/Taipei">
 
   
   
+
   
     
     
@@ -492,24 +489,21 @@ date.timezone = Asia/Taipei">
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -661,29 +655,20 @@ date.timezone = Asia/Taipei">
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -691,15 +676,5 @@ date.timezone = Asia/Taipei">
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

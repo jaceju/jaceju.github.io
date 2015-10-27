@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="如果臨時想讓各家瀏覽器都能處理 DOM 事件，又不想寫太多跨瀏覽器事件處理程式或使用額外的 JS 框架時，以下的程式碼可以參考看看。
-註：這個方法是為了某些簡單的活動頁寫的，我想如果要做較為複雜的效果時，還是使用別人已經包裝好的函式庫比較好。
-&amp;#60;!DOCTYPE html PUBLIC &amp;#34;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;#34;&amp;#10">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一個各家瀏覽器都可接受的事件處理器簡易寫法">
 <meta property="og:url" content="http://jaceju.net/2007/03/25/172/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="如果臨時想讓各家瀏覽器都能處理 DOM 事件，又不想寫太多跨瀏覽器事件處理程式或使用額外的 JS 框架時，以下的程式碼可以參考看看。
-註：這個方法是為了某些簡單的活動頁寫的，我想如果要做較為複雜的效果時，還是使用別人已經包裝好的函式庫比較好。
-&amp;#60;!DOCTYPE html PUBLIC &amp;#34;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;#34;&amp;#10">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一個各家瀏覽器都可接受的事件處理器簡易寫法">
-<meta name="twitter:description" content="如果臨時想讓各家瀏覽器都能處理 DOM 事件，又不想寫太多跨瀏覽器事件處理程式或使用額外的 JS 框架時，以下的程式碼可以參考看看。
-註：這個方法是為了某些簡單的活動頁寫的，我想如果要做較為複雜的效果時，還是使用別人已經包裝好的函式庫比較好。
-&amp;#60;!DOCTYPE html PUBLIC &amp;#34;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;#34;&amp;#10">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 一個各家瀏覽器都可接受的事件處理器簡易寫法 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,25 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>如果臨時想讓各家瀏覽器都能處理 DOM 事件，又不想寫太多跨瀏覽器事件處理程式或使用額外的 JS 框架時，以下的程式碼可以參考看看。</p>
-<p>註：這個方法是為了某些簡單的活動頁寫的，我想如果要做較為複雜的效果時，還是使用別人已經包裝好的函式庫比較好。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;Event Testing&#60;/title&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!-- &#60;![CDATA[&#10;function someHandler(e, t, arg1, arg2) &#123;&#10;var event_info = document.getElementById(&#39;event_info&#39;);&#10;var dom_info = document.getElementById(&#39;dom_info&#39;);&#10;var params = document.getElementById(&#39;params&#39;);&#10;event_info.innerHTML = &#39;&#39;;&#10;for (var n in e) &#123;&#10;event_info.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;&#39; + n +&#10;&#39;:&#60;&#39; + &#39;/strong&#62; &#39; + e[n] + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;&#125;&#10;dom_info.innerHTML = &#39;&#39;;&#10;for (var n in t) &#123;&#10;dom_info.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;&#39; + n +&#10;&#39;:&#60;&#39; + &#39;/strong&#62; &#39; + t[n] + &#39;&#60;&#39; + &#39;/p&#62;&#39;;    &#125;&#10;params.innerHTML = &#39;&#39;;&#10;params.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;arg1:&#60;&#39; +&#10;&#39;/strong&#62; &#39; + arg1 + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;params.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;arg2:&#60;&#39; +&#10;&#39;/strong&#62; &#39; + arg2 + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;&#125;&#10;// ]]&#62; --&#62;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;#&#34; onclick=&#34;someHandler(event, this, &#39;param1&#39;, &#39;param2&#39;);&#10;return false;&#34;&#62;Show the info by eventhanlder.&#60;/a&#62;&#10;&#60;h2&#62;Info of Event Object&#60;/h2&#62;&#10;&#60;div id=&#34;event_info&#34;&#62;&#60;/div&#62;&#10;&#60;h2&#62;The Params&#60;/h2&#62;&#10;&#60;div id=&#34;params&#34;&#62;&#60;/div&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>主要的原理在於 HTML Tag 中 onxxxx 的屬性可以接受 event 這個關鍵字，而它就是瀏覽器的 Event 物件。所以我們就可以將 event 當做參數，傳給相關的 Event Handler 。</p>
-<p>另外這裡也利用 this 讓 Event Handler 可以知道是哪個 DOM 節點呼叫了它。 </p>
-<p>目前 W3C 標準與各家瀏覽器在 Event 物件上共同有的屬性如下：</p>
-<ul>
-<li><a href="http://www.w3schools.com/htmldom/event_altkey.asp" target="_blank" rel="external">altKey</a> (是否按下 alt 鍵) </li>
-<li><a href="http://www.w3schools.com/htmldom/event_button.asp" target="_blank" rel="external">button</a> (滑鼠的按鍵) </li>
-<li><a href="http://www.w3schools.com/htmldom/event_clientx.asp" target="_blank" rel="external">clientX</a> (在瀏覽器可視範圍中對應的 X 軸) </li>
-<li><a href="http://www.w3schools.com/htmldom/event_clienty.asp" target="_blank" rel="external">clientY</a> (在瀏覽器可視範圍中對應的 Y 軸) </li>
-<li><a href="http://www.w3schools.com/htmldom/event_ctrlkey.asp" target="_blank" rel="external">ctrlKey</a> (是否按下 ctrl 鍵) </li>
-<li><a href="http://www.w3schools.com/htmldom/event_screenx.asp" target="_blank" rel="external">screenX</a> (在螢幕上對應的 X 軸) </li>
-<li><a href="http://www.w3schools.com/htmldom/event_screeny.asp" target="_blank" rel="external">screenY</a> (在螢幕上對應的 Y 軸) </li>
-<li><a href="http://www.w3schools.com/htmldom/event_shiftkey.asp" target="_blank" rel="external">shiftKey</a> (是否按下 shift 鍵) </li>
-<li><a href="http://www.w3schools.com/htmldom/event_type.asp" target="_blank" rel="external">type</a> (事件類型) </li>
-</ul>
-<p>屬性的說明請參考 <a href="http://www.w3schools.com/htmldom/dom_obj_event.asp" target="_blank" rel="external">W3Schools::HTML DOM Event Object</a> 。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -297,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -376,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -409,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -447,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -457,6 +459,7 @@
 
   
   
+
   
     
     
@@ -486,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -685,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

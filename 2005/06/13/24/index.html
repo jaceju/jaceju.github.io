@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,33 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="常常有人問樂多如何製作三欄樣版？以目前的樂多 DOM 不太可能單純以 CSS 完成，不過這幾天看了許多網友的 Blog ，發現一個滿有趣的方法。透過搭配 JavaScript (不是 Java 喔，別搞混了) ，我們來試試這個超級任務。
-補充：樂多目前有三欄版型可供選擇，大家可以直接使用它們或修改它們。這篇文章的目的在於記錄我自己在 CSS 三欄式版面的製作心得，大家參考看看就好囉。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="樂多三欄式 CSS 樣版入門">
 <meta property="og:url" content="http://jaceju.net/2005/06/13/24/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="常常有人問樂多如何製作三欄樣版？以目前的樂多 DOM 不太可能單純以 CSS 完成，不過這幾天看了許多網友的 Blog ，發現一個滿有趣的方法。透過搭配 JavaScript (不是 Java 喔，別搞混了) ，我們來試試這個超級任務。
-補充：樂多目前有三欄版型可供選擇，大家可以直接使用它們或修改它們。這篇文章的目的在於記錄我自己在 CSS 三欄式版面的製作心得，大家參考看看就好囉。">
-<meta property="og:image" content="http://jaceju.net/resources/3fields/01.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="樂多三欄式 CSS 樣版入門">
-<meta name="twitter:description" content="常常有人問樂多如何製作三欄樣版？以目前的樂多 DOM 不太可能單純以 CSS 完成，不過這幾天看了許多網友的 Blog ，發現一個滿有趣的方法。透過搭配 JavaScript (不是 Java 喔，別搞混了) ，我們來試試這個超級任務。
-補充：樂多目前有三欄版型可供選擇，大家可以直接使用它們或修改它們。這篇文章的目的在於記錄我自己在 CSS 三欄式版面的製作心得，大家參考看看就好囉。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 樂多三欄式 CSS 樣版入門 | 網站製作學習誌 </title>
 </head>
@@ -133,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -143,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -153,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -173,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -232,28 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>常常有人問樂多如何製作三欄樣版？以目前的樂多 DOM 不太可能單純以 CSS 完成，不過這幾天看了許多網友的 Blog ，發現一個滿有趣的方法。透過搭配 JavaScript (不是 Java 喔，別搞混了) ，我們來試試這個超級任務。</p>
-<p>補充：樂多目前有三欄版型可供選擇，大家可以直接使用它們或修改它們。這篇文章的目的在於記錄我自己在 CSS 三欄式版面的製作心得，大家參考看看就好囉。</p>
-<a id="more"></a>
-<p>首先，我們準備一個 JavaScript 檔，內容為：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.write(&#39;&#60;/div&#62;&#60;div id=&#34;links2&#34;&#62;&#39;);</span><br></pre></td></tr></table></figure>
-<p>儲存時，命名為 links2.js ，然後將它上傳到樂多的檔案空間，並記下上傳後的 URL。</p>
-<p>接著我們到樂多 Blog 的管理介面，新增一個 JavaScript 型態的插入欄位 (Links2)，URL 就把剛剛記下來的 URL 貼上去。</p>
-<p>然後我們把新增的這個 JavaScript 的插入欄位順序調整到我們想分離的位置之前，如下圖：</p>
-<p><img src="/resources/3fields/01.gif" alt=""></p>
-<p>如此一來，從「版權聲明」以下的插入欄位，都會被歸到 #links2 去了。</p>
-<p>接下來就是我們的重頭戲 - CSS ： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">html, body &#123;&#10;margin: 0;&#10;padding: 0;&#10;font-size: 10pt;&#10;&#125;&#10;#container &#123;&#10;position: relative;&#10;left: 50%;&#10;padding-top: 100px;&#10;margin-left: -380px;&#10;width: 760px;&#10;&#125;&#10;#banner &#123;&#10;position: absolute;&#10;top: 0;&#10;left: 0;&#10;height: 100px;&#10;&#125;&#10;#links &#123;&#10;position: relative;&#10;top: 0;&#10;float: left;&#10;width: 150px;&#10;margin-right: -150px;&#10;background-color: Aqua;&#10;&#125;&#10;#links2 &#123;&#10;position: absolute;&#10;width: 150px;&#10;top: 100px;&#10;left: 0px;&#10;background-color: Fuchsia;&#10;&#125;&#10;#content &#123;&#10;position: relative;&#10;top: 0;&#10;padding-left: 150px;&#10;width: 510px;&#10;float: left;&#10;background-color: #FFEBCD;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>這裡僅大概介紹其設定方式：</p>
-<ul>
-<li>將 #container 置中，並在上面留下 100px 的高度。</li>
-<li>將 #banner 設為 position: absolute ，並將它的高度設為 100px 且移到 #container 的左上角。</li>
-<li>將 #content 和 #links 設為向左浮動，可參考先前的「樂多 Blog 排版入門」。</li>
-<li><h1 id="links2_設為_position:_absolute_，然後將它貼在_#container_的左方，從上數下來_100px_的位置。">links2 設為 position: absolute ，然後將它貼在 #container 的左方，從上數下來 100px 的位置。</h1></li>
-<li><h1 id="content_在左方留下_150px_的空間，以容納_#links2_。">content 在左方留下 150px 的空間，以容納 #links2 。</h1></li>
-</ul>
-<p>剩下就交給有興趣的朋友自行變化囉。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -298,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -377,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -410,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#links2_設為_position:_absolute_，然後將它貼在_#container_的左方，從上數下來_100px_的位置。"><span class="nav-number">1.</span> <span class="nav-text">links2 設為 position: absolute ，然後將它貼在 #container 的左方，從上數下來 100px 的位置。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#content_在左方留下_150px_的空間，以容納_#links2_。"><span class="nav-number">2.</span> <span class="nav-text">content 在左方留下 150px 的空間，以容納 #links2 。</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -426,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -458,6 +459,7 @@
 
   
   
+
   
     
     
@@ -487,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -656,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -686,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

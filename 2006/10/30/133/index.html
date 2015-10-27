@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,48 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="說明記錄一下自己成功的經驗，因為參考的網址在有些小地方的實作上我不是看得很懂。
-追加以下三個自己的實作紀錄：
 
-建立 tracd 的帳號
-設定 tracd 的權限。
-將 tracd 註冊成 Windows Service 。">
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Windows 上安裝 Trac 專案管理軟體">
 <meta property="og:url" content="http://jaceju.net/2006/10/30/133/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="說明記錄一下自己成功的經驗，因為參考的網址在有些小地方的實作上我不是看得很懂。
-追加以下三個自己的實作紀錄：
-
-建立 tracd 的帳號
-設定 tracd 的權限。
-將 tracd 註冊成 Windows Service 。">
-<meta property="og:image" content="http://jaceju.net/resources/trac/regedit.gif">
-<meta property="og:image" content="http://jaceju.net/resources/trac/01.gif">
-<meta property="og:image" content="http://jaceju.net/resources/trac/02.gif">
-<meta property="og:image" content="http://jaceju.net/resources/trac/03.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Windows 上安裝 Trac 專案管理軟體">
-<meta name="twitter:description" content="說明記錄一下自己成功的經驗，因為參考的網址在有些小地方的實作上我不是看得很懂。
-追加以下三個自己的實作紀錄：
+<meta name="twitter:description">
 
-建立 tracd 的帳號
-設定 tracd 的權限。
-將 tracd 註冊成 Windows Service 。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 在 Windows 上安裝 Trac 專案管理軟體 | 網站製作學習誌 </title>
 </head>
@@ -148,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -158,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -168,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -188,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -247,118 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="說明">說明</h2><p>記錄一下自己成功的經驗，因為參考的網址在有些小地方的實作上我不是看得很懂。</p>
-<p>追加以下三個自己的實作紀錄：</p>
-<ul>
-<li>建立 tracd 的帳號</li>
-<li>設定 tracd 的權限。</li>
-<li>將 tracd 註冊成 Windows Service 。</li>
-</ul>
-<a id="more"></a>
-<h2 id="檔案下載">檔案下載</h2><p>全部以 Subversion 1.4.0 及 Python 2.4.4 為主。</p>
-<ul>
-<li><a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=91" target="_blank" rel="external">Subversion</a><br>: (svn-win32-1.4.0.zip) </li>
-<li><a href="http://www.python.org/download/releases/2.4.4/" target="_blank" rel="external">Python 2.4.4</a><br>: (python-2.4.4.msi) </li>
-<li><a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=91&amp;filter=py" target="_blank" rel="external">Python bindings for Subversion</a><br>: (svn-win32-1.4.0_py-2.4.exe) </li>
-<li><a href="http://pysqlite.org/" target="_blank" rel="external">pysqlite</a><br>: (pysqlite-2.3.2.win32-py2.4.exe) </li>
-<li><a href="http://clearsilver.yi.org/" target="_blank" rel="external">ClearSilver</a><br>: (clearsilver-0.9.14.win32-py2.4.exe) </li>
-<li><a href="http://trac.edgewall.org/wiki/TracDownload" target="_blank" rel="external">Trac</a><br>: (trac-0.10.win32.exe)</li>
-<li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=9d467a69-57ff-4ae7-96ee-b18c4790cffd&amp;DisplayLang=en" target="_blank" rel="external">Windows 2003 Resource Kits</a> (rktools.exe) </li>
-</ul>
-<h2 id="安裝">安裝</h2><ul>
-<li>Subersion 安裝請參考：<a href="http://blog.roodo.com/jaceju/archives/2150759.html" target="_blank" rel="external">在 Windows 上安裝 Subversion 獨立伺服器</a>，這裡我安裝在 D:\Appserv\svn\ 。</li>
-<li>安裝 Python 2.4.4 ，我是將它安裝在 D:\Appserv\python 。</li>
-<li>將 D:\Appserv\python 加到 PATH 系統環境變數裡。</li>
-<li>執行 svn-win32-1.4.0_py-2.4.exe ，會在 Python 的安裝目錄中註冊 svn 模組。</li>
-<li>執行 pysqlite-2.3.2.win32-py2.4.exe ，會在 Python 的安裝目錄中註冊 pysqlite 模組。</li>
-<li>執行 clearsilver-0.9.14.win32-py2.4.exe ，會在 Python 的安裝目錄中註冊 clearsilver 模組。</li>
-<li>執行 trac-0.10.win32.exe ，會在 Python 的安裝目錄中註冊 trac 模組。</li>
-<li><p>執行 rktools.exe ，這會把 Windows Resource Kits 安裝在 C:\Program Files\Windows Resource Kits\Tools\ 下。</p>
-</li>
-<li><p>把 C:\Program Files\Windows Resource Kits\Tools 加到 PATH 系統環境變數裡。</p>
-</li>
-</ul>
-<h2 id="建立專案">建立專案</h2><p>以下的步驟都是在 Command Line 模式執行，所以請先執行 cmd.exe 。</p>
-<ul>
-<li>我們先在 D:\Repository 下建立一個名為 test 的 Subversion 專案。當然這邊 test 只是示範，請自行決定專案名稱。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Repository&#62;svnadmin create test</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 D:\Appserv 下建立一個 trac 資料夾。<br></li><li><br>切換到 D:\Appserv\python\Scripts 下，建立一個名為 test 的 trac 專案。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;python trac-admin D:\Appserv\trac\test initenv</span><br></pre></td></tr></table></figure>
-<p>接著會出現以下提示文字，請依照下面的建議操作：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Project Name [My Project]&#62; &#60;strong&#62;test&#60;/strong&#62; (&#36664;&#20837;&#23560;&#26696;&#21517;&#31281;)&#10;Database connection string [sqlite:db/trac.db]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)&#10;Repository type [svn]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)&#10;Path to repository [/path/to/repos]&#62; &#60;strong&#62;D:\Repository\test&#60;/strong&#62; (&#36664;&#20837; Subversion &#23560;&#26696;&#27284;&#26696;&#24235;&#30340;&#20301;&#32622;)&#10;Templates directory [D:\Appserv\python\share\trac\templates]&#62; (&#30452;&#25509;&#25353; Enter &#20351;&#29992;&#38928;&#35373;&#20540;)</span><br></pre></td></tr></table></figure>
-<p>記得 test 是專案名稱，不要照抄了。</p>
-<ul>
-<li>我們可以重複前三個步驟來建立其他專案。</li>
-</ul>
-<h2 id="建立帳號">建立帳號</h2><p>這裡的帳號權限僅適用在 Standalone 的 tracd 服務，所以可以的話，請儘量和 Subversion 建立同樣的帳號密碼。</p>
-<p><li><br>接下來要先建立供 trac 使用的帳號，首先請先把以下內容存成 trac-digest.py ，並放到 D:\Appserv\python\Scripts 下。</li></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from optparse import OptionParser&#10;import md5&#10;# build the options&#10;usage = &#34;usage: %prog [options]&#34;&#10;parser = OptionParser(usage=usage)&#10;parser.add_option(&#34;-u&#34;, &#34;--username&#34;,action=&#34;store&#34;, dest=&#34;username&#34;, type = &#34;string&#34;,&#10;help=&#34;the username for whom to generate a password&#34;)&#10;parser.add_option(&#34;-p&#34;, &#34;--password&#34;,action=&#34;store&#34;, dest=&#34;password&#34;, type = &#34;string&#34;,&#10;help=&#34;the password to use&#34;)&#10;(options, args) = parser.parse_args()&#10;# check options&#10;if (options.username is None) or (options.password is None):&#10;parser.error(&#34;You must supply both the username and password&#34;)&#10;# Generate the string to enter into the htdigest file&#10;&#60;strong&#62;realm = &#39;trac&#39;&#60;/strong&#62;&#10;kd = lambda x: md5.md5(&#39;:&#39;.join(x)).hexdigest()&#10;print &#39;:&#39;.join((options.username, realm, kd([options.username, realm, options.password])))</span><br></pre></td></tr></table></figure>
-<p>注意這裡的 realm ，雖然我們可以將它換成別的文字，但是後面建立 Serivce 會用到，因此建議不用改。<br></p>
-<p><li><br>現在，我們可以用以下指令來建立新的帳號：</li></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;python trac-digest.py -u &#60;username&#62; -p &#60;password&#62; &#62;&#62; D:\Appserv\trac-user.txt</span><br></pre></td></tr></table></figure>
-<p>其中 <username> 和 <password> 請自行決定；執行後，我們就能在 D:\Appserv 多出一個 trac-user.txt ，裡面就有剛剛建好的帳號以及編碼過後的密碼。</password></username></p>
-<ul>
-<li>我們可以重複上面的兩個步驟來加入其他的使用者。</li>
-</ul>
-<h2 id="設定權限">設定權限</h2><p>接下來的步驟都需要用 trac-admin 這個指令檔，並在 Command Line 模式下操作，我們可以用以下指令來查看 trac-admin 的操作方式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin help&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>每個專案預設都有一個 anonymous 的匿名帳號，它已經包含了許多預設的權限。輸入以下指令可以查看它在 test 專案裡所擁有的權限：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission list anonymous&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>而以下指令則可查看所有使用者的權限以及可用的權限選項：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission list&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>如果不想讓 anonymous 這個預設帳號擁有所有權限的話，可以一次把它們都拿掉。輸入以下指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission remove anonymous *&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>假設我們想讓某個帳號同時擁有查看及修改 WIKI 的權限，則可輸入：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission add &#60;username&#62; WIKI_VIEW WIKI_MODIFY&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>註：帳號一定要用小寫，權限則是一定要大寫；更多的權限設定可以參考 <a href="http://trac.edgewall.org/wiki/TracPermissions" target="_blank" rel="external">Trac Permissions</a> 。</p>
-<p>或者我們也可以先將一堆權限指定給一個群組，如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission add &#60;groupname&#62; WIKI_VIEW  WIKI_MODIFY&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>其中 <groupname> 就是群組名稱，和帳號一樣一定要用小寫。群組不必真的建立出來，它只會存在於 trac 自己的設定裡。然後我們就可以用以下的指令來把使用者帳號加入群組裡： </groupname></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\Scripts&#62;&#60;strong&#62;python trac-admin D:\Appserv\trac\test permission add &#60;username&#62; &#60;groupname&#62;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>註：很麻煩的是 trac-admin 一次只能更改一個使用者 (或群組) 在一個專案上的權限，不曉得有沒有什麼方便的工具可以使用。 </p>
-<h2 id="建立_Service">建立 Service</h2><p>我找到了一篇以 Windows Service 啟動 Python Script 的文章，在實作後是可行的。記錄如下：</p>
-<ul>
-<li>在 Command Line 模式下執行 (注意雙引號也要鍵入) ： </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\&#62;instsrv Trac &#34;C:\Program Files\Windows Resource Kits\Tools\srvany.exe&#34;</span><br></pre></td></tr></table></figure>
-<p>完成後，可以打開服務管理員，裡面應該註冊好一個名為 Trac 的服務。</p>
-<ul>
-<li>在 D:\Appserv 下建立一個 trac.bat ，內容為：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\python\pythonw.exe D:\Appserv\python\Scripts\tracd --port 8000 --auth *,D:\Appserv\trac-user.txt,trac -e D:\Appserv\trac</span><br></pre></td></tr></table></figure>
-<ul>
-<li>—port 8000 是指 tracd 監聽的 port 。</li>
-<li>—auth <em>,D:\Appserv\trac-user.txt,trac 是讓所有的專案都擁有同樣的帳號，開頭的 </em> 號是指全部專案，中間的 D:\Appserv\trac-user.txt 是剛剛的帳號檔，最後的 trac 則先前提到的 realm 說明 。</li>
-<li>-e D:\Appserv\trac 是把 D:\Appserv\trac 底下的專案全部納入管理。</li>
-</ul>
-<p>再提醒一次，以上的設定請自行依照實際需要去更改，不要照抄了。</p>
-<ul>
-<li>執行 regedit.exe (登錄編輯程式) ，找到 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Trac ，然後在上面按下滑鼠右鍵，新增一個名為 Parameters 的機碼。</li>
-<li>接著再點選剛剛的 Parameters 機碼，然後在登錄編輯程式右半邊的空白處按下滑鼠右鍵，新增一個名為 Application 的字串值。</li>
-<li>點兩下剛剛的 Application 字串值，數值資料上填入剛剛 trac.bat 的路徑：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\trac.bat</span><br></pre></td></tr></table></figure>
-<p>完成設定後，應如下圖所示：</p>
-<p><img src="/resources/trac/regedit.gif" alt=""></p>
-<ul>
-<li>關掉登錄編輯器，回到服務管理員，就可以啟動 Trac 服務了。</li>
-</ul>
-<h2 id="執行">執行</h2><p>開啟瀏覽器，在網址列上輸入：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://localhost:8000/</span><br></pre></td></tr></table></figure>
-<p>應該就能看到以下畫面：</p>
-<p><img src="/resources/trac/01.gif" alt=""></p>
-<p><img src="/resources/trac/02.gif" alt=""></p>
-<p><img src="/resources/trac/03.gif" alt=""></p>
-<h2 id="參考">參考</h2><ul>
-<li><a href="http://mail.tainan.com.tw/%7Ebarsara/blog/index.php?entry=entry060509-193239" target="_blank" rel="external">Barsara’s 2006: TRAC架設記錄</a></li>
-<li><a href="http://trac.edgewall.org/wiki/TracOnWindowsStandalone" target="_blank" rel="external">Trac Standalone Server On Windows</a></li>
-<li><a href="http://trac.edgewall.org/wiki/TracStandalone" target="_blank" rel="external">Tracd</a></li>
-<li><a href="http://agiletesting.blogspot.com/2005/09/running-python-script-as-windows.html" target="_blank" rel="external">Running a Python script as a Windows service</a></li>
-</ul>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -405,19 +290,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -484,13 +372,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -517,8 +409,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#說明"><span class="nav-number">1.</span> <span class="nav-text">說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#檔案下載"><span class="nav-number">2.</span> <span class="nav-text">檔案下載</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">3.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立專案"><span class="nav-number">4.</span> <span class="nav-text">建立專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立帳號"><span class="nav-number">5.</span> <span class="nav-text">建立帳號</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定權限"><span class="nav-number">6.</span> <span class="nav-text">設定權限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立_Service"><span class="nav-number">7.</span> <span class="nav-text">建立 Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#執行"><span class="nav-number">8.</span> <span class="nav-text">執行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考"><span class="nav-number">9.</span> <span class="nav-text">參考</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -533,7 +427,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -555,7 +450,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -565,6 +461,7 @@
 
   
   
+
   
     
     
@@ -594,24 +491,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -763,29 +657,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -793,15 +678,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

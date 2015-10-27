@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,33 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="這裡把自己對 Abstract Class (抽象類別) 和 Interface (介面) 的理解記一下，如果有錯請指正我 :)
-Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身都無法用來建構一個 object (物件實體) ，它們必須透過其他類別以 extends (繼承) 或 implements (實作) 來完成目的">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PHP] 該用 Abstract Class 還是 Interface ？">
 <meta property="og:url" content="http://jaceju.net/2007/08/24/235/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="這裡把自己對 Abstract Class (抽象類別) 和 Interface (介面) 的理解記一下，如果有錯請指正我 :)
-Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身都無法用來建構一個 object (物件實體) ，它們必須透過其他類別以 extends (繼承) 或 implements (實作) 來完成目的">
-<meta property="og:image" content="http://jaceju.net/resources/abstract_class_or_interface/abstract_class_or_interface.png">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[PHP] 該用 Abstract Class 還是 Interface ？">
-<meta name="twitter:description" content="這裡把自己對 Abstract Class (抽象類別) 和 Interface (介面) 的理解記一下，如果有錯請指正我 :)
-Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身都無法用來建構一個 object (物件實體) ，它們必須透過其他類別以 extends (繼承) 或 implements (實作) 來完成目的">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [PHP] 該用 Abstract Class 還是 Interface ？ | 網站製作學習誌 </title>
 </head>
@@ -133,7 +143,7 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -143,7 +153,7 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -153,7 +163,7 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -173,7 +183,8 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -232,80 +243,7 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
       
 
       
-        <span itemprop="articleBody"><p>這裡把自己對 Abstract Class (抽象類別) 和 Interface (介面) 的理解記一下，如果有錯請指正我 :)</p>
-<h2 id="Abstract_Class_與_Interface_的宣告方式">Abstract Class 與 Interface 的宣告方式</h2><p> Abstract Class 和 Interface 本身都無法用來建構一個 object (物件實體) ，它們必須透過其他類別以 extends (繼承) 或 implements (實作) 來完成目的。在 PHP 中，我們可以用以下的方式來宣告一個 Abstract Class ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">abstract class Test&#10;&#123;&#10;    // ... code ...&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>然後其 sub class 必須用 extends 來繼承它：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ClassA extends Test&#10;&#123;&#10;    // ... code ...&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>而 Interface 則是用以下的方式宣告：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Testable&#10;&#123;&#10;    // ... code ...&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>然後<del> sub class </del>類別便可以 implements 關鍵字來實作該介面：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ClassB implements Testable&#10;&#123;&#10;    // ... code ...&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>註：同人老大說實作 Interface 的類別不能稱為 sub class ，不過我實在也想不出什麼好名詞，歡迎大家提供意見。 </p>
-<p>另外比較特別的是， Interface 可以<del>繼承</del>衍生自另一個 Interface ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface A extends B&#10;&#123;&#10;    // ... code ...&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>這裡本來用繼承一詞，經同人老大指點後，用衍生一詞會比較精準。</p>
-<p>但是除了語法上的不同，它們本身所代表的意義是什麼呢？</p>
-<h2 id="Abstract_Class">Abstract Class</h2><p>當整個類別繼承體系有一致的行為時，我們通常會將這些行為抽離到上一層的 super class 去。如果這些行為的程式碼不在 super class 中定義的話，那麼會使得其 sub class 必須重覆地出現相同的程式片段，導致了壞味道的發生。然而有時我們並不打算讓這些 super class 可以被建構成物件實體，那麼它們就是所謂的 Abstract Class 。 </p>
-<p>在 Abstract Class 中， method 的定義方式有兩種，以下是有實作的 method ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function method1()&#10;&#123;&#10;    // ... code ...&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>值得注意的是，就算大括號中沒有程式碼，也算是有實作的 method ，我稱之為空實作。 </p>
-<p>另一種是抽象方法，只要在 function 前加上 abstract 關鍵字，再拿掉大括號並加上分號：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">abstract public function method2();</span><br></pre></td></tr></table></figure>
-<p>這樣的抽象方法，就會要求 sub class 在繼承之後要實作該方法的細節。 </p>
-<h2 id="Interface">Interface</h2><p>在我們確定了物件之間的溝通方式及規格，卻未能確定其實作細節時，就是利用 Interface 的時機。 Interface 能保證 Client 在操作物件上有一致的方式，而具體的表現方式則是讓實作的類別來決定。因此這些類別都必須實作在 Interface 裡定義的 method ，否則將會出現錯誤。在 Interface 中所有方法都是 abstract 的，定義方式和 Abstract Class 的抽象方法一樣，但是不用加上 abstract 關鍵字，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function method3();</span><br></pre></td></tr></table></figure>
-<p>顯然地，當 Abstract Class 所擁有的方法都是 abstract method 時，它就退化成了一個 Interface 。不過還是要小心以下兩點：</p>
-<ul>
-<li><p>一個 Class 可以實作多個 Interface ，但只能繼承一個 Abstract Class ；這即是所謂的單一繼承體系，也就是子類別只能繼承一個父類別；但是一個父類別則可以被多個子類別所繼承。</p>
-</li>
-<li><p>在 Abstract Class 中可以宣告屬性成員 (attribute) 而 Interface 是不可以的，但兩者都能有常數成員 (constant) 。 </p>
-</li>
-</ul>
-<h2 id="範例">範例</h2><p>假設我們有兩個裝置 (Device) ，一個是鍵盤 (Keyboard) ，一個是滑鼠 (Mouse) ；而這兩種裝置都支援 USB 和 PS/2 兩種接頭 (Adapter) 讓使用者可以自行選擇，不過一次只能選擇一種接頭。 </p>
-<p>註：這個範例舉得不是很好，只是為了說明而已。</p>
-<p>上面文字明白指出了我們可能會有 Device 和 Adapter 兩個 Abstract Class (或 Interface ) ，不過問題是哪一個應該用 Abstract Class ？而哪一個該用 Interface 呢？</p>
-<p>為了簡化說明，我們把原來的問題重新定義為以下的規格：</p>
-<ul>
-<li><p>Device 有 inputData (輸入資料) 及 getStatus (取得狀態) 等兩個方法。</p>
-</li>
-<li><p>Adapter 有 send (傳送) 和 receive (接收) 兩個方法。</p>
-</li>
-<li><p>Device 必須透過 Adapter 來傳送或接收資料。</p>
-</li>
-</ul>
-<p>我們從規格的第三點可以得知，無論 Device 的類型為何，都會需要透過 Adapter 來收送資料，這就是一種抽象行為。也因此我們必須為 Device 提供一個 Adapter 類型的 $_adapter 屬性成員，從這點就可以看出 Device 應該是個 Abstract Class 。</p>
-<p>而因為有 $_adapter 屬性，但我們又不想讓外界直接改變它，所以我們將它的 scope 設置為 private  (私有屬性) ；然而要設定 private attribute 我們就要借重一個規格外的方法，這裡我將它命名為 setAdapter ；所以當我們在呼叫 setAdapter 時就必須傳入一個 Adapter 物件來指定給 $_adapter 屬性，這樣就能防止 Device 在使用 $_adapter 時的錯誤。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function setAdapter(Adapter $adapter)&#10;&#123;&#10;    $this-&#62;_adapter = $adapter;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>然後 Device 的 inputData 和 getStatus 就會委託 Adapter 物件的 send 及 receive 來收送資料：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function inputData($data)&#10;&#123;&#10;    echo $this-&#62;_deviceName, &#39; input data:&#39;;&#10;    $this-&#62;_adapter-&#62;send($data);&#10;&#125;&#10;public function getStatus()&#10;&#123;&#10;    echo $this-&#62;_deviceName, &#39; get status:&#39;;&#10;    echo $this-&#62;_adapter-&#62;receive();&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>註：以上程式還是有一些潛在的小問題，這裡就留給各位自行判斷囉。</p>
-<p>對 Device 的 sub class 來說，以上的行為都是可以共用，也因此不必再實作一次了。完整的 Device 類別體系如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;abstract class Device&#10;&#123;&#10;    private $_adapter = null;&#10;    protected $_deviceName = &#39;&#39;;&#10;    public function setAdapter(Adapter $adapter)&#10;    &#123;&#10;        $this-&#62;_adapter = $adapter;&#10;    &#125;&#10;    public function inputData($data)&#10;    &#123;&#10;        echo $this-&#62;_deviceName, &#39; input data:&#39;;&#10;        $this-&#62;_adapter-&#62;send($data);&#10;    &#125;&#10;    public function getStatus()&#10;    &#123;&#10;        echo $this-&#62;_deviceName, &#39; get status:&#39;;&#10;        echo $this-&#62;_adapter-&#62;receive();&#10;    &#125;&#10;&#125;&#10;class Device_Keyboard extends Device&#10;&#123;&#10;    protected $_deviceName = &#39;Keyboard&#39;;&#10;&#125;&#10;class Device_Mouse extends Device&#10;&#123;&#10;    protected $_deviceName = &#39;Mouse&#39;;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>接著再看 Adapter ，因為 USB 和 PS/2 在規格實作上是有所差異的，因此我們無法在 Adapter 中直接去定義像 Device 中 inputData 及 getStatus 這樣共用的行為方法。所以在這裡我們就能將 Adapter 視為是一個 Interface ，讓其下的 Class 去實作 send 和 receive 兩個方法的細節。所以整個 Adapter 的類別體系如下： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;interface Adapter&#10;&#123;&#10;    public function send($data);&#10;    public function receive();&#10;&#125;&#10;class Adapter_Ps2 implements Adapter&#10;&#123;&#10;    public function send($data)&#10;    &#123;&#10;        echo $data, &#39; by PS2.&#39;, &#34;\n&#34;;&#10;    &#125;&#10;    public function receive()&#10;    &#123;&#10;        return rand(100, 200) . &#39; by PS2.&#39; . &#34;\n&#34;;&#10;    &#125;&#10;&#125;&#10;class Adapter_Usb implements Adapter&#10;&#123;&#10;    public function send($data)&#10;    &#123;&#10;        echo $data, &#39; by USB.&#39;, &#34;\n&#34;;&#10;    &#125;&#10;    public function receive()&#10;    &#123;&#10;        return rand(300, 400) . &#39; by USB.&#39; . &#34;\n&#34;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>註：為了說明方便，所以我簡化了 USB 和 PS/2 的兩個方法的實作方式。</p>
-<p>當然 Adapter 也不一定要是 Interface 才行，這得看整個程式架構上的設計來判斷。如果在 Adpater 在設計上會有共用的行為或屬性時，那麼 Abstract Class 就是比較好的選擇；只是在這個範例裡，我為了說明 Interface 的緣故，就大幅簡化了 Adapter 的設計。</p>
-<p>整個設計用 UML 來表示的話，就是以下這樣子：</p>
-<p><a href="/resources/abstract_class_or_interface/abstract_class_or_interface.png"><img src="/resources/abstract_class_or_interface/abstract_class_or_interface.png" alt="Device and Adapter"></a></p>
-<p>以下是測試的程式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;require_once &#39;Device.php&#39;;&#10;require_once &#39;Adapter.php&#39;;&#10;$keyboard = new Device_Keyboard();&#10;$mouse    = new Device_Mouse();&#10;echo &#34;\n&#34;;&#10;$keyboard-&#62;setAdapter(new Adapter_Ps2());&#10;$keyboard-&#62;inputData(&#39;abc&#39;);&#10;$keyboard-&#62;getStatus();&#10;echo &#34;\n&#34;;&#10;$mouse-&#62;setAdapter(new Adapter_Ps2());&#10;$mouse-&#62;inputData(&#39;def&#39;);&#10;$mouse-&#62;getStatus();&#10;echo &#34;\n&#34;;&#10;$keyboard-&#62;setAdapter(new Adapter_Usb());&#10;$keyboard-&#62;inputData(&#39;abc&#39;);&#10;$keyboard-&#62;getStatus();&#10;echo &#34;\n&#34;;&#10;$mouse-&#62;setAdapter(new Adapter_Usb());&#10;$mouse-&#62;inputData(&#39;def&#39;);&#10;$mouse-&#62;getStatus();&#10;/*&#10;&#31243;&#24335;&#22519;&#34892;&#32080;&#26524;&#65306;&#10;====================================================&#10;Keyboard input data:abc by PS2.&#10;Keyboard get status:130 by PS2.&#10;Mouse input data:def by PS2.&#10;Mouse get status:165 by PS2.&#10;Keyboard input data:abc by USB.&#10;Keyboard get status:360 by USB.&#10;Mouse input data:def by USB.&#10;Mouse get status:353 by USB.&#10;====================================================&#10;*/</span><br></pre></td></tr></table></figure>
-<p><a href="/resources/abstract_class_or_interface/sample.zip">完整範例下載</a></p>
-<h2 id="結論">結論</h2><p>很多時候我們常會搞不清楚該用 Abstract Class 還是 Interface ，其實這在設計階段是常有的事情。所以掌握以下的重點，就會比較容易看出兩者的使用時機：</p>
-<ul>
-<li><p>當類別有共同的行為或屬性時，可以考慮使用 Abstract Class 。</p>
-</li>
-<li><p>當類別有共同的操作介面，但是實作上卻有所差異時，可以考慮使用 Interface 。 </p>
-</li>
-</ul>
-<p>不過當我們發現整個類別體系用錯 Abstract Class 或 Interface 時也不用過於煩惱，這時「 Refactoring (重構) 」就是我們會需要的好幫手。更詳細的 Refactoring 說明可以參考以下書籍：</p>
-<ul>
-<li><p>Refactoring by Martin Fowler (中譯本：<a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=9867594061&amp;sid=17667" target="_blank" rel="external">重構</a> by 侯捷、熊節)</p>
-</li>
-<li><p><a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=0321293533&amp;sid=30226" target="_blank" rel="external">Refactoring To Patterns</a> by Joshua Kerievsky</p>
-</li>
-</ul>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -350,19 +288,22 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -429,13 +370,17 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -462,8 +407,10 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract_Class_與_Interface_的宣告方式"><span class="nav-number">1.</span> <span class="nav-text">Abstract Class 與 Interface 的宣告方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract_Class"><span class="nav-number">2.</span> <span class="nav-text">Abstract Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interface"><span class="nav-number">3.</span> <span class="nav-text">Interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例"><span class="nav-number">4.</span> <span class="nav-text">範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -478,7 +425,8 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -500,7 +448,8 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -510,6 +459,7 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
 
   
   
+
   
     
     
@@ -539,24 +489,21 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -708,29 +655,20 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -738,15 +676,5 @@ Abstract Class 與 Interface 的宣告方式 Abstract Class 和 Interface 本身
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

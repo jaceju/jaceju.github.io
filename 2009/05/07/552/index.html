@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="在 MVC Framework 大行其道的今天，還是有一些朋友認為 MVC 不是那麼有用，一來架構太過複雜，二來速度也是個大問題。
-他們大概是把 MVC 當做是一套軟體來看了…
-醒醒吧，不是 Web Framework 才叫 MVC ！">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 開發迷思 (二) - 網站用 MVC 有用嗎？">
 <meta property="og:url" content="http://jaceju.net/2009/05/07/552/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="在 MVC Framework 大行其道的今天，還是有一些朋友認為 MVC 不是那麼有用，一來架構太過複雜，二來速度也是個大問題。
-他們大概是把 MVC 當做是一套軟體來看了…
-醒醒吧，不是 Web Framework 才叫 MVC ！">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 開發迷思 (二) - 網站用 MVC 有用嗎？">
-<meta name="twitter:description" content="在 MVC Framework 大行其道的今天，還是有一些朋友認為 MVC 不是那麼有用，一來架構太過複雜，二來速度也是個大問題。
-他們大概是把 MVC 當做是一套軟體來看了…
-醒醒吧，不是 Web Framework 才叫 MVC ！">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> PHP 開發迷思 (二) - 網站用 MVC 有用嗎？ | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,18 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>在 MVC Framework 大行其道的今天，還是有一些朋友認為 MVC 不是那麼有用，一來架構太過複雜，二來速度也是個大問題。</p>
-<p>他們大概是把 MVC 當做是一套軟體來看了…</p>
-<p>醒醒吧，不是 Web Framework 才叫 MVC ！</p>
-<a id="more"></a>
-<p>事實上， MVC 其實是一種架構觀念，只是大部份的 Web Framework 都用差不多的方式來實作而已。也就是 Controller 負責處理 Request 與 Response ， Model 負責處理 Database ，而 View 就是 Template 。但 MVC 真的只是這樣嗎？</p>
-<p>要真的瞭解 MVC 的觀念，我推崇 ericsk 大師說的一句話：<a href="http://www.plurk.com/p/rpc0q" target="_blank" rel="external">只要有了API，表現層就可以無限寬廣….</a></p>
-<p>API 其實就是 Model 所提供的，它讓你可以一定的規範去存取資料，而不需要接觸這些資料；專業來說， Model 就是封裝住資料，並提供外界存取這些資料的方法。而表現層就是 View ，它不僅僅限於 HTML Template ，也可能是 XML 的一種 (例如 RSS 等) ，或是某個 Windows 視窗介面。那麼 Controller 在哪裡？ Controller 就是你的創意！</p>
-<p>例如 Google Map ，它提供了相當豐富的 API 供我們使用。而畫面呈現上，它也不限制我們一定要使用它上面的控制項，我們還是可以額外加入一些自訂的介面。最後你可以發揮自己的想像力，去創造一個受歡迎的應用。</p>
-<p>就像 <a href="http://wamap.net/" target="_blank" rel="external">Wamap</a> 、 <a href="http://sueandpaul.com/gmapPedometer/" target="_blank" rel="external">Gmaps Pedometer</a> <a href="http://map.answerbox.net" target="_blank" rel="external"></a>等等服務，同樣都是使用 Google MAP 提供的 API 來存取 Google 提供的地圖資料；而且除了地圖資訊本身長得差不多外，這些服務的介面呈現上也非常的不同。而將它們整合起來的，就是開發者花心思寫出來的 JavaScript 控制碼。這不是很有趣嗎？</p>
-<p>所以，瞭解 MVC 的觀念遠比熟悉它的實作來得重要。也許我們看了太多 Web Framework 的程式碼，被它們繞來繞去的複雜 MVC 實作給嚇到了，但千萬別認為 MVC 就是長這個樣子。</p>
-<p>大多數的程式都有可能會用到 MVC ，只是在程式架構的呈現上會有所不同。只要能對 MVC 這個觀念了然於胸，相信你就能在程式設計上找到不同的視野。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -292,19 +290,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -371,13 +372,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -404,6 +409,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -420,7 +427,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -442,7 +450,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -452,6 +461,7 @@
 
   
   
+
   
     
     
@@ -481,24 +491,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -650,29 +657,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -680,15 +678,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

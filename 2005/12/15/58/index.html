@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="有客戶向我們反應，他每次操作我們後台管理介面時，總是會有 JavaScript Error 發生。可是我在公司測試時，卻找不到錯誤。後來我同事告訴我，因為客戶那邊的網路連線速度太慢，而頁面還沒完整出現前，他們就直接去操作下拉式選單作換頁動作。這樣一來，如果該動作事件會呼叫某些還沒載入的 JavaScript 時，就會發生 JavaScript Error 。
-當然解決的方式有很多，只是為了相容於其">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模擬 Google Mail 載入">
 <meta property="og:url" content="http://jaceju.net/2005/12/15/58/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="有客戶向我們反應，他每次操作我們後台管理介面時，總是會有 JavaScript Error 發生。可是我在公司測試時，卻找不到錯誤。後來我同事告訴我，因為客戶那邊的網路連線速度太慢，而頁面還沒完整出現前，他們就直接去操作下拉式選單作換頁動作。這樣一來，如果該動作事件會呼叫某些還沒載入的 JavaScript 時，就會發生 JavaScript Error 。
-當然解決的方式有很多，只是為了相容於其">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模擬 Google Mail 載入">
-<meta name="twitter:description" content="有客戶向我們反應，他每次操作我們後台管理介面時，總是會有 JavaScript Error 發生。可是我在公司測試時，卻找不到錯誤。後來我同事告訴我，因為客戶那邊的網路連線速度太慢，而頁面還沒完整出現前，他們就直接去操作下拉式選單作換頁動作。這樣一來，如果該動作事件會呼叫某些還沒載入的 JavaScript 時，就會發生 JavaScript Error 。
-當然解決的方式有很多，只是為了相容於其">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 模擬 Google Mail 載入 | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,27 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>有客戶向我們反應，他每次操作我們後台管理介面時，總是會有 JavaScript Error 發生。可是我在公司測試時，卻找不到錯誤。後來我同事告訴我，因為客戶那邊的網路連線速度太慢，而頁面還沒完整出現前，他們就直接去操作下拉式選單作換頁動作。這樣一來，如果該動作事件會呼叫某些還沒載入的 JavaScript 時，就會發生 JavaScript Error 。</p>
-<p>當然解決的方式有很多，只是為了相容於其他程式，我就想到了 Google Mail 的載入畫面。 Google Mail 一開始的時候會在右上角出現一個紅底白字的「載入中」，不過它是用 AJAX 技術完成的，我並不想做的這麼複雜。因此，我想到了一個方式：不出現就按不到。</p>
-<a id="more"></a>
-<h2 id="實作">實作</h2><p>原理很簡單，一開始把整個網頁用一個 DIV (#container) 包起來，這個 DIV 預設是不顯示的。然後我用一個 JS 顯示載入中的紅色小區塊，當頁面全部載入完成時，再把 DIV 顯示出來，而載入中的區塊則隱藏起來。</p>
-<p>為了能夠重用這些 JavaScript ，我把它寫成一個類別：</p>
-<p>程式如下： </p>
-<p>gmail_loading.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var GmailLoading = function() &#123;&#125;&#10;GmailLoading.wording = &#39;Loading...&#39;;&#10;GmailLoading.show = function() &#123;&#10;    var sLoadingDiv = &#39;&#60;div id=&#34;document-loading&#34; style=&#34;&#39;&#10;        + &#39;position: absolute; &#39;&#10;        + &#39;color: #FFF; &#39;&#10;        + &#39;background-color: #F33; &#39;&#10;        + &#39;width: 100px; &#39;&#10;        + &#39;height: 20px; &#39;&#10;        + &#39;top:0; &#39;&#10;        + &#39;right: 0; &#39;&#10;        + &#39;font-family: Arial; &#39;&#10;        + &#39;font-weight: bold; &#39;&#10;        + &#39;text-align: center; &#39;&#10;        + &#39;&#34;&#62;&#39;&#10;        + this.wording&#10;        + &#39;&#60;/div&#62;&#39;;&#10;    document.write(sLoadingDiv);&#10;&#125;&#10;GmailLoading.hide = function() &#123;&#10;    oLoadingDiv = document.getElementById(&#39;document-loading&#39;);&#10;    oLoadingDiv.style.display = &#39;none&#39;;&#10;    document.getElementById(&#39;container&#39;).style.display = &#39;block&#39;;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用範例">使用範例</h2><p>HTML 頁面要改成這樣：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;&#28204;&#35430;&#36617;&#20837;&#25991;&#20214;&#60;/title&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;gmail_loading.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;GmailLoading.wording = &#39;&#36617;&#20837;&#20013;...&#39;;&#10;GmailLoading.show();&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;div id=&#34;container&#34; style=&#34;display: none;&#34;&#62;&#10;&#19968;&#22823;&#20018;&#30340; HTML &#20839;&#23481;&#10;&#60;/div&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;GmailLoading.hide();&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>也可以這樣寫：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;&#28204;&#35430;&#36617;&#20837;&#25991;&#20214;&#60;/title&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;gmail_loading.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;GmailLoading.wording = &#39;&#36617;&#20837;&#20013;...&#39;;&#10;GmailLoading.show();&#10;window.onload = GmailLoading.hide;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;div id=&#34;container&#34; style=&#34;display: none;&#34;&#62;&#10;&#19968;&#22823;&#20018;&#30340; HTML &#20839;&#23481;&#10;&#60;/div&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>你也可以把這三行：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GmailLoading.wording = &#39;&#36617;&#20837;&#20013;...&#39;;&#10;GmailLoading.show();&#10;window.onload = GmailLoading.hide;</span><br></pre></td></tr></table></figure>
-<p>一起放到 gmail_loading.js 的最底下。</p>
-<p>頁面內容一定要用 DIV#container 包起來，不然會發生問題。</p>
-<p>當然這沒有解決到伺服端等待的問題，當按下送出鈕時，如果伺服端程式的處理時間非常久的話，就要換別的方式來實作，不過這樣的方式已經能解決我的問題了。</p>
-<h2 id="補充">補充</h2><p>一、如果你要在 UTF-8 格式的頁面上使用時，也最好把 gmail_loading.js 存成 UTF-8 格式，這樣一來裡面有中文字的話，就不會出現亂碼了。 </p>
-<p>二、現在可以用 jQuery 的 ready 事件來改寫了，這樣就不必等到所有圖片載完才執行。</p>
-<p>註：本文最初發表時， jQuery 還沒出現。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -296,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -375,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -408,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#實作"><span class="nav-number">1.</span> <span class="nav-text">實作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用範例"><span class="nav-number">2.</span> <span class="nav-text">使用範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#補充"><span class="nav-number">3.</span> <span class="nav-text">補充</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -424,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -446,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -456,6 +459,7 @@
 
   
   
+
   
     
     
@@ -485,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -654,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -684,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

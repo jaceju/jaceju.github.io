@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,41 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="昨天凱發現了一個 IE7 的問題，我們兩個做了一個討論後在這裡把結果記錄下來。
-要重現這個問題很簡單，請照著以下的步驟試試看。
-首先在 Windows 的 hosts 檔裡加入粗體部份：
-127.0.0.1    localhost&amp;#10;&amp;#60;strong&amp;#62;127.0.0.1    host_name&amp;#60;/strong&amp;#62;
-然後在網站根目錄底下建立一個 session.">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IE7 對錯誤 Hostname 在處理 Cookie 上的問題">
 <meta property="og:url" content="http://jaceju.net/2007/04/19/176/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="昨天凱發現了一個 IE7 的問題，我們兩個做了一個討論後在這裡把結果記錄下來。
-要重現這個問題很簡單，請照著以下的步驟試試看。
-首先在 Windows 的 hosts 檔裡加入粗體部份：
-127.0.0.1    localhost&amp;#10;&amp;#60;strong&amp;#62;127.0.0.1    host_name&amp;#60;/strong&amp;#62;
-然後在網站根目錄底下建立一個 session.">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IE7 對錯誤 Hostname 在處理 Cookie 上的問題">
-<meta name="twitter:description" content="昨天凱發現了一個 IE7 的問題，我們兩個做了一個討論後在這裡把結果記錄下來。
-要重現這個問題很簡單，請照著以下的步驟試試看。
-首先在 Windows 的 hosts 檔裡加入粗體部份：
-127.0.0.1    localhost&amp;#10;&amp;#60;strong&amp;#62;127.0.0.1    host_name&amp;#60;/strong&amp;#62;
-然後在網站根目錄底下建立一個 session.">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> IE7 對錯誤 Hostname 在處理 Cookie 上的問題 | 網站製作學習誌 </title>
 </head>
@@ -141,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -151,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -161,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -181,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -240,22 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>昨天<a href="http://blog.darkhero.net/" target="_blank" rel="external">凱</a>發現了一個 IE7 的<a href="http://blog.darkhero.net/articles/view/222" target="_blank" rel="external">問題</a>，我們兩個做了一個討論後在這裡把結果記錄下來。</p>
-<p>要重現這個問題很簡單，請照著以下的步驟試試看。</p>
-<p>首先在 Windows 的 hosts 檔裡加入粗體部份：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1    localhost&#10;&#60;strong&#62;127.0.0.1    host_name&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>然後在網站根目錄底下建立一個 session.php ，內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;session_start();&#10;$test = (isset($_SESSION[&#39;test&#39;]))&#10;? (int) $_SESSION[&#39;test&#39;]&#10;: 0;&#10;echo $test;&#10;$test ++;&#10;$_SESSION[&#39;test&#39;] = $test;</span><br></pre></td></tr></table></figure>
-<p>然後試試用 IE7 瀏覽以下網址：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://host_name/session.php</span><br></pre></td></tr></table></figure>
-<p>試試看去重新整理這個頁面，會發現 Session 沒辦法動作。 </p>
-<p>不過同樣的網址在 IE6 和 Firefox 上， Session 都會在每次重新整理時正常加一；但如果把 host_name 換成 localhsot ，則每個瀏覽器都會正常動作。</p>
-<p>一開始我以為是 IE7 有支援 HttpOnly Cookie 的設定，不過這項設定是在 PHP 5.2 以後才會有，而凱用的是 PHP 5.1.6 ；然而 Firefox 也支援 HttpOnly Cookie 卻能正確運作，所以並不是這個問題。</p>
-<p>凱告訴我，他在 hosts 上加入 127.0.0.1 my.xxx.net 的設定，然後再用以上三種瀏覽器去瀏覽 <a href="http://my.xxx.net/session.php" target="_blank" rel="external">http://my.xxx.net/session.php</a> ，發現 Session 是可以運作的。這時我們就想到會不會是 host_name 有底線的關係，所以凱很快地重新把底線去掉後再用 IE7 測試，結果就正常了。</p>
-<p>最後我們兩個人的結論是：</p>
-<p><strong>在 IE7 中，有底線的 hostname 會沒辦法正確使用 Cookie 。</strong></p>
-<p>其實微軟不建議 Hostname (或 Domain Name ) 使用底線字元，這個可以參閱「<a href="http://support.microsoft.com/kb/909264" target="_blank" rel="external">為電腦、 網域、 站台及 OU 命名慣例在 Active Directory</a> 」一文。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -300,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -379,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -412,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -428,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -450,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -460,6 +459,7 @@
 
   
   
+
   
     
     
@@ -489,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -658,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -688,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

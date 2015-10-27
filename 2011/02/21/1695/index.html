@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="一般我們都在程式裡去做一些 log 的動作，而在 Zend Framework 裡，這件工作可以交給 Zend_Log 來完成。
-Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的介紹；這邊我將簡單為大家介紹如何在 MVC 架構裡使用 Zend_Log 。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Zend Framework 中的 MVC 裡使用 Zend_Log">
 <meta property="og:url" content="http://jaceju.net/2011/02/21/1695/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="一般我們都在程式裡去做一些 log 的動作，而在 Zend Framework 裡，這件工作可以交給 Zend_Log 來完成。
-Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的介紹；這邊我將簡單為大家介紹如何在 MVC 架構裡使用 Zend_Log 。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Zend Framework 中的 MVC 裡使用 Zend_Log">
-<meta name="twitter:description" content="一般我們都在程式裡去做一些 log 的動作，而在 Zend Framework 裡，這件工作可以交給 Zend_Log 來完成。
-Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的介紹；這邊我將簡單為大家介紹如何在 MVC 架構裡使用 Zend_Log 。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 在 Zend Framework 中的 MVC 裡使用 Zend_Log | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,28 +243,7 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
       
 
       
-        <span itemprop="articleBody"><p>一般我們都在程式裡去做一些 log 的動作，而在 Zend Framework 裡，這件工作可以交給 Zend_Log 來完成。</p>
-<p>Zend_Log 的詳細用法，可以參考官方手冊中有關 <a href="http://framework.zend.com/manual/1.10/en/zend.log.html" target="_blank" rel="external">Zend_Log</a> 套件的介紹；這邊我將簡單為大家介紹如何在 MVC 架構裡使用 Zend_Log 。</p>
-<a id="more"></a>
-<h2 id="在_Action_Controller_中使用_Zend_Log">在 Action Controller 中使用 Zend_Log</h2><p>首先我們要在 application.ini 中加入以下設定：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">resources.log.logger1.writerName = &#34;Firebug&#34;&#10;resources.log.logger1.filterName = &#34;Priority&#34;&#10;resources.log.logger1.filterParams.priority = 3</span><br></pre></td></tr></table></figure>
-<p>這樣的設定會透過 Zend_Application_Resource_Log 建立一個使用 Firebug 做為寫入器的 logger ；這裡的 logger1 只是為了區隔多組 logger 所用的名稱，在程式中並沒有特別的用途。</p>
-<p>註：當然不見得只能用 Firebug ，大家可以參考官方手冊的「 <a href="http://framework.zend.com/manual/1.10/en/zend.log.factory.html" target="_blank" rel="external">Using the Factory to Create a Log</a> 」一節來設定其他的寫入器。</p>
-<p>然後我們可以在想要做 log 動作的 Action Controller 裡加入以下方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function _log($message, $priority, $extras = null)&#10;&#123;&#10;    if ($log = $this-&#62;getLog()) &#123;&#10;        $log-&#62;log($message, $priority, $extras);&#10;    &#125;&#10;&#125;&#10;public function getLog()&#10;&#123;&#10;    return ($log = $this-&#62;getInvokeArg(&#39;bootstrap&#39;)-&#62;getResource(&#39;Log&#39;))&#10;         ? $log : false;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>在 action 中就可以這樣呼叫了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;_log(&#39;test&#39;, Zend_Log::ERR);</span><br></pre></td></tr></table></figure>
-<h2 id="在_Model_中使用_Zend_Log">在 Model 中使用 Zend_Log</h2><p>在 Model 中其實並不能直接取得 Zend_Application_Resource_Log 所產生的 logger ，因此我們要使用注入的方式來達成這個目標。</p>
-<p>請在有需要做 Log 的 Model 中加入以下程式碼：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected $_log = null;&#10;public function setLog($log)&#10;&#123;&#10;    if ($log instanceof Zend_Log) &#123;&#10;        $this-&#62;_log = $log;&#10;    &#125;&#10;&#125;&#10;public function getLog()&#10;&#123;&#10;    return $this-&#62;_log;&#10;&#125;&#10;protected function _log($message, $priority, $extras = null)&#10;&#123;&#10;    if ($log = $this-&#62;getLog()) &#123;&#10;        $log-&#62;log($message, $priority, $extras);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>這樣我們就可以在 Model 的其他部份用 _log 方法來做 log ，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Application_Model_Test&#10;&#123;&#10;    public function run()&#10;    &#123;&#10;        $this-&#62;_log(&#39;run&#39;, Zend_Log::ERR);&#10;    &#125;&#10;    // ... &#30053; ...&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>那麼怎麼注入 log 物件呢？如下例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    public function indexAction()&#10;    &#123;&#10;        $test = new Application_Model_Test();&#10;        $test-&#62;setLog($this-&#62;getLog());&#10;        $test-&#62;run();&#10;    &#125;&#10;    // ... &#30053; ...&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>這裡的 $this-&gt;getLog() 就是剛剛我們在 Action Controller 裡所建立的方法。 </p>
-<h2 id="心得">心得</h2><p>這裡介紹的方法，是參考了網路上一些文章後，我自己歸納出來的心得；不過我自己覺得應該是還有更簡單的方式，而不需要在每個 Controller 裡去建立這樣的機制。</p>
-<p>如果有找到比較好的方法時，我會再分享給大家；當然大家若有任何更好的建議的話，也歡迎告訴我。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -299,19 +290,22 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -378,13 +372,17 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -411,8 +409,10 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在_Action_Controller_中使用_Zend_Log"><span class="nav-number">1.</span> <span class="nav-text">在 Action Controller 中使用 Zend_Log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在_Model_中使用_Zend_Log"><span class="nav-number">2.</span> <span class="nav-text">在 Model 中使用 Zend_Log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">3.</span> <span class="nav-text">心得</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,7 +427,8 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -449,7 +450,8 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -459,6 +461,7 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
 
   
   
+
   
     
     
@@ -488,24 +491,21 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -657,29 +657,20 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -687,15 +678,5 @@ Zend_Log 的詳細用法，可以參考官方手冊中有關 Zend_Log 套件的�
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="在「建立 Portable 的 ZF 專案」一文中，已經讓我們可以將 Zend Framework 專案佈署到其他機器上而不需要修改 Apache 的 Virtual Host 設定檔；但是這樣卻會造成某些問題，以下我們來一一分析及解決。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Portable ZF 專案會遇到的問題">
 <meta property="og:url" content="http://jaceju.net/2011/02/12/1619/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="在「建立 Portable 的 ZF 專案」一文中，已經讓我們可以將 Zend Framework 專案佈署到其他機器上而不需要修改 Apache 的 Virtual Host 設定檔；但是這樣卻會造成某些問題，以下我們來一一分析及解決。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Portable ZF 專案會遇到的問題">
-<meta name="twitter:description" content="在「建立 Portable 的 ZF 專案」一文中，已經讓我們可以將 Zend Framework 專案佈署到其他機器上而不需要修改 Apache 的 Virtual Host 設定檔；但是這樣卻會造成某些問題，以下我們來一一分析及解決。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> Portable ZF 專案會遇到的問題 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,33 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>在「<a href="http://www.jaceju.net/blog/archives/1600" target="_blank" rel="external">建立 Portable 的 ZF 專案</a>」一文中，已經讓我們可以將 Zend Framework 專案佈署到其他機器上而不需要修改 Apache 的 Virtual Host 設定檔；但是這樣卻會造成某些問題，以下我們來一一分析及解決。</p>
-<a id="more"></a>
-<h2 id="防止不必要的目錄被直接瀏覽">防止不必要的目錄被直接瀏覽</h2><p>假設在佈署 Portable 專案的 Apache 伺服器上，其 httpd.conf 中有以下設定：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;Directory &#34;/path/to/document_root&#34;&#62;&#10;    Options Indexes&#10;    # &#30053;...&#10;&#60;/Directory&#62;</span><br></pre></td></tr></table></figure>
-<p>其中 /path/to/document_root 是我們的網站實體根目錄，而一般 Portable 專案就是放在網站實體根目錄下去執行。</p>
-<p>Options Indexes 這個指令就是啟用 Apache 能直接瀏覽目錄，所以知道我們程式結構的人其實能直接看到我們的專案目錄結構！</p>
-<p>為什麼會這樣呢？首先我們要分析一下原來的 .htaccess 做了什麼事情：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># &#21855;&#29992; RewriteEngine&#10;RewriteEngine On&#10;# &#27298;&#26597; $&#123;REQUEST_FILENAME&#125; &#20013;&#65292;&#22823;&#23567;&#19981;&#28858; 0 &#30340;&#27284;&#26696;&#26159;&#21542;&#23384;&#22312;&#65292;&#25110;&#26159;&#10;RewriteCond %&#123;REQUEST_FILENAME&#125; -s [OR]&#10;# &#27298;&#26597; $&#123;REQUEST_FILENAME&#125; &#20013;&#65292;&#25351;&#23450;&#30340;&#31526;&#34399;&#36899;&#32080;&#26159;&#21542;&#23384;&#22312;&#65292;&#25110;&#26159;&#10;RewriteCond %&#123;REQUEST_FILENAME&#125; -l [OR]&#10;# &#27298;&#26597; $&#123;REQUEST_FILENAME&#125; &#20013;&#65292;&#25351;&#23450;&#30340;&#30446;&#37636;&#26159;&#21542;&#23384;&#22312;&#10;RewriteCond %&#123;REQUEST_FILENAME&#125; -d&#10;# &#19978;&#38754;&#35215;&#21063;&#26377;&#25214;&#21040;&#36039;&#28304;&#30340;&#35441;&#23601;&#30452;&#25509;&#23566;&#36942;&#21435;&#10;RewriteRule ^.*$ - [NC,L]&#10;# &#27794;&#26377;&#31526;&#21512;&#30340;&#36899;&#32080;&#23601;&#20840;&#37096;&#23566;&#21521; index.php&#10;RewriteRule ^.*$ index.php [NC,L]</span><br></pre></td></tr></table></figure>
-<p>這個 .htaccess 原本是放置在 public 目錄下的；也就是說，在 Zend Framework 原先的設計裡， public 資料夾除了置放原來的 index.php 入口外，還可以用來放置 css 、 javascript 或 image 等資料夾；這些公開資源只要在適當的情況下，都是可以直接被存取的；而其他的在 public 外部的資料夾因為不在 Virtual Host 的公開範圍內，所以就不會被存取到了。</p>
-<p>一旦我們將原來的 .htaccess 搬到專案根目錄後，就會使得 application 、 library 、 tests 等資料夾都有被直接瀏覽的危險。</p>
-<p>怎麼辦呢？兩個方式可以解決這個問題。第一種方式是把可以直接瀏覽目錄的選項關閉，做法就是在根目錄下的 .htaccess 上方再補上一行：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Options -Indexes</span><br></pre></td></tr></table></figure>
-<p>這樣就可以了。</p>
-<p>第二種方式是將專案根目錄下的 .htaccess 中檢查目錄是否存在的 RewriteCond 拿掉，也就是把：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; -l [OR]&#10;RewriteCond %&#123;REQUEST_FILENAME&#125; -d</span><br></pre></td></tr></table></figure>
-<p>改成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; -l</span><br></pre></td></tr></table></figure>
-<p>這麼一來 application 等目錄就不會被 Rewrite Engine 所辨識出來了。</p>
-<h2 id="不在網址上加入_public_路徑">不在網址上加入 public 路徑</h2><p>改用 Portable 架構後還會遇到一個問題：就是原來在 View Script 中存取 css 或 javascript 時，在路徑上要多加入一個 public ，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;baseUrl(&#39;/css/style.css&#39;)&#10;// &#35201;&#25913;&#28858;&#10;$this-&#62;baseUrl(&#39;/public/css/style.css&#39;)</span><br></pre></td></tr></table></figure>
-<p>解決的方法有兩種：</p>
-<p>第一種方式是將放在 public 底下的 css 及 js 等資料夾移到專案根目錄下，然後把原來 public 目錄下的 .htaccess 各複製一份給 css 及 js 資料夾，最後再刪掉 public 目錄。但這樣太麻煩了，而且到最後整個專案根目錄下的目錄結構都會很亂。</p>
-<p>因此建議使用第二種方式，透過 RewriteRule 來改寫，也就是在專案根目錄下 .htaccess 的 RewriteEngine On 下一行加入：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># &#36935;&#21040; css/xxxx &#23601;&#23566;&#21521;&#23565;&#25033;&#30340; public/css/xxxx &#65292; js &#21450; img &#20197;&#27492;&#39006;&#25512;&#12290;&#10;RewriteRule ^(css|js|img)/(.*)$ public/$1/$2 [L]</span><br></pre></td></tr></table></figure>
-<p>這個解法的問題在於如果 public 底下有新增目錄的話 (例如 download ) ，就得再修改專案根目錄下的 .htaccess ，但已經比第一個方法好維護多了。</p>
-<p>如此一來改為 Portable 架構後的 ZF 專案就與原來 ZF 預設架構執行的結果相差無幾了。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -301,19 +290,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -380,13 +372,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -413,8 +409,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#防止不必要的目錄被直接瀏覽"><span class="nav-number">1.</span> <span class="nav-text">防止不必要的目錄被直接瀏覽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不在網址上加入_public_路徑"><span class="nav-number">2.</span> <span class="nav-text">不在網址上加入 public 路徑</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -429,7 +427,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -451,7 +450,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -461,6 +461,7 @@
 
   
   
+
   
     
     
@@ -490,24 +491,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -659,29 +657,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -689,15 +678,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

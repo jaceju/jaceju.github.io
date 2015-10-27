@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="我常在對岸的論壇看一些 PHP 開發者在討論 Zend Framework (以下簡稱 ZF) ，而 ZF 給他們的感覺像是另一個 PEAR ；而且他們認為雖然 ZF 有提供一個簡單的 MVC 框架，但是對於接觸過 CakePHP 或其他目前已經很成熟的框架的人來說， ZF 的 MVC 看起來像是小兒科。
-對這樣的看法，我個人其實抱持著不同的意見。先前我本來也打算使用 CakePHP 來開發一個小">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="關於 Zend Framework 的一些想法">
 <meta property="og:url" content="http://jaceju.net/2007/06/19/194/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="我常在對岸的論壇看一些 PHP 開發者在討論 Zend Framework (以下簡稱 ZF) ，而 ZF 給他們的感覺像是另一個 PEAR ；而且他們認為雖然 ZF 有提供一個簡單的 MVC 框架，但是對於接觸過 CakePHP 或其他目前已經很成熟的框架的人來說， ZF 的 MVC 看起來像是小兒科。
-對這樣的看法，我個人其實抱持著不同的意見。先前我本來也打算使用 CakePHP 來開發一個小">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="關於 Zend Framework 的一些想法">
-<meta name="twitter:description" content="我常在對岸的論壇看一些 PHP 開發者在討論 Zend Framework (以下簡稱 ZF) ，而 ZF 給他們的感覺像是另一個 PEAR ；而且他們認為雖然 ZF 有提供一個簡單的 MVC 框架，但是對於接觸過 CakePHP 或其他目前已經很成熟的框架的人來說， ZF 的 MVC 看起來像是小兒科。
-對這樣的看法，我個人其實抱持著不同的意見。先前我本來也打算使用 CakePHP 來開發一個小">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 關於 Zend Framework 的一些想法 | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,28 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>我常在對岸的論壇看一些 PHP 開發者在討論 <a href="http://framework.zend.com/" target="_blank" rel="external">Zend Framework</a> (以下簡稱 ZF) ，而 ZF 給他們的感覺像是另一個 <a href="http://pear.php.net/" target="_blank" rel="external">PEAR</a> ；而且他們認為雖然 ZF 有提供一個簡單的 MVC 框架，但是對於接觸過 <a href="http://www.cakephp.org/" target="_blank" rel="external">CakePHP</a> 或其他目前已經很成熟的框架的人來說， ZF 的 MVC 看起來像是小兒科。</p>
-<p>對這樣的看法，我個人其實抱持著不同的意見。先前我本來也打算使用 CakePHP 來開發一個小專案，但是在接觸一陣子過後，我發現我實在無法瞭解 CakePHP 的原理架構。一來我發現我對 CakePHP 的神奇 MVC 架構一知半解 (就像 <a href="http://www.rubyonrails.org/" target="_blank" rel="external">RoR</a> 一樣) ，二來 CakePHP 的文件對資質愚眛的我來說實在是太難懂了。因此如果要像<a href="http://blog.darkhero.net/" target="_blank" rel="external">丫凱</a>這樣的高手在短時間內瞭解 CakePHP ，對我來說很不容易。 </p>
-<p>ZF 就不同了，沿習著 PHP 的傳統，它的文件一開始就非常豐富而且易懂；而且就算是英文程度不及中學生的我，也能很清楚瞭解文件裡所要表達的意義。加上範例簡單且容易整合，只要稍加修改，通常就能夠很快加入現有的專案裡。而且 ZF 在 MVC 外的類別庫包含了當下最有用的功能 (像是 Gdata 、 WebService 等) ，就算不使用 ZF 本身的 MVC ，這些類別庫也能為我們帶來高度的價值。</p>
-<p>那麼比起其他框架， ZF 不足在哪裡呢？ </p>
-<a id="more"></a>
-<h2 id="缺少專案產生器">缺少專案產生器</h2><p>像 CakePHP 或 <a href="http://www.symfony-project.com/" target="_blank" rel="external">Symfony</a> ，它們都提供了快速建置專案的工具；這些工具讓我們能在 CLI 模式下快速產生專案所需要的目錄架構及相關設定，也能為我們產生 Model 等資料庫存取類別。這樣的工具能夠節省開發人員輸入程式碼的時間，也能夠讓初期專案建置的成本降低到一定的程度。</p>
-<p>不過也因為如此，像 CakePHP 或 <a href="http://www.symfony-project.com/" target="_blank" rel="external">Symfony</a> 這類框架大多只能依賴產生好的結構來開發，彈性上略顯不足；如果要整合其他類別庫的話，光是思考如何放置它們就得花上不少時間。而 ZF 就沒有硬性規定我們一定要遵循特定的架構，不過如果要使用它的 MVC 框架，它也提供了良好的 Interface 讓開發人員能夠在最小的幅度裡把自己的想法加入。 </p>
-<h2 id="缺少開發、測試及產品等階段性佈置工具">缺少開發、測試及產品等階段性佈置工具</h2><p>一般專案會分成開發、測試及產品 (上線) 等三個階段，像 RoR 就提供了這樣的設定方式，而且在某種程度上來說是自動化的。對 ZF 來說，要讓這三種階段能自動化就得花上不少心力；通常我們得自己在設定檔及 Bootstrap 上動一些手腳，以達到這樣的功能。 </p>
-<h2 id="缺少強而有力的宣傳">缺少強而有力的宣傳</h2><p>大概目前知名的框架，都會利用類似十五分鐘建置一個 Blog 為範例，展現自己在開發上的效率；所以稍有程式開發經驗的工程師，大多都會被這樣的宣傳手法給吸引。而這種風氣大概是 RoR 表現的最為徹底，以致許多 Java 程式人員為 RoR 而瘋狂。反觀 ZF ，雖然它有官方的支援，但是由於缺少上面提到的工具，使得它在宣傳上遠遠落後別的框架一大截。</p>
-<p>另外 ZF 在架構上的穩定性也是讓人擔憂，因為版本間的演化幅度太大，使得大家對它抱持著觀望的態度。不過隨著 1.0.0 版的推出，這些疑慮大致上都可以消除了。</p>
-<h2 id="建立自己的基本專案架構">建立自己的基本專案架構</h2><p>對使用 ZF 的開發人員來說，雖然官方有建議一個專案架構，不過我想我們還是儘量自行依照專案的特性來規劃會比較好。所以 <a href="http://andries.systray.be/" target="_blank" rel="external">Andries Seutens</a> 提供了一個<a href="http://andries.systray.be/blog/2007/06/18/zend-framework-just-get-me-started-okay/" target="_blank" rel="external">他自己的版本</a>供大家參考。主要包含：</p>
-<ul>
-<li>慣用的專案目錄結構</li>
-<li>Bootstrap 檔案 </li>
-<li>測試及產品等兩階段的設定檔</li>
-<li>Error Controller</li>
-<li>Index Controller</li>
-<li>其他</li>
-</ul>
-<p>對我來說，我也有自己喜好的目錄結構，但基本上也是和官方建議的差不多。另外我把大部份常用到的功能包含到另一個抽象層裡，使得我的應用程式不會過度依賴 ZF ；而且這樣一來，我所有的專案也可以共用這個抽象層，發現有更好的方式時，只要修改抽象層的程式碼即可。</p>
-<p>Zend Framework 雖然沒有便利的工具，但未來應該會有高手幫它做好；而我個人喜好它的彈性，也深深為它把 PHP5 的物件導向特性發揮得淋漓盡致而感動。也許後面我會發表一些 ZF 使用上的心得，也會持續關注它的發展。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -297,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -376,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -409,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缺少專案產生器"><span class="nav-number">1.</span> <span class="nav-text">缺少專案產生器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺少開發、測試及產品等階段性佈置工具"><span class="nav-number">2.</span> <span class="nav-text">缺少開發、測試及產品等階段性佈置工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺少強而有力的宣傳"><span class="nav-number">3.</span> <span class="nav-text">缺少強而有力的宣傳</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立自己的基本專案架構"><span class="nav-number">4.</span> <span class="nav-text">建立自己的基本專案架構</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -447,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -457,6 +459,7 @@
 
   
   
+
   
     
     
@@ -486,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -685,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

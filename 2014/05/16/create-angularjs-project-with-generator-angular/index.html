@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="參考了 AngularJS @ DevWeek 2014 這篇的介紹，認真地試玩了一下 Yomen AngularJS Generator ，以下是簡單的筆記。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 generator-angular 來建立一個 AngularJS 專案">
 <meta property="og:url" content="http://jaceju.net/2014/05/16/create-angularjs-project-with-generator-angular/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="參考了 AngularJS @ DevWeek 2014 這篇的介紹，認真地試玩了一下 Yomen AngularJS Generator ，以下是簡單的筆記。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T06:20:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 generator-angular 來建立一個 AngularJS 專案">
-<meta name="twitter:description" content="參考了 AngularJS @ DevWeek 2014 這篇的介紹，認真地試玩了一下 Yomen AngularJS Generator ，以下是簡單的筆記。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 利用 generator-angular 來建立一個 AngularJS 專案 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,46 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>參考了 <a href="https://speakerdeck.com/pearlchen/angularjs-at-devweek-2014" target="_blank" rel="external">AngularJS @ DevWeek 2014</a> 這篇的介紹，認真地試玩了一下 Yomen AngularJS Generator ，以下是簡單的筆記。<br><a id="more"></a><br>建立一個 AngularJS 專案的方式如下 (<code>$</code> 為命令列提示符號，不需輸入) ：</p>
-<pre><code>$ [sudo] npm install --<span class="keyword">g</span> yo generator-angular
-$ <span class="keyword">mkdir</span> &lt;<span class="keyword">app</span>-name&gt;
-$ <span class="keyword">cd</span> &lt;<span class="keyword">app</span>-name&gt;
-$ yo angular [<span class="keyword">app</span>-name]
-$ npm install karma-chrome-launcher karma-jasmine --<span class="keyword">save</span>-dev
-$ bower install --<span class="keyword">save</span> angular-cookies
-</code></pre><p>預覽專案：</p>
-<pre><code><span class="variable">$ </span>grunt serve
-</code></pre><p>建立對應的 JavaScript 檔案：</p>
-<pre><code><span class="variable">$ </span>yo <span class="symbol">angular:</span>controller [controllerName]
-<span class="variable">$ </span>yo <span class="symbol">angular:</span>view [viewName]
-<span class="variable">$ </span>yo <span class="symbol">angular:</span>route [routeName]
-<span class="variable">$ </span>yo <span class="symbol">angular:</span>directive [directiveName]
-</code></pre><p>測試專案：</p>
-<pre><code>$ grunt <span class="built_in">test</span>
-</code></pre><p>建置專案：</p>
-<pre><code><span class="variable">$ </span>grunt build
-</code></pre><p>另外需要注意幾個重點：</p>
-<ul>
-<li>跟 bower 的結合非常緊密，如果沒有什麼客製化需求的話，直接用就 bower 來管理 assets 就好。</li>
-<li>因為有用 bower 和 grunt 直接在 <code>index.html</code> 上管理相依性和最小化的問題，所以不需要使用 RequestJS 。</li>
-<li><p>要跟後端 framework 結合的話，可以把 app 這個目錄改成 public 。但還需要對應改以下兩個部份：</p>
-<ul>
-<li><code>bower.json</code> 加入 <code>&quot;appPath&quot;: &quot;public&quot;</code> 。</li>
-<li><code>.bowerrc</code> 及 <code>karma.conf.js</code> 中的 <code>app/</code> 改成 <code>public/</code> 。</li>
-</ul>
-</li>
-<li><p>儘量不要改 index.html 裡的註解，因為 Grunt 的 task 會用到它們來做管理 assets 。</p>
-</li>
-<li><code>yo angular:route &lt;route-name&gt; --route=&lt;path&gt;</code> 會自動幫你新增對應的 Controller / Route / View 。</li>
-<li><code>yo angular:directive &lt;directive-name&gt;</code> 的 <code>directive-name</code> 要用 <code>-</code> (dash) 。</li>
-<li><p><code>grunt test</code> 預設是用 Chrome 和 Jasmine 來執行測試，所以要先執行以下指令：</p>
-<pre><code>npm install karma-chrome-launcher karma-jasmine --<span class="built_in">save</span>-<span class="built_in">dev</span>
-</code></pre></li>
-<li><p><code>grunt build</code> 後的所有檔案會放在 <code>dist</code> 目錄下，所以線上 Web 環境要把網站根目錄指到 <code>dist</code> 目錄，而不是 <code>public</code> 目錄。</p>
-</li>
-</ul>
-<p>接下來要想想看是不是能改用 Gulp 處理，我對 Grunt 已經不是那麼有愛了。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -316,19 +292,22 @@ $ bower install --<span class="keyword">save</span> angular-cookies
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -395,13 +374,17 @@ $ bower install --<span class="keyword">save</span> angular-cookies
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -428,6 +411,8 @@ $ bower install --<span class="keyword">save</span> angular-cookies
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -444,7 +429,8 @@ $ bower install --<span class="keyword">save</span> angular-cookies
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -466,7 +452,8 @@ $ bower install --<span class="keyword">save</span> angular-cookies
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -476,6 +463,7 @@ $ bower install --<span class="keyword">save</span> angular-cookies
 
   
   
+
   
     
     
@@ -505,24 +493,21 @@ $ bower install --<span class="keyword">save</span> angular-cookies
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -674,29 +659,20 @@ $ bower install --<span class="keyword">save</span> angular-cookies
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -704,15 +680,5 @@ $ bower install --<span class="keyword">save</span> angular-cookies
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="前陣子看到 MySQL 5 已經正式推出了，支援 Stored Procedures 、 Functions 、 Views 、 Triggers 等。
-目前 phpMyAdmin 2.6.4 好像還不支援這些新特色 (View 可以看得到，但是沒有建立的介面？) ，不過 MySQL 官方自己推了一個 MySQL Query Browser ，還不錯用， 缺點是中文的支援性不佳 (輸入中文時會怪怪">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 5 可用於正式產品上了">
 <meta property="og:url" content="http://jaceju.net/2005/10/26/36/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="前陣子看到 MySQL 5 已經正式推出了，支援 Stored Procedures 、 Functions 、 Views 、 Triggers 等。
-目前 phpMyAdmin 2.6.4 好像還不支援這些新特色 (View 可以看得到，但是沒有建立的介面？) ，不過 MySQL 官方自己推了一個 MySQL Query Browser ，還不錯用， 缺點是中文的支援性不佳 (輸入中文時會怪怪">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 5 可用於正式產品上了">
-<meta name="twitter:description" content="前陣子看到 MySQL 5 已經正式推出了，支援 Stored Procedures 、 Functions 、 Views 、 Triggers 等。
-目前 phpMyAdmin 2.6.4 好像還不支援這些新特色 (View 可以看得到，但是沒有建立的介面？) ，不過 MySQL 官方自己推了一個 MySQL Query Browser ，還不錯用， 缺點是中文的支援性不佳 (輸入中文時會怪怪">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> MySQL 5 可用於正式產品上了 | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,20 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>前陣子看到 <a href="http://www.mysql.com" target="_blank" rel="external">MySQL 5</a> 已經正式推出了，支援 Stored Procedures 、 Functions 、 Views 、 Triggers 等。</p>
-<p>目前 phpMyAdmin 2.6.4 好像還不支援這些新特色 (View 可以看得到，但是沒有建立的介面？) ，不過 MySQL 官方自己推了一個 <a href="http://dev.mysql.com/downloads/query-browser/1.1.html" target="_blank" rel="external">MySQL Query Browser</a> ，還不錯用， 缺點是中文的支援性不佳 (輸入中文時會怪怪的) 。</p>
-<p>小試了一下用 MySQL Query Browser 寫一個 Stored Procedure ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;strong&#62;DELIMITER $$&#60;/strong&#62;&#10;DROP PROCEDURE IF EXISTS `spTest` $$&#10;CREATE PROCEDURE `spTest`(p_title VARCHAR(200), p_description TEXT)&#10;&#60;strong&#62;DETERMINISTIC&#60;/strong&#62;&#10;BEGIN&#10;INSERT INTO category (title, description)&#10;VALUES (p_title, p_description);&#10;END $$&#10;&#60;strong&#62;DELIMITER ;&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>其中 DELIMITER 是用來決定 SQL 分隔符號的，在寫 Stored Procedure 前，要先把預設的分號換掉，不然按下 MySQL Query Browser 的 Execute 按鈕時，會真的去跑裡面的 INSERT 指令。寫完 Stored Procedure 的 routine_body 後，再回復成預設的分號。</p>
-<p>另外我在寫這個 Stored Procedurce 時，發現一定要加上 characteristic 才行，也就是上面的 DETERMINISTIC 。可是官方手冊明明寫可略過，這我就沒時間研究為什麼了。</p>
-<p>另外就是參數的名稱， MySQL 5 不像 MSSQL 是用 @param 來表示 Stored Procedure 的參數？這樣有點難以分辨參數及資料表欄位，不過也不是不能解決。</p>
-<p>執行這個 Stored Procedure 的方法是用 CALL：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CALL spTest &#39;TEST&#39;, &#39;ABC&#39;;</span><br></pre></td></tr></table></figure>
-<p>當然語法不同，就會造成寫 PHP 程式的不方便，改天來找找看有沒有比較好的抽象層資料庫存取介面 (就是像 PEAR::DB 或 ADOdb 之類的物件類別庫) ，可以支援不同類型資料庫的 Stored Procedure 。</p>
-<p>Stored Procedure 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/stored-procedures.html</a></p>
-<p>Trigger 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/triggers.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/triggers.html</a></p>
-<p>View 的寫法可參考：<a href="http://dev.mysql.com/doc/refman/5.0/en/views.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.0/en/views.html</a></p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -289,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -368,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -401,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -417,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -439,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -449,6 +459,7 @@
 
   
   
+
   
     
     
@@ -478,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -647,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -677,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

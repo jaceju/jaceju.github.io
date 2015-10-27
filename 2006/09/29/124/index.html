@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,36 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="PEAR::PHPUnit 的作者 Sebastian Bergmann 在他的 Blog 發表了一篇文章：PHPUnit Support in PHPEclipse ，主要是介紹 PHPUnit2 3.0 可以借用 SimpleTest 的 eclipse plugin 來讓 PHPUnit2 也可以在 Eclipse 上執行。
-當然這對我這個使用 PHP Development Studio">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHPUnit Support in PHPEclipse">
 <meta property="og:url" content="http://jaceju.net/2006/09/29/124/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="PEAR::PHPUnit 的作者 Sebastian Bergmann 在他的 Blog 發表了一篇文章：PHPUnit Support in PHPEclipse ，主要是介紹 PHPUnit2 3.0 可以借用 SimpleTest 的 eclipse plugin 來讓 PHPUnit2 也可以在 Eclipse 上執行。
-當然這對我這個使用 PHP Development Studio">
-<meta property="og:image" content="http://jaceju.net/resources/phpunit_on_phpeclipse/01.gif">
-<meta property="og:image" content="http://jaceju.net/resources/phpunit_on_phpeclipse/02.gif">
-<meta property="og:image" content="http://jaceju.net/resources/phpunit_on_phpeclipse/03.gif">
-<meta property="og:image" content="http://jaceju.net/resources/phpunit_on_phpeclipse/04.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHPUnit Support in PHPEclipse">
-<meta name="twitter:description" content="PEAR::PHPUnit 的作者 Sebastian Bergmann 在他的 Blog 發表了一篇文章：PHPUnit Support in PHPEclipse ，主要是介紹 PHPUnit2 3.0 可以借用 SimpleTest 的 eclipse plugin 來讓 PHPUnit2 也可以在 Eclipse 上執行。
-當然這對我這個使用 PHP Development Studio">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> PHPUnit Support in PHPEclipse | 網站製作學習誌 </title>
 </head>
@@ -136,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -146,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -156,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -176,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -235,33 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>PEAR::PHPUnit 的作者 Sebastian Bergmann 在他的 Blog 發表了一篇文章：<a href="http://www.sebastian-bergmann.de/blog/archives/586-PHPUnit-Support-in-PHPEclipse.html" target="_blank" rel="external">PHPUnit Support in PHPEclipse</a> ，主要是介紹 PHPUnit2 3.0 可以借用 <a href="http://www.lastcraft.com/simple_test.php" target="_blank" rel="external">SimpleTest</a> 的 eclipse plugin 來讓 PHPUnit2 也可以在 Eclipse 上執行。</p>
-<p>當然這對我這個使用 PHP Development Studio 的人來說是個好消息，因為 <a href="http://www.joomlatwork.com/products/free_products_for_joomla/php_development_studio_2.0.html" target="_blank" rel="external">PHP Development Studio</a> 本來就是 Base 在 <a href="http://www.eclipse.org/" target="_blank" rel="external">Eclipse</a> 和 <a href="http://www.phpeclipse.de/" target="_blank" rel="external">PHPEclipse</a> 上的整合環境。</p>
-<a id="more"></a>
-<p>這裡我簡單記錄一下安裝的方式，前提是要先安裝 PHP Development Studio 和 PEAR ，這個我就不多說了。</p>
-<p><li><br>首先，我們得先安裝 PEAR::PHPUnit2 3.0.0 alpha 版： </li></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Workspace&#62;&#60;strong&#62;pear install -o PHPUnit2-alpha&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
-<p>記得一定要用 3.0.0 以上的版本，因為這樣 PHPUnit2 才會支援 SimpleTest eclipse plugin 的圖形化介面。<br></p>
-<ul>
-<li>接下來要下載 SimpleTest 的 <a href="http://sourceforge.net/project/showfiles.php?group_id=76550" target="_blank" rel="external">eclipse plugin</a> ，這裡我下載的是 simpletest_1.0.1beta.eclipse_0.1.9 版。 </li>
-<li>解開 simpletest_1.0.1beta.eclipse_0.1.9.zip ，把所有檔案複製到 PHP Development Studio 的 eclipse 目錄裡 (覆蓋原檔案即可) 。</li>
-<li>到 PHP Development Studio 的安裝目錄，刪掉 site.xml 。</li>
-</ul>
-<p>註：原本看到 site.xml 讓我以為要用本地更新的方式來安裝，但卻試不出來，只好用覆蓋的方式。</p>
-<ul>
-<li>重新打開 PHP Development Studio ，在功能表上選擇「視窗 / 喜好設定」，然後切換到 SimpleTest 的設定視窗。然後依照下圖的設定，自行將相關路徑設定好：</li>
-</ul>
-<p><a href="/resources/phpunit_on_phpeclipse/01.gif"><img src="/resources/phpunit_on_phpeclipse/01.gif" alt="SimpleTest eclipse plugin setting."></a></p>
-<p>好了，到這裡就算完成了；接下來我們來看看實際的執行狀況。</p>
-<p>打開一個用 PHPUnit 撰寫的 TestCase ，如下：</p>
-<p><a href="/resources/phpunit_on_phpeclipse/02.gif"><img src="/resources/phpunit_on_phpeclipse/02.gif" alt="TestCase"></a></p>
-<p>注意右邊的 Result View ，這個就是 SimpleTest 在 Eclipse 上的圖形化介面；如果你找不到的話，可以用快速視圖來建立一個。</p>
-<p>接下來我們在這個 TestCase 上面按下滑鼠右鍵，選擇「執行為 / PHPUnit2」，如下圖：</p>
-<p><a href="/resources/phpunit_on_phpeclipse/03.gif"><img src="/resources/phpunit_on_phpeclipse/03.gif" alt="Run TestCase"></a></p>
-<p>然後稍等一下，你就會在右邊的 Result View 看到執行的結果了：</p>
-<p><a href="/resources/phpunit_on_phpeclipse/04.gif"><img src="/resources/phpunit_on_phpeclipse/04.gif" alt="Run TestCase Success"></a></p>
-<p>當然綠色就表示所有測試都成功囉！</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -306,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -385,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -418,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -434,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -456,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -466,6 +459,7 @@
 
   
   
+
   
     
     
@@ -495,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -664,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -694,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

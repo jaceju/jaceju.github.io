@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,37 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="以前的同事問了我一個問題：
-在 A 視窗 (list.asp) 中會用 window.open 開啟子視窗 B (edit.asp) ，然後 B 視窗上的表單資料會 submit 到一支 C 程式 (save.asp) 。而 當 C 程式做完存檔動作後，在最後面程式碼裡加上了：&amp;#60;script type=&amp;#34;text/javascript&amp;#34;&amp;#62;&amp;#10;&amp;#60;!--&amp;">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 小陷阱 (4) - location.reload()">
 <meta property="og:url" content="http://jaceju.net/2006/08/28/117/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="以前的同事問了我一個問題：
-在 A 視窗 (list.asp) 中會用 window.open 開啟子視窗 B (edit.asp) ，然後 B 視窗上的表單資料會 submit 到一支 C 程式 (save.asp) 。而 當 C 程式做完存檔動作後，在最後面程式碼裡加上了：&amp;#60;script type=&amp;#34;text/javascript&amp;#34;&amp;#62;&amp;#10;&amp;#60;!--&amp;">
-<meta property="og:image" content="http://jaceju.net/resources/location_reload/1.gif">
-<meta property="og:image" content="http://jaceju.net/resources/location_reload/2.gif">
-<meta property="og:image" content="http://jaceju.net/resources/location_reload/3.gif">
-<meta property="og:image" content="http://jaceju.net/resources/location_reload/4.gif">
-<meta property="og:image" content="http://jaceju.net/resources/location_reload/1.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 小陷阱 (4) - location.reload()">
-<meta name="twitter:description" content="以前的同事問了我一個問題：
-在 A 視窗 (list.asp) 中會用 window.open 開啟子視窗 B (edit.asp) ，然後 B 視窗上的表單資料會 submit 到一支 C 程式 (save.asp) 。而 當 C 程式做完存檔動作後，在最後面程式碼裡加上了：&amp;#60;script type=&amp;#34;text/javascript&amp;#34;&amp;#62;&amp;#10;&amp;#60;!--&amp;">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> JavaScript 小陷阱 (4) - location.reload() | 網站製作學習誌 </title>
 </head>
@@ -137,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -147,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -157,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -177,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -236,37 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>以前的同事問了我一個問題：</p>
-<blockquote><br><br>在 A 視窗 (list.asp) 中會用 window.open 開啟子視窗 B (edit.asp) ，然後 B 視窗上的表單資料會 submit 到一支 C 程式 (save.asp) 。<br><br>而 當 C 程式做完存檔動作後，在最後面程式碼裡加上了：<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;alert(&#39;&#23384;&#27284;&#25104;&#21151;&#65281;&#39;);&#10;window.opener.location.reload();&#10;window.close();&#10;//--&#62;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure><br><br>理論上 A 視窗會重新整理，然後子視窗 B 會關掉；但是現在 A 視窗會出現以下訊息 (IE) ：<br><br><img src="/resources/location_reload/1.gif" alt=""><br><br>或是在 Firefox 中出現：<br><br><img src="/resources/location_reload/2.gif" alt=""><br></blockquote>
-
-<a id="more"></a>
-<p>這個問題只看字面的話，說實在的有點難懂，我想我用以下程式來說明好了：</p>
-<p>註：這裡舉的例子比較簡單，沒有考慮到實用上的完整性，大家在實作時請自行小心。</p>
-<p>list.asp</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;&#21015;&#34920;&#38913;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;edit.asp&#34; onclick=&#34;window.open(&#39;edit.asp&#39;, &#39;b&#39;, &#39;width=100,height=100&#39;); return false;&#34;&#62;&#28204;&#35430;&#60;/a&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>edit.asp</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;&#34920;&#21934;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;form id=&#34;form1&#34; name=&#34;form1&#34; method=&#34;post&#34; action=&#34;save.asp&#34;&#62;&#10;&#60;input type=&#34;submit&#34; name=&#34;Submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>save.asp</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;&#34389;&#29702;&#38913;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;alert(&#39;&#23384;&#27284;&#25104;&#21151;.&#39;);&#10;&#60;strong&#62;window.opener.location.reload();&#60;/strong&#62;&#10;window.close();&#10;//--&#62;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>如果大家直接執行 list.asp 並按下「測試」連結，在出現表單視窗後按下「送出」，可能會發現沒有我朋友所說的問題。</p>
-<p><img src="/resources/location_reload/3.gif" alt=""></p>
-<p>那為什麼我朋友會遇到呢？</p>
-<p>其實在 Firefox 的訊息視窗裡可以看出一些端倪，原因就在 POSTDATA ！怎麼說呢？如果我把 list.asp 改成以下這樣：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;&#21015;&#34920;&#38913;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;edit.asp&#34; onclick=&#34;window.open(&#39;edit.asp&#39;, &#39;b&#39;, &#39;width=100,height=100&#39;); return false;&#34;&#62;&#28204;&#35430;&#60;/a&#62;&#10;&#60;strong&#62;&#60;form id=&#34;form1&#34; name=&#34;form1&#34; method=&#34;post&#34; action=&#34;list.asp&#34;&#62;&#10;&#60;input type=&#34;submit&#34; name=&#34;Submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;&#60;/strong&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>這時我們先按下 list.asp 的「送出」，也就是說 list.asp 會把資料 POST 給自己 (當然如果是從別的頁面 POST 過來的也是一樣) ，然後再執行一次剛剛的表單測試：</p>
-<p><img src="/resources/location_reload/4.gif" alt=""> </p>
-<p>這時畫面就會跳出：</p>
-<p><img src="/resources/location_reload/1.gif" alt=""></p>
-<p>也就是說 list.asp 必須重新把 POST 的資料再次載入。</p>
-<p>那麼如何解決呢？兩個方法可用：</p>
-<ul>
-<li>list.asp 的表單改用 GET 來傳遞參數。</li>
-<li>非得用 POST 的話，那 save.asp 就不要用 location.reload() ，而改用 location.replace() 。</li>
-</ul>
-<p>location.replace() 怎麼用呢？範例如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;&#34389;&#29702;&#38913;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;alert(&#39;&#23384;&#27284;&#25104;&#21151;.&#39;);&#10;&#60;strong&#62;window.opener.location.replace(&#39;list.asp&#39;);&#60;/strong&#62;&#10;window.close();&#10;//--&#62;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>這樣 list.asp 就會被重新讀取了。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -311,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -390,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -423,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -439,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -461,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -471,6 +459,7 @@
 
   
   
+
   
     
     
@@ -500,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -669,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -699,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

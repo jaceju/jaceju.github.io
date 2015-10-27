@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,44 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="前一篇文章提到了簡單的 Zend_Db_Table 的一對多關連，這次來談一對一 (多對一) 和多對多。
-不過我對一對一的定義比較模糊，詳細的資訊請參考良葛格的 Hibernate 學習筆記：
 
-一對一（唯一外鍵關聯）
-一對一（主鍵關聯）
-多對多">
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初探 Zend_Db_Table Relationships (二)">
 <meta property="og:url" content="http://jaceju.net/2007/09/21/263/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="前一篇文章提到了簡單的 Zend_Db_Table 的一對多關連，這次來談一對一 (多對一) 和多對多。
-不過我對一對一的定義比較模糊，詳細的資訊請參考良葛格的 Hibernate 學習筆記：
-
-一對一（唯一外鍵關聯）
-一對一（主鍵關聯）
-多對多">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初探 Zend_Db_Table Relationships (二)">
-<meta name="twitter:description" content="前一篇文章提到了簡單的 Zend_Db_Table 的一對多關連，這次來談一對一 (多對一) 和多對多。
-不過我對一對一的定義比較模糊，詳細的資訊請參考良葛格的 Hibernate 學習筆記：
+<meta name="twitter:description">
 
-一對一（唯一外鍵關聯）
-一對一（主鍵關聯）
-多對多">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 初探 Zend_Db_Table Relationships (二) | 網站製作學習誌 </title>
 </head>
@@ -144,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -154,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -164,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -184,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -243,38 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="http://www.jaceju.net/blog/archives/261" target="_blank" rel="external">前一篇文章</a>提到了簡單的 Zend_Db_Table 的一對多關連，這次來談一對一 (多對一) 和多對多。</p>
-<p>不過我對一對一的定義比較模糊，詳細的資訊請參考<a href="http://caterpillar.onlyfun.net/Gossip/HibernateGossip/HibernateGossip.html" target="_blank" rel="external">良葛格的 Hibernate 學習筆記</a>：</p>
-<ul>
-<li><a href="http://caterpillar.onlyfun.net/Gossip/HibernateGossip/OneToOneUniqueFK.html" target="_blank" rel="external">一對一（唯一外鍵關聯）</a></li>
-<li><a href="http://caterpillar.onlyfun.net/Gossip/HibernateGossip/OneToOnePK.html" target="_blank" rel="external">一對一（主鍵關聯）</a></li>
-<li><a href="http://caterpillar.onlyfun.net/Gossip/HibernateGossip/ManyToMany.html" target="_blank" rel="external">多對多</a></li>
-</ul>
-<a id="more"></a>
-<h2 id="資料表範例">資料表範例</h2><p>基本上還是前一篇文章的範例，這次加上標籤 (Tag) ；每篇文章 (Article) 可以標上多個標籤，而每個標籤則是可以對應到多篇文章。新增的資料表結構如下： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE TABLE IF NOT EXISTS `tags` (&#10;  `id` int(10) unsigned NOT NULL auto_increment,&#10;  `name` varchar(200) NOT NULL,&#10;  PRIMARY KEY  (`id`)&#10;) ENGINE=MyISAM  DEFAULT CHARSET=utf8;&#10;INSERT INTO `tags` (`id`, `name`) VALUES&#10;(1, &#39;php&#39;),&#10;(2, &#39;zend framework&#39;);&#10;CREATE TABLE IF NOT EXISTS `articles_tags` (&#10;  `article_id` int(10) unsigned NOT NULL default &#39;0&#39;,&#10;  `tag_id` int(10) unsigned NOT NULL default &#39;0&#39;,&#10;  PRIMARY KEY  (`article_id`,`tag_id`)&#10;) ENGINE=MyISAM DEFAULT CHARSET=utf8;&#10;INSERT INTO `articles_tags` (`article_id`, `tag_id`) VALUES&#10;(1, 1),&#10;(1, 2),&#10;(2, 1),&#10;(2, 2);</span><br></pre></td></tr></table></figure>
-<p>其中我們多了一個中間表 articles_tags ，然後在邏輯上 articles.id 會關連到 articles_tags.article_id ，而 tags.id 則對應到  articles_tags.tag_id 。在 articles_tags 中， article_id 和 tag_id 為組合主鍵。</p>
-<h2 id="範例下載">範例下載</h2><p><a href="/resources/zf_table/example2.zip">下載位置</a></p>
-<p>註：一樣沒包 Zend Framework ，請自行下載安裝。 </p>
-<h2 id="說明">說明</h2><h3 id="一對一_(多對一)">一對一 (多對一)</h3><p>首先我們先來看看如何如何從文章中抓取對應的分類，從一篇文章上只會找到一個分類，也就是一對一關連。</p>
-<p>註：其實嚴格來說文章對分類不是一對一的關係 (應該是多對一) ，只是在 Zend_Db_Table 裡，它們的作法是相似的。</p>
-<p>然而一對多和多對一只是兩個相關的對應關係，因此我們並不用修改原來的 Articles 和 Categories 兩個 Classes 。在 Zend_Db_Table_Row 中，提供了一個 findParentRow 方法，讓我們能從 Articles 反推回去找到 Categories ；也就是在 IndexController::index 中，我們只要這樣做：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$phpArticle = $articles-&#62;find(2)-&#62;current();&#10;$this-&#62;view-&#62;category = $phpArticle-&#62;findParentRow(&#39;Categories&#39;);</span><br></pre></td></tr></table></figure>
-<p>這裡會抓取 articles.id 等於 2 的文章，然後透過 findParentRow 來向 Categories 取得對應的分類。另外 Zend_Db_Table_Row 也提供了一個魔術方法，只要用 findParent<parentclass> 就可以達到同樣的效果，例如：</parentclass></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;view-&#62;category = $phpArticle-&#62;findParentCategories();</span><br></pre></td></tr></table></figure>
-<p>然後我們就可以在 index.phtml 顯示相關的分類了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;var_dump($this-&#62;category-&#62;toArray());&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<h3 id="多對多">多對多</h3><p>文章和標籤是以多對多的關係存在的，所以我們要先加入兩個 Classes ，一個是 Tags ，另一個是 ArticlesTags ；它們分別對應 tags 和 articles_tags 兩個資料表：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Tags extends Zend_Db_Table_Abstract&#10;&#123;&#10;    protected $_name = &#39;tags&#39;;&#10;&#125;&#10;class ArticlesTags extends Zend_Db_Table_Abstract&#10;&#123;&#10;    protected $_name = &#39;articles_tags&#39;;&#10;    protected $_referenceMap = array(&#10;        &#39;Tag&#39; =&#62; array(&#10;            &#39;columns&#39;=&#62; array(&#39;tag_id&#39;),&#10;            &#39;refTableClass&#39; =&#62; &#39;Tags&#39;,&#10;            &#39;refColumns&#39; =&#62; &#39;id&#39;,&#10;        ),&#10;        &#39;Article&#39; =&#62; array(&#10;            &#39;columns&#39; =&#62; array(&#39;article_id&#39;),&#10;            &#39;refTableClass&#39; =&#62; &#39;Articles&#39;,&#10;            &#39;refColumns&#39; =&#62; &#39;id&#39;,&#10;        ),&#10;    );&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>註：這裡暫時不考慮 $_dependentTables 屬性，後面有用到再加。 </p>
-<p>在 ArticlesTags 這個 Class 的 $_referenceMap 屬性裡，我定義了兩個 Rule ，一個為 Tag 、另一個為 Article ；它們分別關連到 Tags 和 Articles 這兩個 Classes 。</p>
-<p>在 Zend_Db_Table_Row 裡提供了一個 findManyToManyRowset 的方法，可以協助我們處理多對多的關係。我們沿續第一個例子，假設現在我們想知道該篇文章所對應的標籤有哪些，可以這樣寫：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$this-&#62;view-&#62;articleTags = $phpArticle-&#62;findManyToManyRowset(&#39;Tags&#39;, &#39;ArticlesTags&#39;, &#39;Article&#39;);</span><br></pre></td></tr></table></figure>
-<p>在 findManyToManyRowset 方法裡一般會用到三個參數，第一個參數表示<strong>要關連的資料表 Class</strong> ，第二個參數則是<strong>中間表所對應的 Class</strong> ，而第三個<strong>為 Rule 的名稱</strong>。而要特別注意的是， Rule 所對應的 refTableClass 要和 findManyToManyRowset 方法所在的物件其對應的資料表一樣。可以對照一下上面 $phpArticle 物件所對應的資料表和最後一個參數值 Article 所對應的資料表，這樣就很容易理解了。</p>
-<p>最後一樣在 index.phtml 裡顯示結果： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;var_dump($this-&#62;articleTags-&#62;toArray());&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<p>當然反過來要從標籤去取得文章也就很簡單了，只要抓出目前的標籤，然後再利用 findManyToManyRowset 方法來取得關連的文章就可以了 (提示： Rule 要用 Tag) 。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -319,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -398,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -431,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#資料表範例"><span class="nav-number">1.</span> <span class="nav-text">資料表範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例下載"><span class="nav-number">2.</span> <span class="nav-text">範例下載</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#說明"><span class="nav-number">3.</span> <span class="nav-text">說明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一對一_(多對一)"><span class="nav-number">3.1.</span> <span class="nav-text">一對一 (多對一)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多對多"><span class="nav-number">3.2.</span> <span class="nav-text">多對多</span></a></li></ol></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -447,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -469,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -479,6 +459,7 @@
 
   
   
+
   
     
     
@@ -508,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -677,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -707,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

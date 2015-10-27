@@ -455,8 +455,8 @@ td {
 .use-motion .motion-element {
   opacity: 0;
 }
-.post pre,
-.post .highlight {
+pre,
+.highlight {
   background: #f7f7f7;
   margin: 20px 0;
   padding: 15px;
@@ -465,64 +465,64 @@ td {
   color: #4d4d4c;
   line-height: 1.6;
 }
-.post .highlight .gutter pre,
-.post .gist .gist-file .gist-data .line-numbers {
+.highlight .gutter pre,
+.gist .gist-file .gist-data .line-numbers {
   color: #666;
 }
-.post pre,
-.post code {
+pre,
+code {
   font-family: "Input Mono", "PT Mono", Consolas, Monaco, Menlo, monospace;
 }
-.post code {
+code {
   word-break: break-all;
   background: #eee;
   text-shadow: 0 1px #fff;
   padding: 0 0.3em;
 }
-.post pre code {
+pre code {
   background: none;
   text-shadow: none;
   padding: 0;
 }
-.post .highlight pre {
+.highlight pre {
   border: none;
   margin: 0;
   padding: 1px;
 }
-.post .highlight table {
+.highlight table {
   margin: 0;
   width: auto;
   border: none;
 }
-.post .highlight td {
+.highlight td {
   border: none;
   padding: 0;
 }
-.post .highlight figcaption {
+.highlight figcaption {
   font-size: 0.85em;
   color: #8e908c;
   line-height: 1em;
   margin-bottom: 1em;
 }
-.post .highlight figcaption:before,
-.post .highlight figcaption:after {
+.highlight figcaption:before,
+.highlight figcaption:after {
   content: " ";
   display: table;
 }
-.post .highlight figcaption:after {
+.highlight figcaption:after {
   clear: both;
 }
-.post .highlight figcaption a {
+.highlight figcaption a {
   float: right;
 }
-.post .highlight .gutter pre {
+.highlight .gutter pre {
   text-align: right;
   padding-right: 20px;
 }
-.post .highlight .line {
+.highlight .line {
   height: 20px;
 }
-.post .gist {
+.gist {
   margin: 20px 0;
   border-style: solid;
   border-color: #ccc;
@@ -530,29 +530,29 @@ td {
   background: #f7f7f7;
   padding: 15px 40px 15px 15px;
 }
-.post .gist .gist-file {
+.gist .gist-file {
   border: none;
   font-family: "Input Mono", "PT Mono", Consolas, Monaco, Menlo, monospace;
   margin: 0;
 }
-.post .gist .gist-file .gist-data {
+.gist .gist-file .gist-data {
   background: none;
   border: none;
 }
-.post .gist .gist-file .gist-data .line-numbers {
+.gist .gist-file .gist-data .line-numbers {
   background: none;
   border: none;
   padding: 0 20px 0 0;
 }
-.post .gist .gist-file .gist-data .line-data {
+.gist .gist-file .gist-data .line-data {
   padding: 0 !important;
 }
-.post .gist .gist-file .highlight {
+.gist .gist-file .highlight {
   margin: 0;
   padding: 0;
   border: none;
 }
-.post .gist .gist-file .gist-meta {
+.gist .gist-file .gist-meta {
   background: #f7f7f7;
   color: #8e908c;
   font: 13px Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -561,11 +561,11 @@ td {
   margin-top: 1em;
   margin-left: 40px;
 }
-.post .gist .gist-file .gist-meta a {
+.gist .gist-file .gist-meta a {
   color: color-link;
   font-weight: normal;
 }
-.post .gist .gist-file .gist-meta a:hover {
+.gist .gist-file .gist-meta a:hover {
   text-decoration: underline;
 }
 pre .comment {
@@ -961,7 +961,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #91fff2;
+  background: #1340ff;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -1190,17 +1190,10 @@ body {
   cursor: zoom-out;
   cursor: -webkit-zoom-in;
 }
-.post-body .pic-title {
-  margin: 0 auto;
+.post-body .image-caption,
+.post-body .figure .caption {
+  margin: 10px auto 15px;
   text-align: center;
-}
-.post-body .pic-title span {
-  display: inline-block;
-  min-width: 10%;
-  min-height: 20px;
-  margin: 10px auto 0;
-  padding: 2px 0;
-  border-bottom: 1px solid #999;
   font-size: 14px;
   color: #999;
   font-weight: bold;
@@ -1762,9 +1755,10 @@ body {
   background-color: #ccc !important;
   border-radius: 4px;
   padding: 0 5px !important;
-  margin: 0 1px !important;
+  margin: 1px 1px !important;
   border: 1px solid #bbb !important;
   color: #fff;
+  display: inline-block !important;
 }
 .theme-next .this_ua.admin {
   background-color: #d9534f !important;

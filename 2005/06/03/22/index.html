@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="表單一直是網頁設計裡，一門重大的學問。這裡介紹大家一些簡單的表單設計技巧，希望對大家有所幫助。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS 技巧：表單">
 <meta property="og:url" content="http://jaceju.net/2005/06/03/22/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="表單一直是網頁設計裡，一門重大的學問。這裡介紹大家一些簡單的表單設計技巧，希望對大家有所幫助。">
-<meta property="og:image" content="http://jaceju.net/resources/form/form1.gif">
-<meta property="og:image" content="http://jaceju.net/resources/form/form2.gif">
-<meta property="og:image" content="http://jaceju.net/resources/form/form3.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 技巧：表單">
-<meta name="twitter:description" content="表單一直是網頁設計裡，一門重大的學問。這裡介紹大家一些簡單的表單設計技巧，希望對大家有所幫助。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> CSS 技巧：表單 | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,37 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>表單一直是網頁設計裡，一門重大的學問。這裡介紹大家一些簡單的表單設計技巧，希望對大家有所幫助。</p>
-<a id="more"></a>
-<h2 id="表單的邊界問題">表單的邊界問題</h2><p>在多數瀏覽器預設的表單樣式，會讓表單上下會有一小塊空間，如下所示：</p>
-<p><img src="/resources/form/form1.gif" alt=""></p>
-<p>原始碼如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;form name=&#34;form1&#34; id=&#34;form1&#34; method=&#34;post&#34; action=&#34;&#34;&#62;&#10;&#60;table width=&#34;400&#34; border=&#34;1&#34;&#62;&#10;&#60;tr&#62;&#10;&#60;td&#62;&#25991; &#23383; &#27396; &#20301; 1&#60;/td&#62;&#10;&#60;td&#62;&#60;input type=&#34;text&#34; name=&#34;text1&#34; /&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;tr&#62;&#10;&#60;td&#62;&#25991;&#23383;&#27396;&#20301;2&#60;/td&#62;&#10;&#60;td&#62;&#60;input type=&#34;text&#34; name=&#34;text2&#34; /&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;tr&#62;&#10;&#60;td valign=&#34;top&#34;&#62;&#22810;&#34892;&#25991;&#23383;&#27396;&#20301;&#60;/td&#62;&#10;&#60;td&#62;&#60;textarea name=&#34;text3&#34; cols=&#34;25&#34; rows=&#34;10&#34;&#62;&#60;/textarea&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;/table&#62;&#10;&#60;/form&#62;</span><br></pre></td></tr></table></figure>
-<p>所以一般在設計表單時，都會像上面這樣利用表格來編排輸入欄位，再將 <form> 標籤藏在 <table> 裡，如下： </table></form></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;table width=&#34;400&#34; border=&#34;1&#34;&#62;&#10;&#60;form name=&#34;form1&#34; id=&#34;form1&#34; method=&#34;post&#34; action=&#34;&#34;&#62;&#10;&#60;tr&#62;&#10;&#60;td&#62;&#25991; &#23383; &#27396; &#20301; 1&#60;/td&#62;&#10;&#60;td&#62;&#60;input type=&#34;text&#34; name=&#34;text1&#34; /&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;tr&#62;&#10;&#60;td&#62;&#25991;&#23383;&#27396;&#20301;2&#60;/td&#62;&#10;&#60;td&#62;&#60;input type=&#34;text&#34; name=&#34;text2&#34; /&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;tr&#62;&#10;&#60;td valign=&#34;top&#34;&#62;&#22810;&#34892;&#25991;&#23383;&#27396;&#20301;&#60;/td&#62;&#10;&#60;td&#62;&#60;textarea name=&#34;text3&#34; cols=&#34;25&#34; rows=&#34;10&#34;&#62;&#60;/textarea&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;/form&#62;&#10;&#60;/table&#62;</span><br></pre></td></tr></table></figure>
-<p>但是這不符合 W3C 的標準，而且在 Dreamweaver 編輯時，也不容易點選表單。</p>
-<p>透過 CSS ，我們能夠很容易地解決這個問題，我們只需設定：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;form name=&#34;form1&#34; id=&#34;form1&#34; method=&#34;post&#34; action=&#34;&#34; style=&#34;margin: 0;&#34;&#62;&#10;&#60;table width=&#34;400&#34; border=&#34;1&#34;&#62;&#10;&#60;tr&#62;&#10;&#60;td&#62;&#25991; &#23383; &#27396; &#20301; 1&#60;/td&#62;&#10;&#60;td&#62;&#60;input type=&#34;text&#34; name=&#34;text1&#34; /&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;tr&#62;&#10;&#60;td&#62;&#25991;&#23383;&#27396;&#20301;2&#60;/td&#62;&#10;&#60;td&#62;&#60;input type=&#34;text&#34; name=&#34;text2&#34; /&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;tr&#62;&#10;&#60;td valign=&#34;top&#34;&#62;&#22810;&#34892;&#25991;&#23383;&#27396;&#20301;&#60;/td&#62;&#10;&#60;td&#62;&#60;textarea name=&#34;text3&#34; cols=&#34;25&#34; rows=&#34;10&#34;&#62;&#60;/textarea&#62;&#60;/td&#62;&#10;&#60;/tr&#62;&#10;&#60;/table&#62;&#10;&#60;/form&#62;</span><br></pre></td></tr></table></figure>
-<p>如果要讓整個網站的表單都能依此規則作用，那麼我們僅需在共用的 CSS 檔案裡加入：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form &#123;&#10;margin: 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>但是除非必要，否則大多數情況還是不建議大家使用表格來編排輸入欄位。</p>
-<h2 id="用_CSS_來編排輸入欄位">用 CSS 來編排輸入欄位</h2><p>不過不使用表格的話，怎麼做表單的排版呢？</p>
-<p>我們利用 </p><p> 標籤和 <label> 標籤來完成這項任務，如下所示：</label></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;form name=&#34;form1&#34; id=&#34;form1&#34; method=&#34;post&#34; action=&#34;&#34;&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;text1&#34;&#62;&#25991; &#23383; &#27396; &#20301; 1&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;text1&#34; id=&#34;text1&#34; accesskey=&#34;1&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;text2&#34;&#62;&#25991;&#23383;&#27396;&#20301;2&#60;/label&#62;&#10;&#60;input type=&#34;text&#34; name=&#34;text2&#34; id=&#34;text2&#34; accesskey=&#34;2&#34; /&#62;&#10;&#60;/p&#62;&#10;&#60;p&#62;&#10;&#60;label for=&#34;text3&#34;&#62;&#22810;&#34892;&#25991;&#23383;&#27396;&#20301;&#60;/label&#62;&#10;&#60;textarea name=&#34;text3&#34; id=&#34;text3&#34; cols=&#34;40&#34; rows=&#34;10&#34; accesskey=&#34;3&#34;&#62;&#60;/textarea&#62;&#10;&#60;/p&#62;&#10;&#60;/form&#62;</span><br></pre></td></tr></table></figure>
-<p>實際上的畫面如下圖：</p>
-<p><img src="/resources/form/form2.gif" alt="未套用 CSS 的表單示意圖"> </p>
-<p>當然這樣標籤並沒有對齊，所以我們透過 CSS 來搞定它。</p>
-<p>首先當然是把 <form> 的邊界去除：</form></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form &#123;&#10;margin: 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>接著，我們讓 <label> 變成浮動，並固定它的寬度為 100px ，當然你可以視你的標籤文字寬度來決定。</label></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form label &#123;&#10;float: left;&#10;width: 100px;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>最後，為了不讓接下來的輸入欄位被上一層的浮動 <label> 影響，我們再設定 <form> 裡的 <p> 標籤： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form p &#123;&#10;clear: both;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>這樣一來，就如下圖所示：</p>
-<p><img src="/resources/form/form3.gif" alt="套用 CSS 後的表單示意圖"></p>
-<p>是不是很簡單呢？</p>
-<p>當然，除了不用表格之外，這樣的表單我還加上點選文字標籤 <label> ，或是利用鍵盤上的 [ALT] 加上數字鍵，就能夠將輸入焦點自動放到對應的 <input> 欄位上。這些都是無障礙網頁規範裡的一小部份，大家可以多多留意喔。</label></p>
-</form></label></p></span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -306,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -385,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -418,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#表單的邊界問題"><span class="nav-number">1.</span> <span class="nav-text">表單的邊界問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用_CSS_來編排輸入欄位"><span class="nav-number">2.</span> <span class="nav-text">用 CSS 來編排輸入欄位</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -434,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -456,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -466,6 +459,7 @@
 
   
   
+
   
     
     
@@ -495,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -664,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -694,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

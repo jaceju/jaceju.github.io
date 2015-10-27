@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,37 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="這兩天在玩 jQuery 的 jEditable 時，發現一個 IE 一個很怪異的問題，讓我傷腦筋了一陣子。
-在處理 IE 上 TD 標籤的 nodeValue 時，它顯示出來的格式竟然與其他瀏覽器不一樣。這實在是令人費解，不論我怎麼修改 jEditable ，這個問題依舊是沒有漂亮的解法。後來 Neo 老大建議我試試 TEXTAREA 及 PRE 標籤時，我才發現 IE 在處理 nodeValu">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 小陷阱 (7) - IE 在處理 nodeValue 上與其他瀏覽器的差異">
 <meta property="og:url" content="http://jaceju.net/2007/04/20/179/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="這兩天在玩 jQuery 的 jEditable 時，發現一個 IE 一個很怪異的問題，讓我傷腦筋了一陣子。
-在處理 IE 上 TD 標籤的 nodeValue 時，它顯示出來的格式竟然與其他瀏覽器不一樣。這實在是令人費解，不論我怎麼修改 jEditable ，這個問題依舊是沒有漂亮的解法。後來 Neo 老大建議我試試 TEXTAREA 及 PRE 標籤時，我才發現 IE 在處理 nodeValu">
-<meta property="og:image" content="http://jaceju.net/resources/ie_nodevalue/html_result.gif">
-<meta property="og:image" content="http://jaceju.net/resources/ie_nodevalue/firefox_alert.gif">
-<meta property="og:image" content="http://jaceju.net/resources/ie_nodevalue/opera_alert.gif">
-<meta property="og:image" content="http://jaceju.net/resources/ie_nodevalue/ie_alert.gif">
-<meta property="og:image" content="http://jaceju.net/resources/ie_nodevalue/ie_text_alert.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 小陷阱 (7) - IE 在處理 nodeValue 上與其他瀏覽器的差異">
-<meta name="twitter:description" content="這兩天在玩 jQuery 的 jEditable 時，發現一個 IE 一個很怪異的問題，讓我傷腦筋了一陣子。
-在處理 IE 上 TD 標籤的 nodeValue 時，它顯示出來的格式竟然與其他瀏覽器不一樣。這實在是令人費解，不論我怎麼修改 jEditable ，這個問題依舊是沒有漂亮的解法。後來 Neo 老大建議我試試 TEXTAREA 及 PRE 標籤時，我才發現 IE 在處理 nodeValu">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> JavaScript 小陷阱 (7) - IE 在處理 nodeValue 上與其他瀏覽器的差異 | 網站製作學習誌 </title>
 </head>
@@ -137,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -147,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -157,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -177,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -236,29 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>這兩天在玩 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a> 的 <a href="http://www.appelsiini.net/~tuupola/javascript/jEditable/" target="_blank" rel="external">jEditable</a> 時，發現一個 IE 一個很怪異的問題，讓我傷腦筋了一陣子。</p>
-<p>在處理 IE 上 TD 標籤的 nodeValue 時，它顯示出來的格式竟然與其他瀏覽器不一樣。這實在是令人費解，不論我怎麼修改 jEditable ，這個問題依舊是沒有漂亮的解法。後來 Neo 老大建議我試試 TEXTAREA 及 PRE 標籤時，我才發現 IE 在處理 nodeValue 及 innerHTML 上和其他家瀏覽器有不同的作法。 </p>
-<a id="more"></a>
-<h2 id="範例">範例</h2><p>我用一個簡單的例子來重現一下我遇到的狀況，以下是一個簡單的測試頁面：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34;&#10;content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;nodeValue&#60;/title&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;function displayNodeValue(event, element) &#123;&#10;alert(element.childNodes[0].nodeValue);&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;h2&#62;&#38;amp;lt;DIV&#38;amp;gt;&#60;/h2&#62;&#10;&#60;div id=&#34;test&#34; onclick=&#34;displayNodeValue(event, this);&#34;&#10;style=&#34;position: relative; width: 250px;&#10;height: 100px; border: 1px solid #333; background-color: #EEE;&#34;&#62;&#10;click me&#10;a&#9;b    c&#10;d&#10;&#60;/div&#62;&#10;&#60;h2&#62;&#38;amp;lt;PRE&#38;amp;gt;&#60;/h2&#62;&#10;&#60;pre id=&#34;test&#34; onclick=&#34;displayNodeValue(event, this);&#34;&#10;style=&#34;position: relative; width: 250px;&#10;height: 100px; border: 1px solid #333; background-color: #EEE;&#34;&#62;&#10;click me&#10;a&#9;b    c&#10;d&#10;&#60;/pre&#62;&#10;&#60;h2&#62;&#38;amp;lt;TEXTAREA&#38;amp;gt;&#60;/h2&#62;&#10;&#60;textarea id=&#34;myText&#34; rows=&#34;8&#34; cols=&#34;30&#34;&#10;onclick=&#34;displayNodeValue(event, this);&#34;&#62;click me&#10;a&#9;b    c&#10;d&#60;/textarea&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
-<p>大部份的瀏覽器看這個頁面時，會是長成這樣：</p>
-<p><img src="/resources/ie_nodevalue/html_result.gif" alt="瀏覽結果"></p>
-<h2 id="的_nodeValue"><div> 的 nodeValue</div></h2><p>先按一下 DIV 標籤的 clicke me ，這樣會顯示 DIV 標籤裡的文字內容 (也就是 childNodes[0].nodeValue) ；在 Firefox 下會看到：</p>
-<p><img src="/resources/ie_nodevalue/firefox_alert.gif" alt="Firefox Alert"> </p>
-<p>而 Opera 也差不多：</p>
-<p><img src="/resources/ie_nodevalue/opera_alert.gif" alt="Opera Alert"> </p>
-<p>不過 IE 就怪了：</p>
-<p><img src="/resources/ie_nodevalue/ie_alert.gif" alt="IE Alert"> </p>
-<h2 id="與_的_nodeValue"><pre> 與 <textarea> 的 nodeValue</textarea></pre></h2><p>接下來再以 Firefox 和 Opera 測試 <pre> 及 <textarea> ，結果和上面顯示的訊息視窗是相同的。那麼 IE 呢？</textarea></pre></p>
-<p>以下是在 IE 中點選 PRE 標籤和 TEXTAREA 的結果：</p>
-<p><img src="/resources/ie_nodevalue/ie_text_alert.gif" alt="IE PRE TEXT Alert"></p>
-<p>看得出來，這次 IE 顯示的結果是按照原始編排格式。 </p>
-<h2 id="結論">結論</h2><p><strong>像 Firefox 和 Opera 這類瀏覽器在 nodeValue 屬性中存放的文字是原始格式，而 IE 存放的則是解譯過的顯示結果。</strong></p>
-<p>也就是說 IE 在處理 DIV 標籤這類不保留原始格式的標籤時，在 nodeValue 屬性裡所有文字的「多空格」、「定位」及「換行」等空白字元，都會被當成單一空格來存放；只有在 PRE 或 TEXTAREA 這類會保留文字編排方式的標籤中，才會以原始格式保存。</p>
-<p>註：innerHTML 也是有同樣的問題，只是 innerHTML 包含的是整個 <tag>…</tag> 之間的所有 HTML ，而 childNodes[0].nodeValue 只會包含 <tag> 到下一個 <tag> 裡的文字。 </tag></tag></p>
-<p>瞭解這個原因後，後面的問題就好解了。也就是在 IE 中使用 jEditable 時，要借重一個 TEXTAREA 來額外存放要修改的值；等修改完成後，也要再把這個 TEXTAREA 裡的值更新。 </p>
-<p>當然這個問題還有其他解法，像 jEditable 範例中使用 Wiki 語法也是一種方式。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -303,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -382,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -415,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#範例"><span class="nav-number">1.</span> <span class="nav-text">範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#的_nodeValue"><span class="nav-number">2.</span> <span class="nav-text"> 的 nodeValue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#與_的_nodeValue"><span class="nav-number">3.</span> <span class="nav-text"> 與  的 nodeValue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -431,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -453,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -463,6 +459,7 @@
 
   
   
+
   
     
     
@@ -492,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -661,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -691,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

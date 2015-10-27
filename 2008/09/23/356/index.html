@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,31 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="我之前介紹過 Trac 這個軟體的安裝及簡略的使用方式，但是 Trac 是一套基於 Python 開發的軟體缺陷追蹤系統，在安裝上有一定的複雜度。這次，我推薦大家一套國人自行開發的 Bug Tracker ，它是一套以 PHP 所開發的軟體缺陷追蹤系統，相當適合不想安裝複雜開發環境的 PHP 開發者使用。這裡有 Neo 寫的簡介：國人自製 Bug Tracker 。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bug Tracker 安裝紀錄">
 <meta property="og:url" content="http://jaceju.net/2008/09/23/356/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="我之前介紹過 Trac 這個軟體的安裝及簡略的使用方式，但是 Trac 是一套基於 Python 開發的軟體缺陷追蹤系統，在安裝上有一定的複雜度。這次，我推薦大家一套國人自行開發的 Bug Tracker ，它是一套以 PHP 所開發的軟體缺陷追蹤系統，相當適合不想安裝複雜開發環境的 PHP 開發者使用。這裡有 Neo 寫的簡介：國人自製 Bug Tracker 。">
-<meta property="og:image" content="http://jaceju.net/resources/bugtracker/login.gif">
-<meta property="og:image" content="http://jaceju.net/resources/bugtracker/main.gif">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bug Tracker 安裝紀錄">
-<meta name="twitter:description" content="我之前介紹過 Trac 這個軟體的安裝及簡略的使用方式，但是 Trac 是一套基於 Python 開發的軟體缺陷追蹤系統，在安裝上有一定的複雜度。這次，我推薦大家一套國人自行開發的 Bug Tracker ，它是一套以 PHP 所開發的軟體缺陷追蹤系統，相當適合不想安裝複雜開發環境的 PHP 開發者使用。這裡有 Neo 寫的簡介：國人自製 Bug Tracker 。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> Bug Tracker 安裝紀錄 | 網站製作學習誌 </title>
 </head>
@@ -131,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -141,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -151,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -171,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -230,26 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>我之前介紹過 <a href="http://trac.edgewall.org/" target="_blank" rel="external">Trac</a> 這個軟體的<a href="http://blog.roodo.com/jaceju/archives/2703934.html" target="_blank" rel="external">安裝</a>及<a href="http://blog.roodo.com/jaceju/archives/2772843.html" target="_blank" rel="external">簡略的使用方式</a>，但是 Trac 是一套基於 Python 開發的軟體缺陷追蹤系統，在安裝上有一定的複雜度。<br>這次，我推薦大家一套國人自行開發的 <a href="http://www.twbsd.org/cht/bug_tracker/index.php" target="_blank" rel="external">Bug Tracker</a> ，它是一套以 PHP 所開發的軟體缺陷追蹤系統，相當適合不想安裝複雜開發環境的 PHP 開發者使用。<br>這裡有 <a href="http://www.neo.com.tw" target="_blank" rel="external">Neo</a> 寫的簡介：<a href="http://www.neo.com.tw/archives/000785.html" target="_blank" rel="external">國人自製 Bug Tracker</a> 。</p>
-<a id="more"></a>
-<h2 id="下載">下載</h2><p>網址： <a href="http://www.twbsd.org/cht/bug_tracker/index.php?page=download.htm" target="_blank" rel="external">http://www.twbsd.org/cht/bug_tracker/index.php?page=download.htm</a><br>在「按此下載」的連結上點一下，把 BugTracker-2.x.x.tar.gz 存放到網站根目錄就可以了。</p>
-<h2 id="安裝">安裝</h2><p>Bug Tracker 號稱安裝非常容易，但其實在 PHP5 的環境上，還是有一些要特別注意的地方。<br>解開剛剛的 BugTracker-2.x.x.tar.gz ，然後我們會得到一個 bug 目錄；所以到時候我們可以用 <a href="http://localhost/bug" target="_blank" rel="external">http://localhost/bug</a> 的網址來使用這套系統。<br>假設你的開發環境是 PHP5 ，那麼 short_open_tag 這個選項預設應該是 Off 。而 Bug Tracker 的程式碼大部份都是以 &lt;? 開頭，因此我們需要把 short_open_tag 設為 On 。<br>不過因為我個人不喜歡去更動系統預設值，所以我改用 .htaccess 來改變 short_open_tag 的設定。請將以下內容存為 .htaccess 後，存在 bug 資料夾下。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php_flag short_open_tag on</span><br></pre></td></tr></table></figure>
-<p>接著我們要修改應用程式的設定，請用文字編輯器開始 bug/include/config.php ，找到：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbtype&#39;] = &#34;postgres&#34;;</span><br></pre></td></tr></table></figure>
-<p>將它註解掉 (前面加上 //) 。<br>然後取消以下程式碼開頭的註解：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbtype&#39;] = &#34;mysqlt&#34;;</span><br></pre></td></tr></table></figure>
-<p>然後往下看到：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#39;BR_dbpwd&#39;] = &#34;&#34;;</span><br></pre></td></tr></table></figure>
-<p>在設定值上寫上 MySQL 的 root 密碼，讓程式可以自動建立資料庫。<br>最後修改應用程式的路徑：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$GLOBALS[&#34;SYS_PROJECT_PATH&#34;] = &#39;/home/synosrc/bug&#39;;</span><br></pre></td></tr></table></figure>
-<p>將 /home/synosrc/bug 改為你安裝程式的路徑。<br>現在開啟以下連結，進行安裝動作：<br><a href="http://localhost/bug/setup/" target="_blank" rel="external">http://localhost/bug/setup/</a><br>基本上就是一直按 Next Step 而已，安裝程式會告訴你一切需要的資訊，並自動執行相關的動作。<br>安裝完後，請記得移除 bug/setup 這個資料夾。<br>這樣就完成安裝 Bug Tracker 囉~</p>
-<h2 id="設定語系">設定語系</h2><p>一開始 Bug Tracker 的登入畫面是正體中文：</p>
-<p><a href="/resources/bugtracker/login.gif"><img class="aligncenter" src="/resources/bugtracker/login.gif" alt="登入畫面" width="400"></a><br>但用 admin 登入後，我們會發現預設的語系還是英文的：</p>
-<p><a href="/resources/bugtracker/main.gif"><img class="aligncenter" src="/resources/bugtracker/main.gif" alt="主畫面" width="400"></a><br>這時我們可以點選上面的 System (系統設定) 功能，然後選擇 Preference (偏好設定) 項目，將 System Language (系統語言) 改為 Chinese Traditional 即可。</p>
-<h2 id="搭配_Subversion_使用">搭配 Subversion 使用</h2><p>Bug Tracker 目前還沒辦法像 Trac 一樣直接支援 Subversion ，也就是說它目前無法直接讓專案回報與源碼相結合。<br>這裡我找到一篇反過來讓 TortoiseSVN 配合 Bug Tracker 使用的文章：<a href="http://blog.miniasp.com/post/2008/09/TortoiseSVN-Integration-with-Bug-Tracking-Systems-Issue-Trackers.aspx" target="_blank" rel="external">如何設定 TortoiseSVN 整合 Bug Tracker 系統</a>。<br>依照文章上的解說，我們可以在 Subversion 的 log 上直接連結到 Bug Tracker 回報的畫面。<br>其實 PHP 是可以支援 Subversion 的，但必須配合 php_svn 這個外掛模組。不過 php_svn 還不支援新版的 Subversion ，這是比較可惜的地方。請參考：<a href="http://hi.baidu.com/thinkinginlamp/blog/item/5e2a0208383a9cd763d98642.html" target="_blank" rel="external">安裝php_svn.dll</a> 。</p>
-<h2 id="結論">結論</h2><p>其實不論是團隊合作還是個人開發，一套好的追蹤系統都可以協助我們管理好專案的進度；而 Bug Tracker 可以說是慣用中文的 PHP 開發者一個不錯的選擇。<br>大家有任何使用上的經驗嗎？也歡迎分享喔~</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -294,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -373,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -406,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下載"><span class="nav-number">1.</span> <span class="nav-text">下載</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">2.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定語系"><span class="nav-number">3.</span> <span class="nav-text">設定語系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭配_Subversion_使用"><span class="nav-number">4.</span> <span class="nav-text">搭配 Subversion 使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -422,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -444,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -454,6 +459,7 @@
 
   
   
+
   
     
     
@@ -483,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -652,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -682,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

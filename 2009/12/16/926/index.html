@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="我們在撰寫 PHP 函式 (或類別的方法) 時，多少都會帶入一些參數，例如：
-function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
-一般常見的函式，它們的參數數量大多只會兩三個，但如果有參數的數量很多時該怎麼辦？">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[五分鐘教室] 重構多參數函式">
 <meta property="og:url" content="http://jaceju.net/2009/12/16/926/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="我們在撰寫 PHP 函式 (或類別的方法) 時，多少都會帶入一些參數，例如：
-function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
-一般常見的函式，它們的參數數量大多只會兩三個，但如果有參數的數量很多時該怎麼辦？">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[五分鐘教室] 重構多參數函式">
-<meta name="twitter:description" content="我們在撰寫 PHP 函式 (或類別的方法) 時，多少都會帶入一些參數，例如：
-function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
-一般常見的函式，它們的參數數量大多只會兩三個，但如果有參數的數量很多時該怎麼辦？">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [五分鐘教室] 重構多參數函式 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,38 +243,7 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
       
 
       
-        <span itemprop="articleBody"><p>我們在撰寫 PHP 函式 (或類別的方法) 時，多少都會帶入一些參數，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function myfunc($arg1, $arg2, ...) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>一般常見的函式，它們的參數數量大多只會兩三個，但如果有參數的數量很多時該怎麼辦？</p>
-<a id="more"></a>
-<h2 id="多參數的困擾">多參數的困擾</h2><p>當一個 PHP 函式的參數多於三個以上時，其實就會浮現一些讓程式開發人員困擾的問題。</p>
-<h3 id="順序不易記憶">順序不易記憶</h3><p>當函式名稱語意不明時，加上如果沒有 IDE 的協助，你會很難瞭解參數的先後順序。</p>
-<p>像我自己就很常搞錯 iconv 的參數順序：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">iconv($in_charset, $out_charset, $str)</span><br></pre></td></tr></table></figure>
-<p>每次使用時，我都要回去看看官方手冊，才會記得第一個參數是輸入編碼而不是要轉換的字串。</p>
-<h3 id="預設值">預設值</h3><p>還有一個狀況是參數如果有預設值時，一定是將它放在最右邊的參數。例如 htmlspecialchars 這個函式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">htmlspecialchars($string[, $quote_style = ENT_COMPAT[, $charset = &#39;ISO-8859-1&#39;[, $double_encode = true]]])</span><br></pre></td></tr></table></figure>
-<p>如果今天我們只想要載入第一個參數 (要轉換的字串) 和第三個參數 (編碼) ，這是做不到的；我們不得不把第二個參數 (引號型態) 也一併代入，即便我們不想更改它的預設值。</p>
-<h2 id="解決方式">解決方式</h2><p>我們可以用關聯式陣列來解決前述的問題，也就是把多個參數變成一個陣列。</p>
-<p>例如以前面的 iconv 為例，我們自己定義了一個函式將它包裝起來，然後把原來的三個參數變成一個參數陣列：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// &#23450;&#32681;&#10;function my_iconv($options)&#10;&#123;&#10;    return iconv($options[&#39;inputCharset&#39;], $options[&#39;outputCharset&#39;], $options[&#39;convertString&#39;]);&#10;&#125;&#10;&#10;//&#29992;&#27861;&#10;echo my_iconv(array(&#10;    &#39;convertString&#39; =&#62; &#39;test&#39;,&#10;    &#39;inputCharset&#39; =&#62; &#39;BIG5&#39;,&#10;    &#39;outputCharset&#39; =&#62; &#39;UTF-8&#39;,&#10;));</span><br></pre></td></tr></table></figure>
-<p>這樣一來，不僅我們不用擔心參數順序的問題，還可以很容易地分辨出每個參數值所代表的意義。 </p>
-<p>註：這種作法在一些 JavaScript Library 裡也常見到，像是 jQuery 很多方法都是以物件來當做參數組代入。</p>
-<h3 id="考慮預設值">考慮預設值</h3><p>那麼如果參數需要預設值時該怎麼做呢？這時候我們可以在函式裡預先放置一個含有預設值的陣列，來跟使用者傳入的陣列做合併的動作。例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function my_htmlspecialchars($str, $options = array())&#10;&#123;&#10;    $options = (array) $options;&#10;    $options += array(&#10;        &#39;quoteStyle&#39; =&#62; ENT_COMPAT,&#10;        &#39;charset&#39; =&#62; &#39;ISO-8859-1&#39;,&#10;        &#39;doubleEncode&#39; =&#62; true,&#10;    );&#10;    return htmlspecialchars(&#10;        $str,&#10;        $options[&#39;quoteStyle&#39;],&#10;        $options[&#39;charset&#39;],&#10;        $options[&#39;doubleEncode&#39;]&#10;    );&#10;&#125;&#10;&#10;echo my_htmlspecialchars(&#39;&#60;test&#62;&#28204;&#35430;&#60;/test&#62;&#39;, array(&#39;charset&#39; =&#62; &#39;UTF-8&#39;));</span><br></pre></td></tr></table></figure>
-<p>這裡我用了「 + 」這個可以用來合併陣列的操作符，它會以左邊陣列裡的值為主，然後將右邊的值合併進來。</p>
-<p>這樣一來，右邊的陣列裡我們可以放置預設的參數值，而不必擔心使用者沒有帶入中間必要的參數。</p>
-<p>註：你也許會發現我沒有把 $str 放到 $options 裡，這是因為它本身就是必要的參數。</p>
-<h3 id="缺點">缺點</h3><p>使用關聯式陣列當做參數值也不能說完全沒有缺點，實際應用上我就發現了以下幾個問題：</p>
-<ul>
-<li><p>比原本的程式寫法囉嗦了些，你得多打好多字才能達到相同的目的。</p>
-</li>
-<li><p>參數名稱不易記憶，且預設值要寫在註解裡，而不是寫在定義裡；這樣一來有些 IDE 如果不顯示函式註解的話，還是得看手冊才能知道這些參數的名稱與預設值。</p>
-</li>
-</ul>
-<h2 id="結論">結論</h2><p>用關聯式陣列來取代多參數這個方法，最大的好處就是當後續維護的開發人員，可以不必再回頭查看手冊，一眼就能知道每個參數值所代表的意義。</p>
-<p>不過這個方法還是得看狀況使用，因為它所帶來的缺點可能會讓很多開發人員覺得很不便。所以在設計函式時，一定要仔細思考如何去定義才能讓開發者方便使用這些它們。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -310,19 +288,22 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -389,13 +370,17 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -422,8 +407,10 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多參數的困擾"><span class="nav-number">1.</span> <span class="nav-text">多參數的困擾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#順序不易記憶"><span class="nav-number">1.1.</span> <span class="nav-text">順序不易記憶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#預設值"><span class="nav-number">1.2.</span> <span class="nav-text">預設值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解決方式"><span class="nav-number">2.</span> <span class="nav-text">解決方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考慮預設值"><span class="nav-number">2.1.</span> <span class="nav-text">考慮預設值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺點"><span class="nav-number">2.2.</span> <span class="nav-text">缺點</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -438,7 +425,8 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -460,7 +448,8 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -470,6 +459,7 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
 
   
   
+
   
     
     
@@ -499,24 +489,21 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -668,29 +655,20 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -698,15 +676,5 @@ function myfunc($arg1, $arg2, ...) &amp;#123;&amp;#125;
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

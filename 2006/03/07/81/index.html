@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,32 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="在研究 Zend Framework Preview 的文件時，發現了一個很有趣的 PHP 寫法：
-$select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#10;       -&amp;#62;where(&amp;#39;noble_title = ?&amp;#39;, &amp;#39;Sir&amp;#39;)&amp;#10;       -&amp;#62;order(&amp;#39;fir">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="很有趣的物件導向語言寫法 - Fluent Interface">
 <meta property="og:url" content="http://jaceju.net/2006/03/07/81/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="在研究 Zend Framework Preview 的文件時，發現了一個很有趣的 PHP 寫法：
-$select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#10;       -&amp;#62;where(&amp;#39;noble_title = ?&amp;#39;, &amp;#39;Sir&amp;#39;)&amp;#10;       -&amp;#62;order(&amp;#39;fir">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="很有趣的物件導向語言寫法 - Fluent Interface">
-<meta name="twitter:description" content="在研究 Zend Framework Preview 的文件時，發現了一個很有趣的 PHP 寫法：
-$select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#10;       -&amp;#62;where(&amp;#39;noble_title = ?&amp;#39;, &amp;#39;Sir&amp;#39;)&amp;#10;       -&amp;#62;order(&amp;#39;fir">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 很有趣的物件導向語言寫法 - Fluent Interface | 網站製作學習誌 </title>
 </head>
@@ -132,7 +143,7 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -142,7 +153,7 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -152,7 +163,7 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -172,7 +183,8 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -231,28 +243,7 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
       
 
       
-        <span itemprop="articleBody"><p>在研究 <a href="http://framework.zend.com/" target="_blank" rel="external">Zend Framework Preview</a> 的文件時，發現了一個很有趣的 PHP 寫法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$select-&#62;from(&#39;round_table&#39;, &#39;*&#39;)&#10;       -&#62;where(&#39;noble_title = ?&#39;, &#39;Sir&#39;)&#10;       -&#62;order(&#39;first_name&#39;)&#10;       -&#62;limit(10, 20);</span><br></pre></td></tr></table></figure>
-<p>看出來沒？除了 from 函式以外，每一個函式都直接接續著上一個函式。怎麼辦到的呢？</p>
-<a id="more"></a>
-<p>我一開始以為這是 PHP 的特異功能，所以我先試了以下程式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class TestA&#10;&#123;&#10;    public function a() &#123;&#125;&#10;    public function b() &#123;&#125;&#10;    public function c() &#123;&#125;&#10;&#125;&#10;$a = new TestA();&#10;$a-&#62;a()&#10;  -&#62;b()&#10;  -&#62;c();</span><br></pre></td></tr></table></figure>
-<p>結果是不行的，然後我想了一下，如果把物件自己的參考 ($this) 丟出來不就行了？</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class TestA&#10;&#123;&#10;    public function a() &#123; return $this; &#125;&#10;    public function b() &#123; return $this; &#125;&#10;    public function c() &#123; return $this; &#125;&#10;&#125;&#10;$a = new TestA;&#10;$a-&#62;a()&#10;  -&#62;b()&#10;  -&#62;c();</span><br></pre></td></tr></table></figure>
-<p>果然成功了，再回頭去看 Zend Framework 的做法，的確也是這樣寫，真是一種有趣的寫法。</p>
-<p>不過這種方式我想應該只適用於原本就不傳回值的函式，那種要傳回其他資訊或物件的函式就沒法這樣玩了。</p>
-<p>註：這個方法應該只有 PHP 5 才能用，PHP 4 好像不能直接用函式來當做物件參考；有錯的話請指正我。</p>
-<p>補充： ASP (VBScript) 和 JavaScript 也可以這樣寫喔。</p>
-<p> ASP (VBScript) 版：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;%&#10;Class TestA&#10;    Public Function A()&#10;        Response.Write &#34;A&#34;&#10;        Set A = Me&#10;    End Function&#10;    Public Function B()&#10;        Response.Write &#34;B&#34;&#10;        Set B = Me&#10;    End Function&#10;    Public Function C()&#10;        Response.Write &#34;C&#34;&#10;        Set C = Me&#10;    End Function&#10;End Class&#10;Dim oA : Set oA = New TestA&#10;oA.A().B().C()&#10;%&#62;</span><br></pre></td></tr></table></figure>
-<p>這裡是 JavaScript 的動態版：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var TestA = function () &#123;&#10;    this.a = function () &#123;&#10;        alert(&#39;Aa&#39;);&#10;        return this;&#10;    &#125;&#10;    this.b = function () &#123;&#10;        alert(&#39;Ab&#39;);&#10;        return this;&#10;    &#125;&#10;    this.c = function () &#123;&#10;        alert(&#39;Ac&#39;);&#10;        return this;&#10;    &#125;&#10;&#125;&#10;a = new TestA();&#10;a.a().b().c();</span><br></pre></td></tr></table></figure>
-<p>然後這是 JavaScript 的靜態版：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var TestB = function () &#123;&#125;&#10;TestB.a = function () &#123;&#10;    alert(&#39;Ba&#39;);&#10;    return this;&#10;&#125;&#10;TestB.b = function () &#123;&#10;    alert(&#39;Bb&#39;);&#10;    return this;&#10;&#125;&#10;TestB.c = function () &#123;&#10;    alert(&#39;Bc&#39;);&#10;    alert(this.d)&#10;    return this;&#10;&#125;&#10;TestB.d = &#39;abc&#39;;&#10;TestB.a().b().c();&#10;// b = new TestB();&#10;// b.a().b().c(); // &#36889;&#26159;&#19981;&#33021;&#22519;&#34892;&#30340;&#65292;&#19981;&#33021;&#36879;&#36942;&#29289;&#20214;&#21462;&#29992;&#38748;&#24907;&#26041;&#27861;&#12290;</span><br></pre></td></tr></table></figure>
-<p>其實 JavaScript 裡也已經有類似的用法，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var s1 = &#39;ABC&#39;;&#10;var s2 = &#39;DEF&#39;;&#10;alert(s1.concat(s2).toLowerCase());</span><br></pre></td></tr></table></figure>
-<p>註：原來這些都已經是別的物件導向語言常用的寫法，可見我還有很多要學的呢。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -297,19 +288,22 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -376,13 +370,17 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -409,6 +407,8 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -425,7 +425,8 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -447,7 +448,8 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -457,6 +459,7 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
 
   
   
+
   
     
     
@@ -486,24 +489,21 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -655,29 +655,20 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -685,15 +676,5 @@ $select-&amp;#62;from(&amp;#39;round_table&amp;#39;, &amp;#39;*&amp;#39;)&amp;#1
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

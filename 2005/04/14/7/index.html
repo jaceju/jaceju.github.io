@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="如何用 CSS 來呈現程式碼呢？就像是我在這篇文章裡所置放的 HTML 原始碼一樣，不論在 IE 或是 FireFox 下，都可以有不錯的顯示效果，也不容易破壞版面。但要怎麼做呢？">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用CSS顯示程式碼">
 <meta property="og:url" content="http://jaceju.net/2005/04/14/7/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="如何用 CSS 來呈現程式碼呢？就像是我在這篇文章裡所置放的 HTML 原始碼一樣，不論在 IE 或是 FireFox 下，都可以有不錯的顯示效果，也不容易破壞版面。但要怎麼做呢？">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用CSS顯示程式碼">
-<meta name="twitter:description" content="如何用 CSS 來呈現程式碼呢？就像是我在這篇文章裡所置放的 HTML 原始碼一樣，不論在 IE 或是 FireFox 下，都可以有不錯的顯示效果，也不容易破壞版面。但要怎麼做呢？">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 用CSS顯示程式碼 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,41 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>如何用 CSS 來呈現程式碼呢？就像是我在<a href="/blog/archives/4">這篇文章</a>裡所置放的 HTML 原始碼一樣，不論在 IE 或是 FireFox 下，都可以有不錯的顯示效果，也不容易破壞版面。但要怎麼做呢？</p>
-<a id="more"></a>
-<p>例如我們有以下的程式碼：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="dust"><span class="xml"></span><br><span class="line"><span class="comment">&lt;!--</span><br><span class="line">var iCount = 0;</span><br><span class="line">function changeText(objElement) </span></span><span class="expression">&#123;</span><br><span class="line">    <span class="variable">var</span> <span class="variable">oTextCount</span> = <span class="variable">document.getElementById</span>(<span class="string">"txtCount"</span>);</span><br><span class="line">    <span class="variable">var</span> <span class="variable">oCount</span> = <span class="variable">document.getElementById</span>(<span class="string">"hdnCount"</span>);</span><br><span class="line">    <span class="variable">iCount</span> = <span class="variable">objElement.value.length</span>;</span><br><span class="line">    <span class="variable">oTextCount.innerHTML</span> = <span class="string">""</span> + <span class="variable">iCount</span>;</span><br><span class="line">    <span class="variable">oCount.value</span> = <span class="variable">parseInt</span>(<span class="variable">iCount</span>);</span><br><span class="line">&#125;</span><span class="xml"><span class="comment"></span><br><span class="line">//--&gt;</span></span><br><span class="line"></span></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>為了符合文意，我們利用標準的 <code>code</code> 標籤將它圍繞起來：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">pre</span>&gt;</span><span class="tag">&lt;<span class="title">code</span>&gt;</span></span><br><span class="line">[程式碼放這裡]</span><br><span class="line"><span class="tag">&lt;/<span class="title">code</span>&gt;</span><span class="tag">&lt;/<span class="title">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>透過 <code>pre</code> 標籤，已經可以呈現程式碼效果，但是看起來很醜；因此我們就要借重 CSS 來幫我們呈現程式碼的效果，讓它更漂亮一些。</p>
-<p>註：我後來發現光用 <code>code</code> 標籤圍繞的話，在複製程式碼貼到別的地方時 (例如記事本) ，整個程式會變成一行。所以後來我只好把所有 <code>code</code> 標籤外面，再包一層 <code>pre</code> 標籤。</p>
-<p>先看看這個 CSS 的樣子：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">code</span> <span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">overflow</span>:<span class="value">auto</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">font-family</span>:<span class="value"><span class="string">"Courier New"</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">white-space</span>:<span class="value">pre</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">background</span>:<span class="value"><span class="hexcolor">#F0F0F0</span> <span class="function">url</span>(images/CodeBlock.png) repeat-y scroll left top</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#CCC</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">5px</span> <span class="number">15px</span> <span class="number">0</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">5px</span> <span class="number">5px</span> <span class="number">5px</span> <span class="number">20px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">line-height</span>:<span class="value"><span class="number">1.2em</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">max-height</span>:<span class="value"><span class="number">180px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">90%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>我們一行一行來解釋：</p>
-<p><strong>display:block;</strong> - 這樣會使得 <code>code</code> 標籤內的內容成為一個方形的區塊。你可以去掉它後，看看會變成什麼樣子。</p>
-<p><strong>overflow:auto;</strong> - 有時候程式碼會超過我們指定的寬度，當 overflow 設定 auto 時， <code>code</code> 區塊就會出現捲軸，以便顯示過長的文字內容。需要注意的是，這項屬性必須配合 width 屬性，才能在大部份的瀏覽器上正常顯示。</p>
-<p><strong>font-family:”Courier New”;</strong> - 設定文字字型，這裡我是用等寬字。</p>
-<p><strong>white-space: pre;</strong> - 讓 <code>code</code> 標籤模擬出 <code>
-</code> 標籤的效果，如果用了 pre 標籤的話就可以不用它了。</p>
-<p><strong>background:#F0F0F0 url(images/CodeBlock.png) repeat-y scroll left top;</strong> - 設定銀色的背景，並在左方加入一個 code 條狀圖 (<a href="http://www.jaceju.net/theme/theme7/images/CodeBlock.png" target="_blank" rel="external">下載</a>) 。</p>
-<p><strong>border:1px solid #CCC;</strong> - 設定 <code>code</code> 標籤的邊框。</p>
-<p><strong>margin:5px 15px 0;</strong> - 設定程式區塊與其他元素間的距離 (這裡即為 pre 標籤) 。</p>
-<p><strong>padding:5px 5px 5px 20px;</strong> - 設定程式碼與邊框間的距離，左方特地加大以容納背景圖。</p>
-<p><strong>line-height:1.2em;</strong> - 設定程式碼行高，這樣看起來會舒服一點。</p>
-<p><strong>max-height:180px;</strong> - 設定程式區塊的最大高度，以避免程式區塊讓頁面過長；不過 IE 6 下沒有作用。</p>
-<p><strong>width:90%;</strong> - 重要設定。沒有它的話，如果你的程式碼文字過長，MSIE 就會爆掉了。</p>
-<p>當然這種技巧不一定只能用在顯示程式碼上，像是無框架 (no frameset) 頁面的選單、固定頁尾的頁面，都會用到這種技巧 (不過有時還得再搭配其他小技巧，有機會再談) 。</p>
-<h2 id="補充：_(感謝「傻RD」網友的提問)">補充： (感謝「傻RD」網友的提問)</h2><p>在 <code>&lt;code&gt;</code> 及 <code>&lt;/code&gt;</code> 之間的東西要先做處理。</p>
-<ul>
-<li><code>&amp;</code> (AND符號) 換成 <code>&amp;amp;</code></li>
-<li><code>&quot;</code> (雙引號) 換成 <code>&quot;</code></li>
-<li><code>&#39;</code> (單引號) 換成 <code>&#39;</code></li>
-<li><code>&lt;</code> (小於符號) 換成 <code>&lt;</code></li>
-<li><code>&gt;</code> (大於符號) 換成 <code>&gt;</code></li>
-</ul>
-<p>如果有 Dreamweaver 的話，可以將程式先貼到 Dreamweaver 的設計檢視上 (就是所見即所得) ， Dreamweaver 會幫我們轉換好。然後再切換到程式碼檢視，把已經轉好的原始碼複製下來即可。</p>
-<p>如果沒有 Dreamweaver ，就用上面的轉換規則轉換也是可以的。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -307,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -386,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -419,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#補充：_(感謝「傻RD」網友的提問)"><span class="nav-number">1.</span> <span class="nav-text">補充： (感謝「傻RD」網友的提問)</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -435,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -457,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -467,6 +459,7 @@
 
   
   
+
   
     
     
@@ -496,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -665,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -695,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

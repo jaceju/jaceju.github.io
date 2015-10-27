@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="持續整合感覺上是一個很專業的名詞，老實說我雖然以前常聽到它，但卻沒有真正去瞭解過它；因為我一直認為只有需要編譯的軟體才需要這樣的技術，在 Web 開發上其實並沒有什麼實際的用處。
-不過隨著工作內容的複雜度增高，我漸漸發現我錯了。其實持續整合最重要的是讓我們的工作維持在正確的方向，每天都能產出可以穩定運作的最新版本；尤其在多人團隊開發時，這樣的技術可以確保大家的工作在發生衝突時，可以儘快被發現而解決">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 持續整合簡介 - 系統建構篇">
 <meta property="og:url" content="http://jaceju.net/2011/01/14/1538/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="持續整合感覺上是一個很專業的名詞，老實說我雖然以前常聽到它，但卻沒有真正去瞭解過它；因為我一直認為只有需要編譯的軟體才需要這樣的技術，在 Web 開發上其實並沒有什麼實際的用處。
-不過隨著工作內容的複雜度增高，我漸漸發現我錯了。其實持續整合最重要的是讓我們的工作維持在正確的方向，每天都能產出可以穩定運作的最新版本；尤其在多人團隊開發時，這樣的技術可以確保大家的工作在發生衝突時，可以儘快被發現而解決">
-<meta property="og:image" content="http://jaceju.net/resources/ci/001.png">
-<meta property="og:image" content="http://jaceju.net/resources/ci/002.png">
-<meta property="og:image" content="http://jaceju.net/resources/ci/003.png">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 持續整合簡介 - 系統建構篇">
-<meta name="twitter:description" content="持續整合感覺上是一個很專業的名詞，老實說我雖然以前常聽到它，但卻沒有真正去瞭解過它；因為我一直認為只有需要編譯的軟體才需要這樣的技術，在 Web 開發上其實並沒有什麼實際的用處。
-不過隨著工作內容的複雜度增高，我漸漸發現我錯了。其實持續整合最重要的是讓我們的工作維持在正確的方向，每天都能產出可以穩定運作的最新版本；尤其在多人團隊開發時，這樣的技術可以確保大家的工作在發生衝突時，可以儘快被發現而解決">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> PHP 持續整合簡介 - 系統建構篇 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,109 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>持續整合感覺上是一個很專業的名詞，老實說我雖然以前常聽到它，但卻沒有真正去瞭解過它；因為我一直認為只有需要編譯的軟體才需要這樣的技術，在 Web 開發上其實並沒有什麼實際的用處。</p>
-<p>不過隨著工作內容的複雜度增高，我漸漸發現我錯了。其實持續整合最重要的是讓我們的工作維持在正確的方向，每天都能產出可以穩定運作的最新版本；尤其在多人團隊開發時，這樣的技術可以確保大家的工作在發生衝突時，可以儘快被發現而解決。</p>
-<p>相關的觀念我想網路上的前輩都提了很多了，這裡我推薦<a href="http://blog.toright.com/?p=600" target="_blank" rel="external">淺談 CI, Continuous Integration (持續整合)</a> 一文。</p>
-<p>接下來，我將為大家介紹持續整合所會使用到的環境，及如何建置它。</p>
-<a id="more"></a>
-<h2 id="環境準備">環境準備</h2><p>要能做好持續整合，首先就要先準備好 CI 伺服器。這個伺服器的環境，要儘可能接近上線系統的環境；這樣我們在做完建置和測試並發佈程式後，才能確保它在正式上線時不會出問題。</p>
-<p>這裡推薦大家使用 VM 虛擬機器來建構 CI 伺服器，因為這樣一來不但可以同時模擬多種上線環境，而且也不需要準備太多的機器。</p>
-<p>另外 CI 伺服器也需要能夠執行 Java ，因為接下來提到的 CI 平台軟體需要透過 Java 來執行，所以也請大家先在 CI 伺服器上安裝好 JDK 。</p>
-<p>還有我們也需要一個版本控制系統，不過通常我們不會將它安裝在 CI 伺服器上，而是安裝在我們另行準備的  <a href="http://en.wikipedia.org/wiki/Source_Code_Management" target="_blank" rel="external">SCM</a> 伺服器。</p>
-<p>不過雖然版本控制系統可以不必裝在 CI 伺服器上，但是我們還是得在 CI 伺服器上安裝對應的 client 端的命令列維護程式，例如 svn 或 git 等。這邊就不詳細列出安裝過程了，請大家自行依照自己的平台來安裝對應的版本。</p>
-<h2 id="CI_平台">CI 平台</h2><p>CI 伺服器最重要的角色就是 CI 平台了，我找到了兩個較為有名的 CI 平台：  <a href="http://cruisecontrol.sourceforge.net/" target="_blank" rel="external">CruiseControl</a> 及  <a href="http://hudson-ci.org/" target="_blank" rel="external">Hudson</a> 。而在多方比較及網路上前輩的推薦之下，我選擇了 Hudson 這個建置容易而且設定也容易的 CI 平台。</p>
-<p>但在寫這篇文章時，因為 Oracle 申請了 Hudson 的商標，讓 Hudson 開發者決定把名稱改為 Jenkins ；後續的內容裡，我還是先保留 Hudson 這個名稱。</p>
-<p>註：可以參考 <a href="http://blog.fedecarg.com/2009/03/05/10-reasons-to-switch-from-cruisecontrol-to-hudson/" target="_blank" rel="external"> 10 reasons to switch from CruiseControl to Hudson</a> 一文。</p>
-<p>這邊提供三種安裝及執行的方式：</p>
-<h3 id="一、透過支援_Servlet_的_Web_Container_執行：">一、透過支援 Servlet 的 Web Container 執行：</h3><ul>
-<li><p>安裝支援 Servlet 的 Web Container (例如 <a href="http://tomcat.apache.org/" target="_blank" rel="external"> Apache Tomcat</a>) 。</p>
-</li>
-<li><p>下載 <a href="http://hudson-ci.org/latest/hudson.war" target="_blank" rel="external"> hudson.war</a> 。</p>
-</li>
-<li><p>將 hudson.war 放在 webapps 目錄中並啟動伺服器。</p>
-</li>
-<li><p>在瀏覽器上開啟網址 <a href="http://127.0.0.1:8080/hudson" target="_blank" rel="external">http://127.0.0.1:8080/hudson</a> 看到 Hudson 的起始畫面時即安裝成功。</p>
-</li>
-</ul>
-<p><a href="/resources/ci/001.png"><img src="/resources/ci/001.png" alt="Hudson 起始頁"></a></p>
-<h3 id="二、_Unix_like_系統安裝">二、 Unix like 系統安裝</h3><p>在沒有安裝 Web Container 的環境下，我們也可以讓 Hudson 透過 daemon 的服務方式來執行。</p>
-<p>可以參考在 Hudson 官方首頁上的連結，上面有提供各種作業系統的安裝方法，以 Ubuntu/Debian 為例：</p>
-<ul>
-<li>加入 apt-key ：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O /tmp/key http://hudson-ci.org/debian/hudson-ci.org.key&#10;sudo apt-key add /tmp/key</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安裝最新版本的 hudson package ：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O /tmp/hudson.deb http://hudson-ci.org/latest/debian/hudson.deb&#10;sudo dpkg --install /tmp/hudson.deb</span><br></pre></td></tr></table></figure>
-<p>這樣就能把 hudson 的服務安裝在伺服器上了。</p>
-<p>和上一個方法不同，我們直接瀏覽 <a href="http://127.0.0.1:8080/" target="_blank" rel="external">http://127.0.0.1:8080/</a> 就可以看到 Hudson 的起始畫面了。</p>
-<h3 id="三、_Windows_系統安裝">三、 Windows 系統安裝</h3><p>在 Windows 上安裝好 JDK 後 (別忘記<a href="http://confluence.atlassian.com/display/DOC/Setting+the+JAVA_HOME+Variable+in+Windows" target="_blank" rel="external">設定 JAVA_HOME 系統變數</a>) ，就可以透過命令列的 java 指令來執行 Hudson ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar hudson.war</span><br></pre></td></tr></table></figure>
-<p>這時一樣瀏覽 <a href="http://127.0.0.1:8080/" target="_blank" rel="external">http://127.0.0.1:8080/</a> 就能看到 Hudson 的起始畫面。</p>
-<p>當然這個方法必須得開啟一個命令列視窗，相當不方便。我們可以透過 Hudson 提供的功能，來將它註冊為 Windows 服務。</p>
-<p>在 Hudson 的起始畫面左方選單選擇「 Manage Hudson (管理Hudson) 」，然後再選擇「 Install as Windows Service 」；接著在「 Installation Directory 」的部份輸入要安裝的路徑，例如 C:\hudson ，最後按下「 Install 」。</p>
-<p><a href="/resources/ci/002.png"><img src="/resources/ci/002.png" alt="Hudson 管理頁"></a></p>
-<p>沒有意外的話，就可以在 Windows 的服務裡看到 Hudson 正在執行中了。</p>
-<p><a href="/resources/ci/003.png"><img src="/resources/ci/003.png" alt="Windows 服務"></a></p>
-<p>註：在 1.38x 版以後，我發現 Hudson 可以在管理畫面上直接更新，通常在安裝後不久， Hudson 就會在畫面上方提醒你。</p>
-<h2 id="加入_Plugin">加入 Plugin</h2><p>安裝好 Hudson 後，其實它並不能馬上為我們工作，因為我們必須先安裝一些必要的 Plugin 才行。</p>
-<p>在「 Manage Hudson (管理 Hudson) 」的畫面上選擇「Manage Plugins (管理插件) 」，並點選「 Available (有效的) 」頁籤 ；接著找到以下 plugin ，勾選後按下最下方的「 Install (安裝) 」。</p>
-<ul>
-<li><p>Checkstyle (用來顯示程式碼格式的分析結果)</p>
-</li>
-<li><p>Clover (用來顯示程式碼涵蓋率的分析結果)</p>
-</li>
-<li><p>DRY (用來顯示程式是否為複製貼上的分析結果)</p>
-</li>
-<li><p>Green Balls (讓建置結果以綠色或紅色的圓形圖示呈現)</p>
-</li>
-<li><p>JDepend (用來顯示程式中類別相依性的分析結果)</p>
-</li>
-<li><p>xUnit (用來顯示自動化測試的結果)</p>
-</li>
-<li><p>Phing (用來呼叫 Phing 以建置 PHP 專案)</p>
-</li>
-</ul>
-<p>安裝完後， Hudson 需要重新啟動，這時只要按下「 Restart When No Jobs are Running (當沒有任何工作正在執行時重新啟動) 」鈕即可。</p>
-<p>準備好 CI 平台後，接下來就是準備建置與測試的工具了。</p>
-<h2 id="PHP_建置與測試的工具">PHP 建置與測試的工具</h2><p>接下來所有的 PHP 工具都可以透過 PEAR 安裝，因此請確定 CI 伺服器上安裝了  <a href="http://pear.php.net/manual/en/installation.php" target="_blank" rel="external">PEAR</a> 。另外為了避免權限問題，請記得切換到 root 身份來安裝所有工具。</p>
-<h3 id="建置工具_Phing">建置工具 Phing</h3><p>一般來說， Hudson 可以搭配各種不同的建置工具，例如 Apache Ant 、 NAnt 等。另外也有高手仿照 Apache Ant ，用 PHP 寫了一個相當優秀的建置工具，那就是  <a href="http://phing.info" target="_blank" rel="external">Phing</a> 。</p>
-<p>這邊暫時不對 Phing 做詳細介紹，大家有興趣的話可以參考官方手冊，以下先看如何安裝 Phing 。</p>
-<h4>安裝 Phing</h4>
-
-<p>Phing 有兩種安裝方式，一種就是直接透過 PEAR 安裝：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pear channel-discover pear.phing.info&#10;pear install phing/phing</span><br></pre></td></tr></table></figure>
-<p>另一種則是下載 package 檔手動安裝：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http://www.phing.info/get/phing-2.4.4.tgz&#10;unzip phing-2.4.4.tgz -d /opt/&#10;ln -s /opt/phing-2.4.4 /opt/phing</span><br></pre></td></tr></table></figure>
-<h4>設定 Hudson 對 Phing 的支援</h4>
-
-<p>如果 Phing 是用 PEAR 安裝的話，基本上可以不需要對 Hudson 做任何設定。但如果是手動安裝的話，就要在 Hudson 中設定 Phing 的執行位置。</p>
-<p>在起始頁右方的選單點下「」，再選擇「配置系統」，接著跳到「 Phing 」區塊 (在安裝 Phing Plugin 後就會出現) 。</p>
-<p>按下「 Phing installation 」後面的「新增」鈕，在「 name 」後面輸入「 Phing 2.4.4 」 (視前面手動安裝的版本而定) ；在「 PHING_HOME 」後面輸入「 /opt/phing 」，也就是 Phing 安裝的目錄；最後在「 PHP Command 」後面輸入 php 的執行檔路徑，例如「 /usr/bin/php 」 (Windows 的話就是 php.exe 的所在路徑) 。</p>
-<h3 id="測試框架">測試框架</h3><p>持續整合最重要的一環就是做自動化測試，在 PHP 上當然首推 PHPUnit 這個自動化測試框架。</p>
-<p>而 PHPUnit 也一樣透過 PEAR 就可以安裝：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pear channel-discover pear.symfony-project.com&#10;pear install symfony/YAML&#10;pear channel-discover pear.phpunit.de&#10;pear channel-discover components.ez.no&#10;pear install -o phpunit/phpunit</span><br></pre></td></tr></table></figure>
-<h3 id="程式碼分析工具">程式碼分析工具</h3><p>除了自動化測試之外，程式碼分析也是持續整合很重要的一環。這裡有三種工具可以幫我們分析 PHP 程式碼：</p>
-<ul>
-<li><p><a href="http://pear.php.net/package/PHP_CodeSniffer/" target="_blank" rel="external"> PHP_CodeSniffer</a></p>
-</li>
-<li><p><a href="https://github.com/sebastianbergmann/phpcpd" target="_blank" rel="external"> PHP Copy/Paste Detector</a></p>
-</li>
-<li><p><a href="http://pdepend.org/" target="_blank" rel="external"> PHP Depend</a></p>
-</li>
-</ul>
-<p>PHP_CodeSniffer 主要是幫我們檢查程式碼的 Coding Style ，安裝方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pear install PHP_CodeSniffer</span><br></pre></td></tr></table></figure>
-<p>PHP Copy/Paste Detector 顧名思義就是用來檢查程式裡有沒有透過複製貼上所產生的重複程式碼，安裝方法如下 (要先安裝好 PHPUnit ) ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pear install phpunit/phpcpd</span><br></pre></td></tr></table></figure>
-<p>PHP Depend 則是用來檢查類別相依性的工具，安裝方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pear channel-discover pear.pdepend.org&#10;pear install pdepend/PHP_Depend-beta</span><br></pre></td></tr></table></figure>
-<h3 id="API_文件產生工具">API 文件產生工具</h3><p>在 PHP 中，當然就是透過 PHPDocumentor 來產生 API 文件 (當然我們的註解也要以 PHPDoc 格式來撰寫) ，其安裝方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pear install PhpDocumentor</span><br></pre></td></tr></table></figure>
-<p>這樣一來，我們就完成了基本的系統建置。當然持續整合可以使用的工具不只這些而已，但在剛接觸的前提下，我們就以這些工具為優先學習的對象吧。</p>
-<p><a href="http://www.jaceju.net/blog/archives/1543" target="_blank" rel="external">下一篇</a>我們將介紹如何建立一個建置工作。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -383,19 +290,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -462,13 +372,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -495,8 +409,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#環境準備"><span class="nav-number">1.</span> <span class="nav-text">環境準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI_平台"><span class="nav-number">2.</span> <span class="nav-text">CI 平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、透過支援_Servlet_的_Web_Container_執行："><span class="nav-number">2.1.</span> <span class="nav-text">一、透過支援 Servlet 的 Web Container 執行：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、_Unix_like_系統安裝"><span class="nav-number">2.2.</span> <span class="nav-text">二、 Unix like 系統安裝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、_Windows_系統安裝"><span class="nav-number">2.3.</span> <span class="nav-text">三、 Windows 系統安裝</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入_Plugin"><span class="nav-number">3.</span> <span class="nav-text">加入 Plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP_建置與測試的工具"><span class="nav-number">4.</span> <span class="nav-text">PHP 建置與測試的工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建置工具_Phing"><span class="nav-number">4.1.</span> <span class="nav-text">建置工具 Phing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.1.</span> <span class="nav-text">安裝 Phing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.2.</span> <span class="nav-text">設定 Hudson 對 Phing 的支援</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#測試框架"><span class="nav-number">4.2.</span> <span class="nav-text">測試框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程式碼分析工具"><span class="nav-number">4.3.</span> <span class="nav-text">程式碼分析工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API_文件產生工具"><span class="nav-number">4.4.</span> <span class="nav-text">API 文件產生工具</span></a></li></ol></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -511,7 +427,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -533,7 +450,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -543,6 +461,7 @@
 
   
   
+
   
     
     
@@ -572,24 +491,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -741,29 +657,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -771,15 +678,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

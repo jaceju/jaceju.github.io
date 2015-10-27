@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,38 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="果然 jQuery 1.1.4 剛出沒多久， jQuery 1.2 就跑出來湊熱鬧了 
-jQuery 1.2: jQuery.extend(“Awesome”)
-主要的改變像是把 XPath 的解析方式拆成 plugin 、 Cross-Domain getScript 、  Namespaced Events 等等；不過還是等看看阿土伯的技術分析好了，我乖乖地偷學就行 XD 
-註：又搶先阿土伯一">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JavaScript] jQuery 1.2 釋出">
 <meta property="og:url" content="http://jaceju.net/2007/09/11/253/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="果然 jQuery 1.1.4 剛出沒多久， jQuery 1.2 就跑出來湊熱鬧了 
-jQuery 1.2: jQuery.extend(“Awesome”)
-主要的改變像是把 XPath 的解析方式拆成 plugin 、 Cross-Domain getScript 、  Namespaced Events 等等；不過還是等看看阿土伯的技術分析好了，我乖乖地偷學就行 XD 
-註：又搶先阿土伯一">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JavaScript] jQuery 1.2 釋出">
-<meta name="twitter:description" content="果然 jQuery 1.1.4 剛出沒多久， jQuery 1.2 就跑出來湊熱鬧了 
-jQuery 1.2: jQuery.extend(“Awesome”)
-主要的改變像是把 XPath 的解析方式拆成 plugin 、 Cross-Domain getScript 、  Namespaced Events 等等；不過還是等看看阿土伯的技術分析好了，我乖乖地偷學就行 XD 
-註：又搶先阿土伯一">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [JavaScript] jQuery 1.2 釋出 | 網站製作學習誌 </title>
 </head>
@@ -138,7 +143,7 @@ jQuery 1.2: jQuery.extend(“Awesome”)
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -148,7 +153,7 @@ jQuery 1.2: jQuery.extend(“Awesome”)
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -158,7 +163,7 @@ jQuery 1.2: jQuery.extend(“Awesome”)
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -178,7 +183,8 @@ jQuery 1.2: jQuery.extend(“Awesome”)
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -237,11 +243,7 @@ jQuery 1.2: jQuery.extend(“Awesome”)
       
 
       
-        <span itemprop="articleBody"><p>果然 jQuery 1.1.4 剛出沒多久， jQuery 1.2 就跑出來湊熱鬧了 </p>
-<p><a href="http://jquery.com/blog/2007/09/10/jquery-12-jqueryextendawesome/" target="_blank" rel="external">jQuery 1.2: jQuery.extend(“Awesome”)</a></p>
-<p>主要的改變像是把 XPath 的解析方式拆成 plugin 、 Cross-Domain getScript 、  Namespaced Events 等等；不過還是等看看阿土伯的技術分析好了，我乖乖地偷學就行 XD </p>
-<p>註：又搶先<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>一步了 XD (呃… GSLin <a href="http://blog.gslin.org/archives/2007/09/11/1308/" target="_blank" rel="external">偷跑</a>… Orz)</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -286,19 +288,22 @@ jQuery 1.2: jQuery.extend(“Awesome”)
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -365,13 +370,17 @@ jQuery 1.2: jQuery.extend(“Awesome”)
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -398,6 +407,8 @@ jQuery 1.2: jQuery.extend(“Awesome”)
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -414,7 +425,8 @@ jQuery 1.2: jQuery.extend(“Awesome”)
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -436,7 +448,8 @@ jQuery 1.2: jQuery.extend(“Awesome”)
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -446,6 +459,7 @@ jQuery 1.2: jQuery.extend(“Awesome”)
 
   
   
+
   
     
     
@@ -475,24 +489,21 @@ jQuery 1.2: jQuery.extend(“Awesome”)
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -644,29 +655,20 @@ jQuery 1.2: jQuery.extend(“Awesome”)
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -674,15 +676,5 @@ jQuery 1.2: jQuery.extend(“Awesome”)
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

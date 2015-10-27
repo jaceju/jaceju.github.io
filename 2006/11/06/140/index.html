@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="說明memcached 是一個分散式的物件快取系統，只要有適當的 API ，任何有支援的程式語言都可以用它來存放相關的變數資訊。例如我們可以利用 memcached 來管理 PHP 的 Session ，提高 Web 網站的運作效能。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Windows 上安裝 Memcached">
 <meta property="og:url" content="http://jaceju.net/2006/11/06/140/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="說明memcached 是一個分散式的物件快取系統，只要有適當的 API ，任何有支援的程式語言都可以用它來存放相關的變數資訊。例如我們可以利用 memcached 來管理 PHP 的 Session ，提高 Web 網站的運作效能。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Windows 上安裝 Memcached">
-<meta name="twitter:description" content="說明memcached 是一個分散式的物件快取系統，只要有適當的 API ，任何有支援的程式語言都可以用它來存放相關的變數資訊。例如我們可以利用 memcached 來管理 PHP 的 Session ，提高 Web 網站的運作效能。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 在 Windows 上安裝 Memcached | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,60 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="說明">說明</h2><p>memcached 是一個分散式的物件快取系統，只要有適當的 API ，任何有支援的程式語言都可以用它來存放相關的變數資訊。例如我們可以利用 memcached 來管理 PHP 的 Session ，提高 Web 網站的運作效能。 </p>
-<a id="more"></a>
-<h2 id="安裝">安裝</h2><p>這裡安裝的是 memecached for Win32 版本，其他平台的版本可以到 <a href="http://www.danga.com/memcached/" target="_blank" rel="external">memcached 官方網站</a>下載。 </p>
-<ul>
-<li><p>請到 <a href="http://jehiah.com/projects/memcached-win32/" target="_blank" rel="external">memcached for Win32</a> 下載最新的版本，這裡我下載的是 <a href="http://jehiah.com/projects/memcached-win32/files/memcached-1.2.0-rc1b-win32.zip" target="_blank" rel="external">memcached 1.2.0 release candidate 1b for Win32 binaries</a> 。</p>
-</li>
-<li><p>將 memcached-1.2.0-rc1b-win32.zip 解壓縮至 D:\Appserv\memcached 下。 (其實放哪兒都可以，這裡我只是為了說明方便。) </p>
-</li>
-<li><p>打開 Command Line 視窗，切換到 D:\Appserv\memcached ，並輸入以下指令：</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">D:\Appserv\memcached&#62;sc create memcached binPath= &#34;D:\Appserv\memcached\memcached.exe -p 9999 -l 127.0.0.1 -m 128 -d runservice&#34; DisplayName= &#34;memcached server&#34; start= auto depend= TCPIP</span><br></pre></td></tr></table></figure>
-<p>其中 -p 9999 是指透過 port 9999 監聽請求 (預設為 11211 ) ， -l 127.0.0.1 是指伺服器指定的 IP 位址 (預設為 INDRR_ANY) ， -m 128 是指 memcached 最大可用的記憶體為 128 MB (預設 64 MB) ，最後 -d runservice 就是啟動為 Windows 服務。 </p>
-<p>註： memcached for Win32 有提供 -d install 指令，但是無法指定 port 及記憶體大小，故不建議使用。</p>
-<ul>
-<li>完成後就可以到服務管理員啟動 memcached 服務。 </li>
-</ul>
-<h2 id="測試">測試</h2><p>這裡我用的是 PHP 5.2 ，當然你可以使用任何一種<a href="http://www.danga.com/memcached/apis.bml" target="_blank" rel="external">支援 memcached 的語言</a>來測試。 </p>
-<ul>
-<li><p>首先我們得到 <a href="http://pecl4win.php.net/" target="_blank" rel="external">PECL for Win</a> 去下載 memcached for PHP 的函式庫 (<a href="http://pecl4win.php.net/ext.php/php_memcache.dll" target="_blank" rel="external">php_memcache.dll</a>) ，這裡當然要下載 5.2.0 對應的版本。</p>
-</li>
-<li><p>把 php_memcache.dll 下載回來後把它丟到 PHP 安裝目錄下的 ext 資料夾。</p>
-</li>
-<li><p>在 php.ini 裡加入：</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">extension=php_memcache.dll</span><br></pre></td></tr></table></figure>
-<ul>
-<li>重新啟動 Apache 或 IIS ，如果要跑的是 CLI 模式的話就不用了。</li>
-</ul>
-<p>好了，接下來先看看以下的程式，我是用 CLI 模式來執行它。</p>
-<p>先用 Memcache 類別連接到 memcached 伺服器： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$memcache = new Memcache;&#10;$memcache-&#62;connect(&#39;localhost&#39;, 9999) or die (&#34;Could not connect&#34;);</span><br></pre></td></tr></table></figure>
-<p>然後我們可以用以下程式來得知 memcached 的版本： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$version = $memcache-&#62;getVersion();&#10;echo &#34;Server&#39;s version: &#34;.$version.&#34;\n&#34;;</span><br></pre></td></tr></table></figure>
-<p>試試建立一個 stdClass 物件，然後用 Memcache 的 <a href="http://www.php.net/manual/en/function.memcache-set.php" target="_blank" rel="external">set</a> 方法把它存到 memcached 伺服器上： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$tmp_object = new stdClass;&#10;$tmp_object-&#62;str_attr = &#39;test&#39;;&#10;$tmp_object-&#62;int_attr = 123;&#10;$tmp_object-&#62;time_attr = time();&#10;echo &#34;&#35201;&#20786;&#23384;&#30340;&#36039;&#26009;&#65306;\n&#34;;&#10;var_dump($tmp_object);&#10;$memcache-&#62;set(&#39;key&#39;, $tmp_object, false, 10) or die (&#34;Failed to save data at the server&#34;);&#10;echo &#34;&#23559;&#36039;&#26009;&#23384;&#20837; Cache &#20013; (10 &#31186;&#24460;&#22833;&#25928;)\n&#34;;</span><br></pre></td></tr></table></figure>
-<p>能存進去就要能拿回來，我們可以用 Memcache 的 <a href="http://www.php.net/manual/en/function.memcache-get.php" target="_blank" rel="external">get</a> 方法來完成。不過在拿之前，先暫停個 5 秒，看看這個物件是不是還活著： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sleep(5);&#10;echo &#34;&#31532;&#19968;&#27425;&#24478; Cache &#20013;&#21462;&#22238;&#36039;&#26009;\n&#34;;&#10;$get_result = $memcache-&#62;get(&#39;key&#39;);&#10;var_dump($get_result);</span><br></pre></td></tr></table></figure>
-<p>再來一次，這次應該是找不到了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sleep(5);&#10;echo &#34;&#31532;&#20108;&#27425;&#24478; Cache &#20013;&#21462;&#22238;&#36039;&#26009;\n&#34;;&#10;$get_result = $memcache-&#62;get(&#39;key&#39;);&#10;var_dump($get_result);</span><br></pre></td></tr></table></figure>
-<p>整個完整執行結果如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Server&#39;s version: 1.2.0-rc1&#10;&#35201;&#20786;&#23384;&#30340;&#36039;&#26009;&#65306;&#10;object(stdClass)#2 (3) &#123;&#10;  [&#34;str_attr&#34;]=&#62;&#10;    string(4) &#34;test&#34;&#10;  [&#34;int_attr&#34;]=&#62;&#10;    int(123)&#10;  [&#34;time_attr&#34;]=&#62;&#10;    int(1162804936)&#10;&#125;&#10;&#23559;&#36039;&#26009;&#23384;&#20837; Cache &#20013; (10 &#31186;&#24460;&#22833;&#25928;)&#10;&#31532;&#19968;&#27425;&#24478; Cache &#20013;&#21462;&#22238;&#36039;&#26009;&#10;object(stdClass)#3 (3) &#123;&#10;  [&#34;str_attr&#34;]=&#62;&#10;    string(4) &#34;test&#34;&#10;  [&#34;int_attr&#34;]=&#62;&#10;    int(123)&#10;  [&#34;time_attr&#34;]=&#62;&#10;    int(1162804936)&#10;&#125;&#10;&#31532;&#20108;&#27425;&#24478; Cache &#20013;&#21462;&#22238;&#36039;&#26009;&#10;bool(false)</span><br></pre></td></tr></table></figure>
-<p>當然這只是小試一下，真正在實作上，我們應該先判斷物件是不是存在於 memcached 伺服器，沒有的話就自己生一個，再存回 memcached 伺服器上。程式實作如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$memcache = new Memcache;&#10;$memcache-&#62;connect(&#39;localhost&#39;, 9999) or die (&#34;Could not connect&#34;);&#10;$version = $memcache-&#62;getVersion();&#10;echo &#34;Server&#39;s version: &#34;.$version.&#34;\n&#34;;&#10;echo &#34;&#24478; Cache &#20013;&#21462;&#22238;&#36039;&#26009;\n&#34;;&#10;$get_result = $memcache-&#62;get(&#39;key&#39;);&#10;// &#27794;&#26377;&#36039;&#26009;&#10;if (!$get_result)&#10;&#123;&#10;// &#33258;&#24049;&#29983;&#19968;&#20491;&#10;$tmp_object = new stdClass;&#10;$tmp_object-&#62;str_attr = &#39;test&#39;;&#10;$tmp_object-&#62;int_attr = 123;&#10;$tmp_object-&#62;time_attr = time();&#10;echo &#34;&#35201;&#20786;&#23384;&#30340;&#36039;&#26009;&#65306;\n&#34;;&#10;var_dump($tmp_object);&#10;$memcache-&#62;set(&#39;key&#39;, $tmp_object, false, 10) or die (&#34;Failed to save data at the server&#34;);&#10;    echo &#34;&#23559;&#36039;&#26009;&#23384;&#20837; Cache &#20013; (10 &#31186;&#24460;&#22833;&#25928;)\n&#34;;&#10;&#125;&#10;echo &#34;&#24478; Cache &#20013;&#21462;&#22238;&#36039;&#26009;\n&#34;;&#10;$get_result = $memcache-&#62;get(&#39;key&#39;);&#10;var_dump($get_result);</span><br></pre></td></tr></table></figure>
-<p>我們還可以用 <a href="http://www.php.net/manual/en/function.memcache-addserver.php" target="_blank" rel="external">addServer</a> 方法來同時連接多個 memcached 伺服器，這裡就不多談了。</p>
-<h2 id="安全性">安全性</h2><p>目前 memcached 似乎沒有好的認證機制，所以只要知道 port 以及 key ，就能夠長驅直入，對 memcached 中的資料做存取。所以最好能夠利用防火牆等外部工具，對相關的存取權限做好設定，避免攻擊事件發生。 </p>
-<h2 id="參考資料">參考資料</h2><ul>
-<li><a href="http://jehiah.com/projects/memcached-win32/" target="_blank" rel="external">memcached for Win32</a></li>
-<li><a href="http://www.danga.com/memcached/apis.bml" target="_blank" rel="external">memcached::Client APIs</a></li>
-<li><a href="http://tw.php.net/manual/en/ref.memcache.php" target="_blank" rel="external">PHP.net::Memcache</a></li>
-<li><a href="http://blog.twpug.org/index.php?op=ViewArticle&amp;articleId=239&amp;blogId=30" target="_blank" rel="external">非 mmcache ！ Memcached 的應用：多網站伺服器 PHP 共享 Session</a> </li>
-</ul>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -328,19 +290,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -407,13 +372,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -440,8 +409,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#說明"><span class="nav-number">1.</span> <span class="nav-text">說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">2.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試"><span class="nav-number">3.</span> <span class="nav-text">測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">4.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">5.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -456,7 +427,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -478,7 +450,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -488,6 +461,7 @@
 
   
   
+
   
     
     
@@ -517,24 +491,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -686,29 +657,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -716,15 +678,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

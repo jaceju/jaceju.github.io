@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,37 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="註：本文為投稿於 OpenFoundry 之文章。
-目前一些主流的語言都有提供所謂的套件管理機制，像是 Perl 的 CPAN ， Ruby 的 gem ， Node.js 的 npm 等等。而它們都屬於集中式的管理，可以讓開發者上傳自己所開發的套件。
-當然 PHP 也是有套件管理機制，那就是 PEAR (PHP Extension and Application Repository) 。只是">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 GitHub 建立自己的 PEAR 頻道">
 <meta property="og:url" content="http://jaceju.net/2012/06/22/build-pear-channel-with-github/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="註：本文為投稿於 OpenFoundry 之文章。
-目前一些主流的語言都有提供所謂的套件管理機制，像是 Perl 的 CPAN ， Ruby 的 gem ， Node.js 的 npm 等等。而它們都屬於集中式的管理，可以讓開發者上傳自己所開發的套件。
-當然 PHP 也是有套件管理機制，那就是 PEAR (PHP Extension and Application Repository) 。只是">
-<meta property="og:image" content="http://jaceju.net/resources/github_pear/create_github_repository.png">
-<meta property="og:image" content="http://jaceju.net/resources/github_pear/pear_channel_site.png">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T06:20:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 GitHub 建立自己的 PEAR 頻道">
-<meta name="twitter:description" content="註：本文為投稿於 OpenFoundry 之文章。
-目前一些主流的語言都有提供所謂的套件管理機制，像是 Perl 的 CPAN ， Ruby 的 gem ， Node.js 的 npm 等等。而它們都屬於集中式的管理，可以讓開發者上傳自己所開發的套件。
-當然 PHP 也是有套件管理機制，那就是 PEAR (PHP Extension and Application Repository) 。只是">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 利用 GitHub 建立自己的 PEAR 頻道 | 網站製作學習誌 </title>
 </head>
@@ -137,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -147,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -157,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -177,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -236,102 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>註：本文為投稿於 <a href="http://www.openfoundry.org/" target="_blank" rel="external">OpenFoundry</a> 之文章。</p>
-<p>目前一些主流的語言都有提供所謂的套件管理機制，像是 Perl 的 <a href="http://www.cpan.org/" target="_blank" rel="external">CPAN</a> ， Ruby 的 <a href="http://rubygems.org/" target="_blank" rel="external">gem</a> ， Node.js 的 <a href="http://npmjs.org/" target="_blank" rel="external">npm</a> 等等。而它們都屬於集中式的管理，可以讓開發者上傳自己所開發的套件。</p>
-<p>當然 PHP 也是有套件管理機制，那就是 <a href="http://pear.php.net" target="_blank" rel="external">PEAR</a> (PHP Extension and Application Repository) 。只是 PEAR 官方為了套件的品質，所以在審查機制上非常嚴格；這也使得開發者很難把自己的成果，藉由官方提供的管道來分享給其他人。</p>
-<a id="more"></a>
-<p>雖然後來陸續有一些高手實作了某些方案，想要解決這個問題，但可惜都不了了之。</p>
-<p>註：相關的資訊可以參考 <a href="http://c9s.blogspot.tw/" target="_blank" rel="external">c9s</a> 在 OSDC 的介紹： <a href="https://speakerdeck.com/u/c9s/p/osdctw-2012-the-ecosystems-of-php-and-perl" target="_blank" rel="external">OSDC.TW 2012 - The ecosystems of PHP and Perl</a> 。</p>
-<p>在 PEAR 中，套件會被放在 PEAR Channel Server 上面，這個 Server 就像是套件的倉庫；例如 PEAR 官方的 PEAR Channel Server 就是 <code>pear.php.net</code> 。一個 Server 就是一個頻道 (Channel) ，這個頻道就是 <code>pear</code> 指令用來識別及取得套件來源的地方。</p>
-<p>那麼除了官方的頻道外，我們能不能建立自己的 PEAR 頻道，以便管理自己開發的套件呢？當然是可以的，接下來本篇文章就要為大家介紹如何達到這個目的。</p>
-<h2 id="建立頻道">建立頻道</h2><p>事實上所謂的 PEAR 頻道其實就是個網站，它必須要能存放套件的原始碼，並且提供套件的更新資訊。這些內容一般來說是靜態的，所以我們只需要有個網站空間就可以建立一個 PEAR 頻道。</p>
-<p>這裡筆者選用 <a href="http://github.com" target="_blank" rel="external">GitHub</a> ，因為它可以用 <code>git</code> 讓我們方便管理，而且也不限制流量與空間；就我們的需求來說，是一個不錯的選擇。</p>
-<h3 id="建立_GitHub_Repository">建立 GitHub Repository</h3><p>首先我們要到 <a href="http://github.com" target="_blank" rel="external">GitHub</a> 申請一個免費帳號，這裡筆者就不再詳述申請流程，請各位自行參考 GitHub 的網站。</p>
-<p>接下來要建立一個 <a href="https://github.com/new" target="_blank" rel="external">Repository</a> ，名稱格式為 <code>[a-z0-9\-]+</code> (千萬不要包含底線，這樣 <code>pear</code> 指令會無法判讀) ，這裡筆者用 <code>pear</code> 作為範例。</p>
-<p><img src="/resources/github_pear/create_github_repository.png" alt="建立 GitHub Repository"></p>
-<p>建立好之後，就可以用以下的 git 位址來存取：</p>
-<pre><code><span class="string">https:</span><span class="comment">//github.com/yourusername/pear</span>
-</code></pre><h3 id="建立頻道內容">建立頻道內容</h3><p>有了空間後，接下來就該建立頻道的內容了。只是頻道的內容該用什麼樣的格式？有沒有什麼方便的工具能幫我們處理這個問題呢？</p>
-<p>答案當然是有的， <a href="http://pirum.sensiolabs.org/" target="_blank" rel="external">Pirum</a> 就是這樣的一個解決方案。</p>
-<p>Pirum 是一個 PEAR Channel Server 管理工具，它可以幫我們建立與管理 PEAR 頻道內容，同時也能把套件加入頻道中。</p>
-<p>它的安裝方式很簡單，直接使用 <code>pear</code> 指令安裝即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pear channel-discover pear.pirum-project.org</span><br><span class="line">pear install pirum/Pirum</span><br></pre></td></tr></table></figure>
-<p>這樣一來我們就有一個 <code>pirum</code> 指令可以用了。</p>
-<p>接下來在本機端建立一個目錄 (這裡筆者假設是 <code>/path/to/pear_repository</code> ) ，裡面放一個 <code>pirum.xml</code> 檔案：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir /path/to/pear_repository</span><br><span class="line"><span class="built_in">cd</span> /path/to/pear_repository</span><br><span class="line">vi pirum.xml</span><br></pre></td></tr></table></figure>
-<p>內容如下：</p>
-<figure class="highlight xml"><figcaption><span>pirum.xml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">name</span>&gt;</span>yourusername.github.com/pear<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">summary</span>&gt;</span>My PEAR Channel<span class="tag">&lt;/<span class="title">summary</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">alias</span>&gt;</span>yourusername<span class="tag">&lt;/<span class="title">alias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://yourusername.github.com/pear<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>其中 <code>name</code> 表示頻道完整名稱，一般就是頻道網站的位址 (但不包含 <code>http://</code> ) ； <code>summary</code> 則是頻道網站的標題； <code>alias</code> 是頻道別名，讓我們在用 <code>pear</code> 指令管理頻道時不需要輸入完整名稱；最後 <code>url</code> 則是讓使用者可以使用瀏覽器查看的頻道網址。</p>
-<p>將 <code>pirum.xml</code> 存檔後，就可以用 <code>pirum</code> 指令來建立頻道內容。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pirum build .</span><br></pre></td></tr></table></figure>
-<p>如果一切正常的話，應該會出現：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Pirum <span class="number">1.1</span>.<span class="number">4</span> by Fabien Potencier</span><br><span class="line">Available commands:</span><br><span class="line">  pirum build target_dir</span><br><span class="line">  pirum add target_dir Pirum-<span class="number">1.0</span>.<span class="number">0</span>.tgz</span><br><span class="line">  pirum remove target_dir Pirum-<span class="number">1.0</span>.<span class="number">0</span>.tgz</span><br><span class="line"></span><br><span class="line">Running the build <span class="built_in">command</span>:</span><br><span class="line">   INFO   Building channel.</span><br><span class="line">   INFO   Building maintainers.</span><br><span class="line">   INFO   Building categories.</span><br><span class="line">   INFO   Building packages.</span><br><span class="line">   INFO   Building composer repository.</span><br><span class="line">   INFO   Building releases.</span><br><span class="line">   INFO   Building index.</span><br><span class="line">   INFO   Building feed.</span><br><span class="line">   INFO   Updating PEAR server files.</span><br><span class="line">   INFO   Command build run successfully.</span><br></pre></td></tr></table></figure>
-<p>現在我們可以利用 <code>git</code> 指令把這些內容送到我們前面建立好的 GitHub Repository 上面了：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:yourusername/pear.git</span><br><span class="line">git add *</span><br><span class="line">git commit -m <span class="string">'init pear channel'</span></span><br><span class="line">git branch gh-pages</span><br><span class="line">git checkout gh-pages</span><br><span class="line">git push -u origin master</span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure>
-<p>特別要注意的是，遠端分支必須還要加上 <code>gh-pages</code> ，這樣 GitHub 才會把這些新增的檔案當做是網站內容。</p>
-<p>稍等幾分鐘， GitHub 會幫我們把 <code>gh-pages</code> 的內容放到 <code>http://yourname.github.com/pear</code> 上。用瀏覽器打開這個網址，應該會出現以下畫面：</p>
-<p><img src="/resources/github_pear/pear_channel_site.png" alt="PEAR 頻道內容"></p>
-<h2 id="使用新建立的頻道">使用新建立的頻道</h2><p>現在我們已經有了自己專屬的 PEAR 頻道，以下就來看看怎麼使用它。</p>
-<h3 id="加入新頻道">加入新頻道</h3><p>我們可以將頻道加到本機的 PEAR 中，用以下的指令就可以在 PEAR 上註冊我們剛剛建立的頻道：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pear channel-discover yourusername.github.com/pear</span><br></pre></td></tr></table></figure>
-<h3 id="查看頻道中的套件">查看頻道中的套件</h3><p>接著我們可以用以下的指令來查看這個頻道中有什麼套件：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pear remote-list -c yourusername</span><br></pre></td></tr></table></figure>
-<p>如果出現：</p>
-<pre><code><span class="list">(<span class="keyword">no</span> packages available yet)</span>
-</code></pre><p>是正常的，因為我們還沒有加入任何套件。</p>
-<p>註：執行 <code>pear</code> 指令時，如果有權限問題的話，可以加上 <code>sudo</code> 來執行。</p>
-<h3 id="更新頻道資訊">更新頻道資訊</h3><p>當遠端的頻道更新資訊時，要如何讓本地端知道呢？我們可以透過以下指令來更新：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pear channel-update yourusername</span><br></pre></td></tr></table></figure>
-<p>通常這個動作是在新增套件或更新套件前要先做的。</p>
-<p>但如果 PEAR 中已經有很多頻道和套件，那麼一一手動更新太麻煩了，直接用以下指令就可以一次更新：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pear update-channels</span><br><span class="line">pear upgrade-all</span><br></pre></td></tr></table></figure>
-<h2 id="套件管理">套件管理</h2><p>有了頻道後，接下來就可以放套件放上去了。</p>
-<p>跟建立頻道一樣，建立一個 PEAR 套件也是需要制式的設定檔；只是 PEAR 官方給的設定檔規格實在是太複雜了，一般開發者可能還沒寫完設定檔就會先放棄 PEAR 了。</p>
-<p>有沒有什麼好工具可以協助我們呢？當然有！目前有兩套很強大也很方便的工具，分別是： <a href="http://phix-project.org/" target="_blank" rel="external">Phix</a> 及 <a href="http://c9s.blogspot.tw/" target="_blank" rel="external">c9s</a> 的 <a href="https://github.com/c9s/Onion" target="_blank" rel="external">Onion</a> 。</p>
-<p>筆者強力推薦大家使用 Onion ，因為它的設定檔較為簡單便捷，而且還能處理佈署專案時的套件相依性；再加上作者是台灣人，有任何疑問都可以直接到 GitHub 上請教他。</p>
-<p>註：原本筆者是使用 Phix 作為範例，不過有 c9s 的加持，筆者就改用 Onion 了；在這裡要特別感謝他。</p>
-<h3 id="建立套件架構">建立套件架構</h3><p>在 Onion 的說明檔裡已經提到如何製作 PEAR 套件了，這邊筆者僅做簡單的流程說明。</p>
-<p>首先我們要先建立一個套件的存放路徑，這個路徑是任意的，這裡筆者用 <code>/path/to/first_package</code> 為例。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir /path/to/first_package</span><br></pre></td></tr></table></figure>
-<p>接著在這個套件目錄下建立三個資料夾： <code>src</code> 、 <code>doc</code> 及 <code>tests</code> ，這三個資料夾是 Onion 最基本的要求。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/first_package</span><br><span class="line">mkdir src</span><br><span class="line">mkdir doc</span><br><span class="line">mkdir tests</span><br></pre></td></tr></table></figure>
-<p>現在我們可以在 <code>src</code> 資料夾裡建立我們的套件內容，這裡筆者先假設我們的套件命名空間為 <code>FirstPackage</code> ，其中包含了一個 <code>FirstClass</code> 類別，它的路徑就是 <code>src/FirstPackage/FirstClass.php</code> 。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir src/FirstPackage</span><br><span class="line">vi src/FirstPackage/FirstClass.php</span><br></pre></td></tr></table></figure>
-<p>當然這裡示範的套件內容是比較簡單的，實作上我們可能還會有更多類別或命令列程式等。往後有機會的話，筆者會再另文介紹 PEAR 套件製作與測試的相關方法，在這之前大家可以先參考其他 PEAR 套件的原始碼。</p>
-<h3 id="用_Onion_包裝套件">用 Onion 包裝套件</h3><p>接下來就是 Onion 最令人激賞的功能之一：利用簡單的 INI 設定檔來產生複雜的套件 XML 描述檔。</p>
-<p>繼續在 <code>/path/to/first_package</code> 下建立一個 <code>package.ini</code> 檔：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi package.ini</span><br></pre></td></tr></table></figure>
-<p>內容如下：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="title">[package]</span></span><br><span class="line"><span class="setting">name = <span class="value">FirstPackage</span></span></span><br><span class="line"><span class="setting">desc = <span class="value">My First Package</span></span></span><br><span class="line"><span class="setting">version = <span class="value"><span class="number">0.0</span>.<span class="number">1</span></span></span></span><br><span class="line"><span class="setting">author = <span class="value">yourusername &lt;yourusername@gmail.com&gt;</span></span></span><br><span class="line"><span class="setting">channel = <span class="value">yourusername.github.com/pear</span></span></span><br></pre></td></tr></table></figure>
-<p>這是 Onion 所要求最小的設定，詳細的設定方式可以參考<a href="https://github.com/c9s/Onion/blob/master/README.md#a-more-detailed-example" target="_blank" rel="external">官方說明</a> 。</p>
-<p>有了 <code>package.ini</code> 這個設定檔後，我們可以用以下指令來一次建立出套件的包裝檔：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">onion build --pear</span><br></pre></td></tr></table></figure>
-<p>成功的話，就會在 <code>/path/to/first_package</code> 下得到一個 <code>FirstPackage-0.0.1.tgz</code> 套件檔，它就是我們要放到頻道供使用者下載的檔案。</p>
-<h3 id="將套件包裝檔加入頻道">將套件包裝檔加入頻道</h3><p>接著我們就要用 Pirum 來將套件包裝檔加到頻道中，一樣在 <code>/path/to/first_package</code> 這個路徑下，執行以下指令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pirum add /path/to/pear_repository FirstPackage-<span class="number">0.0</span>.<span class="number">1</span>.tgz</span><br></pre></td></tr></table></figure>
-<p>這樣一來 Pirum 會幫我們分析套件內容，將它加到頻道中，並且更新頻道中的相關資訊。</p>
-<p>當然加入套件後，就得把更新的頻道內容上傳到 GitHub 上：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/pear_repository</span><br><span class="line">git add *</span><br><span class="line">git commit -m <span class="string">'add first pacakge'</span></span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure>
-<p>最後驗證一下套件是否上傳成功：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pear channel-update yourusername</span><br><span class="line">pear remote-list -c yourusername</span><br></pre></td></tr></table></figure>
-<p>正確無誤的話，應該就會看到以下訊息了：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Channel yourusername Available packages:</span><br><span class="line">==================================</span><br><span class="line">Package      Version</span><br><span class="line">FirstPackage -n/a-</span><br></pre></td></tr></table></figure>
-<p>現在就可以透過 <code>pear</code> 指令來線上安裝我們的套件：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pear install yourusername/FirstPackage-<span class="number">0.0</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>套件更新後也是相同的處理模式，請各位舉一反三自行實驗看看。</p>
-<p>當然這裡還有很多細節沒有提到，這點就留待往後介紹如何開發 PEAR 套件時再介紹。</p>
-<h2 id="給頻道一個專屬網域">給頻道一個專屬網域</h2><p>如果各位有自行管理的 DNS ，那麼我們可以讓自己的 PEAR 頻道有一個專屬的網域名稱。</p>
-<p>假設我們已經有 <code>yourusername.com</code> 這個網域名，而我們希望用 <code>pear.yourusername.com</code> 這個網域名稱來指向我們的頻道。</p>
-<p>第一步我們先在網域管理商的 DNS 管理畫面中新增一筆 <code>A</code> 記錄，主機名稱為 <code>pear</code> ， IP 則指向 <code>204.232.175.78</code> (參考自 <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages" target="_blank" rel="external">GitHub:Help - Setting up a custom domain with Pages</a> ) 。</p>
-<p>接著在 <code>/path/to/pear_repository</code> 下建立一個 <code>CNAME</code> 檔案，其內容如下：</p>
-<pre><code>pear<span class="class">.yourusername</span><span class="class">.com</span>
-</code></pre><p>然後參考前面的做法，將新增的 <code>CNAME</code> 檔案用 <code>git</code> 指令推上 GitHub 。</p>
-<p>接下來回頭修改 <code>/path/to/pear_repository/pirum.xml</code> ，將原來的 <code>yourusername.github.com/pear</code> 改成 <code>pear.yourusername.com</code> ：</p>
-<figure class="highlight xml"><figcaption><span>pirum.xml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">name</span>&gt;</span>pear.yourusername.com<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">summary</span>&gt;</span>My PEAR Channel<span class="tag">&lt;/<span class="title">summary</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">alias</span>&gt;</span>yourusername<span class="tag">&lt;/<span class="title">alias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://pear.yourusername.com<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最後再重新執行一次前面的步驟即可。</p>
-<p>視 DNS 更新的時間，大約一小時到一天後，頻道就可以用專屬網域名稱了。</p>
-<h2 id="結論">結論</h2><p>PEAR 在設計上或許沒有其他語言套件管理機制來得方便，但是利用 Pirum 及 Onion 可以幫我們處理掉大部份麻煩的事情。配合上 GitHub Pages 這個免費的網頁空間，我們就能夠方便建立出自己專屬的 PEAR 頻道。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -376,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -455,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -488,8 +407,10 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立頻道"><span class="nav-number">1.</span> <span class="nav-text">建立頻道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立_GitHub_Repository"><span class="nav-number">1.1.</span> <span class="nav-text">建立 GitHub Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立頻道內容"><span class="nav-number">1.2.</span> <span class="nav-text">建立頻道內容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用新建立的頻道"><span class="nav-number">2.</span> <span class="nav-text">使用新建立的頻道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加入新頻道"><span class="nav-number">2.1.</span> <span class="nav-text">加入新頻道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看頻道中的套件"><span class="nav-number">2.2.</span> <span class="nav-text">查看頻道中的套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新頻道資訊"><span class="nav-number">2.3.</span> <span class="nav-text">更新頻道資訊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#套件管理"><span class="nav-number">3.</span> <span class="nav-text">套件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立套件架構"><span class="nav-number">3.1.</span> <span class="nav-text">建立套件架構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用_Onion_包裝套件"><span class="nav-number">3.2.</span> <span class="nav-text">用 Onion 包裝套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#將套件包裝檔加入頻道"><span class="nav-number">3.3.</span> <span class="nav-text">將套件包裝檔加入頻道</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#給頻道一個專屬網域"><span class="nav-number">4.</span> <span class="nav-text">給頻道一個專屬網域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -504,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -526,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -536,6 +459,7 @@
 
   
   
+
   
     
     
@@ -565,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -734,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -764,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

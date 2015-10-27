@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,29 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="石頭成老大說他要為他的 mix-in 實作 part 2 ，我也想到了一些好玩的東西。記得很久之前我寫過一篇「 PHP 的 callback 虛擬型態」，這次就把它用在這裡。">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我也來實作 PHP mix-in 的概念 - Part 2">
 <meta property="og:url" content="http://jaceju.net/2007/03/14/166/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="石頭成老大說他要為他的 mix-in 實作 part 2 ，我也想到了一些好玩的東西。記得很久之前我寫過一篇「 PHP 的 callback 虛擬型態」，這次就把它用在這裡。">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我也來實作 PHP mix-in 的概念 - Part 2">
-<meta name="twitter:description" content="石頭成老大說他要為他的 mix-in 實作 part 2 ，我也想到了一些好玩的東西。記得很久之前我寫過一篇「 PHP 的 callback 虛擬型態」，這次就把它用在這裡。">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> 我也來實作 PHP mix-in 的概念 - Part 2 | 網站製作學習誌 </title>
 </head>
@@ -129,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -139,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -149,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -169,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -228,23 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="http://blog.roodo.com/rocksaying" target="_blank" rel="external">石頭成</a>老大說他要為他的 <a href="http://blog.roodo.com/rocksaying/archives/2817003.html" target="_blank" rel="external">mix-in</a> 實作 part 2 ，我也想到了一些好玩的東西。記得很久之前我寫過一篇「 <a href="http://www.jaceju.net/blog/archives/32" target="_blank" rel="external">PHP 的 callback 虛擬型態</a>」，這次就把它用在這裡。</p>
-<a id="more"></a>
-<p>首先我把原來的 Prototype 類別加上了可以接受 callback 虛擬型態的參數：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10;* &#23526;&#20316; mix-in &#27010;&#24565;&#10;*&#10;* &#21443;&#32771;&#10;* http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/&#10;* http://blog.roodo.com/rocksaying/archives/2817003.html&#10;* http://blog.roodo.com/jaceju/archives/2832709.html&#10;* http://blog.roodo.com/jaceju/archives/409709.html&#10;**/&#10;// &#21487;&#25509;&#21463; mix-in &#29289;&#20214;&#30340;&#25277;&#35937;&#39006;&#21029;&#10;abstract class Prototype&#10;&#123;&#10;    private function __set($name, $func)&#10;    &#123;&#10;        if (is_array($func)) &#123;&#10;            if (is_object($func[0]) || (is_string($func[0]) &#38;amp;&#38;amp; class_exists($func[0]))) &#123;&#10;                $this-&#62;$name = array ($func[0], $func[1]);&#10;            &#125;&#10;        &#125; else &#123;&#10;            $this-&#62;$name = $func;&#10;        &#125;&#10;    &#125;&#10;    private function __call($method, $args)&#10;    &#123;&#10;        if (is_array($this-&#62;$method)) &#123;&#10;            call_user_func_array($this-&#62;$method, $args);&#10;        &#125; elseif (is_string($this-&#62;$method)&#10;                &#38;amp;&#38;amp; class_exists($this-&#62;$method)&#10;                &#38;amp;&#38;amp; is_subclass_of($this-&#62;$method, &#39;MethodObject&#39;)) &#123;&#10;            $method_object = new $this-&#62;$method($this);&#10;            call_user_func_array(array ($method_object, &#39;run&#39;), $args);&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>然後把 MethodObject 的 doWork 抽象方法改命名為 run ，這樣感覺比較對味。 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;// mix-in &#26041;&#27861;&#30340;&#25277;&#35937;&#39006;&#21029;&#10;abstract class MethodObject&#10;&#123;&#10;    protected $object;&#10;    public function __construct($object = NULL)&#10;    &#123;&#10;        $this-&#62;object = $object;&#10;    &#125;&#10;    abstract function run();&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>而 ClassA 是一個普通的類別，擁有 method1 和 method2 兩個方法。 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class ClassA&#10;&#123;&#10;    public function method1($param)&#10;    &#123;&#10;        echo __CLASS__, &#34;\n&#34;;&#10;        echo &#34;param is &#34;, $param, &#34;\n&#34;;&#10;    &#125;&#10;    public function method2($param)&#10;    &#123;&#10;        echo __METHOD__, &#34;\n&#34;;&#10;        echo &#34;param is &#34;, $param, &#34;\n&#34;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>至於 ClassB 是繼承自 Prototype 類別，可以為它添油加醋；這裡我讓它保持清白之身就好。 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class ClassB extends Prototype&#10;&#123;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>ClassC 則繼承自 MethodObject ，當做是功能較複雜的函式物件。也就是說 ClassC 可以有自己的私有屬性或是私有方法，讓 run 方法過於龐大時，有重構的空間。 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class ClassC extends MethodObject&#10;&#123;&#10;    public function run()&#10;    &#123;&#10;        $n = func_num_args();&#10;        echo (1 == $n) ? func_get_arg(0) : &#39;&#39;, &#34;\n&#34;;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>最後就是測試程式碼了，可以看到 ClassB 生成的 $b 物件可以接受 callback 型態的陣列變數做為執行函式。 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;// &#28204;&#35430;&#29992;&#30340;&#31243;&#24335;&#30908;&#10;$a = new ClassA;&#10;$b = new ClassB;&#10;$b-&#62;method1 = array (&#39;ClassA&#39;, &#39;method1&#39;);&#10;$b-&#62;method2 = array ($a, &#39;method2&#39;);&#10;$b-&#62;method3 = &#39;ClassC&#39;;&#10;$b-&#62;method1(&#39;param1&#39;);&#10;$b-&#62;method2(&#39;param2&#39;);&#10;$b-&#62;method3(&#39;param3&#39;);</span><br></pre></td></tr></table></figure>
-<p>這樣一來，當 ClassB 需要某個方法，而 ClassA 已經有實作了，那麼我們就可以直接利用 ClassA 的實作。只是這樣程式交互的結果，也許會使得設計上出現很大的漏洞，使用上要特別注意。</p>
-<p>當然這只是概念性的實作而已，歡迎大家一起來討論看看。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -289,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -368,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -401,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -417,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -439,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -449,6 +459,7 @@
 
   
   
+
   
     
     
@@ -478,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -647,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -677,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

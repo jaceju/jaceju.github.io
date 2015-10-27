@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,36 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="今天跟 tokimeki 討論到 Bridge 模式的例子，這裡我做個簡單的記錄。
-假設我們有軟體 (Software) 會透過印表機 (Printer) 做列印輸出，而軟體有文字編輯器 (輸出文字) 與影像編輯器 (輸出影像) ，然後印表機則可分做雷射、噴墨及點陣式。
-在設計上，這兩者分別屬於不同的繼承體系，而 Software 又會利用到 Printer ，因此它們形成了 Bridge 關係，">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bridge 模式的簡單範例">
 <meta property="og:url" content="http://jaceju.net/2008/04/18/330/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="今天跟 tokimeki 討論到 Bridge 模式的例子，這裡我做個簡單的記錄。
-假設我們有軟體 (Software) 會透過印表機 (Printer) 做列印輸出，而軟體有文字編輯器 (輸出文字) 與影像編輯器 (輸出影像) ，然後印表機則可分做雷射、噴墨及點陣式。
-在設計上，這兩者分別屬於不同的繼承體系，而 Software 又會利用到 Printer ，因此它們形成了 Bridge 關係，">
-<meta property="og:image" content="http://jaceju.net/resources/bridge/PrinterSample.png">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bridge 模式的簡單範例">
-<meta name="twitter:description" content="今天跟 tokimeki 討論到 Bridge 模式的例子，這裡我做個簡單的記錄。
-假設我們有軟體 (Software) 會透過印表機 (Printer) 做列印輸出，而軟體有文字編輯器 (輸出文字) 與影像編輯器 (輸出影像) ，然後印表機則可分做雷射、噴墨及點陣式。
-在設計上，這兩者分別屬於不同的繼承體系，而 Software 又會利用到 Printer ，因此它們形成了 Bridge 關係，">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> Bridge 模式的簡單範例 | 網站製作學習誌 </title>
 </head>
@@ -136,7 +143,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -146,7 +153,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -156,7 +163,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -176,7 +183,8 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -235,25 +243,7 @@
       
 
       
-        <span itemprop="articleBody"><p>今天跟 <a href="http://blog.pixnet.net/HACGIS" target="_blank" rel="external">tokimeki</a> 討論到 Bridge 模式的例子，這裡我做個簡單的記錄。</p>
-<p>假設我們有軟體 (Software) 會透過印表機 (Printer) 做列印輸出，而軟體有文字編輯器 (輸出文字) 與影像編輯器 (輸出影像) ，然後印表機則可分做雷射、噴墨及點陣式。</p>
-<p>在設計上，這兩者分別屬於不同的繼承體系，而 Software 又會利用到 Printer ，因此它們形成了 Bridge 關係，如下圖： </p>
-<p><a href="/resources/bridge/PrinterSample.png"><img src="/resources/bridge/PrinterSample.png" alt="Bridge 範例"></a></p>
-<p>把幾個討論心得整理如下：</p>
-<ul>
-<li><p>由於 Printer 抽象類封裝了實作上的不同，因此 Software 的子類別不必瞭解 Printer 的實作，它們只要知道 Printer 提供哪些介面可用。這些子類別會依照自己的需要來組合這些介面，就算用不到也沒關係。</p>
-</li>
-<li><p>在 Software 的子類別可以加入屬於自己的特殊方法，因為它們通常會依場合直接被調用，所以這裡並不需要遵守 LSP 原則。</p>
-</li>
-<li><p>對 Printer 體系來說，它不需要知道誰來用它；但反過來 Software 體系因為需要 Printer 體系的支援，所以形成了單向耦合。</p>
-</li>
-<li><p>對 Software 體系來說，只要它需要新的功能，而且這些功能所需要的實作也在 Printer 抽象類支援的範圍之內，那麼它就可以直接調用 Printer 物件的方法，而不會影響 Printer 體系。</p>
-</li>
-<li><p>如果 Software 體系需要的新功能是 Printer 抽象類所沒有的，那麼還是可以在 Printer 抽象類裡加入新的方法，而實作則交給 Printer 的子類別完成。這樣的修改完全不會影響 Software 體系。 </p>
-</li>
-</ul>
-<p>更詳細的 Bridge 模式介紹可參考良葛格的「 <a href="http://caterpillar.onlyfun.net/Gossip/DesignPattern/BridgePattern.htm" target="_blank" rel="external">Design Pattern: Bridge 模式</a>」一文。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -298,19 +288,22 @@
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -377,13 +370,17 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -410,6 +407,8 @@
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -426,7 +425,8 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,7 +448,8 @@
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -458,6 +459,7 @@
 
   
   
+
   
     
     
@@ -487,24 +489,21 @@
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -656,29 +655,20 @@
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -686,15 +676,5 @@
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

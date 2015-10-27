@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,35 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="5 ways to speedup javascript
-5 個加速 JavaScript 執行速度的方法，節錄如下：
-use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA 也不錯。)minimize the number of .js files (減少 JS 檔案的引入次數，因為會引發多次的 HTTP 要求。)use profiler and timer">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[轉載] 5 個加速 JavaScript 執行速度的方法">
 <meta property="og:url" content="http://jaceju.net/2007/08/21/233/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="5 ways to speedup javascript
-5 個加速 JavaScript 執行速度的方法，節錄如下：
-use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA 也不錯。)minimize the number of .js files (減少 JS 檔案的引入次數，因為會引發多次的 HTTP 要求。)use profiler and timer">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[轉載] 5 個加速 JavaScript 執行速度的方法">
-<meta name="twitter:description" content="5 ways to speedup javascript
-5 個加速 JavaScript 執行速度的方法，節錄如下：
-use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA 也不錯。)minimize the number of .js files (減少 JS 檔案的引入次數，因為會引發多次的 HTTP 要求。)use profiler and timer">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [轉載] 5 個加速 JavaScript 執行速度的方法 | 網站製作學習誌 </title>
 </head>
@@ -135,7 +143,7 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -145,7 +153,7 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -155,7 +163,7 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -175,7 +183,8 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -234,11 +243,7 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
       
 
       
-        <span itemprop="articleBody"><p><a href="http://www.whenpenguinsattack.com/2007/08/20/5-ways-to-speedup-javascript/" target="_blank" rel="external">5 ways to speedup javascript</a></p>
-<p>5 個加速 JavaScript 執行速度的方法，節錄如下：</p>
-<li><br><br><strong>use a compressor</strong> (使用壓縮器，例如 <a href="http://code.google.com/p/jsmin-php/" target="_blank" rel="external">JSMin</a> ；據說對岸高手寫的 <a href="http://jindw.spaces.live.com/blog/cns!4D0B98F5F0C51177!114.entry" target="_blank" rel="external">JSA</a> 也不錯。)<br></li><br><li><br><br><strong>minimize the number of .js files</strong> (減少 JS 檔案的引入次數，因為會引發多次的 HTTP 要求。)<br></li><br><li><br><br><strong>use profiler and timer tools</strong> (用側錄及計時工具來分析效能，推薦使用 <a href="http://www.getfirebug.com/" target="_blank" rel="external">Firebug</a> 。)<br></li><br><li><br><br><strong>asynchronize your code</strong> (以非同步來執行程式碼；大意是不要直接在頁面解析時就執行程式，而是利用 setTimeout 來背景執行。)<br></li><br><li><br><br><strong>cache DOM variables</strong> (快取 DOM 變數；簡單來說就是把類似 document.getElementById 取到的節點放在變數裡，而不是每次都要再執行一次。)<br></li>
-
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -283,19 +288,22 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -362,13 +370,17 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -395,6 +407,8 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -411,7 +425,8 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -433,7 +448,8 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -443,6 +459,7 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
 
   
   
+
   
     
     
@@ -472,24 +489,21 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -641,29 +655,20 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -671,15 +676,5 @@ use a compressor (使用壓縮器，例如 JSMin ；據說對岸高手寫的 JSA
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

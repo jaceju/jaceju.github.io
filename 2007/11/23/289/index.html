@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,47 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="在宗董的 Blog 看到這篇：交換兩個變數 (不使用 tmp 變數) 程式寫法，本來想留言，不過宗董的 Blog 系統似乎有問題。
-宗董的方法是這樣的：
-$a ^= $b;&amp;#10;$b ^= $a;&amp;#10;$a ^= $b;
-我是想說既然是用 PHP 了，就應該好好善用一下 PHP 的原生語法：
-list($a, $b) = array($b, $a);
-搞定~~
-這個是從 PHP 程式設計專">
+
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PHP] 交換兩個變數 (不使用 tmp 變數) 程式寫法">
 <meta property="og:url" content="http://jaceju.net/2007/11/23/289/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="在宗董的 Blog 看到這篇：交換兩個變數 (不使用 tmp 變數) 程式寫法，本來想留言，不過宗董的 Blog 系統似乎有問題。
-宗董的方法是這樣的：
-$a ^= $b;&amp;#10;$b ^= $a;&amp;#10;$a ^= $b;
-我是想說既然是用 PHP 了，就應該好好善用一下 PHP 的原生語法：
-list($a, $b) = array($b, $a);
-搞定~~
-這個是從 PHP 程式設計專">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[PHP] 交換兩個變數 (不使用 tmp 變數) 程式寫法">
-<meta name="twitter:description" content="在宗董的 Blog 看到這篇：交換兩個變數 (不使用 tmp 變數) 程式寫法，本來想留言，不過宗董的 Blog 系統似乎有問題。
-宗董的方法是這樣的：
-$a ^= $b;&amp;#10;$b ^= $a;&amp;#10;$a ^= $b;
-我是想說既然是用 PHP 了，就應該好好善用一下 PHP 的原生語法：
-list($a, $b) = array($b, $a);
-搞定~~
-這個是從 PHP 程式設計專">
+<meta name="twitter:description">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [PHP] 交換兩個變數 (不使用 tmp 變數) 程式寫法 | 網站製作學習誌 </title>
 </head>
@@ -147,7 +143,7 @@ list($a, $b) = array($b, $a);
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -157,7 +153,7 @@ list($a, $b) = array($b, $a);
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -167,7 +163,7 @@ list($a, $b) = array($b, $a);
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -187,7 +183,8 @@ list($a, $b) = array($b, $a);
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -246,14 +243,7 @@ list($a, $b) = array($b, $a);
       
 
       
-        <span itemprop="articleBody"><p>在宗董的 Blog 看到這篇：<a href="http://plog.longwin.com.tw/programming/2007/11/23/variable_swap_programming_2007" target="_blank" rel="external">交換兩個變數 (不使用 tmp 變數) 程式寫法</a>，本來想留言，不過宗董的 Blog 系統似乎有問題。</p>
-<p>宗董的方法是這樣的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$a ^= $b;&#10;$b ^= $a;&#10;$a ^= $b;</span><br></pre></td></tr></table></figure>
-<p>我是想說既然是用 PHP 了，就應該好好善用一下 PHP 的原生語法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list($a, $b) = array($b, $a);</span><br></pre></td></tr></table></figure>
-<p>搞定~~</p>
-<p>這個是從 <a href="http://www.pearsoned.com.tw/chinese_show_title.asp?bkid=9867910672" target="_blank" rel="external">PHP 程式設計專家必備手冊</a>一書看來的。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -298,19 +288,22 @@ list($a, $b) = array($b, $a);
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -377,13 +370,17 @@ list($a, $b) = array($b, $a);
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -410,6 +407,8 @@ list($a, $b) = array($b, $a);
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -426,7 +425,8 @@ list($a, $b) = array($b, $a);
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -448,7 +448,8 @@ list($a, $b) = array($b, $a);
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -458,6 +459,7 @@ list($a, $b) = array($b, $a);
 
   
   
+
   
     
     
@@ -487,24 +489,21 @@ list($a, $b) = array($b, $a);
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -656,29 +655,20 @@ list($a, $b) = array($b, $a);
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -686,15 +676,5 @@ list($a, $b) = array($b, $a);
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

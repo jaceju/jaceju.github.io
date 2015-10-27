@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,7 +17,12 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
 
 
 
@@ -27,9 +31,12 @@
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
 
 
 
@@ -40,56 +47,36 @@
 
 
 
+
+
+
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="隨著 jQuery 1.2.1 的推出，一個 Interface 的後繼者也出現了，它叫做 jQuery UI 。 
-jQuery UI: Interactions and Widgets
-小試了一下它的 DEMO ，還是有一些 Bug ，不過整體來說還是非常不錯。
-主要有以下的功能：
 
-Draggables
-Droppables (有 Bug) 
-Sortables
-Selectables
-Re">
+
+
+
+<meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JavaScript] jQuery UI 1.0 釋出">
 <meta property="og:url" content="http://jaceju.net/2007/09/17/259/index.html">
 <meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="隨著 jQuery 1.2.1 的推出，一個 Interface 的後繼者也出現了，它叫做 jQuery UI 。 
-jQuery UI: Interactions and Widgets
-小試了一下它的 DEMO ，還是有一些 Bug ，不過整體來說還是非常不錯。
-主要有以下的功能：
-
-Draggables
-Droppables (有 Bug) 
-Sortables
-Selectables
-Re">
+<meta property="og:description">
 <meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JavaScript] jQuery UI 1.0 釋出">
-<meta name="twitter:description" content="隨著 jQuery 1.2.1 的推出，一個 Interface 的後繼者也出現了，它叫做 jQuery UI 。 
-jQuery UI: Interactions and Widgets
-小試了一下它的 DEMO ，還是有一些 Bug ，不過整體來說還是非常不錯。
-主要有以下的功能：
+<meta name="twitter:description">
 
-Draggables
-Droppables (有 Bug) 
-Sortables
-Selectables
-Re">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
-
-
 
   <title> [JavaScript] jQuery UI 1.0 釋出 | 網站製作學習誌 </title>
 </head>
@@ -156,7 +143,7 @@ Re">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首頁
           </a>
@@ -166,7 +153,7 @@ Re">
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             歸檔
           </a>
@@ -176,7 +163,7 @@ Re">
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             標籤
           </a>
@@ -196,7 +183,8 @@ Re">
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
@@ -255,27 +243,7 @@ Re">
       
 
       
-        <span itemprop="articleBody"><p>隨著 jQuery 1.2.1 的推出，一個 <a href="http://interface.eyecon.ro/" target="_blank" rel="external">Interface</a> 的後繼者也出現了，它叫做 <a href="http://ui.jquery.com/" target="_blank" rel="external">jQuery UI</a> 。 </p>
-<p><a href="http://jquery.com/blog/2007/09/17/jquery-ui-interactions-and-widgets/" target="_blank" rel="external">jQuery UI: Interactions and Widgets</a></p>
-<p>小試了一下它的 DEMO ，還是有一些 Bug ，不過整體來說還是非常不錯。</p>
-<p>主要有以下的功能：</p>
-<ul>
-<li><a href="http://docs.jquery.com/UI/Draggables" target="_blank" rel="external">Draggables</a></li>
-<li><a href="http://docs.jquery.com/UI/Droppables" target="_blank" rel="external">Droppables</a> (有 Bug) </li>
-<li><a href="http://docs.jquery.com/UI/Sortables" target="_blank" rel="external">Sortables</a></li>
-<li><a href="http://docs.jquery.com/UI/Selectables" target="_blank" rel="external">Selectables</a></li>
-<li><a href="http://docs.jquery.com/UI/Resizables" target="_blank" rel="external">Resizables</a></li>
-<li><a href="http://docs.jquery.com/UI/Accordion" target="_blank" rel="external">Accordion</a></li>
-<li><a href="http://docs.jquery.com/Plugins/Calendar" target="_blank" rel="external">Calendar</a> (有 Bug) </li>
-<li><a href="http://docs.jquery.com/UI/Dialog" target="_blank" rel="external">Dialog</a></li>
-<li><a href="http://docs.jquery.com/UI/Slider" target="_blank" rel="external">Slider</a></li>
-<li><a href="http://docs.jquery.com/Plugins/Tablesorter" target="_blank" rel="external">Tablesorter</a></li>
-<li><a href="http://docs.jquery.com/UI/Tabs" target="_blank" rel="external">Tabs</a></li>
-<li><a href="http://docs.jquery.com/UI/Magnifier" target="_blank" rel="external">Magnifier</a></li>
-<li><a href="http://docs.jquery.com/UI/Shadow" target="_blank" rel="external">Shadow</a></li>
-</ul>
-<p>文件在<a href="http://docs.jquery.com/UI" target="_blank" rel="external">這裡</a>，然後應用的 DEMO 在<a href="http://dev.jquery.com/view/trunk/plugins/ui/apps/gallery_advanced/" target="_blank" rel="external">這裡</a>。 </p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -320,19 +288,22 @@ Re">
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
       </div>
 
       
@@ -399,13 +370,17 @@ Re">
             
               <span class="links-of-author-item">
                 <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
                 </a>
               </span>
             
@@ -432,6 +407,8 @@ Re">
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
+              
+            
             
               <p class="post-toc-empty">此文章未包含目錄</p>
             
@@ -448,7 +425,8 @@ Re">
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2015</span>
@@ -470,7 +448,8 @@ Re">
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -480,6 +459,7 @@ Re">
 
   
   
+
   
     
     
@@ -509,24 +489,21 @@ Re">
 
 
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
@@ -678,29 +655,20 @@ Re">
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
@@ -708,15 +676,5 @@ Re">
   
   
 
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>
