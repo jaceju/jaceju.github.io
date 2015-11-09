@@ -179,150 +179,129 @@ OK (1 test, 1 assertion)
 
 ### 實作 Page Objects 模式
 
-首先在 `composer.json` 中加入：
+雖然 Page Objects 模式可以自行實作，但為了省下一些自行撰寫的時間，我特地寫了一個 [goez/mink-page-objects](https://github.com/jaceju/mink-page-objects) 供大家使用。
 
-```json
-    "autoload": {
-        "psr-4": {
-            "PageObject\\": "tests/PageObject/"
-        }
-    }
+首先在專案目錄下執行：
+
+```bash
+$ composer require goez/mink-page-objects --dev
 ```
 
-接著建立 `tests/PageObject` 目錄，並執行 `composer dump` 。
-
-新增 `tests/PageObject/Page.php` 這個抽象類例，主要是封裝 Mink 的 Session 物件及 Page 物件，並讓後面繼承的頁面類別可以復用：
+建立一個 `tests/bootstrap.php` ，內容如下：
 
 ```php
 <?php
-namespace PageObject;
+/** @var Composer\Autoload\ClassLoader $loader */
+$loader = require __DIR__ . '/../vendor/autoload.php';
+$loader->addPsr4('Google\\', __DIR__ . '/Google/');
+```
 
-use Behat\Mink\Session;
+將 `phpunit.xml` 中的 `vendor/autoload.php` ，改為 `tests/bootstrap.php` 。
 
-abstract class Page
+### 將頁面細節封裝在頁面行為功能裡
+
+接下來先建立 `tests/Google/Home.php` 檔；這是 Google 首頁類別，它繼承抽象的 `Page` 類別，並提供一個 `search` 方法：
+
+```php
+<?php
+
+namespace Google;
+
+use Goez\PageObjects\Page;
+
+class Home extends Page
 {
-    /**
-     * @var Session
-     */
-    protected $session;
+    protected $parts = [
+        'SearchForm' => ['css' => 'form'],
+    ];
 
-    /**
-     * @var string
-     */
-    protected $url = 'http://localhost/';
-
-    /**
-     * @param Session $session
-     * @param string $url
-     */
-    public function __construct(Session $session, $url = '')
+    public function search($keyword)
     {
-        $this->session = $session;
-        if (filter_var($url, FILTER_VALIDATE_URL)) {
-            $this->url = $url;
-        }
-        $this->session->visit($this->url);
-    }
-
-    /**
-     * @param $name
-     * @return Page
-     */
-    public function loadPage($name)
-    {
-        $className = 'PageObject\\' . $name;
-        if (class_exists($className)) {
-            return new $className($this->session);
-        }
-        return null;
+        return $this->getPart(SearchForm::class)
+            ->search($keyword);
     }
 }
 ```
 
-### 將頁面細節封裝在頁面行為功能裡
-
-接下來先建立 `tests/PageObject/GoogleHome.php` 檔；這是 Google 首頁類別，它繼承抽象的 `Page` 類別，並提供一個 `search` 方法：
+接下來我建立一個 `tests/Google/SearchForm.php` ，它主要是封裝搜尋的操作細節：
 
 ```php
 <?php
-namespace PageObject;
 
-class GoogleHome extends Page
+namespace Google;
+
+use Goez\PageObjects\Part;
+
+class SearchForm extends Part
 {
-    protected $url = 'https://www.google.com';
-
     /**
      * @param $keyword
-     * @return GoogleSearchResult
+     * @return SearchResult
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
     public function search($keyword)
     {
-        $page = $this->session->getPage();
-        $page->fillField('q', $keyword);
-        $page->find('css', 'form')->submit();
+        $this->element->fillField('q', $keyword);
+        $this->element->submit();
 
-        return $this->loadPage('GoogleSearchResult');
+        return $this->createPage(SearchResult::class);
     }
 }
 ```
 
 這裡，我把原來輸入關鍵字並送出表單的 UI 操作，封裝在 `search` 方法中，並回傳一個搜尋結果頁面物件。
 
-再建立 `tests/PageObject/GoogleSearchResult.php` 檔，它主要是封裝搜尋結果頁。
+再建立 `tests/Google/SearchResult.php` 檔，它主要是封裝搜尋結果頁。
 
 ```php
 <?php
-namespace PageObject;
 
-use PHPUnit_Framework_Assert as Assert;
+namespace Google;
 
-class GoogleSearchResult extends Page
+use Goez\PageObjects\Page;
+
+class SearchResult extends Page
 {
-    /**
-     * @param $text
-     */
-    public function shouldContains($text)
-    {
-        $page = $this->session->getPage();
-        $result = $page->getText();
-        Assert::assertContains($text, $result);
-    }
+
 }
 ```
-
-我在 `GoogleSearchResult` 類別的 `shouldContains` 方法中加入斷言 (assertion) ，這是為了讓外部的測試案例可以用更語意化的方式來使用這個類別，是一種 `Tell Don't Ask` 的實現。
 
 最後就可以把原來的測試案例改用新的頁面類別來重寫了：
 
 ```php
 <?php
+
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Session;
-use PageObject\GoogleHome;
+use Goez\PageObjects\Context;
+use Goez\PageObjects\Helper\PhantomJSRunner;
+use Google\Home;
 
 class GoogleSearchTest extends PHPUnit_Framework_TestCase
 {
+    // 自動啟動 phantomjs
+    use PhantomJSRunner;
+
     public function testSearchWithKeyword()
     {
-        // 使用 PhantomJS 當做 Driver
         $driver = new Selenium2Driver('phantomjs');
 
-        // 建立一個 Session 物件來控制瀏覧器
         $session = new Session($driver);
         $session->start();
 
-        // 瀏覽 Google 首頁
-        $homePage = new GoogleHome($session);
+        $context = new Context($session, [
+            'baseUrl' => 'https://www.google.com',
+        ]);
 
-        // 搜尋關鍵字並驗證搜尋結果是否包含預期的文字
-        $homePage->search('Jace Ju')
-            ->shouldContains('網站製作學習誌');
+        $context->createPage(Home::class)
+            ->open()
+            ->search('Jace Ju')
+            ->shouldContainText('網站製作學習誌');
     }
 }
 ```
 
-這麼一來，在測試案例中就可以清楚地用頁面物件的行為去描述實際的需求，而不是落在操作 UI 的思維裡。
+這麼一來，在測試案例中就可以清楚地用頁面物件的行為去描述實際的需求，而不是落在操作 UI 的思維裡。讓外部的測試案例可以用更語意化的方式來使用這個類別，是一種 `Tell Don't Ask` 的實現。
 
 ## 總結
 
