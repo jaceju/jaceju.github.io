@@ -51,7 +51,7 @@
 <meta property="og:site_name" content="網站製作學習誌">
 <meta property="og:description" content="不知道你有沒有在開發 PHP 程式的過程中，測試過需要使用 anonymous function 或 closure 的函式或類別方法？我在開發自己的函式庫時，就遇到了需要測試 closure 是否被正確調用的問題。
 在解決幾個問題後，我發現其實做法並不難，所以接下來我就來介紹幾個測試 closure 的方式。">
-<meta property="og:updated_time" content="2015-11-09T17:25:44.000Z">
+<meta property="og:updated_time" content="2015-11-09T17:28:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 PHPUnit 中測試需要 closure 的函式">
 <meta name="twitter:description" content="不知道你有沒有在開發 PHP 程式的過程中，測試過需要使用 anonymous function 或 closure 的函式或類別方法？我在開發自己的函式庫時，就遇到了需要測試 closure 是否被正確調用的問題。
@@ -266,7 +266,7 @@
 <p>但我只是要確認目標物件有被正確傳入 closure 中，所以應該要驗證目標物件的類別是 <code>Example</code> 就可以了。我們可以直接在 closure 中使用 <code>$this</code> 來呼叫驗證方法，因為這時的 <code>$this</code> 是指向測試案例的物件。所以測試就可以寫成：</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testRunClosure</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$example</span> = <span class="keyword">new</span> Example();</span><br><span class="line"></span><br><span class="line">    <span class="variable">$example</span>-&gt;runClosure(<span class="function"><span class="keyword">function</span> <span class="params">(<span class="variable">$target</span>)</span> </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;assertInstanceOf(Example::class, <span class="variable">$target</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>像這樣的場合就不需要使用 spy 物件了。</p>
-<h2 id="驗證使用_bindTo(目標物件)_的_closure">驗證使用 bindTo(目標物件) 的 closure</h2><p>如果在待測目標物件的方法裡，使用 <code>Closure::bindTo</code> 這個方法來重新定義 <code>$this</code> 時，該怎麼測試呢？例如：</p>
+<h2 id="驗證使用_bindTo_的_closure">驗證使用 bindTo 的 closure</h2><p>如果在待測目標物件的方法裡，使用 <code>Closure::bindTo</code> 這個方法來重新定義 <code>$this</code> 時，該怎麼測試呢？例如：</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">runClosure</span><span class="params">(Closure <span class="variable">$closure</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$cb</span> = <span class="variable">$closure</span>-&gt;bindTo(<span class="variable">$this</span>);</span><br><span class="line">    <span class="variable">$cb</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意，這時候 <code>$cb</code> 並不是用注入的參數，而是使用執行時期的 context (也就是 <code>$this</code> ) 來指向目標物件；這也使得我們不能在測試中直接用 <code>$this</code> 來呼叫驗證方法，必須另尋出路。</p>
 <p>所幸 PHP 的 closure 還提供了一個 <code>use</code> 的語法，讓我們可以把外部變數帶入 closure 中。但它不能直接帶入 <code>$this</code> ，所以必須換個名字。最後測試就可以改成：</p>
@@ -434,7 +434,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#範例"><span class="nav-number">1.</span> <span class="nav-text">範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的問題"><span class="nav-number">2.</span> <span class="nav-text">遇到的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注入_spy_物件來驗證"><span class="nav-number">3.</span> <span class="nav-text">注入 spy 物件來驗證</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#驗證注入目標物件的_closure"><span class="nav-number">4.</span> <span class="nav-text">驗證注入目標物件的 closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#驗證使用_bindTo(目標物件)_的_closure"><span class="nav-number">5.</span> <span class="nav-text">驗證使用 bindTo(目標物件) 的 closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#總結"><span class="nav-number">6.</span> <span class="nav-text">總結</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#範例"><span class="nav-number">1.</span> <span class="nav-text">範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的問題"><span class="nav-number">2.</span> <span class="nav-text">遇到的問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注入_spy_物件來驗證"><span class="nav-number">3.</span> <span class="nav-text">注入 spy 物件來驗證</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#驗證注入目標物件的_closure"><span class="nav-number">4.</span> <span class="nav-text">驗證注入目標物件的 closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#驗證使用_bindTo_的_closure"><span class="nav-number">5.</span> <span class="nav-text">驗證使用 bindTo 的 closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#總結"><span class="nav-number">6.</span> <span class="nav-text">總結</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
