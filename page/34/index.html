@@ -189,6 +189,90 @@
             
             
               
+                <a class="post-title-link" href="/2007/09/20/261/" itemprop="url">
+                  初探 Zend_Db_Table Relationships (一)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-20T00:00:00+08:00" content="2007-09-20">
+              2007-09-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/20/261/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/20/261/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>早上四點半就醒了…睡不著，想說研究一下 Zend Framework DB 一對多的關連。先前一直搞不定其中的關係，沒想到簡單玩了一下，竟然就搞定了 (可見手冊我根本就沒看懂…Orz) 。</p>
+<p>這裡記一下，以免之後又忘記了。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/09/20/261/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2007/09/19/260/" itemprop="url">
                   [Web] 連結分享
                 </a>
@@ -1068,123 +1152,6 @@
 
 
     
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2007/09/10/250/" itemprop="url">
-                  [Web] 連結分享
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2007-09-10T00:00:00+08:00" content="2007-09-10">
-              2007-09-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2007/09/10/250/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/10/250/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <a id="more"></a>
-<h2 id="PHP">PHP</h2><li>
-
-<p><a href="http://www.colder.ch/news/08-24-2007/28/late-static-bindings-expl.html" target="_blank" rel="external">Late Static Bindings Explained</a></p>
-<p>這個功能會出現在 PHP6 上，不過也可能會在 PHP5 的新版本實作出來。簡單說明一下：</p>
-<p>以往我們在繼承 Class 後，是不可能覆寫 (override) static method 的，例如： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;    public static function test()&#10;    &#123;&#10;        self::who();&#10;    &#125;&#10;&#125;&#10;class B extends A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;&#125;&#10;B::test(); // A</span><br></pre></td></tr></table></figure>
-<p>在 PHP6 裡提供了一個 static 關鍵字，用來表示繼承後的類別 (self 保留給目前的類別使用) ： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;    public static function test()&#10;    &#123;&#10;        static::who();&#10;    &#125;&#10;&#125;&#10;class B extends A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;&#125;&#10;B::test(); // B</span><br></pre></td></tr></table></figure>
-<p>看起來相當方便，就是不知道實際用起來如何了。<br></p></li><p></p>
-<ul>
-<li><a href="http://elizabethmariesmith.com/2007/09/08/perverting-windows-with-php/" target="_blank" rel="external">Perverting windows with PHP</a></li>
-</ul>
-<p>介紹一些 PHP 在 Windows 上的 Solution ，也包含 <a href="http://winbinder.org/" target="_blank" rel="external">Winbinder</a> 。 </p>
-<h2 id="JavaScript">JavaScript</h2><ul>
-<li><a href="http://blog.yoren.info/2007/09/09/475/" target="_blank" rel="external"> [jQuery] 依連結的檔案類型秀出圖示</a></li>
-</ul>
-<p>這也是很常用的功能， <a href="http://blog.yoren.info/" target="_blank" rel="external">yoren</a> 也解釋得很詳細喔。</p>
-<h2 id="SQL">SQL</h2><ul>
-<li><a href="http://www.khankennels.com/blog/index.php/archives/2007/04/20/getting-joins/" target="_blank" rel="external">“Getting” Joins</a></li>
-</ul>
-<p>用圖形來表示 SQL 中的 JOIN 語法，如果搞不清楚 INNER JOIN 、 OUTER JOIN 或 LEFT JOIN 等關係時，不妨參考看看。 </p>
-<ul>
-<li><a href="http://www.databasecolumn.com/" target="_blank" rel="external">The Database Column</a></li>
-</ul>
-<p>一個新的 Blog ，專門介紹 Database 相關資訊。</p>
-<ul>
-<li><a href="http://postgresql-chinese.blogspot.com/" target="_blank" rel="external">PostgreSQL ::國際中文社群網誌::</a></li>
-</ul>
-<p>這個應該不用多說了吧，有用 PostgreSQL 的話應該常逛。 :)</p>
-<h2 id="Other">Other</h2><ul>
-<li><a href="http://www.smashingmagazine.com/2007/09/10/20-alternate-ways-to-focus-on-users/" target="_blank" rel="external">20 (Alternate) Ways to Focus on Users</a></li>
-</ul>
-<p>我覺得這篇文章是「如何設計好網站」的進階濃縮版本。然後我的感想 (也可以說是經驗) 是：如果這個網站連你自己都不想用，那就別指望客戶會掏錢給你。 </p>
-<p>註：不過世事無絕對，就是有那種天兵客戶願意花錢叫你做一些你想砸電腦的功能。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1227,7 +1194,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">585</span>
+              <span class="site-state-item-count">586</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

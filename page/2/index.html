@@ -189,6 +189,94 @@
             
             
               
+                <a class="post-title-link" href="/2015/05/23/skilltree-tdd-2/" itemprop="url">
+                  自動測試與 TDD 實務開發 - 上課心得 (中)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2015-05-23T16:19:43+08:00" content="2015-05-23">
+              2015-05-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/23/skilltree-tdd-2/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/23/skilltree-tdd-2/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>曾經有個工程師對著已經上線的網站說：「別說使用者不曉得這個系統是怎麼運作的，其實已經接手那麼久的我也不知道。」</p>
+<p>如果你對這句話心有戚戚焉的話，那你真的不孤單。其實有很多維護維護前人程式碼的工程師在在接到新的需求而去修改程式碼時，常常是很戰戰競競的，然後辦公室裡就會響起這樣的聲音：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#12300;&#25105;&#35352;&#24471;&#21069;&#19968;&#20491;&#24037;&#31243;&#24107;&#35498;&#36889;&#37002;&#21152;&#24190;&#34892;&#31243;&#24335;&#30908;&#23601;&#21487;&#20197;&#20102;&#65292;&#20320;&#35258;&#24471;&#21602;&#65311;&#12301;&#10;&#12300;&#25105;&#30452;&#35258;&#36889;&#27171;&#25913;&#26371;&#20986;&#21839;&#38988;...&#26377;&#29872;&#22659;&#35731;&#25105;&#20808;&#28204;&#35430;&#30475;&#30475;&#21966;&#65311;&#12301;&#10;&#12300;&#20808;&#19981;&#31649;&#65292;&#24460;&#22825;&#27963;&#21205;&#35201;&#19978;&#20102;&#65292;&#20320;&#20808;&#25913;&#23436;&#35731;&#23427;&#19978;&#32218;&#24460;&#20877;&#35498;&#12290;&#12301;&#10;&#12300;&#27794;&#26377;&#28204;&#35430;&#30340;&#35441;...&#12301;&#10;&#12300;&#38281;&#22068;&#65281;&#24555;&#21435;&#25913;&#12290;&#12301;&#10;&#19981;&#20037;&#24460;...&#10;&#12300;&#24920;&#20102;&#65281;&#35330;&#21934;&#20986;&#22823;&#21839;&#38988;&#20102;&#65281;&#20320;&#21487;&#20197;&#20808;&#36996;&#21407;&#21407;&#20358;&#30340;&#31243;&#24335;&#30908;&#21966;&#65311;&#12301;&#10;&#12300;&#19981;&#23565;&#21568;&#65281;&#25105;&#25913;&#36889;&#37002;&#24590;&#40636;&#26371;&#35731;&#37027;&#35041;&#20986;&#37679;&#65311;&#12301;&#10;&#21448;&#36942;&#20102;&#19968;&#26371;&#20818;...&#10;&#12300;&#20320;&#26377;&#36996;&#21407;&#21966;&#65311;&#65281;&#25972;&#20491;&#35330;&#21934;&#36039;&#26009;&#22823;&#20098;&#20102;&#21568;&#65281;&#20320;&#19968;&#23450;&#26377;&#21205;&#21040;&#20160;&#40636;&#26481;&#35199;&#20102;&#65281;&#12301;&#10;&#12300;&#25105;&#20840;&#36996;&#21407;&#20102;&#65281;&#29694;&#22312;&#36305;&#30340;&#26159;&#25105;&#27794;&#25913;&#36942;&#21069;&#30340;&#29256;&#26412;&#65281;&#12301;&#10;&#12300;&#19981;&#31649;&#65281;&#21152;&#29677;&#20462;&#22909;&#23427;&#65281;&#12301;&#10;&#12300;&#25105;&#19981;&#23601;&#35498;&#27794;&#28204;&#35430;&#30340;&#35441;&#26371;&#26377;&#21839;&#38988;&#21966;&#65281;&#65311;&#28858;&#20160;&#40636;&#19981;&#32893;&#65281;&#65311;&#12301;&#10;&#12300;&#20320;&#32769;&#38342;&#25105;&#32769;&#38342;&#65311;&#20877;&#38752;&#26479;&#35430;&#35430;&#30475;&#65281;&#12301;&#10;&#19977;&#22825;&#24460;...&#10;&#12300;&#22816;&#20102;&#65281;&#25294;&#26479;&#36208;&#65281;&#25105;&#19981;&#24819;&#20877;&#25913;&#36889;&#20491;&#31995;&#32113;&#20102;&#65281; (&#25684;&#26479;&#23376;) &#12301;</span><br></pre></td></tr></table></figure>
+<p>假設今天有時間讓你調整這個系統，在不知道線上系統整體如何運作的狀況下，你會怎麼讓它容易被維護與增添新功能呢？</p>
+<p>上週所介紹的<a href="http://jaceju.net/2015/05/17/skilltree-tdd/">單元測試</a>其實還沒辦法可以讓我們立刻套用在這樣的系統上，所以本週課程的重點就在：如何為已經上線的 legacy code 加上測試。</p>
+<p>為了達成這個目標，講師介紹了兩個招式： Web Testing 與 Refactoring 。以下我就以我的方式來介紹我所學到的心得。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/23/skilltree-tdd-2/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2015/05/17/skilltree-tdd/" itemprop="url">
                   自動測試與 TDD 實務開發 - 上課心得 (上)
                 </a>
@@ -934,89 +1022,6 @@
 
 
     
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2014/02/21/about-scrollspy/" itemprop="url">
-                  ScrollSpy 簡介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2014-02-21T11:16:00+08:00" content="2014-02-21">
-              2014-02-21
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2014/02/21/about-scrollspy/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/02/21/about-scrollspy/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>在 Single Page Design 中，我們常會把落落長的頁面分成幾個區塊，然後在上方或側邊選單中以這些區塊的標題來做為選單項目。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/02/21/about-scrollspy/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1059,7 +1064,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">585</span>
+              <span class="site-state-item-count">586</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
