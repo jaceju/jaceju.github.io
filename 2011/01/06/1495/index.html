@@ -57,7 +57,7 @@
 而且有的時候，我們也想讓程式碼能隨著我們觀念的增長，以適應未來的變化；今天我們會覺得這樣的寫法很讚，但明天可能又會學到更好的寫法，重構就能給我們改變程">
 <meta property="og:image" content="http://jaceju.net/resources/refactoring/form-template.png">
 <meta property="og:image" content="http://jaceju.net/resources/refactoring/ok-template.png">
-<meta property="og:updated_time" content="2016-02-02T07:15:45.000Z">
+<meta property="og:updated_time" content="2016-02-02T07:31:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重構實例介紹 – 分析篇">
 <meta name="twitter:description" content="重構是什麼？這問題其實真的很難回答。
@@ -333,7 +333,7 @@
 <p>另外 View 應該是直接輸出 Model 的資料，或是透過 View Helper 或樣版語法來處理資料的呈現；但是在 step3Action() 方法中，卻因為 View 需要轉換資料列欄位值的名稱，而呼叫了 IndexController 類別的 buildOptionString() 方法；這使得 View 層不適當地依賴了 Controller 層，造成程式碼維護上的困難。</p>
 <p>而且名稱對應表也必須透過 IndexController 類別來載入，這使得我們在其他 Controller 中必須重複貼上載入檔案的程式碼，這也是一個可以改進的地方。</p>
 <p>下一篇，我們就來針對這些問題一一重構吧！</p>
-<p>繼續閱讀：<a href="http://www.jaceju.net/blog/archives/1501" target="_blank" rel="external">重構實例介紹 - 實戰篇</a></p>
+<p>繼續閱讀：<a href="http://jaceju.net/2011/01/06/1501/">重構實例介紹 - 實戰篇</a></p>
 </span>
       
     </div>
