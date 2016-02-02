@@ -1,242 +1,7 @@
-<!doctype html>
-<html class="theme-next use-motion ">
-<head>
-  
-
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-
-  
-    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-  
-
-
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
-
-
-
-
-  <meta name="keywords" content="PHP,Web 開發,Zend Framework,心得感想," />
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-<meta name="description" content="重構是什麼？這問題其實真的很難回答。
-我個人覺得重構是一種讓程式保持活力的一種方法，讓它能隨著時間而不斷地進化。如果我們一直放任自己不對程式碼做適當的整理，而是靠著不求甚解的修修補補來維繫它的生命，很快地程式碼就會變得殘破不堪、臃腫肥大而難以維護。
-而且有的時候，我們也想讓程式碼能隨著我們觀念的增長，以適應未來的變化；今天我們會覺得這樣的寫法很讚，但明天可能又會學到更好的寫法，重構就能給我們改變程">
-<meta property="og:type" content="article">
-<meta property="og:title" content="重構實例介紹 – 分析篇">
-<meta property="og:url" content="http://jaceju.net/2011/01/06/1495/index.html">
-<meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="重構是什麼？這問題其實真的很難回答。
-我個人覺得重構是一種讓程式保持活力的一種方法，讓它能隨著時間而不斷地進化。如果我們一直放任自己不對程式碼做適當的整理，而是靠著不求甚解的修修補補來維繫它的生命，很快地程式碼就會變得殘破不堪、臃腫肥大而難以維護。
-而且有的時候，我們也想讓程式碼能隨著我們觀念的增長，以適應未來的變化；今天我們會覺得這樣的寫法很讚，但明天可能又會學到更好的寫法，重構就能給我們改變程">
-<meta property="og:image" content="http://jaceju.net/resources/refactoring/form-template.png">
-<meta property="og:image" content="http://jaceju.net/resources/refactoring/ok-template.png">
-<meta property="og:updated_time" content="2015-05-11T07:04:31.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重構實例介紹 – 分析篇">
-<meta name="twitter:description" content="重構是什麼？這問題其實真的很難回答。
-我個人覺得重構是一種讓程式保持活力的一種方法，讓它能隨著時間而不斷地進化。如果我們一直放任自己不對程式碼做適當的整理，而是靠著不求甚解的修修補補來維繫它的生命，很快地程式碼就會變得殘破不堪、臃腫肥大而難以維護。
-而且有的時候，我們也想讓程式碼能隨著我們觀念的增長，以適應未來的變化；今天我們會覺得這樣的寫法很讚，但明天可能又會學到更好的寫法，重構就能給我們改變程">
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    scheme: '',
-    sidebar: 'post'
-  };
-</script>
-
-
-
-  <title> 重構實例介紹 – 分析篇 | 網站製作學習誌 </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
-
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-  
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-450710-8', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
-  <div class="container one-column page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">網站製作學習誌</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
-
-      
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content"> 
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                重構實例介紹 – 分析篇
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2011-01-06T00:00:00+08:00" content="2011-01-06">
-              2011-01-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2011/01/06/1495/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/01/06/1495/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        <span itemprop="articleBody"><p>重構是什麼？這問題其實真的很難回答。</p>
+<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 重構實例介紹 – 分析篇 · 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
+<script src="js/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link active">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="post"><article class="post-block"><h2 class="post-title"><a href="/2011/01/06/1495/" class="post-title-link">重構實例介紹 – 分析篇</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li><li class="post-tag-item"><a href="/tags/Web-開發/" class="post-tag-link">Web 開發</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li><li class="post-tag-item"><a href="/tags/心得感想/" class="post-tag-link">心得感想</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>重構是什麼？這問題其實真的很難回答。</p>
 <p>我個人覺得重構是一種讓程式保持活力的一種方法，讓它能隨著時間而不斷地進化。如果我們一直放任自己不對程式碼做適當的整理，而是靠著不求甚解的修修補補來維繫它的生命，很快地程式碼就會變得殘破不堪、臃腫肥大而難以維護。</p>
 <p>而且有的時候，我們也想讓程式碼能隨著我們觀念的增長，以適應未來的變化；今天我們會覺得這樣的寫法很讚，但明天可能又會學到更好的寫法，重構就能給我們改變程式碼的機會。</p>
 <p>但是這些都是很籠統的解釋，有沒有什麼方法可以讓我們更瞭解重構呢？我想，只有用實際的例子來說明是最直接的吧。但是太精簡的範例可能表達不了重構的意圖，而過於複雜的範例又會讓重構的焦點模糊，要找到一個適合的例子可能比重構本身還困難。</p>
@@ -263,67 +28,67 @@
 <h2 id="程式解說">程式解說</h2><p>在重構之前，一定要先瞭解我們即將要重構的程式碼。如果完全不曉得它是做什麼的，那麼重構就會存在著一定的風險。</p>
 <p>由於我們是採用 Zend Framework 來建置這個專案，因此程式將分成 Controller 、 View 及 Model 三個部份。以下我們先對它們的作用一一說明，然後再分析它們為何需要重構。</p>
 <h3 id="Controller">Controller</h3><p>Controller 的部份主要只有 IndexController 這個類別：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/controllers/IndexController.php]&#10;class IndexController extends Zend_Controller_Action&#10;&#123;&#10;    // ...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/controllers/IndexController.php]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> <span class="keyword">extends</span> <span class="title">Zend_Controller_Action</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>它包含了 index 、 step2 及 step3 三個 action ，也是本功能主要的流程。</p>
 <p>indexAction() 方法只是單純地顯示連結用的 template 而已，沒有實作任何程式碼。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function indexAction()&#10;&#123;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">indexAction</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>step2Action() 方法負責表單的顯示與處理表單回傳的資料。這裡我們會先接收 decoration 參數，以決定要後面的程式要處理的裝修類型。</p>
 <p>接著再透過 Request 物件的 isPost() 方法，來判斷是否是 PostBack 。如果是 PostBack 的話就先檢查表單資料，正確就寫入資料表，反之則顯示錯誤訊息。</p>
 <p>註：這裡為了減少篇幅，故省略掉了找不到裝修類型的錯誤判斷。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function step2Action()&#10;&#123;&#10;    $decorationName = strtolower($this-&#62;getRequest()-&#62;getParam(&#39;decoration&#39;));&#10;    $error = false;&#10;    $messenger = $this-&#62;_helper-&#62;flashMessenger;&#10;    /* @var $messenger Zend_Controller_Action_Helper_FlashMessenger */&#10;    if ($this-&#62;getRequest()-&#62;isPost()) &#123;&#10;        $filter = new Zend_Filter_StripTags();&#10;        $callback = array($filter, &#39;filter&#39;);&#10;        $formData = array_map($callback, $this-&#62;getRequest()-&#62;getPost());&#10;        $formData = array_map(&#39;trim&#39;, $formData);&#10;        // &#27298;&#26597;&#34920;&#21934;&#24517;&#22635;&#20540;&#10;        $checkFunctionName = &#39;_check&#39; . ucwords(strtolower($decorationName)) . &#39;FormData&#39;;&#10;        $this-&#62;$checkFunctionName($formData, $error, $messenger);&#10;        if (!$error) &#123;&#10;            $decorationTable = $this-&#62;_createDecorationTable($decorationName);&#10;            $decorationRow = $decorationTable-&#62;createRow($formData);&#10;            $decorationRow-&#62;save();&#10;            $this-&#62;_helper-&#62;redirector-&#62;gotoSimple(&#39;step3&#39;, null, null, array(&#10;                &#39;decoration&#39; =&#62; $decorationName,&#10;                &#39;id&#39; =&#62; $decorationRow-&#62;id,&#10;            ));&#10;        &#125; else &#123;&#10;            $params = array(&#10;                &#39;decoration&#39; =&#62; $decorationName,&#10;            );&#10;            $this-&#62;_helper-&#62;redirector-&#62;gotoSimple(&#39;step2&#39;, null, null, $params);&#10;        &#125;&#10;    &#125;&#10;    $this-&#62;view-&#62;decorationName = $decorationName;&#10;    $this-&#62;view-&#62;decorationDisplayName =&#10;            $this-&#62;_decorationDisplayNameList[strtolower($decorationName)];&#10;    $this-&#62;view-&#62;messages = $messenger-&#62;getMessages();&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">step2Action</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$decorationName</span> = strtolower(<span class="variable">$this</span>-&gt;getRequest()-&gt;getParam(<span class="string">'decoration'</span>));</span><br><span class="line">    <span class="variable">$error</span> = <span class="keyword">false</span>;</span><br><span class="line">    <span class="variable">$messenger</span> = <span class="variable">$this</span>-&gt;_helper-&gt;flashMessenger;</span><br><span class="line">    <span class="comment">/* <span class="doctag">@var</span> $messenger Zend_Controller_Action_Helper_FlashMessenger */</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$this</span>-&gt;getRequest()-&gt;isPost()) &#123;</span><br><span class="line">        <span class="variable">$filter</span> = <span class="keyword">new</span> Zend_Filter_StripTags();</span><br><span class="line">        <span class="variable">$callback</span> = <span class="keyword">array</span>(<span class="variable">$filter</span>, <span class="string">'filter'</span>);</span><br><span class="line">        <span class="variable">$formData</span> = array_map(<span class="variable">$callback</span>, <span class="variable">$this</span>-&gt;getRequest()-&gt;getPost());</span><br><span class="line">        <span class="variable">$formData</span> = array_map(<span class="string">'trim'</span>, <span class="variable">$formData</span>);</span><br><span class="line">        <span class="comment">// 檢查表單必填值</span></span><br><span class="line">        <span class="variable">$checkFunctionName</span> = <span class="string">'_check'</span> . ucwords(strtolower(<span class="variable">$decorationName</span>)) . <span class="string">'FormData'</span>;</span><br><span class="line">        <span class="variable">$this</span>-&gt;<span class="variable">$checkFunctionName</span>(<span class="variable">$formData</span>, <span class="variable">$error</span>, <span class="variable">$messenger</span>);</span><br><span class="line">        <span class="keyword">if</span> (!<span class="variable">$error</span>) &#123;</span><br><span class="line">            <span class="variable">$decorationTable</span> = <span class="variable">$this</span>-&gt;_createDecorationTable(<span class="variable">$decorationName</span>);</span><br><span class="line">            <span class="variable">$decorationRow</span> = <span class="variable">$decorationTable</span>-&gt;createRow(<span class="variable">$formData</span>);</span><br><span class="line">            <span class="variable">$decorationRow</span>-&gt;save();</span><br><span class="line">            <span class="variable">$this</span>-&gt;_helper-&gt;redirector-&gt;gotoSimple(<span class="string">'step3'</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'decoration'</span> =&gt; <span class="variable">$decorationName</span>,</span><br><span class="line">                <span class="string">'id'</span> =&gt; <span class="variable">$decorationRow</span>-&gt;id,</span><br><span class="line">            ));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$params</span> = <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'decoration'</span> =&gt; <span class="variable">$decorationName</span>,</span><br><span class="line">            );</span><br><span class="line">            <span class="variable">$this</span>-&gt;_helper-&gt;redirector-&gt;gotoSimple(<span class="string">'step2'</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="variable">$params</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;decorationName = <span class="variable">$decorationName</span>;</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;decorationDisplayName =</span><br><span class="line">            <span class="variable">$this</span>-&gt;_decorationDisplayNameList[strtolower(<span class="variable">$decorationName</span>)];</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;messages = <span class="variable">$messenger</span>-&gt;getMessages();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>而且因為我們已經知道裝修類型會隨著時間而增多，因此伙伴在撰寫程式時，已經考慮兩個可能會變化的部份。</p>
 <p>第一個是在檢查表單內容的部份；在 step2Action() 方法接收了表單資料後，我們透過參數取得的裝修類型名稱來決定要呼叫哪個檢查方法。但因為目前我們只有 kitchen 這個裝修類型，所以在 IndexController 類別中只有 _checkKitchenFormData() 這個方法。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function step2Action()&#10;&#123;&#10;   // ...&#10;        $checkFunctionName = &#39;_check&#39; . ucwords(strtolower($decorationName)) . &#39;FormData&#39;;&#10;        $this-&#62;$checkFunctionName($formData, $error, $messenger);&#10;   // ...&#10;&#125;&#10;protected function _checkKitchenFormData($formData, &#38;amp;$error, Zend_Controller_Action_Helper_FlashMessenger &#38;amp;$messenger)&#10;&#123;&#10;    if (0 === strlen($formData[&#39;name&#39;])) &#123;&#10;        $error = true;&#10;        $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22995;&#21517;&#39;);&#10;    &#125;&#10;    if (0 === strlen($formData[&#39;phone&#39;])) &#123;&#10;        $error = true;&#10;        $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#38651;&#35441;&#39;);&#10;    &#125;&#10;    if (0 === strlen($formData[&#39;address&#39;])) &#123;&#10;        $error = true;&#10;        $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22320;&#22336;&#39;);&#10;    &#125;&#10;    if (!array_key_exists(&#39;kitchenQuestion01&#39;, $formData)&#10;            &#38;amp;&#38;amp; !array_key_exists(&#39;kitchenQuestion02&#39;, $formData)) &#123;&#10;        $error = true;&#10;        $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#35037;&#20462;&#20839;&#23481;&#39;);&#10;    &#125;&#10;    if (!array_key_exists(&#39;kitchenQuestion03&#39;, $formData)&#10;            &#38;amp;&#38;amp; !array_key_exists(&#39;kitchenQuestion04&#39;, $formData)) &#123;&#10;        $error = true;&#10;        $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#35373;&#20633;&#26159;&#21542;&#20445;&#30041;&#39;);&#10;    &#125;&#10;    if (!array_key_exists(&#39;kitchenQuestion05&#39;, $formData)) &#123;&#10;        $error = true;&#10;        $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#29694;&#26377;&#24282;&#20855;&#39;);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">step2Action</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">        <span class="variable">$checkFunctionName</span> = <span class="string">'_check'</span> . ucwords(strtolower(<span class="variable">$decorationName</span>)) . <span class="string">'FormData'</span>;</span><br><span class="line">        <span class="variable">$this</span>-&gt;<span class="variable">$checkFunctionName</span>(<span class="variable">$formData</span>, <span class="variable">$error</span>, <span class="variable">$messenger</span>);</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">_checkKitchenFormData</span><span class="params">(<span class="variable">$formData</span>, &amp;amp;<span class="variable">$error</span>, Zend_Controller_Action_Helper_FlashMessenger &amp;amp;<span class="variable">$messenger</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> === strlen(<span class="variable">$formData</span>[<span class="string">'name'</span>])) &#123;</span><br><span class="line">        <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">        <span class="variable">$messenger</span>-&gt;addMessage(<span class="string">'請輸入姓名'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> === strlen(<span class="variable">$formData</span>[<span class="string">'phone'</span>])) &#123;</span><br><span class="line">        <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">        <span class="variable">$messenger</span>-&gt;addMessage(<span class="string">'請輸入電話'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> === strlen(<span class="variable">$formData</span>[<span class="string">'address'</span>])) &#123;</span><br><span class="line">        <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">        <span class="variable">$messenger</span>-&gt;addMessage(<span class="string">'請輸入地址'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!array_key_exists(<span class="string">'kitchenQuestion01'</span>, <span class="variable">$formData</span>)</span><br><span class="line">            &amp;amp;&amp;amp; !array_key_exists(<span class="string">'kitchenQuestion02'</span>, <span class="variable">$formData</span>)) &#123;</span><br><span class="line">        <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">        <span class="variable">$messenger</span>-&gt;addMessage(<span class="string">'請選擇裝修內容'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!array_key_exists(<span class="string">'kitchenQuestion03'</span>, <span class="variable">$formData</span>)</span><br><span class="line">            &amp;amp;&amp;amp; !array_key_exists(<span class="string">'kitchenQuestion04'</span>, <span class="variable">$formData</span>)) &#123;</span><br><span class="line">        <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">        <span class="variable">$messenger</span>-&gt;addMessage(<span class="string">'請選擇設備是否保留'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!array_key_exists(<span class="string">'kitchenQuestion05'</span>, <span class="variable">$formData</span>)) &#123;</span><br><span class="line">        <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">        <span class="variable">$messenger</span>-&gt;addMessage(<span class="string">'請選擇現有廚具'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另一個是建立資料表的部份，這裡是透過 _createDecorationTable() 這個方法來動態決定要使用哪個資料表，也就是一般常見的工廠方法。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function _createDecorationTable($decorationName)&#10;&#123;&#10;    $tableName = &#39;Application_Model_DbTable_Decoration&#39; . ucfirst($decorationName) . &#39;s&#39;;&#10;    return new $tableName();&#10;&#125;&#10;public function step2Action()&#10;&#123;&#10;            // ...&#10;            $decorationTable = $this-&#62;_createDecorationTable($decorationName);&#10;            // ...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">_createDecorationTable</span><span class="params">(<span class="variable">$decorationName</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$tableName</span> = <span class="string">'Application_Model_DbTable_Decoration'</span> . ucfirst(<span class="variable">$decorationName</span>) . <span class="string">'s'</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="variable">$tableName</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">step2Action</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="variable">$decorationTable</span> = <span class="variable">$this</span>-&gt;_createDecorationTable(<span class="variable">$decorationName</span>);</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>step3Action() 方法則是用來顯示完成後的頁面。這裡首先會取得 step2Action() 方法新增的自動編號，然後才從資料表裡取得對應的問卷資料來顯示。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function step3Action()&#10;&#123;&#10;    $decorationName = strtolower($this-&#62;getRequest()-&#62;getParam(&#39;decoration&#39;));&#10;    $decorationId = (int) $this-&#62;getRequest()-&#62;getParam(&#39;id&#39;);&#10;    $decorationTable = $this-&#62;_createDecorationTable($decorationName);&#10;    $decorationRow = $decorationTable-&#62;find($decorationId)-&#62;current();&#10;    if (!$decorationRow) &#123;&#10;        $this-&#62;_redirect(&#39;/&#39;);&#10;    &#125;&#10;    $this-&#62;view-&#62;decorationName = $decorationName;&#10;    $this-&#62;view-&#62;decorationDisplayName =&#10;            $this-&#62;_decorationDisplayNameList[strtolower($decorationName)];&#10;    $this-&#62;view-&#62;decorationRow = $decorationRow;&#10;    $this-&#62;view-&#62;decorationMap = $this-&#62;_exportMapData($decorationName);&#10;    $this-&#62;view-&#62;actionController = $this;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">step3Action</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$decorationName</span> = strtolower(<span class="variable">$this</span>-&gt;getRequest()-&gt;getParam(<span class="string">'decoration'</span>));</span><br><span class="line">    <span class="variable">$decorationId</span> = (int) <span class="variable">$this</span>-&gt;getRequest()-&gt;getParam(<span class="string">'id'</span>);</span><br><span class="line">    <span class="variable">$decorationTable</span> = <span class="variable">$this</span>-&gt;_createDecorationTable(<span class="variable">$decorationName</span>);</span><br><span class="line">    <span class="variable">$decorationRow</span> = <span class="variable">$decorationTable</span>-&gt;find(<span class="variable">$decorationId</span>)-&gt;current();</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$decorationRow</span>) &#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;_redirect(<span class="string">'/'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;decorationName = <span class="variable">$decorationName</span>;</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;decorationDisplayName =</span><br><span class="line">            <span class="variable">$this</span>-&gt;_decorationDisplayNameList[strtolower(<span class="variable">$decorationName</span>)];</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;decorationRow = <span class="variable">$decorationRow</span>;</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;decorationMap = <span class="variable">$this</span>-&gt;_exportMapData(<span class="variable">$decorationName</span>);</span><br><span class="line">    <span class="variable">$this</span>-&gt;view-&gt;actionController = <span class="variable">$this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>與 step2Action() 方法相同，在 step3Action() 方法也呼叫了 _createDecorationTable() 方法來動態取得對應的資料表，接著再透過 id 參數取得在 step2Action() 方法新增的資料列。</p>
 <p>因為存在資料表裡的資料並不包含中文訊息，因此我們需要將它做轉換。這個動作原本是可以在樣版裡做的，但為了不在樣版裡有太多的判斷式，因此採用了名稱對照表的方法。</p>
 <p>_exportMapData() 方法會從 application/controllers/DecorationMap 資料夾下載入對應的名稱對照表 (即 kitchen.php) ，然後將它 assign 到 view 的 decorationMap 變數。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function _exportMapData($decorationName)&#10;&#123;&#10;    $includeFile = __DIR__ . &#39;/DecorationMap/&#39; . $decorationName . &#39;.php&#39;;&#10;    if (!file_exists($includeFile)) &#123;&#10;        $this-&#62;_redirect(&#39;/&#39;);&#10;    &#125; else &#123;&#10;        $decorationMap = include($includeFile);&#10;        return $decorationMap;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">_exportMapData</span><span class="params">(<span class="variable">$decorationName</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$includeFile</span> = <span class="keyword">__DIR__</span> . <span class="string">'/DecorationMap/'</span> . <span class="variable">$decorationName</span> . <span class="string">'.php'</span>;</span><br><span class="line">    <span class="keyword">if</span> (!file_exists(<span class="variable">$includeFile</span>)) &#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;_redirect(<span class="string">'/'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$decorationMap</span> = <span class="keyword">include</span>(<span class="variable">$includeFile</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$decorationMap</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>名稱對照表內容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/controllers/DecorationMap/kitchen.php]&#10;return array(&#10;    &#39;kitchenQuestion01&#39; =&#62; array(&#10;        &#39;y&#39; =&#62; &#39;&#21514;&#27331;&#39;,&#10;        &#39;n&#39; =&#62; &#39;&#39;,&#10;    ),&#10;    &#39;kitchenQuestion02&#39; =&#62; array(&#10;        &#39;y&#39; =&#62; &#39;&#19979;&#27331;&#39;,&#10;        &#39;n&#39; =&#62; &#39;&#39;,&#10;    ),&#10;    &#39;kitchenQuestion03&#39; =&#62; array(&#10;        &#39;y&#39; =&#62; &#39;&#29926;&#26031;&#29200;&#39;,&#10;        &#39;n&#39; =&#62; &#39;&#39;,&#10;    ),&#10;    &#39;kitchenQuestion04&#39; =&#62; array(&#10;        &#39;y&#39; =&#62; &#39;&#25490;&#27833;&#29017;&#27231;&#39;,&#10;        &#39;n&#39; =&#62; &#39;&#39;,&#10;    ),&#10;    &#39;kitchenQuestion05&#39; =&#62; array(&#10;        &#39;1&#39; =&#62; &#39;&#28961;&#39;,&#10;        &#39;2&#39; =&#62; &#39;&#27877;&#20316;&#39;,&#10;        &#39;3&#39; =&#62; &#39;&#32068;&#21512;&#24335;&#39;,&#10;        &#39;4&#39; =&#62; &#39;&#27472;&#21270;&#39;,&#10;        &#39;5&#39; =&#62; &#39;&#19981;&#37885;&#37628;&#39;,&#10;    ),&#10;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/controllers/DecorationMap/kitchen.php]</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'kitchenQuestion01'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'y'</span> =&gt; <span class="string">'吊櫃'</span>,</span><br><span class="line">        <span class="string">'n'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">    ),</span><br><span class="line">    <span class="string">'kitchenQuestion02'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'y'</span> =&gt; <span class="string">'下櫃'</span>,</span><br><span class="line">        <span class="string">'n'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">    ),</span><br><span class="line">    <span class="string">'kitchenQuestion03'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'y'</span> =&gt; <span class="string">'瓦斯爐'</span>,</span><br><span class="line">        <span class="string">'n'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">    ),</span><br><span class="line">    <span class="string">'kitchenQuestion04'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'y'</span> =&gt; <span class="string">'排油煙機'</span>,</span><br><span class="line">        <span class="string">'n'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">    ),</span><br><span class="line">    <span class="string">'kitchenQuestion05'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'1'</span> =&gt; <span class="string">'無'</span>,</span><br><span class="line">        <span class="string">'2'</span> =&gt; <span class="string">'泥作'</span>,</span><br><span class="line">        <span class="string">'3'</span> =&gt; <span class="string">'組合式'</span>,</span><br><span class="line">        <span class="string">'4'</span> =&gt; <span class="string">'歐化'</span>,</span><br><span class="line">        <span class="string">'5'</span> =&gt; <span class="string">'不鏽鋼'</span>,</span><br><span class="line">    ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>另外 IndexController 類別裡也定義了一個 $_decorationDisplayNameList 屬性，它的目的是存放 decoration 參數所對應的中文名稱。因此在 step2Action() 方法及 step3Action() 方法中都會先找出裝修類型所對應的中文名稱，再 assign 到 view 的 decorationDisplayName 變數中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/controllers/IndexController.php]&#10;    protected $_decorationDisplayNameList = array(&#10;        &#39;kitchen&#39; =&#62; &#39;&#24282;&#25151;&#39;,&#10;    );&#10;    // ...&#10;    public function step2Action()   &#123;&#10;        // ...&#10;        $this-&#62;view-&#62;decorationDisplayName =&#10;                $this-&#62;_decorationDisplayNameList[strtolower($decorationName)];&#10;        // ...&#10;    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/controllers/IndexController.php]</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_decorationDisplayNameList</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'kitchen'</span> =&gt; <span class="string">'廚房'</span>,</span><br><span class="line">    );</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">step2Action</span><span class="params">()</span>   </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="variable">$this</span>-&gt;view-&gt;decorationDisplayName =</span><br><span class="line">                <span class="variable">$this</span>-&gt;_decorationDisplayNameList[strtolower(<span class="variable">$decorationName</span>)];</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>接下來就是 View 的部份。</p>
 <h3 id="View">View</h3><p>View 的部份除了三個對應 action 的 template scripts 外，還有裝修類型所對應的裝修內容表單及完成頁。</p>
 <p>index.phtml 為對應 indexAction() 方法的樣版，顯示表單的連結。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/index.phtml]&#10;&#60;h1&#62;&#25151;&#23627;&#35037;&#20462;&#60;/h1&#62;&#10;&#60;ul&#62;&#10;    &#60;li&#62;&#60;a href=&#34;&#60;?php&#10;echo $this-&#62;url(array(&#10;    &#39;controller&#39; =&#62; &#39;index&#39;,&#10;    &#39;action&#39; =&#62; &#39;step2&#39;,&#10;    &#39;decoration&#39; =&#62; &#39;kitchen&#39;,&#10;)); ?&#62;&#34;&#62;&#24282;&#25151;&#60;/a&#62;&#60;/li&#62;&#10;&#60;/ul&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/index.phtml]</span><br><span class="line">&lt;h1&gt;房屋裝修&lt;/h1&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;&lt;a href=<span class="string">"&lt;?php</span><br><span class="line">echo $this-&gt;url(array(</span><br><span class="line">    'controller' =&gt; 'index',</span><br><span class="line">    'action' =&gt; 'step2',</span><br><span class="line">    'decoration' =&gt; 'kitchen',</span><br><span class="line">)); ?&gt;"</span>&gt;廚房&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
 <p>step2.phtml 為對應 step2Action() 方法的樣版，用來顯示表單；因為我們已經預知每個裝修內容的選項是不一樣的，因此將會變化的子表單部份獨立成子樣版。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/step2.phtml]&#10;&#60;h1&#62;&#60;?php echo $this-&#62;escape($this-&#62;decorationDisplayName); ?&#62;&#60;/h1&#62;&#10;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#10;    &#60;fieldset&#62;&#10;        &#60;legend&#62;&#36899;&#32097;&#36039;&#35338;&#60;/legend&#62;&#10;        &#60;p&#62;&#60;label for=&#34;name&#34;&#62;&#22995;&#21517;&#60;/label&#62;&#60;input type=&#34;text&#34; name=&#34;name&#34; id=&#34;name&#34; /&#62;&#60;/p&#62;&#10;        &#60;p&#62;&#60;label for=&#34;phone&#34;&#62;&#38651;&#35441;&#60;/label&#62;&#60;input type=&#34;text&#34; name=&#34;phone&#34; id=&#34;phone&#34; /&#62;&#60;/p&#62;&#10;        &#60;p&#62;&#60;label for=&#34;address&#34;&#62;&#20303;&#22336;&#60;/label&#62;&#60;input type=&#34;text&#34; name=&#34;address&#34; id=&#34;address&#34; /&#62;&#60;/p&#62;&#10;    &#60;/fieldset&#62;&#10;    &#60;fieldset&#62;&#10;        &#60;legend&#62;&#35037;&#20462;&#36984;&#38917;&#60;/legend&#62;&#10;        &#60;?php echo $this-&#62;partial(&#39;index/&#39; . $this-&#62;decorationName . &#39;/form.phtml&#39;); ?&#62;&#10;    &#60;/fieldset&#62;&#10;    &#60;p&#62;&#60;button type=&#34;submit&#34;&#62;&#23436;&#25104;&#36865;&#20986;&#60;/button&#62;&#60;/p&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/step2.phtml]</span><br><span class="line">&lt;h1&gt;<span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$this</span>-&gt;decorationDisplayName); <span class="preprocessor">?&gt;</span>&lt;/h1&gt;</span><br><span class="line">&lt;form action=<span class="string">""</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">    &lt;fieldset&gt;</span><br><span class="line">        &lt;legend&gt;連絡資訊&lt;/legend&gt;</span><br><span class="line">        &lt;p&gt;&lt;label <span class="keyword">for</span>=<span class="string">"name"</span>&gt;姓名&lt;/label&gt;&lt;input type=<span class="string">"text"</span> name=<span class="string">"name"</span> id=<span class="string">"name"</span> /&gt;&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;&lt;label <span class="keyword">for</span>=<span class="string">"phone"</span>&gt;電話&lt;/label&gt;&lt;input type=<span class="string">"text"</span> name=<span class="string">"phone"</span> id=<span class="string">"phone"</span> /&gt;&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;&lt;label <span class="keyword">for</span>=<span class="string">"address"</span>&gt;住址&lt;/label&gt;&lt;input type=<span class="string">"text"</span> name=<span class="string">"address"</span> id=<span class="string">"address"</span> /&gt;&lt;/p&gt;</span><br><span class="line">    &lt;/fieldset&gt;</span><br><span class="line">    &lt;fieldset&gt;</span><br><span class="line">        &lt;legend&gt;裝修選項&lt;/legend&gt;</span><br><span class="line">        <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;partial(<span class="string">'index/'</span> . <span class="variable">$this</span>-&gt;decorationName . <span class="string">'/form.phtml'</span>); <span class="preprocessor">?&gt;</span></span><br><span class="line">    &lt;/fieldset&gt;</span><br><span class="line">    &lt;p&gt;&lt;button type=<span class="string">"submit"</span>&gt;完成送出&lt;/button&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
 <p>每個會變化的子表單都放在同名的裝修類型資料表下，例如廚房的部份就是：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/kitchen/form.phtml]&#10;&#60;dl&#62;&#10;    &#60;dt&#62;&#35037;&#20462;&#20839;&#23481;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;checkbox&#34; name=&#34;kitchenQuestion01&#34; value=&#34;y&#34; /&#62;&#60;span&#62;&#21514;&#27331;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;checkbox&#34; name=&#34;kitchenQuestion02&#34; value=&#34;y&#34; /&#62;&#60;span&#62;&#19979;&#27331;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#35373;&#20633;&#26159;&#21542;&#20445;&#30041;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;checkbox&#34; name=&#34;kitchenQuestion03&#34; value=&#34;y&#34; /&#62;&#60;span&#62;&#29926;&#26031;&#29200;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;checkbox&#34; name=&#34;kitchenQuestion04&#34; value=&#34;y&#34; /&#62;&#60;span&#62;&#25490;&#27833;&#29017;&#27231;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#29694;&#26377;&#24282;&#20855;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;kitchenQuestion05&#34; value=&#34;1&#34; /&#62;&#60;span&#62;&#28961;&#65288;&#38656;&#26032;&#35069;&#65289;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;kitchenQuestion05&#34; value=&#34;2&#34; /&#62;&#60;span&#62;&#27877;&#20316;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;kitchenQuestion05&#34; value=&#34;3&#34; /&#62;&#60;span&#62;&#32068;&#21512;&#24335;&#65288;&#20998;&#20214;&#24282;&#20855;&#65289;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;kitchenQuestion05&#34; value=&#34;4&#34; /&#62;&#60;span&#62;&#27472;&#21270;&#65288;&#26408;&#36074;&#26742;&#36523;&#65289;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;kitchenQuestion05&#34; value=&#34;5&#34; /&#62;&#60;span&#62;&#19981;&#37885;&#37628;&#26742;&#36523;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;&#60;/dl&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/kitchen/form.phtml]</span><br><span class="line">&lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;裝修內容&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"kitchenQuestion01"</span> value=<span class="string">"y"</span> /&gt;&lt;span&gt;吊櫃&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"kitchenQuestion02"</span> value=<span class="string">"y"</span> /&gt;&lt;span&gt;下櫃&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;設備是否保留&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"kitchenQuestion03"</span> value=<span class="string">"y"</span> /&gt;&lt;span&gt;瓦斯爐&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"kitchenQuestion04"</span> value=<span class="string">"y"</span> /&gt;&lt;span&gt;排油煙機&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;現有廚具&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"kitchenQuestion05"</span> value=<span class="string">"1"</span> /&gt;&lt;span&gt;無（需新製）&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"kitchenQuestion05"</span> value=<span class="string">"2"</span> /&gt;&lt;span&gt;泥作&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"kitchenQuestion05"</span> value=<span class="string">"3"</span> /&gt;&lt;span&gt;組合式（分件廚具）&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"kitchenQuestion05"</span> value=<span class="string">"4"</span> /&gt;&lt;span&gt;歐化（木質桶身）&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"kitchenQuestion05"</span> value=<span class="string">"5"</span> /&gt;&lt;span&gt;不鏽鋼桶身&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">&lt;/dl&gt;</span><br></pre></td></tr></table></figure>
 <p>另外 step2.phtml 也會在表單資料驗證錯誤時，將對應的錯誤訊息顯示出來。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/kitchen/form.phtml]&#10;    &#60;?php if (!empty($this-&#62;messages)) : ?&#62;&#10;    &#60;ul&#62;&#10;    &#60;?php foreach ($this-&#62;messages as $message) : ?&#62;&#10;        &#60;li&#62;&#60;?php echo $this-&#62;escape($message); ?&#62;&#60;/li&#62;&#10;    &#60;?php endforeach; ?&#62;&#10;    &#60;/ul&#62;&#10;    &#60;?php endif; ?&#62;&#10;&#60;/form&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/kitchen/form.phtml]</span><br><span class="line">    <span class="preprocessor">&lt;?php</span> <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$this</span>-&gt;messages)) : <span class="preprocessor">?&gt;</span></span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">    <span class="preprocessor">&lt;?php</span> <span class="keyword">foreach</span> (<span class="variable">$this</span>-&gt;messages <span class="keyword">as</span> <span class="variable">$message</span>) : <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;li&gt;<span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$message</span>); <span class="preprocessor">?&gt;</span>&lt;/li&gt;</span><br><span class="line">    <span class="preprocessor">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="preprocessor">?&gt;</span></span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    <span class="preprocessor">&lt;?php</span> <span class="keyword">endif</span>; <span class="preprocessor">?&gt;</span></span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
 <p>step3.phtml 為對應 step3Action() 方法的樣版，用來顯示完成頁；這裡也和 step2Action() 方法一樣用子樣版來顯示不同的裝修類型結果。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/step3.phtml]&#10;&#60;h1&#62;&#60;?php echo $this-&#62;escape($this-&#62;decorationDisplayName); ?&#62;&#60;/h1&#62;&#10;&#60;h2&#62;&#36899;&#32097;&#36039;&#35338;&#60;/h2&#62;&#10;&#60;ul&#62;&#10;    &#60;li&#62;&#22995;&#21517;&#65306; &#60;?php echo $this-&#62;escape($this-&#62;decorationRow-&#62;name); ?&#62;&#60;/li&#62;&#10;    &#60;li&#62;&#38651;&#35441;&#65306; &#60;?php echo $this-&#62;escape($this-&#62;decorationRow-&#62;phone); ?&#62;&#60;/li&#62;&#10;    &#60;li&#62;&#20303;&#22336;&#65306; &#60;?php echo $this-&#62;escape($this-&#62;decorationRow-&#62;address); ?&#62;&#60;/li&#62;&#10;&#60;/ul&#62;&#10;&#60;h2&#62;&#35037;&#20462;&#36984;&#38917;&#60;/h2&#62;&#10;&#60;?php echo $this-&#62;partial(&#39;index/&#39; . $this-&#62;decorationName . &#39;/ok.phtml&#39;, null, $this); ?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/step3.phtml]</span><br><span class="line">&lt;h1&gt;<span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$this</span>-&gt;decorationDisplayName); <span class="preprocessor">?&gt;</span>&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;連絡資訊&lt;/h2&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;姓名： <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$this</span>-&gt;decorationRow-&gt;name); <span class="preprocessor">?&gt;</span>&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;電話： <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$this</span>-&gt;decorationRow-&gt;phone); <span class="preprocessor">?&gt;</span>&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;住址： <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;escape(<span class="variable">$this</span>-&gt;decorationRow-&gt;address); <span class="preprocessor">?&gt;</span>&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;h2&gt;裝修選項&lt;/h2&gt;</span><br><span class="line"><span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;partial(<span class="string">'index/'</span> . <span class="variable">$this</span>-&gt;decorationName . <span class="string">'/ok.phtml'</span>, <span class="keyword">null</span>, <span class="variable">$this</span>); <span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>子樣版如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/kitchen/ok.phtml]&#10;&#60;dl&#62;&#10;    &#60;dt&#62;&#35037;&#20462;&#20839;&#23481;&#65306;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;                    $this-&#62;decorationMap[&#39;kitchenQuestion01&#39;],&#10;                    $this-&#62;decorationRow[&#39;kitchenQuestion01&#39;]); ?&#62;&#10;            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;                    $this-&#62;decorationMap[&#39;kitchenQuestion02&#39;],&#10;                    $this-&#62;decorationRow[&#39;kitchenQuestion02&#39;]); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#35373;&#20633;&#26159;&#21542;&#20445;&#30041;&#65306;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;                    $this-&#62;decorationMap[&#39;kitchenQuestion03&#39;],&#10;                    $this-&#62;decorationRow[&#39;kitchenQuestion03&#39;]); ?&#62;&#10;            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;                    $this-&#62;decorationMap[&#39;kitchenQuestion04&#39;],&#10;                    $this-&#62;decorationRow[&#39;kitchenQuestion04&#39;]); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#29694;&#26377;&#24282;&#20855;&#65306;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;                    $this-&#62;decorationMap[&#39;kitchenQuestion05&#39;],&#10;                    $this-&#62;decorationRow[&#39;kitchenQuestion05&#39;]); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;&#60;/dl&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/kitchen/ok.phtml]</span><br><span class="line">&lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;裝修內容：&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;actionController-&gt;buildOptionString(</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationMap[<span class="string">'kitchenQuestion01'</span>],</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationRow[<span class="string">'kitchenQuestion01'</span>]); <span class="preprocessor">?&gt;</span></span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;actionController-&gt;buildOptionString(</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationMap[<span class="string">'kitchenQuestion02'</span>],</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationRow[<span class="string">'kitchenQuestion02'</span>]); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;設備是否保留：&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;actionController-&gt;buildOptionString(</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationMap[<span class="string">'kitchenQuestion03'</span>],</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationRow[<span class="string">'kitchenQuestion03'</span>]); <span class="preprocessor">?&gt;</span></span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;actionController-&gt;buildOptionString(</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationMap[<span class="string">'kitchenQuestion04'</span>],</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationRow[<span class="string">'kitchenQuestion04'</span>]); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;現有廚具：&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;actionController-&gt;buildOptionString(</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationMap[<span class="string">'kitchenQuestion05'</span>],</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationRow[<span class="string">'kitchenQuestion05'</span>]); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">&lt;/dl&gt;</span><br></pre></td></tr></table></figure>
 <p>比較特別的是在 ok.html 這個子樣版裡，我們用到了定義在 IndexController 類別裡的 buildOptionString() 方法，以取得資料列欄位值對應到 decorationMap 的中文名稱。</p>
 <h3 id="Model">Model</h3><p>Model 的部份比較簡單，目前只有一個 Zend_Db_Table 類別。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/models/DbTable/DecorationKitchens.php]&#10;class Application_Model_DbTable_DecorationKitchens extends Zend_Db_Table_Abstract&#10;&#123;&#10;    protected $_name = &#39;decoration_kitchens&#39;;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/models/DbTable/DecorationKitchens.php]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Application_Model_DbTable_DecorationKitchens</span> <span class="keyword">extends</span> <span class="title">Zend_Db_Table_Abstract</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_name</span> = <span class="string">'decoration_kitchens'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>而對應的 database schema 如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SET SQL_MODE=&#34;NO_AUTO_VALUE_ON_ZERO&#34;;&#10;CREATE DATABASE `refactoring` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;&#10;USE `refactoring`;&#10;DROP TABLE IF EXISTS `decoration_kitchens`;&#10;CREATE TABLE IF NOT EXISTS `decoration_kitchens` (&#10;  `id` int(10) unsigned NOT NULL auto_increment,&#10;  `name` varchar(100) default NULL,&#10;  `phone` varchar(100) default NULL,&#10;  `cellphone` varchar(100) default NULL,&#10;  `address` varchar(200) default NULL,&#10;  `kitchenQuestion01` enum(&#39;y&#39;,&#39;n&#39;) default &#39;n&#39;,&#10;  `kitchenQuestion02` enum(&#39;y&#39;,&#39;n&#39;) default &#39;n&#39;,&#10;  `kitchenQuestion03` enum(&#39;y&#39;,&#39;n&#39;) default &#39;n&#39;,&#10;  `kitchenQuestion04` enum(&#39;y&#39;,&#39;n&#39;) default &#39;n&#39;,&#10;  `kitchenQuestion05` enum(&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;,&#39;5&#39;) default NULL,&#10;  PRIMARY KEY  (`id`)&#10;) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT=&#39;&#24282;&#25151;&#21839;&#21367;&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SET</span> SQL_MODE=<span class="string">"NO_AUTO_VALUE_ON_ZERO"</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="string">`refactoring`</span> <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span></span><br><span class="line"><span class="operator"><span class="keyword">USE</span> <span class="string">`refactoring`</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`decoration_kitchens`</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">`decoration_kitchens`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> auto_increment,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`phone`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`cellphone`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`kitchenQuestion01`</span> enum(<span class="string">'y'</span>,<span class="string">'n'</span>) <span class="keyword">default</span> <span class="string">'n'</span>,</span><br><span class="line">  <span class="string">`kitchenQuestion02`</span> enum(<span class="string">'y'</span>,<span class="string">'n'</span>) <span class="keyword">default</span> <span class="string">'n'</span>,</span><br><span class="line">  <span class="string">`kitchenQuestion03`</span> enum(<span class="string">'y'</span>,<span class="string">'n'</span>) <span class="keyword">default</span> <span class="string">'n'</span>,</span><br><span class="line">  <span class="string">`kitchenQuestion04`</span> enum(<span class="string">'y'</span>,<span class="string">'n'</span>) <span class="keyword">default</span> <span class="string">'n'</span>,</span><br><span class="line">  <span class="string">`kitchenQuestion05`</span> enum(<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span>  (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=MyISAM  <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC <span class="keyword">COMMENT</span>=<span class="string">'廚房問卷'</span>;</span></span><br></pre></td></tr></table></figure>
 <p>以上就是第一版程式所需要的所有檔案和它們的運作原理。</p>
 <h3 id="加入新裝修類型">加入新裝修類型</h3><p>瞭解了程式碼之後，接著我們來看如何加入一個新的裝修類型；假設新的裝修類型是「浴室」 (Bathroom) ，也已經有了對應的 database schema 及樣版。</p>
 <p>我們需要更動以下幾個部份：</p>
 <p>註：以下將會以一般 patch 檔的方式來表示更動後的差異，即在程式碼的行頭加上加號 (+) 或減號 (-) 來分別表示新增程式碼或刪減程式碼；而行頭沒有特別標示的話，就表示沒有更動；至於移除檔案、資料夾、類別屬性或整個類別方法的部份，就不會再特別用程式碼標明，以節省篇幅。</p>
 <p>第一步：新增 Bathroom 的 DbTable 類別並匯入 schema 到資料庫中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/models/DbTable/DecorationBathrooms.php]&#10;+class Application_Model_DbTable_DecorationBathrooms extends Zend_Db_Table_Abstract&#10;+&#123;&#10;+    protected $_name = &#39;decoration_bathrooms&#39;;&#10;+&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/models/DbTable/DecorationBathrooms.php]</span><br><span class="line"><span class="addition">+class Application_Model_DbTable_DecorationBathrooms extends Zend_Db_Table_Abstract</span></span><br><span class="line"><span class="addition">+&#123;</span></span><br><span class="line"><span class="addition">+    protected $_name = 'decoration_bathrooms';</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br></pre></td></tr></table></figure>
 <p>資料表的 schema 如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DROP TABLE IF EXISTS `decoration_bathrooms`;&#10;CREATE TABLE IF NOT EXISTS `decoration_bathrooms` (&#10;  `id` int(10) unsigned NOT NULL auto_increment,&#10;  `name` varchar(100) default NULL,&#10;  `phone` varchar(100) default NULL,&#10;  `address` varchar(200) default NULL,&#10;  `bathroomQuestion01` enum(&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;) default NULL,&#10;  `bathroomQuestion02` enum(&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;) default NULL,&#10;  `bathroomQuestion03` enum(&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;,&#39;5&#39;) default NULL,&#10;  `bathroomQuestion04` enum(&#39;y&#39;,&#39;n&#39;) default &#39;n&#39;,&#10;  `bathroomQuestion05` enum(&#39;y&#39;,&#39;n&#39;) default &#39;n&#39;,&#10;  PRIMARY KEY  (`id`)&#10;) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT=&#39;&#34907;&#28020;&#21839;&#21367;&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`decoration_bathrooms`</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">`decoration_bathrooms`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> auto_increment,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`phone`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`bathroomQuestion01`</span> enum(<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`bathroomQuestion02`</span> enum(<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`bathroomQuestion03`</span> enum(<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`bathroomQuestion04`</span> enum(<span class="string">'y'</span>,<span class="string">'n'</span>) <span class="keyword">default</span> <span class="string">'n'</span>,</span><br><span class="line">  <span class="string">`bathroomQuestion05`</span> enum(<span class="string">'y'</span>,<span class="string">'n'</span>) <span class="keyword">default</span> <span class="string">'n'</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span>  (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=MyISAM  <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC <span class="keyword">COMMENT</span>=<span class="string">'衛浴問卷'</span>;</span></span><br></pre></td></tr></table></figure>
 <p>第二步：在 IndexController 類別的 $_decorationDisplayNameList 變數中加入新的中文名稱對應。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     protected $_decorationDisplayNameList = array(&#10;         &#39;kitchen&#39; =&#62; &#39;&#24282;&#25151;&#39;,&#10;+        &#39;bathroom&#39; =&#62; &#39;&#28020;&#23460;&#39;,&#10;     );</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     protected $_decorationDisplayNameList = array(</span><br><span class="line">         'kitchen' =&gt; '廚房',</span><br><span class="line"><span class="addition">+        'bathroom' =&gt; '浴室',</span></span><br><span class="line">     );</span><br></pre></td></tr></table></figure>
 <p>第三步：在 IndexController 類別中新增 _checkBathroomFormData() 方法。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+    protected function _checkBathroomFormData($formData, &#38;amp;$error, Zend_Controller_Action_Helper_FlashMessenger &#38;amp;$messenger)&#10;+    &#123;&#10;+        if (0 === strlen($formData[&#39;name&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22995;&#21517;&#39;);&#10;+        &#125;&#10;+        if (0 === strlen($formData[&#39;phone&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#38651;&#35441;&#39;);&#10;+        &#125;&#10;+        if (0 === strlen($formData[&#39;address&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22320;&#22336;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;bathroomQuestion01&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#22378;&#25976;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;bathroomQuestion02&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#39340;&#26742;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;bathroomQuestion03&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#38754;&#30406;&#39;);&#10;+        &#125;&#10;+    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+    protected function _checkBathroomFormData($formData, &amp;amp;$error, Zend_Controller_Action_Helper_FlashMessenger &amp;amp;$messenger)</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['name'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入姓名');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['phone'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入電話');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['address'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入地址');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('bathroomQuestion01', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇坪數');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('bathroomQuestion02', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇馬桶');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('bathroomQuestion03', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇面盆');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br></pre></td></tr></table></figure>
 <p>第四步：在 application/controllers/DecorationMap 目錄下加入名稱對照檔。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/controllers/DecorationMap/bathroom.php]&#10;&#60;?php&#10;return array(&#10;    &#39;bathroomQuestion01&#39; =&#62; array(&#10;        &#39;1&#39; =&#62; &#39;1 &#22378;&#20197;&#19979;&#39;,&#10;        &#39;2&#39; =&#62; &#39;1 ~ 1.3 &#22378;&#39;,&#10;        &#39;3&#39; =&#62; &#39;1.3 ~ 1.5 &#22378;&#39;,&#10;        &#39;4&#39; =&#62; &#39;1.5 &#22378;&#20197;&#19978;&#39;,&#10;    ),&#10;    &#39;bathroomQuestion02&#39; =&#62; array(&#10;        &#39;1&#39; =&#62; &#39;&#26032;&#35069; - &#19968;&#33324;&#39340;&#26742;&#39;,&#10;        &#39;2&#39; =&#62; &#39;&#26032;&#35069; - &#20813;&#27835;&#39340;&#26742;&#39;,&#10;        &#39;3&#39; =&#62; &#39;&#19981;&#38656;&#26356;&#25563;&#39;,&#10;        &#39;4&#39; =&#62; &#39;&#26410;&#27770;&#23450;&#39;,&#10;    ),&#10;    &#39;bathroomQuestion03&#39; =&#62; array(&#10;        &#39;1&#39; =&#62; &#39;&#26032;&#35069; - &#38263;&#26609;&#39;,&#10;        &#39;2&#39; =&#62; &#39;&#26032;&#35069;  -&#30701;&#26609;&#39;,&#10;        &#39;3&#39; =&#62; &#39;&#26032;&#35069; - &#21934;&#23380;&#39;,&#10;        &#39;4&#39; =&#62; &#39;&#19981;&#38656;&#26356;&#25563;&#39;,&#10;        &#39;5&#39; =&#62; &#39;&#26410;&#27770;&#23450;&#39;,&#10;    ),&#10;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/controllers/DecorationMap/bathroom.php]</span><br><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'bathroomQuestion01'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'1'</span> =&gt; <span class="string">'1 坪以下'</span>,</span><br><span class="line">        <span class="string">'2'</span> =&gt; <span class="string">'1 ~ 1.3 坪'</span>,</span><br><span class="line">        <span class="string">'3'</span> =&gt; <span class="string">'1.3 ~ 1.5 坪'</span>,</span><br><span class="line">        <span class="string">'4'</span> =&gt; <span class="string">'1.5 坪以上'</span>,</span><br><span class="line">    ),</span><br><span class="line">    <span class="string">'bathroomQuestion02'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'1'</span> =&gt; <span class="string">'新製 - 一般馬桶'</span>,</span><br><span class="line">        <span class="string">'2'</span> =&gt; <span class="string">'新製 - 免治馬桶'</span>,</span><br><span class="line">        <span class="string">'3'</span> =&gt; <span class="string">'不需更換'</span>,</span><br><span class="line">        <span class="string">'4'</span> =&gt; <span class="string">'未決定'</span>,</span><br><span class="line">    ),</span><br><span class="line">    <span class="string">'bathroomQuestion03'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'1'</span> =&gt; <span class="string">'新製 - 長柱'</span>,</span><br><span class="line">        <span class="string">'2'</span> =&gt; <span class="string">'新製  -短柱'</span>,</span><br><span class="line">        <span class="string">'3'</span> =&gt; <span class="string">'新製 - 單孔'</span>,</span><br><span class="line">        <span class="string">'4'</span> =&gt; <span class="string">'不需更換'</span>,</span><br><span class="line">        <span class="string">'5'</span> =&gt; <span class="string">'未決定'</span>,</span><br><span class="line">    ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>第五步：加入 Bathroom 的子表單樣版及完成頁樣版。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/bathroom/form.phtml]&#10;&#60;dl&#62;&#10;    &#60;dt&#62;&#22378;&#25976;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion01&#34; value=&#34;1&#34; /&#62;&#60;span&#62;1 &#22378;&#20197;&#19979;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion01&#34; value=&#34;2&#34; /&#62;&#60;span&#62;1 ~ 1.3 &#22378;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion01&#34; value=&#34;3&#34; /&#62;&#60;span&#62;1.3 ~ 1.5 &#22378;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion01&#34; value=&#34;4&#34; /&#62;&#60;span&#62;1.5 &#22378;&#20197;&#19978;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#39340;&#26742;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion02&#34; value=&#34;1&#34; /&#62;&#60;span&#62;&#26032;&#35069; - &#19968;&#33324;&#39340;&#26742;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion02&#34; value=&#34;2&#34; /&#62;&#60;span&#62;&#26032;&#35069; - &#20813;&#27835;&#39340;&#26742;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion02&#34; value=&#34;3&#34; /&#62;&#60;span&#62;&#19981;&#38656;&#26356;&#25563;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion02&#34; value=&#34;4&#34; /&#62;&#60;span&#62;&#26410;&#27770;&#23450;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#38754;&#30406;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion03&#34; value=&#34;1&#34; /&#62;&#60;span&#62;&#26032;&#35069; - &#38263;&#26609;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion03&#34; value=&#34;2&#34; /&#62;&#60;span&#62;&#26032;&#35069;  -&#30701;&#26609;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion03&#34; value=&#34;3&#34; /&#62;&#60;span&#62;&#26032;&#35069; - &#21934;&#23380;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion03&#34; value=&#34;4&#34; /&#62;&#60;span&#62;&#19981;&#38656;&#26356;&#25563;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;bathroomQuestion03&#34; value=&#34;5&#34; /&#62;&#60;span&#62;&#26410;&#27770;&#23450;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;&#60;/dl&#62;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/bathroom/ok.phtml]&#10;&#60;dl&#62;&#10;    &#60;dt&#62;&#22378;&#25976;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;                    $this-&#62;decorationMap[&#39;bathroomQuestion01&#39;],&#10;                    $this-&#62;decorationRow[&#39;bathroomQuestion01&#39;]); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#39340;&#26742;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;                    $this-&#62;decorationMap[&#39;bathroomQuestion02&#39;],&#10;                    $this-&#62;decorationRow[&#39;bathroomQuestion02&#39;]); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#38754;&#30406;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;                    $this-&#62;decorationMap[&#39;bathroomQuestion03&#39;],&#10;                    $this-&#62;decorationRow[&#39;bathroomQuestion03&#39;]); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;&#60;/dl&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/bathroom/form.phtml]</span><br><span class="line">&lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;坪數&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion01"</span> value=<span class="string">"1"</span> /&gt;&lt;span&gt;<span class="number">1</span> 坪以下&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion01"</span> value=<span class="string">"2"</span> /&gt;&lt;span&gt;<span class="number">1</span> ~ <span class="number">1.3</span> 坪&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion01"</span> value=<span class="string">"3"</span> /&gt;&lt;span&gt;<span class="number">1.3</span> ~ <span class="number">1.5</span> 坪&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion01"</span> value=<span class="string">"4"</span> /&gt;&lt;span&gt;<span class="number">1.5</span> 坪以上&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;馬桶&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion02"</span> value=<span class="string">"1"</span> /&gt;&lt;span&gt;新製 - 一般馬桶&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion02"</span> value=<span class="string">"2"</span> /&gt;&lt;span&gt;新製 - 免治馬桶&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion02"</span> value=<span class="string">"3"</span> /&gt;&lt;span&gt;不需更換&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion02"</span> value=<span class="string">"4"</span> /&gt;&lt;span&gt;未決定&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;面盆&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion03"</span> value=<span class="string">"1"</span> /&gt;&lt;span&gt;新製 - 長柱&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion03"</span> value=<span class="string">"2"</span> /&gt;&lt;span&gt;新製  -短柱&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion03"</span> value=<span class="string">"3"</span> /&gt;&lt;span&gt;新製 - 單孔&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion03"</span> value=<span class="string">"4"</span> /&gt;&lt;span&gt;不需更換&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"bathroomQuestion03"</span> value=<span class="string">"5"</span> /&gt;&lt;span&gt;未決定&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">&lt;/dl&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/bathroom/ok.phtml]</span><br><span class="line">&lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;坪數&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;actionController-&gt;buildOptionString(</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationMap[<span class="string">'bathroomQuestion01'</span>],</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationRow[<span class="string">'bathroomQuestion01'</span>]); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;馬桶&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;actionController-&gt;buildOptionString(</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationMap[<span class="string">'bathroomQuestion02'</span>],</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationRow[<span class="string">'bathroomQuestion02'</span>]); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;面盆&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;actionController-&gt;buildOptionString(</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationMap[<span class="string">'bathroomQuestion03'</span>],</span><br><span class="line">                    <span class="variable">$this</span>-&gt;decorationRow[<span class="string">'bathroomQuestion03'</span>]); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">&lt;/dl&gt;</span><br></pre></td></tr></table></figure>
 <p>第六步：最後在 index.phtml 加入 Bathroom 的新連結。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/index.phtml]&#10; &#60;h1&#62;&#25151;&#23627;&#35037;&#20462;&#60;/h1&#62;&#10; &#60;ul&#62;&#10;     &#60;li&#62;&#60;a href=&#34;&#60;?php&#10; echo $this-&#62;url(array(&#10;     &#39;controller&#39; =&#62; &#39;index&#39;,&#10;     &#39;action&#39; =&#62; &#39;step2&#39;,&#10;     &#39;decoration&#39; =&#62; &#39;kitchen&#39;,&#10; )); ?&#62;&#34;&#62;&#24282;&#25151;&#60;/a&#62;&#60;/li&#62;&#10;+    &#60;li&#62;&#60;a href=&#34;&#60;?php&#10;+echo $this-&#62;url(array(&#10;+    &#39;controller&#39; =&#62; &#39;index&#39;,&#10;+    &#39;action&#39; =&#62; &#39;step2&#39;,&#10;+    &#39;decoration&#39; =&#62; &#39;bathroom&#39;,&#10;+)); ?&#62;&#34;&#62;&#28020;&#23460;&#60;/a&#62;&#60;/li&#62;&#10; &#60;/ul&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/views/scripts/index/index.phtml]</span><br><span class="line"> &lt;h1&gt;房屋裝修&lt;/h1&gt;</span><br><span class="line"> &lt;ul&gt;</span><br><span class="line">     &lt;li&gt;&lt;a href=<span class="string">"&lt;?php</span><br><span class="line"> echo $this-&gt;url(array(</span><br><span class="line">     'controller' =&gt; 'index',</span><br><span class="line">     'action' =&gt; 'step2',</span><br><span class="line">     'decoration' =&gt; 'kitchen',</span><br><span class="line"> )); ?&gt;"</span>&gt;廚房&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">+    &lt;li&gt;&lt;a href=<span class="string">"&lt;?php</span><br><span class="line">+echo $this-&gt;url(array(</span><br><span class="line">+    'controller' =&gt; 'index',</span><br><span class="line">+    'action' =&gt; 'step2',</span><br><span class="line">+    'decoration' =&gt; 'bathroom',</span><br><span class="line">+)); ?&gt;"</span>&gt;浴室&lt;/a&gt;&lt;/li&gt;</span><br><span class="line"> &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
 <p>接著我們來分析這樣的程式寫法有什麼缺點。</p>
 <h2 id="程式分析">程式分析</h2><p>從上面新增一個裝修類型的過程來看，除了新增必要的 DbTable 類別和樣版外，大部份的修改都集中在 IndexController 類別上；可以想見未來在不斷增加裝修類型後， IndexContrller 類別會越來越龐大。</p>
 <p>物件導向開發中，有個很重要的原則就是 SRP (Single Responsibility Principle) ，但顯然 IndexController 類別已經違反了這個原則。原因就是我們把所有的邏輯都集中在 IndexController 類別的身上，使得它所背負的工作超過它原先擔任的角色。</p>
@@ -332,454 +97,7 @@
 <p>而且名稱對應表也必須透過 IndexController 類別來載入，這使得我們在其他 Controller 中必須重複貼上載入檔案的程式碼，這也是一個可以改進的地方。</p>
 <p>下一篇，我們就來針對這些問題一一重構吧！</p>
 <p>繼續閱讀：<a href="http://www.jaceju.net/blog/archives/1501" target="_blank" rel="external">重構實例介紹 - 實戰篇</a></p>
-</span>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PHP/" rel="tag">#PHP</a>
-          
-            <a href="/tags/Web-開發/" rel="tag">#Web 開發</a>
-          
-            <a href="/tags/Zend-Framework/" rel="tag">#Zend Framework</a>
-          
-            <a href="/tags/心得感想/" rel="tag">#心得感想</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2010/12/31/1472/" rel="next" title="我的噗浪語錄（二） – 開發篇">
-                <i class="fa fa-chevron-left"></i> 我的噗浪語錄（二） – 開發篇
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2011/01/06/1501/" rel="prev" title="重構實例介紹 – 實戰篇">
-                重構實例介紹 – 實戰篇 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
- </div>
-
-        
-
-        
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
-      </div>
-
-      
-        
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">Jace Ju</p>
-        </div>
-        <p class="site-description motion-element" itemprop="description"></p>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">586</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">0</span>
-              <span class="site-state-item-name">分類</span>
-              
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">52</span>
-              <span class="site-state-item-name">標籤</span>
-              </a>
-          </div>
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
-          <div class="post-toc">
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求說明"><span class="nav-number">1.</span> <span class="nav-text">需求說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程式解說"><span class="nav-number">2.</span> <span class="nav-text">程式解說</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller"><span class="nav-number">2.1.</span> <span class="nav-text">Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View"><span class="nav-number">2.2.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model"><span class="nav-number">2.3.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入新裝修類型"><span class="nav-number">2.4.</span> <span class="nav-text">加入新裝修類型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程式分析"><span class="nav-number">3.</span> <span class="nav-text">程式分析</span></a></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-      
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
-  </a>
-</div>
-
-
- </div>
-    </footer>
-
-    <div class="back-to-top"></div>
-  </div>
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-  
-    
-    
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'jaceju';
-      var disqus_identifier = '2011/01/06/1495/';
-      var disqus_title = '重構實例介紹 – 分析篇';
-      var disqus_url = 'http://jaceju.net/2011/01/06/1495/';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-  
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
-
-
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
-
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 0.4 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
-      }
-    }
-  });
-</script>
-
-
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
-
-  
-  
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
-</body>
-</html>
+</div></article><div class="pagination"><a href="/2011/01/06/1501/" class="pagination-prev">PREV</a><a href="/2010/12/31/1472/" class="pagination-next">NEXT</a></div></div><aside class="sidebar"><h3>分类标签</h3><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP/">ASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone-js/">Backbone.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li></ul><h3>最新文章</h3><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/php-closure-testing/">在 PHPUnit 中測試需要 closure 的函式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/27/web-testing-with-phpunit-mink/">利用 PHPUnit 與 Mink 來做 Web 測試</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/14/what-is-test/">這樣寫測試錯了嗎？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/05/simple-refatoring-example-01/">邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/29/laravel-mailcatcher/">在 Laravel 上用 MailCatcher 發送測試信件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/laravel-events-broadcasting/">Laravel 5.1 Events Broadcasting 實務練習</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/front-end-framework-summary/">幾個有興趣的前端框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/laravel-5-1/">Laravel 5.1 正式釋出</a></li></ul></aside></section></div><div class="extra"></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
+<a href="https://hexo.io">Hexo</a>, 
+<a href="https://github.com/">GitHub</a>, 
+<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

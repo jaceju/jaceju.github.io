@@ -1,242 +1,7 @@
-<!doctype html>
-<html class="theme-next use-motion ">
-<head>
-  
-
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-
-  
-    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-  
-
-
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
-
-
-
-
-  <meta name="keywords" content="PHP,Web 開發,Zend Framework,心得感想," />
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-<meta name="description" content="接續前篇：重構實例介紹 - 分析篇
-在上一篇中，我們分析了該功能的每段程式碼，也瞭解有哪些地方需要改進，接著我們就來進入實戰的階段。
-在實戰的階段，我們要做兩件事：建立自動化測試，重構程式碼。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="重構實例介紹 – 實戰篇">
-<meta property="og:url" content="http://jaceju.net/2011/01/06/1501/index.html">
-<meta property="og:site_name" content="網站製作學習誌">
-<meta property="og:description" content="接續前篇：重構實例介紹 - 分析篇
-在上一篇中，我們分析了該功能的每段程式碼，也瞭解有哪些地方需要改進，接著我們就來進入實戰的階段。
-在實戰的階段，我們要做兩件事：建立自動化測試，重構程式碼。">
-<meta property="og:image" content="http://jaceju.net/resources/refactoring/selenium-01.png">
-<meta property="og:image" content="http://jaceju.net/resources/refactoring/selenium-02.png">
-<meta property="og:updated_time" content="2016-02-02T06:55:53.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重構實例介紹 – 實戰篇">
-<meta name="twitter:description" content="接續前篇：重構實例介紹 - 分析篇
-在上一篇中，我們分析了該功能的每段程式碼，也瞭解有哪些地方需要改進，接著我們就來進入實戰的階段。
-在實戰的階段，我們要做兩件事：建立自動化測試，重構程式碼。">
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    scheme: '',
-    sidebar: 'post'
-  };
-</script>
-
-
-
-  <title> 重構實例介紹 – 實戰篇 | 網站製作學習誌 </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
-
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-  
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-450710-8', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
-  <div class="container one-column page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">網站製作學習誌</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
-
-      
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content"> 
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                重構實例介紹 – 實戰篇
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2011-01-06T00:00:00+08:00" content="2011-01-06">
-              2011-01-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2011/01/06/1501/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/01/06/1501/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        <span itemprop="articleBody"><p>接續前篇：<a href="http://jaceju.net/2011/01/06/1495/">重構實例介紹 - 分析篇</a></p>
+<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 重構實例介紹 – 實戰篇 · 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
+<script src="js/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link active">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="post"><article class="post-block"><h2 class="post-title"><a href="/2011/01/06/1501/" class="post-title-link">重構實例介紹 – 實戰篇</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li><li class="post-tag-item"><a href="/tags/Web-開發/" class="post-tag-link">Web 開發</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li><li class="post-tag-item"><a href="/tags/心得感想/" class="post-tag-link">心得感想</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>接續前篇：<a href="http://jaceju.net/2011/01/06/1495/">重構實例介紹 - 分析篇</a></p>
 <p>在上一篇中，我們分析了該功能的每段程式碼，也瞭解有哪些地方需要改進，接著我們就來進入實戰的階段。</p>
 <p>在實戰的階段，我們要做兩件事：建立自動化測試，重構程式碼。</p>
 <a id="more"></a>
@@ -262,11 +27,11 @@
 <p>註：同上一篇，以下將會以一般 patch 檔的方式來表示更動後的差異，以節省篇幅。</p>
 <h3 id="1-_移動名稱對照表">1. 移動名稱對照表</h3><p>首先我們要把原來透過 IndexController::_exportMapData() 方法所載入的名稱對照表移動位置，因為我們希望要能夠減少新增裝修類型時，所要建立的檔案數量。因此我把原來的名稱對照表暫時先放到對應的 DbTable 類別中，作法如下：</p>
 <p>a. 在 Application_Model_DbTable_DecorationKitchens 類別中加入 $_displayMap 屬性及 getDisplayMap() 方法。 $_displayMap 屬性值即為 application/controllers/DecorationMap/kitchen.php 的陣列值； getDisplayMap() 方法則回傳 $_displayMap 屬性。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchens extends Zend_Db_Table_Abstract&#10; &#123;&#10;     protected $_name = &#39;decoration_kitchens&#39;;&#10;&#10;+    protected $_displayMap = array(&#10;+        &#39;kitchenQuestion01&#39; =&#62; array(&#10;+            &#39;y&#39; =&#62; &#39;&#21514;&#27331;&#39;,&#10;+            &#39;n&#39; =&#62; &#39;&#39;,&#10;+        ),&#10;+        &#39;kitchenQuestion02&#39; =&#62; array(&#10;+            &#39;y&#39; =&#62; &#39;&#19979;&#27331;&#39;,&#10;+            &#39;n&#39; =&#62; &#39;&#39;,&#10;+        ),&#10;+        &#39;kitchenQuestion03&#39; =&#62; array(&#10;+            &#39;y&#39; =&#62; &#39;&#29926;&#26031;&#29200;&#39;,&#10;+            &#39;n&#39; =&#62; &#39;&#39;,&#10;+        ),&#10;+        &#39;kitchenQuestion04&#39; =&#62; array(&#10;+            &#39;y&#39; =&#62; &#39;&#25490;&#27833;&#29017;&#27231;&#39;,&#10;+            &#39;n&#39; =&#62; &#39;&#39;,&#10;+        ),&#10;+        &#39;kitchenQuestion05&#39; =&#62; array(&#10;+            &#39;1&#39; =&#62; &#39;&#28961;&#39;,&#10;+            &#39;2&#39; =&#62; &#39;&#27877;&#20316;&#39;,&#10;+            &#39;3&#39; =&#62; &#39;&#32068;&#21512;&#24335;&#39;,&#10;+            &#39;4&#39; =&#62; &#39;&#27472;&#21270;&#39;,&#10;+            &#39;5&#39; =&#62; &#39;&#19981;&#37885;&#37628;&#39;,&#10;+        ),&#10;+    );&#10;+&#10;+    public function getDisplayMap()&#10;+    &#123;&#10;+        return $this-&#62;_displayMap;&#10;+    &#125;&#10; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchens extends Zend_Db_Table_Abstract</span><br><span class="line"> &#123;</span><br><span class="line">     protected $_name = 'decoration_kitchens';</span><br><span class="line"></span><br><span class="line"><span class="addition">+    protected $_displayMap = array(</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion01' =&gt; array(</span></span><br><span class="line"><span class="addition">+            'y' =&gt; '吊櫃',</span></span><br><span class="line"><span class="addition">+            'n' =&gt; '',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion02' =&gt; array(</span></span><br><span class="line"><span class="addition">+            'y' =&gt; '下櫃',</span></span><br><span class="line"><span class="addition">+            'n' =&gt; '',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion03' =&gt; array(</span></span><br><span class="line"><span class="addition">+            'y' =&gt; '瓦斯爐',</span></span><br><span class="line"><span class="addition">+            'n' =&gt; '',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion04' =&gt; array(</span></span><br><span class="line"><span class="addition">+            'y' =&gt; '排油煙機',</span></span><br><span class="line"><span class="addition">+            'n' =&gt; '',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion05' =&gt; array(</span></span><br><span class="line"><span class="addition">+            '1' =&gt; '無',</span></span><br><span class="line"><span class="addition">+            '2' =&gt; '泥作',</span></span><br><span class="line"><span class="addition">+            '3' =&gt; '組合式',</span></span><br><span class="line"><span class="addition">+            '4' =&gt; '歐化',</span></span><br><span class="line"><span class="addition">+            '5' =&gt; '不鏽鋼',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+    );</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    public function getDisplayMap()</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        return $this-&gt;_displayMap;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>b. 再對 Application_Model_DbTable_DecorationBathrooms 這個類別做一次類似的修改。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathrooms extends Zend_Db_Table_Abstract&#10; &#123;&#10;     protected $_name = &#39;decoration_bathrooms&#39;;&#10;+    protected $_displayMap = array(&#10;+        &#39;bathroomQuestion01&#39; =&#62; array(&#10;+            &#39;1&#39; =&#62; &#39;1 &#22378;&#20197;&#19979;&#39;,&#10;+            &#39;2&#39; =&#62; &#39;1 ~ 1.3 &#22378;&#39;,&#10;+            &#39;3&#39; =&#62; &#39;1.3 ~ 1.5 &#22378;&#39;,&#10;+            &#39;4&#39; =&#62; &#39;1.5 &#22378;&#20197;&#19978;&#39;,&#10;+        ),&#10;+        &#39;bathroomQuestion02&#39; =&#62; array(&#10;+            &#39;1&#39; =&#62; &#39;&#26032;&#35069; - &#19968;&#33324;&#39340;&#26742;&#39;,&#10;+            &#39;2&#39; =&#62; &#39;&#26032;&#35069; - &#20813;&#27835;&#39340;&#26742;&#39;,&#10;+            &#39;3&#39; =&#62; &#39;&#19981;&#38656;&#26356;&#25563;&#39;,&#10;+            &#39;4&#39; =&#62; &#39;&#26410;&#27770;&#23450;&#39;,&#10;+        ),&#10;+        &#39;bathroomQuestion03&#39; =&#62; array(&#10;+            &#39;1&#39; =&#62; &#39;&#26032;&#35069; - &#38263;&#26609;&#39;,&#10;+            &#39;2&#39; =&#62; &#39;&#26032;&#35069;  -&#30701;&#26609;&#39;,&#10;+            &#39;3&#39; =&#62; &#39;&#26032;&#35069; - &#21934;&#23380;&#39;,&#10;+            &#39;4&#39; =&#62; &#39;&#19981;&#38656;&#26356;&#25563;&#39;,&#10;+            &#39;5&#39; =&#62; &#39;&#26410;&#27770;&#23450;&#39;,&#10;+        ),&#10;+    );&#10;+&#10;+    public function getDisplayMap()&#10;+    &#123;&#10;+        return $this-&#62;_displayMap;&#10;+    &#125;&#10; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathrooms extends Zend_Db_Table_Abstract</span><br><span class="line"> &#123;</span><br><span class="line">     protected $_name = 'decoration_bathrooms';</span><br><span class="line"><span class="addition">+    protected $_displayMap = array(</span></span><br><span class="line"><span class="addition">+        'bathroomQuestion01' =&gt; array(</span></span><br><span class="line"><span class="addition">+            '1' =&gt; '1 坪以下',</span></span><br><span class="line"><span class="addition">+            '2' =&gt; '1 ~ 1.3 坪',</span></span><br><span class="line"><span class="addition">+            '3' =&gt; '1.3 ~ 1.5 坪',</span></span><br><span class="line"><span class="addition">+            '4' =&gt; '1.5 坪以上',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'bathroomQuestion02' =&gt; array(</span></span><br><span class="line"><span class="addition">+            '1' =&gt; '新製 - 一般馬桶',</span></span><br><span class="line"><span class="addition">+            '2' =&gt; '新製 - 免治馬桶',</span></span><br><span class="line"><span class="addition">+            '3' =&gt; '不需更換',</span></span><br><span class="line"><span class="addition">+            '4' =&gt; '未決定',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'bathroomQuestion03' =&gt; array(</span></span><br><span class="line"><span class="addition">+            '1' =&gt; '新製 - 長柱',</span></span><br><span class="line"><span class="addition">+            '2' =&gt; '新製  -短柱',</span></span><br><span class="line"><span class="addition">+            '3' =&gt; '新製 - 單孔',</span></span><br><span class="line"><span class="addition">+            '4' =&gt; '不需更換',</span></span><br><span class="line"><span class="addition">+            '5' =&gt; '未決定',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+    );</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    public function getDisplayMap()</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        return $this-&gt;_displayMap;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>c. 修改 IndexController 類別的 step3Action() 方法，將原本透過 IndexController 類別的 _exportMapData() 方法取值的部份，改用 DbTable 類別的 getDisplayMap() 方法。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-        $this-&#62;view-&#62;decorationMap = $this-&#62;_exportMapData($decorationName);&#10;+        $this-&#62;view-&#62;decorationMap = $decorationTable-&#62;getDisplayMap();</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-        $this-&gt;view-&gt;decorationMap = $this-&gt;_exportMapData($decorationName);</span></span><br><span class="line"><span class="addition">+        $this-&gt;view-&gt;decorationMap = $decorationTable-&gt;getDisplayMap();</span></span><br></pre></td></tr></table></figure>
 <p>註：這裡的「 DbTable 類別」就是指 Application_Model_DbTable_DecorationKitchens 及 Application_Model_DbTable_DecorationBathrooms 這兩個類別，後續之說明亦同。</p>
 <p>這裡有個很重要的重構，就是方法名稱的修正。原本的 _exportMapData 並無法正確表達程式的意圖，所以在重構時我們最好能將它修改成符合程式意圖的名稱。</p>
 <p>d. 切換到 Selenium IDE 的畫面，測試。沒意外的話，應該就能看到 Selenium IDE 出現綠色光棒了。</p>
@@ -277,556 +42,109 @@
 <p>所以在這個步驟中，我們就要讓 Row 物件自己能輸出欄位值所對應的中文名稱，作法如下：</p>
 <p>a. 在 application/models/DbTable 下加入 Application_Model_DbTable_DecorationKitchen 及 Application_Model_DbTable_DecorationBathroom 的 Row 類別，它們分別繼承自 Zend_Db_Table_Row_Abstract 類別。</p>
 <p>註：之後的說明裡，提到「 Row 類別」的話，就代表 Application_Model_DbTable_DecorationKitchen 及 Application_Model_DbTable_DecorationBathroom 兩個類別。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract&#10;+&#123;&#10;+&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+class Application_Model_DbTable_DecorationBathroom extends Zend_Db_Table_Row_Abstract&#10;+&#123;&#10;+&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract</span></span><br><span class="line"><span class="addition">+&#123;</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+class Application_Model_DbTable_DecorationBathroom extends Zend_Db_Table_Row_Abstract</span></span><br><span class="line"><span class="addition">+&#123;</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br></pre></td></tr></table></figure>
 <p>b. 在原來 DbTable 類別中，加入 $_rowClass 屬性，其值為對應的 Row 類別名稱。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchens extends Zend_Db_Table_Abstract&#10; &#123;&#10;     protected $_name = &#39;decoration_kitchens&#39;;&#10;+    protected $_rowClass = &#39;Application_Model_DbTable_DecorationKitchen&#39;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathrooms extends Zend_Db_Table_Abstract&#10; &#123;&#10;     protected $_name = &#39;decoration_kitchens&#39;;&#10;+    protected $_rowClass = &#39;Application_Model_DbTable_DecorationBathroom&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchens extends Zend_Db_Table_Abstract</span><br><span class="line"> &#123;</span><br><span class="line">     protected $_name = 'decoration_kitchens';</span><br><span class="line"><span class="addition">+    protected $_rowClass = 'Application_Model_DbTable_DecorationKitchen';</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathrooms extends Zend_Db_Table_Abstract</span><br><span class="line"> &#123;</span><br><span class="line">     protected $_name = 'decoration_kitchens';</span><br><span class="line"><span class="addition">+    protected $_rowClass = 'Application_Model_DbTable_DecorationBathroom';</span></span><br></pre></td></tr></table></figure>
 <p>c. 將原來在 DbTable 類別上的 $_displayMap 屬性和 getDisplayMap() 方法複製到對應的 Row 類別上。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract&#10; &#123;&#10;+    protected $_displayMap = array(&#10;+        &#39;kitchenQuestion01&#39; =&#62; array(&#10;+            &#39;y&#39; =&#62; &#39;&#21514;&#27331;&#39;,&#10;+            &#39;n&#39; =&#62; &#39;&#39;,&#10;+        ),&#10;+        &#39;kitchenQuestion02&#39; =&#62; array(&#10;+            &#39;y&#39; =&#62; &#39;&#19979;&#27331;&#39;,&#10;+            &#39;n&#39; =&#62; &#39;&#39;,&#10;+        ),&#10;+        &#39;kitchenQuestion03&#39; =&#62; array(&#10;+            &#39;y&#39; =&#62; &#39;&#29926;&#26031;&#29200;&#39;,&#10;+            &#39;n&#39; =&#62; &#39;&#39;,&#10;+        ),&#10;+        &#39;kitchenQuestion04&#39; =&#62; array(&#10;+            &#39;y&#39; =&#62; &#39;&#25490;&#27833;&#29017;&#27231;&#39;,&#10;+            &#39;n&#39; =&#62; &#39;&#39;,&#10;+        ),&#10;+        &#39;kitchenQuestion05&#39; =&#62; array(&#10;+            &#39;1&#39; =&#62; &#39;&#28961;&#39;,&#10;+            &#39;2&#39; =&#62; &#39;&#27877;&#20316;&#39;,&#10;+            &#39;3&#39; =&#62; &#39;&#32068;&#21512;&#24335;&#39;,&#10;+            &#39;4&#39; =&#62; &#39;&#27472;&#21270;&#39;,&#10;+            &#39;5&#39; =&#62; &#39;&#19981;&#37885;&#37628;&#39;,&#10;+        ),&#10;+    );&#10;+&#10;+    public function getDisplayMap()&#10;+    &#123;&#10;+        return $this-&#62;_displayMap;&#10;+    &#125;&#10; &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathroom extends Zend_Db_Table_Row_Abstract&#10; &#123;&#10;+    protected $_displayMap = array(&#10;+        &#39;bathroomQuestion01&#39; =&#62; array(&#10;+            &#39;1&#39; =&#62; &#39;1 &#22378;&#20197;&#19979;&#39;,&#10;+            &#39;2&#39; =&#62; &#39;1 ~ 1.3 &#22378;&#39;,&#10;+            &#39;3&#39; =&#62; &#39;1.3 ~ 1.5 &#22378;&#39;,&#10;+            &#39;4&#39; =&#62; &#39;1.5 &#22378;&#20197;&#19978;&#39;,&#10;+        ),&#10;+        &#39;bathroomQuestion02&#39; =&#62; array(&#10;+            &#39;1&#39; =&#62; &#39;&#26032;&#35069; - &#19968;&#33324;&#39340;&#26742;&#39;,&#10;+            &#39;2&#39; =&#62; &#39;&#26032;&#35069; - &#20813;&#27835;&#39340;&#26742;&#39;,&#10;+            &#39;3&#39; =&#62; &#39;&#19981;&#38656;&#26356;&#25563;&#39;,&#10;+            &#39;4&#39; =&#62; &#39;&#26410;&#27770;&#23450;&#39;,&#10;+        ),&#10;+        &#39;bathroomQuestion03&#39; =&#62; array(&#10;+            &#39;1&#39; =&#62; &#39;&#26032;&#35069; - &#38263;&#26609;&#39;,&#10;+            &#39;2&#39; =&#62; &#39;&#26032;&#35069;  -&#30701;&#26609;&#39;,&#10;+            &#39;3&#39; =&#62; &#39;&#26032;&#35069; - &#21934;&#23380;&#39;,&#10;+            &#39;4&#39; =&#62; &#39;&#19981;&#38656;&#26356;&#25563;&#39;,&#10;+            &#39;5&#39; =&#62; &#39;&#26410;&#27770;&#23450;&#39;,&#10;+        ),&#10;+    );&#10;+&#10;+    public function getDisplayMap()&#10;+    &#123;&#10;+        return $this-&#62;_displayMap;&#10;+    &#125;&#10; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract</span><br><span class="line"> &#123;</span><br><span class="line"><span class="addition">+    protected $_displayMap = array(</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion01' =&gt; array(</span></span><br><span class="line"><span class="addition">+            'y' =&gt; '吊櫃',</span></span><br><span class="line"><span class="addition">+            'n' =&gt; '',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion02' =&gt; array(</span></span><br><span class="line"><span class="addition">+            'y' =&gt; '下櫃',</span></span><br><span class="line"><span class="addition">+            'n' =&gt; '',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion03' =&gt; array(</span></span><br><span class="line"><span class="addition">+            'y' =&gt; '瓦斯爐',</span></span><br><span class="line"><span class="addition">+            'n' =&gt; '',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion04' =&gt; array(</span></span><br><span class="line"><span class="addition">+            'y' =&gt; '排油煙機',</span></span><br><span class="line"><span class="addition">+            'n' =&gt; '',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'kitchenQuestion05' =&gt; array(</span></span><br><span class="line"><span class="addition">+            '1' =&gt; '無',</span></span><br><span class="line"><span class="addition">+            '2' =&gt; '泥作',</span></span><br><span class="line"><span class="addition">+            '3' =&gt; '組合式',</span></span><br><span class="line"><span class="addition">+            '4' =&gt; '歐化',</span></span><br><span class="line"><span class="addition">+            '5' =&gt; '不鏽鋼',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+    );</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    public function getDisplayMap()</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        return $this-&gt;_displayMap;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathroom extends Zend_Db_Table_Row_Abstract</span><br><span class="line"> &#123;</span><br><span class="line"><span class="addition">+    protected $_displayMap = array(</span></span><br><span class="line"><span class="addition">+        'bathroomQuestion01' =&gt; array(</span></span><br><span class="line"><span class="addition">+            '1' =&gt; '1 坪以下',</span></span><br><span class="line"><span class="addition">+            '2' =&gt; '1 ~ 1.3 坪',</span></span><br><span class="line"><span class="addition">+            '3' =&gt; '1.3 ~ 1.5 坪',</span></span><br><span class="line"><span class="addition">+            '4' =&gt; '1.5 坪以上',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'bathroomQuestion02' =&gt; array(</span></span><br><span class="line"><span class="addition">+            '1' =&gt; '新製 - 一般馬桶',</span></span><br><span class="line"><span class="addition">+            '2' =&gt; '新製 - 免治馬桶',</span></span><br><span class="line"><span class="addition">+            '3' =&gt; '不需更換',</span></span><br><span class="line"><span class="addition">+            '4' =&gt; '未決定',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+        'bathroomQuestion03' =&gt; array(</span></span><br><span class="line"><span class="addition">+            '1' =&gt; '新製 - 長柱',</span></span><br><span class="line"><span class="addition">+            '2' =&gt; '新製  -短柱',</span></span><br><span class="line"><span class="addition">+            '3' =&gt; '新製 - 單孔',</span></span><br><span class="line"><span class="addition">+            '4' =&gt; '不需更換',</span></span><br><span class="line"><span class="addition">+            '5' =&gt; '未決定',</span></span><br><span class="line"><span class="addition">+        ),</span></span><br><span class="line"><span class="addition">+    );</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    public function getDisplayMap()</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        return $this-&gt;_displayMap;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>e. 將原來呼叫 DbTable 類別的 getDisplayMap() 方法的部份，改為呼叫 Row 類別的 getDisplayMap() 方法，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-        $this-&#62;view-&#62;decorationMap = $decorationTable-&#62;getDisplayMap();&#10;+        $this-&#62;view-&#62;decorationMap = $decorationRow-&#62;getDisplayMap();</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-        $this-&gt;view-&gt;decorationMap = $decorationTable-&gt;getDisplayMap();</span></span><br><span class="line"><span class="addition">+        $this-&gt;view-&gt;decorationMap = $decorationRow-&gt;getDisplayMap();</span></span><br></pre></td></tr></table></figure>
 <p>f. 測試通過後，將原來在 DbTable 類別上的 $_displayMap 屬性和 getDisplayMap() 方法刪除。</p>
 <p>到這裡，相信大家會覺得很疑惑，為什麼不一開始就把 $_displayMap 屬性和 getDisplayMap() 方法移到 Row 類別上呢？</p>
 <p>因為在一開始尋找需要處理的問題的方向，會影響我們後續重構的過程；而且我並不確定一開始就把 $_displayMap 屬性和 getDisplayMap() 方法放在 Row 類別上是不是一個好作法，所以我選擇了影響較少的方式。保持小步前進是重構最重要的關鍵之一，這樣一來即使發現方向錯誤，也可以讓復原的代價減到最低。</p>
 <p>g. 將 IndexController 類別的 buildOptionString() 複製到 Application_Model_DbTable_DecorationKitchen 類別裡，並改名為 display() 方法。接著修改 display() 方法的程式碼，讓它直接使用內部的 $_displayMap 屬性。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract&#10; &#123;&#10;+    public function display($name)&#10;+    &#123;&#10;+        return isset($this-&#62;_displayMap[$name]($this-&#62;$name))&#10;+             ? $this-&#62;_displayMap[$name]($this-&#62;$name)&#10;+             : null;&#10;+    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract</span><br><span class="line"> &#123;</span><br><span class="line"><span class="addition">+    public function display($name)</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        return isset($this-&gt;_displayMap[$name]($this-&gt;$name))</span></span><br><span class="line"><span class="addition">+             ? $this-&gt;_displayMap[$name]($this-&gt;$name)</span></span><br><span class="line"><span class="addition">+             : null;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br></pre></td></tr></table></figure>
 <p>h. 接著將樣版中呼叫 IndexController::buildOptionString() 方法的部份改為呼叫 Row 物件的 display() 方法；可以先改一個，測試無誤後再全部改掉。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-            &#60;?php echo $this-&#62;actionController-&#62;buildOptionString(&#10;-                    $this-&#62;decorationMap[&#39;kitchenQuestion01&#39;],&#10;-                    $this-&#62;decorationRow[&#39;kitchenQuestion01&#39;]); ?&#62;&#10;+            &#60;?php echo $this-&#62;decorationRow-&#62;display(&#39;kitchenQuestion01&#39;); ?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-            &lt;?php echo $this-&gt;actionController-&gt;buildOptionString(</span></span><br><span class="line"><span class="deletion">-                    $this-&gt;decorationMap['kitchenQuestion01'],</span></span><br><span class="line"><span class="deletion">-                    $this-&gt;decorationRow['kitchenQuestion01']); ?&gt;</span></span><br><span class="line"><span class="addition">+            &lt;?php echo $this-&gt;decorationRow-&gt;display('kitchenQuestion01'); ?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>i. Application_Model_DbTable_DecorationBathroom 類別做同樣的處理，測試。</p>
 <p>j. 最後將 IndexController::step3Action() 方法中，移除 view 對 decorationMap 和 actionController 兩個變數的引用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     public function step3Action()&#10;     &#123;&#10;         // ...&#10;-        $this-&#62;view-&#62;decorationMap = $decorationRow-&#62;getDisplayMap();&#10;-        $this-&#62;view-&#62;actionController = $this;&#10;     &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     public function step3Action()</span><br><span class="line">     &#123;</span><br><span class="line">         // ...</span><br><span class="line"><span class="deletion">-        $this-&gt;view-&gt;decorationMap = $decorationRow-&gt;getDisplayMap();</span></span><br><span class="line"><span class="deletion">-        $this-&gt;view-&gt;actionController = $this;</span></span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
 <p>k. 最後刪掉整個 IndexController::buildOptionString() 方法。</p>
 <p>當然，我們也可以讓 application/views/scripts/index/kitchen/form.phtml 改用新的 display() 方法來顯示選項，這就看維護上的需求值不值得我們這麼做了。</p>
 <h3 id="3-_處理裝修類型名稱">3. 處理裝修類型名稱</h3><p>現在我們已經讓 IndexController 類別減輕不少責任，但是還有一個地方會影響到每次我們新增裝修類型，那就是 IndexController 類別的 $_decorationDisplayNameList 屬性。我們希望讓它是定義在 DbTable 類別或是 Row 類別裡，這樣就不用每次都要修改 IndexController 類別。</p>
 <p>那麼新的屬性位置應該放在 DbTable 類別裡好，還是放在 Row 類別裡好呢？其實兩個都是可行的選擇，但原則上我們希望儘可能讓相同的邏輯放在同一個地方，因此這邊我選擇了 Row 類別。完整的作法如下：</p>
 <p>a. 先將 step2Action 呼叫 _createDecorationTable() 的程式碼移到 action 的開頭處，並在下一行加上 $decorationTable-&gt;createRow() ；而原本呼叫 DbTable 物件的 createRow() 方法的部份則改為呼叫 Row 物件的 setFromArray() 方法，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class IndexController &#39006;&#21029;extends Zend_Controller_Action&#10; &#123;&#10;     public function step2Action()&#10;     &#123;&#10;         $decorationName = strtolower($this-&#62;getRequest()-&#62;getParam(&#39;decoration&#39;));&#10;+        $decorationTable = $this-&#62;_createDecorationTable($decorationName);&#10;+        $decorationRow = $decorationTable-&#62;createRow();&#10;-                $decorationTable = $this-&#62;_createDecorationTable($decorationName);&#10;-                $decorationRow = $decorationTable-&#62;createRow($formData);&#10;+                $decorationRow-&#62;setFromArray($formData);</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class IndexController 類別extends Zend_Controller_Action</span><br><span class="line"> &#123;</span><br><span class="line">     public function step2Action()</span><br><span class="line">     &#123;</span><br><span class="line">         $decorationName = strtolower($this-&gt;getRequest()-&gt;getParam('decoration'));</span><br><span class="line"><span class="addition">+        $decorationTable = $this-&gt;_createDecorationTable($decorationName);</span></span><br><span class="line"><span class="addition">+        $decorationRow = $decorationTable-&gt;createRow();</span></span><br><span class="line"><span class="deletion">-                $decorationTable = $this-&gt;_createDecorationTable($decorationName);</span></span><br><span class="line"><span class="deletion">-                $decorationRow = $decorationTable-&gt;createRow($formData);</span></span><br><span class="line"><span class="addition">+                $decorationRow-&gt;setFromArray($formData);</span></span><br></pre></td></tr></table></figure>
 <p>b. 在 Row 類別中加入 $_displayName 屬性及 getDisplayName() 方法，其中 $_displayName 屬性的值即為裝修類型的中文名稱。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract&#10; &#123;&#10;+    protected $_displayName = &#39;&#24282;&#25151;&#39;;&#10;+&#10;+    public function getDisplayName()&#10;+    &#123;&#10;+        return $this-&#62;_displayName;&#10;+    &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathroom extends Zend_Db_Table_Row_Abstract&#10; &#123;&#10;+    protected $_displayName = &#39;&#28020;&#23460;&#39;;&#10;+&#10;+    public function getDisplayName()&#10;+    &#123;&#10;+        return $this-&#62;_displayName;&#10;+    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract</span><br><span class="line"> &#123;</span><br><span class="line"><span class="addition">+    protected $_displayName = '廚房';</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    public function getDisplayName()</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        return $this-&gt;_displayName;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathroom extends Zend_Db_Table_Row_Abstract</span><br><span class="line"> &#123;</span><br><span class="line"><span class="addition">+    protected $_displayName = '浴室';</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    public function getDisplayName()</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        return $this-&gt;_displayName;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br></pre></td></tr></table></figure>
 <p>c. 在 step2Action() 方法的 view 中加入對 $decorationRow 的引用，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class IndexController &#39006;&#21029;extends Zend_Controller_Action&#10; &#123;&#10;     public function step2Action()&#10;     &#123;&#10;         $this-&#62;view-&#62;decorationName = $decorationName;&#10;         $this-&#62;view-&#62;decorationDisplayName =&#10;                 $this-&#62;_decorationDisplayNameList[strtolower($decorationName)];&#10;+        $this-&#62;view-&#62;decorationRow = $decorationRow;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class IndexController 類別extends Zend_Controller_Action</span><br><span class="line"> &#123;</span><br><span class="line">     public function step2Action()</span><br><span class="line">     &#123;</span><br><span class="line">         $this-&gt;view-&gt;decorationName = $decorationName;</span><br><span class="line">         $this-&gt;view-&gt;decorationDisplayName =</span><br><span class="line">                 $this-&gt;_decorationDisplayNameList[strtolower($decorationName)];</span><br><span class="line"><span class="addition">+        $this-&gt;view-&gt;decorationRow = $decorationRow;</span></span><br></pre></td></tr></table></figure>
 <p>d. 在 step2.phtml 及 step3.phtml 兩個樣版中，將顯示樣版變數 decorationDisplayName 的部份，改為顯示 Row 物件的 getDisplayName() 方法，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&#60;h1&#62;&#60;?php echo $this-&#62;escape($this-&#62;decorationDisplayName); ?&#62;&#60;/h1&#62;&#10;+&#60;h1&#62;&#60;?php echo $this-&#62;escape($this-&#62;decorationRow-&#62;getDisplayName()); ?&#62;&#60;/h1&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-&lt;h1&gt;&lt;?php echo $this-&gt;escape($this-&gt;decorationDisplayName); ?&gt;&lt;/h1&gt;</span></span><br><span class="line"><span class="addition">+&lt;h1&gt;&lt;?php echo $this-&gt;escape($this-&gt;decorationRow-&gt;getDisplayName()); ?&gt;&lt;/h1&gt;</span></span><br></pre></td></tr></table></figure>
 <p>e. 拿掉 IndexController 類別的 step2Action() 與 step3Action() 方法中，指定給 view 的 $_decorationDisplayNameList 變數所在相關程式碼，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     public function step2Action()&#10;     &#123;&#10;-        $this-&#62;view-&#62;decorationDisplayName =&#10;-                $this-&#62;_decorationDisplayNameList[strtolower($decorationName)];&#10;     public function step3Action()&#10;     &#123;&#10;-        $this-&#62;view-&#62;decorationDisplayName =&#10;-                $this-&#62;_decorationDisplayNameList[strtolower($decorationName)];</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     public function step2Action()</span><br><span class="line">     &#123;</span><br><span class="line"><span class="deletion">-        $this-&gt;view-&gt;decorationDisplayName =</span></span><br><span class="line"><span class="deletion">-                $this-&gt;_decorationDisplayNameList[strtolower($decorationName)];</span></span><br><span class="line">     public function step3Action()</span><br><span class="line">     &#123;</span><br><span class="line"><span class="deletion">-        $this-&gt;view-&gt;decorationDisplayName =</span></span><br><span class="line"><span class="deletion">-                $this-&gt;_decorationDisplayNameList[strtolower($decorationName)];</span></span><br></pre></td></tr></table></figure>
 <p>f. 最後移除 IndexController 類別裡的 $_decorationDisplayNameList 屬性。</p>
 <p>這樣一來，在 IndexController 類別就不需要額外處理中文名稱顯示的問題了。</p>
 <h3 id="4-_處理重複的程式碼">4. 處理重複的程式碼</h3><p>重複的程式碼是最糟糕的一種壞味道，但我們卻在上面的重構過程中，讓兩個 Row 類別都重複了同樣的程式碼；所以現在我們要透過繼承來消除掉這些重複的程式碼，作法如下：</p>
 <p>a. 建立抽象的 Application_Model_DbTable_DecorationRow 類別，將在另外兩個 Row 類別重複的 getDisplayName() 、 getDisplayMap() 及 display() 等三個方法複製過來，並加入必要的 protected 屬性： $_displayName 及 $_displayMap 。</p>
 <p>註：後面的說明中，會以「抽象 Row 類別」來代替 Application_Model_DbTable_DecorationRow 的完整名稱。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/models/DbTable/DecorationRow.php]&#10;abstract class Application_Model_DbTable_DecorationRow extends Zend_Db_Table_Row_Abstract&#10;&#123;&#10;    protected $_displayName = null;&#10;    public function getDisplayName()&#10;    &#123;&#10;        return $this-&#62;_displayName;&#10;    &#125;&#10;    protected $_displayMap = array();&#10;    public function getDisplayMap()&#10;    &#123;&#10;        return $this-&#62;_displayMap;&#10;    &#125;&#10;    public function display($name)&#10;    &#123;&#10;        return isset($this-&#62;_displayMap[$name]($this-&#62;$name))&#10;             ? $this-&#62;_displayMap[$name]($this-&#62;$name)&#10;             : null;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">[/refactoring_sample/application/models/DbTable/DecorationRow.php]</span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Application_Model_DbTable_DecorationRow</span> <span class="keyword">extends</span> <span class="title">Zend_Db_Table_Row_Abstract</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_displayName</span> = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getDisplayName</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;_displayName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_displayMap</span> = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getDisplayMap</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;_displayMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">display</span><span class="params">(<span class="variable">$name</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="variable">$this</span>-&gt;_displayMap[<span class="variable">$name</span>](<span class="variable">$this</span>-&gt;<span class="variable">$name</span>))</span><br><span class="line">             ? <span class="variable">$this</span>-&gt;_displayMap[<span class="variable">$name</span>](<span class="variable">$this</span>-&gt;<span class="variable">$name</span>)</span><br><span class="line">             : <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>b. 舊的 Row 類別改為繼承抽象 Row 類別，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract&#10;+class Application_Model_DbTable_DecorationKitchen extends Application_Model_DbTable_DecorationRow</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract&#10;+class Application_Model_DbTable_DecorationKitchen extends Application_Model_DbTable_DecorationRow</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract</span></span><br><span class="line"><span class="addition">+class Application_Model_DbTable_DecorationKitchen extends Application_Model_DbTable_DecorationRow</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-class Application_Model_DbTable_DecorationKitchen extends Zend_Db_Table_Row_Abstract</span></span><br><span class="line"><span class="addition">+class Application_Model_DbTable_DecorationKitchen extends Application_Model_DbTable_DecorationRow</span></span><br></pre></td></tr></table></figure>
 <p>c. 最後移除 Row 類別的 getDisplayName() 、 getDisplayMap() 及 display() 三個方法，測試。</p>
 <p>現在我們的 Row 類別就只需要定義好裝修類型中文名稱以及欄位值名稱對應表就可以了。</p>
 <h3 id="5-_處理表單驗證函式">5. 處理表單驗證函式</h3><p>最後我們來處理會讓 IndexController 類別變成得非常冗長的表單驗證函式。當然時間允許的話，這邊可以用 Zend_Form 改寫；但這樣會偏離本文的主軸，因此我們還是以重構為優先。</p>
 <p>這個步驟主要的目標是將各個裝修類型表單驗證函式放在對應的 Row 類別裡，這樣我們就可以直接讓 Row 類別驗證表單資料，而不需要在 IndexController 類別裡定義驗證函式。作法如下：</p>
 <p>a. 將 IndexController 類別的 _checkKitchenFormData() 方法複製到 Application_Model_DbTable_DecorationKitchen 類別，並改成名為 checkData() 的公開方法；然後對 IndexController 類別的 _checkBathroomFormData() 也做同樣的處理。現在兩個 Row 類別分別都有 checkData() 函式。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchen extends Application_Model_DbTable_DecorationRow&#10; &#123;&#10;+    public function checkData($formData, $error, $messenger)&#10;+    &#123;&#10;+        $error = false;&#10;+        if (0 === strlen($formData[&#39;name&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22995;&#21517;&#39;);&#10;+        &#125;&#10;+        if (0 === strlen($formData[&#39;phone&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#38651;&#35441;&#39;;&#10;+        &#125;&#10;+        if (0 === strlen($formData[&#39;address&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22320;&#22336;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;kitchenQuestion01&#39;, $formData)&#10;+                &#38;amp;&#38;amp; !array_key_exists(&#39;kitchenQuestion02&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#35037;&#20462;&#20839;&#23481;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;kitchenQuestion03&#39;, $formData)&#10;+                &#38;amp;&#38;amp; !array_key_exists(&#39;kitchenQuestion04&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#35373;&#20633;&#26159;&#21542;&#20445;&#30041;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;kitchenQuestion05&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#29694;&#26377;&#24282;&#20855;&#39;);&#10;+        &#125;&#10;+        return $error;&#10;+    &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathroom extends Application_Model_DbTable_DecorationRow&#10; &#123;&#10;+    public function checkData($formData, $error, $messenger)&#10;+    &#123;&#10;+        $error = false;&#10;+        if (0 === strlen($formData[&#39;name&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22995;&#21517;&#39;);&#10;+        &#125;&#10;+        if (0 === strlen($formData[&#39;phone&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#38651;&#35441;&#39;);&#10;+        &#125;&#10;+        if (0 === strlen($formData[&#39;address&#39;])) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22320;&#22336;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;bathroomQuestion01&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#22378;&#25976;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;bathroomQuestion02&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#39340;&#26742;&#39;);&#10;+        &#125;&#10;+        if (!array_key_exists(&#39;bathroomQuestion03&#39;, $formData)) &#123;&#10;+            $error = true;&#10;+            $messenger-&#62;addMessage(&#39;&#35531;&#36984;&#25799;&#38754;&#30406;&#39;);&#10;+        &#125;&#10;+        return $error;&#10;+    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationKitchen extends Application_Model_DbTable_DecorationRow</span><br><span class="line"> &#123;</span><br><span class="line"><span class="addition">+    public function checkData($formData, $error, $messenger)</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        $error = false;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['name'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入姓名');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['phone'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入電話';</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['address'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入地址');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('kitchenQuestion01', $formData)</span></span><br><span class="line"><span class="addition">+                &amp;amp;&amp;amp; !array_key_exists('kitchenQuestion02', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇裝修內容');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('kitchenQuestion03', $formData)</span></span><br><span class="line"><span class="addition">+                &amp;amp;&amp;amp; !array_key_exists('kitchenQuestion04', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇設備是否保留');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('kitchenQuestion05', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇現有廚具');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        return $error;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class Application_Model_DbTable_DecorationBathroom extends Application_Model_DbTable_DecorationRow</span><br><span class="line"> &#123;</span><br><span class="line"><span class="addition">+    public function checkData($formData, $error, $messenger)</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        $error = false;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['name'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入姓名');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['phone'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入電話');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['address'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請輸入地址');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('bathroomQuestion01', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇坪數');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('bathroomQuestion02', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇馬桶');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (!array_key_exists('bathroomQuestion03', $formData)) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $messenger-&gt;addMessage('請選擇面盆');</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        return $error;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br></pre></td></tr></table></figure>
 <p>b. 將 IndexController 類別的 step2Action() 方法中，以 $checkFunctionName() 呼叫驗證函式的方式，改為呼叫 Row 物件的 checkData() 方法，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class IndexController &#39006;&#21029;extends Zend_Controller_Action&#10; &#123;&#10;     public function step2Action()&#10;     &#123;&#10;-            $this-&#62;$checkFunctionName($formData, $error, $messenger);&#10;+            $decorationRow-&#62;checkData($formData, $error, $messenger);</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> class IndexController 類別extends Zend_Controller_Action</span><br><span class="line"> &#123;</span><br><span class="line">     public function step2Action()</span><br><span class="line">     &#123;</span><br><span class="line"><span class="deletion">-            $this-&gt;$checkFunctionName($formData, $error, $messenger);</span></span><br><span class="line"><span class="addition">+            $decorationRow-&gt;checkData($formData, $error, $messenger);</span></span><br></pre></td></tr></table></figure>
 <p>c. 移除 step2Action() 方法裡的 $checkFunctionName 變數，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     public function step2Action()&#10;     &#123;&#10;-            $checkFunctionName = &#39;_check&#39; . ucwords(strtolower($decorationName)) . &#39;FormData&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     public function step2Action()</span><br><span class="line">     &#123;</span><br><span class="line"><span class="deletion">-            $checkFunctionName = '_check' . ucwords(strtolower($decorationName)) . 'FormData';</span></span><br></pre></td></tr></table></figure>
 <p>d. 最後移除 IndexController 類別裡的 _checkKitchenFormData() 及 _checkBathroomFormData() 兩個方法，</p>
 <p>現在我們終於讓 IndexController 類別脫離那些不讓屬於它的繁雜責任了。</p>
 <p>註：事實上還有 _createDecorationTable() 方法也不應該放在 IndexController 類別裡，這邊就留給大家思考看看需不需要再做進一步的重構。</p>
 <h3 id="6-_解決_Row_類別與_IndexController_類別類別的耦合">6. 解決 Row 類別與 IndexController 類別類別的耦合</h3><p>重構了 IndexController 類別的部份後，最後我們來處理 Row 類別。在 Row 類別的 checkData() 方法中，我們可以看到它除了必須的 $formData 參數外，還得取得 IndexController 類別的 $error 及 $messenger 兩個參數的引用；尤其 $messenger 變數的型態又是 Zend_Controller_Action_Helper_FlashMessenger 類別，使得 Row 類別必須依賴 Controller 層，大大降低了 Row 類別的可重用性。</p>
 <p>因此我們要讓 Row 類別自行提處理掉驗證錯誤的部份，反過來讓 IndexController 類別依賴 Row 類別；換句話說，就是要拿掉 checkData() 的 $error 及 $messenger 兩個參數，作法如下：</p>
 <p>a. 分別把兩個 Row 類別的 checkData() 方法裡的 $error 變成區域變數，並將其回傳給呼叫者。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-    public function checkData($formData, $error, $messenger)&#10;+    public function checkData($formData, $messenger)&#10;     &#123;&#10;+        $error = false;&#10;         // ...&#10;+        return $error;&#10;     &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-    public function checkData($formData, $error, $messenger)</span></span><br><span class="line"><span class="addition">+    public function checkData($formData, $messenger)</span></span><br><span class="line">     &#123;</span><br><span class="line"><span class="addition">+        $error = false;</span></span><br><span class="line">         // ...</span><br><span class="line"><span class="addition">+        return $error;</span></span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
 <p>b. 然後在 IndexController 類別的 step2Action() 方法中接收 Row 類別的 checkData() 方法所回傳的 $error ，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     public function step2Action()&#10;     &#123;&#10;-            $decorationRow-&#62;checkData($formData, $error, $messenger);&#10;+            $error = $decorationRow-&#62;checkData($formData, $messenger);</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     public function step2Action()</span><br><span class="line">     &#123;</span><br><span class="line"><span class="deletion">-            $decorationRow-&gt;checkData($formData, $error, $messenger);</span></span><br><span class="line"><span class="addition">+            $error = $decorationRow-&gt;checkData($formData, $messenger);</span></span><br></pre></td></tr></table></figure>
 <p>c. 接著在抽象 Row 類別中建立一個 $_messages 陣列屬性及 getMessages() 方法。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> abstract class Application_Model_DbTable_DecorationRow extends Zend_Db_Table_Row_Abstract&#10; &#123;&#10;+    protected $_messages = array();&#10;+&#10;+    public function getMessages()&#10;+    &#123;&#10;+        return $this-&#62;_messages;&#10;+    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> abstract class Application_Model_DbTable_DecorationRow extends Zend_Db_Table_Row_Abstract</span><br><span class="line"> &#123;</span><br><span class="line"><span class="addition">+    protected $_messages = array();</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    public function getMessages()</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        return $this-&gt;_messages;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br></pre></td></tr></table></figure>
 <p>d. 然後把 Row 類別的 checkData() 方法中原本用 $messenger-&gt;addMessage() 的部份，改用新的 $_messages 屬性來指定。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     public function checkData($formData, $messenger)&#10;     &#123;&#10;         if (0 === strlen($formData[&#39;name&#39;])) &#123;&#10;             $error = true;&#10;-            $messenger-&#62;addMessage(&#39;&#35531;&#36664;&#20837;&#22995;&#21517;&#39;);&#10;+            $this-&#62;_messages[] = &#39;&#35531;&#36664;&#20837;&#22995;&#21517;&#39;;&#10;         &#125;&#10;         // &#20197;&#19979;&#20381;&#27492;&#39006;&#25512;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     public function checkData($formData, $messenger)</span><br><span class="line">     &#123;</span><br><span class="line">         if (0 === strlen($formData['name'])) &#123;</span><br><span class="line">             $error = true;</span><br><span class="line"><span class="deletion">-            $messenger-&gt;addMessage('請輸入姓名');</span></span><br><span class="line"><span class="addition">+            $this-&gt;_messages[] = '請輸入姓名';</span></span><br><span class="line">         &#125;</span><br><span class="line">         // 以下依此類推</span><br></pre></td></tr></table></figure>
 <p>e. 在 IndexController 類別的 step2Action() 方法中處理驗證失敗的區段中，在導回 step2Action() 前，透過抽象 Row 類別的 getMessages() 方法，以取得錯誤訊息並一一加入 $messenger 中，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     public function step2Action()&#10;     &#123;&#10;         // ...&#10;             if (!$error) &#123;&#10;                 // ...&#10;             &#125; else &#123;&#10;                 // ...&#10;+                $messages = $decorationRow-&#62;getMessages();&#10;+                foreach ($messages as $message) &#123;&#10;+                    $messenger-&#62;addMessage($message);&#10;+                &#125;&#10;                 $this-&#62;_helper-&#62;redirector-&#62;gotoSimple(&#39;step2&#39;, null, null, $params);&#10;             &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     public function step2Action()</span><br><span class="line">     &#123;</span><br><span class="line">         // ...</span><br><span class="line">             if (!$error) &#123;</span><br><span class="line">                 // ...</span><br><span class="line">             &#125; else &#123;</span><br><span class="line">                 // ...</span><br><span class="line"><span class="addition">+                $messages = $decorationRow-&gt;getMessages();</span></span><br><span class="line"><span class="addition">+                foreach ($messages as $message) &#123;</span></span><br><span class="line"><span class="addition">+                    $messenger-&gt;addMessage($message);</span></span><br><span class="line"><span class="addition">+                &#125;</span></span><br><span class="line">                 $this-&gt;_helper-&gt;redirector-&gt;gotoSimple('step2', null, null, $params);</span><br><span class="line">             &#125;</span><br></pre></td></tr></table></figure>
 <p>f. 最後移除 checkData() 的 $messenger 參數及 step2Action() 傳入 $messenger 變數的部份，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-    public function checkData($formData, $messenger)&#10;+    public function checkData($formData)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     public function step2Action()&#10;     &#123;&#10;         // ...&#10;-            $error = $decorationRow-&#62;checkData($formData, $messenger);&#10;+            $error = $decorationRow-&#62;checkData($formData);</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-    public function checkData($formData, $messenger)</span></span><br><span class="line"><span class="addition">+    public function checkData($formData)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     public function step2Action()</span><br><span class="line">     &#123;</span><br><span class="line">         // ...</span><br><span class="line"><span class="deletion">-            $error = $decorationRow-&gt;checkData($formData, $messenger);</span></span><br><span class="line"><span class="addition">+            $error = $decorationRow-&gt;checkData($formData);</span></span><br></pre></td></tr></table></figure>
 <p>現在 Row 類別就跟 IndexController 類別解耦了。</p>
 <p>註：這邊請大家思考一下，為什麼我在處理 $error 的部份時，一開始就拿掉 checkData() 方法的 $error 參數；但是處理 $messenger 時，卻沒有一開始就拿掉 $messenger 參數呢？</p>
 <h3 id="7-_處理_checkData()_方法重複的部份">7. 處理 checkData() 方法重複的部份</h3><p>再回頭看看 Row 類別的 checkData() 方法，我們可以發現裡面還是有重複的程式碼，也就是檢查姓名、電話與地址的部份。這三個欄位的檢查在未來新增裝修類型時也不會變動，因此我們可以將它們抽出來變成共用的程式碼，作法如下：</p>
 <p>a. 在抽象 Row 類別中建立一個 _checkCommonData() 方法，並將 Row 類別的 checkData() 方法裡檢查姓名、電話、地址的部份複製出來，放到新的 _checkCommonData() 方法中，一樣要加入 $error 區域變數並回傳。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> abstract class Application_Model_DbTable_DecorationRow extends Zend_Db_Table_Row_Abstract&#10; &#123;&#10;     // ...&#10;+&#10;+    protected function _checkCommonData($formData)&#10;+    &#123;&#10;+        $error = false;&#10;+        if (0 === strlen($formData[&#39;name&#39;])) &#123;&#10;+            $error = true;&#10;+            $this-&#62;_messages[] = &#39;&#35531;&#36664;&#20837;&#22995;&#21517;&#39;;&#10;+        &#125;&#10;+        if (0 === strlen($formData[&#39;phone&#39;])) &#123;&#10;+            $error = true;&#10;+            $this-&#62;_messages[] = &#39;&#35531;&#36664;&#20837;&#38651;&#35441;&#39;;&#10;+        &#125;&#10;+        if (0 === strlen($formData[&#39;address&#39;])) &#123;&#10;+            $error = true;&#10;+            $this-&#62;_messages[] = &#39;&#35531;&#36664;&#20837;&#22320;&#22336;&#39;;&#10;+        &#125;&#10;+        return $error;&#10;+    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"> abstract class Application_Model_DbTable_DecorationRow extends Zend_Db_Table_Row_Abstract</span><br><span class="line"> &#123;</span><br><span class="line">     // ...</span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    protected function _checkCommonData($formData)</span></span><br><span class="line"><span class="addition">+    &#123;</span></span><br><span class="line"><span class="addition">+        $error = false;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['name'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $this-&gt;_messages[] = '請輸入姓名';</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['phone'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $this-&gt;_messages[] = '請輸入電話';</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        if (0 === strlen($formData['address'])) &#123;</span></span><br><span class="line"><span class="addition">+            $error = true;</span></span><br><span class="line"><span class="addition">+            $this-&gt;_messages[] = '請輸入地址';</span></span><br><span class="line"><span class="addition">+        &#125;</span></span><br><span class="line"><span class="addition">+        return $error;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br></pre></td></tr></table></figure>
 <p>b. 改寫各 Row 類別的 checkData() 方法，移除原來的共用驗證程式碼，並改為呼叫 _checkCommonData() 方法，測試。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     public function checkData($formData)&#10;     &#123;&#10;         $error = false;&#10;-        if (0 === strlen($formData[&#39;name&#39;])) &#123;&#10;-            $error = true;&#10;-            $this-&#62;_messages[] = &#39;&#35531;&#36664;&#20837;&#22995;&#21517;&#39;;&#10;-        &#125;&#10;-        if (0 === strlen($formData[&#39;phone&#39;])) &#123;&#10;-            $error = true;&#10;-            $this-&#62;_messages[] = &#39;&#35531;&#36664;&#20837;&#38651;&#35441;&#39;;&#10;-        &#125;&#10;-        if (0 === strlen($formData[&#39;address&#39;])) &#123;&#10;-            $error = true;&#10;-            $this-&#62;_messages[] = &#39;&#35531;&#36664;&#20837;&#22320;&#22336;&#39;;&#10;-        &#125;&#10;+        $error = $error || $this-&#62;_checkCommonData($formData);</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     public function checkData($formData)</span><br><span class="line">     &#123;</span><br><span class="line">         $error = false;</span><br><span class="line"><span class="deletion">-        if (0 === strlen($formData['name'])) &#123;</span></span><br><span class="line"><span class="deletion">-            $error = true;</span></span><br><span class="line"><span class="deletion">-            $this-&gt;_messages[] = '請輸入姓名';</span></span><br><span class="line"><span class="deletion">-        &#125;</span></span><br><span class="line"><span class="deletion">-        if (0 === strlen($formData['phone'])) &#123;</span></span><br><span class="line"><span class="deletion">-            $error = true;</span></span><br><span class="line"><span class="deletion">-            $this-&gt;_messages[] = '請輸入電話';</span></span><br><span class="line"><span class="deletion">-        &#125;</span></span><br><span class="line"><span class="deletion">-        if (0 === strlen($formData['address'])) &#123;</span></span><br><span class="line"><span class="deletion">-            $error = true;</span></span><br><span class="line"><span class="deletion">-            $this-&gt;_messages[] = '請輸入地址';</span></span><br><span class="line"><span class="deletion">-        &#125;</span></span><br><span class="line"><span class="addition">+        $error = $error || $this-&gt;_checkCommonData($formData);</span></span><br></pre></td></tr></table></figure>
 <p>測試無誤後，我們就完成了整個重構了，謝天謝地。</p>
 <h2 id="再次加入新的裝修類型">再次加入新的裝修類型</h2><p>花了這些功夫做重構後，最重要的是它好不好維護，容不容易因應未來的變化；因此接下來我們就要加入一個新的裝修類型，來看看重構後的程式碼是不是符合我們的期待。</p>
 <p>假設新的裝修類型是「地板」 (Flooring) ，客戶也提供了對應的 database schema 及樣版。</p>
 <p>第一步：加入 Flooring 的 DbTable 類別並匯入 schema 到資料庫中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;/path_to_project/application/models/DbTable/DecorationFloorings.php&#62;&#10;class Application_Model_DbTable_DecorationFloorings extends Zend_Db_Table_Abstract&#10;&#123;&#10;    protected $_name = &#39;decoration_floorings&#39;;&#10;    protected $_rowClass = &#39;Application_Model_DbTable_DecorationFlooring&#39;;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;/path_to_project/application/models/DbTable/DecorationFloorings.php&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Application_Model_DbTable_DecorationFloorings</span> <span class="keyword">extends</span> <span class="title">Zend_Db_Table_Abstract</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_name</span> = <span class="string">'decoration_floorings'</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_rowClass</span> = <span class="string">'Application_Model_DbTable_DecorationFlooring'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>資料表的 schema 如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DROP TABLE IF EXISTS `decoration_floorings`;&#10;CREATE TABLE IF NOT EXISTS `decoration_floorings` (&#10;  `id` int(10) unsigned NOT NULL auto_increment,&#10;  `name` varchar(100) default NULL,&#10;  `phone` varchar(100) default NULL,&#10;  `address` varchar(200) default NULL,&#10;  `flooringQuestion01` enum(&#39;y&#39;,&#39;n&#39;) default &#39;n&#39;,&#10;  `flooringQuestion02` enum(&#39;y&#39;,&#39;n&#39;) default &#39;n&#39;,&#10;  `flooringQuestion03` enum(&#39;1&#39;,&#39;2&#39;,&#39;3&#39;) default NULL,&#10;  `flooringQuestion04` enum(&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;,&#39;5&#39;) default NULL,&#10;  PRIMARY KEY  (`id`)&#10;) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT=&#39;&#22320;&#26495;&#21839;&#21367;&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`decoration_floorings`</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">`decoration_floorings`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> auto_increment,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`phone`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`flooringQuestion01`</span> enum(<span class="string">'y'</span>,<span class="string">'n'</span>) <span class="keyword">default</span> <span class="string">'n'</span>,</span><br><span class="line">  <span class="string">`flooringQuestion02`</span> enum(<span class="string">'y'</span>,<span class="string">'n'</span>) <span class="keyword">default</span> <span class="string">'n'</span>,</span><br><span class="line">  <span class="string">`flooringQuestion03`</span> enum(<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`flooringQuestion04`</span> enum(<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>) <span class="keyword">default</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span>  (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=MyISAM <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC <span class="keyword">COMMENT</span>=<span class="string">'地板問卷'</span>;</span></span><br></pre></td></tr></table></figure>
 <p>第二步：加入 Flooring 的 Row 類別。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;/path_to_project/application/models/DbTable/DecorationFlooring.php&#62;&#10;class Application_Model_DbTable_DecorationFlooring extends Application_Model_DbTable_DecorationRow&#10;&#123;&#10;    protected $_displayName = &#39;&#22320;&#26495;&#39;;&#10;    protected $_displayMap = array(a&#10;        &#39;flooringQuestion01&#39; =&#62; array(&#10;            &#39;y&#39; =&#62; &#39;&#22320;&#26495;&#26045;&#20316;&#39;,&#10;            &#39;n&#39; =&#62; &#39;&#39;,&#10;        ),&#10;        &#39;flooringQuestion02&#39; =&#62; array(&#10;            &#39;y&#39; =&#62; &#39;&#27155;&#26799;&#39;,&#10;            &#39;n&#39; =&#62; &#39;&#39;,&#10;        ),&#10;        &#39;flooringQuestion03&#39; =&#62; array(&#10;            &#39;1&#39; =&#62; &#39;&#24050;&#26377;&#37610;&#35373;&#26408;&#22320;&#26495;&#39;,&#10;            &#39;2&#39; =&#62; &#39;&#30913;&#30938;&#39;,&#10;            &#39;3&#39; =&#62; &#39;&#22609;&#33184;&#22320;&#30938;&#39;,&#10;        ),&#10;        &#39;flooringQuestion04&#39; =&#62; array(&#10;            &#39;1&#39; =&#62; &#39;&#36879;&#22825;&#20303;&#23429;&#39;,&#10;            &#39;2&#39; =&#62; &#39;&#19968;&#33324;&#20844;&#23507;&#39;,&#10;            &#39;3&#39; =&#62; &#39;&#38651;&#26799;&#22823;&#27155;&#39;,&#10;            &#39;4&#39; =&#62; &#39;&#20844;&#21496;&#34892;&#34399;&#39;,&#10;            &#39;5&#39; =&#62; &#39;&#20854;&#20182;&#39;,&#10;        ),&#10;    );&#10;    public function checkData($formData)&#10;    &#123;&#10;        $error = false;&#10;        $error = $error || $this-&#62;_checkCommonData($formData);&#10;        if (!array_key_exists(&#39;flooringQuestion01&#39;, $formData)&#10;                &#38;amp;&#38;amp; !array_key_exists(&#39;flooringQuestion02&#39;, $formData)) &#123;&#10;            $error = true;&#10;            $this-&#62;_messages[] = &#39;&#35531;&#36984;&#25799;&#35037;&#20462;&#20839;&#23481;&#39;;&#10;        &#125;&#10;        if (!array_key_exists(&#39;flooringQuestion03&#39;, $formData)) &#123;&#10;            $error = true;&#10;            $this-&#62;_messages[] = &#39;&#35531;&#36984;&#25799;&#26045;&#24037;&#29872;&#22659;&#24773;&#27841;&#39;;&#10;        &#125;&#10;        if (!array_key_exists(&#39;flooringQuestion04&#39;, $formData)) &#123;&#10;            $error = true;&#10;            $this-&#62;_messages[] = &#39;&#35531;&#36984;&#25799;&#20303;&#23478;&#29872;&#22659;&#39;;&#10;        &#125;&#10;        return $error;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;/path_to_project/application/models/DbTable/DecorationFlooring.php&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Application_Model_DbTable_DecorationFlooring</span> <span class="keyword">extends</span> <span class="title">Application_Model_DbTable_DecorationRow</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_displayName</span> = <span class="string">'地板'</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_displayMap</span> = <span class="keyword">array</span>(a</span><br><span class="line">        <span class="string">'flooringQuestion01'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'y'</span> =&gt; <span class="string">'地板施作'</span>,</span><br><span class="line">            <span class="string">'n'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">        ),</span><br><span class="line">        <span class="string">'flooringQuestion02'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'y'</span> =&gt; <span class="string">'樓梯'</span>,</span><br><span class="line">            <span class="string">'n'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">        ),</span><br><span class="line">        <span class="string">'flooringQuestion03'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'1'</span> =&gt; <span class="string">'已有鋪設木地板'</span>,</span><br><span class="line">            <span class="string">'2'</span> =&gt; <span class="string">'磁磚'</span>,</span><br><span class="line">            <span class="string">'3'</span> =&gt; <span class="string">'塑膠地磚'</span>,</span><br><span class="line">        ),</span><br><span class="line">        <span class="string">'flooringQuestion04'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'1'</span> =&gt; <span class="string">'透天住宅'</span>,</span><br><span class="line">            <span class="string">'2'</span> =&gt; <span class="string">'一般公寓'</span>,</span><br><span class="line">            <span class="string">'3'</span> =&gt; <span class="string">'電梯大樓'</span>,</span><br><span class="line">            <span class="string">'4'</span> =&gt; <span class="string">'公司行號'</span>,</span><br><span class="line">            <span class="string">'5'</span> =&gt; <span class="string">'其他'</span>,</span><br><span class="line">        ),</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">checkData</span><span class="params">(<span class="variable">$formData</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$error</span> = <span class="keyword">false</span>;</span><br><span class="line">        <span class="variable">$error</span> = <span class="variable">$error</span> || <span class="variable">$this</span>-&gt;_checkCommonData(<span class="variable">$formData</span>);</span><br><span class="line">        <span class="keyword">if</span> (!array_key_exists(<span class="string">'flooringQuestion01'</span>, <span class="variable">$formData</span>)</span><br><span class="line">                &amp;amp;&amp;amp; !array_key_exists(<span class="string">'flooringQuestion02'</span>, <span class="variable">$formData</span>)) &#123;</span><br><span class="line">            <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">            <span class="variable">$this</span>-&gt;_messages[] = <span class="string">'請選擇裝修內容'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!array_key_exists(<span class="string">'flooringQuestion03'</span>, <span class="variable">$formData</span>)) &#123;</span><br><span class="line">            <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">            <span class="variable">$this</span>-&gt;_messages[] = <span class="string">'請選擇施工環境情況'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!array_key_exists(<span class="string">'flooringQuestion04'</span>, <span class="variable">$formData</span>)) &#123;</span><br><span class="line">            <span class="variable">$error</span> = <span class="keyword">true</span>;</span><br><span class="line">            <span class="variable">$this</span>-&gt;_messages[] = <span class="string">'請選擇住家環境'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$error</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>第三步：加入 Flooring 的子表單樣版及完成頁樣版。</p>
 <p>表單樣版：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;/path_to_project/application/views/scripts/index/bathroom/form.phtml&#62;&#10;&#60;dl&#62;&#10;    &#60;dt&#62;&#35037;&#20462;&#20839;&#23481;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;checkbox&#34; name=&#34;flooringQuestion01&#34; value=&#34;y&#34; /&#62;&#60;span&#62;&#22320;&#26495;&#26045;&#20316;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;checkbox&#34; name=&#34;flooringQuestion02&#34; value=&#34;y&#34; /&#62;&#60;span&#62;&#27155;&#26799;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#26045;&#24037;&#29872;&#22659;&#24773;&#27841;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;flooringQuestion03&#34; value=&#34;1&#34; /&#62;&#60;span&#62;&#24050;&#26377;&#37610;&#35373;&#26408;&#22320;&#26495;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;flooringQuestion03&#34; value=&#34;2&#34; /&#62;&#60;span&#62;&#30913;&#30938;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;flooringQuestion03&#34; value=&#34;3&#34; /&#62;&#60;span&#62;&#22609;&#33184;&#22320;&#30938;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#20303;&#23478;&#29872;&#22659;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;flooringQuestion04&#34; value=&#34;1&#34; /&#62;&#60;span&#62;&#36879;&#22825;&#20303;&#23429;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;flooringQuestion04&#34; value=&#34;2&#34; /&#62;&#60;span&#62;&#19968;&#33324;&#20844;&#23507;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;flooringQuestion04&#34; value=&#34;3&#34; /&#62;&#60;span&#62;&#38651;&#26799;&#22823;&#27155;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;flooringQuestion04&#34; value=&#34;4&#34; /&#62;&#60;span&#62;&#20844;&#21496;&#34892;&#34399;&#60;/span&#62;&#60;/label&#62;&#10;            &#60;label&#62;&#60;input type=&#34;radio&#34; name=&#34;flooringQuestion04&#34; value=&#34;5&#34; /&#62;&#60;span&#62;&#20854;&#20182;&#60;/span&#62;&#60;/label&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;&#60;/dl&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;/path_to_project/application/views/scripts/index/bathroom/form.phtml&gt;</span><br><span class="line">&lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;裝修內容&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"flooringQuestion01"</span> value=<span class="string">"y"</span> /&gt;&lt;span&gt;地板施作&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"flooringQuestion02"</span> value=<span class="string">"y"</span> /&gt;&lt;span&gt;樓梯&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;施工環境情況&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"flooringQuestion03"</span> value=<span class="string">"1"</span> /&gt;&lt;span&gt;已有鋪設木地板&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"flooringQuestion03"</span> value=<span class="string">"2"</span> /&gt;&lt;span&gt;磁磚&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"flooringQuestion03"</span> value=<span class="string">"3"</span> /&gt;&lt;span&gt;塑膠地磚&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;住家環境&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"flooringQuestion04"</span> value=<span class="string">"1"</span> /&gt;&lt;span&gt;透天住宅&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"flooringQuestion04"</span> value=<span class="string">"2"</span> /&gt;&lt;span&gt;一般公寓&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"flooringQuestion04"</span> value=<span class="string">"3"</span> /&gt;&lt;span&gt;電梯大樓&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"flooringQuestion04"</span> value=<span class="string">"4"</span> /&gt;&lt;span&gt;公司行號&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">            &lt;label&gt;&lt;input type=<span class="string">"radio"</span> name=<span class="string">"flooringQuestion04"</span> value=<span class="string">"5"</span> /&gt;&lt;span&gt;其他&lt;/span&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">&lt;/dl&gt;</span><br></pre></td></tr></table></figure>
 <p>完成頁樣版：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;/path_to_project/application/views/scripts/index/bathroom/ok.phtml&#62;&#10;&#60;dl&#62;&#10;    &#60;dt&#62;&#35037;&#20462;&#20839;&#23481;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;decorationRow-&#62;display(&#39;flooringQuestion01&#39;); ?&#62;&#10;            &#60;?php echo $this-&#62;decorationRow-&#62;display(&#39;flooringQuestion02&#39;); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#26045;&#24037;&#29872;&#22659;&#24773;&#27841;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;decorationRow-&#62;display(&#39;flooringQuestion03&#39;); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;    &#60;dt&#62;&#20303;&#23478;&#29872;&#22659;&#60;/dt&#62;&#10;    &#60;dd&#62;&#10;        &#60;p&#62;&#10;            &#60;?php echo $this-&#62;decorationRow-&#62;display(&#39;flooringQuestion04&#39;); ?&#62;&#10;        &#60;/p&#62;&#10;    &#60;/dd&#62;&#10;&#60;/dl&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;/path_to_project/application/views/scripts/index/bathroom/ok.phtml&gt;</span><br><span class="line">&lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;裝修內容&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;decorationRow-&gt;display(<span class="string">'flooringQuestion01'</span>); <span class="preprocessor">?&gt;</span></span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;decorationRow-&gt;display(<span class="string">'flooringQuestion02'</span>); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;施工環境情況&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;decorationRow-&gt;display(<span class="string">'flooringQuestion03'</span>); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">    &lt;dt&gt;住家環境&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            <span class="preprocessor">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$this</span>-&gt;decorationRow-&gt;display(<span class="string">'flooringQuestion04'</span>); <span class="preprocessor">?&gt;</span></span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/dd&gt;</span><br><span class="line">&lt;/dl&gt;</span><br></pre></td></tr></table></figure>
 <p>第四步：最後在 index.phtml 加入 Flooring 的新連結。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     &#60;li&#62;&#60;a href=&#34;&#60;?php&#10; echo $this-&#62;url(array(&#10;     &#39;controller&#39; =&#62; &#39;index&#39;,&#10;     &#39;action&#39; =&#62; &#39;step2&#39;,&#10;     &#39;decoration&#39; =&#62; &#39;bathroom&#39;,&#10; )); ?&#62;&#34;&#62;&#28020;&#23460;&#60;/a&#62;&#60;/li&#62;&#10;+    &#60;li&#62;&#60;a href=&#34;&#60;?php&#10;+echo $this-&#62;url(array(&#10;+        &#39;controller&#39; =&#62; &#39;index&#39;,&#10;+        &#39;action&#39; =&#62; &#39;step2&#39;,&#10;+        &#39;decoration&#39; =&#62; &#39;flooring&#39;,&#10;+)); ?&#62;&#34;&#62;&#22320;&#26495;&#60;/a&#62;&#60;/li&#62;&#10; &#60;/ul&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">     &lt;li&gt;&lt;a href="&lt;?php</span><br><span class="line"> echo $this-&gt;url(array(</span><br><span class="line">     'controller' =&gt; 'index',</span><br><span class="line">     'action' =&gt; 'step2',</span><br><span class="line">     'decoration' =&gt; 'bathroom',</span><br><span class="line"> )); ?&gt;"&gt;浴室&lt;/a&gt;&lt;/li&gt;</span><br><span class="line"><span class="addition">+    &lt;li&gt;&lt;a href="&lt;?php</span></span><br><span class="line"><span class="addition">+echo $this-&gt;url(array(</span></span><br><span class="line"><span class="addition">+        'controller' =&gt; 'index',</span></span><br><span class="line"><span class="addition">+        'action' =&gt; 'step2',</span></span><br><span class="line"><span class="addition">+        'decoration' =&gt; 'flooring',</span></span><br><span class="line"><span class="addition">+)); ?&gt;"&gt;地板&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"> &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
 <p>除了因為要加入連結而必須修改 index.html 外，我們幾乎都是新增檔案，而沒有修改到原來的程式碼。對於後續維護的人員來說，就可以不心擔心修改到舊程式碼而出現不可預期的錯誤了，是不是比原來的方法好多了呢？</p>
 <h2 id="結語">結語</h2><p>當然這樣的重構並不是最完美的，也可能跟大家心中所想的作法有所差異，不過這已經達成我們重構的目的；因為透過這樣的重構，我們瞭解了整個系統，也將原來散亂各地的資料存取邏輯統整在一起，使得程式碼更容易新增功能與維護。</p>
 <p>然而重構最大的問題並不是不知道怎麼重構，而是不知道該什麼時候重構，還有什麼時候該停止重構。老實說該什麼時候重構，我沒辦法給大家什麼好答案；個人認為比較好的方式就是寫好一個功能時，留點時間給重構；或是在新增及維護功能時，進行小規模的重構。然後見好就收，覺得已經達到重構目的後，就把時間還給新的專案或需求。</p>
 <p>每次的重構應該只針對一個目標去完成，避免過程無目的地發散；如果在重構的過程中，發現任何其他部份也需要重構的話，可以先記下來列入下次的重構裡。而在重構一小步並測試無誤之後，就可以將它放到版本控制系統裡，這樣就不用擔心走得太遠，結果出問題後無法復原。</p>
 <p>重構說難不難，說容易也不是那麼簡單；希望從這個範例中，大家可以對重構有進一步的瞭解。</p>
 <p>謝謝收看，下次再會。</p>
-</span>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PHP/" rel="tag">#PHP</a>
-          
-            <a href="/tags/Web-開發/" rel="tag">#Web 開發</a>
-          
-            <a href="/tags/Zend-Framework/" rel="tag">#Zend Framework</a>
-          
-            <a href="/tags/心得感想/" rel="tag">#心得感想</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2011/01/06/1495/" rel="next" title="重構實例介紹 – 分析篇">
-                <i class="fa fa-chevron-left"></i> 重構實例介紹 – 分析篇
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2011/01/14/1538/" rel="prev" title="PHP 持續整合簡介 - 系統建構篇">
-                PHP 持續整合簡介 - 系統建構篇 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
- </div>
-
-        
-
-        
-          <div class="comments" id="comments">
-            
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              </div>
-            
-          </div>
-        
-      </div>
-
-      
-        
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">Jace Ju</p>
-        </div>
-        <p class="site-description motion-element" itemprop="description"></p>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">586</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">0</span>
-              <span class="site-state-item-name">分類</span>
-              
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">52</span>
-              <span class="site-state-item-name">標籤</span>
-              </a>
-          </div>
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/jaceju" target="_blank">
-                  <i class="fa fa-github"></i> GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/jaceju" target="_blank">
-                  <i class="fa fa-twitter"></i> Twitter
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
-          <div class="post-toc">
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#選擇自動化測試工具"><span class="nav-number">1.</span> <span class="nav-text">選擇自動化測試工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立自動化測試"><span class="nav-number">2.</span> <span class="nav-text">建立自動化測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重構實戰"><span class="nav-number">3.</span> <span class="nav-text">重構實戰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_移動名稱對照表"><span class="nav-number">3.1.</span> <span class="nav-text">1. 移動名稱對照表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_改用_Row_類別來解決名稱對應表的問題"><span class="nav-number">3.2.</span> <span class="nav-text">2. 改用 Row 類別來解決名稱對應表的問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_處理裝修類型名稱"><span class="nav-number">3.3.</span> <span class="nav-text">3. 處理裝修類型名稱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_處理重複的程式碼"><span class="nav-number">3.4.</span> <span class="nav-text">4. 處理重複的程式碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_處理表單驗證函式"><span class="nav-number">3.5.</span> <span class="nav-text">5. 處理表單驗證函式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-_解決_Row_類別與_IndexController_類別類別的耦合"><span class="nav-number">3.6.</span> <span class="nav-text">6. 解決 Row 類別與 IndexController 類別類別的耦合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-_處理_checkData()_方法重複的部份"><span class="nav-number">3.7.</span> <span class="nav-text">7. 處理 checkData() 方法重複的部份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再次加入新的裝修類型"><span class="nav-number">4.</span> <span class="nav-text">再次加入新的裝修類型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結語"><span class="nav-number">5.</span> <span class="nav-text">結語</span></a></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-      
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
-  </a>
-</div>
-
-
- </div>
-    </footer>
-
-    <div class="back-to-top"></div>
-  </div>
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-  
-    
-    
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'jaceju';
-      var disqus_identifier = '2011/01/06/1501/';
-      var disqus_title = '重構實例介紹 – 實戰篇';
-      var disqus_url = 'http://jaceju.net/2011/01/06/1501/';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-  
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
-
-
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
-
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 0.4 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
-      }
-    }
-  });
-</script>
-
-
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
-
-  
-  
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
-</body>
-</html>
+</div></article><div class="pagination"><a href="/2011/01/14/1538/" class="pagination-prev">PREV</a><a href="/2011/01/06/1495/" class="pagination-next">NEXT</a></div></div><aside class="sidebar"><h3>分类标签</h3><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP/">ASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone-js/">Backbone.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li></ul><h3>最新文章</h3><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/php-closure-testing/">在 PHPUnit 中測試需要 closure 的函式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/27/web-testing-with-phpunit-mink/">利用 PHPUnit 與 Mink 來做 Web 測試</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/14/what-is-test/">這樣寫測試錯了嗎？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/05/simple-refatoring-example-01/">邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/29/laravel-mailcatcher/">在 Laravel 上用 MailCatcher 發送測試信件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/laravel-events-broadcasting/">Laravel 5.1 Events Broadcasting 實務練習</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/front-end-framework-summary/">幾個有興趣的前端框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/laravel-5-1/">Laravel 5.1 正式釋出</a></li></ul></aside></section></div><div class="extra"></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
+<a href="https://hexo.io">Hexo</a>, 
+<a href="https://github.com/">GitHub</a>, 
+<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
