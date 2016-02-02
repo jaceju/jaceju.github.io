@@ -1,18 +1,695 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
-<script src="js/html5shiv.min.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="archive"><ul class="post-list"><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2010/05/30/1199/" class="post-title-link">Zend Framework in NetBeans</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/NetBeans/" class="post-tag-link">NetBeans</a></li><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>以往我在使用 Zend_Tool 來建構專案時，都是要透過 CLI 環境來執行 zf 指令；這常使得我必須在 NetBeans IDE 視窗和 Command Line 視窗之間切換。還好， NetBeans 從 6.9 版之後就將 Zend Framework 的 Command Line 工具整合進來，這樣一來我們就可以更方便使用 NetBeans 來開發 Zend Framework 專案了。</p>
-<p>以下我將簡單介紹如何在 NetBeans 中使用 Zend Framework 的整合功能，提供大家參考。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2010/05/26/1188/" class="post-title-link">初探 Zend Framework 上的 Context 輸出</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>在 Zend Framework 1.5 版之後就支援了對 Ajax Context 的處理，讓我們可以在 Controller 裡的 Action 輸出不同的格式的內容，以下我將簡單介紹這個功能。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2010/05/21/1152/" class="post-title-link">Zend Framework Testing 入門 - 測試環境建置篇</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>自 Zend Framework 1.6 之後就提供了 Zend_Test 這個套件，協助我們為 Zend Framework 的 MVC 做單元測試。然而當時也許是因為大家對 Zend Framework 的新架構還不熟悉，加上 Zend_Test 套件有許多小地方還不是很完善，因此就很少有人利用它來做測試。</p>
-<p>而到了 Zend Framework 1.8 版之後， Zend_Test 便修正了許多缺點；而且也因為 Zend_Application 套件的引入，讓 Zend_Test 在 Controller 上的測試更加方便，也使得網路上許多高手開始為它編寫教學。</p>
-<p>不過官方的文件並沒有特別告訴我們怎麼去建構 Zend Framework Testing 的環境，所以以下我以 Zend Framework 1.10 再加上 PHPUnit 3.4 為例，帶領大家進入 Zend Framework Testing 的世界。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2010/03/31/1083/" class="post-title-link">Smarty 2 整合到 Zend Framework 1.10 的重點整理</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Smarty/" class="post-tag-link">Smarty</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>因為我個人偏好使用 Smarty ，而 1.8 版以後的 Zend Framework 的專案架構又有相當大的調整，因此本文將介紹 Smarty 如何整合到新架構的 Zend Framework 上。</p>
-<p>不過因為在 Smarty 3 目前還是 beta 版的狀況下，包含了太多未知數，所以這裡我還是選用 Smarty 2 來做為整合的對象。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2009/11/22/819/" class="post-title-link">解決 Zend_Tool 在 PHP 5.3 的錯誤</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>前陣子 <a href="http://www.plurk.com/pct">pct</a> 用 PHP 5.3 實驗 Zend Framework 1.9.5 的 Zend_Tool 功能時，產生了一堆 Warning 。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2009/10/11/775/" class="post-title-link">利用 Zend_Tool 自訂專案建構器的 Provider (一)</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>先前<a href="http://www.jaceju.net/blog/archives/536">提過</a>，從 1.8 版之後， Zend Framework 就提供了一個 Zend_Tool 讓我們可以像 CakePHP 一樣，用命令列模式來建立專案。</p>
-<p>但也許是 ZF 剛推出，在其他框架的專案建構器都有非常強大的功能的情況之下， ZF 仍舊僅僅提供很簡單的 project, module, controller, action 及 view 的建立功能，其他像是  model 是 schema 的建立等功能， ZF 似乎尚未完成。</p>
-<p>註：在 ZF 1.9 提供的 Zend_Tool 原始碼中，倒是保留了許多新功能的骨架，希望未來的版本能看到它們的誕生。</p>
-<p>不過 ZF 最大的特色：自訂一切！ Zend_Tool 倒是很完整地保留了，它讓我們自己定義專案產生器的夢想有實現的可能！</p>
-<p>接下來就讓我們來試試看吧！</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2009/05/03/536/" class="post-title-link">Zend Framework 1.8 初探</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><h2 id="簡介">簡介</h2><p>Zend Framework 終於推出 1.8 版了；這次改版最大的特色，就是加入了在命令列建立專案的功能 (類似 CakePHP 的 bake 指令) 。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2009/04/24/509/" class="post-title-link">Zend_Db_Table_Select 兩層 SubQuery</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><h2 id="Zend_Db_Table_Select_簡介">Zend_Db_Table_Select 簡介</h2><p>SQL 語法的組成，一直以來都是 PHP 開發者很難掌控的部份；相信大家應該都經歷過 PHP 執行 SQL 語法時，老是丟出語法錯誤的訊息，尤其在我們透過判斷去組合 SQL 條件式的時候。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$sql  = &#34;SELECT * FROM table&#34;;&#10;$sql .= &#34; WHERE field1 = &#39;$field1&#39;&#34;;&#10;if (&#39;&#39; !== $field2) &#123;&#10;    $sql .= &#34; AND field2 = &#39;$field2&#39;&#34;;&#10;&#125;&#10;$dataList = $db-&#62;fetchAll($sql);</span><br></pre></td></tr></table></figure></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2009/04/23/491/" class="post-title-link">[Wacow] 處理 Request 的方式</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Web-開發/" class="post-tag-link">Web 開發</a></li><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p><img src="http://blog.wabow.com/wp-content/uploads/2009/04/htj-383x500.jpg" alt="Wacow"></p>
-<p>這篇是在講 Wacow Framework ，是寫給同事看的一篇技術文章；如果你沒用到它，請直接跳過吧。</p>
-<p>Wacow Framewok 在<a href="http://code.google.com/p/wacowframework">這裡</a>找得到，它仍在進化中。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2009/04/08/426/" class="post-title-link">Zend_Auth + Zend_Acl 基礎概念</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Zend-Framework/" class="post-tag-link">Zend Framework</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><h2 id="前言">前言</h2><p>從 Zend Framework 正式推出以來，其認證和權限控制的機制就一直是非常多開發者有興趣的東西。可惜開發手冊上的範例都偏向於介紹單一功能，如果要實際整合到專案時，就會令人不知從何下手。不過在參考了 Rob Allen 的 <a href="http://akrabat.com/zend-auth-tutorial/">Getting Started with Zend_Auth</a> 後，算是比較有概念了。<br>基本上 Zend_Auth 是用來驗證使用者的工具，它可以採用 DbTable 、 Digest 、 HTTP 、 InfoCard 、 LDAP 或是 OpenID 等等驗證方式，這樣一來就能提供給開發者多樣化的選擇。而 Zend_Acl 則是提供了一套非常通用的權限控制系統，讓我們可以簡單地透過使用者的角色去限定他們可以存取的功能。它們可以單獨使用，如果要整合在 Zend Framework 的專案中，則可配合 Controller 的 Plugin 來協同運作。<br>接下來，我就用我自己的方式來簡單介紹 Zend_Auth 和 Zend_Acl 在做些什麼。</p></div></article></li></ul><div class="pagination"><span class="pagination-prev">PREV</span><span class="pagination-next">NEXT</span></div></div><aside class="sidebar"><h3>分类标签</h3><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP/">ASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone-js/">Backbone.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li></ul><h3>最新文章</h3><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/php-closure-testing/">在 PHPUnit 中測試需要 closure 的函式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/27/web-testing-with-phpunit-mink/">利用 PHPUnit 與 Mink 來做 Web 測試</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/14/what-is-test/">這樣寫測試錯了嗎？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/05/simple-refatoring-example-01/">邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/29/laravel-mailcatcher/">在 Laravel 上用 MailCatcher 發送測試信件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/laravel-events-broadcasting/">Laravel 5.1 Events Broadcasting 實務練習</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/front-end-framework-summary/">幾個有興趣的前端框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/laravel-5-1/">Laravel 5.1 正式釋出</a></li></ul></aside></section></div><div class="extra"></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
-<a href="https://hexo.io">Hexo</a>, 
-<a href="https://github.com/">GitHub</a>, 
-<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://jaceju.net/tags/Zend-Framework/page/3/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 標籤: Zend Framework | 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Zend Framework
+        <small>標籤</small>
+      </h2>
+    </div>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2010/05/30/1199/" itemprop="url">
+              
+                <span itemprop="name">Zend Framework in NetBeans</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2010-05-30T00:00:00+08:00"
+              content="2010-05-30" >
+          05-30
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2010/05/26/1188/" itemprop="url">
+              
+                <span itemprop="name">初探 Zend Framework 上的 Context 輸出</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2010-05-26T00:00:00+08:00"
+              content="2010-05-26" >
+          05-26
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2010/05/21/1152/" itemprop="url">
+              
+                <span itemprop="name">Zend Framework Testing 入門 - 測試環境建置篇</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2010-05-21T00:00:00+08:00"
+              content="2010-05-21" >
+          05-21
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2010/03/31/1083/" itemprop="url">
+              
+                <span itemprop="name">Smarty 2 整合到 Zend Framework 1.10 的重點整理</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2010-03-31T00:00:00+08:00"
+              content="2010-03-31" >
+          03-31
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2009/11/22/819/" itemprop="url">
+              
+                <span itemprop="name">解決 Zend_Tool 在 PHP 5.3 的錯誤</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2009-11-22T00:00:00+08:00"
+              content="2009-11-22" >
+          11-22
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2009/10/11/775/" itemprop="url">
+              
+                <span itemprop="name">利用 Zend_Tool 自訂專案建構器的 Provider (一)</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2009-10-11T00:00:00+08:00"
+              content="2009-10-11" >
+          10-11
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2009/05/03/536/" itemprop="url">
+              
+                <span itemprop="name">Zend Framework 1.8 初探</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2009-05-03T00:00:00+08:00"
+              content="2009-05-03" >
+          05-03
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2009/04/24/509/" itemprop="url">
+              
+                <span itemprop="name">Zend_Db_Table_Select 兩層 SubQuery</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2009-04-24T00:00:00+08:00"
+              content="2009-04-24" >
+          04-24
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2009/04/23/491/" itemprop="url">
+              
+                <span itemprop="name">[Wacow] 處理 Request 的方式</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2009-04-23T00:00:00+08:00"
+              content="2009-04-23" >
+          04-23
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2009/04/08/426/" itemprop="url">
+              
+                <span itemprop="name">Zend_Auth + Zend_Acl 基礎概念</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2009-04-08T00:00:00+08:00"
+              content="2009-04-08" >
+          04-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/tags/Zend-Framework/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/tags/Zend-Framework/">1</a><a class="page-number" href="/tags/Zend-Framework/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/tags/Zend-Framework/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/tags/Zend-Framework/page/6/">6</a><a class="extend next" rel="next" href="/tags/Zend-Framework/page/4/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">586</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    <script type="text/javascript">
+      postMotionOptions = {stagger: 100, drag: true};
+    </script>
+  
+
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = 'tags/Zend-Framework/page/3/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

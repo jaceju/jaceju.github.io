@@ -1,8 +1,1308 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
-<script src="js/html5shiv.min.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link active">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="home"><article class="post-block"><h2 class="post-title"><a href="/2007/03/08/161/" class="post-title-link">jQWebExt - jQuery 的簡易 MVC 框架</a><div class="post-badge-wrap"><div class="post-badge"><span class="post-badge-msg">Issue №</span><span class="post-num">586</span></div></div></h2><div class="post-meta"><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div><div class="read-more"><a href="/2007/03/08/161/"> 阅读全文</a></div></article></div></section></div><div class="extra"><section class="installtheme"><div class="row-flex row-flex-row limit-width"><div class="intro"><h3> 
-如果你喜欢 <a href="https://github.com/pinggod/hexo-theme-jekyll">Hexo-theme-hexo </a>, 何不动手尝试一下!</h3></div><div class="code"><div class="title">Quick-start Instructions</div><div class="shell"> <div class="line"><span class="output"># Prerequisite: Git, Node, Hexo</span></div><div class="line"><span class="path">~</span><span class="prompt">$</span><span class="command">hexo init blog && cd blog</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">npm install</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">git clone [hexo-theme-jekyll]</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">vim _config.yml</span></div></div></div></div></section><section class="selfintro"><div class="wrap row-flex row-flex-row limit-width"><div class="sign"><img src="img/github.png" alt=""></div><div class="intro"><h3 class="title">PING4GOD</h3><p class="content"> 三年不翅，将以长羽翼；不飞不鸣，将以观民则。</p><ul class="contact"><li><a href="https://github.com/xxxxx" class="social-link">github</a></li><li><a href="http://weibo.com/xxxxxx" class="social-link">weibo</a></li></ul></div></div></section></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
-<a href="https://hexo.io">Hexo</a>, 
-<a href="https://github.com/">GitHub</a>, 
-<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://jaceju.net/page/44/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/03/08/161/" itemprop="url">
+                  jQWebExt - jQuery 的簡易 MVC 框架
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-03-08T00:00:00+08:00" content="2007-03-08">
+              2007-03-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/03/08/161/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/03/08/161/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><a href="http://racklin.blogspot.com/2007/03/jqwebext-jquery-simple-mvc-and-plugins.html" target="_blank" rel="external">jQWebExt</a> 這個框架是在<a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a>那裡看到的，是阿土伯眾多 Open Source 專案裡的其中之一。阿土伯是網路界一個很強的 JavaScript 高手，他用 JavaScript 寫了很多有趣的應用，像是「<a href="http://racklin.blogspot.com/2007/03/hemidemi-jsonp.html" target="_blank" rel="external">HEMiDEMi JSONP - 誰收藏/迴響討論本文</a>」。</p>
+<p>jQWebExt 目前主要有以下兩個函式可用：</p>
+<ul>
+<li>register: 用來將 Javascript Function 或 Extension 註冊進 jQWebExt 中，它會在 DOM ready 時呼叫您註冊的 Function , 並把設定 Options 傳給您。</li>
+<li>require: 用來動態載入 third-party 的 javascript .js 檔案，由寫作 Extension 的您來呼叫，網頁設計人員不用去瞭解什麼 javascript 互相關聯要引用載入。</li>
+</ul>
+<p>目前的應用有 <a href="http://code.google.com/p/jqwebext/wiki/ZebraTableExtension" target="_blank" rel="external">ZebraTableExtension</a>  (<a href="http://jqwebext.googlepages.com/test-zebra.html" target="_blank" rel="external">DEMO</a>) 和 <a href="http://code.google.com/p/jqwebext/wiki/jQueryTabsExtension" target="_blank" rel="external">jQueryTabsExtension</a> (<a href="http://jqwebext.googlepages.com/test-tabs.html" target="_blank" rel="external">DEMO</a>) 。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/03/05/160/" itemprop="url">
+                  JavaScript 小陷阱 (5) - window.onload()
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-03-05T00:00:00+08:00" content="2007-03-05">
+              2007-03-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/03/05/160/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/03/05/160/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>我常會在頁面載入完成時，利用 window.load 來執行一些動作。基本的方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">window.onload = function ()&#10;&#123;&#10;    // Do something...&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>特別注意一點：如果直接把新動作附在 window.onload 的話，是會把前一個 window.onload 的動作給蓋掉的。</p>
+<p>不過如果現在有兩個動作都需要用到 window.onload ，而且其中一個我不想改動時該怎麼辦呢？ (例如是第三方函式庫裡的程式) </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/03/05/160/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/03/05/159/" itemprop="url">
+                  我所關注的兩個 JS 框架及其應用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-03-05T00:00:00+08:00" content="2007-03-05">
+              2007-03-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/03/05/159/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/03/05/159/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="列表">列表</h2><p>以下列出我目前所關注的兩個 JS 框架，在直欄的部份是我所知道屬於它們的延伸與應用。</p>
+<table width="400" border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;"><br><tbody><br><tr><br><td width="20%" style="background-color: #EEE;">主框架</td><br><td width="40%"><a href="http://www.prototypejs.org/" target="_blank" rel="external">Prototype</a></td><br><td width="40%" style="background-color: #EFEFEF;"><a href="http://jquery.com/" target="_blank" rel="external">jQuery</a></td><br></tr><br><tr><br><td style="background-color: #EEE;">動畫特效</td><br><td><a href="http://script.aculo.us/" target="_blank" rel="external">script.aculo.us</a></td><br><td style="background-color: #EFEFEF;"><a href="http://interface.eyecon.ro/" target="_blank" rel="external">Interface</a></td><br></tr><br><tr><br><td style="background-color: #EEE;">燈箱效果</td><br><td><a href="http://www.huddletogether.com/projects/lightbox2/" target="_blank" rel="external">Lightbox JS</a><br><a href="http://particletree.com/features/lightbox-gone-wild/" target="_blank" rel="external">Lightbox Gone Wild!</a></td><br><td style="background-color: #EFEFEF;"><a href="http://jquery.com/demo/thickbox/" target="_blank" rel="external">ThickBox</a><br><a href="http://www.ryanjlowe.com/?p=9" target="_blank" rel="external">LITBox</a></td><br></tr><br><tr><br><td style="background-color: #EEE;">延伸框架</td><br><td><a href="http://openrico.org/" target="_blank" rel="external">Rico</a><br><a href="http://moofx.mad4milk.net/" target="_blank" rel="external">moo.fx</a></td><br><td style="background-color: #EFEFEF;"><a href="http://code.google.com/p/jqwebext/" target="_blank" rel="external">jQWebExt</a> by <a href="http://racklin.blogspot.com/" target="_blank" rel="external">阿土伯</a></td><br></tr><br><tr><br><td style="background-color: #EEE;">其他</td><br><td>&nbsp;</td><br><td style="background-color: #EFEFEF;"><a href="http://docs.jquery.com/Plugins" target="_blank" rel="external">Other Plugins</a></td><br></tr><br></tbody><br></table>
+
+<p>待補… (歡迎大家補充) </p>
+<h2 id="我的心得">我的心得</h2><p>之前在「 <a href="http://blog.roodo.com/jaceju/archives/1930712.html" target="_blank" rel="external">prototype.js 讀取陣列的方式</a>」裡簡單介紹了 <a href="http://www.prototypejs.org/" target="_blank" rel="external">Prototype</a> 的用途，前陣子它也因為 <a href="http://www.rubyonrails.org/" target="_blank" rel="external">Ruby on Rails</a> 推出 1.2 版而順改將版本更新到 1.5 。不過新的 <a href="http://www.prototypejs.org/" target="_blank" rel="external">Prototype</a> 效能似乎還是有點點差，我在執行 <a href="http://script.aculo.us/" target="_blank" rel="external">script.aculo.us</a> 的範例時感覺上一開始還是會頓頓的 (而且還是在本機上測的，另外還有官方的<a href="http://wiki.script.aculo.us/scriptaculous/show/Demos" target="_blank" rel="external">範例</a>也差不多) 。</p>
+<p>這時我看到另一個 JS 框架 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a> 也推出 1.1.2 ，便拿來試用看看。在 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a> 上對應 <a href="http://script.aculo.us/" target="_blank" rel="external">script.aculo.us</a> 的動畫特效函式庫稱為 <a href="http://interface.eyecon.ro/" target="_blank" rel="external">Interface</a> ，它的<a href="http://interface.eyecon.ro/demos" target="_blank" rel="external">動畫範例</a>幾乎和 <a href="http://script.aculo.us/" target="_blank" rel="external">script.aculo.us</a> 差不多了。而且直接在官方網站測試時，它的效果感覺就非常順暢。</p>
+<p>不過因為這兩個框架的設計理念是有差別，而且 JS 技術不斷推陳出新的狀況下，也許它們都還有很大的進步空間。現階段我想我會持續關注它們，並且在一些專案中使用。 </p>
+<h2 id="設計理念">設計理念</h2><p>以下文章值得參考，它們在探討兩個框架設計的理念： </p>
+<ul>
+<li><p><a href="http://jquery.com/blog/2006/08/20/why-jquerys-philosophy-is-better/" target="_blank" rel="external">Why jQuery’s Philosophy is Better</a></p>
+</li>
+<li><p><a href="http://encytemedia.com/blog/articles/2006/08/23/jquery-mis-leading-the-pack" target="_blank" rel="external">jQuery: (Mis)leading the Pack</a></p>
+</li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/02/26/158/" itemprop="url">
+                  在 Windows 上使用 Trac on Apache - 使用說明篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-02-26T00:00:00+08:00" content="2007-02-26">
+              2007-02-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/02/26/158/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/02/26/158/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="說明">說明</h2><p>以下將會簡單介紹 Trac 的使用方式，這裡是以 0.10.3 版為基礎。另外本文僅供初入門的朋友參考，因為我個人也還在學習中。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/02/26/158/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/02/06/156/" itemprop="url">
+                  在 Windows 上使用 Trac on Apache - 安裝與設定篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-02-06T00:00:00+08:00" content="2007-02-06">
+              2007-02-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/02/06/156/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/02/06/156/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="說明">說明</h2><p>最近公司的伙伴們變多了，專案的控管也變得越來越重要；原來的 Trac/Subversion 獨立伺服器在權限控制方面也變得有點礙手礙腳，所以這次我決定改以 Apache 為基礎伺服器的方式來安裝 Trac/Subversion 。</p>
+<p>我打算把此系列文章分成三個部份：</p>
+<ul>
+<li><p>第一部份是第一次的伺服器程式安裝步驟，及相關的 Trac 模組與 Subversion 的安裝。</p>
+</li>
+<li><p>第二部份是每次新建立一個專案時所必要的設定。</p>
+</li>
+<li><p>第三部份是 Trac 的使用方式。 </p>
+</li>
+</ul>
+<p>以下先來看看如何安裝及設定。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/02/06/156/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/02/06/157/" itemprop="url">
+                  在 Windows 上使用 Trac on Apache - 專案建置篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-02-06T00:00:00+08:00" content="2007-02-06">
+              2007-02-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/02/06/157/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/02/06/157/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="說明">說明</h2><p>前一篇<a href="http://blog.roodo.com/jaceju/archives/2703934.html">安裝與設定篇</a>已經架設好環境了，但是專案才是 Trac/Subversion 的靈魂所在，這一篇就是說明如何建立一個新的 Trac/Subversion 專案。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/02/06/157/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/02/04/155/" itemprop="url">
+                  5 個我在舊專案的 XHTML 中常發現的問題
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-02-04T00:00:00+08:00" content="2007-02-04">
+              2007-02-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/02/04/155/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/02/04/155/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>最近在一些維護一些舊專案裡的頁面，它們都已經採用了 XHTML 1.0 Transitional 。一個正確的 XHTML 1.0 Transitional 頁面的範例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=big5&#34; /&#62;&#10;&#60;title&#62;Page Title&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;...&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>當然大部份頁面是符合的，不過我還是發現了一些問題；在這裡我把它們記下來，供往後開發時參考。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/02/04/155/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/02/04/154/" itemprop="url">
+                  PHP 官方參考手冊更新
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-02-04T00:00:00+08:00" content="2007-02-04">
+              2007-02-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/02/04/154/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/02/04/154/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><a href="http://www.php.net/manual/en/" target="_blank" rel="external">PHP 官方參考手冊</a>為了因應開發的潮流，作了一些改變。</p>
+<ul>
+<li>加強過的 mirror 遞送機制 (這是方便下載的吧？我們好像用不到？)  </li>
+<li>文件上能<a href="http://tw.php.net/function.imagearc" target="_blank" rel="external">附加圖片</a>。 (咦？以前不行嗎？沒注意過耶？) </li>
+<li>更新過的版本資訊獲取系統，這樣大部份的  Library 都會有版本資訊。 </li>
+</ul>
+<p>我個人觀察到的如下：</p>
+<ul>
+<li>樣式上有些許調整。 (好吧，這個不重要…|||orz) </li>
+<li>把目前常見的技術都編進去了。 (這個才是重點！)</li>
+</ul>
+<p>果然手冊還是要<a href="http://www.santosj.name/php/writing-manuals-for-users/" target="_blank" rel="external">人性化</a>一點比較好。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/02/01/153/" itemprop="url">
+                  [轉載] 安裝 Smarty 樣版引擎 (Debian / Linux)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-02-01T00:00:00+08:00" content="2007-02-01">
+              2007-02-01
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/02/01/153/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/02/01/153/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>註：以下連結已失效。</p>
+<p>最近忙到不行，連寫點東西的時間都沒有…|||orz</p>
+<p>不過這邊推薦一篇由 <a href="http://www.ur-solution.com/" target="_blank" rel="external">shanchieh</a> 寫的文章，裡面詳細提到如何在 Debian (Linux) 安裝 Smarty ，比起我書裡面寫得還要深入，值得各位朋友參考。</p>
+<p>文章網址：<a href="http://www.ur-solution.com/?p=62" target="_blank" rel="external">安裝 Smarty 樣版引擎</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/01/03/152/" itemprop="url">
+                  將資料和程式分離
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-01-03T00:00:00+08:00" content="2007-01-03">
+              2007-01-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/01/03/152/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/01/03/152/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>有位 jocosn 網友問了一個我覺得很棒的問題，我把我的觀點提出來供大家參考。</p>
+<p>註：以下我會以引用區塊的方式來標示該網友的問題，然後以回答該問題的語氣說明。且基於本人龜毛的個性，也會把內容稍作排版。</p>
+<blockquote><br><br>如果我有一個 welcome.php，它的樣版檔是 welcome.tpl.htm，但是兩個檔案的編碼不相同，也就是 php 使用 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> ， tpl.htm 使用 <meta http-equiv="Content-Type" content="text/html; charset=big5">，結果螢幕顯示時會以  utf-8 編碼格式顯示 tpl.htm 檔案，必須再手動挑選 big5，請問這種情況有辦法解決嗎？還是程式這種架構有問題？<br><br>使用 big5 是因為 tpl.htm 檔案有用到 mailto，像這樣：<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;a href=&#39;mailto:h...@yahoo.com.tw?subject=&#20854;&#20182;&#21839;&#38988;&#38;amp;body=&#21839;&#38988;&#25551;&#36848;&#65306;%0A%0A%0A%0A&#32879;&#32097;&#26041;&#24335;%0A&#22320;&#22336;&#65306;%0A&#38651;&#35441;&#65306;%0A&#32879;&#32097;&#20154;&#65306;%0A&#39;&#62;&#23531;&#20449;&#36899;&#32097;&#60;/a&#62;</span><br></pre></td></tr></table></figure><br><br>如果改用 utf8，點下 mailto 開啟 outlook 6 會出現亂碼。所以採用 big5 才會正常顯示中文字。但是 php 檔案因有些部份未使用樣板處理一些簡單的小訊息 (如顯示”檔案建立成功”) ，所以採用 utf8，以免顯示中文像「功」字會出現問題。<br><br>像這種情況下，請問該怎麼處理，或是有更好的解決方式嗎？<br></blockquote>
+
+<p>事實上你的 template 還是可以用 utf-8 的，只不過有些地方要做一些手腳。</p>
+<p>在這之前，先給你一個觀念：把資料和程式分離。怎麼說呢？直接給你看例子好了：</p>
+<p>首先我把 mailto 會用到的中文字另存成一個 ini 檔：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mailto]&#10;subject = &#34;&#20854;&#20182;&#21839;&#38988;&#34;&#10;body = &#34;&#21839;&#38988;&#25551;&#36848;&#65306;\n\n\n\n&#32879;&#32097;&#26041;&#24335;\n&#22320;&#22336;&#65306;\n&#38651;&#35441;&#65306;\n&#32879;&#32097;&#20154;&#65306;\n&#34;</span><br></pre></td></tr></table></figure>
+<p>特別要注意的是，這個 ini 檔是用 <strong>big5</strong> 來存檔的。</p>
+<p>然後我在 index.php 裡把它載入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;$mailto = parse_ini_file(&#39;mailto.ini&#39;);&#10;$subject = urlencode($mailto[&#39;subject&#39;]);&#10;$body = str_replace(&#39;%250A&#39;, &#39;%0A&#39;, urlencode(str_replace(&#39;\n&#39;, &#39;%0A&#39;,  $mailto[&#39;body&#39;])));&#10;include(&#39;template.php&#39;);</span><br></pre></td></tr></table></figure>
+<p>這邊要特別注意的是 php 檔是用 <strong>utf-8</strong> 來存檔 (事實上你也可以用 ANSI 來存) 。</p>
+<p>最後來看看 template.php ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;&#28204;&#35430; mailto&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;mailto:jxxxxxxxxx@gmail.com?subject=&#60;?php echo $subject; ?&#62;&#38;amp;body=&#60;?php echo $body; ?&#62;&#34;&#62;&#23531;&#20449;&#36899;&#32097;&#60;/a&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>這裡一樣也是用 <strong>utf-8</strong> 存檔。</p>
+<p>執行它看看，跑出來的結果是不是符合你的需要呢？</p>
+<p>這裡就導出一個觀念了：<strong> PHP 在處理資料時，其程式檔案的編碼是不會影響資料本身的編碼的。</strong></p>
+<p>在上面的例子裡， parse_ini_file 取得的資料就是 mailto.ini 本身的編碼 (也就是 big5) ，而 PHP 也不會因為自己的檔案編碼是 utf-8 而改變 parse_ini_file 所取得的資料編碼。因此這時候的「其他問題」和「問題描述…」都能夠用在 template 上…</p>
+<p>不過等一下，如果你直接把 $mailto[‘subject’] 和 $mailto[‘body’] 套入 template.php 的話，那就慘了。為什麼呢？因為 big5 編碼的內容在 utf-8 編碼的網頁裡，瀏覽器不知道該怎麼解釋它們 (也就是一堆亂碼啦) 。所以這裡我們要利用 urlencode 這個函式，來將 big5 的文字做 URL 編碼。</p>
+<p>至於 \n 的部份只是個表示方式，實際上我們還是要手動將它換成 %0A (雖然我換的方式還滿醜的) 。</p>
+<p>當然不只是文字檔案，就連資料庫中取出的資料也是相同的道理。這點你可以參考我先前寫的 <a href="http://www.jaceju.net/blog/archives/116" target="_blank" rel="external">MySQL 中文編碼徹底研究</a>，裡面有詳細的內容。</p>
+<blockquote><br><br>再請問，如果用 smarty 時，php 檔案是不是應該儘量只有 php 程式碼？<br></blockquote>
+
+<p>依照上面的觀念，你認為我這裡會給什麼樣的答案呢？想想看吧 :)</p>
+<blockquote><br><br>另外 php 檔案存成 utf-8 或 big5 有差嗎？還是說網頁儘量不要存成 big5，以免特殊中文字會出現錯誤？<br><br>例如 php 檔案中像這樣 $mysmarty-&gt;assign(‘myVar1’,’許蓋功’) ，存成 big5，我在測試時，就會出現錯誤 Parse error: parse error, unexpected T_STRING<br></blockquote>
+
+<p>PHP 引擎會對 &lt;?php ?&gt; 裡面的特殊字元很敏感，所以上面的觀念一樣適用在這裡；當然如果是在 &lt;?php ?&gt; 外的話 (通常是 HTML ) 就沒問題了。</p>
+<p>希望上面的說明能讓你清楚相關的觀念 :)</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/43/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><span class="page-number current">44</span><a class="page-number" href="/page/45/">45</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/45/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">586</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = 'page/44/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

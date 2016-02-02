@@ -1,8 +1,1843 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
-<script src="js/html5shiv.min.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link active">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="home"><article class="post-block"><h2 class="post-title"><a href="/2010/05/29/1196/" class="post-title-link">[Web] 連結分享</a><div class="post-badge-wrap"><div class="post-badge"><span class="post-badge-msg">Issue №</span><span class="post-num">586</span></div></div></h2><div class="post-meta"><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div><div class="read-more"><a href="/2010/05/29/1196/"> 阅读全文</a></div></article></div></section></div><div class="extra"><section class="installtheme"><div class="row-flex row-flex-row limit-width"><div class="intro"><h3> 
-如果你喜欢 <a href="https://github.com/pinggod/hexo-theme-jekyll">Hexo-theme-hexo </a>, 何不动手尝试一下!</h3></div><div class="code"><div class="title">Quick-start Instructions</div><div class="shell"> <div class="line"><span class="output"># Prerequisite: Git, Node, Hexo</span></div><div class="line"><span class="path">~</span><span class="prompt">$</span><span class="command">hexo init blog && cd blog</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">npm install</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">git clone [hexo-theme-jekyll]</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">vim _config.yml</span></div></div></div></div></section><section class="selfintro"><div class="wrap row-flex row-flex-row limit-width"><div class="sign"><img src="img/github.png" alt=""></div><div class="intro"><h3 class="title">PING4GOD</h3><p class="content"> 三年不翅，将以长羽翼；不飞不鸣，将以观民则。</p><ul class="contact"><li><a href="https://github.com/xxxxx" class="social-link">github</a></li><li><a href="http://weibo.com/xxxxxx" class="social-link">weibo</a></li></ul></div></div></section></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
-<a href="https://hexo.io">Hexo</a>, 
-<a href="https://github.com/">GitHub</a>, 
-<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://jaceju.net/page/15/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/29/1196/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-29T00:00:00+08:00" content="2010-05-29">
+              2010-05-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/29/1196/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/29/1196/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://wezfurlong.org/blog/2006/nov/http-post-from-php-without-curl" target="_blank" rel="external">HTTP POST from PHP, without cURL</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Late-Static-Bindings-in-PHP-53-with-the-Abstract-Factory-Pattern/?kc=rss" target="_blank" rel="external">Late Static Bindings in PHP 5.3 with the Abstract Factory Pattern</a></li>
+<li><a href="http://css.dzone.com/books/practical-php-patterns/practical-php-patterns" target="_blank" rel="external">Practical PHP Patterns: Identity Map</a></li>
+<li><a href="http://inspire.twgg.org/c/programming/php/php-from-the-high-efficiency-of-writing-to-learn-ruby.html" target="_blank" rel="external">PHP can be cool like Ruby - 從ruby學到的高效率寫法</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Factoring-XHTML-Objects-with-Late-Static-Bindings-in-PHP-53/?kc=rss" target="_blank" rel="external">Factoring (X)HTML Objects with Late Static Bindings in PHP 5.3</a></li>
+<li><a href="http://www.fayazmiraz.com/php-include-vs-require/" target="_blank" rel="external">Advanced PHP Tutorial: include vs require</a></li>
+<li><a href="http://fabien.potencier.org/article/44/php-iterators-and-streams-are-awesome" target="_blank" rel="external">PHP Iterators and Streams are awesome</a></li>
+<li><a href="http://www.laruence.com/2010/05/26/1541.html" target="_blank" rel="external">PHP類型轉換相關的一個Bug</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/" target="_blank" rel="external">Why you Should be using PHP’s PDO for Database Access</a></li>
+<li><a href="http://css.dzone.com/books/practical-php-patterns/practical-php-patterns-lazy" target="_blank" rel="external">Practical PHP Patterns: Lazy Loading</a></li>
+<li><a href="http://till.klampaeckel.de/blog/archives/101-PHP,-APC-and-sessions.html" target="_blank" rel="external">PHP, APC and sessions</a></li>
+<li><a href="http://www.mikespook.com/index.php/archives/580" target="_blank" rel="external">關於Web編程異步模型的白日夢</a></li>
+<li><a href="http://blog.ramonlechuga.com/2010/05/24/php-error-handler-tracking-you-project-bugs/" target="_blank" rel="external">PHP Error Handler, Tracking you project bugs</a></li>
+<li><a href="http://www.eschrade.com/page/unit-testing-zend-server-queue-actions-4bd5a19a" target="_blank" rel="external">Unit Testing Zend Server PHP Job Queue actions</a></li>
+<li><a href="http://www.web-development-blog.com/archives/create-pdf-documents-online-with-tcpdf/" target="_blank" rel="external">Create PDF documents Online with TCPDF</a></li>
+<li><a href="http://www.onextrapixel.com/2010/05/24/an-overview-of-php-framework-guides-for-developers/" target="_blank" rel="external">An Overview of PHP Framework Guides for Developers</a></li>
+<li><a href="http://blog.astrumfutura.com/archives/427-Mockery-0.6-Released-PHP-Mock-Object-Framework.html" target="_blank" rel="external">Mockery 0.6 Released - PHP Mock Object Framework</a></li>
+<li><a href="http://www.v-nessa.net/2010/05/27/php-5-3-why-were-all-late-to-the-party" target="_blank" rel="external">PHP 5.3: Why We’re All Late to the Party</a></li>
+<li><a href="http://weblog.gilbert.tw/?p=368" target="_blank" rel="external">post_max_size 不可設定成 2048M</a></li>
+<li><a href="http://www.laruence.com/2010/05/28/1565.html" target="_blank" rel="external">PHP錯誤抑制符(@)導致引用傳參失敗的Bug</a></li>
+</ul>
+<h2 id="Zend_Framework">Zend Framework</h2><ul>
+<li><a href="http://www.zendframeworkinaction.com/2010/05/26/zf-and-doctrine-1-integration/" target="_blank" rel="external">ZF and Doctrine 1 integration</a></li>
+<li><a href="http://till.klampaeckel.de/blog/archives/92-Zend-Framework-Slow-automatic-view-rendering.html" target="_blank" rel="external">Zend Framework: Slow automatic view rendering</a></li>
+<li><a href="http://blog.astrumfutura.com/archives/290-Having-a-bad-ViewRenderer-day-in-your-ZF-app.html" target="_blank" rel="external">Having a bad ViewRenderer day in your ZF app?</a></li>
+<li><a href="http://www.eschrade.com/page/precaching-content-with-zend_cache_manager-zend-server-queue-4bd1fdd4" target="_blank" rel="external">Pre-caching PHP content with Zend_Cache_Manager and the Zend Server Job Queue</a></li>
+<li><a href="http://weierophinney.net/matthew/archives/240-Writing-Gearman-Workers-in-PHP.html" target="_blank" rel="external">Writing Gearman Workers in PHP</a></li>
+<li><a href="http://www.webaxes.com/2010/05/why-zend-framework/" target="_blank" rel="external">Why Zend Framework</a></li>
+<li><a href="http://www.prodevtips.com/2007/10/15/marrying-the-zend-framework-and-html-ajax/" target="_blank" rel="external">Marrying the Zend Framework and HTML Ajax</a></li>
+</ul>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://css.dzone.com/articles/writing-cucumber-step" target="_blank" rel="external">Writing Cucumber Step Definitions in JavaScript </a></li>
+<li><a href="http://www.denisdeng.com/?p=1018" target="_blank" rel="external">使用clickCatcher在JavaScript的文件加載完畢 /事件應用之前捕獲點擊事件</a></li>
+<li><a href="http://addyosmani.com/blog/javascriptuncovered/" target="_blank" rel="external">jQuery Vs. JavaScript – The Masters Share Their Views On Vanilla JS</a></li>
+<li><a href="http://css.dzone.com/news/javascript-objects-coding" target="_blank" rel="external">JavaScript Objects Coding Style</a></li>
+<li><a href="http://blog.darkthread.net/blogs/darkthreadtw/archive/2010/05/26/js-delayexecute.aspx" target="_blank" rel="external">CODE - Javascript - 等待特定條件成立後才執行某段程式</a></li>
+<li><a href="http://www.wsblogz.com/tools/18-free-javascript-resources-for-charts-and-graphs/" target="_blank" rel="external">18 free javascript Resources for Charts and Graphs</a></li>
+</ul>
+<h2 id="jQuery">jQuery</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2010/05/23/make-your-own-bookmarklets-with-jquery/" target="_blank" rel="external">Make Your Own Bookmarklets With jQuery</a></li>
+<li><a href="http://yestutor.blogspot.com/2010/05/75-top-jquery-plugins-to-improve-your.html" target="_blank" rel="external">75+ Top jQuery Plugins to improve Your HTML Forms</a></li>
+<li><a href="http://yestutor.blogspot.com/2010/05/top-10-jquery-snippets-including-jquery.html" target="_blank" rel="external">Top 10 jQuery Snippets (including jquery 1.4)</a></li>
+<li><a href="http://devgrow.com/slidernav/" target="_blank" rel="external">SliderNav: iPhone Style Contact Lists Using JQuery and CSS</a></li>
+<li><a href="http://www.jankoatwarpspeed.com/post/2010/05/23/microsoft-office-minibar-jQuery-CSS3.aspx" target="_blank" rel="external">Why and how to create Microsoft Office Minibar with jQuery and CSS3</a></li>
+<li><a href="http://webdesignersdesk.com/2010/05/create-custom-popup-model-window-with-jquery/" target="_blank" rel="external">Create Custom PopUp (Model Window) with jQuery</a></li>
+<li><a href="http://yestutor.blogspot.com/2010/05/7-interesting-jquery-calendar-plugins.html" target="_blank" rel="external">7 interesting jQuery calendar plugins</a></li>
+<li><a href="http://www.queness.com/post/3470/simplest-jquery-spotlight-effect-tutorial" target="_blank" rel="external">Simplest jQuery Spotlight Effect Tutorial</a></li>
+<li><a href="http://tutorialzine.com/2010/05/bounce-in-box-plugin-jquery/" target="_blank" rel="external">BounceBox Notification Plugin With jQuery &amp; CSS3</a></li>
+<li><a href="http://www.netdesignr.com/blog/?p=171" target="_blank" rel="external">25 jQuery Forms Tutorials</a></li>
+<li><a href="http://blog.galaxark.com/2010/05/5-essential-jquery-plugin-for-twitter/" target="_blank" rel="external">5 Essential Jquery Plugin for Twitter</a></li>
+<li><a href="http://snook.ca/archives/javascript/jquery-bg-image-animations/" target="_blank" rel="external">Using jQuery for Background Image Animations</a></li>
+<li><a href="http://snook.ca/archives/javascript/handling-active-state" target="_blank" rel="external">Handling Active State for jQuery Animated Backgrounds</a></li>
+<li><a href="http://www.professorcloud.com/mainsite/cloud-zoom.htm" target="_blank" rel="external">Professor Cloud</a></li>
+<li><a href="http://www.wittysparks.com/2010/05/26/stylish-collapsible-fieldset-by-using-css3-jquery/" target="_blank" rel="external">Stylish collapsible Fieldset by using CSS3 &amp; jQuery</a></li>
+<li><a href="http://www.bestfreewebresources.com/2010/05/ultimate-collection-of-useful-jquery.html" target="_blank" rel="external">Ultimate Collection of Useful Jquery Plugins</a></li>
+<li><a href="http://www.ajaxline.com/best-jquery-tooltips-plugins" target="_blank" rel="external">Best jQuery Tooltips plugins</a></li>
+<li><a href="http://aviathemes.com/aviaslider/" target="_blank" rel="external">AviaSlider - a unique jQuery Image slideshow plugin</a></li>
+<li><a href="http://www.1stwebdesigner.com/tutorials/how-to-create-a-polaroid-photo-gallery-with-css3-and-jquery/" target="_blank" rel="external">How To Create A Polaroid Photo Gallery With CSS3 And jQuery</a></li>
+<li><a href="http://www.denbagus.net/jquery-image-zoom-and-tutorial/" target="_blank" rel="external">12 Best jQuery Image Zoom and Tutorial </a></li>
+<li><a href="http://yestutor.blogspot.com/2010/05/14-fresh-and-useful-jquery-plugins.html" target="_blank" rel="external">14 Fresh and Useful jQuery Plugins</a></li>
+<li><a href="http://www.position-absolute.com/articles/using-the-jquery-aop-plugin-to-better-debug-your-javascript/" target="_blank" rel="external">Using the jQuery AOP plugin to debug your javascript</a></li>
+</ul>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://speckyboy.com/2010/05/21/10-mind-blowing-experimental-css3-techniques-and-demos/" target="_blank" rel="external">10 Mind-Blowing Experimental CSS3 Techniques and Demos</a></li>
+<li><a href="http://css3.bradshawenterprises.com/" target="_blank" rel="external">Using CSS3 Transitions, Transforms and Animation</a></li>
+<li><a href="http://www.simple-talk.com/content/article.aspx?article=1035" target="_blank" rel="external">Advice on CSS you’ll wish your mother told you</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/css-diy-organization/" target="_blank" rel="external">CSS DIY Organization</a></li>
+<li><a href="http://www.blueidea.com/tech/web/2010/7631.asp" target="_blank" rel="external">如何使CSS渲染更高效</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/05/27/css-three-connecting-the-dots/" target="_blank" rel="external">CSS Three — Connecting The Dots</a></li>
+<li><a href="http://webdesignersdesk.com/2010/05/impossible-things-with-css-now-possible-with-css3/" target="_blank" rel="external">Impossible Things With CSS Now Possible With CSS3</a></li>
+<li><a href="http://speckyboy.com/2010/05/26/20-awesome-jquery-enhanced-css-button-techniques/" target="_blank" rel="external">20 Awesome jQuery Enhanced CSS Button Techniques</a></li>
+<li><a href="http://variable3.com/blog/2010/05/5-must-read-presentations-to-improve-your-css-skills/" target="_blank" rel="external">5 Must read presentations to improve your CSS skills</a></li>
+</ul>
+<h2 id="Database">Database</h2><ul>
+<li><a href="http://www.webdevblog.info/database/drop-table-if-exists-in-oracle-nd-sql-server/" target="_blank" rel="external">“DROP TABLE IF EXISTS” in Oracle and SQL Server</a></li>
+</ul>
+<h2 id="HTML5">HTML5</h2><ul>
+<li><a href="http://www.sitepoint.com/blogs/2010/05/25/a-minimal-html-document-html5-edition/" target="_blank" rel="external">A Minimal HTML Document (HTML5 Edition)</a></li>
+<li><a href="http://videojs.com/" target="_blank" rel="external">Video JS | HTML5 Video Player</a></li>
+<li><a href="http://www.dharne.com/blog/2010/05/24/html5-and-the-geolocation-feature/" target="_blank" rel="external">HTML5 and the Geolocation feature</a></li>
+<li><a href="http://24ways.org/2009/have-a-field-day-with-html5-forms" target="_blank" rel="external">24 ways: Have a Field Day with HTML5 Forms</a></li>
+<li><a href="http://www.phpguru.org/article/473" target="_blank" rel="external">HTML5 desktop notifications example (webkit)</a></li>
+</ul>
+<h2 id="Web_Development">Web Development</h2><ul>
+<li><a href="http://www.phpied.com/conditional-comments-block-downloads/" target="_blank" rel="external">Conditional comments block downloads</a></li>
+<li><a href="http://www.catswhocode.com/blog/best-practices-for-coding-html-emails" target="_blank" rel="external">Best practices for coding HTML emails</a></li>
+<li><a href="http://css.dzone.com/articles/writing-user-stories-web" target="_blank" rel="external">Writing user stories for web applications</a></li>
+<li><a href="http://www.w3mag.com/designers-online-generators/" target="_blank" rel="external">50+ Online Generators for Designers and Web Developers</a></li>
+<li><a href="http://spyrestudios.com/creating-your-own-xhtml-css-framework/" target="_blank" rel="external">Creating Your Own XHTML &amp; CSS Framework</a></li>
+<li><a href="http://djdesignerlab.com/2010/05/23/30-beautiful-divcss-web-designs/" target="_blank" rel="external">30+ Beautiful DIV/CSS Web Designs</a></li>
+<li><a href="http://thisisrobv.com/2010/05/22/5-steps-to-cross-browser-compatibility/" target="_blank" rel="external">5 Steps to Cross Browser Compatibility</a></li>
+</ul>
+<h2 id="Browser">Browser</h2><ul>
+<li><a href="http://googlewebmastercentral.blogspot.com/2010/05/chrome-extensions-for-web-development.html" target="_blank" rel="external">Chrome Extensions for web development</a></li>
+</ul>
+<h2 id="Design">Design</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2010/05/24/website-archives-best-practices-and-showcase/" target="_blank" rel="external">Website Archives Design: Good Practices and Examples</a></li>
+<li><a href="http://playpcesor.blogspot.com/2010/05/blog-post.html" target="_blank" rel="external">好藝術與好設計有何不同？下載屬於好設計的重點提示桌布</a></li>
+<li><a href="http://www.noupe.com/design/breaking-the-rules-how-to-effectively-break-the-rules-of-good-web-design.html" target="_blank" rel="external">Breaking the Rules: How to Effectively Break the “Rules” of Good Web Design</a></li>
+<li><a href="http://sixrevisions.com/design-showcase-inspiration/beautiful-footers-in-modern-web-design-for-inspiration/" target="_blank" rel="external">Beautiful Footers in Modern Web Design for Inspiration</a></li>
+<li><a href="http://www.hollen-b.com/tutorials/css_shadow_bg/" target="_blank" rel="external">Adding A Drop Shadow To Your Web Page</a></li>
+<li><a href="http://www.bestfreewebresources.com/2010/05/30-fresh-and-beautiful-3d-typography.html" target="_blank" rel="external">30 Fresh And Beautiful 3D Typography Designs</a></li>
+<li><a href="http://blog.echoenduring.com/2010/05/25/what-is-design/" target="_blank" rel="external">What Is Design?</a></li>
+</ul>
+<h2 id="Game">Game</h2><ul>
+<li><a href="http://www.techbang.com.tw/posts/2322-in-the-open-ttd-on-the-rhythms-of-railway-dream" target="_blank" rel="external">在Open TTD上重溫兒時鐵道夢</a></li>
+</ul>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://blogs.msdn.com/b/cashto/archive/2009/03/31/it-s-ok-not-to-write-unit-tests.aspx" target="_blank" rel="external">It’s OK Not to Write Unit Tests</a></li>
+<li><a href="http://www.makinggoodsoftware.com/2010/05/27/10-things-they-never-teach-in-college-about-programming/" target="_blank" rel="external">10+1 things they never teach in college about programming.</a></li>
+</ul>
+<h2 id="Software">Software</h2><ul>
+<li><a href="http://briian.com/?p=7012" target="_blank" rel="external">Mimer 側錄、重播電腦操作步驟</a></li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/26/1184/" itemprop="url">
+                  我的噗浪語錄
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-26T00:00:00+08:00" content="2010-05-26">
+              2010-05-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/26/1184/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/26/1184/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>這篇是把自己在噗浪上寫過的心得整理起來，不定期會再補上來。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010/05/26/1184/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/26/1188/" itemprop="url">
+                  初探 Zend Framework 上的 Context 輸出
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-26T00:00:00+08:00" content="2010-05-26">
+              2010-05-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/26/1188/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/26/1188/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>在 Zend Framework 1.5 版之後就支援了對 Ajax Context 的處理，讓我們可以在 Controller 裡的 Action 輸出不同的格式的內容，以下我將簡單介紹這個功能。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010/05/26/1188/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/24/1179/" itemprop="url">
+                  關於學習技術這件事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-24T00:00:00+08:00" content="2010-05-24">
+              2010-05-24
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/24/1179/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/24/1179/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>專業技術從來就不是人天生就會的，所以我們才需要去學習它。可是有許多人在學習新技術時，常常只是把書瀏覽過一遍，然後真正要下手時卻不知所措。其實在學習技術的方法有很多，只不過並沒有哪個方法特別好，就看這個方法適不適合我們而已。</p>
+<p>然而適合每個人學習的方式不一定相同，以下就是我個人以往的學習經驗，供大家參考看看。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010/05/24/1179/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/23/1175/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-23T00:00:00+08:00" content="2010-05-23">
+              2010-05-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/23/1175/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/23/1175/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.laruence.com/2010/05/14/1473.html" target="_blank" rel="external">使用PHP_UML生成代码的UML图</a></li>
+<li><a href="http://raphaelstolt.blogspot.com/2010/05/installing-php-redis-extension-on-mac.html" target="_blank" rel="external">Installing the PHP redis extension on Mac OS X</a></li>
+<li><a href="http://blogs.webspiders.com/index.php/top-5-php-classes-for-better-programming" target="_blank" rel="external"> Top 5 PHP Classes for Better Programming</a></li>
+<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/021f925871b008d29d820473.html" target="_blank" rel="external">PHP中的異常</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Using-Late-Static-Bindings-in-PHP-53/?kc=rss" target="_blank" rel="external">Using Late Static Bindings in PHP 5.3</a></li>
+<li><a href="http://weierophinney.net/matthew/archives/190-Setting-up-your-Zend_Test-test-suites.html" target="_blank" rel="external">Setting up your Zend_Test test suites</a></li>
+<li><a href="http://blog.maartenballiauw.be/post/2010/05/18/Extension-methods-for-PHP.aspx" target="_blank" rel="external">Extension methods for PHP</a></li>
+<li><a href="http://css.dzone.com/articles/asynchronous-processing-php" target="_blank" rel="external">Asynchronous processing in PHP</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Registry-Classes-in-Action-with-Late-Static-Bindings-in-PHP-53/?kc=rss" target="_blank" rel="external">Registry Classes in Action with Late Static Bindings in PHP 5.3</a></li>
+<li><a href="http://www.i-programmer.info/programming/php/864-object-oriented-html-generation.html" target="_blank" rel="external">Object-oriented HTML generation</a></li>
+<li><a href="http://www.script-tutorials.com/how-to-easily-make-ajax-style-php-chat-application/" target="_blank" rel="external">How to Easily Make AJAX Style PHP Chat Application</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/The-getcalledclass-Function-in-PHP-53/?kc=rss" target="_blank" rel="external">The Get_called_class() Function in PHP 5.3</a></li>
+<li><a href="http://css.dzone.com/books/practical-php-patterns-unit" target="_blank" rel="external">Practical PHP Patterns: Unit of Work</a></li>
+<li><a href="http://www.phpbuilder.com/columns/Jason_Gilmore051410.php3" target="_blank" rel="external">A Sanity-saving Debugging Solution for Your PHP Development </a></li>
+<li><a href="http://matthewturland.com/2010/05/20/new-spl-features-in-php-5-3/" target="_blank" rel="external">New SPL Features in PHP 5.3</a></li>
+<li><a href="http://www.v-nessa.net/2010/05/18/command-line-php-part-1" target="_blank" rel="external">Command Line PHP – Part 1</a></li>
+<li><a href="http://blog.astrumfutura.com/archives/423-PHP-Mock-Objects-Sucking-Ass-Since-Forever.html" target="_blank" rel="external">PHP Mock Objects: Sucking Ass Since Forever</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/simple-php-class-based-querying/" target="_blank" rel="external">Simple PHP Class-Based Querying</a></li>
+<li><a href="http://fabien.potencier.org/article/44/php-iterators-and-streams-are-awesome" target="_blank" rel="external">PHP Iterators and Streams are awesome</a></li>
+<li><a href="http://www.ajaxfreak.com/2010/05/19/top-10-php-classes-picks-of-the-week/" target="_blank" rel="external">Top 10 PHP Classes Picks of the week</a></li>
+<li><a href="http://php.dzone.com/news/acceptance-test-driven" target="_blank" rel="external">Acceptance Test-Driven Development</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/html-parsing-and-screen-scraping-with-the-simple-html-dom-library/" target="_blank" rel="external">HTML Parsing and Screen Scraping with the Simple HTML DOM Library</a></li>
+<li><a href="http://blog.webconsultingengineering.com/phptalk/phpserialize-or-json.html" target="_blank" rel="external">PHP serialization or Json</a></li>
+<li><a href="http://www.1stwebdesigner.com/tutorials/how-to-update-twitter-using-php-and-twitter-api/" target="_blank" rel="external">How to Update Twitter using PHP and Twitter API</a></li>
+<li><a href="http://www.tuttoaster.com/getting-started-with-pdf-generation-in-php/" target="_blank" rel="external">Getting started with pdf generation in PHP</a></li>
+</ul>
+<h2 id="Zend_Framework">Zend Framework</h2><ul>
+<li><a href="http://www.rmauger.co.uk/2009/03/why-the-zend-framework-actionstack-is-evil/" target="_blank" rel="external">Why the Zend Framework Actionstack is Evil</a></li>
+<li><a href="http://css.dzone.com/articles/zendtest-acceptance-tdd" target="_blank" rel="external">Zend_Test for Acceptance TDD</a></li>
+<li><a href="http://xebee.xebia.in/2010/02/05/test-driven-development-with-zend-framework-and-phpunit/" target="_blank" rel="external">Test Driven Development with Zend Framework and PHPUnit</a></li>
+</ul>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.denisdeng.com/?p=988" target="_blank" rel="external">译文：ECMA-262-3 深入解析：第五章 函数</a></li>
+<li><a href="http://speckyboy.com/2010/05/17/15-javascript-web-ui-libraries-frameworks-and-libraries/" target="_blank" rel="external">15 Javascript Web UI Libraries, Frameworks and Toolkits</a></li>
+<li><a href="http://www.queness.com/post/3383/8-extremely-beautiful-flash-and-javascript-image-sliders" target="_blank" rel="external">8 Extremely Beautiful Flash and Javascript Image Sliders</a></li>
+<li><a href="http://css.dzone.com/news/test-driven-javascript" target="_blank" rel="external">Test-Driven Javascript</a></li>
+<li><a href="http://www.w3mag.com/ajax-tools-tutorials/" target="_blank" rel="external">40+ Extremely Useful Ajax Tools and Tutorials</a></li>
+<li><a href="http://www.position-absolute.com/articles/javascript-patterns-headache-the-path-to-modular-applications-part-1/" target="_blank" rel="external">Javascript patterns headache, the path to modular applications (part 1)</a></li>
+<li><a href="http://www.position-absolute.com/articles/a-javascript-module-starter/" target="_blank" rel="external">Position Absolute, web apps and front-end stuff - A javascript module framework starter</a></li>
+</ul>
+<h2 id="jQuery">jQuery</h2><ul>
+<li><a href="http://gamequery.onaluf.org/" target="_blank" rel="external">gameQuery - a javascript game engine with jQuery</a></li>
+<li><a href="http://www.wsblogz.com/tools/jquery-tooltip-plugins-and-tutorials-for-awesome-design/" target="_blank" rel="external">jQuery Tooltip Plugins and tutorials for awesome design</a></li>
+<li><a href="http://www.viget.com/inspire/youtube-chromeless-video-jquery-plugin/" target="_blank" rel="external">YouTube Chromeless Video Player – jQuery Plugin</a></li>
+<li><a href="http://www.9lessons.info/2010/05/flash-effect-image-loading-with-jquery.html" target="_blank" rel="external">Flash Effect Image Loading with Jquery.</a></li>
+<li><a href="http://acrisdesign.com/2010/05/35-jquery-tutorials-you-must-know/" target="_blank" rel="external">35 jQuery Tutorials You Must Know</a></li>
+<li><a href="http://www.nealgrosskopf.com/tech/thread.php?pid=69" target="_blank" rel="external">Everything You Need to Know About jQuery’s .data() Method</a></li>
+<li><a href="http://www.fyneworks.com/jquery/multiple-file-upload/" target="_blank" rel="external">jQuery Multiple File Upload Plugin v1.47 (2010-03-26)</a></li>
+<li><a href="http://yestutor.blogspot.com/2010/05/7-reasons-why-you-really-should-learn.html" target="_blank" rel="external">7 reasons why you really should learn jQuery</a></li>
+<li><a href="http://www.webappers.com/2010/05/19/lightweight-jquery-ui-notify-widget-in-100-css/" target="_blank" rel="external">Lightweight jQuery UI Notify Widget in 100% CSS</a></li>
+<li><a href="http://blogs.dovetailsoftware.com/blogs/styson/archive/2010/05/17/dynamically-loading-jquery-plugins.aspx" target="_blank" rel="external">Dynamically Loading jQuery plugins</a></li>
+<li><a href="http://www.devcurry.com/2010/05/latest-jquery-and-jquery-ui-theme-links.html" target="_blank" rel="external">Latest jQuery and jQuery UI Theme links on Google CDN</a></li>
+<li><a href="http://blog.galaxark.com/2010/05/fresh-jquery-tutorials/" target="_blank" rel="external">Fresh JQuery Tutorials</a></li>
+<li><a href="http://www.ajaxline.com/best-jquery-plugins-may-2010" target="_blank" rel="external">Best jQuery plugins - May 2010</a></li>
+<li><a href="http://tympanus.net/codrops/2010/05/18/little-boxes-menu-with-jquery/" target="_blank" rel="external">Little Boxes Menu with jQuery</a></li>
+<li><a href="http://www.webdeveloperjuice.com/2010/05/20/11-fresh-jquery-plugins-for-attractive-web-application-interface/" target="_blank" rel="external">11 fresh jquery plugins for attractive web application interface</a></li>
+<li><a href="http://www.latentmotion.com/how-to-create-a-jquery-bookmarklet/" target="_blank" rel="external">How to Create a jQuery Bookmarklet</a></li>
+<li><a href="http://www.webaxes.com/2010/05/jquery-form-validation-techniques-and-tutorials/" target="_blank" rel="external">jQuery Form Validation Techniques and Tutorials</a></li>
+</ul>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.filamentgroup.com/lab/image_free_css_tooltip_pointers_a_use_for_polygonal_css/" target="_blank" rel="external">Image-free CSS Tooltip Pointers - A Use for Polygonal CSS?</a></li>
+<li><a href="http://carsonified.com/blog/design/sexy-interactions-with-css-transitions/" target="_blank" rel="external">Sexy Interactions with CSS Transitions</a></li>
+<li><a href="http://resources.savedelete.com/top-10-free-online-css-editors-for-web-designers.html" target="_blank" rel="external">Top 10 Free Online CSS Editors For Web Designers</a></li>
+<li><a href="http://ued.alipay.com/2010/05/talk-about-css-hack-and-backward-compatibility/" target="_blank" rel="external">說說CSS Hack 和向後兼容</a></li>
+<li><a href="http://rathersplendid.net/home/pure-css-icons" target="_blank" rel="external">Pure CSS Icons</a></li>
+<li><a href="http://www.denbagus.net/only-css-no-javascript/" target="_blank" rel="external">10 Best Techniques Only with CSS No JavaScript Needed</a></li>
+<li><a href="http://neography.com/journal/our-solar-system-in-css3/" target="_blank" rel="external">Our Solar Sys­tem in CSS3</a></li>
+<li><a href="http://rickbjarnason.com/creating-multi-column-lists-using-css/" target="_blank" rel="external">Creating Multi-column Lists using CSS</a></li>
+<li><a href="http://www.vcarrer.com/2010/05/css-mini-reset.html" target="_blank" rel="external">CSS Mini Reset</a></li>
+<li><a href="http://www.vectornpixel.com/freebies/psd/useful-css-grid-systems-for-web-designers" target="_blank" rel="external">Useful CSS Grid Systems for Web Designers</a></li>
+<li><a href="http://webdesignledger.com/tutorials/13-pure-css-techniques-for-creating-javascript-like-interactions" target="_blank" rel="external">13 Pure CSS Techniques for Creating JavaScript-like Interactions</a></li>
+<li><a href="http://www.phpied.com/yui-css-min-part-2/" target="_blank" rel="external">YUI CSS Min - part 2</a></li>
+<li><a href="http://www.phpied.com/yuicompressor-cssmin/" target="_blank" rel="external">YUICompressor’s CSSMin</a></li>
+<li><a href="http://webhole.net/2009/05/18/blueprint-css-layouts-tutorial/" target="_blank" rel="external">Blueprint, A CSS Framework: Layouts Tutorial</a></li>
+<li><a href="http://webhole.net/2010/02/11/10-non-grid-css-frameworks/" target="_blank" rel="external">Top 10 CSS Frameworks To Style Your Designs</a></li>
+<li><a href="http://davidwalsh.name/github-css" target="_blank" rel="external">Create GitHub-Style Buttons with CSS and jQuery, MooTools, or Dojo JavaScript</a></li>
+<li><a href="http://yestutor.blogspot.com/2010/05/12-excellent-css3-button-and-menu.html" target="_blank" rel="external">12 Excellent CSS3 Button and Menu Techniques</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/quick-tip-pure-css-text-gradients/" target="_blank" rel="external">Quick Tip: Pure CSS Text Gradients</a></li>
+<li><a href="http://www.cssreflex.com/2010/05/10-best-css-editors.html" target="_blank" rel="external">10 Best of Breed CSS Editors</a></li>
+<li><a href="http://devgrow.com/super-simple-css-buttons/" target="_blank" rel="external">Super Simple CSS Buttons</a></li>
+</ul>
+<h2 id="Python">Python</h2><ul>
+<li><a href="http://www.eddie.com.tw/course/index.php/Python_index" target="_blank" rel="external">Python index</a></li>
+<li><a href="http://www.eddie.com.tw/course/index.php/Django_index" target="_blank" rel="external">Django index</a></li>
+<li><a href="http://css.dzone.com/articles/django-12-released-slight" target="_blank" rel="external">Django 1.2 - Multiple DBs and CSRF Protection</a></li>
+</ul>
+<h2 id="Database">Database</h2><ul>
+<li><a href="http://jax-work-archive.blogspot.com/2010/04/mysql-join.html" target="_blank" rel="external">MySQL 在做 JOIN 時對索引關連的小發現</a></li>
+<li><a href="http://www.rainsts.net/article.asp?id=988" target="_blank" rel="external">MySQL的 - 用戶及權限管理</a></li>
+<li><a href="http://www.mysqlperformanceblog.com/2010/05/22/extending-index-for-innodb-tables-can-hurt-performance-in-a-surprising-way/" target="_blank" rel="external">Extending Index for Innodb tables can hurt performance in a surprising way</a></li>
+</ul>
+<h2 id="HTML5">HTML5</h2><ul>
+<li><a href="http://html5demos.com/" target="_blank" rel="external">HTML5 Demos and Examples</a></li>
+<li><a href="http://blog.darkcrimson.com/2010/05/local-databases/" target="_blank" rel="external">Getting Started with HTML5 Local Databases</a></li>
+<li><a href="http://mashable.com/2010/05/18/html5-video-tools/" target="_blank" rel="external">5 Tools For Integrating HTML5 Video in Your Website</a></li>
+<li><a href="http://www.ibm.com/developerworks/web/library/wa-offlineweb/index.html" target="_blank" rel="external">Create offline Web applications on mobile devices with HTML5</a></li>
+<li><a href="http://www.switchonthecode.com/tutorials/taking-a-dive-into-html5-web-storage" target="_blank" rel="external">Taking a Dive into HTML5 - Web Storage</a></li>
+<li><a href="http://www.wirelust.com/2010/05/21/10-things-flash-can-do-today-that-html5-cant/" target="_blank" rel="external">10 things Flash can do today that HTML5 can’t</a></li>
+</ul>
+<h2 id="Web_Development">Web Development</h2><ul>
+<li><a href="http://www.webdevblog.info/general/cheat-sheets-for-web-developers/" target="_blank" rel="external">9 Cheat Sheets For Web Developers</a></li>
+<li><a href="http://www.1stwebdesigner.com/freebies/fresh-free-xhtml-templates-2010/" target="_blank" rel="external">100 Fresh And Free xHTML Templates Of Year 2010</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/other/easy-graphs-with-google-chart-tools/" target="_blank" rel="external">Easy Graphs with Google Chart Tools</a></li>
+<li><a href="http://www.phpied.com/15-minutes-could-save-you/" target="_blank" rel="external">15 minutes could save you…</a></li>
+<li><a href="http://www.blueidea.com/tech/web/2010/7608.asp" target="_blank" rel="external">跨瀏覽器邊框探索</a></li>
+<li><a href="http://www.uxbooth.com/blog/usability-testing-dont-guess-test/" target="_blank" rel="external">Usability Testing: Don’t Guess, Test.</a></li>
+<li><a href="http://www.qianduan.net/google-font-api-web-font-and-chinese.html" target="_blank" rel="external">Google font api、web font与中文</a></li>
+<li><a href="http://blog.mgm-tp.com/2010/05/art-of-seo-part2/" target="_blank" rel="external">Boost your Website with great URLs - The Art of Search Engine Optimization, Part 2</a></li>
+<li><a href="http://blog.mgm-tp.com/2010/04/art-of-seo-part1/" target="_blank" rel="external">What’s Important for a Robot - The Art of Search Engine Optimization, Part 1</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/05/20/web-design-trends-2010-real-life-metaphors-and-css3-adaptation/" target="_blank" rel="external">Web Design Trends 2010: Real-Life Metaphors and CSS3 Adaptation</a></li>
+<li><a href="http://syre.blogbus.com/logs/63974102.html" target="_blank" rel="external">Firefox 的詭異的iframe 緩存問題</a></li>
+<li><a href="http://github.com/macek/google_pacman" target="_blank" rel="external">macek’s google_pacman at master</a></li>
+</ul>
+<h2 id="Browser">Browser</h2><ul>
+<li><a href="http://www.qianduan.net/ie-short.html" target="_blank" rel="external">IE之短</a></li>
+</ul>
+<h2 id="Design">Design</h2><ul>
+<li><a href="http://www.hongkiat.com/blog/mini-icon-sets/" target="_blank" rel="external">50 (More) Excellent Mini Icon Sets</a></li>
+<li><a href="http://www.smashingshare.com/2010/05/13/25-creative-404-error-page-designs/" target="_blank" rel="external">25 Creative 404 Error Page Designs</a></li>
+<li><a href="http://blog.rexsong.com/?p=10271" target="_blank" rel="external">表格可读性提升分析</a></li>
+<li><a href="http://spyrestudios.com/10-great-tips-for-improving-your-web-typography/" target="_blank" rel="external">10 Great Tips For Improving Your Web Typography</a></li>
+<li><a href="http://graphicalerts.com/50-high-quality-free-fonts-for-professional-graphic-web-design/" target="_blank" rel="external">50 High Quality Free Fonts for Professional Graphic &amp; Web Design</a></li>
+<li><a href="http://www.bestfreewebresources.com/2010/05/35-free-and-creative-fonts-for.html" target="_blank" rel="external">35 Free And Creative Fonts For Designers</a></li>
+<li><a href="http://www.webdesignsoul.com/30-only-blue-web-layout-photoshop-tutorials/" target="_blank" rel="external">30 Only Blue - Web Layout Photoshop Tutorials</a></li>
+<li><a href="http://webexpedition18.com/articles/when-less-is-more-minimalism-in-web-design/" target="_blank" rel="external">When Less is More: Minimalism in Web Design</a></li>
+<li><a href="http://www.noupe.com/photography/the-beauty-of-lightning-photography-a-bolt-from-the-blue.html" target="_blank" rel="external">The Beauty of Lightning Photography: A Bolt From The Blue</a></li>
+<li><a href="http://blog.xiqiao.info/2010/05/23/678" target="_blank" rel="external">每日设计三推（十三）4.16-5.16</a></li>
+</ul>
+<h2 id="Game">Game</h2><ul>
+<li><a href="http://share.youthwant.com.tw/sh.php?do=D&amp;id=V6004650" target="_blank" rel="external">【反應】Tower Bloxx(建築遊戲 層層疊)</a></li>
+</ul>
+<h2 id="Internet">Internet</h2><ul>
+<li><a href="http://webstock-media.com/10-tips-to-find-a-great-domain-name/" target="_blank" rel="external">10 Tips to Find A Great Domain Name</a></li>
+</ul>
+<h2 id="Security">Security</h2><ul>
+<li><a href="http://jax-work-archive.blogspot.com/2010/05/xss.html" target="_blank" rel="external">三分鐘瞭解 XSS 攻擊原理</a></li>
+</ul>
+<h2 id="Software">Software</h2><ul>
+<li><a href="http://labs.adobe.com/technologies/html5pack/" target="_blank" rel="external">Adobe Dreamweaver CS5 HTML5 Pack</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/05/22/adobe-fireworks-is-it-worth-switching-to-cs5/" target="_blank" rel="external">Adobe Fireworks: Is It Worth Switching to CS5?</a></li>
+</ul>
+<h2 id="System">System</h2><ul>
+<li><a href="http://cha.homeip.net/blog/2010/05/2327.html" target="_blank" rel="external">Linux Shell Script: 市電中斷後限時自動關機</a></li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/21/1152/" itemprop="url">
+                  Zend Framework Testing 入門 - 測試環境建置篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-21T00:00:00+08:00" content="2010-05-21">
+              2010-05-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/21/1152/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/21/1152/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>自 Zend Framework 1.6 之後就提供了 Zend_Test 這個套件，協助我們為 Zend Framework 的 MVC 做單元測試。然而當時也許是因為大家對 Zend Framework 的新架構還不熟悉，加上 Zend_Test 套件有許多小地方還不是很完善，因此就很少有人利用它來做測試。</p>
+<p>而到了 Zend Framework 1.8 版之後， Zend_Test 便修正了許多缺點；而且也因為 Zend_Application 套件的引入，讓 Zend_Test 在 Controller 上的測試更加方便，也使得網路上許多高手開始為它編寫教學。</p>
+<p>不過官方的文件並沒有特別告訴我們怎麼去建構 Zend Framework Testing 的環境，所以以下我以 Zend Framework 1.10 再加上 PHPUnit 3.4 為例，帶領大家進入 Zend Framework Testing 的世界。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010/05/21/1152/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/14/1142/" itemprop="url">
+                  關於測試這件事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-14T00:00:00+08:00" content="2010-05-14">
+              2010-05-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/14/1142/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/14/1142/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="為什麼要測試？">為什麼要測試？</h2><p>因為我們沒辦法保證程式碼是萬無一失的，所以通常我們都會需要驗證我們的程式，而測試就是其中一種方法。很多工程師都在寫完程式之後，自己手動去做測試；如果執行結果是按照自己的想法出現後，那麼他們通常就認為程式沒錯了。</p>
+<p>可是，其實這樣的程式碼通常就會躲進很多很多的 Bug 。所以我們要<strong>讓程式碼自己告訴我們它沒問題，而不是我們自己去想像它沒問題</strong>。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010/05/14/1142/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/14/1139/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-14T00:00:00+08:00" content="2010-05-14">
+              2010-05-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/14/1139/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/14/1139/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://rubayeet.wordpress.com/2010/02/05/modifying-pdf-files-with-php/" target="_blank" rel="external">Modifying PDF files with PHP</a></li>
+<li><a href="http://www.rooftopsolutions.nl/blog/dropbox-client-library-for-php" target="_blank" rel="external">Dropbox client library for PHP</a></li>
+<li><a href="http://css.dzone.com/books/practical-php-patterns/practical-php-patterns-row" target="_blank" rel="external">Practical PHP Patterns: Row Data Gateway</a></li>
+<li><a href="http://www.carlcasbolt.co.uk/2010/05/08/a-simple-way-to-correct-the-hostname-for-your-website/" target="_blank" rel="external">A simple way to correct the hostname for your website</a></li>
+<li><a href="http://www.jasny.net/articles/a-secure-backdoor-for-php/" target="_blank" rel="external">A secure backdoor for PHP</a></li>
+<li><a href="http://css.dzone.com/books/practical-php-patterns/practical-php-patterns-active" target="_blank" rel="external">Practical PHP Patterns: Active Record</a></li>
+<li><a href="http://php-security.org/2010/05/13/article-decoding-a-user-space-encoded-php-script/" target="_blank" rel="external">Decoding a User Space Encoded PHP Script</a></li>
+<li><a href="http://php-security.org/2010/05/13/mops-2010-023-cacti-graph-viewer-sql-injection-vulnerability/" target="_blank" rel="external">Cacti Graph Viewer SQL Injection Vulnerability</a></li>
+<li><a href="http://php-security.org/2010/05/12/mops-2010-022-php-stream-context-use-after-free-on-request-shutdown-vulnerability/" target="_blank" rel="external">PHP Stream Context Use After Free on Request Shutdown Vulnerability</a></li>
+<li><a href="http://webhole.net/2010/05/10/how-to-send-text-messages-with-php/" target="_blank" rel="external">How To Send Text Messages With PHP</a></li>
+</ul>
+<h2 id="Zend_Framework">Zend Framework</h2><ul>
+<li><a href="http://devzone.zend.com/article/12122-Zend-Framework-Routing-with-XML" target="_blank" rel="external">Zend Framework Routing with XML</a></li>
+</ul>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.denisdeng.com/?p=978" target="_blank" rel="external">JavaScript异步方法队列链</a></li>
+<li><a href="http://www.dustindiaz.com/async-method-queues/" target="_blank" rel="external">Asynchronous method queue chaining in JavaScript</a></li>
+<li><a href="http://css.dzone.com/news/lazy-loading-asyncronous" target="_blank" rel="external">Lazy Loading Asyncronous Javascript</a></li>
+<li><a href="http://www.queness.com/post/3296/8-amazing-javascript-experiments-of-physic-and-gravity-simulation" target="_blank" rel="external">8 Amazing Javascript Experiments of Physic and Gravity Simulation</a></li>
+<li><a href="http://www.reencoded.com/2010/05/07/problems-and-mistakes-when-developing-with-ajax/" target="_blank" rel="external">Problems and Mistakes When Developing With AJAX</a></li>
+<li><a href="http://blogs.msdn.com/simonince/archive/2010/05/10/javascript-coding-standards.aspx" target="_blank" rel="external">JavaScript Coding Standards</a></li>
+<li><a href="http://www.laruence.com/2010/05/13/1462.html" target="_blank" rel="external">Javascript原型链和原型的一个误区</a></li>
+<li><a href="http://www.denisdeng.com/?p=982" target="_blank" rel="external">document.querySelector（）和document.querySelectorAll（）方法初探</a></li>
+</ul>
+<h2 id="jQuery">jQuery</h2><ul>
+<li><a href="http://webdesignersdesk.com/2010/05/content-slider-using-css-and-jquery/" target="_blank" rel="external">Content Slider Using CSS and Jquery</a></li>
+<li><a href="http://www.tuttoaster.com/some-good-and-advanced-jquery-techniques/#comments" target="_blank" rel="external">Some Advanced jQuery Techniques</a></li>
+<li><a href="http://encosia.com/2010/05/03/a-few-thoughts-on-jquery-templating-with-jquery-tmpl/" target="_blank" rel="external">A few thoughts on jQuery templating with jQuery.tmpl</a></li>
+<li><a href="http://www.devcurry.com/2010/05/test-your-jquery-code-online-using.html" target="_blank" rel="external">Test your jQuery code Online using jsFiddle</a></li>
+<li><a href="http://blog.jqueryui.com/2010/05/jquery-ui-19m1-tooltip/" target="_blank" rel="external">jQuery UI 1.9 Milestone 1 – Tooltip</a></li>
+<li><a href="http://www.itrickz.co.cc/2010/05/26-cool-and-useful-jquery-tips-tricks.html" target="_blank" rel="external">26 cool and useful jQuery tips, tricks &amp; solutions</a></li>
+<li><a href="http://www.denbagus.net/jquery-navigation/" target="_blank" rel="external">Fresh jQuery Navigation Plugin and Tutorial You Should Know</a></li>
+<li><a href="http://devsnippets.com/article/creating-slick-forms-using-ajax-jquery.html" target="_blank" rel="external">Creating Slick Forms Using Ajax, jQuery &amp; CSS: No More Ugly Forms</a></li>
+<li><a href="http://www.ryanjeffords.com/blog/entry/jquery-a-crash-course-for-beginners-part-3-handling-events-using-jquery" target="_blank" rel="external">jQuery - A Crash Course for Beginners (Part 3 - Handling Events using jQuery)</a></li>
+<li><a href="http://css-tricks.com/examples/Circulate/" target="_blank" rel="external">jQuery Circulate</a></li>
+<li><a href="http://designreviver.com/tutorials/4-creative-and-fresh-jquery-tutorials/" target="_blank" rel="external">4 Creative and Fresh jQuery Tutorials</a></li>
+<li><a href="http://www.denbagus.net/jquery-ui-developers/" target="_blank" rel="external">Useful jQuery Plugin for UI Developers</a></li>
+<li><a href="http://web.enavu.com/snippets/defer-load-jquery-plugin/" target="_blank" rel="external">Defer Load jQuery Plugin</a></li>
+</ul>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.nikesh.me/blog/2010/05/ajax-style-loading-animation-in-css3-no-images/" target="_blank" rel="external">Ajax Style Loading Animation in CSS3 ( no Images )</a></li>
+<li><a href="http://fluid.newgoldleaf.com/" target="_blank" rel="external">Fluid Grid System</a></li>
+<li><a href="http://www.nikesh.me/blog/2010/05/sexy-image-hover-effects-using-css3/" target="_blank" rel="external">Sexy Image Hover Effects using CSS3</a></li>
+<li><a href="http://chetzit.com/blog/css/9.html" target="_blank" rel="external">Cross browser CSS3-based text-overflow (ie6+, firefox, chrome, opera, safari, etc) no javascript / CSS / Chetzit</a></li>
+<li><a href="http://www.webdesignerwall.com/tutorials/beautiful-css3-search-form/" target="_blank" rel="external">Beautiful CSS3 Search Form</a></li>
+<li><a href="http://www.queness.com/post/3314/5-css-methods-to-style-a-block-with-background" target="_blank" rel="external">5 CSS Methods to Style a Block with Background</a></li>
+<li><a href="http://www.admixweb.com/2010/05/12/creating-a-bubble-coda-style-with-css3/" target="_blank" rel="external">Creating a Bubble Coda Style with CSS3</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/05/13/css-2-1-and-css-3-help-cheat-sheets-pdf/" target="_blank" rel="external">CSS 2.1 and CSS 3 Help Cheat Sheets (PDF)</a></li>
+<li><a href="http://www.blueidea.com/tech/web/2010/7594.asp" target="_blank" rel="external">CSS3屬性box-shadow使用教程</a></li>
+</ul>
+<h2 id="Python">Python</h2><ul>
+<li><a href="http://www.javaworld.com.tw/roller/caterpillar/entry/function_decorator" target="_blank" rel="external">函式裝飾器</a></li>
+</ul>
+<h2 id="HTML5">HTML5</h2><ul>
+<li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/rethinking-forms-in-html5/" target="_blank" rel="external">Rethinking Forms in HTML5</a></li>
+</ul>
+<h2 id="Web_Development">Web Development</h2><ul>
+<li><a href="http://line25.com/tutorials/designing-an-infographic-with-html-css-and-jquery" target="_blank" rel="external">Designing an Infographic with HTML, CSS &amp; jQuery</a></li>
+<li><a href="http://pets.yomopets.com/ricky/blog/v/id/127356210980184" target="_blank" rel="external"> 構想中的Comet 架構</a></li>
+<li><a href="http://web.enavu.com/tutorials/best-of-april-10-web-development-articles-and-tutorials/" target="_blank" rel="external">Best Of April – 10 Web Development Articles And Tutorials</a></li>
+<li><a href="http://theoatmeal.com/comics/websites_stop" target="_blank" rel="external">8 Websites You Need to Stop Building</a></li>
+<li><a href="http://articles.sitepoint.com/article/html-email-design" target="_blank" rel="external">The Principles of HTML Email Design</a></li>
+<li><a href="http://www.queness.com/post/683/10-awful-ie-bugs-and-fixes" target="_blank" rel="external">10 Awful IE Bugs and Fixes</a></li>
+<li><a href="http://www.ajaxline.com/best-html5-and-css3-tutorials" target="_blank" rel="external">Best HTML5 and CSS3 tutorials</a></li>
+<li><a href="http://www.nuvographics.com/articles/efficientcss/" target="_blank" rel="external">Killing off the Div Class</a></li>
+<li><a href="http://www.canigetinfo.com/2010/05/11/10-tips-for-web-success/" target="_blank" rel="external">10 Tips For Web Success</a></li>
+</ul>
+<h2 id="Browser">Browser</h2><ul>
+<li><a href="http://sixrevisions.com/web-development/five-things-ie9-is-actually-doing-right/" target="_blank" rel="external">Five Things IE9 is (Actually) Doing Right</a></li>
+<li><a href="http://www.1stwebdesigner.com/development/google-chrome-extensions-web-developers-designers/" target="_blank" rel="external">32 Google Chrome Extensions For Smart Designers</a></li>
+</ul>
+<h2 id="Design">Design</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2010/05/11/20-fresh-high-quality-free-fonts/" target="_blank" rel="external">20 Fresh High Quality Free Fonts</a></li>
+<li><a href="http://webexpedition18.com/articles/tables-in-web-design-beautiful-examples-and-best-practices/" target="_blank" rel="external">Tables in Web Design: Beautiful Examples and Best Practices</a></li>
+<li><a href="http://acrisdesign.com/2010/05/20-unusual-websites-navigation/" target="_blank" rel="external">20 Unusual Websites Navigation</a></li>
+</ul>
+<h2 id="Manage">Manage</h2><ul>
+<li><a href="http://michaelhyatt.com/2010/03/10-reasons-why-you-aren%e2%80%99t-done-yet.html" target="_blank" rel="external">10 Reasons Why You Aren’t Done Yet</a></li>
+</ul>
+<h2 id="SCM">SCM</h2><ul>
+<li><a href="http://www.ebizontek.com/svn-cheatsheet" target="_blank" rel="external">SVN Cheatsheet</a></li>
+</ul>
+<h2 id="Software">Software</h2><ul>
+<li><a href="http://portable.easylife.tw/2124" target="_blank" rel="external">Quick Config - 保存電腦的設定、快速的設定電腦</a></li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/05/08/1136/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-05-08T00:00:00+08:00" content="2010-05-08">
+              2010-05-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/05/08/1136/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/05/08/1136/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://code.google.com/p/php-excel-reader/" target="_blank" rel="external">PHP Excel Reader</a></li>
+<li><a href="http://css.dzone.com/articles/synchronization-php" target="_blank" rel="external">Synchronization in PHP</a></li>
+<li><a href="http://www.tuttoaster.com/create-an-ajaxjqueryphp-contact-form/" target="_blank" rel="external">Create an AJAX/jQuery/PHP Contact Form</a></li>
+<li><a href="http://web.enavu.com/snippets/php-smart-date-parsing-natural-language-input-task-fm-explained/" target="_blank" rel="external">PHP Smart Date Parsing: Natural Language Input (task.fm explained)</a></li>
+<li><a href="http://webdosanddonts.com/fundamental-php-coding-dos-donts" target="_blank" rel="external">Fundamental PHP coding Do’s &amp; Don’ts</a></li>
+<li><a href="http://php-security.org/2010/05/01/article-php-web-security/index.html" target="_blank" rel="external">Article: PHP Web Security</a></li>
+<li><a href="http://devsnippets.com/article/10-essential-php-code-snippets.html" target="_blank" rel="external">10 Essential PHP Code Snippets You Might be Looking For</a></li>
+<li><a href="http://www.sklar.com/blog/archives/121-PHP-Microbenchmarking.html" target="_blank" rel="external">PHP Microbenchmarking</a></li>
+<li><a href="http://css.dzone.com/books/practical-php-patterns-table" target="_blank" rel="external">Practical PHP Patterns: Table Data Gateway</a></li>
+<li><a href="http://coolshell.cn/?p=2394" target="_blank" rel="external">九個PHP很有用的功能</a></li>
+<li><a href="http://kore-nordmann.de/blog/0098_native_job_queue.html" target="_blank" rel="external">Native parallel PHP job queue</a></li>
+<li><a href="http://ralphschindler.com/2010/05/06/phpundamentals-series-a-background-on-statics-part-1-on-statics" target="_blank" rel="external">PHPundamentals Series: A Background on Statics (Part 1 on Statics)</a></li>
+<li><a href="http://www.script-tutorials.com/how-to-easily-make-a-php-chat-application/" target="_blank" rel="external">How to Easily Make a PHP Chat Application</a></li>
+</ul>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.denisdeng.com/?p=699" target="_blank" rel="external">譯文：JavaScript框架比較–選擇器（一）</a></li>
+<li><a href="http://addyosmani.com/blog/the-ultimate-guide-to-javascript-in-web-design/" target="_blank" rel="external">The Ultimate Guide To JavaScript in Web Design</a></li>
+<li><a href="http://www.flickr.com/photos/simon/sets/72057594077197868/show/" target="_blank" rel="external">A (Re)-Introduction to JavaScript</a></li>
+<li><a href="https://developer.mozilla.org/zh_tw/%E9%87%8D%E6%96%B0%E4%BB%8B%E7%B4%B9_JavaScript" target="_blank" rel="external">重新介紹 JavaScript</a></li>
+<li><a href="http://www.dustindiaz.com/async-method-queues/" target="_blank" rel="external">Asynchronous method queue chaining in JavaScript</a></li>
+<li><a href="http://www.smashingbuzz.com/2010/05/40-really-useful-javascript-tutorials-with-modren-techniques/" target="_blank" rel="external">40 Really Useful JavaScript Tutorials with Modren Techniques</a></li>
+<li><a href="http://blog.wu-boy.com/2010/05/08/2152/" target="_blank" rel="external">[筆記] iframe 父頁子頁呼叫函式 parent call function</a></li>
+</ul>
+<h2 id="jQuery">jQuery</h2><ul>
+<li><a href="http://blog.wu-boy.com/2010/05/02/2145/" target="_blank" rel="external">[jQuery] 解決 IE6 PNG 透明背景 (Supersleight jQuery Plugin for Transparent PNGs in IE6)</a></li>
+<li><a href="http://www.webdesignsoul.com/useful-fresh-jqquery-plugins/" target="_blank" rel="external">15 Useful and Fresh jQquery Plugins for Your Websites</a></li>
+<li><a href="http://css-tricks.com/jquery-ui-position-function/" target="_blank" rel="external">jQuery UI’s Position Function (plus, MagicZoom from scratch) </a></li>
+<li><a href="http://aext.net/2010/04/12-helpful-jquery-plugins-to-check-before-ending-april-2010/" target="_blank" rel="external">12 Helpful jQuery Plugins to Check Before Ending April 2010</a></li>
+<li><a href="http://addyosmani.com/blog/8-jquery-performance-tips/" target="_blank" rel="external">8 jQuery Performance &amp; Optimization Tips You Need In 2010</a></li>
+<li><a href="http://addyosmani.com/blog/50-jquery-snippets-for-developers/" target="_blank" rel="external">50 jQuery Snippets That Will Help You Become A Better JavaScript Developer</a></li>
+<li><a href="http://addyosmani.com/blog/31-jquery-snippets/" target="_blank" rel="external">31 jQuery Snippets That Will Help Make You A JavaScript Pro</a></li>
+<li><a href="http://www.protofunc.com/scripts/jquery/checkbox-radiobutton/" target="_blank" rel="external">jQuery UI: Radiobutton- und Checkbox-Replacement</a></li>
+<li><a href="http://moronicbajebus.com/blog/jstackmenu/" target="_blank" rel="external">jStackmenu</a></li>
+<li><a href="http://www.1stwebdesigner.com/tutorials/building-real-time-form-validation-using-jquery/" target="_blank" rel="external">Building Real-Time Form Validation Using jQuery</a></li>
+<li><a href="http://flowplayer.org/tools/release-notes/index.html" target="_blank" rel="external">jQuery TOOLS - The missing UI library for the Web</a></li>
+<li><a href="http://www.impressivewebs.com/jquery-tutorial-beginners-pdf/" target="_blank" rel="external">jQuery Tutorial for Beginners Downloadable PDF</a></li>
+<li><a href="http://bender.fesb.hr/~robert/jquery-plugin-inheritance/" target="_blank" rel="external">jQuery plugin Inheritance</a></li>
+<li><a href="http://www.devlounge.net/design/the-top-12-best-jquery-image-galleries" target="_blank" rel="external">The Top: 12 Best jQuery Image Galleries</a></li>
+<li><a href="http://www.ajaxline.com/best-jquery-tutorials-april-2010" target="_blank" rel="external">Best jQuery Tutorials - April 2010</a></li>
+<li><a href="http://www.davetech.com/blog/web_workers_jquery" target="_blank" rel="external">Web Workers with jQuery</a></li>
+<li><a href="http://weblogs.asp.net/scottgu/archive/2010/05/07/jquery-templates-and-data-linking-and-microsoft-contributing-to-jquery.aspx" target="_blank" rel="external">jQuery Templates and Data Linking (and Microsoft contributing to jQuery)</a></li>
+<li><a href="http://tutorialzine.com/2010/05/sweet-pages-a-jquery-pagination-solution/" target="_blank" rel="external">Sweet Pages: A jQuery Pagination Solution</a></li>
+<li><a href="http://blogfreakz.com/jquery/pajinate-simple-jquery-pagination-plugin/" target="_blank" rel="external">Pajinate – Simple jQuery Pagination Plugin</a></li>
+<li><a href="http://www.designyourway.net/blog/resources/30-efficient-jquery-lightbox-plugins/" target="_blank" rel="external">30 Efficient jQuery Lightbox Plugins</a></li>
+</ul>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.denisdeng.com/?p=938" target="_blank" rel="external">Css3弹性盒模型</a></li>
+<li><a href="http://www.cssplay.co.uk/menus/css3-slideout.html" target="_blank" rel="external">CSS3 - The future now - Slideout Menu</a></li>
+<li><a href="http://www.webdesignsoul.com/excellent-css-grid-systems/" target="_blank" rel="external">15 Excellent CSS Grid Systems For Web Designers</a></li>
+<li><a href="http://richardleggett.co.uk/blog/index.php/2010/05/03/jquery_css3_3d_animation" target="_blank" rel="external">jQuery CSS3 3D Animation</a></li>
+<li><a href="http://www.queness.com/post/3220/9-web-css-tools-you-must-know" target="_blank" rel="external">9 Web CSS Tools You Must Know</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/05/06/modern-css-layouts-part-2-the-essential-techniques/" target="_blank" rel="external">Modern CSS Layouts, Part 2: The Essential Techniques</a></li>
+</ul>
+<h2 id="Python">Python</h2><ul>
+<li><a href="http://www.suttoncourtenay.org.uk/duncan/accu/pythonpatterns.html" target="_blank" rel="external">Patterns in Python</a></li>
+</ul>
+<h2 id="Database">Database</h2><ul>
+<li><a href="http://www.xaprb.com/blog/2006/06/28/why-large-in-clauses-are-problematic/" target="_blank" rel="external">Why large IN clauses are problematic</a></li>
+<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/eef0cd119239db17b8127b6f.html" target="_blank" rel="external">MySQL之Explain</a></li>
+<li><a href="http://www.mysqlperformanceblog.com/2010/05/06/debugging-problems-with-row-based-replication/" target="_blank" rel="external">Debugging problems with row based replication</a></li>
+</ul>
+<h2 id="HTML5">HTML5</h2><ul>
+<li><a href="http://robertnyman.com/2010/04/29/using-html5-custom-data-attributes-to-store-data-on-html-elements/" target="_blank" rel="external">Using HTML5 custom data attributes to store data on HTML elements</a></li>
+<li><a href="http://internet.solidot.org/article.pl?sid=10/05/01/0315202&amp;from=rss" target="_blank" rel="external">HTML5：實至名歸還是言過其實？</a></li>
+<li><a href="http://savedelete.com/best-html5-canvas-games.html" target="_blank" rel="external">Best HTML5 Canvas Games</a></li>
+</ul>
+<h2 id="Web_Development">Web Development</h2><ul>
+<li><a href="http://tech.idv2.com/2008/08/17/memcached-pdf/" target="_blank" rel="external">memcached全面剖析–PDF總結篇</a></li>
+<li><a href="http://blog.colorbase.tw/knowledge-management/987" target="_blank" rel="external">再談談Tag的知識關聯性與軟體操作設計</a></li>
+<li><a href="http://www.noupe.com/tools/the-importance-of-cross-browser-compatibity-tips-and-resources.html" target="_blank" rel="external">The Importance of Cross Browser Compatibility: Tips and Resources</a></li>
+<li><a href="http://spyrestudios.com/dos-and-donts-of-usability/" target="_blank" rel="external">18 Do’s and Don’ts Of Usability On The Web</a></li>
+<li><a href="http://cha.homeip.net/blog/2010/05/2271.html" target="_blank" rel="external">Firefox 與 HTML 註解標籤</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/the-state-of-css3-in-email-templates/" target="_blank" rel="external">The State of CSS3 in Email Templates</a></li>
+<li><a href="http://bsonspec.org/#/specification" target="_blank" rel="external">BSON - Binary JSON</a></li>
+</ul>
+<h2 id="Browser">Browser</h2><ul>
+<li><a href="http://robertnyman.com/2010/02/18/css-files-downloaded-twice-in-internet-explorer-with-protocol-relative-urls/" target="_blank" rel="external">CSS files downloaded twice in Internet Explorer with protocol relative URLs</a></li>
+<li><a href="http://www.ubuntuhome.com/fix-ubuntu-10-04-firefox-slow.html" target="_blank" rel="external">在ubuntu 10.04中加快firefox瀏覽器速度</a></li>
+</ul>
+<h2 id="Design">Design</h2><ul>
+<li><a href="http://designinformer.com/grid-based-web-design-simplified/" target="_blank" rel="external">Grid-Based Web Design, Simplified</a></li>
+<li><a href="http://isd.tencent.com/?p=1903" target="_blank" rel="external">頁面表達常用方式</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/05/04/web-design-trends-2010/" target="_blank" rel="external">The Current State of Web Design: Trends 2010</a></li>
+<li><a href="http://designreviver.com/inspiration/100-sites-with-outstanding-login-forms/" target="_blank" rel="external">100 Outstanding Login Forms</a></li>
+<li><a href="http://speckyboy.com/2010/05/06/25-advanced-photo-effects-and-techniques-with-photoshop/" target="_blank" rel="external">25 Advanced Photo Effects and Techniques with Photoshop</a></li>
+</ul>
+<h2 id="Game">Game</h2><ul>
+<li><a href="http://instantsfun.es/" target="_blank" rel="external">Instants! Collection</a></li>
+</ul>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://www.joelonsoftware.com/articles/fog0000000043.html" target="_blank" rel="external">The Joel Test: 12 Steps to Better Code</a></li>
+</ul>
+<h2 id="Software">Software</h2><ul>
+<li><a href="http://blog.seanja.com/2010/04/netbeans-6-9-my-favourite-new-features/" target="_blank" rel="external">Netbeans 6.9: My New Favourite Features</a></li>
+<li><a href="http://www.denbagus.net/cross-platform-ide-developers/" target="_blank" rel="external">10 Amazing Cross Platform IDE for Developers</a></li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2010/04/29/1130/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2010-04-29T00:00:00+08:00" content="2010-04-29">
+              2010-04-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2010/04/29/1130/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/04/29/1130/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://developers-arena.blogspot.com/2010/04/5-php-mistakes.html" target="_blank" rel="external">5 PHP Mistakes</a></li>
+<li><a href="http://www.ooso.net/archives/538" target="_blank" rel="external">igbinary vs serialize vs json_encode</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/advanced-regular-expression-tips-and-techniques/" target="_blank" rel="external">Advanced Regular Expression Tips and Techniques</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Coding-Examples-of-the-Iterator-Countable-and-ArrayAccess-SPL-Interfaces-in-PHP-5/" target="_blank" rel="external">Coding Examples of the Iterator, Countable and ArrayAccess SPL Interfaces in PHP 5</a></li>
+<li><a href="http://blog.dynom.nl/archives/PHPUnit-conditional-test-based-on-a-PHP-version_20100419_55.html" target="_blank" rel="external">PHPUnit conditional test based on a PHP version</a></li>
+<li><a href="http://www.21andy.com/blog/20090608/1320.html" target="_blank" rel="external">PHP Daemon</a></li>
+<li><a href="http://www.onlinehungama.com/2009/03/17/download-files-from-mysql-database/" target="_blank" rel="external">Download files from MYSQL database</a></li>
+<li><a href="http://css.dzone.com/articles/model-view-controller-pattern" target="_blank" rel="external">The Model-View-Controller pattern in PHP</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Checking-Integers-with-the-Strategy-Design-Pattern/" target="_blank" rel="external">Checking Integers with the Strategy Design Pattern</a></li>
+<li><a href="http://pelfusion.com/tools/how-to-debug-php-code-and-useful-php-debugging-tools/" target="_blank" rel="external">How To Debug PHP Code And Useful PHP Debugging Tools</a></li>
+<li><a href="http://www.slideshare.net/ruslany/php-performance-on-windows" target="_blank" rel="external">Php Performance On Windows</a></li>
+<li><a href="http://www.rooftopsolutions.nl/blog/filesystem-encoding-and-php" target="_blank" rel="external">Filesystem encoding and PHP</a></li>
+<li><a href="http://blogs.msdn.com/webplatform/archive/2010/04/19/sql-server-driver-for-php-adds-support-for-php-data-objects.aspx" target="_blank" rel="external">The Official Microsoft Web Platform Team Blog : SQL Server Driver for PHP Adds Support for PHP Data Objects</a></li>
+<li><a href="http://epixa.com/2010/04/organize-your-project-like-a-pro-with-php-namespaces" target="_blank" rel="external">Organize Your Project like a Pro with PHP Namespaces</a></li>
+<li><a href="http://css.dzone.com/articles/dont-publish-complete-guide" target="_blank" rel="external">The guide to configuration of PHP applications</a></li>
+<li><a href="http://plog.longwin.com.tw/programming/2010/04/22/use-memcached-store-php-session-2010" target="_blank" rel="external">使用 Memcached 來存 PHP session</a></li>
+<li><a href="http://css.dzone.com/books/dont-publish-transaction" target="_blank" rel="external">Practical PHP Patterns: Transaction Script</a></li>
+<li><a href="http://fabien.potencier.org/article/43/find-your-files" target="_blank" rel="external">Find your Files</a></li>
+<li><a href="http://pkwbim-programming-note.blogspot.com/2008/01/phpmulti-process-1.html" target="_blank" rel="external">利用PHP寫Multi Process程式 1 - 產生子程序</a></li>
+<li><a href="http://pkwbim-programming-note.blogspot.com/2008/01/phpmulti-process-2.html" target="_blank" rel="external">利用PHP用寫Multi Process程式 - 2 使用信號機</a></li>
+<li><a href="http://www.bdbchina.com/2010/04/%E4%BD%BF%E7%94%A8dbsql%E4%BD%9C%E4%B8%BAphp-pdo%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%95%E6%93%8E/" target="_blank" rel="external">使用DBSQL作為PHP PDO數據庫引擎</a></li>
+<li><a href="http://blog.darkhero.net/?p=406" target="_blank" rel="external">PEAR 的 System_Daemon..</a></li>
+<li><a href="http://www.tuttoaster.com/20-tips-to-make-your-php-code-better/" target="_blank" rel="external">20 Tips to Make Your PHP Code Better</a></li>
+<li><a href="http://www.rooftopsolutions.nl/blog/mbstring-function-overloading-dont-use-it" target="_blank" rel="external">mbstring function overloading: don’t use it</a></li>
+<li><a href="http://www.brandonsavage.net/a-closer-look-at-arrayobject/" target="_blank" rel="external">A Closer Look At ArrayObject</a></li>
+<li><a href="http://css.dzone.com/books/practical-php-patterns/practical-php-patterns-domain" target="_blank" rel="external">Practical PHP Patterns: Domain Model</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Validating-URLs-with-the-Strategy-Design-Pattern/?kc=rss" target="_blank" rel="external">Validating URLs with the Strategy Design Pattern</a></li>
+<li><a href="http://www.thedeveloperday.com/php-anti-patterns/" target="_blank" rel="external">PHP Anti Patterns</a></li>
+<li><a href="http://www.devshed.com/c/a/PHP/Using-Multiple-Strategy-Classes-with-the-Strategy-Design-Pattern/?kc=rss" target="_blank" rel="external">Using Multiple Strategy Classes with the Strategy Design Pattern</a></li>
+<li><a href="http://hi.baidu.com/thinkinginlamp/blog/item/5b7542a7c2924c99d143589a.html" target="_blank" rel="external">亂炖</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/9-useful-php-functions-and-features-you-need-to-know/" target="_blank" rel="external">9 Useful PHP Functions and Features You Need to Know</a></li>
+<li><a href="http://books.solidot.org/article.pl?sid=10/04/29/0047224&amp;from=rss" target="_blank" rel="external">PHP框架Solar PHP—-中文手册</a></li>
+<li><a href="http://css.dzone.com/books/practical-php-patterns/practical-php-patterns-table" target="_blank" rel="external">Practical PHP Patterns: Table Module</a></li>
+</ul>
+<h2 id="Zend_Framework">Zend Framework</h2><ul>
+<li><a href="http://www.dragonbe.com/2010/04/zend-framework-context-switching-for.html" target="_blank" rel="external">Zend Framework context switching for HTML content</a></li>
+<li><a href="http://blog.sd.idv.tw/archives/222" target="_blank" rel="external">Zend Framework multidb 不好用我自己來 Mudb</a></li>
+</ul>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.reencoded.com/2010/04/18/15-great-ajax-scripts-for-web-development/" target="_blank" rel="external">15 Great Ajax Scripts for Web Development</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/04/20/seven-javascript-things-i-wish-i-knew-much-earlier-in-my-career/" target="_blank" rel="external">Seven JavaScript Things I Wish I Knew Much Earlier In My Career</a></li>
+<li><a href="http://www.alistapart.com/articles/better-javascript-minification/" target="_blank" rel="external">Better JavaScript Minification</a></li>
+<li><a href="http://www.denbagus.net/javascript-resources-and-tutorials/" target="_blank" rel="external">Awesome Resources and Tutorials to Improve Your Javascript Knowledge</a></li>
+<li><a href="http://www.blueidea.com/tech/web/2010/7528.asp" target="_blank" rel="external">JavaScript框架比較:DOM遍歷</a></li>
+<li><a href="http://123pulse.blogspot.com/2010/04/top-5-javascript-to-convert-boring-data.html" target="_blank" rel="external">Top 5 JavaScript to convert boring data to stylish chart</a></li>
+<li><a href="http://www.benjamincoe.com/blog/index.php?entry=entry100425-122529" target="_blank" rel="external">Why I’m Becoming a JavaScript Convert</a></li>
+<li><a href="http://www.sitepoint.com/blogs/2010/04/27/5-common-javascript-myths/" target="_blank" rel="external">5 Common Myths About JavaScript</a></li>
+<li><a href="http://james.padolsey.com/javascript/another-javascript-quiz/" target="_blank" rel="external">Another JavaScript quiz</a></li>
+<li><a href="http://www.bennadel.com/blog/1905-jQuery-Event-Bindings-On-Javascript-Objects-With-A-Length-Property.htm" target="_blank" rel="external">jQuery Event Bindings On Javascript Objects With A Length Property</a></li>
+<li><a href="http://dhtmlx.com/docs/products/dhtmlxGantt/" target="_blank" rel="external">dhtmlxGantt - editable Javascript DHTML Gantt chart with rich client side API</a></li>
+<li><a href="http://www.denbagus.net/utility-libraries-for-javascript/" target="_blank" rel="external">Useful Utility Libraries for JavaScript</a></li>
+</ul>
+<h2 id="jQuery">jQuery</h2><ul>
+<li><a href="http://davidwalsh.name/google-fade" target="_blank" rel="external">Google-Style Element Fading Using MooTools or jQuery</a></li>
+<li><a href="http://www.cnblogs.com/wiky/articles/animated-menu-0415.html" target="_blank" rel="external">【教程】jQuery打造動態下滑菜單</a></li>
+<li><a href="http://aloestudios.com/tools/jquery/equalwidths/" target="_blank" rel="external">equalWidths jQuery Plugin</a></li>
+<li><a href="http://www.skill-guru.com/blog/2010/04/18/jquery-validation-tutorial/" target="_blank" rel="external">Form validation using jquery and CSS</a></li>
+<li><a href="http://www.9lessons.info/2010/04/jquery-and-ajax-best-demos-part-6.html" target="_blank" rel="external">jQuery and Ajax Best Demos Part-6</a></li>
+<li><a href="http://tutorialzine.com/2009/12/colorful-clock-jquery-css/" target="_blank" rel="external">A Colorful Clock With CSS &amp; jQuery</a></li>
+<li><a href="http://www.bkosborne.com/featureCarousel.php" target="_blank" rel="external">jQuery “Feature Carousel” plug-in</a></li>
+<li><a href="http://devsnippets.com/article/using-jquery-the-sexy-way.html" target="_blank" rel="external">Using jQuery The Sexy Way: 7 Great Techniques For a Slick Layout</a></li>
+<li><a href="http://www.webdeveloperjuice.com/2010/04/20/create-auto-complete-using-jquery-and-css/" target="_blank" rel="external">Create auto-complete using jquery and css</a></li>
+<li><a href="http://tutorialzine.com/2010/03/sponsor-wall-flip-jquery-css/" target="_blank" rel="external">Sponsor Flip Wall With jQuery &amp; CSS</a></li>
+<li><a href="http://www.catswhocode.com/blog/manipulating-the-dom-with-jquery-10-useful-code-snippets" target="_blank" rel="external">Manipulating the DOM with jQuery: 10+ useful code snippets</a></li>
+<li><a href="http://www.ajaxline.com/best-jquery-plugins-for-working-with-forms" target="_blank" rel="external">Best jQuery plugins for working with Forms</a></li>
+<li><a href="http://blogs.msdn.com/simonince/archive/2010/04/20/jquery-mvc-progressive-enhancement.aspx" target="_blank" rel="external">jQuery + MVC = Progressive Enhancement</a></li>
+<li><a href="http://acrisdesign.com/2010/04/animated-landscape-using-css-and-jquery/" target="_blank" rel="external">Animated Landscape Using CSS and jQuery</a></li>
+<li><a href="http://ignorethecode.net/blog/2010/04/20/footnotes/" target="_blank" rel="external">ignore the code: Footnotes</a></li>
+<li><a href="http://jqueryfordesigners.com/enabling-the-back-button/" target="_blank" rel="external">Enabling the Back Button</a></li>
+<li><a href="http://www.1stwebdesigner.com/tutorials/create-sleek-sliding-boxes-jquery/" target="_blank" rel="external">How to Create Sleek Sliding Boxes With jQuery</a></li>
+<li><a href="http://www.webstuffshare.com/2010/04/nice-menu-css-animation-jquery-animate/" target="_blank" rel="external">Nice Menu : CSS Animation &amp; jQuery Animate</a></li>
+<li><a href="http://aext.net/2010/04/jquery-shadow-motion-effect/" target="_blank" rel="external">Shadow Motion Effect in 5 Lines Of jQuery</a></li>
+<li><a href="http://www.learningjquery.com/2010/04/accessible-showing-and-hiding" target="_blank" rel="external">Accessible Showing and Hiding</a></li>
+<li><a href="http://css-tricks.com/resolution-specific-stylesheets/" target="_blank" rel="external">Different Stylesheets for Differently Sized Browser Windows</a></li>
+<li><a href="http://tutzone.net/2009/12/7-jquery-cheatsheets.html" target="_blank" rel="external">7 jQuery Cheatsheets For Every Designer &amp; Developer to Have</a></li>
+<li><a href="http://www.jankoatwarpspeed.com/post/2008/07/09/Justify-elements-using-jQuery-and-CSS.aspx" target="_blank" rel="external">Justify elements using jQuery and CSS</a></li>
+<li><a href="http://www.queness.com/post/3141/10-image-galleries-jquery-script-with-thumbnail-filmstrip" target="_blank" rel="external">10 Image Galleries jQuery Script with Thumbnail Filmstrip</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/04/27/45-useful-jquery-techniques-and-plugins/" target="_blank" rel="external">40 Useful jQuery Techniques and Plugins</a></li>
+<li><a href="http://www.queness.com/post/3157/create-a-simple-interactive-css-button" target="_blank" rel="external">Create a Simple Interactive CSS Button with jQuery</a></li>
+<li><a href="http://www.webdeveloperjuice.com/2010/04/28/10-awesome-jquery-flip-plugins-for-next-level-interface/" target="_blank" rel="external">10 awesome flip plugins using jquery and css</a></li>
+</ul>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.w3avenue.com/2010/04/16/improve-your-css-skills-with-pure-css-ui-components/" target="_blank" rel="external">Improve Your CSS Skills With Pure CSS UI Components</a></li>
+<li><a href="http://www.noupe.com/css/15-css-habits-to-develop-for-frustration-free-coding.html" target="_blank" rel="external">15 CSS Habits to Develop for Frustration-Free Coding</a></li>
+<li><a href="http://www.webdesignerwall.com/tutorials/cross-browser-css-gradient/" target="_blank" rel="external">Cross-Browser CSS Gradient</a></li>
+<li><a href="http://www.webdesignerwall.com/tutorials/css3-gradient-buttons/" target="_blank" rel="external">CSS3 Gradient Buttons</a></li>
+<li><a href="http://www.sitepoint.com/blogs/2010/04/22/using-css-text-shadow-to-create-embossed-text/" target="_blank" rel="external">Using CSS Text-Shadow To Create Embossed Text</a></li>
+<li><a href="http://www.webappers.com/2010/04/22/submit-your-website-to-almost-all-css-galleries/" target="_blank" rel="external">Submit Your Website to Almost All CSS Galleries</a></li>
+<li><a href="http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html" target="_blank" rel="external">A pixel is not a pixel is not a pixel</a></li>
+<li><a href="http://www.impressivewebs.com/css3-click-chart-updates/" target="_blank" rel="external">Updates to the CSS3 Click Chart</a></li>
+<li><a href="http://www.cssplay.co.uk/menu/text-overflow.html" target="_blank" rel="external">CSS3 - Text Overflow</a></li>
+<li><a href="http://aext.net/2010/04/css3-ie-support/" target="_blank" rel="external">Kick-ass CSS3 Support in IE6, 7, and 8</a></li>
+<li><a href="http://speckyboy.com/2010/04/26/30-pure-css-alternatives-to-javascript/" target="_blank" rel="external">30 Pure CSS Alternatives to Javascript</a></li>
+<li><a href="http://www.vcarrer.com/2010/04/css3-action-framework.html" target="_blank" rel="external">CSS3 Action Framework</a></li>
+<li><a href="http://www.impressivewebs.com/inline-block/" target="_blank" rel="external">What is Inline-Block?</a></li>
+<li><a href="http://robertnyman.com/2010/04/27/using-css3-transitions-to-create-rich-effects/" target="_blank" rel="external">Using CSS3 Transitions to create rich effects</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/04/28/css3-solutions-for-internet-explorer/" target="_blank" rel="external">CSS3 Solutions for Internet Explorer</a></li>
+<li><a href="http://www.1stwebdesigner.com/tutorials/how-to-use-css3-orientation-media-queries/" target="_blank" rel="external">How to use CSS3 Orientation Media Queries</a></li>
+<li><a href="http://hacks.mozilla.org/2010/04/the-css-3-flexible-box-model/" target="_blank" rel="external">The CSS 3 Flexible Box Model</a></li>
+<li><a href="http://www.useragentman.com/blog/csssandpaper-a-css3-javascript-library/" target="_blank" rel="external">cssSandpaper – a CSS3 JavaScript Library</a></li>
+<li><a href="http://blog.darkcrimson.com/2010/04/practical-css3/" target="_blank" rel="external">Practical CSS3 for Web Designers</a></li>
+<li><a href="http://samuli.hakoniemi.net/css3-transitions-are-we-there-yet/" target="_blank" rel="external">CSS3 Transitions – Are We There Yet?</a></li>
+</ul>
+<h2 id="Database">Database</h2><ul>
+<li><a href="http://www.vancelucas.com/blog/nosql-first-impressions-object-databases-missed-the-boat/" target="_blank" rel="external">NoSQL First Impressions: Object Databases Missed the Boat</a></li>
+</ul>
+<h2 id="HTML">HTML</h2><ul>
+<li><a href="http://apirocks.com/html5/html5.html#slide1" target="_blank" rel="external">HTML5 presentation</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/quick-tip-html5-features-you-should-be-using-right-now/" target="_blank" rel="external">Quick Tip: HTML5 Features you Should be Using Right Now</a></li>
+<li><a href="http://robertnyman.com/html5/" target="_blank" rel="external">HTML5 - Information and samples for HTML5 and related APIs</a></li>
+<li><a href="http://robertnyman.com/2010/04/22/using-the-file-api-for-reading-file-information-multiple-file-uploads-another-sister-specification-to-html5/" target="_blank" rel="external">Using the File API for reading file information &amp; multiple file uploads – another sister specification to HTML5</a></li>
+<li><a href="http://blog.colorbase.tw/web-development/888" target="_blank" rel="external">開始HTML5 – Web Workers</a></li>
+<li><a href="http://www.designer-daily.com/5-awesome-html5-demos-6715" target="_blank" rel="external">5 awesome HTML5 demos</a></li>
+</ul>
+<h2 id="Web_Development">Web Development</h2><ul>
+<li><a href="http://www.osmialowski.me/blog/how-to-create-xhtml-forms/" target="_blank" rel="external">How To Create xHTML Forms</a></li>
+<li><a href="http://a.deveria.com/caniuse/" target="_blank" rel="external">When can I use…</a></li>
+<li><a href="http://zeroplex.blogspot.com/2010/04/34.html" target="_blank" rel="external">網頁設計最常犯的 34 項錯誤</a></li>
+<li><a href="http://tutorialzine.com/2010/04/simple-bookmarking-app-php-javascript-mysql/" target="_blank" rel="external">Simple Bookmarking App With PHP, JS &amp; MySQL</a></li>
+<li><a href="http://tutorialzine.com/2010/03/ajax-todo-list-jquery-php-mysql-css/" target="_blank" rel="external">AJAX-ed Todo List With PHP, MySQL &amp; jQuery</a></li>
+<li><a href="http://tutorialzine.com/2010/04/six-months-of-tutorialzine/" target="_blank" rel="external">Six Months of Tutorialzine</a></li>
+<li><a href="http://tutorialzine.com/2010/04/carbon-signup-form/" target="_blank" rel="external">Carbon Fiber Signup Form With PHP, jQuery and CSS3</a></li>
+<li><a href="http://cavemansblog.wordpress.com/2010/04/16/why-is-my-web-application-slow/" target="_blank" rel="external">Why is my web application slow?</a></li>
+<li><a href="http://www.uxbooth.com/blog/stopping-shopping-cart-abandonment/" target="_blank" rel="external">Stopping Shopping Cart Abandonment</a></li>
+<li><a href="http://www.craftymind.com/2010/04/20/blowing-up-html5-video-and-mapping-it-into-3d-space/" target="_blank" rel="external">Blowing up HTML5 video and mapping it into 3D space</a></li>
+<li><a href="http://www.phpied.com/preload-cssjavascript-without-execution/" target="_blank" rel="external">Preload CSS/JavaScript without execution</a></li>
+<li><a href="http://www.sitepoint.com/blogs/2010/04/22/9-causes-of-web-page-obesity/" target="_blank" rel="external">9 Causes of Web Page Obesity</a></li>
+<li><a href="http://www.fluidbyte.net/encrypting-post-data-with-javascript" target="_blank" rel="external">Encrypting POST Data with JavaScript</a></li>
+<li><a href="http://www.lunatech-research.com/archives/2009/02/03/what-every-web-developer-must-know-about-url-encoding" target="_blank" rel="external">What every web developer must know about URL encoding</a></li>
+<li><a href="http://www.webappers.com/2010/04/23/20-really-useful-scripts-components-on-codecanyon/" target="_blank" rel="external">20 Really Useful Scripts &amp; Components on CodeCanyon</a></li>
+<li><a href="http://www.9lessons.info/2010/04/log-in-or-sign-up-with-jquery-and-php.html" target="_blank" rel="external">Log in or Sign up with Jquery and PHP</a></li>
+<li><a href="http://www.turnkeylinux.org/blog/png-vs-jpg" target="_blank" rel="external">PNG vs JPG: 6 simple lessons you can learn from our mistakes</a></li>
+<li><a href="http://www.designyourway.net/blog/resources/all-there-is-to-know-about-html5-and-css3/" target="_blank" rel="external">All There Is To Know About HTML5 and CSS3</a></li>
+<li><a href="http://www.dzinepress.com/2010/04/50-ultimate-useful-cheat-sheets-for-web-developers-and-designers/" target="_blank" rel="external">50+ Ultimate Useful Cheat Sheets for Web Developers and Designers</a></li>
+<li><a href="http://devsnippets.com/article/12-free-high-quality-html5css3-templates.html" target="_blank" rel="external">12 Elegant, Free &amp; High Quality HTML5+CSS3 Templates</a></li><li><a href="http://mathiasbynens.be/notes/html5-details-jquery" target="_blank" rel="external">Bulletproof HTML5 <details> fallback using jQuery</details></a></li>
+<li><a href="http://www.mostinspired.com/blog/2010/04/27/30-useful-web-based-applications-for-designers/" target="_blank" rel="external">30 Useful Web-Based Applications for Designers</a></li>
+<li><a href="http://spyrestudios.com/usable-ecommerce-website/" target="_blank" rel="external">10 Steps To A More Usable Ecommerce Website</a></li>
+<li><a href="http://www.seoptimise.com/blog/2010/04/advanced-blog-wordpress-seo-30-points-most-bloggers-overlook.html" target="_blank" rel="external">Advanced Blog &amp; WordPress SEO: 30 Points Most Bloggers Overlook</a></li>
+<li><a href="http://www.catonmat.net/http-proxy-in-nodejs" target="_blank" rel="external">A HTTP Proxy Server in 20 Lines of node.js Code</a></li>
+<li><a href="http://tutorialzine.com/2010/04/simple-banner-rotator-with-php-jquery-mysql/" target="_blank" rel="external">Simple Banner Rotator With PHP, jQuery &amp; MySQL</a></li>
+</ul>
+<h2 id="Browser">Browser</h2><ul>
+<li><a href="http://nisha.in/20-very-useful-firefox-extension-for-designers-and-developers#" target="_blank" rel="external">20 Very Useful Firefox Extension for Designers and Developers</a></li>
+<li><a href="http://www.reencoded.com/2010/04/20/12-useful-and-time-saving-firefox-extensions-for-webmasters/" target="_blank" rel="external">12 Useful and Time-Saving Firefox Extensions for Webmasters</a></li>
+</ul>
+<h2 id="Design">Design</h2><ul>
+<li><a href="http://buildinternet.com/2010/04/designing-without-gradients/" target="_blank" rel="external">Designing Without Gradients</a></li>
+<li><a href="http://isd.tencent.com/?p=1893" target="_blank" rel="external">頁面表達原則</a></li>
+<li><a href="http://www.alistapart.com/articles/design-patterns-faceted-navigation/" target="_blank" rel="external">Design Patterns: Faceted Navigation</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/04/27/usability-dos-and-donts-for-interactive-design/" target="_blank" rel="external">Usability Do’s And Don’ts For Interactive Design</a></li>
+</ul>
+<h2 id="Internet">Internet</h2><ul>
+<li><a href="http://mmdays.com/2010/04/23/facebook_deal_with_devil/" target="_blank" rel="external">Facebook新Graph API推出 – 你打算跟魔鬼做交易了嗎？</a></li>
+</ul>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://www.lostechies.com/blogs/derekgreer/archive/2010/04/18/double-dispatch-is-a-code-smell.aspx" target="_blank" rel="external">Double Dispatch is a Code Smell</a></li>
+<li><a href="http://news.cnblogs.com/n/62537/" target="_blank" rel="external">世上最糟糕的兩個變量名</a></li>
+</ul>
+<h2 id="System">System</h2><ul>
+<li><a href="http://www.study-area.org/tips/r-proxy.txt" target="_blank" rel="external">R-Proxy - 使用Apache架設</a></li>
+<li><a href="http://osmialowski.me/blog/5-cool-htaccess-tips-for-beginners/" target="_blank" rel="external">5 Cool htaccess Tips For Beginners</a></li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">586</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = 'page/15/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

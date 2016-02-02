@@ -1,27 +1,801 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
-<script src="js/html5shiv.min.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link active">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="archive"><ul class="post-list"><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/07/15/110/" class="post-title-link">為 imageCreate 產生出來的圖設定連結</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>這也是為 Tim 的網友回答的一篇：<a href="http://timteam.org/?TIM=FORUM&amp;FORUM=1&amp;ShowDocument=14350">用  imageCreate 產生出來的圖怎麼設連結？</a></p>
-<p>解這個問題之前，要先建立三個觀念：</p>
-<ul>
-<li>利用 <a href="http://tw2.php.net/manual/en/function.imagecreate.php">imageCreate</a> 或 <a href="http://tw2.php.net/manual/en/function.imagecreatefromgif.php">imageCreateFromGif</a> 建立的不是圖片，而是一個 PHP 的 Resource 而已，輸出圖片要用 <a href="http://tw2.php.net/manual/en/function.imagegif.php">imageGif</a> 或同類型的圖片輸出函式。</li>
-<li><a href="http://tw2.php.net/manual/en/function.imagegif.php">imageGif</a> 輸出的格式是圖片 (Binary) ，而不是 HTML (Text) 。<li> &lt;<a href="http://www.htmlhelp.com/reference/html40/special/img.html">img</a> src=”xxx” /&gt; 中的 src 可以指向一個 php 程式 (事實上可以是任何輸出圖片格式的網址) 。</li>
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
-</li>
-</ul></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/07/10/109/" class="post-title-link">[轉載] RoR 風潮的背後</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/程式開發/" class="post-tag-link">程式開發</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/07/07/108/" class="post-title-link">[好文] PHP Security by Example</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/07/01/107/" class="post-title-link">[分享] nVidia 顯示卡驅動程式 91.31 SLI 訊息的問題</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/電腦知識/" class="post-tag-link">電腦知識</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/06/17/106/" class="post-title-link">[轉載] Smarty 取巧圖解 2.0</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Smarty/" class="post-tag-link">Smarty</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/06/13/105/" class="post-title-link">[分享] Smarty 手冊正體中文版</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Smarty/" class="post-tag-link">Smarty</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/06/03/104/" class="post-title-link">[分享] JavaScript 知識等級</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/JavaScript/" class="post-tag-link">JavaScript</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>你認為你的 JavaScript 知識等級到哪裡了呢？</p>
-<p>剛剛看到這篇 <a href="http://dean.edwards.name/weblog/2006/06/levels/">Levels of JavaScript Knowledge</a> 時覺得非常有趣，以下我自己把它加上一些個人的見解。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/06/03/103/" class="post-title-link">PHP 小實驗 (2) - 正規表示式</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/PHP/" class="post-tag-link">PHP</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>也是在 Tim Club 回答的<a href="http://timteam.org/?TIM=FORUM&amp;FORUM=1&amp;ShowDocument=14269">問題</a>，記在這裡自己備忘用。</p>
-<p>一位網友問到，想把以下的文字：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[code:07318bb522](/code:07318bb522)&#10;[color=blue:8841ec98ad](/color:a76c137a60)&#10;[b:8841ec98ad] [/b:6e4e964058]&#10;[quote=&#34;Anonymous&#34;] [/quote:6e4e964058]</span><br></pre></td></tr></table></figure>
-<p>換成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[code](/code)&#10;[color=blue](/color)&#10;[b] [/b]&#10;[quote] [/quote]</span><br></pre></td></tr></table></figure>
-<p>其實這個就是所謂的 BBCode ，只是我很少看過第一種表示形式。</p>
-<p>怎麼轉換呢？</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/05/30/102/" class="post-title-link">ASP 購物車三部曲(2)</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/ASP/" class="post-tag-link">ASP</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><h2 id="簡介">簡介</h2><p>是到了該結帳的時候了，就像你在大賣場買完東西後，要到櫃台付錢是一樣的。但是在購物網站買完東西後，總是要填寫一些個人資料，方便商家能夠把東西寄給你，這是虛擬商店比較不同的地方。</p>
-<p>而要填寫的資料不外乎是購買人資訊、收貨人資訊等等，這些資訊大部份都能在使用者登入成為會員取得，這通常也是一般會員制購物網站的作法。</p>
-<p>不過難題來了，雖然我們建立的是一個會員制購物網站，但是客戶卻希望能讓未註冊的訪客也能夠在這裡先買東西，而到結帳時才選擇是不是要加入會員。當然客戶永遠不會瞭解採取這種方式的難度，他認為你是網站開發人員，你一定會有辦法的。</p>
-<p>先不要翻桌子，解決問題是我們的責任。仔細想想，訪客對購物網站的經營者而言，也可能是潛在的消費者；所以如果能提供便利的方式讓這些人轉變為會員，其實還滿重要的。</p>
-<p>當然我們得提供畫面讓使用者填寫資料，並且把這些資料做適當的處理。不過後續的處理方式我就不多提了，現在我們把重點先放在結帳表單顯示的頁面流程，來看看物件導向思維如何應用在這上面。</p>
-<p>註：這裡我也會略過金流及物流的部份，因為各家金流及物流的實作方式都不太一樣，要寫的話可能又會是落落長。</p></div></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2006/05/08/101/" class="post-title-link">[心得] 網頁程式開發建議</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Web-開發/" class="post-tag-link">Web 開發</a></li></ul><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div></article></li></ul><div class="pagination"><a href="/archives/2006/page/4/" class="pagination-prev">PREV</a><a href="/archives/2006/page/6/" class="pagination-next">NEXT</a></div></div><aside class="sidebar"><h3>分类标签</h3><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP/">ASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone-js/">Backbone.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li></ul><h3>最新文章</h3><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/php-closure-testing/">在 PHPUnit 中測試需要 closure 的函式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/27/web-testing-with-phpunit-mink/">利用 PHPUnit 與 Mink 來做 Web 測試</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/14/what-is-test/">這樣寫測試錯了嗎？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/05/simple-refatoring-example-01/">邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/29/laravel-mailcatcher/">在 Laravel 上用 MailCatcher 發送測試信件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/26/laravel-events-broadcasting/">Laravel 5.1 Events Broadcasting 實務練習</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/front-end-framework-summary/">幾個有興趣的前端框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/laravel-5-1/">Laravel 5.1 正式釋出</a></li></ul></aside></section></div><div class="extra"></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
-<a href="https://hexo.io">Hexo</a>, 
-<a href="https://github.com/">GitHub</a>, 
-<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://jaceju.net/archives/2006/page/5/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 歸檔 | 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column  page-archive ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+       
+        
+      非常屌! 目前共計 586 篇文章。 繼續努力。
+    </span>
+
+    
+
+      
+      
+      
+
+      
+        
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2006">2006</h2>
+        </div>
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/07/15/110/" itemprop="url">
+              
+                <span itemprop="name">為 imageCreate 產生出來的圖設定連結</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-07-15T00:00:00+08:00"
+              content="2006-07-15" >
+          07-15
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/07/10/109/" itemprop="url">
+              
+                <span itemprop="name">[轉載] RoR 風潮的背後</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-07-10T00:00:00+08:00"
+              content="2006-07-10" >
+          07-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/07/07/108/" itemprop="url">
+              
+                <span itemprop="name">[好文] PHP Security by Example</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-07-07T00:00:00+08:00"
+              content="2006-07-07" >
+          07-07
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/07/01/107/" itemprop="url">
+              
+                <span itemprop="name">[分享] nVidia 顯示卡驅動程式 91.31 SLI 訊息的問題</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-07-01T00:00:00+08:00"
+              content="2006-07-01" >
+          07-01
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/06/17/106/" itemprop="url">
+              
+                <span itemprop="name">[轉載] Smarty 取巧圖解 2.0</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-06-17T00:00:00+08:00"
+              content="2006-06-17" >
+          06-17
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/06/13/105/" itemprop="url">
+              
+                <span itemprop="name">[分享] Smarty 手冊正體中文版</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-06-13T00:00:00+08:00"
+              content="2006-06-13" >
+          06-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/06/03/104/" itemprop="url">
+              
+                <span itemprop="name">[分享] JavaScript 知識等級</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-06-03T00:00:00+08:00"
+              content="2006-06-03" >
+          06-03
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/06/03/103/" itemprop="url">
+              
+                <span itemprop="name">PHP 小實驗 (2) - 正規表示式</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-06-03T00:00:00+08:00"
+              content="2006-06-03" >
+          06-03
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/05/30/102/" itemprop="url">
+              
+                <span itemprop="name">ASP 購物車三部曲(2)</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-05-30T00:00:00+08:00"
+              content="2006-05-30" >
+          05-30
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2006/05/08/101/" itemprop="url">
+              
+                <span itemprop="name">[心得] 網頁程式開發建議</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2006-05-08T00:00:00+08:00"
+              content="2006-05-08" >
+          05-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/archives/2006/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2006/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2006/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/2006/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2006/page/9/">9</a><a class="extend next" rel="next" href="/archives/2006/page/6/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">586</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    <script type="text/javascript">
+      postMotionOptions = {stagger: 100, drag: true};
+    </script>
+  
+
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = 'archives/2006/page/5/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

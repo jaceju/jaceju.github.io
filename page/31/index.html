@@ -1,8 +1,1861 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
-<script src="js/html5shiv.min.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link active">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="home"><article class="post-block"><h2 class="post-title"><a href="/2007/11/26/291/" class="post-title-link">[Web] 連結分享</a><div class="post-badge-wrap"><div class="post-badge"><span class="post-badge-msg">Issue №</span><span class="post-num">586</span></div></div></h2><div class="post-meta"><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>這篇純粹是在清掉一堆庫存，免得積太多書籤。裡面有一些文章我自認看不是很懂，如果有看錯意思的話，還請大家不吝指正。</p></div><div class="read-more"><a href="/2007/11/26/291/"> 阅读全文</a></div></article></div></section></div><div class="extra"><section class="installtheme"><div class="row-flex row-flex-row limit-width"><div class="intro"><h3> 
-如果你喜欢 <a href="https://github.com/pinggod/hexo-theme-jekyll">Hexo-theme-hexo </a>, 何不动手尝试一下!</h3></div><div class="code"><div class="title">Quick-start Instructions</div><div class="shell"> <div class="line"><span class="output"># Prerequisite: Git, Node, Hexo</span></div><div class="line"><span class="path">~</span><span class="prompt">$</span><span class="command">hexo init blog && cd blog</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">npm install</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">git clone [hexo-theme-jekyll]</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">vim _config.yml</span></div></div></div></div></section><section class="selfintro"><div class="wrap row-flex row-flex-row limit-width"><div class="sign"><img src="img/github.png" alt=""></div><div class="intro"><h3 class="title">PING4GOD</h3><p class="content"> 三年不翅，将以长羽翼；不飞不鸣，将以观民则。</p><ul class="contact"><li><a href="https://github.com/xxxxx" class="social-link">github</a></li><li><a href="http://weibo.com/xxxxxx" class="social-link">weibo</a></li></ul></div></div></section></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
-<a href="https://hexo.io">Hexo</a>, 
-<a href="https://github.com/">GitHub</a>, 
-<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://jaceju.net/page/31/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/11/26/291/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-11-26T00:00:00+08:00" content="2007-11-26">
+              2007-11-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/11/26/291/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/11/26/291/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>這篇純粹是在清掉一堆庫存，免得積太多書籤。裡面有一些文章我自認看不是很懂，如果有看錯意思的話，還請大家不吝指正。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/11/26/291/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/11/24/290/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-11-24T00:00:00+08:00" content="2007-11-24">
+              2007-11-24
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/11/24/290/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/11/24/290/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.hkpug.net/node/221" target="_blank" rel="external">每一個 PHP 開發者都應該認識的十個開發項目</a></li>
+</ul>
+<p>這個就不多說明了，原文在<a href="http://infortech2k.wordpress.com/2007/11/11/10-projects-every-php-developer-should-use/" target="_blank" rel="external">這裡</a>。</p>
+<ul>
+<li><a href="http://blog.astrumfutura.com/archives/320-PHPMock-Independent-Mock-ObjectStub-Framework.html" target="_blank" rel="external">PHPMock: Independent Mock Object/Stub Framework</a></li>
+</ul>
+<p>很有趣的 Mock 套件，找時間來仔細研究看看。 Mock 的概念主要是幫我們建立一個假的物件，而這個物件會提供跟原來物件相同的方法及屬性；然後我們就能透過 Mock 物件輸出一些指定的結果，以便我們測試用。</p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Drawing-Basic-Rectangles-in-PDF-Documents-with-PHP-5/" target="_blank" rel="external">Drawing Basic Rectangles in PDF Documents with PHP 5</a></li>
+</ul>
+<p>這個也暫時記下備忘。</p>
+<ul>
+<li><a href="http://fashion.hosmoz.net/post/2007/11/21/Accessing-raw-post-data-in-a-controller" target="_blank" rel="external">Accessing raw post data in a controller</a></li>
+</ul>
+<p>直接抓最原始的 POST 資料 (就是還沒被 parse 成 $_POST 前的資料) ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$raw_post_data = file_get_contents(&#39;php://input&#39;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="http://blog.makemepulse.com/2007/11/22/php-5-design-pattern-singleton/" target="_blank" rel="external">PHP 5 Design Pattern : Singleton</a></li>
+</ul>
+<p>用常見的 DB 類別來介紹 Singleton 模式。因為我們在一個頁面 request 中，通常只要連結資料庫一次就好，這時候 Singleton 就能完成這樣的目的。 Singleton 通常的作法是將 constructor 設為 private ，然後再提供一個靜態的 getInstance 方法。</p>
+<ul>
+<li><a href="http://www.0x000000.com/?i=480" target="_blank" rel="external">XSS Through mysql_error()</a></li>
+</ul>
+<p>連 mysql_error 都能用來做 XSS ？詳細的說明看<a href="http://websecurity.ro/blog/2007/11/22/xss-in-mysql_error/" target="_blank" rel="external">這裡</a>。</p>
+<ul>
+<li><a href="http://blog.astrumfutura.com/archives/321-Ruby-Testing-Tools-Missing-From-PHP.html" target="_blank" rel="external">Ruby Testing Tools Missing From PHP</a></li>
+</ul>
+<p>不得不承認，因為 Ruby 的火力集中，使得它有一些工具讓 PHP 難以望其項背。 </p>
+<h2 id="HTML">HTML</h2><ul>
+<li><a href="http://css-tricks.com/utilizing-the-underused-but-semantically-awesome-definition-list/" target="_blank" rel="external">Utilizing the Underused (But Semantically Awesome) Definition List</a></li>
+</ul>
+<p>dl dt dd 的正確用法，重點就是要符合語意。看來我以前都不懂得用呀！ </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://blog.stevenlevithan.com/archives/javascript-match-nested" target="_blank" rel="external">Matching Nested Constructs in JavaScript</a></li>
+</ul>
+<p>利用 JavaScript 來比對出具有巢狀結構的字串，看一下文章裡的範例會比較清楚。</p>
+<ul>
+<li><a href="http://www.bloggingdeveloper.com/post/Location-href-vs-Location-replace---The-Difference-Between-JavaScript-Redirect-Methods.aspx" target="_blank" rel="external"> location.href vs. location.replace - The Difference Between JavaScript Url Redirection Methods</a></li>
+</ul>
+<p>主要是前者會在 history 物件裡加入一個瀏覽紀錄。</p>
+<ul>
+<li><a href="http://rd-program.blogspot.com/2007/11/browser-based-javascript-ide.html" target="_blank" rel="external">browser-based Javascript IDE</a></li>
+</ul>
+<p><a href="http://tide4javascript.com/" target="_blank" rel="external">TIDE</a> 是個借用瀏覽器來實作編輯功能的一套 IDE ，不過試用了一下，速度也真是快不起來。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.alistapart.com/articles/howtosizetextincss" target="_blank" rel="external">How to Size Text in CSS</a></li>
+</ul>
+<p>簡單介紹了 CSS 中字型大小的比例及計算方式。</p>
+<ul>
+<li><a href="http://www.thespanner.co.uk/2007/11/20/xcss/" target="_blank" rel="external">XCSS</a></li>
+</ul>
+<p>還能用 CSS 來進行 XSS 攻擊？我真的覺得這些外國人實在是太強了…Orz</p>
+<ul>
+<li><a href="http://www.sharemycode.com/viewtopic.php?t=69" target="_blank" rel="external">Pure CSS Tooltip</a></li>
+</ul>
+<p>很好看的效果，但是語意上似乎弱一點。</p>
+<ul>
+<li><a href="http://css-tricks.com/avoid-css-jitter/" target="_blank" rel="external">Avoid “CSS Jitter”</a></li>
+</ul>
+<p>避免因為使用 CSS 後，使得畫面會抖動。例如常會看到滑鼠移過某個連結時，因為 CSS 樣式的改變 (例如字變粗或是連結加上外框) ，使得畫面不停地顫抖。</p>
+<ul>
+<li><a href="http://www.noupe.com/how-tos/9-css-ethics-every-designer-should-have.html" target="_blank" rel="external">9 CSS Ethics Every Designer Should Have</a></li>
+</ul>
+<p>9 個 CSS 寫作的建議，用在開發或維護期間時是不錯的方法。 </p>
+<h2 id="Web">Web</h2><ul>
+<li><p><a href="http://blog.assembla.com/assemblablog/tabid/12618/bid/2868/What-s-the-right-sequence-of-events-for-designing-a-Web-app.aspx" target="_blank" rel="external">7 Steps to Design a Kickass Web Application</a></p>
+</li>
+</ul>
+<p>建置一個 Web 應用程式的七步驟，分別是：</p>
+<ul>
+<li>Storyboard</li>
+<li>Pencil sketch</li>
+<li>Wireframe</li>
+<li>Graphical mockup</li>
+<li>HTML click-through Wireframe</li>
+<li>Text-mode prototype</li>
+<li>Programmer’s prototype</li>
+</ul>
+<p>最近剛好能用到。</p>
+<ul>
+<li><a href="http://ejoh.zmolklife.com/2007/11/06/dont-do-this-on-your-website-it-bugs-me/" target="_blank" rel="external">Don’t do this on your website, it bugs me</a></li>
+</ul>
+<p>製作 Web 頁面或是在 Web 寫作時，常會犯的一些錯誤。</p>
+<ul>
+<li><a href="http://cooletips.de/htaccess/" target="_blank" rel="external">.htaccess file generator</a></li>
+</ul>
+<p>.htaccess 產生器，很適合像我這樣記憶不好的人。</p>
+<ul>
+<li><a href="http://cafe.elharo.com/internet/happy-30th-birthday-internet/" target="_blank" rel="external">Happy 30th Birthday Internet!</a></li>
+</ul>
+<p>網際網路已經 30 歲了。</p>
+<ul>
+<li><a href="http://www.chromaticsites.com/web-design-blog/2007-09-22/5-things-to-hate-about-web-design-and-how-to-fix-them/" target="_blank" rel="external">5 Things To Hate About Web Design (and how to fix them)</a></li>
+</ul>
+<p>也是一些常見的 Web Design 謬誤，作者提供了一些不錯的解決方案。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/11/23/289/" itemprop="url">
+                  [PHP] 交換兩個變數 (不使用 tmp 變數) 程式寫法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-11-23T00:00:00+08:00" content="2007-11-23">
+              2007-11-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/11/23/289/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/11/23/289/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在宗董的 Blog 看到這篇：<a href="http://plog.longwin.com.tw/programming/2007/11/23/variable_swap_programming_2007" target="_blank" rel="external">交換兩個變數 (不使用 tmp 變數) 程式寫法</a>，本來想留言，不過宗董的 Blog 系統似乎有問題。</p>
+<p>宗董的方法是這樣的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$a ^= $b;&#10;$b ^= $a;&#10;$a ^= $b;</span><br></pre></td></tr></table></figure>
+<p>我是想說既然是用 PHP 了，就應該好好善用一下 PHP 的原生語法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list($a, $b) = array($b, $a);</span><br></pre></td></tr></table></figure>
+<p>搞定~~</p>
+<p>這個是從 <a href="http://www.pearsoned.com.tw/chinese_show_title.asp?bkid=9867910672" target="_blank" rel="external">PHP 程式設計專家必備手冊</a>一書看來的。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/11/20/288/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-11-20T00:00:00+08:00" content="2007-11-20">
+              2007-11-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/11/20/288/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/11/20/288/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.ajaxf1.com/tutorial/ajax-php.html" target="_blank" rel="external">Ajax PHP tutorial</a></li>
+</ul>
+<p>包含 Ajax 及 Ajax 如何與 PHP 溝通的基礎，新手必讀！</p>
+<ul>
+<li><a href="http://sebastian-bergmann.de/archives/720-PHPUnit-3.2.html" target="_blank" rel="external">PHPUnit 3.2</a></li>
+</ul>
+<p>PHPUnit 3.2 釋出了！ Binzy 也寫了一篇 <a href="http://www.binzywu.com/blog/2007/11/18/data-driven-test-with-phpunit32/" target="_blank" rel="external">Data Driven Test with PHPUnit3.2</a> 供大家參考。</p>
+<ul>
+<li><a href="http://phpdiscovery.com/using-php-as-a-operating-system/" target="_blank" rel="external">Using PHP as a Operating System?</a> </li>
+</ul>
+<p><a href="http://eyeos.org/" target="_blank" rel="external">eyeOS</a> 是用 PHP 打造的線上作業環境 (我不覺得是作業系統) ，非常酷！</p>
+<ul>
+<li><a href="http://www.thyphp.com/ajax-ajax-and-more-ajax.html" target="_blank" rel="external">Ajax, ajax, and more ajax!</a></li>
+</ul>
+<p><a href="http://cesars.users.phpclasses.org/browse/package/4211/download/targz.html" target="_blank" rel="external">AutoAjax</a> 和 <a href="http://www.xajaxproject.org/" target="_blank" rel="external">xajax</a> 很像，都是用 PHP 來控制前端的 Ajax ；不過從範例看起來， <a href="http://cesars.users.phpclasses.org/browse/package/4211/download/targz.html" target="_blank" rel="external">AutoAjax</a> 比較偏重於前端的區塊操作。</p>
+<ul>
+<li><a href="http://devzone.zend.com/article/2727-Whip-Up-a-Yahoo-Mashup-Using-PHP" target="_blank" rel="external">Whip Up a Yahoo! Mashup Using PHP</a></li>
+</ul>
+<p>Yahoo 的 Mashup 有提供 API 給 PHP 用。</p>
+<ul>
+<li><a href="http://www.sunilb.com/php/php-tutorials/php5-tutorial-on-arrays" target="_blank" rel="external">PHP5 Tutorial on Arrays</a></li>
+</ul>
+<p>圖解 PHP 的陣列…也是新手必讀！</p>
+<ul>
+<li><a href="http://valokuva.org/?p=82" target="_blank" rel="external">Creating a reflection</a></li>
+</ul>
+<p>Imagick 的功能真的是非常非常強大，連 Web 2.0 常用的漸層鏡像都能輕鬆完成。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://weblogs.asp.net/bleroy/archive/2007/11/14/does-javascript-need-method-overloading.aspx" target="_blank" rel="external">Does JavaScript need method overloading?</a></li>
+</ul>
+<p>上次 <a href="http://ejohn.org/blog" target="_blank" rel="external">John Resig</a> 寫了一篇有關 <a href="http://ejohn.org/blog/javascript-method-overloading/" target="_blank" rel="external">JavaScript Method Overloading</a> 的文章，這次 Bertrand Le Roy 針對他的文章作了一些分析。 </p>
+<ul>
+<li><a href="http://blog.stevenlevithan.com/archives/fast-string-multiply" target="_blank" rel="external">JavaScript String Multiplication Performance Exploration</a></li>
+</ul>
+<p>有關 JavaScript 在字串操作上的效能研究。</p>
+<ul>
+<li><a href="http://jsutility.pjoneil.net/" target="_blank" rel="external">JavaScript Utility Version 2</a></li>
+</ul>
+<p>版本更新了。</p>
+<ul>
+<li><a href="http://www.julienlecomte.net/blog/2007/11/30/" target="_blank" rel="external">Getting Rid of the Navigation Click Sound on IE</a></li>
+</ul>
+<p>IE 在點連結切換網址時，常常會有「喀」一聲；這篇文章教你怎麼拿掉這個聲音。</p>
+<ul>
+<li><a href="http://www.mjtemplate.org/" target="_blank" rel="external">mjt - JavaScript Template</a></li>
+</ul>
+<p>用 JavaScript 寫的 Template 引擎，目前網站連不上…</p>
+<ul>
+<li><a href="http://elfz.laacz.lv/beautify/" target="_blank" rel="external">Beautify Javascript</a></li>
+</ul>
+<p>讚！寫得亂七八糟的 JavaScript 拿來這裡表特一下就對了！有 PHP <a href="http://elfz.laacz.lv/beautify/beautify.phps" target="_blank" rel="external">原始碼</a> (這只是函式，要自己寫表單)。</p>
+<ul>
+<li><a href="http://www.webappers.com/2007/11/16/the-seven-rules-of-unobtrusive-javascript/" target="_blank" rel="external">The Seven Rules of Unobtrusive Javascript</a></li>
+</ul>
+<p>使用 Unobtrusive JavaScript 的一些守則，原文在<a href="http://icant.co.uk/articles/seven-rules-of-unobtrusive-javascript/" target="_blank" rel="external">這裡</a>。 </p>
+<ul>
+<li><a href="http://www.nicklewis.org/node/949" target="_blank" rel="external">7 jQuery Plugins That Made Our Lives Easier at ON Networks</a></li>
+</ul>
+<p>第一個 <a href="http://www.malsup.com/jquery/cycle/" target="_blank" rel="external">Cycle Plugin</a> 真是令人驚豔！而最後的一個 <a href="http://jquery.com/plugins/project/ajaxqueue" target="_blank" rel="external">Ajax Queue</a> 也是很實用的工具！</p>
+<ul>
+<li><a href="http://www.thespanner.co.uk/2007/11/19/csrf-browser-protection/" target="_blank" rel="external">CSRF browser protection</a></li>
+</ul>
+<p>避免 <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="external">CSRF</a> 的一些解法。</p>
+<ul>
+<li><a href="http://www.thespanner.co.uk/2007/11/19/unusual-xss-vectors/" target="_blank" rel="external">Unusual XSS vectors</a></li>
+</ul>
+<p>沒想到 img 的 onerror 和支援 onmouseover 的 tag 也能用來做 <a href="http://en.wikipedia.org/wiki/Cross_site_scripting" target="_blank" rel="external">XSS</a> 攻擊？<a href="http://www.tssci-security.com/archives/2007/11/15/blacklisting-xss-filter-evasion-and-other-resources/" target="_blank" rel="external">這裡</a>有更多參考資訊。</p>
+<ul>
+<li><a href="http://www.felixwoo.com/article.asp?id=291" target="_blank" rel="external">对Javascript调用堆栈和setTimeout用法的深入研究</a></li>
+</ul>
+<p>之前有提到 JavaScript 在 setTimeout 上的問題，這篇寫得比較容易懂。 </p>
+<ul>
+<li><a href="http://www.riaexpert.cn/2007/11/15/javascript-%e5%a4%9a%e7%ba%bf%e7%a8%8b%e7%9a%84%e7%a0%94%e7%a9%b6%e4%ba%8e%e6%80%9d%e8%80%83/" target="_blank" rel="external">Javascript 多线程的研究与思考</a></li>
+</ul>
+<p>結論是 JavaScript 沒辦法做多執行緒…這篇也滿值得看的。</p>
+<ul>
+<li><a href="http://www.ajaxray.com/blog/2007/11/09/interactive-character-limit-for-textarea-using-jquery/" target="_blank" rel="external">Interactive character limit for textarea using Jquery</a></li>
+</ul>
+<p>我 Blog 很早以前有<a href="http://blog.roodo.com/jaceju/archives/63111.html" target="_blank" rel="external">提到</a>如何用 JavaScript 計算文字區塊中的字數，本篇則是使用 jQuery 來做限制字數的功能。</p>
+<ul>
+<li><a href="http://shiriru.blogspot.com/2007/11/javascript-scoping.html" target="_blank" rel="external">Javascript scoping : Things to keep in mind</a></li>
+</ul>
+<p>也是一篇介紹 JavaScript Scoping 的文章，我個人覺得寫得還滿容易懂的。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.noupe.com/javascript/21-fresh-ajax-css-tables.html" target="_blank" rel="external">21+ Fresh Ajax CSS Tables</a></li>
+</ul>
+<p>結合 CSS 和 JavaScript 的 Table 樣式，很多都不錯看。</p>
+<ul>
+<li><a href="http://veerle.duoh.com/blog/comments/a_css_styled_table/" target="_blank" rel="external">A CSS styled table</a>、<a href="http://veerle.duoh.com/blog/comments/a_css_styled_table_version_2/" target="_blank" rel="external">A CSS styled table version 2</a> </li>
+</ul>
+<p>這兩個也是 Table 樣式。</p>
+<ul>
+<li><a href="http://blog.adahsu.net/ada/space/start/2007-05-10/1" target="_blank" rel="external">CSS 排版惡搞 - 談五欄式編排</a></li>
+</ul>
+<p>Ada 的<a href="http://blog.adahsu.net/ada/space/start/2007-05-28/1" target="_blank" rel="external">欄定義</a>跟別人不太一樣…不過也是不錯的文章。但是他花太多功夫在處理 IE 的問題了，這個可以借重 XHTML DOCTYPE 切換成標準模式來解決。 </p>
+<ul>
+<li><a href="http://www.456bereastreet.com/archive/200611/ie_expressions_ignore_css_media_types/" target="_blank" rel="external">IE expressions ignore CSS media types</a></li>
+</ul>
+<p>使用 IE 的 CSS Expression 時，它可能會忽略 meta type ，使得原來不該出現的效果出現了；文章中是使用 !important 來解決。</p>
+<ul>
+<li><a href="http://www.imaputz.com/cssStuff/bulletVersion.html" target="_blank" rel="external">(Almost) Pure CSS Scrollable Table with Fixed Header</a></li>
+</ul>
+<p>表頭固定的表格。</p>
+<ul>
+<li><a href="http://www.noupe.com/how-tos/7-css-hacks-you-cannt-live-without.html" target="_blank" rel="external"> The 7 CSS Hacks that we should use</a></li>
+</ul>
+<p>七個常用的 CSS Hack 。我不覺得都應該用，尤其是第一個 Box Model Hack ；因為 IE 5.5 以前的版本已經不合時宜了，除非你的客戶有人用。</p>
+<ul>
+<li><a href="http://css-tricks.com/quick-tip-making-a-print-this-page-button/" target="_blank" rel="external">Quick Tip: Making a ‘Print This Page’ Button</a></li>
+</ul>
+<p>做一個列印的按鈕，再配合 CSS meta type 來做列印；非常實用的文章！</p>
+<ul>
+<li><a href="http://www2.jeffcroft.com/blog/2007/nov/17/whats-not-love-about-css-frameworks/" target="_blank" rel="external">What’s not to love about CSS frameworks?</a></li>
+</ul>
+<p><a href="http://css-tricks.com/css-frameworks-roundup-and-some-thoughts/" target="_blank" rel="external">CSS Framework</a>… 還沒有用到的機會，記下先。</p>
+<ul>
+<li><a href="http://blog.hedgerwow.com/2007/11/19/multiple-views-layout-one-html-structure-three-css-views/" target="_blank" rel="external">Multiple Views Layout : One HTML Structure, Three CSS Views</a></li>
+</ul>
+<p>一份 HTML ，可以動態切換成三種 CSS 樣式。我滿喜歡範例裡定義商品陳列的那段 HTML ，利用到了 dl 、 dt 及 dd 三種符合語意的標籤，卻還能做出似 Table 的樣式。 </p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://ripplingbrainwaves.blogspot.com/2007/11/has-mvc-in-webapps-been-over-emphasized.html" target="_blank" rel="external">Has MVC in webapps been over-emphasized?</a></li>
+</ul>
+<p>WebMVC 是不是過度被強調了？本文提供了一些見解。我是認為 WebMVC 有其適用性，例如合作開發；但簡單的活動頁就不必用 WebMVC 這把牛刀了。 </p>
+<ul>
+<li><a href="http://www.javaworld.com.tw/roller/page/ingramchen?entry=2007_11_18_WebAppUsabilityNotes" target="_blank" rel="external">網頁應用程式 Usability 筆記</a></li>
+</ul>
+<p>很不錯的一篇優使性介紹，還實際提供了一個範例；看來真是一圖抵千文呀。</p>
+<ul>
+<li><a href="http://marginleft.blogspot.com/2007/11/design-snippets-series-menu-27-ways-to.html" target="_blank" rel="external">Design snippets series: Menu, 27 ways to build your menu in a web page</a></li>
+</ul>
+<p>一堆漂亮的選單範例。</p>
+<ul>
+<li><a href="http://www.damnhandy.com/2007/11/19/uri-vs-url-whats-the-difference/" target="_blank" rel="external">URI vs. URL: What’s the Difference?</a></li>
+</ul>
+<p>本文介紹 URI 和 URL 到底有什麼不同，<a href="http://meebox.blogspot.com/2006/12/uriurnurl.html" target="_blank" rel="external">這裡</a>有簡單的中文說明。</p>
+<ul>
+<li><a href="http://www.seoblogger.co.uk/seo/updating-your-site-from-html-to-xhtml.html" target="_blank" rel="external">Updating your site from HTML to XHTML</a></li>
+</ul>
+<p>這個是有志 Web 開發的朋友所應該俱備的基本常識。</p>
+<h2 id="Virus">Virus</h2><p>我弟的電腦又中毒了…</p>
+<ul>
+<li><p><a href="http://bbs.mychat.to/read.php?tid=631678" target="_blank" rel="external">利用Autoruns，輕鬆判斷是否中毒，輕鬆DIY清除木馬。</a></p>
+</li>
+<li><p><a href="http://tw.myblog.yahoo.com/shu-wei/article?mid=2&amp;sc=1" target="_blank" rel="external">將kavo.exe病毒完整消滅？簡單又快速的方法</a></p>
+</li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/11/16/287/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-11-16T00:00:00+08:00" content="2007-11-16">
+              2007-11-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/11/16/287/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/11/16/287/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.phpx.com.cn/30020/viewbbs_121438.html" target="_blank" rel="external">禁用IP的mysql+php设计</a></li>
+</ul>
+<p>還滿實用的技巧。</p>
+<ul>
+<li><a href="http://www.swiftmailer.org/" target="_blank" rel="external">Swift is a free feature-rich PHP Mailer</a></li>
+</ul>
+<p>PHPMailer 的後繼者出現了！要是 Zend_Mail 的 <a href="http://www.nabble.com/encodeQuotedPrintable-in-mail-subject-t4327126s16154.html" target="_blank" rel="external">Bug</a> 還沒有解的話，我想我會考慮改用這個套件。</p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Working-with-Images-and-Text-Flows-in-PDF-Files-with-PHP-5/" target="_blank" rel="external">Working with Images and Text Flows in PDF Files with PHP 5</a></li>
+</ul>
+<p>這個也是有用到再仔細看了。</p>
+<ul>
+<li><a href="http://daylessday.org/archives/17-PHP-Seven-Commandments.html" target="_blank" rel="external">PHP Seven Commandments</a></li>
+</ul>
+<p>PHP 七誡…主要是給核心或套件開發人員看的。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://ejohn.org/blog/javascript-method-overloading/" target="_blank" rel="external">JavaScript Method Overloading</a></li>
+</ul>
+<p>在 JavaScript 中使用方法重載。 </p>
+<ul>
+<li><a href="http://blog.xuite.net/emisjerry/tech/14372088" target="_blank" rel="external">jQuery TreeView插件IE異常解決方法</a></li>
+</ul>
+<p>IE6 的註解常會誤事，所以可以的話，儘量在把 HTML 丟給瀏覽器前先把註解給拿掉。</p>
+<ul>
+<li><a href="http://www.webappers.com/2007/11/14/yetii-yet-eanother-tab-interface-implementation/" target="_blank" rel="external">Yetii - Yet (E)Another Tab Interface Implementation</a></li>
+</ul>
+<p>又一個 Tab 元件，我個人的感覺是簡單又輕巧。</p>
+<ul>
+<li><a href="http://www.thespanner.co.uk/2007/11/14/firefox-history-dos-attack/" target="_blank" rel="external">Firefox history DOS attack</a></li>
+</ul>
+<p>看來 Firefox 的 <strong>defineGetter</strong> 這個秘密函式可能要被冠上汙名了。</p>
+<ul>
+<li><a href="http://www.thespanner.co.uk/2007/11/14/spoofing-firefox-protected-objects/" target="_blank" rel="external">Spoofing Firefox protected objects</a></li>
+</ul>
+<p>除了 Firefox 的 <strong>defineGetter</strong> 這個函式可以做怪之外，還有 <strong>proto</strong> 這個屬性。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://verens.com/archives/2007/10/01/variables-in-css/" target="_blank" rel="external"> variables in css</a></li>
+</ul>
+<p>利用 PHP 來讓 CSS 支援變數。</p>
+<ul>
+<li><a href="http://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/" target="_blank" rel="external">Quick CSS Trick: How To Center an Object Exactly In The Center</a></li>
+</ul>
+<p>利用定位技巧及負的邊界來讓物件置中。</p>
+<ul>
+<li><a href="http://blog.hedgerwow.com/2007/11/14/item-list-grid-real-world-practice-with-displayinline-block-across-browsers/" target="_blank" rel="external">Item List Grid : Real world practice with display:inline block across browsers</a></li>
+</ul>
+<p>原來 display: inline-block 可以這樣用耶？看起來比 float 好用多了，也不用 clear 。而且這個技巧也考慮到了上次提到的 hasLayout 設定，真是非常厲害。</p>
+<ul>
+<li><a href="http://css-tricks.com/css-sprites-what-they-are-why-theyre-cool-and-how-to-use-them/" target="_blank" rel="external">CSS Sprites: What They Are, Why They’re Cool, and How To Use Them</a></li>
+</ul>
+<p>CSS Sprites 之前介紹過了，這篇比較重要的是這個技巧在減少 HTTP Request 次數後所帶來的好處。</p>
+<ul>
+<li><a href="http://www.smashingmagazine.com/2007/11/16/pagination-gallery-examples-and-good-practices/" target="_blank" rel="external">Pagination Gallery: Examples And Good Practices</a></li>
+</ul>
+<p>又是一堆分頁器的樣式介紹，有些有用到 JavaScript ，還滿酷的。 </p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2007/11/14/best-of-october-2007/" target="_blank" rel="external">Best Of October 2007</a></li>
+</ul>
+<p>Smashing Magazine 十月份的好文及好站收集。</p>
+<ul>
+<li><a href="http://www.webdesignerwall.com/" target="_blank" rel="external">Web Designer Wall</a></li>
+</ul>
+<p>設計好站！強烈建議有志於 Web 設計的朋友前往參考！</p>
+<ul>
+<li><a href="http://www.harcoo.com/kuso/component/index.php" target="_blank" rel="external">成份分析產生器</a></li>
+</ul>
+<p>滿有趣的服務。</p>
+<h2 id="SQL">SQL</h2><ul>
+<li><a href="http://www.mysqlperformanceblog.com/2007/11/13/10-ways-to-crash-or-overload-mysql/" target="_blank" rel="external">10+ Ways to Crash or Overload MySQL</a></li>
+</ul>
+<p>超過十種可以讓 MySQL 當掉或負荷過重的方法，尤其這兩天在用 Memory Table 時，也讓我警覺到這些問題。</p>
+<ul>
+<li><a href="http://blog.roodo.com/chhuang/archives/4483405.html" target="_blank" rel="external">用 SQL 語法查詢符合條件範圍的 IP</a></li>
+</ul>
+<p>還不清楚怎麼用，不過記下來先。</p>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://crazylion.wordpress.com/2007/11/16/%e4%bd%bf%e7%94%a8boolean%e5%8f%af%e8%83%bd%e6%98%af%e9%82%aa%e6%83%a1%e7%9a%84-%ef%bc%9f/" target="_blank" rel="external">使用boolean可能是邪惡的 ？</a></li>
+</ul>
+<p>如果是我的話，我會採用參數物件的作法，以 JavaScript 為例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var test = new Test(&#123;&#10;attr1: true,&#10;attr2: false&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 PHP 的話就用關連陣列：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$test = new Test(array(&#10;&#39;attr1&#39; =&#62; true,&#10;&#39;attr2&#39; =&#62; false,&#10;));</span><br></pre></td></tr></table></figure>
+<p>(Java 我不熟，不過也許有類似的做法。)</p>
+<p>以上的做法在寫程式時就會比較清楚，也不用記參數的順序；不過缺點是要在函式裡多一道處理參數的手續，而且沒辦法確定參數的型態 (用 IDE 開發的話會很麻煩) 。</p>
+<p>(本來想在 CrazyLion 那留言的，不過不知道為什麼一直寫不進去…Orz)</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/11/14/286/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-11-14T00:00:00+08:00" content="2007-11-14">
+              2007-11-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/11/14/286/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/11/14/286/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>一下子從朋友那邊看到太多 Web Standard 的好文…如果不趁晚上寫一寫，我怕週末會沒時間玩電動…</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/11/14/286/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/11/10/285/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-11-10T00:00:00+08:00" content="2007-11-10">
+              2007-11-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/11/10/285/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/11/10/285/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.php.net/releases/5_2_5.php" target="_blank" rel="external">PHP 5.2.5 Released</a></li>
+</ul>
+<p>修正一些 Bug ，也加強了部份函式的效能，詳情請看 <a href="http://www.php.net/ChangeLog-5.php#5.2.5" target="_blank" rel="external">ChangeLog</a> 。 </p>
+<ul>
+<li><p><a href="http://www.rooftopsolutions.nl/article/160" target="_blank" rel="external">PHP shutdown sequence</a></p>
+</li>
+</ul>
+<p>這篇介紹當 PHP Script 在結束前，是以什麼樣的順序來呼叫相關的程序。在 5.2.0 是這樣的：</p>
+<ul>
+<li>register_shutdown_function</li>
+<li>Object destructor </li>
+<li>Output buffer callback</li>
+<li>Session write</li>
+<li>Session close</li>
+</ul>
+<ul>
+<li><a href="http://sbae.jlu.edu.cn/Blogs/tidyfox/?p=3" target="_blank" rel="external">PHP PEAR::Spreadsheet_Excel_Writer 生成多工作表Excel文件</a></li>
+</ul>
+<p>這是不依賴 Windows 的 COM 環境下所寫出來的 PHP::PEAR 原生套件，不過目前只有 <a href="http://pear.php.net/package/Spreadsheet_Excel_Writer" target="_blank" rel="external">Writer</a> ；而 <a href="http://sourceforge.net/projects/phpexcelreader/" target="_blank" rel="external">Spreadsheet_Excel_Reader</a> 雖然還在 <a href="http://pear.php.net/pepr/pepr-proposal-show.php?id=304" target="_blank" rel="external">Proposal</a> 階段，但已經可以用了。 </p>
+<ul>
+<li><a href="http://netevil.org/blog/2007/11/php-objective-c-bridge" target="_blank" rel="external">PHP Objective-C Bridge</a></li>
+</ul>
+<p>這個是還在開發中的技術，雖然還沒用到的機會，不過記下來先。</p>
+<ul>
+<li><a href="http://www.garfieldtech.com/blog/magic-benchmarks" target="_blank" rel="external">Benchmarking magic</a></li>
+</ul>
+<p>又是測效能的文章，使用 PHP 的魔術方法會慢一點。但是 Jeff 告訴我們<a href="http://www.procata.com/blog/archives/2007/11/04/benchmarking-phps-magic-methods/" target="_blank" rel="external">比較正確的觀念</a>。</p>
+<ul>
+<li><a href="http://blog.agoraproduction.com/index.php?/archives/53-Quick-Tip-PHP,-SimpleXML-and-CDATA.html" target="_blank" rel="external">Quick Tip: PHP, SimpleXML and CDATA</a></li>
+</ul>
+<p>在 PHP 中用 SimpleXML 處理 XML CDATA 資料的技巧。</p>
+<ul>
+<li><a href="http://blog.agoraproduction.com/index.php?/archives/54-Namespaces-part-1.2-Namespaces-import-renamed-to-use.html" target="_blank" rel="external">Namespaces part 1.2: Namespaces “import” renamed to “use”</a></li>
+</ul>
+<p>原來在 namespaces 的 import … as 關鍵字可能不用了，因為會和現有的應用程式衝突，所以之後也許會改用 use … as 。</p>
+<ul>
+<li><a href="http://tech.blog.box.net/2007/06/20/how-to-debug-php-with-vim-and-xdebug-on-linux/" target="_blank" rel="external">How to Debug PHP with Vim and XDebug on Linux</a></li>
+</ul>
+<p>雖然我也很少在 Linux 底下開發，但這篇還是很有參考價值。另外這篇 <a href="http://pixelated-dreams.com/archives/328-Debugging-from-Firefox-with-xdebug-and-Komodo.html" target="_blank" rel="external">Debugging from Firefox with xdebug and Komodo</a> 也不錯！ </p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Constructing-MultiLine-PDF-Documents-with-PHP-5/" target="_blank" rel="external">Constructing Multi-Line PDF Documents with PHP 5</a></li>
+</ul>
+<p>有用到再來看看。</p>
+<ul>
+<li><a href="http://www.sitepoint.com/article/caching-php-performance" target="_blank" rel="external">Cache it! Solve PHP Performance Problems</a></li>
+</ul>
+<p>這篇介紹了從前端到後端的快取技術，很值得一看！ (前端是指瀏覽器，後端是指伺服器) </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://blog.reindel.com/2007/10/30/how-to-choose-a-javascript-framework/" target="_blank" rel="external">How to choose a JavaScript framework</a></li>
+</ul>
+<p>從穩定性、適用性及成熟度…等等角度去討論如何選擇一個 JavaScript 框架。</p>
+<ul>
+<li><a href="http://www.c6software.com/Products/PopBox/Default.aspx" target="_blank" rel="external">Javascript Image Magnification 2.4</a></li>
+</ul>
+<p>可以動態放大圖片，跟我們一般點選連結到大圖的方式不同。</p>
+<ul>
+<li><a href="http://www.thethirdpart.com/blog/?p=189" target="_blank" rel="external">Prototype UI</a></li>
+</ul>
+<p>雖然也是沒在用 Prototype ，不過還是記下來先。</p>
+<ul>
+<li><a href="http://blog.thinkature.com/index.php/2006/11/26/escaping-the-javascript-call-stack-with-settimeout/" target="_blank" rel="external">Escaping the JavaScript call stack with setTimeout</a></li>
+</ul>
+<p>上次 ericsk 提到的<a href="http://blog.ericsk.org/archives/800" target="_blank" rel="external">時間差</a>問題，其實是 JavaScript call stack 的問題，可以利用 setTimeout(…., 0) 來避掉。 </p>
+<ul>
+<li><a href="http://d.hatena.ne.jp/KAZUMiX/20071105/meltdown" target="_blank" rel="external">[PC]HTML崩壊 meltdown.js</a></li>
+</ul>
+<p>點一下這個<a href="javascript: (function(" target="_blank" rel="external">連結</a>{var s=document.createElement(“script”);s.charset=”UTF-8”;var da=new Date();s.src=”<a href="http://www.rr.iij4u.or.jp/~kazumix/d/javascript/meltdown/meltdown.js?&quot;+da.getTime(" target="_blank" rel="external">http://www.rr.iij4u.or.jp/~kazumix/d/javascript/meltdown/meltdown.js?&quot;+da.getTime(</a>); document.body.appendChild(s)})();)試試看就知道了。</p>
+<ul>
+<li><a href="http://unixpapa.com/js/key.html" target="_blank" rel="external">JavaScript Madness: Keyboard Events</a></li>
+</ul>
+<p>各瀏覽器 Keyboard Events 的介紹。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.dezinerfolio.com/2007/10/17/creating-liquid-css-tabs-for-menus/" target="_blank" rel="external">Creating Liquid CSS Tabs for Menus</a></li>
+</ul>
+<p>這篇用圖解教你怎麼做 Tabs ，很容易懂喔。</p>
+<ul>
+<li><a href="http://css-tricks.com/make-a-secret-message-with-css-positioning-and-transparency/" target="_blank" rel="external">Make a “Secret Message” with CSS Positioning and Transparency</a> </li>
+</ul>
+<p>很有趣的 position: fixed 應用。</p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://css-tricks.com/what-beautiful-html-code-looks-like/" target="_blank" rel="external">What Beautiful HTML Code Looks Like</a> </li>
+</ul>
+<p>什麼才是漂亮的 HTML 程式結構？該文能給你最好的解答！</p>
+<ul>
+<li><p><a href="http://www.refly.net/blog/2007/11/05/%e5%9c%a8htaccess%e7%95%b6%e4%b8%ad%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e7%9a%84regular-expression-1/" target="_blank" rel="external">在.htaccess當中可以使用的Regular Expression - 1</a></p>
+</li>
+<li><p><a href="http://www.refly.net/blog/2007/11/05/%e5%9c%a8htaccess%e7%95%b6%e4%b8%ad%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e7%9a%84regular-expression-2/" target="_blank" rel="external">在.htaccess當中可以使用的Regular Expression - 2 </a></p>
+</li>
+<li><p><a href="http://www.refly.net/blog/2007/11/05/%e5%9c%a8htaccess%e7%95%b6%e4%b8%ad%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e7%9a%84regular-expression-3/" target="_blank" rel="external">在.htaccess當中可以使用的Regular Expression - 3</a></p>
+</li>
+</ul>
+<p>這個在自訂網址或重導向時很常用喔。</p>
+<ul>
+<li><a href="http://www.gnucitizen.org/blog/content-disposition-hacking" target="_blank" rel="external">Content-Disposition Hacking</a></li>
+</ul>
+<p>這篇講得有點深，我也沒辦法完全瞭解它的說明。</p>
+<ul>
+<li><a href="http://www.rooftopsolutions.nl/article/161" target="_blank" rel="external">Flash Uploader on Mac not triggering onComplete event</a></li>
+</ul>
+<p>這個是在 Mac 上使用 SWFUpload 要注意的事情，不過沒 Mac 可以測，先記下來好了。</p>
+<ul>
+<li><a href="http://www.456bereastreet.com/archive/200711/posh_plain_old_semantic_html/" target="_blank" rel="external">POSH - Plain Old Semantic HTML</a></li>
+</ul>
+<p>外國人又在創造縮寫了，是打算成為 AJAX 第二嗎？</p>
+<ul>
+<li><a href="http://www.softwareprojects.com/resources/building-content/t-website-development-6-must-have-pages-1428.html" target="_blank" rel="external">Website Development: 6 Must-have Pages</a></li>
+</ul>
+<p>六個網站必備的頁面。 </p>
+<h2 id="SQL">SQL</h2><ul>
+<li><a href="http://pooteeweet.org/blog/0/892#m892" target="_blank" rel="external">SQL (un)-pattern slides</a></li>
+</ul>
+<p>很棒的 SQL 常見模式介紹。 </p>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://blog.markplace.net/marks_place/15/2007/11/05/305" target="_blank" rel="external">在 svn 的 post-commit hook 中使用 Gmail SMTP</a></li>
+</ul>
+<p>有成員 Commit 程式碼時，可以利用 Gmail 發信通知。</p>
+<ul>
+<li><a href="http://blog.urdada.net/2007/11/07/63/" target="_blank" rel="external">Subversion: revert a commit [時光倒轉]</a></li>
+</ul>
+<p>利用 Subversion 把程式回復到某個版本的步驟。 </p>
+<ul>
+<li><a href="http://blog.assembleron.com/2007/11/06/programming-tips-1-dont-repeat-yourself/" target="_blank" rel="external">Programming Tips #1 “Don’t Repeat Yourself”</a></li>
+</ul>
+<p>就是常見的 DRY ，不自己重造輪子的意思。 </p>
+<h2 id="Other">Other</h2><ul>
+<li><a href="http://moustix.dyndns.org/fred/index.php/2006/06/18/6-osinfo-14" target="_blank" rel="external">osinfo 1.4</a></li>
+</ul>
+<p>好東西！可以幫你找出 Linux 正確的發行版本！ </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/11/03/284/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-11-03T00:00:00+08:00" content="2007-11-03">
+              2007-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/11/03/284/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/11/03/284/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://nio.infor96.com/archives/772" target="_blank" rel="external">ZendCon ‘07 Slides</a></li>
+</ul>
+<p><a href="http://nio.infor96.com/" target="_blank" rel="external">Nio</a> 幫大家把前陣子 Zend 研討會的一些投影片整理出來了。</p>
+<ul>
+<li><a href="http://www.procata.com/blog/archives/2007/10/28/working-with-php-5-in-mac-os-x-105/" target="_blank" rel="external">Working with PHP 5 in Mac OS X 10.5 (Leopard)</a></li>
+</ul>
+<p>我沒用 OS X ，不過還是記一下好了。</p>
+<ul>
+<li><a href="http://personal.schmalls.com/2007/10/29/return-to-prototype-based-programming-in-php/" target="_blank" rel="external">Return to Prototype Based Programming in PHP</a></li>
+</ul>
+<p>Joshua 這次改用 PHP 5.3 (或 6.0) 來試做 Prototype Based 的類別，不過我還是覺得把 function 變成字串是個爛主意。</p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/Building-PDF-Documents-with-PHP-5/" target="_blank" rel="external">Building PDF Documents with PHP 5</a></li>
+</ul>
+<p>透過 PHP5 及 <a href="http://www.php.net/pdf" target="_blank" rel="external">PDFlib</a> 來建立 PDF 文件。</p>
+<ul>
+<li><a href="http://weierophinney.net/matthew/archives/148-PHP-Anthology,-2nd-Edition-is-out.html" target="_blank" rel="external">PHP Anthology, 2nd Edition is out</a></li>
+</ul>
+<p>好書！ <a href="http://www.sitepoint.com/books/phpant2/" target="_blank" rel="external">The PHP Anthology</a> 之前台灣有第一版的中譯本：<a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=9867529677&amp;sid=23815" target="_blank" rel="external">專業 PHP 5 程式設計指南</a> (其實講的是 PHP4) ，這次第二版才是真正的用 PHP5 來撰寫所有範例程式！光是第 10 章的 ACL 就值得大家買來看了！不曉得上奇要不要再簽下來翻譯？期待中…</p>
+<ul>
+<li><a href="http://mordred.niama.net/blog/?p=122" target="_blank" rel="external">The Curse of Magic Quotes</a></li>
+</ul>
+<p>Magic Quotes 其實不是個好東西，我個人偏好自己處理原始資料。很多開發者都喜歡使用 magic_quotes 來處理 SQL 資料，但是 magic_quotes 只會作用在 $_GET 、 $_POST 、 $_COOKIES 、 $_REQUEST 等這類外部輸入的 Superglobal 變數上；假設今天你的資料不是從這些變數來的時候怎麼辦？還是一律關掉自己來吧。  </p>
+<ul>
+<li><a href="http://www.devshed.com/c/a/PHP/PHP-Operators/" target="_blank" rel="external">PHP Operators</a></li>
+</ul>
+<p>對 PHP 運算子不熟的人，這篇要仔細看看。</p>
+<ul>
+<li><a href="http://blog.adaniels.nl/?p=58" target="_blank" rel="external">Perl like temporary variables in PHP</a></li>
+</ul>
+<p>強！ ${0} 的確是可以用來當變數，事實上 <a href="http://hasin.wordpress.com/2007/10/20/did-you-know-you-can-have-cheese-burger-could-be-a-variable-name/" target="_blank" rel="external">${字串}</a> 也可以。</p>
+<ul>
+<li><a href="http://www.alexatnet.com/node/100" target="_blank" rel="external">6 PHP coding tips to write less code</a></li>
+</ul>
+<p>6 個讓 PHP 程式碼更簡短的技巧！就像文章回應所說的，我個人也很喜歡第六個技巧的觀點。</p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://snook.ca/archives/javascript/css_animations_in_safari/" target="_blank" rel="external">CSS Animations in Safari</a></li>
+</ul>
+<p>Safari 支援直接使用 CSS 來製作動畫的效果，其他瀏覽器還是得靠 JavaScript 配合才行。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://realazy.org/blog/2007/10/31/solution-of-keyup-failing-when-ime-is-on/" target="_blank" rel="external">输入法下keyup失效的解决方案</a></li>
+</ul>
+<p>記下先，也許有可能用到。</p>
+<ul>
+<li><a href="http://blog.ericsk.org/archives/800" target="_blank" rel="external">[AJAX] 微妙的時間差</a></li>
+</ul>
+<p>利用 setTimeout 可以解決一些瀏覽器的問題，我最近的專案裡也用到了類似的技巧，之後有時間再來分享。</p>
+<ul>
+<li><a href="http://tinymce.moxiecode.com/punbb/viewtopic.php?id=8959" target="_blank" rel="external">TinyMCE 3.0 Alpha 1 Released</a></li>
+</ul>
+<p>看來 Bug 還很多，連官方自己的例子執行起來都有 JavaScript Error 。</p>
+<ul>
+<li><a href="http://jquery.com/blog/2007/11/02/google-using-jquery/" target="_blank" rel="external">Google Using jQuery</a></li>
+</ul>
+<p>連 <a href="http://code.google.com/" target="_blank" rel="external">Google Code</a> 的新設計都採用 jQuery 了！ </p>
+<h2 id="Database">Database</h2><ul>
+<li><a href="http://www.rooftopsolutions.nl/article/159" target="_blank" rel="external">MemCached and MySQL UDFs</a></li>
+</ul>
+<p>看來 MySQL 似乎也快可以使用 Memcached 來放置快取了，據文章所說應該會是利用 tirgger 的方式。 </p>
+<ul>
+<li><a href="http://css-tricks.com/combine-all-the-posts-from-two-wordpress-blogs-into-one/" target="_blank" rel="external">Combine All the Posts From Two WordPress Blogs Into One</a></li>
+</ul>
+<p>把兩個相同網站的資料庫合併在一起的技巧，文章裡是以 Wordpress 為例。</p>
+<h2 id="WEB">WEB</h2><ul>
+<li><p><a href="http://blog.gslin.org/archives/2007/10/28/1354/" target="_blank" rel="external">VectorMagic：將點陣圖轉為向量圖</a></p>
+<p>Flash 也有提供類似的功能，不過能在網站上免費使用當然比較方便。</p>
+</li>
+<li><p><a href="http://simonwillison.net/2007/Oct/28/ishida/" target="_blank" rel="external">Unicode code converter</a></p>
+</li>
+</ul>
+<p>好物！可以幫你轉換一些常見的 Web 編碼格式！</p>
+<ul>
+<li><a href="http://markchiang.blogspot.com/2007/10/blog-post_31.html" target="_blank" rel="external">畫關係圖超方便</a></li>
+</ul>
+<p>輸入簡單的對應關係，網站會直接幫你畫成關係圖。</p>
+<ul>
+<li><a href="http://www.smashingmagazine.com/2007/11/02/rss-best-design-practices-and-icons/" target="_blank" rel="external">RSS: Best Design Practices And Icons</a></li>
+</ul>
+<p>一堆 RSS 的圖示。 </p>
+<h2 id="IDE_Tools">IDE Tools</h2><ul>
+<li><a href="http://www.binzywu.com/blog/2007/10/26/zend-studio-neon/" target="_blank" rel="external">Zend Studio Neon Beta</a></li>
+</ul>
+<p><a href="http://www.binzywu.com/" target="_blank" rel="external">Binzy Wu</a> 試用後所整理的 Neon 主要特色。</p>
+<ul>
+<li><a href="http://www.gaobo.info/read.php/448.htm" target="_blank" rel="external">Zend Develop Environment的使用心得</a></li>
+</ul>
+<p>這篇提到了 ZDE 5.5 的安裝方式。</p>
+<ul>
+<li><a href="http://blogs.pathf.com/agileajax/2007/10/aptana-10-relea.html" target="_blank" rel="external">Aptana 1.0 Released</a></li>
+</ul>
+<p>Aptana 主要強項是在 JavaScript 及 CSS 的編輯，可惜還是沒有所見即所得的編輯器，不過已經很強大了。</p>
+<ul>
+<li><a href="http://www.codejacked.com/php-development-with-eclipse-pdt/" target="_blank" rel="external">PHP Development with Eclipse PDT</a></li>
+</ul>
+<p>簡單地介紹了 Eclipse PDT 的安裝方式及使用方法。 </p>
+<h2 id="Trac">Trac</h2><ul>
+<li><a href="http://blog.xuite.net/emisjerry/tech/14158117" target="_blank" rel="external">[Trac] 把Trac的單欄樣式改成多欄的方法</a></li>
+</ul>
+<p>這個是簡單的排版技巧，不過非常實用。</p>
+<ul>
+<li><a href="http://www.jeffhung.net/blog/articles/jeffhung/1023/" target="_blank" rel="external">能產生 trac wiki 語法的 WYSIWYG editor plugin</a></li>
+</ul>
+<p>好東西！以後就不用再開一個語法參考視窗在那慢慢打了！</p>
+<h2 id="Other">Other</h2><ul>
+<li><a href="http://blog.xuite.net/emisjerry/tech/14176639" target="_blank" rel="external">加快檔案總管開啟速度的小密訣</a></li>
+</ul>
+<p>嗯，試了一下，的確有快一點。不過不知道是不是心理作用，還是 Cache 的關係就是了，要再多測幾次。</p>
+<ul>
+<li><a href="http://briian.com/?p=3826" target="_blank" rel="external">Windows XP/Vista 序號查詢、更換器 （Keyfinder v2.0 Beta 3）</a></li>
+</ul>
+<p>要重灌之前，用來查 Windows 的序號很方便。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/10/28/283/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-10-28T00:00:00+08:00" content="2007-10-28">
+              2007-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/10/28/283/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/10/28/283/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://valokuva.org/?p=67" target="_blank" rel="external">Analyzing image properties</a></li>
+</ul>
+<p>利用 Imagick 找出圖片的相關屬性，像是 EXIF 等資訊。</p>
+<ul>
+<li><a href="http://blog.astrumfutura.com/archives/312-Doing-that-thing-called-PEAR-Packaging-Source-Code-for-PEAR-Distribution.html" target="_blank" rel="external">Doing that thing called PEAR: Packaging Source Code for PEAR Distribution</a></li>
+</ul>
+<p>把自己寫的程式，包成 PEAR 套件以便散佈。</p>
+<ul>
+<li><a href="http://www.topthink.com.cn/index.php/Blog/199" target="_blank" rel="external">IBM上的PHP V5.2中新增功能系列</a></li>
+</ul>
+<p>解說一些 PHP 5.2 有的功能，雖然是簡體中文，不過已經比英文好懂多了。</p>
+<ul>
+<li><a href="http://www.phpbuilder.com/columns/rajeev_rakesh_20071024.php3" target="_blank" rel="external">Web Services Implementation using PHP and SOAP</a></li>
+</ul>
+<p>有需要開發 Web Services 的話，這篇是還不錯的參考文章。</p>
+<ul>
+<li><a href="http://www.alexatnet.com/node/98" target="_blank" rel="external">PHP fluent API tips</a></li>
+</ul>
+<p><a href="http://martinfowler.com/bliki/FluentInterface.html" target="_blank" rel="external">Fluent Interface</a> 就是 $object-&gt;method1(…)-&gt;method2(…) 這種寫法， Alex 簡單介紹了一下它的使用技巧，像是用一個 function 來回傳新物件本身。但是他也指出這樣會讓 ZDE 或 PDT 無法判斷回傳的物件型態，所以可以的話就是每個類別自己提供一個工廠方法來解決這個問題。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://css-tricks.com/guest-post-alternative-style-links/" target="_blank" rel="external">Guest Post: Alternative Style Links</a></li>
+</ul>
+<p>利用背景圖片，創造出不同風格的連結底線。</p>
+<ul>
+<li><a href="http://elements.projectdesigns.org/" target="_blank" rel="external">Elements</a></li>
+</ul>
+<p>Elements 是一個 CSS Framework ，是把一些常用的 CSS 設定集合起來；像是 <a href="http://meyerweb.com/eric/thoughts/2007/04/14/reworked-reset/" target="_blank" rel="external">reset.css</a> ，還有包含一個連結樣式的設定。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.webappers.com/2007/10/26/jsloader-javascript-libraries-on-demand/" target="_blank" rel="external">JSLoader - Javascript Libraries on Demand</a></li>
+</ul>
+<p>很酷的一個 JS 套件，可以幫你動態地依照版本載入其他 JavaScript Library 。</p>
+<ul>
+<li><a href="http://blog.ericsk.org/archives/795" target="_blank" rel="external">Prototype v.s. jQuery</a></li>
+</ul>
+<p>比較 Prototype 和 jQuery 的不同之處。不過我覺得兩個 Library 在實作上的觀念是不太一樣的，挑自己上手的用就行了。 </p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://blog.bobchao.net/2007/10/webrunner.html" target="_blank" rel="external">WebRunner (Prism)</a></li>
+</ul>
+<p>不需要開啟瀏覽器，純粹執行單一功能的頁面 (像是 Gmail 等) ，這樣用起來就像是 Desktop Application 了。</p>
+<ul>
+<li><a href="http://briian.com/?p=3598" target="_blank" rel="external">Google客製化搜尋引擎Google Custom Search Engine（可跨多站搜尋）</a></li>
+</ul>
+<p>如果覺得自己做搜尋引擎太累的話，可以參考這個用法。只是有些需要權限的內部資料，可能還是得自己動手寫一個。</p>
+<ul>
+<li><a href="http://www.real-blog.com/internet-notes/437" target="_blank" rel="external">紐約時報開放程式碼</a></li>
+</ul>
+<p>我有興趣的是 DBSlayer 這個套件。 </p>
+<h2 id="Programming">Programming</h2><ul>
+<li><a href="http://www.dualface.com/blog/?p=453" target="_blank" rel="external">保持代码、文档和数据库结构的同步</a></li>
+</ul>
+<p>很有趣的概念。話說 RoR 是利用 migrations 來做到這點的，我個人覺得是很不錯的方式。而 PHP 也有類似的套件，叫做 <a href="http://code.google.com/p/ruckusing/" target="_blank" rel="external">ruckusing</a> 。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/10/26/282/" itemprop="url">
+                  [PHP] 神奇的 $this
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-10-26T00:00:00+08:00" content="2007-10-26">
+              2007-10-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/10/26/282/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/10/26/282/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>今天發現了一個 PHP 5.2.4 的奇怪現象，查了官方手冊也沒發現有人特別提起 (也可能是我沒找到) 。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/10/26/282/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/30/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/32/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">586</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = 'page/31/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

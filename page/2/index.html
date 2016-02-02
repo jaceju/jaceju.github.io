@@ -1,13 +1,1252 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
-<script src="js/html5shiv.min.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link active">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="home"><article class="post-block"><h2 class="post-title"><a href="/2015/05/23/skilltree-tdd-2/" class="post-title-link">自動測試與 TDD 實務開發 - 上課心得 (中)</a><div class="post-badge-wrap"><div class="post-badge"><span class="post-badge-msg">Issue №</span><span class="post-num">586</span></div></div></h2><div class="post-meta"><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"><p>曾經有個工程師對著已經上線的網站說：「別說使用者不曉得這個系統是怎麼運作的，其實已經接手那麼久的我也不知道。」</p>
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://jaceju.net/page/2/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/05/23/skilltree-tdd-2/" itemprop="url">
+                  自動測試與 TDD 實務開發 - 上課心得 (中)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2015-05-23T16:19:43+08:00" content="2015-05-23">
+              2015-05-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/23/skilltree-tdd-2/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/23/skilltree-tdd-2/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>曾經有個工程師對著已經上線的網站說：「別說使用者不曉得這個系統是怎麼運作的，其實已經接手那麼久的我也不知道。」</p>
 <p>如果你對這句話心有戚戚焉的話，那你真的不孤單。其實有很多維護維護前人程式碼的工程師在在接到新的需求而去修改程式碼時，常常是很戰戰競競的，然後辦公室裡就會響起這樣的聲音：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#12300;&#25105;&#35352;&#24471;&#21069;&#19968;&#20491;&#24037;&#31243;&#24107;&#35498;&#36889;&#37002;&#21152;&#24190;&#34892;&#31243;&#24335;&#30908;&#23601;&#21487;&#20197;&#20102;&#65292;&#20320;&#35258;&#24471;&#21602;&#65311;&#12301;&#10;&#12300;&#25105;&#30452;&#35258;&#36889;&#27171;&#25913;&#26371;&#20986;&#21839;&#38988;...&#26377;&#29872;&#22659;&#35731;&#25105;&#20808;&#28204;&#35430;&#30475;&#30475;&#21966;&#65311;&#12301;&#10;&#12300;&#20808;&#19981;&#31649;&#65292;&#24460;&#22825;&#27963;&#21205;&#35201;&#19978;&#20102;&#65292;&#20320;&#20808;&#25913;&#23436;&#35731;&#23427;&#19978;&#32218;&#24460;&#20877;&#35498;&#12290;&#12301;&#10;&#12300;&#27794;&#26377;&#28204;&#35430;&#30340;&#35441;...&#12301;&#10;&#12300;&#38281;&#22068;&#65281;&#24555;&#21435;&#25913;&#12290;&#12301;&#10;&#19981;&#20037;&#24460;...&#10;&#12300;&#24920;&#20102;&#65281;&#35330;&#21934;&#20986;&#22823;&#21839;&#38988;&#20102;&#65281;&#20320;&#21487;&#20197;&#20808;&#36996;&#21407;&#21407;&#20358;&#30340;&#31243;&#24335;&#30908;&#21966;&#65311;&#12301;&#10;&#12300;&#19981;&#23565;&#21568;&#65281;&#25105;&#25913;&#36889;&#37002;&#24590;&#40636;&#26371;&#35731;&#37027;&#35041;&#20986;&#37679;&#65311;&#12301;&#10;&#21448;&#36942;&#20102;&#19968;&#26371;&#20818;...&#10;&#12300;&#20320;&#26377;&#36996;&#21407;&#21966;&#65311;&#65281;&#25972;&#20491;&#35330;&#21934;&#36039;&#26009;&#22823;&#20098;&#20102;&#21568;&#65281;&#20320;&#19968;&#23450;&#26377;&#21205;&#21040;&#20160;&#40636;&#26481;&#35199;&#20102;&#65281;&#12301;&#10;&#12300;&#25105;&#20840;&#36996;&#21407;&#20102;&#65281;&#29694;&#22312;&#36305;&#30340;&#26159;&#25105;&#27794;&#25913;&#36942;&#21069;&#30340;&#29256;&#26412;&#65281;&#12301;&#10;&#12300;&#19981;&#31649;&#65281;&#21152;&#29677;&#20462;&#22909;&#23427;&#65281;&#12301;&#10;&#12300;&#25105;&#19981;&#23601;&#35498;&#27794;&#28204;&#35430;&#30340;&#35441;&#26371;&#26377;&#21839;&#38988;&#21966;&#65281;&#65311;&#28858;&#20160;&#40636;&#19981;&#32893;&#65281;&#65311;&#12301;&#10;&#12300;&#20320;&#32769;&#38342;&#25105;&#32769;&#38342;&#65311;&#20877;&#38752;&#26479;&#35430;&#35430;&#30475;&#65281;&#12301;&#10;&#19977;&#22825;&#24460;...&#10;&#12300;&#22816;&#20102;&#65281;&#25294;&#26479;&#36208;&#65281;&#25105;&#19981;&#24819;&#20877;&#25913;&#36889;&#20491;&#31995;&#32113;&#20102;&#65281; (&#25684;&#26479;&#23376;) &#12301;</span><br></pre></td></tr></table></figure>
 <p>假設今天有時間讓你調整這個系統，在不知道線上系統整體如何運作的狀況下，你會怎麼讓它容易被維護與增添新功能呢？</p>
 <p>上週所介紹的<a href="http://jaceju.net/2015/05/17/skilltree-tdd/">單元測試</a>其實還沒辦法可以讓我們立刻套用在這樣的系統上，所以本週課程的重點就在：如何為已經上線的 legacy code 加上測試。</p>
-<p>為了達成這個目標，講師介紹了兩個招式： Web Testing 與 Refactoring 。以下我就以我的方式來介紹我所學到的心得。</p></div><div class="read-more"><a href="/2015/05/23/skilltree-tdd-2/"> 阅读全文</a></div></article></div></section></div><div class="extra"><section class="installtheme"><div class="row-flex row-flex-row limit-width"><div class="intro"><h3> 
-如果你喜欢 <a href="https://github.com/pinggod/hexo-theme-jekyll">Hexo-theme-hexo </a>, 何不动手尝试一下!</h3></div><div class="code"><div class="title">Quick-start Instructions</div><div class="shell"> <div class="line"><span class="output"># Prerequisite: Git, Node, Hexo</span></div><div class="line"><span class="path">~</span><span class="prompt">$</span><span class="command">hexo init blog && cd blog</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">npm install</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">git clone [hexo-theme-jekyll]</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">vim _config.yml</span></div></div></div></div></section><section class="selfintro"><div class="wrap row-flex row-flex-row limit-width"><div class="sign"><img src="img/github.png" alt=""></div><div class="intro"><h3 class="title">PING4GOD</h3><p class="content"> 三年不翅，将以长羽翼；不飞不鸣，将以观民则。</p><ul class="contact"><li><a href="https://github.com/xxxxx" class="social-link">github</a></li><li><a href="http://weibo.com/xxxxxx" class="social-link">weibo</a></li></ul></div></div></section></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
-<a href="https://hexo.io">Hexo</a>, 
-<a href="https://github.com/">GitHub</a>, 
-<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<p>為了達成這個目標，講師介紹了兩個招式： Web Testing 與 Refactoring 。以下我就以我的方式來介紹我所學到的心得。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/23/skilltree-tdd-2/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/05/17/skilltree-tdd/" itemprop="url">
+                  自動測試與 TDD 實務開發 - 上課心得 (上)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2015-05-17T10:07:11+08:00" content="2015-05-17">
+              2015-05-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/17/skilltree-tdd/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/17/skilltree-tdd/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>測試一直以來是很多開發者心中的痛，當被老闆問到：「你的程式碼是否都測試過了？」你是否能摸著自己的良心，並且拿出證據來說自己真的做過測試讓所有功能都符合需求了？我相信絕大多數的開發者這時一定都是面有難色，因為其實你不但騙了老闆，還騙了你自己。</p>
+<p>從我自己開始研究測試後，其實一直覺得自己還是沒有真正把測試當成是開發的一部份，更別說坊間很多程式書籍和教學課程能把這兩者真真實實地融合在一起，傳授給廣大的開發人員。</p>
+<p>這次正好有機會去聽 Joey (91 哥) 在 <a href="http://skilltree.my/">SkillTree</a> 開的 <a href="http://skilltree.my/events/ebg">TDD 課程</a>，我心想這實在是太棒了！ Joey 是業界在 TDD 領域相當有研究，而且也已經在實務上經過千錘百鍊的高手，如果能親眼見到他是如何把測試融入開發中的話，一定能大大提升自己的經驗值！</p>
+<p>不過課程中精采的部份太多了，恕我無法一一介紹；而且我也不覺得我能在這篇心得中，表達出講師在實務面的深厚功力。以下就讓我來為大家介紹這個課程為什麼值得你去聽的心得。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/17/skilltree-tdd/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/05/11/change-blog-system-to-hexo/" itemprop="url">
+                  部落格系統換成 Hexo
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2015-05-11T18:51:13+08:00" content="2015-05-11">
+              2015-05-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/11/change-blog-system-to-hexo/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/11/change-blog-system-to-hexo/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>部落格很久沒更新了，因為某些原因讓我不太再想留在社群網站上，所以就回來繼續寫寫文。</p>
+<p>然後 Octopress 實在是很慢，所以就換到 Hexo 這個以 Node.js 開發的 Blog Framework 。</p>
+<p>原來的文章網址也不打算留了，讓 Google 重新爬吧； GA 什麼的就找時間再調整。</p>
+<p>還是想有個能專心寫文的地方，希望能有空把手邊的草稿整理完。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/07/27/php-di-container/" itemprop="url">
+                  理解 Dependency Injection 實作原理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2014-07-27T17:45:50+08:00" content="2014-07-27">
+              2014-07-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/07/27/php-di-container/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/07/27/php-di-container/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>現代較新的 Web Framework 都強調自己有 Dependency Injection (以下簡稱 DI ) 的特色，只是很多人對它的運作原理還是一知半解。</p>
+<p>所以接下來我將用一個簡單的範例，來為各位介紹在 PHP 中如何實現簡易的 DI 。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/07/27/php-di-container/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/07/21/summary-of-common-php-mistakes/" itemprop="url">
+                  整理一些常見的 PHP 錯誤
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2014-07-21T10:51:03+08:00" content="2014-07-21">
+              2014-07-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/07/21/summary-of-common-php-mistakes/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/07/21/summary-of-common-php-mistakes/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>最近有數篇文章介紹了 PHP 開發者常見的錯誤，我順手整理如下：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/07/21/summary-of-common-php-mistakes/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/06/03/css3-animation-notes/" itemprop="url">
+                  CSS3 動畫基礎
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2014-06-03T10:28:36+08:00" content="2014-06-03">
+              2014-06-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/06/03/css3-animation-notes/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/06/03/css3-animation-notes/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>註：本文為作者發表於 OpenFoundry 之 <a href="http://www.openfoundry.org/en/tech-column/9233-css3-animation">CSS3 動畫基礎</a>一文的備份。</p>
+<script async src="//codepen.io/assets/embed/ei.js"></script>
+
+<p>在 JSConf.Asia 2013 ， Lea Verou 介紹了 <a href="http://lea.verou.me/css-4d/#intro">CSS in the 4th dimension</a>  (<a href="https://www.youtube.com/watch?v=NTJUFQmHbvc">影片</a>) ，引發了整個 Web 界對 CSS 動畫的期盼；在 <a href="http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html">CSS動畫簡介</a>一文也已經把重點整理好了。</p>
+<p>以下我們將會介紹主要兩個 CSS3 在動畫的屬性： Transition 與 Animation ，並配合實例來練習這些技術，後面我也會介紹一些不錯的相關開發工具。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/06/03/css3-animation-notes/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/05/16/create-angularjs-project-with-generator-angular/" itemprop="url">
+                  利用 generator-angular 來建立一個 AngularJS 專案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2014-05-16T17:57:33+08:00" content="2014-05-16">
+              2014-05-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/05/16/create-angularjs-project-with-generator-angular/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/05/16/create-angularjs-project-with-generator-angular/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>參考了 <a href="https://speakerdeck.com/pearlchen/angularjs-at-devweek-2014">AngularJS @ DevWeek 2014</a> 這篇的介紹，認真地試玩了一下 Yomen AngularJS Generator ，以下是簡單的筆記。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/05/16/create-angularjs-project-with-generator-angular/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/04/25/20-docs-guides-front-end-developers/" itemprop="url">
+                  20 個實用的前端開發參考資訊整理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2014-04-25T14:55:29+08:00" content="2014-04-25">
+              2014-04-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/04/25/20-docs-guides-front-end-developers/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/04/25/20-docs-guides-front-end-developers/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>原文連結： <a href="http://www.sitepoint.com/20-docs-guides-front-end-developers/">20 Useful Docs and Guides for Front-End Developers</a> </p>
+<p>看到上面的文章收集了許多前端開發參考資訊，覺得非常實用，故將重點整理如下：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/04/25/20-docs-guides-front-end-developers/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/03/20/font-render-problem-in-safari/" itemprop="url">
+                  在 Safari 中遇到文字粗細顯示不正確的問題
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2014-03-20T12:04:47+08:00" content="2014-03-20">
+              2014-03-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/03/20/font-render-problem-in-safari/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/03/20/font-render-problem-in-safari/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>在製作公司官網時，遇到類似以下這個影片的問題。</p>
+<p>​<a href="http://www.screenr.com/gZN8">http://www.screenr.com/gZN8</a></p>
+<p>也就是在有動畫效果時，某些元素上的文字粗細會被改變；然而實際用 DevTools 去查看該元素 CSS 時，會發現文字粗細樣式並沒有任何變化。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/03/20/font-render-problem-in-safari/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/03/10/pointing-and-calling-in-software-development/" itemprop="url">
+                  專注的承諾
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2014-03-10T11:55:53+08:00" content="2014-03-10">
+              2014-03-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/03/10/pointing-and-calling-in-software-development/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/03/10/pointing-and-calling-in-software-development/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>如果你常常趕不上火車，你或許有機會看到火車離開月台後，月台上的站務人員以食指比向左右兩邊，似乎在指著什麼東西。如果你更好奇一點，往那兩個方向看去，你將會見到在遠處的鐵軌旁有個號誌燈。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/03/10/pointing-and-calling-in-software-development/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">586</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = 'page/2/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

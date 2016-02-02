@@ -1,8 +1,1297 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
-<script src="js/html5shiv.min.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link active">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="home"><article class="post-block"><h2 class="post-title"><a href="/2007/05/03/181/" class="post-title-link">關於 HTML label 元素無法作用</a><div class="post-badge-wrap"><div class="post-badge"><span class="post-badge-msg">Issue №</span><span class="post-num">586</span></div></div></h2><div class="post-meta"><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div><div class="read-more"><a href="/2007/05/03/181/"> 阅读全文</a></div></article></div></section></div><div class="extra"><section class="installtheme"><div class="row-flex row-flex-row limit-width"><div class="intro"><h3> 
-如果你喜欢 <a href="https://github.com/pinggod/hexo-theme-jekyll">Hexo-theme-hexo </a>, 何不动手尝试一下!</h3></div><div class="code"><div class="title">Quick-start Instructions</div><div class="shell"> <div class="line"><span class="output"># Prerequisite: Git, Node, Hexo</span></div><div class="line"><span class="path">~</span><span class="prompt">$</span><span class="command">hexo init blog && cd blog</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">npm install</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">git clone [hexo-theme-jekyll]</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">vim _config.yml</span></div></div></div></div></section><section class="selfintro"><div class="wrap row-flex row-flex-row limit-width"><div class="sign"><img src="img/github.png" alt=""></div><div class="intro"><h3 class="title">PING4GOD</h3><p class="content"> 三年不翅，将以长羽翼；不飞不鸣，将以观民则。</p><ul class="contact"><li><a href="https://github.com/xxxxx" class="social-link">github</a></li><li><a href="http://weibo.com/xxxxxx" class="social-link">weibo</a></li></ul></div></div></section></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
-<a href="https://hexo.io">Hexo</a>, 
-<a href="https://github.com/">GitHub</a>, 
-<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://jaceju.net/page/42/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/05/03/181/" itemprop="url">
+                  關於 HTML label 元素無法作用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-05-03T00:00:00+08:00" content="2007-05-03">
+              2007-05-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/05/03/181/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/05/03/181/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>石頭成老大在我的「<a href="http://blog.roodo.com/jaceju/archives/3091221.html#comment-10126569" target="_blank" rel="external">終於用 jQuery 做了一個有趣的服務</a>」提到了在 IE 裡 label 元素的 for 屬性是有 bug 的，我研究了一下，把心得分享給大家。</p>
+<p>原本我一直以為表單中的 input 元素只要設定 display: none 或是 visibility: hidden 的話，就沒辦法送出；不過 W3C 中在「 17.13.2 Successful controls 」一節中有明確的規範：</p>
+<p><cite>Hidden controls and controls that are not rendered because of style sheet settings may still be successful.</cite></p>
+<p>也就是說不論是 display:none 或是 visibility: hidden ，只要是利用 CSS 來讓 control 消失的，都還是應該把值送給後端。</p>
+<p>我用了以下的程式測試了一下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;TEST&#60;/title&#62;&#10;&#60;style type=&#34;text/css&#34;&#62;&#10;.hide &#123;&#10;visibility: hidden;&#10;&#125;&#10;.none &#123;&#10;display: none;&#10;&#125;&#10;&#60;/style&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;form action=&#34;&#34; method=&#34;post&#34;&#62;&#10;&#60;label for=&#34;type1&#34;&#62;Type1&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;hide&#34; id=&#34;type1&#34;&#10;name=&#34;type[]&#34; value=&#34;1&#34; checked=&#34;checked&#34; /&#62;&#10;&#60;label for=&#34;type2&#34;&#62;Type2&#60;/label&#62;&#10;&#60;input type=&#34;radio&#34; class=&#34;none&#34; id=&#34;type2&#34;&#10;name=&#34;type[]&#34; value=&#34;2&#34; /&#62;&#10;&#60;input type=&#34;submit&#34; value=&#34;&#36865;&#20986;&#34; /&#62;&#10;&#60;/form&#62;&#10;&#60;a href=&#34;&#60;?php echo $_SERVER[&#39;PHP_SELF&#39;]; ?&#62;&#34;&#62;&#37325;&#26032;&#25972;&#29702;&#60;/a&#62;&#10;&#60;?php var_dump($_POST); ?&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;window.onload = function () &#123;&#10;var t2 = document.getElementById(&#39;type2&#39;);&#10;t2.focus();&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>結果發現 Firefox 、 Opera 不論有沒有預設的 checked ，在點選 label 後都會正確送出對應的 radio 欄位值。</p>
+<p>而 IE6 、 IE7 事實上也是支援，只是它們僅能送出有預設 checked 的 radio 欄位；如果完全沒有預設 checked 的 radion 欄位時，因為點選 label 仍無法讓 radio 的值改變，因此也無法送出任何 radio 值 (就如石頭成老大所說明的) 。</p>
+<p>所以我原先誤認 IE 不會理會 display: none 或是 visibility: hidden 的元素，其實是 label 無法作用；但更正確的來說，則是因為 <strong>IE 無法接受把 focus 放在不可見的元素上</strong>。</p>
+<p>換句話說，我們<strong>沒辦法在 IE 上 focus 任何被 display: none 或是 visibility: hidden 的元素</strong>；而 label 則是 HTML 用來 focus 對應 input 元素的捷徑，也因此就不會有作用了。</p>
+<p>註：所以我在「<a href="http://blog.roodo.com/jaceju/archives/3091221.html" target="_blank" rel="external">終於用 jQuery 做了一個有趣的服務</a>」裡的作法就是為了避開這個問題。</p>
+<p>最後這是不是 bug 呢？我個人倒覺得像是 IE 開發團隊自己的想法。不過 IE 無視於 W3C 標準也不是第一次了，所以石頭成老大說這是 IE 在 W3C 實作上的 bug 其實也不為過。至於解法，大家可以直接參考石頭成老大的說明，這裡我就不多寫了。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/04/29/180/" itemprop="url">
+                  終於用 jQuery 做了一個有趣的服務
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-04-29T00:00:00+08:00" content="2007-04-29">
+              2007-04-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/04/29/180/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/29/180/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>前幾天，好友<a href="http://blog.darkhero.net/" target="_blank" rel="external">丫凱</a>參考「<a href="http://www.sharecool.org/archives/244" target="_blank" rel="external">從自己的名字看你古代的地位</a>」的規則做出了一個<a href="http://blog.darkhero.net/articles/view/226" target="_blank" rel="external">程式版</a>；因為太好玩了，所以我想說幫他改成 AJAX 版。</p>
+<p>因為丫凱已經把最困難的核心部份 (<a href="http://140.111.34.69:8080/nationallibrary/WebJSP/char2spell_result.jsp" target="_blank" rel="external">音譯查詢</a>) 處理好了，所以我在前端介面的部份處理起來就輕鬆多了。利用 <a href="http://jquery.com" target="_blank" rel="external">jQuery</a> 搭配 CSS 的組合，再加上從 <a href="http://www.ajaxload.info" target="_blank" rel="external">ajaxload.info</a> 取得的載入動畫，以及我自己製作兩張裝飾圖片，新的介面就誕生了。</p>
+<p>在做的過程中，我體驗到了 jQuery 真的是很好用的工具，一些我大概要花兩三天去摸索的效果，它都已經提供讓我們使用了。結果我花在 CSS 排版上的時間還比 AJAX 多，因為光是要把 input:radio 隱藏卻要能動作的部份，足足花了我半個多小時 (有興趣的朋友可以自行研究一下裡面的 <a href="http://home.darkhero.net/~darkhero/funnyGame/style.css" target="_blank" rel="external">CSS</a>) ；不過換句話說，如果大家把 JavaScript 關掉的話還是可以用喔，只是看不到 RadioButton 而已。</p>
+<p>網路上的高手真的很多，他們為我們這些 Web 開發者提供了很多便利的工具。只要能善用它們，我想 Web 開發也能變成一種樂趣呢。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/04/20/179/" itemprop="url">
+                  JavaScript 小陷阱 (7) - IE 在處理 nodeValue 上與其他瀏覽器的差異
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-04-20T00:00:00+08:00" content="2007-04-20">
+              2007-04-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/04/20/179/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/20/179/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>這兩天在玩 <a href="http://jquery.com/">jQuery</a> 的 <a href="http://www.appelsiini.net/~tuupola/javascript/jEditable/">jEditable</a> 時，發現一個 IE 一個很怪異的問題，讓我傷腦筋了一陣子。</p>
+<p>在處理 IE 上 TD 標籤的 nodeValue 時，它顯示出來的格式竟然與其他瀏覽器不一樣。這實在是令人費解，不論我怎麼修改 jEditable ，這個問題依舊是沒有漂亮的解法。後來 Neo 老大建議我試試 TEXTAREA 及 PRE 標籤時，我才發現 IE 在處理 nodeValue 及 innerHTML 上和其他家瀏覽器有不同的作法。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/04/20/179/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/04/19/176/" itemprop="url">
+                  IE7 對錯誤 Hostname 在處理 Cookie 上的問題
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-04-19T00:00:00+08:00" content="2007-04-19">
+              2007-04-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/04/19/176/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/19/176/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>昨天<a href="http://blog.darkhero.net/" target="_blank" rel="external">凱</a>發現了一個 IE7 的<a href="http://blog.darkhero.net/articles/view/222" target="_blank" rel="external">問題</a>，我們兩個做了一個討論後在這裡把結果記錄下來。</p>
+<p>要重現這個問題很簡單，請照著以下的步驟試試看。</p>
+<p>首先在 Windows 的 hosts 檔裡加入粗體部份：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1    localhost&#10;&#60;strong&#62;127.0.0.1    host_name&#60;/strong&#62;</span><br></pre></td></tr></table></figure>
+<p>然後在網站根目錄底下建立一個 session.php ，內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;session_start();&#10;$test = (isset($_SESSION[&#39;test&#39;]))&#10;? (int) $_SESSION[&#39;test&#39;]&#10;: 0;&#10;echo $test;&#10;$test ++;&#10;$_SESSION[&#39;test&#39;] = $test;</span><br></pre></td></tr></table></figure>
+<p>然後試試用 IE7 瀏覽以下網址：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://host_name/session.php</span><br></pre></td></tr></table></figure>
+<p>試試看去重新整理這個頁面，會發現 Session 沒辦法動作。 </p>
+<p>不過同樣的網址在 IE6 和 Firefox 上， Session 都會在每次重新整理時正常加一；但如果把 host_name 換成 localhsot ，則每個瀏覽器都會正常動作。</p>
+<p>一開始我以為是 IE7 有支援 HttpOnly Cookie 的設定，不過這項設定是在 PHP 5.2 以後才會有，而凱用的是 PHP 5.1.6 ；然而 Firefox 也支援 HttpOnly Cookie 卻能正確運作，所以並不是這個問題。</p>
+<p>凱告訴我，他在 hosts 上加入 127.0.0.1 my.xxx.net 的設定，然後再用以上三種瀏覽器去瀏覽 <a href="http://my.xxx.net/session.php" target="_blank" rel="external">http://my.xxx.net/session.php</a> ，發現 Session 是可以運作的。這時我們就想到會不會是 host_name 有底線的關係，所以凱很快地重新把底線去掉後再用 IE7 測試，結果就正常了。</p>
+<p>最後我們兩個人的結論是：</p>
+<p><strong>在 IE7 中，有底線的 hostname 會沒辦法正確使用 Cookie 。</strong></p>
+<p>其實微軟不建議 Hostname (或 Domain Name ) 使用底線字元，這個可以參閱「<a href="http://support.microsoft.com/kb/909264" target="_blank" rel="external">為電腦、 網域、 站台及 OU 命名慣例在 Active Directory</a> 」一文。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/04/19/177/" itemprop="url">
+                  JavaScript 小陷阱 (6) - JSON 在瀏覽器上的差異
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-04-19T00:00:00+08:00" content="2007-04-19">
+              2007-04-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/04/19/177/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/19/177/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>Neo 老大告知我有個後台的 <a href="http://www.dynarch.com/projects/calendar/" target="_blank" rel="external">JS Calendar</a> 在 IE 上無法開啟，我查了一下，發現是 IE 解釋 JSON 的關係。 </p>
+<p>我所寫的 JSON 格式的<a href="http://blog.roodo.com/jaceju/archives/214716.html" target="_blank" rel="external">物件</a>大致如下： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var options = &#123;&#10;a: 1,&#10;b: 2,&#10;c: 3&#60;strong style=&#34;color: #F00;&#34;&#62;,&#60;/strong&#62;&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意 c: 3 後面有個逗號，這樣的物件會被 Firefox 所接受；而最後一個逗號後面的元素，會被 Firefox 視為 null 。 </p>
+<p>註：這是一種便捷寫法，方便我們可以將這些物件成員在程式碼中做搬移的動作；在 PHP 陣列和 CSS 屬性也有類似的寫法。 </p>
+<p>不過這樣的寫法在 IE 和 Opera 上就會有語法錯誤的問題了，因為正式的 JSON <a href="http://www.json.org/" target="_blank" rel="external">規範</a>裡並不能讓我們使用便捷語法。正確的格式應該不可以有最後一個逗號：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var options = &#123;&#10;a: 1,&#10;b: 2,&#10;c: 3&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<p>所以撰寫 JSON 格式的物件時，還是要小心不要掉入這種陷阱裡。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/04/19/178/" itemprop="url">
+                  在 Linux 上建構 PHP5 開發與測試環境
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-04-19T00:00:00+08:00" content="2007-04-19">
+              2007-04-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/04/19/178/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/19/178/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>終於正式進入 PHP5 的領域了，而公司的正式環境是使用 Linux ，所以我也必須準備一個在 Linux 平台上的測試環境。 Neo 老大給了我一台還不錯的雙 PIII 工作站，稍作清理後我就準備用它來當做測試機了。 </p>
+<p>不過為了在這台機器建構這樣的測試平台卻花了我不少時間，看來三年多前使用 Linux 的經驗已經完全消失了 (囧rz) 。還好網路上資源非常豐富，雖然在安裝的過程中遇到不少挫折，但是總算是一一克服。接下來，我就把自己安裝的方式記錄下來，免得以後忘記。當然如果內容有錯誤的話，也請各位先進不吝指導。 </p>
+<p>註：這裡還要感謝 <a href="http://www.neo.com.tw/">Neo</a> 和<a href="http://blog.darkhero.net/">丫凱</a>，他們不厭其煩地教導我很多有關 Linux 的知識，減少了我許多摸索的時間。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/04/19/178/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/04/02/175/" itemprop="url">
+                  [好站] MySQL Performance Blog - 記載有關 MySQL 優化的網站
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-04-02T00:00:00+08:00" content="2007-04-02">
+              2007-04-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/04/02/175/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/04/02/175/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>今天看到 <a href="http://www.neo.com.tw" target="_blank" rel="external">Neo</a> 老大和朋友提到 MySQL 優化的事情，剛好又在<a href="http://hi.baidu.com/thinkinginlamp/" target="_blank" rel="external">老王</a>那邊<a href="http://hi.baidu.com/thinkinginlamp/blog/item/c5dea0ecbd40603c27979169.html" target="_blank" rel="external">看到</a>一個有關 MySQL 優化的 Blog ，特此記之。</p>
+<p>網址：<a href="http://www.mysqlperformanceblog.com/" target="_blank" rel="external">MySQL Performance Blog</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/03/30/174/" itemprop="url">
+                  又一篇跟網站製作無關 - 我要玩 Wii 啦!!
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-03-30T00:00:00+08:00" content="2007-03-30">
+              2007-03-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/03/30/174/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/03/30/174/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>我也不知道我自己要撐到什麼時候 (&gt;_&lt;) 。超想玩…可是口袋還空空的…不想花太多錢錢… (嗚嗚…)</p>
+<p><img src="/resources/iwantwii.gif" alt="我要玩 Wii 啦!!"></p>
+<p>希望今年可以買得下手…<a href="http://dbzs-neo.jp/movie_04.html" target="_blank" rel="external">七龍珠</a><del><a href="http://www.ganbarion.co.jp/opa_sp_con/move/shop/shop_pv.html" target="_blank" rel="external">航海王</a></del>等我呀~~</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/03/27/173/" itemprop="url">
+                  我也來實作 PHP mix-in 的概念 - Part 3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-03-27T00:00:00+08:00" content="2007-03-27">
+              2007-03-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/03/27/173/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/03/27/173/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="說明">說明</h2><p>石頭成老大把他心目中的 mix-in <a href="http://blog.roodo.com/rocksaying/archives/2884871.html">目標</a>做出來了，他主要的實作有以下兩個重點：</p>
+<ul>
+<li>物件實體生成後彼此做 mix-in 是不相干的。</li>
+<li>類別方法在動態委派後要能遵守繼承原則，也就是說子承父、父不承子。</li>
+</ul>
+<p>另外他也提到要儲存方法是一件困難的事情，因為 PHP 有三種函式的呼叫方法：一般函數、類別靜態方法、實例方法。而我在 <a href="http://blog.roodo.com/jaceju/archives/2853761.html">Part 2</a> 裡的概念實作則是用 <a href="http://blog.roodo.com/jaceju/archives/409709.html">callback</a> 虛擬型態來儲存，不過<a href="http://blog.roodo.com/jaceju/archives/2853761.html" title="前一版"></a>卻忘了把一般函式給放進去。</p>
+<p>不過 Part 2 的實作已經實現了第一個目標，所以在這次 Part 3 的實作裡，我除了決定把一般函式也納入 mix-in 的實作裡，而且還要達成石頭成老大說的第二個目標。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2007/03/27/173/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/03/25/172/" itemprop="url">
+                  一個各家瀏覽器都可接受的事件處理器簡易寫法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-03-25T00:00:00+08:00" content="2007-03-25">
+              2007-03-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/03/25/172/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/03/25/172/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>如果臨時想讓各家瀏覽器都能處理 DOM 事件，又不想寫太多跨瀏覽器事件處理程式或使用額外的 JS 框架時，以下的程式碼可以參考看看。</p>
+<p>註：這個方法是為了某些簡單的活動頁寫的，我想如果要做較為複雜的效果時，還是使用別人已經包裝好的函式庫比較好。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;&#10;&#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&#62;&#10;&#60;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34;&#62;&#10;&#60;head&#62;&#10;&#60;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&#62;&#10;&#60;title&#62;Event Testing&#60;/title&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!-- &#60;![CDATA[&#10;function someHandler(e, t, arg1, arg2) &#123;&#10;var event_info = document.getElementById(&#39;event_info&#39;);&#10;var dom_info = document.getElementById(&#39;dom_info&#39;);&#10;var params = document.getElementById(&#39;params&#39;);&#10;event_info.innerHTML = &#39;&#39;;&#10;for (var n in e) &#123;&#10;event_info.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;&#39; + n +&#10;&#39;:&#60;&#39; + &#39;/strong&#62; &#39; + e[n] + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;&#125;&#10;dom_info.innerHTML = &#39;&#39;;&#10;for (var n in t) &#123;&#10;dom_info.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;&#39; + n +&#10;&#39;:&#60;&#39; + &#39;/strong&#62; &#39; + t[n] + &#39;&#60;&#39; + &#39;/p&#62;&#39;;    &#125;&#10;params.innerHTML = &#39;&#39;;&#10;params.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;arg1:&#60;&#39; +&#10;&#39;/strong&#62; &#39; + arg1 + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;params.innerHTML += &#39;&#60;p&#62;&#60;strong&#62;arg2:&#60;&#39; +&#10;&#39;/strong&#62; &#39; + arg2 + &#39;&#60;&#39; + &#39;/p&#62;&#39;;&#10;&#125;&#10;// ]]&#62; --&#62;&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;a href=&#34;#&#34; onclick=&#34;someHandler(event, this, &#39;param1&#39;, &#39;param2&#39;);&#10;return false;&#34;&#62;Show the info by eventhanlder.&#60;/a&#62;&#10;&#60;h2&#62;Info of Event Object&#60;/h2&#62;&#10;&#60;div id=&#34;event_info&#34;&#62;&#60;/div&#62;&#10;&#60;h2&#62;The Params&#60;/h2&#62;&#10;&#60;div id=&#34;params&#34;&#62;&#60;/div&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>主要的原理在於 HTML Tag 中 onxxxx 的屬性可以接受 event 這個關鍵字，而它就是瀏覽器的 Event 物件。所以我們就可以將 event 當做參數，傳給相關的 Event Handler 。</p>
+<p>另外這裡也利用 this 讓 Event Handler 可以知道是哪個 DOM 節點呼叫了它。 </p>
+<p>目前 W3C 標準與各家瀏覽器在 Event 物件上共同有的屬性如下：</p>
+<ul>
+<li><a href="http://www.w3schools.com/htmldom/event_altkey.asp" target="_blank" rel="external">altKey</a> (是否按下 alt 鍵) </li>
+<li><a href="http://www.w3schools.com/htmldom/event_button.asp" target="_blank" rel="external">button</a> (滑鼠的按鍵) </li>
+<li><a href="http://www.w3schools.com/htmldom/event_clientx.asp" target="_blank" rel="external">clientX</a> (在瀏覽器可視範圍中對應的 X 軸) </li>
+<li><a href="http://www.w3schools.com/htmldom/event_clienty.asp" target="_blank" rel="external">clientY</a> (在瀏覽器可視範圍中對應的 Y 軸) </li>
+<li><a href="http://www.w3schools.com/htmldom/event_ctrlkey.asp" target="_blank" rel="external">ctrlKey</a> (是否按下 ctrl 鍵) </li>
+<li><a href="http://www.w3schools.com/htmldom/event_screenx.asp" target="_blank" rel="external">screenX</a> (在螢幕上對應的 X 軸) </li>
+<li><a href="http://www.w3schools.com/htmldom/event_screeny.asp" target="_blank" rel="external">screenY</a> (在螢幕上對應的 Y 軸) </li>
+<li><a href="http://www.w3schools.com/htmldom/event_shiftkey.asp" target="_blank" rel="external">shiftKey</a> (是否按下 shift 鍵) </li>
+<li><a href="http://www.w3schools.com/htmldom/event_type.asp" target="_blank" rel="external">type</a> (事件類型) </li>
+</ul>
+<p>屬性的說明請參考 <a href="http://www.w3schools.com/htmldom/dom_obj_event.asp" target="_blank" rel="external">W3Schools::HTML DOM Event Object</a> 。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/41/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><span class="page-number current">42</span><a class="page-number" href="/page/43/">43</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/43/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">586</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = 'page/42/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

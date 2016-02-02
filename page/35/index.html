@@ -1,8 +1,1416 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 網站製作學習誌</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
-<script src="js/html5shiv.min.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link active">主页</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link">   博客</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li><li class="nav-list-item"><a href="https://github.com/xxxxx" target="_blank" class="nav-link">   github</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="home"><article class="post-block"><h2 class="post-title"><a href="/2007/09/10/250/" class="post-title-link">[Web] 連結分享</a><div class="post-badge-wrap"><div class="post-badge"><span class="post-badge-msg">Issue №</span><span class="post-num">586</span></div></div></h2><div class="post-meta"><div class="post-time">星期二, 二月 2日 2016</div></div><div class="post-content"></div><div class="read-more"><a href="/2007/09/10/250/"> 阅读全文</a></div></article></div></section></div><div class="extra"><section class="installtheme"><div class="row-flex row-flex-row limit-width"><div class="intro"><h3> 
-如果你喜欢 <a href="https://github.com/pinggod/hexo-theme-jekyll">Hexo-theme-hexo </a>, 何不动手尝试一下!</h3></div><div class="code"><div class="title">Quick-start Instructions</div><div class="shell"> <div class="line"><span class="output"># Prerequisite: Git, Node, Hexo</span></div><div class="line"><span class="path">~</span><span class="prompt">$</span><span class="command">hexo init blog && cd blog</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">npm install</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">git clone [hexo-theme-jekyll]</span></div><div class="line"><span class="path">~/blog</span><span class="prompt">$</span><span class="command">vim _config.yml</span></div></div></div></div></section><section class="selfintro"><div class="wrap row-flex row-flex-row limit-width"><div class="sign"><img src="img/github.png" alt=""></div><div class="intro"><h3 class="title">PING4GOD</h3><p class="content"> 三年不翅，将以长羽翼；不飞不鸣，将以观民则。</p><ul class="contact"><li><a href="https://github.com/xxxxx" class="social-link">github</a></li><li><a href="http://weibo.com/xxxxxx" class="social-link">weibo</a></li></ul></div></div></section></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2016 <a href="/">Jace Ju</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
-<a href="https://hexo.io">Hexo</a>, 
-<a href="https://github.com/">GitHub</a>, 
-<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="網站製作學習誌" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="網站製作學習誌">
+<meta property="og:url" content="http://jaceju.net/page/35/index.html">
+<meta property="og:site_name" content="網站製作學習誌">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="網站製作學習誌">
+<meta name="twitter:description">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 網站製作學習誌 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-450710-8', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">網站製作學習誌</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">記錄在開發網站時所學的一切</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/10/250/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-10T00:00:00+08:00" content="2007-09-10">
+              2007-09-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/10/250/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/10/250/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><li>
+
+<p><a href="http://www.colder.ch/news/08-24-2007/28/late-static-bindings-expl.html" target="_blank" rel="external">Late Static Bindings Explained</a></p>
+<p>這個功能會出現在 PHP6 上，不過也可能會在 PHP5 的新版本實作出來。簡單說明一下：</p>
+<p>以往我們在繼承 Class 後，是不可能覆寫 (override) static method 的，例如： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;    public static function test()&#10;    &#123;&#10;        self::who();&#10;    &#125;&#10;&#125;&#10;class B extends A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;&#125;&#10;B::test(); // A</span><br></pre></td></tr></table></figure>
+<p>在 PHP6 裡提供了一個 static 關鍵字，用來表示繼承後的類別 (self 保留給目前的類別使用) ： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;?php&#10;class A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;    public static function test()&#10;    &#123;&#10;        static::who();&#10;    &#125;&#10;&#125;&#10;class B extends A&#10;&#123;&#10;    public static function who()&#10;    &#123;&#10;        echo __CLASS__;&#10;    &#125;&#10;&#125;&#10;B::test(); // B</span><br></pre></td></tr></table></figure>
+<p>看起來相當方便，就是不知道實際用起來如何了。<br></p></li><p></p>
+<ul>
+<li><a href="http://elizabethmariesmith.com/2007/09/08/perverting-windows-with-php/" target="_blank" rel="external">Perverting windows with PHP</a></li>
+</ul>
+<p>介紹一些 PHP 在 Windows 上的 Solution ，也包含 <a href="http://winbinder.org/" target="_blank" rel="external">Winbinder</a> 。 </p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://blog.yoren.info/2007/09/09/475/" target="_blank" rel="external"> [jQuery] 依連結的檔案類型秀出圖示</a></li>
+</ul>
+<p>這也是很常用的功能， <a href="http://blog.yoren.info/" target="_blank" rel="external">yoren</a> 也解釋得很詳細喔。</p>
+<h2 id="SQL">SQL</h2><ul>
+<li><a href="http://www.khankennels.com/blog/index.php/archives/2007/04/20/getting-joins/" target="_blank" rel="external">“Getting” Joins</a></li>
+</ul>
+<p>用圖形來表示 SQL 中的 JOIN 語法，如果搞不清楚 INNER JOIN 、 OUTER JOIN 或 LEFT JOIN 等關係時，不妨參考看看。 </p>
+<ul>
+<li><a href="http://www.databasecolumn.com/" target="_blank" rel="external">The Database Column</a></li>
+</ul>
+<p>一個新的 Blog ，專門介紹 Database 相關資訊。</p>
+<ul>
+<li><a href="http://postgresql-chinese.blogspot.com/" target="_blank" rel="external">PostgreSQL ::國際中文社群網誌::</a></li>
+</ul>
+<p>這個應該不用多說了吧，有用 PostgreSQL 的話應該常逛。 :)</p>
+<h2 id="Other">Other</h2><ul>
+<li><a href="http://www.smashingmagazine.com/2007/09/10/20-alternate-ways-to-focus-on-users/" target="_blank" rel="external">20 (Alternate) Ways to Focus on Users</a></li>
+</ul>
+<p>我覺得這篇文章是「如何設計好網站」的進階濃縮版本。然後我的感想 (也可以說是經驗) 是：如果這個網站連你自己都不想用，那就別指望客戶會掏錢給你。 </p>
+<p>註：不過世事無絕對，就是有那種天兵客戶願意花錢叫你做一些你想砸電腦的功能。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/10/251/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-10T00:00:00+08:00" content="2007-09-10">
+              2007-09-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/10/251/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/10/251/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<p>被 <a href="http://www.neo.com.tw" target="_blank" rel="external">Neo</a> 笑說我最近變成網摘師了…</p>
+<p>啊就沒空也沒想法…只好多多看看別人的東西，增長一下見聞。</p>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://fashion.hosmoz.net/post/2007/08/30/Quick-php5-pre-migration-check" target="_blank" rel="external">Quick php5 pre-migration check</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">find . -name &#34;*.php&#34; -exec /usr/bin/php5 -l &#123;&#125; \; | grep -v &#39;No syntax errors&#39;</span><br></pre></td></tr></table></figure>
+<p>酷… PHP 命令列模式其實有很多好玩的東西，再配合 linux 指令就更有趣了。 </p>
+<h2 id="Web">Web</h2><ul>
+<li><a href="http://www.avivadirectory.com/free-online-tests/" target="_blank" rel="external">Grade Your Website: 31 Free Online Tests</a> (簡體中文解釋：<a href="http://zsk.akaka.com.cn/" target="_blank" rel="external">︻┳═一 [zsk.akaka.com.cn]</a>::<a href="http://zsk.akaka.com.cn/2007/06/31-free-tests-online/" target="_blank" rel="external">31 个用来测试你网站各项性能的免费在线工具</a>)</li>
+</ul>
+<p>有空可以每個玩看看。</p>
+<ul>
+<li><a href="http://rd-program.blogspot.com/2007/09/metaweb-query-language.html" target="_blank" rel="external">Metaweb Query Language 這個有趣</a></li>
+</ul>
+<p>很有趣，但我看不懂它在做什麼。看來我還是太淺了…</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/09/249/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-09T00:00:00+08:00" content="2007-09-09">
+              2007-09-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/09/249/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/09/249/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.killerphp.com/articles/why-learn-oop-in-php-another-take/" target="_blank" rel="external">Why learn OOP in PHP - another take.</a></li>
+</ul>
+<p>幾個為什麼要在 PHP 上學習 OOP 技術的原因。</p>
+<p>在我的觀點裡，事實上 OOP 並非僅僅是一種趨勢，它也是開發與設計上的一種觀念。 PHP 不一定要用 OOP ，但是有了 OOP 的概念，就能夠幫助你設計出較為彈性的系統。不過 OOP 的複雜度也不是一般 PHPer 能夠快速理解的，沒有豐富的實戰經驗會讓人覺得在 PHP 上使用 OOP 實在是很痛苦的一件事。 </p>
+<ul>
+<li><a href="http://devzone.zend.com/article/2525-Zend_Pdf-tutorial" target="_blank" rel="external">Zend_Pdf tutorial</a></li>
+</ul>
+<p>簡單實用的 Zend_Pdf (<a href="http://framework.zend.com" target="_blank" rel="external">Zend Framework</a> 的套件之一) 教學，尤其豐富的繪圖指令真是酷呆了。 </p>
+<ul>
+<li><a href="http://www.phpfreechat.net/" target="_blank" rel="external">php Free Chat</a></li>
+</ul>
+<p>用 PHP 搭配 Ajax 製作的聊天室套裝程式，可以學到許多不錯的整合技朽。 </p>
+<ul>
+<li><a href="http://www.eos-team.org/2007/09/06/php6-function-return-array-idea.html" target="_blank" rel="external">[PHP6] function-return-array idea!</a></li>
+</ul>
+<p>讓 function 回傳 array 時，可以不用再透過一個變數，直接使用。</p>
+<ul>
+<li><a href="http://api.drupal.org/api/file/developer/topics/oop.html/5" target="_blank" rel="external">Drupal Programming from an Object-Oriented Perspective</a></li>
+</ul>
+<p>Jimmy (Drupal 在台灣的推廣者及模組開發者) 介紹的 OOP 在 Drual 上的應用，我搭配 Drupal 的原始碼一起看時感觸很多，在此感謝 Jimmy 。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://realazy.org/blog/2007/09/09/reflow/" target="_blank" rel="external">reflow</a></li>
+</ul>
+<p>瀏覽器的在元素消失或出現的重排版也是很重要的一門學問， <a href="http://realazy.org/" target="_blank" rel="external">realazy</a> 簡單的介紹了 reflow 這個重要的觀念。 </p>
+<ul>
+<li><a href="http://www.cssplay.co.uk/menus/pro_dropline" target="_blank" rel="external">Professional centered sliding doors dropline menu…</a></li>
+</ul>
+<p>超漂亮的 CSS 選單，我應該會有機會在目前的專案用到。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/07/248/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-07T00:00:00+08:00" content="2007-09-07">
+              2007-09-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/07/248/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/07/248/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://fosterburgess.com/kimsal/?p=317" target="_blank" rel="external">PHP prediction</a></li>
+</ul>
+<p><a href="http://fosterburgess.com/kimsal/" target="_blank" rel="external">Michael Kimsal</a> 預測在 PHP4 終結之前，會有一個工具協助大家讓 PHP4 和 PHP5 並存，而不是用現在的 CGI 及 Module 共存模式。</p>
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><p><a href="http://usabletype.com/weblog/five-quick-javascript-tips/" target="_blank" rel="external">Five quick JavaScript tips</a> (簡體中文解釋：<a href="http://www.marchbox.com/" target="_blank" rel="external">三月的蚁穴</a>::<a href="http://www.marchbox.com/blog/five-quick-javascript-tips-chinese/" target="_blank" rel="external">JavaScript开发时的五个小提示</a>)</p>
+</li>
+</ul>
+<p>簡單列一下：</p>
+<ul>
+<li>Use the submit event on forms</li>
+<li>If something is clickable, make sure it’s a link</li>
+<li>Simple loop optimisation</li>
+<li>Use anonymous functions for event handlers</li>
+<li>Use Array.join instead of concatenating strings</li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/06/247/" itemprop="url">
+                  [PHP] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-06T00:00:00+08:00" content="2007-09-06">
+              2007-09-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/06/247/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/06/247/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<ul>
+<li><a href="http://securityreason.com/news/0/0x1f" target="_blank" rel="external">PHP 5.2.4 Released… unpatched</a></li>
+</ul>
+<p>PHP 5.2.4 還是有沒修到的 Bug ….</p>
+<ul>
+<li><a href="http://www.php.net/migration52" target="_blank" rel="external">PHP Migrating from PHP 5.1.x to PHP 5.2.x - Manual</a></li>
+</ul>
+<p>PHP 5.1.x 和 PHP 5.2.x 有架構上的不同，這裡提供如何升級的建議。</p>
+<ul>
+<li><a href="http://blog.adaniels.nl/?p=44" target="_blank" rel="external">Migrating from PHP4 to PHP5: A strategy for hosts</a></li>
+</ul>
+<p>提供如何將主機從 PHP4 升級到 PHP5 的建議。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/05/246/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-05T00:00:00+08:00" content="2007-09-05">
+              2007-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/05/246/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/05/246/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="Programming">Programming</h2><ul>
+<li><p><a href="http://www.javaworld.com.tw/roller/page/qing?entry=&#38500;&#37679;&#36889;&#22238;&#20107;_1_4" target="_blank" rel="external">除錯這回事</a><a href="http://www.javaworld.com.tw/roller/page/qing?entry=%E9%99%A4%E9%8C%AF%E9%80%99%E5%9B%9E%E4%BA%8B_2_4_%E9%99%A4%E9%8C%AF%E7%9A%84%E5%9F%BA%E7%A4%8E%E8%A8%AD%E6%96%BD_%E6%97%A5%E8%AA%8C%E7%A8%8B%E5%BC%8F%E5%BA%AB%E7%9A%84%E9%81%8B%E7%94%A8" target="_blank" rel="external">（</a><a href="http://www.javaworld.com.tw/roller/page/qing?entry=&#38500;&#37679;&#36889;&#22238;&#20107;_1_4" target="_blank" rel="external">1/4</a><a href="http://www.javaworld.com.tw/roller/page/qing?entry=%E9%99%A4%E9%8C%AF%E9%80%99%E5%9B%9E%E4%BA%8B_2_4_%E9%99%A4%E9%8C%AF%E7%9A%84%E5%9F%BA%E7%A4%8E%E8%A8%AD%E6%96%BD_%E6%97%A5%E8%AA%8C%E7%A8%8B%E5%BC%8F%E5%BA%AB%E7%9A%84%E9%81%8B%E7%94%A8" target="_blank" rel="external">）</a></p>
+</li>
+<li><p><a href="http://www.javaworld.com.tw/roller/page/qing?entry=%E9%99%A4%E9%8C%AF%E9%80%99%E5%9B%9E%E4%BA%8B_2_4_%E9%99%A4%E9%8C%AF%E7%9A%84%E5%9F%BA%E7%A4%8E%E8%A8%AD%E6%96%BD_%E6%97%A5%E8%AA%8C%E7%A8%8B%E5%BC%8F%E5%BA%AB%E7%9A%84%E9%81%8B%E7%94%A8" target="_blank" rel="external">除錯這回事（2/4）除錯的基礎設施－日誌程式庫的運用</a></p>
+</li>
+<li><p><a href="http://www.javaworld.com.tw/roller/page/qing?entry=%E9%99%A4%E9%8C%AF%E9%80%99%E5%9B%9E%E4%BA%8B_3_4_%E5%85%8B%E6%9C%8D%E5%BF%83%E7%90%86%E9%9A%9C%E7%A4%99" target="_blank" rel="external">除錯這回事（3/4）克服心理障礙</a></p>
+</li>
+<li><p><a href="http://www.javaworld.com.tw/roller/page/qing?entry=%E9%99%A4%E9%8C%AF%E9%80%99%E5%9B%9E%E4%BA%8B_4_4_%E6%AE%BA%E8%9F%B2" target="_blank" rel="external">除錯這回事（4/4）殺蟲</a></p>
+</li>
+</ul>
+<p><a href="http://www.javaworld.com.tw/roller/page/qing" target="_blank" rel="external">Qing</a> 談 Debug ，值得所有程式開發者參考。</p>
+<h2 id="Web_Design">Web Design</h2><ul>
+<li><a href="http://www.welie.com/patterns/" target="_blank" rel="external">Interaction Design Pattern Library</a></li>
+</ul>
+<p>網頁互動模式的蒐集，有空應該研究看看。</p>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://www.ds-o.com/archives/64-Adding-Database-Tests-to-Existing-PHPUnit-Test-Cases.html" target="_blank" rel="external">Adding Database Tests to Existing PHPUnit Test Cases</a></li>
+</ul>
+<p>也是用 PHPUnit 的 DB extension 來做資料庫測試。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/05/245/" itemprop="url">
+                  [Blog] 回復搜尋功能
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-05T00:00:00+08:00" content="2007-09-05">
+              2007-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/05/245/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/05/245/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>原來我一直錯怪樂多…</p>
+<p>之前的搜尋表單值是傳送到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://cgi.blog.roodo.com/search</span><br></pre></td></tr></table></figure>
+<p>因為 mark 和 kuni 說搜尋有錯誤，所以我剛剛又到樂多 Blog 首頁去測了一下，發現正確的位址應該是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://search.blog.roodo.com/index.php</span><br></pre></td></tr></table></figure>
+<p>特此更正一下。</p>
+<p>現在搜尋終於正常了，為我之前的錯誤向各位道歉。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/05/244/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-05T00:00:00+08:00" content="2007-09-05">
+              2007-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/05/244/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/05/244/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><p><a href="http://www.search-this.com/2007/08/13/yahoo-job-interview-questions-part-1/" target="_blank" rel="external">Yahoo Job Interview Questions: Part 1</a> (中文解釋：<a href="http://www.hkpug.net/" target="_blank" rel="external">香港 PHP 用家社區</a>:: <a href="http://www.hkpug.net/node/211" target="_blank" rel="external">Yahoo! 的 PHP 面試題目（第一部份）</a>) </p>
+</li>
+<li><p><a href="http://www.search-this.com/2007/08/27/yahoo-job-interview-questions-part-2/" target="_blank" rel="external">Yahoo Job Interview Questions: Part 2</a> (中文解釋：<a href="http://www.hkpug.net/" target="_blank" rel="external">香港 PHP 用家社區</a>:: <a href="http://www.hkpug.net/node/212" target="_blank" rel="external">Yahoo! 的 PHP 面試題目（第二部份）</a>) </p>
+</li>
+</ul>
+<p>Yahoo 徵 PHP 開發者的部份考試題目詳解，大部份都是很基礎卻容易搞錯的觀念題。 </p>
+<ul>
+<li><a href="http://mikenaberezny.com/archives/79" target="_blank" rel="external">Better PHPUnit Group Annotations</a> (簡體中文解釋：<a href="http://nio.infor96.com" target="_blank" rel="external">Nio’s Weblog</a>:: <a href="http://nio.infor96.com/archives/753" target="_blank" rel="external">PHPUnit 支持的 group 测试</a>) </li>
+</ul>
+<p>和 Test Suite 有異曲同工之妙的 group 測試方式。</p>
+<h2 id="HTTP/Web_Site">HTTP/Web Site</h2><ul>
+<li><a href="http://www.ilovejackdaniels.com/apache/http-status-codes-explained/" target="_blank" rel="external">HTTP Status Codes Explained</a></li>
+</ul>
+<p>解釋 HTTP 狀態的回傳值。</p>
+<ul>
+<li><a href="http://yuiblog.com/blog/2007/09/04/video-souders/" target="_blank" rel="external">YUI Theater — Steve Souders: “High Performance Web Sites: 14 Rules For Faster Pages”</a></li>
+</ul>
+<p>讓頁面更快呈現的 14 條規則。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/04/243/" itemprop="url">
+                  [Web] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-04T00:00:00+08:00" content="2007-09-04">
+              2007-09-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/04/243/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/04/243/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <a id="more"></a>
+<h2 id="PHP">PHP</h2><ul>
+<li><a href="http://ishouldbecoding.com/2007/08/27/pondering-php-6/" target="_blank" rel="external">Pondering PHP 6</a></li>
+</ul>
+<p>介紹 PHP6 的特色，並提供一些額外的參考連結。</p>
+<li><br><br><a href="http://www.refreshinglyblue.com/2007/8/20/php-vs-ruby-practical-language-differences" target="_blank" rel="external">PHP vs Ruby - Practical Language Differences</a><br><br>PHP 和 Ruby 的一些比較，我很在意這句：「<strong>Hosting Ruby (on Rails) Is Painful And Expensive</strong>」。<br><br>其實 PHP5 也好不到哪去，現在都是 PHP4 的天下；希望隨著 PHP4 生命的終結，可以看到 PHP5 慢慢抬頭。<br></li>
+
+
+<h2 id="JavaScript">JavaScript</h2><ul>
+<li><a href="http://www.java2s.com/Code/JavaScript/GUI-Components/FancyTimePickeraddednewfeaturesbyMaheshViswanathanmaheshvv2athotmailcom.htm" target="_blank" rel="external">Fancy Time Picker</a> (中文介紹：<a href="http://blog.darkthread.net/blogs/darkthreadtw/archive/2007/09/04/code-javascript-time-picker.aspx" target="_blank" rel="external">黑暗執行緒::CODE-Javascript Time Picker</a>) </li>
+</ul>
+<p>一般都是萬年曆選擇器，這個是用來挑 24 小時的工具。 IE 、 Firefox 相容。</p>
+<ul>
+<li><a href="http://arstechnica.com/journals/linux.ars/2007/08/27/javascript-for-all-ages" target="_blank" rel="external">JavaScript Tips for Novices, Acolytes, and Gurus</a></li>
+</ul>
+<p>介紹一些 JavaScript 的技巧，這些大部份也可以在 <a href="http://tlsj.tenlong.com.tw/WebModule/BookSearch/bookSearchViewAction.do?isbn=9789866840036&amp;sid=37518" target="_blank" rel="external">JavaScript 大全</a>裡找到。 </p>
+<h2 id="CSS">CSS</h2><ul>
+<li><a href="http://www.askthecssguy.com/2007/08/creating_a_table_with_dynamica.html" target="_blank" rel="external">Creating a table with dynamically highlighted columns like Crazy Egg’s pricing table</a></li>
+</ul>
+<p>這個 CSS 技巧可以讓 Table 在閱讀上更清晰也更有特色，我也想到了一些有趣的應用了。 </p>
+<h2 id="其他">其他</h2><li>
+
+<p><a href="http://blog.vixual.net/2007/09/firefox-google-reader-rss.html" target="_blank" rel="external">讓 FireFox 可以使用 Google Reader 訂閱 RSS</a></p>
+<p>Google 用 iGoogle 來閱讀 RSS 的這個決定對我來說真的很不好…不過我的 Firefox 裡應該是改：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">browser.contentHandlers.types.&#60;strong&#62;1&#60;/strong&#62;.uri</span><br></pre></td></tr></table></figure>
+<p>這個設定才對 (就是對應到 Google Reader 那個數字) 。<br></p></li><p></p>
+<ul>
+<li><a href="http://portable.easylife.idv.tw/1058" target="_blank" rel="external">利用 .htacess 達成網頁壓縮。減少流量</a></li>
+</ul>
+<p>如果主機沒辦法掌控的話，這個是個不錯的方式。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2007/09/03/242/" itemprop="url">
+                  [PHP] 連結分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2007-09-03T00:00:00+08:00" content="2007-09-03">
+              2007-09-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2007/09/03/242/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2007/09/03/242/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <ul>
+<li><a href="http://www.ds-o.com/archives/63-PHPUnit-Database-Extension-DBUnit-Port.html" target="_blank" rel="external">PHPUnit Database Extension (DBUnit Port)</a></li>
+</ul>
+<p>好東西！ JUnit 有 DBUnit 這個 extension ，而 PHPUnit 又是參考 JUnit 開發的測試工具，那麼 <a href="http://www.ds-o.com/authors/1-Mike-Lively" target="_blank" rel="external">Mike Lively</a> 就把 DBUnit 也一起搬到了 PHPUnit 裡了。</p>
+<p>而且 Dataset 這個概念，這個和我想做的 Dataset 不謀而合；有空下載回來研究研究。 </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Jace Ju" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jace Ju</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">586</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jaceju" target="_blank">
+                  <i class="fa fa-github"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jaceju" target="_blank">
+                  <i class="fa fa-twitter"></i> Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jace Ju</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jaceju';
+      var disqus_identifier = 'page/35/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
