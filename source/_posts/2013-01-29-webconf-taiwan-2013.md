@@ -6,8 +6,6 @@ comments: true
 tags: WebConf
 ---
 
-![WebConf 心得](https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash4/379363_406573046091061_585125215_n.jpg)
-
 [WebConf Taiwan 2013](http://webconf.tw) 是今年我所知道的第一個大型 Conference ，如果說只能用一個字表達這次 WebConf 的參加心得，那就是：讚！
 
 在台灣已經有好幾個大型的 Conference ，但針對網站製作這個主軸來舉辦的可以說是非常罕見。而 WebConf 的議題不僅包含了 Web 開發、設計等專業領域，更有創業、團隊溝通等讓人值得省思的議題。許多朋友都表示，真的非常希望有分身術來聆聽每一場演講，就可以知道這些議題對於大家的吸引力有多高。

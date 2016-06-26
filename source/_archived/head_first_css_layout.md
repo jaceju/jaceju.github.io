@@ -3,7 +3,7 @@ layout: post
 title: "Head First CSS Layout"
 date: 2012-01-04 23:56
 comments: true
-tags: CSS 
+tags: CSS
 ---
 這是最近的讀書會報告，內容是有關 CSS 排版相關知識與實例分享。
 

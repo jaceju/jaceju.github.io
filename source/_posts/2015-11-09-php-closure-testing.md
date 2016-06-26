@@ -95,9 +95,9 @@ Mockery\Exception: The class \Closure is marked final and its methods cannot be 
     {
         $spy = Mockery::mock(stdClass::class);
         $example = new Example();
-        
+
         $spy->shouldReceive('detected')->once();
-        
+
         $example->runClosure(function () use ($spy) {
             $spy->detected();
         });
@@ -124,7 +124,7 @@ class Example
 
 ```php
 $example = new Example();
-    
+
 $example->runClosure(function ($target) {
    $target->otherMethod();
 });

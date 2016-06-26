@@ -25,7 +25,7 @@ tags: CSS
 
 而 CSS 為了補足這方面的視覺轉換特效，特別加入 `transition` 屬性。 一個簡易的動畫效果就是在想要變化的狀態上，加入一個 `transition` 屬性，而其值為變化需歷時的秒數。
 
-```
+```css
 div:hover {
     ...
     transition: 1s;
@@ -98,9 +98,9 @@ Transition 的效果只會作用在有加入 `transition` 屬性的那個狀態�
 
 `transition` 的開始和結束都必須是具體數值；例如以下的 CSS 屬性值之間是無法被計算的，就無法使用 `transition` ：
 
-  *  `height: auto` (不確定的值) 至 `height: 100px` (具體數值)
-  *  `display: none` 至 `display: block`
-  *  `background: url(foo.jpg)` 至 `background: url(bar.jpg)`
+*  `height: auto` (不確定的值) 至 `height: 100px` (具體數值)
+*  `display: none` 至 `display: block`
+*  `background: url(foo.jpg)` 至 `background: url(bar.jpg)`
 
 <p data-height="268" data-theme-id="0" data-slug-hash="DgFKd" data-default-tab="result" class='codepen'><a href='http://codepen.io/jaceju/pen/DgFKd/'>例： transition 無法作用的狀況</a></p>
 
@@ -126,7 +126,7 @@ Transition 的效果只會作用在有加入 `transition` 屬性的那個狀態�
 
 最基本的 `animation` 要指定動畫持續的時間，還有動畫的名稱。
 
-```
+```css
 div:hover {
   animation: 1s fat;
 }
@@ -134,7 +134,7 @@ div:hover {
 
 而動畫的定義則是用 `@keyframes` 這個屬性，例如：
 
-```
+```css
 @keyframes fat {
   0% { width: 100px; }
   50% { width: 150px; }
@@ -217,7 +217,7 @@ div:hover {
 
 `animation` 屬性目前在 IE 10+ 以上主流瀏覽器都可以執行，但採用 Webkit 引擎的瀏覽器必須加上 `-webkit-` 前綴字串。
 
-```
+```css
 div:hover {
   -webkit-animation: 1s name;
   animation: 1s name;
@@ -230,7 +230,6 @@ div:hover {
 @keyframes name {
     ...
 }
-
 ```
 
 ## 實例
@@ -239,12 +238,13 @@ div:hover {
 
 它的語法如下：
 
-```
+```css
 div {
     transform: rotate(θ);
     transform-origin: x y;
 }
 ```
+
 `rotate(θ)` 是指讓指定元素以參考點為中心軸 2D 旋轉 θ 度， `transform-origin` 會將 `(x, y)` 設為參考點。當我們把 `transform: rotate(θ)` 放到 `@keyframes` 中時， `animation` 就會改變 `θ` 值來做出動畫效果。
 
 以下模擬簡單的太陽、地球、月亮的週期變化。
