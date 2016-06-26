@@ -4,7 +4,7 @@ title: '[PHP] 簡易的物件傳遞方法'
 date: 2011-2-3
 wordpress_id: 1592
 comments: true
-tags: ["連結分享"]
+tags: ["PHP"]
 ---
 
 在 PHP 中，傳遞物件是很容易的事；我們只需要將物件的狀態封裝起來後，以字串的方式傳遞給另一端的程式還原執行即可。物件的傳遞用途很多，例如我們在 Gearman 中，就可以在 client 把物件當做是 job data 傳遞給 Server 。

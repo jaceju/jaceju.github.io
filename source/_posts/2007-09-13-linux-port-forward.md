@@ -1,10 +1,10 @@
 ---
 layout: post
-title: '[Linux] Port Foward 的問題'
+title: 'Linux 上的 Port Foward 的問題'
 date: 2007-9-13
 wordpress_id: 255
 comments: true
-tags: ["Linux", "伺服器安裝與設定"]
+tags: ["Linux"]
 ---
 
 ## 問題

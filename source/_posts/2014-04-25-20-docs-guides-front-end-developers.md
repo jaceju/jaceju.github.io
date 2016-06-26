@@ -3,10 +3,10 @@ layout: post
 title: "20 個實用的前端開發參考資訊整理"
 date: 2014-04-25 14:55:29 +0800
 comments: true
-tags: ["Web 開發","連結分享"]
+tags: ["Web 開發"]
 ---
 
-原文連結： [20 Useful Docs and Guides for Front-End Developers](http://www.sitepoint.com/20-docs-guides-front-end-developers/) 
+原文連結： [20 Useful Docs and Guides for Front-End Developers](http://www.sitepoint.com/20-docs-guides-front-end-developers/)
 
 看到上面的文章收集了許多前端開發參考資訊，覺得非常實用，故將重點整理如下：
 

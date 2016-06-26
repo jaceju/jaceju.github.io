@@ -4,7 +4,7 @@ title: 'Smarty 入門'
 date: 2005-6-8
 wordpress_id: 23
 comments: true
-tags: ["Smarty"]
+tags: ["PHP"]
 ---
 
 這是我一年前寫的文章，之前寄放在朋友的站：[[PHP 5知識交換中心]](http://www.php5.idv.tw/)。
@@ -72,7 +72,7 @@ jaceju@gmail 2005/03/12
 * Linux下可能會類似這樣的位置：「 /home/jaceju/public_html/ 」。
 
 
-接著在程式主資料夾下建立一個 library 資料夾，這是我們用來放置 Smarty 套件的地方。 
+接著在程式主資料夾下建立一個 library 資料夾，這是我們用來放置 Smarty 套件的地方。
 
 然後我們到 Smarty 的官方網站下載最新的 Smarty 套件：[http://smarty.php.net](http://smarty.php.net)。
 
@@ -182,7 +182,7 @@ compiled from test.htm */ ?>
 
 上面我們看到除了 Smarty 所需要的資料夾外 (library 、  templates 、 templates_c) ，還有兩個資料夾： configs 、 modules 。其實這是筆者模仿 XOOPS 的架構所建立出來的，因為 XOOPS 是筆者所接觸到的程式中，少數使用 Smarty 樣版引擎的架站程式。所謂西瓜偎大邊，筆者這樣的程式架構雖沒有 XOOPS 的百分之一強，但至少給人看時還有 XOOPS 撐腰。
 
-configs 資料夾一般都是用來存放設定檔的，當然也可以用放存放 Smarty 會用到的 config 設定。 
+configs 資料夾一般都是用來存放設定檔的，當然也可以用放存放 Smarty 會用到的 config 設定。
 
 modules 這個資料夾則是用來放置程式模組的，如此一來便不會把程式丟得到處都是，整體架構一目瞭然。
 
@@ -212,7 +212,7 @@ modules 這個資料夾則是用來放置程式模組的，如此一來便不會
 
 ```
 
-* 啟始的標示符號和結束的標示符號不在同一行 
+* 啟始的標示符號和結束的標示符號不在同一行
 
 ```
 {$var
@@ -635,7 +635,7 @@ $tpl->display('test4.htm');
 
 ```
 
-重點在於 $smarty.section.sec1.rownum 及 $smarty.section.sec1.total 這兩個 Smarty 變數，在 section 迴圈中這個 rownum 變數會取得從 1 開始的 索引值，所以當 rownum 能被 2 除盡時，就輸出 <span class="important"></tr><tr></span> 使表格換列 (注意！是 <span class="important"></tr></span> 在前面 <span class="important"><tr></span> 在後面) ，因此數字 2 就是我們在一列中想要呈現的資料筆數。而 total 這個變數會回傳資料總筆數，所以讓 rownum 在小於 total 這個變數才做輸出 </tr><tr> 的動作，會確保不會出現最後一個空的 <tr></tr> 。 
+重點在於 $smarty.section.sec1.rownum 及 $smarty.section.sec1.total 這兩個 Smarty 變數，在 section 迴圈中這個 rownum 變數會取得從 1 開始的 索引值，所以當 rownum 能被 2 除盡時，就輸出 <span class="important"></tr><tr></span> 使表格換列 (注意！是 <span class="important"></tr></span> 在前面 <span class="important"><tr></span> 在後面) ，因此數字 2 就是我們在一列中想要呈現的資料筆數。而 total 這個變數會回傳資料總筆數，所以讓 rownum 在小於 total 這個變數才做輸出 </tr><tr> 的動作，會確保不會出現最後一個空的 <tr></tr> 。
 
 各位可以由此去變化其他不同的呈現方式。
 
@@ -716,4 +716,4 @@ $tpl->display('test5_1.htm');
 
 [下載](/resources/smarty_basic/example.zip)本文所有範例。
 
-而其他 Smarty 更進階的部份，就請看筆者的拙作：「 [PHP Smarty 樣版引擎](http://www.flag.com.tw/book/5105.asp?bokno=F5471)」。 
+而其他 Smarty 更進階的部份，就請看筆者的拙作：「 [PHP Smarty 樣版引擎](http://www.flag.com.tw/book/5105.asp?bokno=F5471)」。
