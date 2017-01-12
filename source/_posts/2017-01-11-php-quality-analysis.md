@@ -64,7 +64,17 @@ $ phpqa tools
 ```bash
 $ laravel new qa-example
 $ cd qa-example
+```
+
+然後執行 `phpqa` 來跑出報表：
+
+```bash
 $ phpqa --ignoredDirs vendor --report
+```
+
+執行結果如下：
+
+```
 ... (略) ...
 [phpqa]
 +---------------+----------------+--------------+--------+---------------------------+
