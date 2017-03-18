@@ -72,6 +72,8 @@ $ cd qa-example
 $ phpqa --ignoredDirs vendor --report
 ```
 
+`--ignoredDirs` 是指排除掉指定的目錄，也可以改用 `--analyzedDirs` 來分析特定的目錄；目錄名稱之間可以用逗號 (`,`) 隔開。
+
 執行結果如下：
 
 ```
@@ -100,11 +102,44 @@ $ phpqa --ignoredDirs vendor --report
 
 更好的做法是把它們整合到 CI 自動化流程裡，這樣每一次 push 程式碼後就可以自動產生這些報表。
 
+另外我們也可以在專案目錄下建立一個 [`.phpqa.yml`](https://github.com/EdgedesignCZ/phpqa/blob/master/.phpqa.yml) 設定檔，來微調這些工具的設定。例如：
+
+```yml
+phpcs:
+    standard: PSR2
+
+phpmd:
+    standard: app/phpmd.xml
+
+phpcpd:
+    minLines: 5
+    minTokens: 70
+
+phpstan:
+    level: 0
+    # https://github.com/phpstan/phpstan#configuration
+    # standard: tests/.travis/phpstan.neon
+
+# paths are relative to .phpqa.yml, so don't copy-paste this section if you don't have custom templates
+report:
+    phploc: app/report/phploc.xsl
+    phpcpd: app/report/phpcpd.xsl
+    phpcs: app/report/phpcs.xsl
+    pdepend: app/report/pdepend.xsl
+    phpmd: app/report/phpmd.xsl
+```
+
+在執行 `phpqa` 時，可以用 `--config` 來指定：
+
+```bash
+$ phpqa --config=./.phpqa.yml --report
+```
+
 ## 各報表的意義
 
 這裡僅簡單介紹每個報表的意義，詳細的介紹就請大家參考官方說明。
 
-`PhpMetrics report` 本身就包含了多種面向的分析，像是複雜度、相依性、程式碼大小等資訊。在 `Explore` 頁籤上可以瀏覽到所有檔案的分析指標，這些指標可以從官方網站上找到[它們的說明](http://www.phpmetrics.org/documentation/index.html)。
+`PhpMetrics report` 本身就包含了多種面向的分析，像是複雜度、相依性、程式碼大小等資訊，官網有介紹[如何解讀](http://www.phpmetrics.org/documentation/how-to-read-report.html)。在 `Explore` 頁籤上可以瀏覽到所有檔案的分析指標，這些指標也可以從官方網站上找到[它們的說明](http://www.phpmetrics.org/documentation/index.html)。
 
 `phploc report` 主要是列出專案的程式碼大小，但會細分出一些資訊；比較重要的資訊像是：邏輯總行數 (LLOC) 、最大類別行數 (Maximum Class Length) 、最大函式行數 (Maximum Method Length) 。通常類別行數或函式行數小表示有較佳的程式碼品質，因為小類別與小函式較容易專注在一件事上，可讀性與可維護性都會好一些。
 
@@ -112,7 +147,7 @@ $ phpqa --ignoredDirs vendor --report
 
 `phpmd report` 會列出一些糟糕的程式碼，像是定義後卻沒有用到的變數、或是變數名稱過於簡略等。詳細的規則可以參考官方手冊的 [Rules](https://phpmd.org/rules/index.html) 說明。
 
-`PDepend report` 也跟 `PhpMetrics` 一樣同時包含了多種指標，不同的是它對每個類別所相依的類別會有比較清楚的列表，而不是用連接線來表示。這裡的各項指標主要是影響類別的穩定度與耦合度，例如抽象類依賴太多實體類別，那麼耦合度就會很高；如果有太多實體類別的互動，那麼穩定度就會下降。
+`PDepend report` 也跟 `PhpMetrics` 一樣同時包含了多種指標，不同的是它對每個類別所相依的類別會有比較清楚的列表，而不是用連接線來表示。這裡的各項指標主要是影響類別的穩定度與耦合度，例如抽象類依賴太多實體類別，那麼耦合度就會很高；如果有太多實體類別的互動，那麼穩定度就會下降。[這篇文章](https://www.testwo.com/blog/7640) 有更詳細的說明，值得一讀。
 
 `phpcpd report` 會列出有複製貼上程式碼的檔案以及重複出現的行數。 `phpcpd` 也是 `PHPUnit` 老爸的作品。
 
