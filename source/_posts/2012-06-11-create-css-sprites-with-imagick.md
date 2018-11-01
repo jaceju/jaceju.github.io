@@ -116,7 +116,7 @@ $combined->writeImage(__DIR__ . '/img/sprites.png');
 
 這樣一來，就會得到 `img/sprites.png` 這個圖檔，內容如下：
 
-![sprites](/resources/css_sprites_imagick/sprites.png)
+![sprites](/resources/css_sprites_imagick/sprites.png)
 
 ### 產生 CSS 檔案
 
