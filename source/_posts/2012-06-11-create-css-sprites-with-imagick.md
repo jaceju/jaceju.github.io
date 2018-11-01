@@ -239,7 +239,7 @@ overflow: hidden;
 
 最後的結果如下：
 
-![Result](/resources/css_sprites_imagick/result.png)
+![Result](/resources/css_sprites_imagick/result.png)
 
 ## 一些經驗
 
