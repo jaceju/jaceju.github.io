@@ -1,9 +1,3 @@
-title: Dependency Injection 與 Service Locator
-
-
-
-https://www.facebook.com/groups/laravel.tw/permalink/899759226759794/
-
 補充一下，就自動化的角度，這例子確實不是很好。
 
 不過我想這篇文章主要是解釋原理，所以先拋開「自動化」這件事，單就「原理」來看這兩個實現方式好了。這可以分成幾個角度來看。
@@ -27,6 +21,6 @@ SL ：對容器註冊一個符合抽象介面的物件，但不在乎誰來使�
 
 在 PHP Framework 中， DI Container 會透過 Reflection 的機制來查看要注入到類別的介面有哪些，然後再透過容器去找到對應的物件，如果沒有的話自動建立一個給它使用。我寫過一篇 DI Container 實作原理，可以參考看看： http://jaceju.net/2014/07/27/php-di-container/ 。
 
-當然我們無法直接以介面來建立物件，所以就會需要註冊介面所對應的實體物件是哪一個；這在 Java 或 C# 裡，通常是用設定檔的方式來指定。而在 Laravel 裡，通常是透過 Service Provider 來指定，再用 `Application::make()` 來建立對應的物件。
+當然我們無法直接以介面來建立物件，所以就會需要註冊介面所對應的實體物件是哪一個；這在 Java 或 C# 裡，通常是用設定檔的方式來指定。而在 Laravel 裡，通常是透過 Service Provider 來指定，再用 Application::make() 來建立對應的物件。
 
 我想較完整的觀念應該是如此，以上若有誤也請不吝指正。

@@ -1,6 +1,6 @@
 title: 好用的 Laravel 測試工具 Laravel TestTools
-date: 2016-03-22 11:06:33
 tags: ["Laravel", "測試"]
+
 ---
 
 [Marcel Pociot](http://marcelpociot.com/) [發表](http://marcelpociot.com/blog/2016-03-21-laravel-testtools)了一個 [Chrome Extension](https://chrome.google.com/webstore/detail/laravel-testtools/ddieaepnbjhgcbddafciempnibnfnakl) ，用來協助 Laravel 開發者錄製網頁動作，並轉換成 Laravel Web Testing Code 。
