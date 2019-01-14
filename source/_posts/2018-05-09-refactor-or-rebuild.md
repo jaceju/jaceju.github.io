@@ -60,6 +60,4 @@ tags: ["Refactoring", "程式開發", "心得感想"]
 
 不論是重構或重寫，都一定要瞭解這兩者對公司所產生的衝擊，這樣才能找出影響最小的方式來讓 legacy project 煥然一新。
 
-接下來，我來聊聊一些我在[重構或重寫時的經驗與心得](/2018-05-09-steps-of-refactoring-or-rebuilding)。
-
-
+下一篇，我來聊聊一些我在[重構或重寫時的經驗與心得](/steps-of-refactoring-or-rebuilding)。
