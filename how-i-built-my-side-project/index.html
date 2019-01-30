@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>我如何從需求出發到完成一個專案 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">我如何從需求出發到完成一個專案</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">我如何從需求出發到完成一個專案</h1><div class="post-meta">Jan 30, 2019</div><div class="post-content"><p>身為一個 Web 開發者，有時候我還是會問自己：「如果今天讓你一個人從頭開發出一個網站，你要怎麼開始呢？」這倒不是說我不知道怎麼做，而是要讓我自己徹底地去理解需求所面對的問題，然後明白自己可以用什麼工具去解決它。</p>
+<p>剛好前陣子遇到一個公司內部的需求，讓我有機會重新省視一下自己目前的技能是否足以完成這個需求。</p>
+<a id="more"></a>
+<h2 id="從需求開始"><a href="#從需求開始" class="headerlink" title="從需求開始"></a>從需求開始</h2><p>在我們的產品用戶端要出版前，都會由 SQA 先進行自動化測試，然而這些測試卻無法在伺服器端的 API 佈署完成時自動執行。為了解決這個問題，我們內部在討論過後，決定建立一個佈署監控服務，在 API 專案完成佈署後，自動通知 SQA 的 CI 系統來進行自動化測試。</p>
+<p>只是我們公司的網路架構比較特別， SQA 的 CI 環境無法從外界穿透，所以我們也很難拿現成的服務來套用 (例如 SNS) ；加上我們待佈署的機器通常有很多台，無法很容易地在所有機器都佈署完成後得到它們的狀態，需要一些特別的機制來處理。因此這套監控服務就決定由我來實作，也方便針對我們的環境做客製化。由於這牽扯到一些敏感資訊，我只能說這個服務的機制大致上是透過監控上傳到 AWS S3 的佈署狀態，以做到專案佈署與服務通知的解耦。</p>
+<p>當然這個方案是因為我個人在有限的知識裡思考出來的，不見得是最佳方案；所以還是要強調一下，<strong>這篇文章並不是探討有什麼好方案，而是要紀錄我在開發這個專案時的歷程。</strong>我相信各位如果有機會跟我身處一樣的狀況時，一定可以想到比我的這個方案更聰明的方式。</p>
+<h2 id="所以怎麼開始呢？"><a href="#所以怎麼開始呢？" class="headerlink" title="所以怎麼開始呢？"></a>所以怎麼開始呢？</h2><p>首先我們當然是實驗看看這個想法可不可行，免得後面做白工。我跟 SRE 的同事先從規格定義開始，也就是他該上傳什麼格式的資訊到 S3 上來讓我存取；這樣一來 SRE 同事可以先行處理上傳狀態的部份，而我這邊也可以做解析狀態的 PoC 。</p>
+<p>在確定這個機制可行後，就可以正式讓它繼續往下走了。接著我就開始思考這個專案還需要什麼進一步的資訊，也就是進入到了設計階段。由於這個服務不限於只用在一個專案上，因此我也把它設計成讓開發者可以加入他們自己的專案；也只有登記在案的專案才能享有這個服務的機制，也方便我在介面上的呈現以及未來對權限上的控管。</p>
+<p>而在通知服務的部份， SQA 的同事也提供了他們的 webhook 來讓我串接；只不過如果每次都真的觸發他們的自動化測試的話，他們的困擾也不小。因此在這邊一開始我也不是真的去打他們給的網址，而是先試著觸發一些無傷大雅的測試網址。這時候我就想到，也許這個機制也不見得只能觸發 SQA 的自動化測試，而是可以觸發其他服務的 webhook ，因此我就將它設計成可以設定想要通知的服務，而非直接寫死在程式裡。</p>
+<p>大致上需要的資訊都定義好後，我就開始設計 Database Schema 以及開票請託其他部門同事協助建立一些網站必要的基礎建設。</p>
+<h2 id="來個管理介面吧"><a href="#來個管理介面吧" class="headerlink" title="來個管理介面吧"></a>來個管理介面吧</h2><p>既然是監控佈署狀態，所以就需要有個地方讓我們看到目前佈署的狀態。這裡我決定用前後端分離的方式來製作這個專案，後端的部份當然毫無疑問地是選用我個人熟悉的 <a href="https://laravel.com/" target="_blank" rel="noopener">Laravel</a> 來做為 API 的基礎，而在前端的部份我則是選用了 <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 做後台介面。</p>
+<p>在 API 的部份主要是設計給前端 UI 存取後端資源，以及給 CI 佈署指令做 hook 使用；基本上 API 部份用到的技術大致上是：</p>
+<ul>
+<li><a href="https://laravel.com/docs/5.7/routing" target="_blank" rel="noopener">Laravel Routing</a> - 用在 RESTful API 上</li>
+<li><a href="https://laravel.com/docs/5.7/validation" target="_blank" rel="noopener">Laravel Validation</a> - 用在 POST 資料的驗證</li>
+<li><a href="https://laravel.com/docs/5.7/eloquent" target="_blank" rel="noopener">Laravel Eloquent ORM</a> - 建立 Service 層來隔離 Model 的操作</li>
+</ul>
+<p>而前端 UI 則是包含了監控用的 dashboard ，以及專案與服務的設定功能。這裡我用到了以下的套件和技術：</p>
+<ul>
+<li><a href="https://element.eleme.io/" target="_blank" rel="noopener">Element</a></li>
+<li><a href="https://vuex.vuejs.org/" target="_blank" rel="noopener">Vuex</a></li>
+<li><a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a></li>
+<li><a href="https://github.com/axios/axios" target="_blank" rel="noopener">Axois</a></li>
+<li><a href="https://laravel.com/docs/5.7/mix" target="_blank" rel="noopener">Laravel Mix</a></li>
+</ul>
+<p>這些應該都是 Vue.js 及 Laravel 在前端開發時很常見的工具了，所以這邊我也不多提。我在前端上花比較多心力的部份是如何讓後端的狀態可以即時反應到前端 UI 來，這部份就用到了以下的技術：</p>
+<ul>
+<li><a href="https://laravel.com/docs/5.7/events" target="_blank" rel="noopener">Laravel Events</a></li>
+<li><a href="https://laravel.com/docs/5.7/broadcasting" target="_blank" rel="noopener">Laravel Broadcasting</a><ul>
+<li><a href="https://github.com/happyDemon/vue-echo" target="_blank" rel="noopener">Vue-Echo</a></li>
+<li><a href="https://github.com/tlaverdure/laravel-echo-server" target="_blank" rel="noopener">Laravel Echo Server</a> (以 <a href="http://pm2.keymetrics.io/" target="_blank" rel="noopener">PM2</a> 啟動)</li>
+</ul>
+</li>
+</ul>
+<p>接下來就是把這些基本要素組合起來，它們的運作方式是這樣子的：</p>
+<p><img src="/resources/how-i-built-my-side-project/laravel-echo-flow.png" alt=""></p>
+<p>最後的成果就像這樣：</p>
+<p><img src="/resources/how-i-built-my-side-project/ui-v1.png" alt=""></p>
+<p>註：請不要吐槽我的命名，命名一直是我的弱點 Orz</p>
+<h2 id="再稍微聊聊主要的核心功能"><a href="#再稍微聊聊主要的核心功能" class="headerlink" title="再稍微聊聊主要的核心功能"></a>再稍微聊聊主要的核心功能</h2><p>這個專案的主要核心功能是這樣子的：當 CI 執行完佈署指令後，會通知監控程式在 S3 上追蹤各台主機的佈署狀態。這邊採用的技術有：</p>
+<ul>
+<li><a href="https://laravel.com/docs/5.7/queues" target="_blank" rel="noopener">Laravel Queues</a></li>
+<li><a href="https://laravel.com/docs/5.7/scheduling" target="_blank" rel="noopener">Laravel Task Scheduling</a></li>
+<li><a href="https://laravel.com/docs/5.7/filesystem" target="_blank" rel="noopener">Laravel Filesystem</a></li>
+</ul>
+<p>我一直覺得 Laravel 在抽象化這部份做得實在太好了，像是拜 Laravel Filesystem 所賜，我可以把存取 storage 這部份抽象化後先在本地端測試，到時候想切換成 S3 的話只要改個設定就搞定了。</p>
+<p>這部份的功能其實在 PoC 時就做得差不多了，但後來多加的一些判斷式讓我覺得它可以用 <a href="https://www.sitepoint.com/introduction-to-chain-of-responsibility/" target="_blank" rel="noopener">Chain of Responsibility</a> 這個模式來重寫它，大概像這樣子：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">AbstractStep::registerSteps([</span><br><span class="line">    resolve(UpdateHostDeployStatuses::class),</span><br><span class="line">    resolve(CheckDeployStatusTimeout::class),</span><br><span class="line">    resolve(CheckHostDeployStatusCompleted::class),</span><br><span class="line">    resolve(NotifyAllServices::class),</span><br><span class="line">])-&gt;handle(<span class="keyword">$this</span>-&gt;deployStatus);</span><br></pre></td></tr></table></figure>
+<p>註：概念實作可以參考我的 <a href="https://gist.github.com/jaceju/a7267159ffd3b1c1785e40d28ff4e5b3" target="_blank" rel="noopener">gist</a> 。</p>
+<p>這麼一來我的主要程式邏輯的架構就非常清晰，任何時候想要調整流程都非常容易，在後來要新增需求時證明這個設計是非常好的。</p>
+<p>這裡要補充一下同事問我的問題：「這個設計看起來跟 Laravel Pipeline 很像，為什麼你不用它呢？」好問題，第一是 CoR 模式實現上也不困難，而且我保有自訂的彈性；第二我其實根本忘了有 Laravel Pipeline 這個機制 (畢竟沒有正式文件) 。但後來複習了一下 Laravel Pipeline 後，還是覺得就這個需求來說，我自己寫的比較好懂。</p>
+<h2 id="沒測試我不會寫程式"><a href="#沒測試我不會寫程式" class="headerlink" title="沒測試我不會寫程式"></a>沒測試我不會寫程式</h2><p>雖然擺到現在才講，但其實我的開發過程大致上都會以 TDD 和 BDD 的方式進行。而在這個專案的測試裡，我做了以下的部份：</p>
+<ul>
+<li>API schema 驗證</li>
+<li>類別的單元測試</li>
+<li>以實例來驗證規格</li>
+</ul>
+<p>先來聊聊什麼是「 API schema 驗證」呢？換句話說就是你定義好了一個 RESTful API 的 schema 後，你預期 API 程式的輸出應該要符合這份 schema 。由於我是用 <a href="https://apiblueprint.org/" target="_blank" rel="noopener">API-Blueprint</a> 在制訂 API schema ，它可以很方便地將這些 schema 以 <a href="https://github.com/apiaryio/drafter" target="_blank" rel="noopener">Drafter</a> 轉換成 JSON 格式，再配合 Laravel 的 <a href="https://laravel.com/docs/5.7/http-tests" target="_blank" rel="noopener">HTTP Tests</a> 以及我自己開發的 <a href="https://github.com/goez-tools/apib-unit" target="_blank" rel="noopener">Unit Test Helper for API-Blueprint</a> ，就可以在測試裡自動驗證我的 API 程式輸出是否符合這些 schema 了。</p>
+<p>至於類別的單元測試，我主要用在一些輔助用類別的測試，因為它們通常不會牽扯到資料庫或外部服務，很單純的就是一些計算邏輯；而這邊採用的就是 Laraval 的 <a href="https://laravel.com/docs/5.7/testing" target="_blank" rel="noopener">Testing</a> 機制，所以就不多提了。</p>
+<p>最後我個人最有成就感的就是以實例來驗證規格這部份了，因為它就是真真正正的「活文件」。先來看看例子：</p>
+<p><img src="/resources/how-i-built-my-side-project/live-document.png" alt=""></p>
+<p>是不是看起來很像規格文件，重要的是它的每個場景都是可以用程式自動去驗證的；這邊就是用 <a href="http://behat.org/" target="_blank" rel="noopener">Behat</a> 這個 BDD 工具來實作的，細節請參考拙作：</p>
+<ul>
+<li><a href="https://jaceju.net/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li>
+<li><a href="https://jaceju.net/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li>
+</ul>
+<h2 id="上線後才是挑戰"><a href="#上線後才是挑戰" class="headerlink" title="上線後才是挑戰"></a>上線後才是挑戰</h2><p>做到這邊，我就讓這個系統上線試用了，不然我也不知道它到底有沒有什麼我沒想到的問題。果然在上線不久，就陸陸續續地收到了一些反饋：</p>
+<ul>
+<li>可否支援舊有的佈署機制？</li>
+<li>可否更清楚的知道佈署過程？</li>
+<li>可否在佈署前就自動建立行事曆活動？</li>
+</ul>
+<h3 id="如何支援舊有佈署機制？"><a href="#如何支援舊有佈署機制？" class="headerlink" title="如何支援舊有佈署機制？"></a>如何支援舊有佈署機制？</h3><p>在我們公司還是有一些舊專案在佈署後也需要觸發 SQA 的自動化測試，只是它們並沒有透過 CI 來做佈署，而是透過手動輸入指令來佈署；因此我的監控機制就必須提供一些方法來讓這些舊專案也支援。雖然我一開始也幫這類型專案做了跳過監控機制而直接通知 SQA CI 服務的設計，然而後來我們還是重新討論一些改善的做法，因此這部份也還在進行中。</p>
+<h3 id="如何更清楚的知道佈署過程？"><a href="#如何更清楚的知道佈署過程？" class="headerlink" title="如何更清楚的知道佈署過程？"></a>如何更清楚的知道佈署過程？</h3><p>在第一版的介面其實也只能看到佈署階段而已，無法瞭解每個階段的細節。所以我重新設計了後端事件，並做了事件的紀錄，然後把這些資訊在前端用時間軸的方式來呈現。而在重新設計介面時，我改用了以下的技術：</p>
+<ul>
+<li><a href="https://cli.vuejs.org/guide/" target="_blank" rel="noopener">Vue-CLI 3</a></li>
+<li><a href="https://github.com/vueComponent/ant-design-vue" target="_blank" rel="noopener">Ant-Design-Vue</a></li>
+</ul>
+<p>Vue-CLI 整合到 Laravel 的方式可以參考 Vue 老爸尤雨溪寫的 <a href="https://github.com/yyx990803/laravel-vue-cli-3" target="_blank" rel="noopener">Using Vue CLI 3 with Laravel</a> 一例。</p>
+<p>選用 Ant-Design-Vue 主要是它有很棒的 step 元件與 timeline 元件，剛好滿足我的需求。只是就在我把新介面做完快上線時，剛好遇到了 <a href="https://github.com/ant-design/ant-design/issues/13848" target="_blank" rel="noopener">Ant-Design 聖誕節彩蛋 (炸彈) 事件</a> ，讓我差點沒讓我從椅子上跌下來；當下也只能自嘲還好這只是個 side project ，大家對它沒這麼敏感。</p>
+<p>總之改善後的介面像這樣子：</p>
+<p><img src="/resources/how-i-built-my-side-project/ui-v2-1.png" alt=""></p>
+<p>而且佈署細節也一目瞭然：</p>
+<p><img src="/resources/how-i-built-my-side-project/ui-v2-2.png" alt=""></p>
+<h3 id="如何在佈署前就自動建立行事曆活動"><a href="#如何在佈署前就自動建立行事曆活動" class="headerlink" title="如何在佈署前就自動建立行事曆活動"></a>如何在佈署前就自動建立行事曆活動</h3><p>因為公司政策關係，我們內部在將主要專案佈署上線或調整線上設定時，通常需要建立一個 Goolge 行事曆活動，讓所有團隊對這些重要事件能一目瞭然。不過因為手動建立太麻煩了，所以我的部門主管一直很想把這段自動化，也就是在建立 Release Merge Request 時會自動建立活動，在專案佈署上線後將活動標示為結束。</p>
+<p>在我們討論之後，我發現其實可以透過我的監控服務來完成這個自動化機制。我在監控服務上提供了一個 API ，讓 GitLab 可以在建立或更新 Merge Request 時透過 webhook 觸發；然後再透過 <a href="https://cloud.google.com/" target="_blank" rel="noopener">Google Cloud Platform</a> 提供的 Calendar API 來建立行事曆活動，在 Laravel 這裡有一個很方便的套件 <a href="https://github.com/spatie/laravel-google-calendar" target="_blank" rel="noopener"><code>spatie/laravel-google-calendar</code></a> 可以幫我處理 Calendar API 上的串接。</p>
+<h2 id="為未來的你著想，寫點文件吧"><a href="#為未來的你著想，寫點文件吧" class="headerlink" title="為未來的你著想，寫點文件吧"></a>為未來的你著想，寫點文件吧</h2><p>近年來我一直很著重寫文件這件事，為的就是希望之後接手維護的人可以省點心，不必一下子就跳進程式裡去挖規格。雖然有 BDD 的幫助可以理解這個系統在做什麼，但有些東西還是需要額外寫文件說明一下。在這個專案我也不想放棄這個堅持，所以我寫的文件包含這些資訊：</p>
+<ul>
+<li>簡介與使用方式</li>
+<li>如何整合 Google Calendar</li>
+<li>正式環境環境設置</li>
+<li>開發指南</li>
+</ul>
+<p><img src="/resources/how-i-built-my-side-project/doc.png" alt=""></p>
+<p>這邊就用到了 <a href="https://github.com/GitbookIO/gitbook-cli" target="_blank" rel="noopener">GitBook CLI</a> 來幫我產生文件，並且放到 GitLab Pages 上。</p>
+<p>另外也因為我是用 <a href="https://apiblueprint.org/" target="_blank" rel="noopener">API-Blueprint</a> 來撰寫 API 規格，所以 API 文件就可以透過 <a href="https://apiary.io/" target="_blank" rel="noopener">Apiary</a> 這個工具來產生。成果就像這樣：</p>
+<p><img src="/resources/how-i-built-my-side-project/api.png" alt=""></p>
+<p>當然文件的產生也是自動化的，這部份就是透過 GitLab CI 搭配以 Docker 執行的 runner 來產生。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>感謝大家跟我一起很快地走過這個專案的建立過程，雖然它斷斷續續花了我快半年的時間。老實說我的記憶力也不是很強，像是在開發這個專案時，其實有很多技術我也記不清全貌，大多數細節還是要邊做邊查手冊；所以趁著現在記憶還鮮明時，趕緊把這個過程記錄下來，免得以後可能要寫書時就忘了自己曾經做過什麼了 (想太多) 。</p>
+<p>而且各位大概可以發現其實我在這個專案上用的技術都很平常，基本上都是目前網站開發者都懂的東西。事實上就我個人的經驗，大多數專案的需求其實用不到什麼高深的技術，目前主流的開發工具或框架幾乎都可以滿足這些需求。所以不要看輕那些看起來不潮的工具，真正該磨練與精進的是其實是你自己如何去分析並解決問題的能力。</p>
+<p>最後我想說這個專案對我的意義是很大的，因為它解決了團隊的痛點，讓團隊可以不必分心在一些雜務上；所以我認為所謂的成就感，有時不見得是學會多新穎的技術，而是做出對別人來說是有意義的事情。</p>
+</div><div class="tags"><a href="/tags/Web-開發/">Web 開發</a></div><div class="post-nav"><a class="next" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/Zend-Framework/" style="font-size: 15px;">Zend Framework</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-replace/">理解 composer.json 的 replace</a></li><li class="post-list-item"><a class="post-list-link" href="/refactor-or-rebuild/">面對 Legacy Code ，該重構還是重寫？</a></li><li class="post-list-item"><a class="post-list-link" href="/steps-of-refactoring-or-rebuilding/">重構或重寫 Legacy code 的幾個階段</a></li><li class="post-list-item"><a class="post-list-link" href="/to-test-the-detail-or-to-test-the-result/">測試該驗證結果還是該驗證細節</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
