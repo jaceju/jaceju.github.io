@@ -3,8 +3,9 @@ layout: post
 title: 'CSS 排版觀念：Position'
 date: 2005-4-29
 wordpress_id: 15
-comments: true
-tags: ["CSS"]
+comments: false
+tags:
+  - CSS
 ---
 
 很多人都會用圖層來製作網頁，或許常會聽到所謂的絕對位置和相對位置。其實它們都是 CSS 中 `position` 的設定值，透過設定 `position` ，便能讓我們隨意移動元素的位置。
