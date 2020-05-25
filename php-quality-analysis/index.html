@@ -1,61 +1,245 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>分析 PHP 程式碼品質 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="分析 PHP 程式碼品質"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="分析 PHP 程式碼品質"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">分析 PHP 程式碼品質</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">分析 PHP 程式碼品質</h1><div class="post-meta">Jan 11, 2017</div><div class="post-content"><p>前兩天 Laravel 老爸 Taylor 分享了他對幾個知名的 framework 所做的<a href="https://medium.com/@taylorotwell/measuring-code-complexity-64356da605f9#.i9ah5inwx" target="_blank" rel="noopener">程式碼品質分析</a>，引起了社群很大的<a href="https://www.facebook.com/groups/laravel.tw/permalink/1200376173364763/" target="_blank" rel="noopener">討論</a>。</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="分析 PHP 程式碼品質">
+<meta itemprop="description" content="前兩天 Laravel 老爸 Taylor 分享了他對幾個知名的 framework 所做的程式碼品質分析，引起了社群很大的討論。 因此，我想藉機分享一下： 如何對 PHP 程式碼做分析。 分析出來的數值">
+<meta itemprop="datePublished" content="2017-01-11T18:29:49&#43;08:00" />
+<meta itemprop="dateModified" content="2017-01-11T18:29:49&#43;08:00" />
+<meta itemprop="wordCount" content="1716">
+
+
+
+<meta itemprop="keywords" content="PHP," /><meta property="og:title" content="分析 PHP 程式碼品質" />
+<meta property="og:description" content="前兩天 Laravel 老爸 Taylor 分享了他對幾個知名的 framework 所做的程式碼品質分析，引起了社群很大的討論。 因此，我想藉機分享一下： 如何對 PHP 程式碼做分析。 分析出來的數值" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/php-quality-analysis/" />
+<meta property="article:published_time" content="2017-01-11T18:29:49+08:00" />
+<meta property="article:modified_time" content="2017-01-11T18:29:49+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="分析 PHP 程式碼品質"/>
+<meta name="twitter:description" content="前兩天 Laravel 老爸 Taylor 分享了他對幾個知名的 framework 所做的程式碼品質分析，引起了社群很大的討論。 因此，我想藉機分享一下： 如何對 PHP 程式碼做分析。 分析出來的數值"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>分析 PHP 程式碼品質</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 11, 2017</span></div>
+				<h1>分析 PHP 程式碼品質</h1>
+			</header>
+			<div class="content">
+				<p>前兩天 Laravel 老爸 Taylor 分享了他對幾個知名的 framework 所做的<a href="https://medium.com/@taylorotwell/measuring-code-complexity-64356da605f9#.i9ah5inwx">程式碼品質分析</a>，引起了社群很大的<a href="https://www.facebook.com/groups/laravel.tw/permalink/1200376173364763/">討論</a>。</p>
 <p>因此，我想藉機分享一下：</p>
 <ul>
 <li>如何對 PHP 程式碼做分析。</li>
 <li>分析出來的數值有什麼意義。</li>
 </ul>
-<!-- more -->
-
-<h2 id="PHP-程式碼分析工具"><a href="#PHP-程式碼分析工具" class="headerlink" title="PHP 程式碼分析工具"></a>PHP 程式碼分析工具</h2><p>PHP 程式碼分析工具其實有很多，但一一安裝其實很花時間。這裡我推薦一個套件： <a href="https://github.com/EdgedesignCZ/phpqa" target="_blank" rel="noopener">PHPQA</a> ，它已經把以下常用的 PHP 程式碼分析工具整合在一個命令列裡了：</p>
+<!-- raw HTML omitted -->
+<h2 id="php-程式碼分析工具">PHP 程式碼分析工具<a href="#php-程式碼分析工具" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>PHP 程式碼分析工具其實有很多，但一一安裝其實很花時間。這裡我推薦一個套件： <a href="https://github.com/EdgedesignCZ/phpqa">PHPQA</a> ，它已經把以下常用的 PHP 程式碼分析工具整合在一個命令列裡了：</p>
 <ul>
-<li><a href="https://github.com/sebastianbergmann/phploc" target="_blank" rel="noopener">phploc</a> - 測試 PHP 專案的大小 (即程式碼行數等資訊)</li>
-<li><a href="https://github.com/sebastianbergmann/phpcpd" target="_blank" rel="noopener">phpcpd</a> - 重複程式偵測</li>
-<li><a href="https://github.com/squizlabs/PHP_CodeSniffer" target="_blank" rel="noopener">phpcs</a> - 程式碼風格檢查</li>
-<li><a href="https://github.com/pdepend/pdepend" target="_blank" rel="noopener">pdepend</a> - 程式碼依賴度檢查</li>
-<li><a href="https://github.com/phpmd/phpmd" target="_blank" rel="noopener">phpmd</a> - 找出專案複雜度過高的程式碼</li>
-<li><a href="https://github.com/Halleck45/PhpMetrics" target="_blank" rel="noopener">phpmetrics</a> - PHP 程式碼靜態分析</li>
-<li><a href="https://github.com/JakubOnderka/PHP-Parallel-Lint" target="_blank" rel="noopener">parallel-lint</a> - 同時檢查多個 PHP 檔案的語法</li>
-<li><a href="https://github.com/phpstan/phpstan" target="_blank" rel="noopener">phpstan</a> - 在還沒執行程式前就找到可能的 bug (結果它本身也有 bug )</li>
+<li><a href="https://github.com/sebastianbergmann/phploc">phploc</a> - 測試 PHP 專案的大小 (即程式碼行數等資訊)</li>
+<li><a href="https://github.com/sebastianbergmann/phpcpd">phpcpd</a> - 重複程式偵測</li>
+<li><a href="https://github.com/squizlabs/PHP_CodeSniffer">phpcs</a> - 程式碼風格檢查</li>
+<li><a href="https://github.com/pdepend/pdepend">pdepend</a> - 程式碼依賴度檢查</li>
+<li><a href="https://github.com/phpmd/phpmd">phpmd</a> - 找出專案複雜度過高的程式碼</li>
+<li><a href="https://github.com/Halleck45/PhpMetrics">phpmetrics</a> - PHP 程式碼靜態分析</li>
+<li><a href="https://github.com/JakubOnderka/PHP-Parallel-Lint">parallel-lint</a> - 同時檢查多個 PHP 檔案的語法</li>
+<li><a href="https://github.com/phpstan/phpstan">phpstan</a> - 在還沒執行程式前就找到可能的 bug (結果它本身也有 bug )</li>
 </ul>
 <p>PHPQA 的安裝方式很簡單，用 composer 全域安裝即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ composer global require edgedesign/phpqa --update-no-dev</span><br></pre></td></tr></table></figure>
-
-<p>不過這時候安裝的 <code>phpcpd 2.0.4</code> 會有<a href="https://github.com/sebastianbergmann/phpcpd/issues/132" target="_blank" rel="noopener">問題</a>，所以要安裝 <code>dev-master</code> 版：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ composer global require sebastian/phpcpd:dev-master</span><br></pre></td></tr></table></figure>
-
-<p>現在可以確認一下是否有安裝成功了，執行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ phpqa tools</span><br><span class="line">+---------------+------------+----------------------------------------------+</span><br><span class="line">| Tool          | Version    | Authors                                      |</span><br><span class="line">+---------------+------------+----------------------------------------------+</span><br><span class="line">| phpqa         | 1.9.1      | Zdenek Drahos                                |</span><br><span class="line">| phpmetrics    | 1.10.0     | Jean-François Lépine                         |</span><br><span class="line">| phploc        | 3.0.1      | Sebastian Bergmann                           |</span><br><span class="line">| phpcs         | 2.7.1      | Greg Sherwood                                |</span><br><span class="line">| phpmd         | 2.5.0      | Manuel Pichler,Other contributors,Marc Würth |</span><br><span class="line">| pdepend       | 2.3.2      |                                              |</span><br><span class="line">| phpcpd        | dev-master | Sebastian Bergmann                           |</span><br><span class="line">| parallel-lint | 0.9.2      | Jakub Onderka                                |</span><br><span class="line">+---------------+------------+----------------------------------------------+</span><br></pre></td></tr></table></figure>
-
-<blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ composer global require edgedesign/phpqa --update-no-dev
+</code></pre></div><p>不過這時候安裝的 <code>phpcpd 2.0.4</code> 會有<a href="https://github.com/sebastianbergmann/phpcpd/issues/132">問題</a>，所以要安裝 <code>dev-master</code> 版：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ composer global require sebastian/phpcpd:dev-master
+</code></pre></div><p>現在可以確認一下是否有安裝成功了，執行：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ phpqa tools
++---------------+------------+----------------------------------------------+
+<span class="p">|</span> Tool          <span class="p">|</span> Version    <span class="p">|</span> Authors                                      <span class="p">|</span>
++---------------+------------+----------------------------------------------+
+<span class="p">|</span> phpqa         <span class="p">|</span> 1.9.1      <span class="p">|</span> Zdenek Drahos                                <span class="p">|</span>
+<span class="p">|</span> phpmetrics    <span class="p">|</span> 1.10.0     <span class="p">|</span> Jean-François Lépine                         <span class="p">|</span>
+<span class="p">|</span> phploc        <span class="p">|</span> 3.0.1      <span class="p">|</span> Sebastian Bergmann                           <span class="p">|</span>
+<span class="p">|</span> phpcs         <span class="p">|</span> 2.7.1      <span class="p">|</span> Greg Sherwood                                <span class="p">|</span>
+<span class="p">|</span> phpmd         <span class="p">|</span> 2.5.0      <span class="p">|</span> Manuel Pichler,Other contributors,Marc Würth <span class="p">|</span>
+<span class="p">|</span> pdepend       <span class="p">|</span> 2.3.2      <span class="p">|</span>                                              <span class="p">|</span>
+<span class="p">|</span> phpcpd        <span class="p">|</span> dev-master <span class="p">|</span> Sebastian Bergmann                           <span class="p">|</span>
+<span class="p">|</span> parallel-lint <span class="p">|</span> 0.9.2      <span class="p">|</span> Jakub Onderka                                <span class="p">|</span>
++---------------+------------+----------------------------------------------+
+</code></pre></div><blockquote>
 <p>記得確認一下 <code>$HOME/.composer/vendor/bin</code> 有在你的 <code>$PATH</code> 環境變數裡，不然沒辦法執行安裝好的指令。</p>
 </blockquote>
-<h2 id="用-PHPQA-產生分析報表"><a href="#用-PHPQA-產生分析報表" class="headerlink" title="用 PHPQA 產生分析報表"></a>用 PHPQA 產生分析報表</h2><p>現在可以找一個 PHP 專案來試試 <code>phpqa</code> ，這裡我直接用一個新的 Laravel 專案來實驗：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ laravel new qa-example</span><br><span class="line">$ <span class="built_in">cd</span> qa-example</span><br></pre></td></tr></table></figure>
-
-<p>然後執行 <code>phpqa</code> 來跑出報表：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ phpqa --ignoredDirs vendor --report</span><br></pre></td></tr></table></figure>
-
-<p><code>--ignoredDirs</code> 是指排除掉指定的目錄，也可以改用 <code>--analyzedDirs</code> 來分析特定的目錄；目錄名稱之間可以用逗號 (<code>,</code>) 隔開。</p>
+<h2 id="用-phpqa-產生分析報表">用 PHPQA 產生分析報表<a href="#用-phpqa-產生分析報表" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>現在可以找一個 PHP 專案來試試 <code>phpqa</code> ，這裡我直接用一個新的 Laravel 專案來實驗：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ laravel new qa-example
+$ <span class="nb">cd</span> qa-example
+</code></pre></div><p>然後執行 <code>phpqa</code> 來跑出報表：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ phpqa --ignoredDirs vendor --report
+</code></pre></div><p><code>--ignoredDirs</code> 是指排除掉指定的目錄，也可以改用 <code>--analyzedDirs</code> 來分析特定的目錄；目錄名稱之間可以用逗號 (<code>,</code>) 隔開。</p>
 <p>執行結果如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">... (略) ...</span><br><span class="line">[phpqa]</span><br><span class="line">+---------------+----------------+--------------+--------+---------------------------+</span><br><span class="line">| Tool          | Allowed Errors | Errors count | Is OK? | HTML report               |</span><br><span class="line">+---------------+----------------+--------------+--------+---------------------------+</span><br><span class="line">| phpmetrics    |                |              | ✓      | build//phpmetrics.html    |</span><br><span class="line">| phploc        |                |              | ✓      | build//phploc.html        |</span><br><span class="line">| phpcs         |                | 26           | ✓      | build//phpcs.html         |</span><br><span class="line">| phpmd         |                | 4            | ✓      | build//phpmd.html         |</span><br><span class="line">| pdepend       |                |              | ✓      | build//pdepend.html       |</span><br><span class="line">| phpcpd        |                | 0            | ✓      | build//phpcpd.html        |</span><br><span class="line">| parallel-lint |                | 0            | ✓      | build//parallel-lint.html |</span><br><span class="line">+---------------+----------------+--------------+--------+---------------------------+</span><br><span class="line">| phpqa         |                | 30           | ✓      | build//phpqa.html         |</span><br><span class="line">+---------------+----------------+--------------+--------+---------------------------+</span><br><span class="line"></span><br><span class="line">[phpqa] No failed tools</span><br></pre></td></tr></table></figure>
+<pre><code>... (略) ...
+[phpqa]
++---------------+----------------+--------------+--------+---------------------------+
+| Tool          | Allowed Errors | Errors count | Is OK? | HTML report               |
++---------------+----------------+--------------+--------+---------------------------+
+| phpmetrics    |                |              | ✓      | build//phpmetrics.html    |
+| phploc        |                |              | ✓      | build//phploc.html        |
+| phpcs         |                | 26           | ✓      | build//phpcs.html         |
+| phpmd         |                | 4            | ✓      | build//phpmd.html         |
+| pdepend       |                |              | ✓      | build//pdepend.html       |
+| phpcpd        |                | 0            | ✓      | build//phpcpd.html        |
+| parallel-lint |                | 0            | ✓      | build//parallel-lint.html |
++---------------+----------------+--------------+--------+---------------------------+
+| phpqa         |                | 30           | ✓      | build//phpqa.html         |
++---------------+----------------+--------------+--------+---------------------------+
 
-<p>這樣 <code>phpqa</code> 就會在專案下建立 <code>build</code> 資料夾，裡面就會放著所有分析報表；我們只需要打開 <code>build/phpqa.html</code> 就可以看到所有的報表了。</p>
+[phpqa] No failed tools
+</code></pre><p>這樣 <code>phpqa</code> 就會在專案下建立 <code>build</code> 資料夾，裡面就會放著所有分析報表；我們只需要打開 <code>build/phpqa.html</code> 就可以看到所有的報表了。</p>
 <p><img src="../resources/phpqa/phpqa.png" alt="phpqa.html"></p>
 <p>更好的做法是把它們整合到 CI 自動化流程裡，這樣每一次 push 程式碼後就可以自動產生這些報表。</p>
-<p>另外我們也可以在專案目錄下建立一個 <a href="https://github.com/EdgedesignCZ/phpqa/blob/master/.phpqa.yml" target="_blank" rel="noopener"><code>.phpqa.yml</code></a> 設定檔，來微調這些工具的設定。例如：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">phpcs:</span></span><br><span class="line">    <span class="attr">standard:</span> <span class="string">PSR2</span></span><br><span class="line"></span><br><span class="line"><span class="attr">phpmd:</span></span><br><span class="line">    <span class="attr">standard:</span> <span class="string">app/phpmd.xml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">phpcpd:</span></span><br><span class="line">    <span class="attr">minLines:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">minTokens:</span> <span class="number">70</span></span><br><span class="line"></span><br><span class="line"><span class="attr">phpstan:</span></span><br><span class="line">    <span class="attr">level:</span> <span class="number">0</span></span><br><span class="line">    <span class="comment"># https://github.com/phpstan/phpstan#configuration</span></span><br><span class="line">    <span class="comment"># standard: tests/.travis/phpstan.neon</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># paths are relative to .phpqa.yml, so don't copy-paste this section if you don't have custom templates</span></span><br><span class="line"><span class="attr">report:</span></span><br><span class="line">    <span class="attr">phploc:</span> <span class="string">app/report/phploc.xsl</span></span><br><span class="line">    <span class="attr">phpcpd:</span> <span class="string">app/report/phpcpd.xsl</span></span><br><span class="line">    <span class="attr">phpcs:</span> <span class="string">app/report/phpcs.xsl</span></span><br><span class="line">    <span class="attr">pdepend:</span> <span class="string">app/report/pdepend.xsl</span></span><br><span class="line">    <span class="attr">phpmd:</span> <span class="string">app/report/phpmd.xsl</span></span><br></pre></td></tr></table></figure>
-
-<p>在執行 <code>phpqa</code> 時，可以用 <code>--config</code> 來指定：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ phpqa --config=./.phpqa.yml --report</span><br></pre></td></tr></table></figure>
-
-<h2 id="各報表的意義"><a href="#各報表的意義" class="headerlink" title="各報表的意義"></a>各報表的意義</h2><p>這裡僅簡單介紹每個報表的意義，詳細的介紹就請大家參考官方說明。</p>
-<p><code>PhpMetrics report</code> 本身就包含了多種面向的分析，像是複雜度、相依性、程式碼大小等資訊，官網有介紹<a href="http://www.phpmetrics.org/documentation/how-to-read-report.html" target="_blank" rel="noopener">如何解讀</a>。在 <code>Explore</code> 頁籤上可以瀏覽到所有檔案的分析指標，這些指標也可以從官方網站上找到<a href="http://www.phpmetrics.org/documentation/index.html" target="_blank" rel="noopener">它們的說明</a>。</p>
+<p>另外我們也可以在專案目錄下建立一個 <a href="https://github.com/EdgedesignCZ/phpqa/blob/master/.phpqa.yml"><code>.phpqa.yml</code></a> 設定檔，來微調這些工具的設定。例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="k">phpcs</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">standard</span><span class="p">:</span><span class="w"> </span>PSR2<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">phpmd</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">standard</span><span class="p">:</span><span class="w"> </span>app/phpmd.xml<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">phpcpd</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">minLines</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="w">    </span><span class="k">minTokens</span><span class="p">:</span><span class="w"> </span><span class="m">70</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">phpstan</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">level</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">    </span><span class="c"># https://github.com/phpstan/phpstan#configuration</span><span class="w">
+</span><span class="w">    </span><span class="c"># standard: tests/.travis/phpstan.neon</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># paths are relative to .phpqa.yml, so don&#39;t copy-paste this section if you don&#39;t have custom templates</span><span class="w">
+</span><span class="w"></span><span class="k">report</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">phploc</span><span class="p">:</span><span class="w"> </span>app/report/phploc.xsl<span class="w">
+</span><span class="w">    </span><span class="k">phpcpd</span><span class="p">:</span><span class="w"> </span>app/report/phpcpd.xsl<span class="w">
+</span><span class="w">    </span><span class="k">phpcs</span><span class="p">:</span><span class="w"> </span>app/report/phpcs.xsl<span class="w">
+</span><span class="w">    </span><span class="k">pdepend</span><span class="p">:</span><span class="w"> </span>app/report/pdepend.xsl<span class="w">
+</span><span class="w">    </span><span class="k">phpmd</span><span class="p">:</span><span class="w"> </span>app/report/phpmd.xsl<span class="w">
+</span></code></pre></div><p>在執行 <code>phpqa</code> 時，可以用 <code>--config</code> 來指定：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ phpqa --config<span class="o">=</span>./.phpqa.yml --report
+</code></pre></div><h2 id="各報表的意義">各報表的意義<a href="#各報表的意義" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>這裡僅簡單介紹每個報表的意義，詳細的介紹就請大家參考官方說明。</p>
+<p><code>PhpMetrics report</code> 本身就包含了多種面向的分析，像是複雜度、相依性、程式碼大小等資訊，官網有介紹<a href="http://www.phpmetrics.org/documentation/how-to-read-report.html">如何解讀</a>。在 <code>Explore</code> 頁籤上可以瀏覽到所有檔案的分析指標，這些指標也可以從官方網站上找到<a href="http://www.phpmetrics.org/documentation/index.html">它們的說明</a>。</p>
 <p><code>phploc report</code> 主要是列出專案的程式碼大小，但會細分出一些資訊；比較重要的資訊像是：邏輯總行數 (LLOC) 、最大類別行數 (Maximum Class Length) 、最大函式行數 (Maximum Method Length) 。通常類別行數或函式行數小表示有較佳的程式碼品質，因為小類別與小函式較容易專注在一件事上，可讀性與可維護性都會好一些。</p>
 <p><code>phpcs report</code> 主要會列出每支 PHP 檔中不符合程式碼風格規範的地方，預設的程式碼規範是 PSR2 。</p>
-<p><code>phpmd report</code> 會列出一些糟糕的程式碼，像是定義後卻沒有用到的變數、或是變數名稱過於簡略等。詳細的規則可以參考官方手冊的 <a href="https://phpmd.org/rules/index.html" target="_blank" rel="noopener">Rules</a> 說明。</p>
-<p><code>PDepend report</code> 也跟 <code>PhpMetrics</code> 一樣同時包含了多種指標，不同的是它對每個類別所相依的類別會有比較清楚的列表，而不是用連接線來表示。這裡的各項指標主要是影響類別的穩定度與耦合度，例如抽象類依賴太多實體類別，那麼耦合度就會很高；如果有太多實體類別的互動，那麼穩定度就會下降。<a href="https://www.testwo.com/blog/7640" target="_blank" rel="noopener">這篇文章</a> 有更詳細的說明，值得一讀。</p>
+<p><code>phpmd report</code> 會列出一些糟糕的程式碼，像是定義後卻沒有用到的變數、或是變數名稱過於簡略等。詳細的規則可以參考官方手冊的 <a href="https://phpmd.org/rules/index.html">Rules</a> 說明。</p>
+<p><code>PDepend report</code> 也跟 <code>PhpMetrics</code> 一樣同時包含了多種指標，不同的是它對每個類別所相依的類別會有比較清楚的列表，而不是用連接線來表示。這裡的各項指標主要是影響類別的穩定度與耦合度，例如抽象類依賴太多實體類別，那麼耦合度就會很高；如果有太多實體類別的互動，那麼穩定度就會下降。<a href="https://www.testwo.com/blog/7640">這篇文章</a> 有更詳細的說明，值得一讀。</p>
 <p><code>phpcpd report</code> 會列出有複製貼上程式碼的檔案以及重複出現的行數。 <code>phpcpd</code> 也是 <code>PHPUnit</code> 老爸的作品。</p>
 <p><code>parallel-lint</code> 會列出有 PHP 語法錯誤的檔案，預設會用當下的 PHP 版本來驗證。</p>
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>就像在平常開發時，我們會從程式碼測試覆蓋率報表中看出還有沒有值得加強測試的部份；而利用 phpqa 所分析出來的這些報表其實也是讓我們瞭解目前程式碼的現狀，進而從這些指標找出可能有問題的地方來加以重構。</p>
+<h2 id="總結">總結<a href="#總結" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>就像在平常開發時，我們會從程式碼測試覆蓋率報表中看出還有沒有值得加強測試的部份；而利用 phpqa 所分析出來的這些報表其實也是讓我們瞭解目前程式碼的現狀，進而從這些指標找出可能有問題的地方來加以重構。</p>
 <p>希望這樣的介紹可以讓大家開始用這些工具來時時關心自己的程式碼品質，早一步分析出程式碼中潛藏的問題，這樣一來我們就可以把時間花在值得修改的地方。</p>
-</div><div class="tags"><a href="/tags/PHP/">PHP</a></div><div class="post-nav"><a class="pre" href="/to-test-the-detail-or-to-test-the-result/">測試該驗證結果還是該驗證細節</a><a class="next" href="/spotify-engineering-culture/">很值得一看的 Spotify 的工程文化</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/php-closure-testing/">在 PHPUnit 中測試需要 closure 的函式</a></li>
+	
+	<li><a href="/laravel-events-broadcasting/">Laravel 5.1 Events Broadcasting 實務練習</a></li>
+	
+	<li><a href="/laravel-5-1/">Laravel 5.1 正式釋出</a></li>
+	
+	<li><a href="/php-di-container/">理解 Dependency Injection 實作原理</a></li>
+	
+	<li><a href="/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2017-01-11 18:29 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/to-test-the-detail-or-to-test-the-result/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>測試該驗證結果還是該驗證細節</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/spotify-engineering-culture/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>很值得一看的 Spotify 的工程文化</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

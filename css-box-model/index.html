@@ -1,40 +1,114 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>CSS 排版觀念：Box Model | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="CSS 排版觀念：Box Model"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="CSS 排版觀念：Box Model"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">CSS 排版觀念：Box Model</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">CSS 排版觀念：Box Model</h1><div class="post-meta">May 9, 2005</div><div class="post-content"><p>CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。</p>
-<a id="more"></a>
+<!DOCTYPE html>
+<html lang="zh-TW">
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="CSS 排版觀念：Box Model">
+<meta itemprop="description" content="CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。 Box Model 的意思是說，每一個元">
+<meta itemprop="datePublished" content="2005-05-09T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2005-05-09T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="2311">
+
+
+
+<meta itemprop="keywords" content="CSS," /><meta property="og:title" content="CSS 排版觀念：Box Model" />
+<meta property="og:description" content="CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。 Box Model 的意思是說，每一個元" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/css-box-model/" />
+<meta property="article:published_time" content="2005-05-09T00:00:00+08:00" />
+<meta property="article:modified_time" content="2005-05-09T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CSS 排版觀念：Box Model"/>
+<meta name="twitter:description" content="CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。 Box Model 的意思是說，每一個元"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>CSS 排版觀念：Box Model</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 9, 2005</span></div>
+				<h1>CSS 排版觀念：Box Model</h1>
+			</header>
+			<div class="content">
+				<p>CSS 排版有一個很重要的觀念： Box Model 。它描述了元素之間的彼鄰關係，同時也左右了我們是否能夠成功透過 CSS ，完成整個頁面的呈現。</p>
+<!-- raw HTML omitted -->
 <p>Box Model 的意思是說，每一個元素我們都可視它為一個 Box 。一個 Box 由以下屬性組成： <code>margin</code> 、 <code>padding</code> 、 <code>border</code> 、 <code>content</code> 。</p>
 <p>註： <code>content</code> 非真的可用的 CSS 屬性，這裡只是為了方便說明。</p>
-<p>而一個 Box 的實際寬度 (高度) 是由 <code>padding</code> + <code>border</code> + <code>width</code> (<code>height</code>) 所組成，如下圖 (取自 <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnie60/html/cssenhancements.asp" target="_blank" rel="noopener">MSDN</a>)：</p>
+<p>而一個 Box 的實際寬度 (高度) 是由 <code>padding</code> + <code>border</code> + <code>width</code> (<code>height</code>) 所組成，如下圖 (取自 <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnie60/html/cssenhancements.asp">MSDN</a>)：</p>
 <p><img src="/resources/css_boxmodel/boxdim.gif" alt="IE Box Model"></p>
 <p>所以一般我們指定的 <code>width</code> 和 <code>height</code> 是 content 的寬和高，而沒有包含 <code>border</code> 和 <code>padding</code> 。換句話說，一個元素真正佔用的視覺空間，應該是 content + <code>padding</code> + <code>border</code> ，這是標準的 CSS 規範。</p>
-<p> 不過在 IE5/5.5 時代，一個元素的寬高則包含了 content + padding + border 。這個錯誤的實作，造成現今許多 CSS 排版上的困擾，但是也不是沒不是沒有辦法解決。 <a href="http://tantek.com/CSS/Examples/boxmodelhack.html" target="_blank" rel="noopener">Box Model Hack</a> 提供了解決之道，重點在於利用 IE5/5.5 對 CSS 解讀上的 Bug ，讓我們所希望之元素正確的寬高能正確地在 IE5/5.5 顯示出來。</p>
+<p>不過在 IE5/5.5 時代，一個元素的寬高則包含了 content + padding + border 。這個錯誤的實作，造成現今許多 CSS 排版上的困擾，但是也不是沒不是沒有辦法解決。 <a href="http://tantek.com/CSS/Examples/boxmodelhack.html">Box Model Hack</a> 提供了解決之道，重點在於利用 IE5/5.5 對 CSS 解讀上的 Bug ，讓我們所希望之元素正確的寬高能正確地在 IE5/5.5 顯示出來。</p>
 <p>對於 <code>absolute</code> 和 <code>fixed</code> 而言，錯誤的 Box Model 或許影響較小 (不過也絕對不是沒有影響，像是如果要正確控制圖層的寬度時)；但對 <code>relative</code> 和 <code>static</code> 來說，因為它們都還是會保留其所佔有的空間。因此如何正確地調整 content 的大小，就會影響到我們的排版。</p>
 <p>以下我們來看看 Box Model 的各個組成分子。</p>
 <p>請特別注意：我在以下圖示中，元素上色的部份，除了有特別說明外，都是包含 border + padding + content ，這點非常重要！因為除了 <code>body</code> 標籤外，元素的 <code>background</code> 屬性的作用都不會包含 <code>margin</code> 。</p>
-<h2 id="border"><a href="#border" class="headerlink" title="border"></a>border</h2><p><code>border</code> 是一個「加上去」的屬性，換句話說，一般都是用來區隔元素與元素用的。 <code>border</code> 的外圍即為元素的最外圍，因此計算元素實際的寬高時，就一定要將 <code>border</code> 納入。換句話說， <code>border</code> 會佔有空間，所以在計算精細的版面時，一定要將 <code>border</code> 的影響考慮進去。</p>
+<h2 id="border">border<a href="#border" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><code>border</code> 是一個「加上去」的屬性，換句話說，一般都是用來區隔元素與元素用的。 <code>border</code> 的外圍即為元素的最外圍，因此計算元素實際的寬高時，就一定要將 <code>border</code> 納入。換句話說， <code>border</code> 會佔有空間，所以在計算精細的版面時，一定要將 <code>border</code> 的影響考慮進去。</p>
 <p>如下圖，黑色虛線部份即為 <code>border</code> ：</p>
 <p><img src="/resources/css_boxmodel/border1.png" alt="border"></p>
 <p>還有一點要特別注意，如果我們在元素上設定背景色時， IE 是作用在 padding + content ，而 Firefox 則是作用在 border + padding + content 上。</p>
-<h2 id="padding"><a href="#padding" class="headerlink" title="padding"></a>padding</h2><p><code>padding</code> 會在元素內容的周圍加上我們所指定大小的空間；而如果我們沒有指定元素的寬高時，那麼該元素的內容就會受到 <code>padding</code> 所擠壓。如下圖：</p>
+<h2 id="padding">padding<a href="#padding" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><code>padding</code> 會在元素內容的周圍加上我們所指定大小的空間；而如果我們沒有指定元素的寬高時，那麼該元素的內容就會受到 <code>padding</code> 所擠壓。如下圖：</p>
 <p><img src="/resources/css_boxmodel/padding1.png" alt="padding"></p>
 <p>如果元素的內容中有行內顯示元素時，我們可以利用 padding 的設定來讓它們在我們想要的地方折行，而不用對 content 指定寬度；這樣的技巧我用在全版面的兩欄式版面上，使得我不用對難用的 <code>width</code> 屬性傷腦筋。</p>
 <p>其實 <code>padding</code> 就這麼簡單，不過可別小看它，在 CSS 排版裡， <code>padding</code> 加上 <code>margin</code> 的設定，就能夠使版面千變萬化。</p>
-<h2 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h2><p><code>margin</code> 的意義就是該元素與其他元素間的邊界距離，它的應用大概也算是 CSS 排版很重要的技術之一。所以我打算多花一點時間解釋它。</p>
+<h2 id="margin">margin<a href="#margin" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><code>margin</code> 的意義就是該元素與其他元素間的邊界距離，它的應用大概也算是 CSS 排版很重要的技術之一。所以我打算多花一點時間解釋它。</p>
 <p>我們可以分以下兩種狀況解釋：「元素與相鄰元素的距離」及「元素與父元素間的距離」。</p>
 <p>「元素與相鄰元素的距離」指得是元素間是緊鄰的 (不論是區塊顯示元素或行內顯示元素) ，而沒有階層關係。例如：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"i1"</span>&gt;</span>行內顯示元素1<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"i2"</span>&gt;</span>行內顯示元素2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>這兩個 <code>span</code> 標籤就是緊鄰關係。而 <code>span</code> 標籤預設屬於行內顯示元素 (<code>display: inline</code>) ，因此它們的邊界距離就是 <code>i1</code> 的 <code>margin-right</code> 加上 <code>i2</code> 的 <code>margin-left</code> ，如下圖。</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;i1&#34;</span><span class="p">&gt;</span>行內顯示元素1<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;i2&#34;</span><span class="p">&gt;</span>行內顯示元素2<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</code></pre></div><p>這兩個 <code>span</code> 標籤就是緊鄰關係。而 <code>span</code> 標籤預設屬於行內顯示元素 (<code>display: inline</code>) ，因此它們的邊界距離就是 <code>i1</code> 的 <code>margin-right</code> 加上 <code>i2</code> 的 <code>margin-left</code> ，如下圖。</p>
 <p><img src="/resources/css_boxmodel/margin1.png" alt="行內 margin"></p>
 <p>另一種緊鄰關係是區塊顯示元素，例如：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"b1"</span>&gt;</span>區塊顯示元素1<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"b2"</span>&gt;</span>區塊顯示元素2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>div</code> 標籤預設屬於區塊顯示元素，也就是在它的前後會加入換行的控制。要注意的是，區塊顯示元素它們的邊界距離是重疊的！而當 <code>b1</code> 的 <code>margin-bottom</code> 大於 <code>b2</code> 的 <code>margin-top</code> 時， <code>b1</code> 和 <code>b2</code> 實際的距離就以 <code>b1</code> 的 <code>margin-bottom</code> 為準，如下圖。</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;b1&#34;</span><span class="p">&gt;</span>區塊顯示元素1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;b2&#34;</span><span class="p">&gt;</span>區塊顯示元素2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p><code>div</code> 標籤預設屬於區塊顯示元素，也就是在它的前後會加入換行的控制。要注意的是，區塊顯示元素它們的邊界距離是重疊的！而當 <code>b1</code> 的 <code>margin-bottom</code> 大於 <code>b2</code> 的 <code>margin-top</code> 時， <code>b1</code> 和 <code>b2</code> 實際的距離就以 <code>b1</code> 的 <code>margin-bottom</code> 為準，如下圖。</p>
 <p><img src="/resources/css_boxmodel/margin2.png" alt="區塊 margin"></p>
 <p>還有一種緊鄰關係是浮動元素，基本上它會是個區塊顯示元素，但 <code>margin</code> 的呈現關係和行內顯示元素是很像的，這我會在介紹浮動元素時再加以說明。</p>
 <p>「元素與父元素間的距離」就是指元素之間有階層關係時的邊界距離。例如：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"b3"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"b4"</span>&gt;</span>內部區塊<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>其中 b3 就是父元素， b4 則是子元素。 它們的邊界關係如下圖：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;b3&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;b4&#34;</span><span class="p">&gt;</span>內部區塊<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>其中 b3 就是父元素， b4 則是子元素。 它們的邊界關係如下圖：</p>
 <p><img src="/resources/css_boxmodel/margin3.png" alt="父子元素 margin"></p>
 <p>我們可以看到，子元素的邊界起始會以父元素的 Content 區為基準。</p>
 <p>上面我們都是將 margin 設為正值，例如將元素的 <code>margin-top</code> 設為 <code>20px</code> ，那麼元素上面就會多出 <code>20px</code> 的空間。注意，我是說多出空間，而非向下移動！有什麼差別呢？</p>
@@ -47,4 +121,62 @@
 <p><img src="/resources/css_boxmodel/margin4.png" alt="negative margin"></p>
 <p>總而言之，將 <code>margin</code> 指定為負值在 CSS 排版上有非常大的用處，如果能將它了然於胸，相信你在 CSS 排版的功力一定會大增的。</p>
 <p>這篇我僅描述了 CSS Box Model 的一些基本觀念，雖然不是非常深入，但希望能夠讓大家對它們有基本的認知。而 CSS 排版除了 <a href="/blog/archives/15">Position</a> 和 Box Model 外，還有一樣非常值得探討的技術，就是浮動 (float) ；我將會在下次的文章中談到它。</p>
-</div><div class="tags"><a href="/tags/CSS/">CSS</a></div><div class="post-nav"><a class="pre" href="/css-float/">CSS 排版觀念：Float</a><a class="next" href="/css-position/">CSS 排版觀念：Position</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/css-position/">CSS 排版觀念：Position</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/css">CSS</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2005-05-09 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/css-float/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>CSS 排版觀念：Float</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/css-position/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>CSS 排版觀念：Position</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

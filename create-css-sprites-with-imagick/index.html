@@ -1,27 +1,105 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>用 Imagick 建立 CSS Sprites | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="用 Imagick 建立 CSS Sprites"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="用 Imagick 建立 CSS Sprites"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">用 Imagick 建立 CSS Sprites</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">用 Imagick 建立 CSS Sprites</h1><div class="post-meta">Jun 11, 2012</div><div class="post-content"><p>這是工作筆記，介紹如何用 Imagick 製作出 CSS Sprites 。</p>
-<a id="more"></a>
+<!DOCTYPE html>
+<html lang="zh-TW">
 
-<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>這個功能需要在系統上安裝以下工具：</p>
-<h3 id="ImageMagick"><a href="#ImageMagick" class="headerlink" title="ImageMagick"></a>ImageMagick</h3><p>ImageMagick 是一個圖形處理套件，請參考作系統版本安裝；以 Ubuntu 為例，安裝方法為：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-install imagemagick libmagickwand-dev libmagickcore-dev</span><br></pre></td></tr></table></figure>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="用 Imagick 建立 CSS Sprites">
+<meta itemprop="description" content="這是工作筆記，介紹如何用 Imagick 製作出 CSS Sprites 。 工具 這個功能需要在系統上安裝以下工具： ImageMagick ImageMagick 是一個圖形處理套件，請參考作系統版本安裝；以 Ubuntu 為例，安裝方法">
+<meta itemprop="datePublished" content="2012-06-11T12:01:00&#43;08:00" />
+<meta itemprop="dateModified" content="2012-06-11T12:01:00&#43;08:00" />
+<meta itemprop="wordCount" content="1807">
 
-<h3 id="imagick"><a href="#imagick" class="headerlink" title="imagick"></a>imagick</h3><p>imagick 讓 PHP 可以透過 ImageMagick 來處理圖片。</p>
+
+
+<meta itemprop="keywords" content="PHP," /><meta property="og:title" content="用 Imagick 建立 CSS Sprites" />
+<meta property="og:description" content="這是工作筆記，介紹如何用 Imagick 製作出 CSS Sprites 。 工具 這個功能需要在系統上安裝以下工具： ImageMagick ImageMagick 是一個圖形處理套件，請參考作系統版本安裝；以 Ubuntu 為例，安裝方法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/create-css-sprites-with-imagick/" />
+<meta property="article:published_time" content="2012-06-11T12:01:00+08:00" />
+<meta property="article:modified_time" content="2012-06-11T12:01:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用 Imagick 建立 CSS Sprites"/>
+<meta name="twitter:description" content="這是工作筆記，介紹如何用 Imagick 製作出 CSS Sprites 。 工具 這個功能需要在系統上安裝以下工具： ImageMagick ImageMagick 是一個圖形處理套件，請參考作系統版本安裝；以 Ubuntu 為例，安裝方法"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>用 Imagick 建立 CSS Sprites</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 11, 2012</span></div>
+				<h1>用 Imagick 建立 CSS Sprites</h1>
+			</header>
+			<div class="content">
+				<p>這是工作筆記，介紹如何用 Imagick 製作出 CSS Sprites 。</p>
+<!-- raw HTML omitted -->
+<h2 id="工具">工具<a href="#工具" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>這個功能需要在系統上安裝以下工具：</p>
+<h3 id="imagemagick">ImageMagick<a href="#imagemagick" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>ImageMagick 是一個圖形處理套件，請參考作系統版本安裝；以 Ubuntu 為例，安裝方法為：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-install imagemagick libmagickwand-dev libmagickcore-dev
+</code></pre></div><h3 id="imagick">imagick<a href="#imagick" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>imagick 讓 PHP 可以透過 ImageMagick 來處理圖片。</p>
 <p>如果 Ubuntut 上的 PHP 版本為 5.3 的話，可以用以下指令安裝：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install php5-imagick</span><br></pre></td></tr></table></figure>
-
-<p>不過如果安裝的是 PHP 5.4 的話，那麼就沒辦法直接用 <code>apt-get</code> 指令來安裝，我們要從 PECL 的官方網站下載最新的 imagick 來安裝：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://pecl.php.net/get/imagick-3.1.0RC2.tgz</span><br><span class="line">tar xzvf imagick-3.1.0RC2.tgz</span><br><span class="line"><span class="built_in">cd</span> imagick-3.1.0RC2/</span><br><span class="line">phpize</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>然後在 <code>/etc/php5/mods-available</code> 中新增一個 <code>imagick.ini</code> 檔，內容如下：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">extension</span>=imagick.so</span><br></pre></td></tr></table></figure>
-
-<p>再用以下指令讓 PHP 把把上面的設定檔連結進來：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/php5/conf.d</span><br><span class="line">sudo ln -s ../mods-available/imagick.ini 30-imagick.ini</span><br></pre></td></tr></table></figure>
-
-<p>註：各家作業系統設定 php.ini 的方式不一定相同。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install php5-imagick
+</code></pre></div><p>不過如果安裝的是 PHP 5.4 的話，那麼就沒辦法直接用 <code>apt-get</code> 指令來安裝，我們要從 PECL 的官方網站下載最新的 imagick 來安裝：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget http://pecl.php.net/get/imagick-3.1.0RC2.tgz
+tar xzvf imagick-3.1.0RC2.tgz
+<span class="nb">cd</span> imagick-3.1.0RC2/
+phpize
+./configure
+make
+sudo make install
+</code></pre></div><p>然後在 <code>/etc/php5/mods-available</code> 中新增一個 <code>imagick.ini</code> 檔，內容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">extension</span><span class="o">=</span><span class="s">imagick.so</span>
+</code></pre></div><p>再用以下指令讓 PHP 把把上面的設定檔連結進來：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /etc/php5/conf.d
+sudo ln -s ../mods-available/imagick.ini 30-imagick.ini
+</code></pre></div><p>註：各家作業系統設定 php.ini 的方式不一定相同。</p>
 <p>最後記得重新啟動 Apache 來重新載入 PHP 設定。</p>
 <p>現在我們可以在 PHP 程式中使用 imagick 這個套件了，來看看我們怎麼製作 CSS sprites 。</p>
-<h2 id="開始動工"><a href="#開始動工" class="headerlink" title="開始動工"></a>開始動工</h2><p>CSS Sprites 的基本原理如下：</p>
+<h2 id="開始動工">開始動工<a href="#開始動工" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>CSS Sprites 的基本原理如下：</p>
 <ol>
 <li>將許多小圖 (通常是同寬或同長) 排列在一起，合併為一大張。</li>
 <li>然後透過 CSS 的 <code>background-image</code> 屬性將它當成是元素的背景。</li>
@@ -37,57 +115,207 @@
 </ul>
 <p>它們的寬高都是 32px 。</p>
 <p>這裡我用 PNG 檔示範，當然也可以用 JPEG 檔或 GIF 檔；不過如果是動畫 GIF 檔的話，程式上要特別處理，這點稍後再提。</p>
-<h3 id="產生-CSS-Sprites"><a href="#產生-CSS-Sprites" class="headerlink" title="產生 CSS Sprites"></a>產生 CSS Sprites</h3><p>要用 Imagick 來產生 CSS Sprites 的話，首先利用 <code>glob</code> 函式搜集全部的小圖資訊：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$imagePaths = glob(<span class="keyword">__DIR__</span> . <span class="string">'/img/*'</span>);</span><br></pre></td></tr></table></figure>
-
-<p><code>glob</code> 函式會幫我們取得 <code>img</code> 資料夾下所有檔案的完整路徑，並以陣列回傳。</p>
+<h3 id="產生-css-sprites">產生 CSS Sprites<a href="#產生-css-sprites" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>要用 Imagick 來產生 CSS Sprites 的話，首先利用 <code>glob</code> 函式搜集全部的小圖資訊：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$imagePaths = glob(__DIR__ . &#39;/img/*&#39;);
+</code></pre></div><p><code>glob</code> 函式會幫我們取得 <code>img</code> 資料夾下所有檔案的完整路徑，並以陣列回傳。</p>
 <p>然後我們就可以把它丟給 Imagick 處理：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$image = <span class="keyword">new</span> Imagick();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一張一張的把圖疊到空白圖上</span></span><br><span class="line"><span class="keyword">foreach</span> ($imagePaths <span class="keyword">as</span> $imagePath) &#123;</span><br><span class="line">    $sprite = <span class="keyword">new</span> Imagick($imagePath);</span><br><span class="line">    $image-&gt;addImage($sprite);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用附加在圖片之後的方式，製作出垂直的 sprites 圖片</span></span><br><span class="line">$image-&gt;resetIterator();</span><br><span class="line">$combined = $image-&gt;appendImages(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 輸出格式為 PNG</span></span><br><span class="line">$combined-&gt;setImageFormat(<span class="string">'png'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 將最後的圖片內容寫入檔案</span></span><br><span class="line">$combined-&gt;writeImage(<span class="keyword">__DIR__</span> . <span class="string">'/img/sprites.png'</span>);</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$image = new Imagick();
 
-<p>這樣一來，就會得到 <code>img/sprites.png</code> 這個圖檔，內容如下：</p>
+// 一張一張的把圖疊到空白圖上
+foreach ($imagePaths as $imagePath) {
+    $sprite = new Imagick($imagePath);
+    $image-&gt;addImage($sprite);
+}
+
+// 用附加在圖片之後的方式，製作出垂直的 sprites 圖片
+$image-&gt;resetIterator();
+$combined = $image-&gt;appendImages(true);
+
+// 輸出格式為 PNG
+$combined-&gt;setImageFormat(&#39;png&#39;);
+
+// 將最後的圖片內容寫入檔案
+$combined-&gt;writeImage(__DIR__ . &#39;/img/sprites.png&#39;);
+</code></pre></div><p>這樣一來，就會得到 <code>img/sprites.png</code> 這個圖檔，內容如下：</p>
 <p><img src="/resources/css_sprites_imagick/sprites.png" alt="sprites"></p>
-<h3 id="產生-CSS-檔案"><a href="#產生-CSS-檔案" class="headerlink" title="產生 CSS 檔案"></a>產生 CSS 檔案</h3><p>現在我們要讓產生 CSS 檔案，第一步把小圖的圖檔路徑，轉換成 CSS 的 class 名稱。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 用圖檔名稱做為 CSS 的 class 名稱</span></span><br><span class="line">$classNames = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">foreach</span> ($imagePaths <span class="keyword">as</span> $imagePath) &#123;</span><br><span class="line">    $fileInfo = pathinfo($imagePath);</span><br><span class="line">    $classNames[] = <span class="string">'.icon-'</span> . $fileInfo[<span class="string">'filename'</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這裡我加上了 <code>icon-</code> 這個前置字串，目的是為了不讓產生出來的 class 跟現存的其他 class 衝突。例如 <code>mail.png</code> 產生出來的 class 名稱為 <code>icon-mail</code> 。</p>
+<h3 id="產生-css-檔案">產生 CSS 檔案<a href="#產生-css-檔案" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>現在我們要讓產生 CSS 檔案，第一步把小圖的圖檔路徑，轉換成 CSS 的 class 名稱。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">// 用圖檔名稱做為 CSS 的 class 名稱
+$classNames = array();
+foreach ($imagePaths as $imagePath) {
+    $fileInfo = pathinfo($imagePath);
+    $classNames[] = &#39;.icon-&#39; . $fileInfo[&#39;filename&#39;];
+}
+</code></pre></div><p>這裡我加上了 <code>icon-</code> 這個前置字串，目的是為了不讓產生出來的 class 跟現存的其他 class 衝突。例如 <code>mail.png</code> 產生出來的 class 名稱為 <code>icon-mail</code> 。</p>
 <p>有了 class 名稱後，就可以設定它們的背景圖了。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 把全部的 class 設為相同的不重覆背景圖。</span></span><br><span class="line">$css = implode(<span class="string">', '</span>, $classNames);</span><br><span class="line">$css .= <span class="string">" &#123;\nbackground: url('../img/sprites.png') no-repeat; \n&#125;\n"</span>;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">// 把全部的 class 設為相同的不重覆背景圖。
+$css = implode(&#39;, &#39;, $classNames);
+$css .= &#34; {\nbackground: url(&#39;../img/sprites.png&#39;) no-repeat; \n}\n&#34;;
+</code></pre></div><p>然後針對每個 class 名稱，加入對應的背景位置：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">// 寫入每個 sprite 的背景位置定義
+$y = 0;
+foreach ($classNames as $className) {
+    $css .= $className;
+    $css .= &#34; {\nbackground-position: 0 -{$y}px\n}\n&#34;;
+    $y += 32;
+}
+</code></pre></div><p>最後把得到的 CSS 內容，寫入 <code>css/sprites.css</code> 裡就可以了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">// 將最後的 CSS 內容寫入檔案
+$cssPath = __DIR__ . &#39;/css/sprites.css&#39;;
+file_put_contents($cssPath, $css);
+</code></pre></div><p>產生出來的 CSS 檔案內容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">icon-clock</span><span class="o">,</span><span class="p">.</span><span class="nc">icon-disc</span><span class="o">,</span><span class="p">.</span><span class="nc">icon-gear</span><span class="o">,</span><span class="p">.</span><span class="nc">icon-mail</span><span class="o">,</span><span class="p">.</span><span class="nc">icon-terminal</span> <span class="p">{</span>
+<span class="k">background</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="s1">&#39;../img/sprites.png&#39;</span><span class="p">)</span> <span class="kc">no-repeat</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">icon-clock</span> <span class="p">{</span>
+<span class="k">background-position</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">-0</span><span class="kt">px</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">icon-disc</span> <span class="p">{</span>
+<span class="k">background-position</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">-32</span><span class="kt">px</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">icon-gear</span> <span class="p">{</span>
+<span class="k">background-position</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">-64</span><span class="kt">px</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">icon-mail</span> <span class="p">{</span>
+<span class="k">background-position</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">-96</span><span class="kt">px</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">icon-terminal</span> <span class="p">{</span>
+<span class="k">background-position</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">-128</span><span class="kt">px</span>
+<span class="p">}</span>
+</code></pre></div><p>註：換行字元其實是可以不需要的，這裡只是為了方便檢查 CSS 的正確性而已。</p>
+<h3 id="用法範例">用法範例<a href="#用法範例" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>簡單的用法如下，首先是 HTML ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;zh-TW&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>CSS sprites<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;css/screen.css&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;css/sprites.css&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;icon-clock&#34;</span><span class="p">&gt;</span>Clock<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;icon-disc&#34;</span><span class="p">&gt;</span>Disc<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;icon-mail&#34;</span><span class="p">&gt;</span>Mail<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;icon-gear&#34;</span><span class="p">&gt;</span>Gear<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;icon-terminal&#34;</span><span class="p">&gt;</span>Terminal<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><p>其中 <code>screen.css</code> 內容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">ul</span> <span class="o">&gt;</span> <span class="nt">li</span> <span class="p">{</span>
+<span class="k">list-style</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
+<span class="k">margin</span><span class="p">:</span> <span class="mi">3</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
 
-<p>然後針對每個 class 名稱，加入對應的背景位置：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 寫入每個 sprite 的背景位置定義</span></span><br><span class="line">$y = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">foreach</span> ($classNames <span class="keyword">as</span> $className) &#123;</span><br><span class="line">    $css .= $className;</span><br><span class="line">    $css .= <span class="string">" &#123;\nbackground-position: 0 -&#123;$y&#125;px\n&#125;\n"</span>;</span><br><span class="line">    $y += <span class="number">32</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最後把得到的 CSS 內容，寫入 <code>css/sprites.css</code> 裡就可以了。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 將最後的 CSS 內容寫入檔案</span></span><br><span class="line">$cssPath = <span class="keyword">__DIR__</span> . <span class="string">'/css/sprites.css'</span>;</span><br><span class="line">file_put_contents($cssPath, $css);</span><br></pre></td></tr></table></figure>
-
-<p>產生出來的 CSS 檔案內容如下：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.icon-clock</span>,<span class="selector-class">.icon-disc</span>,<span class="selector-class">.icon-gear</span>,<span class="selector-class">.icon-mail</span>,<span class="selector-class">.icon-terminal</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'../img/sprites.png'</span>) no-repeat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.icon-clock</span> &#123;</span><br><span class="line"><span class="attribute">background-position</span>: <span class="number">0</span> -<span class="number">0px</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.icon-disc</span> &#123;</span><br><span class="line"><span class="attribute">background-position</span>: <span class="number">0</span> -<span class="number">32px</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.icon-gear</span> &#123;</span><br><span class="line"><span class="attribute">background-position</span>: <span class="number">0</span> -<span class="number">64px</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.icon-mail</span> &#123;</span><br><span class="line"><span class="attribute">background-position</span>: <span class="number">0</span> -<span class="number">96px</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.icon-terminal</span> &#123;</span><br><span class="line"><span class="attribute">background-position</span>: <span class="number">0</span> -<span class="number">128px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>註：換行字元其實是可以不需要的，這裡只是為了方便檢查 CSS 的正確性而已。</p>
-<h3 id="用法範例"><a href="#用法範例" class="headerlink" title="用法範例"></a>用法範例</h3><p>簡單的用法如下，首先是 HTML ：</p>
-<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-TW"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS sprites<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/screen.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/sprites.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"icon-clock"</span>&gt;</span>Clock<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"icon-disc"</span>&gt;</span>Disc<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"icon-mail"</span>&gt;</span>Mail<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"icon-gear"</span>&gt;</span>Gear<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"icon-terminal"</span>&gt;</span>Terminal<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>其中 <code>screen.css</code> 內容如下：</p>
-<figure class="highlight css"><figcaption><span>css/screen.css</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &#123;</span><br><span class="line"><span class="attribute">list-style</span>: none;</span><br><span class="line"><span class="attribute">float</span>: left;</span><br><span class="line"><span class="attribute">margin</span>: <span class="number">3px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &gt; <span class="selector-tag">a</span> &#123;</span><br><span class="line"><span class="attribute">display</span>: block;</span><br><span class="line"><span class="attribute">width</span>: <span class="number">32px</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">32px</span>;</span><br><span class="line"><span class="comment">/* hide text */</span></span><br><span class="line"><span class="attribute">text-indent</span>: <span class="number">100%</span>;</span><br><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這裡我們希望 <code>ul</code> 中的連結可以變成橫向排例的圖示，所以先讓 <code>li</code> 元素調整成向左浮動，再把連結設定為可以設定寬高的區塊元素。這樣一來，我們只要再調整背景圖就可以了。</p>
-<p>註：這裡有用到以背景圖取代文字的技巧，請參考： <a href="http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/" target="_blank" rel="noopener">Replacing the -9999px hack</a> 一文。</p>
+<span class="nt">ul</span> <span class="o">&gt;</span> <span class="nt">li</span> <span class="o">&gt;</span> <span class="nt">a</span> <span class="p">{</span>
+<span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+<span class="k">width</span><span class="p">:</span> <span class="mi">32</span><span class="kt">px</span><span class="p">;</span>
+<span class="k">height</span><span class="p">:</span> <span class="mi">32</span><span class="kt">px</span><span class="p">;</span>
+<span class="c">/* hide text */</span>
+<span class="k">text-indent</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="k">white-space</span><span class="p">:</span> <span class="kc">nowrap</span><span class="p">;</span>
+<span class="k">overflow</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>這裡我們希望 <code>ul</code> 中的連結可以變成橫向排例的圖示，所以先讓 <code>li</code> 元素調整成向左浮動，再把連結設定為可以設定寬高的區塊元素。這樣一來，我們只要再調整背景圖就可以了。</p>
+<p>註：這裡有用到以背景圖取代文字的技巧，請參考： <a href="http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/">Replacing the -9999px hack</a> 一文。</p>
 <p>因為 <code>sprites.css</code> 是用程式產生的，所以我們把它獨立出來。</p>
 <p>最後的結果如下：</p>
 <p><img src="/resources/css_sprites_imagick/result.png" alt="Result"></p>
-<h2 id="一些經驗"><a href="#一些經驗" class="headerlink" title="一些經驗"></a>一些經驗</h2><p>實際應用這個技術時，我有幾個經驗分享給大家：</p>
-<h3 id="清除舊圖"><a href="#清除舊圖" class="headerlink" title="清除舊圖"></a>清除舊圖</h3><p>前面的程式碼裡，我把最後產生出來的 sprites 圖檔跟原來的小圖放在一起；但如果這時要重新產生 sprites 的話，就會把上次產生的 sprites 圖檔也一併合併進來。</p>
+<h2 id="一些經驗">一些經驗<a href="#一些經驗" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>實際應用這個技術時，我有幾個經驗分享給大家：</p>
+<h3 id="清除舊圖">清除舊圖<a href="#清除舊圖" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>前面的程式碼裡，我把最後產生出來的 sprites 圖檔跟原來的小圖放在一起；但如果這時要重新產生 sprites 的話，就會把上次產生的 sprites 圖檔也一併合併進來。</p>
 <p>為了解決這個錯誤，我們必須先把舊的 sprites 圖檔刪除：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">@unlink(<span class="keyword">__DIR__</span> . <span class="string">'/img/sprites.png'</span>);</span><br><span class="line">$imagePaths = glob(<span class="keyword">__DIR__</span> . <span class="string">'/img/*'</span>);</span><br></pre></td></tr></table></figure>
-
-<p>當然如果不是在同一個目錄下的話，這個動作就可以不用了。</p>
-<h3 id="利用後台管理-sprites"><a href="#利用後台管理-sprites" class="headerlink" title="利用後台管理 sprites"></a>利用後台管理 sprites</h3><p>前面的範例裡，我是用 <code>glob</code> 這個函式來取得小圖資訊，但有時候我們希望某些暫時用不到的圖片可以不要出現在 sprites 時該怎麼辦呢？這時候我會利用後台來管理它們。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">@unlink(__DIR__ . &#39;/img/sprites.png&#39;);
+$imagePaths = glob(__DIR__ . &#39;/img/*&#39;);
+</code></pre></div><p>當然如果不是在同一個目錄下的話，這個動作就可以不用了。</p>
+<h3 id="利用後台管理-sprites">利用後台管理 sprites<a href="#利用後台管理-sprites" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>前面的範例裡，我是用 <code>glob</code> 這個函式來取得小圖資訊，但有時候我們希望某些暫時用不到的圖片可以不要出現在 sprites 時該怎麼辦呢？這時候我會利用後台來管理它們。</p>
 <p>一般來說，我會在後台上傳新圖後，將相關資訊寫入資料庫中；然後就可以透過程式篩選掉暫時下架的小圖，最後再透過上面的程式來產生 sprites 。</p>
-<h3 id="GIF-動畫"><a href="#GIF-動畫" class="headerlink" title="GIF 動畫"></a>GIF 動畫</h3><p>Imagick 也支援 GIF 動畫的處理，不過如果把 GIF 動畫合併到 sprites 時，它會把每張動畫影格 (frame) 都當成是一張小圖。</p>
+<h3 id="gif-動畫">GIF 動畫<a href="#gif-動畫" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Imagick 也支援 GIF 動畫的處理，不過如果把 GIF 動畫合併到 sprites 時，它會把每張動畫影格 (frame) 都當成是一張小圖。</p>
 <p>還好 GIF 動畫被 Imagick 載入時，會被當成是一個圖片集合物件，所以假如我們只需要第一個影格來當做 sprite 的話，可以這麼做：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> ($imagePaths <span class="keyword">as</span> $imagePath) &#123;</span><br><span class="line">    $im = <span class="keyword">new</span> Imagick($imagePath);</span><br><span class="line">    <span class="keyword">foreach</span> ($im <span class="keyword">as</span> $frame) &#123;</span><br><span class="line">        $tm = $frame-&gt;getImage();</span><br><span class="line">        $image-&gt;addImage($tm);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>註：會這麼寫是因為 Imagick 沒有實作 ArraryAccess 介面，所以沒辦法像陣列一樣使用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">foreach ($imagePaths as $imagePath) {
+    $im = new Imagick($imagePath);
+    foreach ($im as $frame) {
+        $tm = $frame-&gt;getImage();
+        $image-&gt;addImage($tm);
+        break;
+    }
+}
+</code></pre></div><p>註：會這麼寫是因為 Imagick 沒有實作 ArraryAccess 介面，所以沒辦法像陣列一樣使用。</p>
 <p>希望這些經驗可以幫助到大家。</p>
-<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>Imagick 真的是一個很棒的 PHP 套件，它將 ImageMagick 的功能包裝得非常好用。這次剛好藉著製作 CSS Sprites 的功能，體會到這個套件的強大。</p>
+<h2 id="心得">心得<a href="#心得" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Imagick 真的是一個很棒的 PHP 套件，它將 ImageMagick 的功能包裝得非常好用。這次剛好藉著製作 CSS Sprites 的功能，體會到這個套件的強大。</p>
 <p>當然這裡我用到的只是 ImageMagick 與 Imagick 的小部份功能而已，往後如果有機會再實作到其他功能時，我也會再分享給大家。</p>
-</div><div class="tags"><a href="/tags/PHP/">PHP</a></div><div class="post-nav"><a class="pre" href="/webdev-history/">網站技術發展史</a><a class="next" href="/realize/">領悟 - 程序員版</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/php-refactor-to-pattern-in-action/">實戰 PHP 重構與模式</a></li>
+	
+	<li><a href="/passing-php-object/">[PHP] 簡易的物件傳遞方法</a></li>
+	
+	<li><a href="/the-design-of-shopping-cart/">購物車程式架構簡介</a></li>
+	
+	<li><a href="/my-first-tdd/">將測試融入開發，讓程式擁有品質</a></li>
+	
+	<li><a href="/gearman/">Gearman 心得</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2012-06-11 12:01 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/webdev-history/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>網站技術發展史</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/realize/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>領悟 - 程序員版</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

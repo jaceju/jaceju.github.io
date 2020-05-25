@@ -1,26 +1,185 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>用 Xdebug 來找出 PHP 程式錯誤 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="用 Xdebug 來找出 PHP 程式錯誤"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="用 Xdebug 來找出 PHP 程式錯誤"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">用 Xdebug 來找出 PHP 程式錯誤</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">用 Xdebug 來找出 PHP 程式錯誤</h1><div class="post-meta">Dec 19, 2005</div><div class="post-content"><p>有時候 PHP 在執行到某個錯誤時，只會丟出一行的訊息，告訴你程式發生錯誤。 例如以下的程式：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">($var)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   $var-&gt;display();</span><br><span class="line">&#125;</span><br><span class="line">$abc = <span class="number">123</span>;</span><br><span class="line">test($abc);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<!DOCTYPE html>
+<html lang="zh-TW">
 
-<p>執行後會出現以下的錯誤：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Fatal error:  Call to a member function display() on a non-object in D:\WEB\wwwroot\index.php on line 4</span><br></pre></td></tr></table></figure>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="用 Xdebug 來找出 PHP 程式錯誤">
+<meta itemprop="description" content="有時候 PHP 在執行到某個錯誤時，只會丟出一行的訊息，告訴你程式發生錯誤。 例如以下的程式： &lt;?php function test($var) { $var-&gt;display(); } $abc = 123; test($abc); ?&gt; 執行後會出現以下的錯誤： Fatal error: Call to a">
+<meta itemprop="datePublished" content="2005-12-19T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2005-12-19T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="907">
 
-<p>我們可以知道在第 4 行的地方因為 test 函式對 $var 呼叫了物件操作函式，卻因為 $var 不是物件而導致錯誤 (Fatal Error) 。但是我們怎麼知道 $var 變數是從那裡來的呢？就上例而言，很明顯地往回推到第 8 行呼叫 test 函式的地方，我們給它的是 $abc 變數，而 $abc 變數存放則是一個數值，也因此造成 test 函式的錯誤。</p>
+
+
+<meta itemprop="keywords" content="PHP," /><meta property="og:title" content="用 Xdebug 來找出 PHP 程式錯誤" />
+<meta property="og:description" content="有時候 PHP 在執行到某個錯誤時，只會丟出一行的訊息，告訴你程式發生錯誤。 例如以下的程式： &lt;?php function test($var) { $var-&gt;display(); } $abc = 123; test($abc); ?&gt; 執行後會出現以下的錯誤： Fatal error: Call to a" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/php-debuging-with-xdebug/" />
+<meta property="article:published_time" content="2005-12-19T00:00:00+08:00" />
+<meta property="article:modified_time" content="2005-12-19T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用 Xdebug 來找出 PHP 程式錯誤"/>
+<meta name="twitter:description" content="有時候 PHP 在執行到某個錯誤時，只會丟出一行的訊息，告訴你程式發生錯誤。 例如以下的程式： &lt;?php function test($var) { $var-&gt;display(); } $abc = 123; test($abc); ?&gt; 執行後會出現以下的錯誤： Fatal error: Call to a"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>用 Xdebug 來找出 PHP 程式錯誤</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 19, 2005</span></div>
+				<h1>用 Xdebug 來找出 PHP 程式錯誤</h1>
+			</header>
+			<div class="content">
+				<p>有時候 PHP 在執行到某個錯誤時，只會丟出一行的訊息，告訴你程式發生錯誤。 例如以下的程式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="nv">$var</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="nv">$var</span><span class="o">-&gt;</span><span class="na">display</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nv">$abc</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="nx">test</span><span class="p">(</span><span class="nv">$abc</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div><p>執行後會出現以下的錯誤：</p>
+<pre><code>Fatal error:  Call to a member function display() on a non-object in D:\WEB\wwwroot\index.php on line 4
+
+</code></pre><p>我們可以知道在第 4 行的地方因為 test 函式對 $var 呼叫了物件操作函式，卻因為 $var 不是物件而導致錯誤 (Fatal Error) 。但是我們怎麼知道 $var 變數是從那裡來的呢？就上例而言，很明顯地往回推到第 8 行呼叫 test 函式的地方，我們給它的是 $abc 變數，而 $abc 變數存放則是一個數值，也因此造成 test 函式的錯誤。</p>
 <p>當然在程式碼比較短時，我們可以很容易知道整個程式執行的流程動向；不過當我們的程式碼暴漲到上百行或是中間引入不同檔案時，要一下子歸納出它的動線就很不容易了。換句話說，如果第 6 行中我們有上百行的程式碼，那麼我們如何一下子就找到 test 函式的引用點呢？</p>
-<a id="more"></a>
-
-<h2 id="Xdebug"><a href="#Xdebug" class="headerlink" title="Xdebug"></a>Xdebug</h2><p>之前我寫了一篇 <a href="http://www.jaceju.net/blog/archives/21" target="_blank" rel="noopener">Xdebug 的文章</a>，不過當時談到的是簡測 PHP 程式的效能。其實 Xdebug <del>故名思意</del><a href="http://140.111.34.46/chengyu/" target="_blank" rel="noopener">顧名思義</a>就是讓我們可以對程式進行除錯，同時也記錄相關的資訊。而它有個很常用的功能，就是讓我們在程式出錯時，可以知道發生錯誤前，程式所執行的流程。</p>
+<!-- raw HTML omitted -->
+<h2 id="xdebug">Xdebug<a href="#xdebug" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>之前我寫了一篇 <a href="http://www.jaceju.net/blog/archives/21">Xdebug 的文章</a>，不過當時談到的是簡測 PHP 程式的效能。其實 Xdebug <!-- raw HTML omitted -->故名思意<!-- raw HTML omitted --><a href="http://140.111.34.46/chengyu/">顧名思義</a>就是讓我們可以對程式進行除錯，同時也記錄相關的資訊。而它有個很常用的功能，就是讓我們在程式出錯時，可以知道發生錯誤前，程式所執行的流程。</p>
 <p>例如上例在使用安裝 Xdeubg 後，所出現的錯誤畫面： (安裝方式請參考上面提到的文章)</p>
 <p><a href="//www.jaceju.net/resources/xdebug_debug/001.png"><img src="//www.jaceju.net/resources/xdebug_debug/001.png" alt="程式一的錯誤畫面"></a></p>
 <p>其中紅色部份就是原來的錯誤訊息，而底下的表格部份就是程式執行的順序 (且已正確執行) 。所以我們能很清楚地知道程式是在第 8 行引用 test 函式後發生了錯誤，這樣一來就能減小我們搜索的範圍。</p>
 <p>不過有種情況 Xdebug 發揮不了作用，那就是 PHP.INI 錯誤回報等級被調整過了。例如以下範例：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> $var = <span class="string">'123'</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">display</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;varr;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> test;</span><br><span class="line">&#125;</span><br><span class="line">$abc = test();</span><br><span class="line">$abc-&gt;display();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">test</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="nv">$var</span> <span class="o">=</span> <span class="s1">&#39;123&#39;</span><span class="p">;</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">display</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">varr</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">function</span> <span class="nf">test</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">test</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nv">$abc</span> <span class="o">=</span> <span class="nx">test</span><span class="p">();</span>
+<span class="nv">$abc</span><span class="o">-&gt;</span><span class="na">display</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
 
-<p>如果當你執行這段程式時，沒有出現任何錯誤，那麼就表示 PHP.INI 錯誤回報等級沒有對「變數未定義」產生警告 (&nbsp;NOTICE) 。通常這是在上線系統所必須關閉的，因為很多時候我們常會漏掉宣告這些變數 (給初始值) ；如果不關掉的話，頁面就會產生一堆讓使用者費解的訊息。</p>
+</code></pre></div><p>如果當你執行這段程式時，沒有出現任何錯誤，那麼就表示 PHP.INI 錯誤回報等級沒有對「變數未定義」產生警告 ( NOTICE) 。通常這是在上線系統所必須關閉的，因為很多時候我們常會漏掉宣告這些變數 (給初始值) ；如果不關掉的話，頁面就會產生一堆讓使用者費解的訊息。</p>
 <p>試著在 &lt;?php 的下一行加上：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">error_reporting(E_ALL);</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">error_reporting(E_ALL);
 
-<p>重新執行後我們就會看到：</p>
+</code></pre></div><p>重新執行後我們就會看到：</p>
 <p><a href="//www.jaceju.net/resources/xdebug_debug/002.png"><img src="//www.jaceju.net/resources/xdebug_debug/002.png" alt="程式二的錯誤畫面"></a></p>
-<p>上面的意思就是未宣告的屬性，回頭看一下類別程式，原來我們多輸入了一個 r 字母 (變成 var<strong>r</strong>) 。這種錯誤也常見於一個較大型的物件類別程式中如果有較長名稱的屬性時，我們很容易寫錯它們的名字 (尤其像英文不好的我) 。</p>
+<p>上面的意思就是未宣告的屬性，回頭看一下類別程式，原來我們多輸入了一個 r 字母 (變成 var<!-- raw HTML omitted -->r<!-- raw HTML omitted -->) 。這種錯誤也常見於一個較大型的物件類別程式中如果有較長名稱的屬性時，我們很容易寫錯它們的名字 (尤其像英文不好的我) 。</p>
 <p>因此如果要使用 Xdebug ，一定要記得把錯誤回報等級設定至最嚴格，這樣才能抓出所有的問題點。</p>
-</div><div class="tags"><a href="/tags/PHP/">PHP</a></div><div class="post-nav"><a class="pre" href="/javascript-static-property-and-static-method/">JavaScript 的靜態變數與靜態方法</a><a class="next" href="/classic-asp-oo-5/">ASP 物件設計手法 (5) - Me 關鍵字</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/write-php-function-with-callback/">撰寫可以接受 callback 虛擬型態參數的函式</a></li>
+	
+	<li><a href="/php-callback/">PHP 的 callback 虛擬型態</a></li>
+	
+	<li><a href="/getting-started-with-smarty/">Smarty 入門</a></li>
+	
+	<li><a href="/php-profiling-with-xdebug/">簡單測試 PHP 執行的效能</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2005-12-19 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/javascript-static-property-and-static-method/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>JavaScript 的靜態變數與靜態方法</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/classic-asp-oo-5/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>ASP 物件設計手法 (5) - Me 關鍵字</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

@@ -1,88 +1,156 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>CSS 排版觀念：Position | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="CSS 排版觀念：Position"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="CSS 排版觀念：Position"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">CSS 排版觀念：Position</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">CSS 排版觀念：Position</h1><div class="post-meta">Apr 29, 2005</div><div class="post-content"><p>很多人都會用圖層來製作網頁，或許常會聽到所謂的絕對位置和相對位置。其實它們都是 CSS 中 <code>position</code> 的設定值，透過設定 <code>position</code> ，便能讓我們隨意移動元素的位置。</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="CSS 排版觀念：Position">
+<meta itemprop="description" content="很多人都會用圖層來製作網頁，或許常會聽到所謂的絕對位置和相對位置。其實它們都是 CSS 中 position 的設定值，透過設定 position ，便能讓我們隨意移動元素的位置。 不過">
+<meta itemprop="datePublished" content="2005-04-29T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2005-04-29T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1334">
+
+
+
+<meta itemprop="keywords" content="CSS," /><meta property="og:title" content="CSS 排版觀念：Position" />
+<meta property="og:description" content="很多人都會用圖層來製作網頁，或許常會聽到所謂的絕對位置和相對位置。其實它們都是 CSS 中 position 的設定值，透過設定 position ，便能讓我們隨意移動元素的位置。 不過" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/css-position/" />
+<meta property="article:published_time" content="2005-04-29T00:00:00+08:00" />
+<meta property="article:modified_time" content="2005-04-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CSS 排版觀念：Position"/>
+<meta name="twitter:description" content="很多人都會用圖層來製作網頁，或許常會聽到所謂的絕對位置和相對位置。其實它們都是 CSS 中 position 的設定值，透過設定 position ，便能讓我們隨意移動元素的位置。 不過"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>CSS 排版觀念：Position</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 29, 2005</span></div>
+				<h1>CSS 排版觀念：Position</h1>
+			</header>
+			<div class="content">
+				<p>很多人都會用圖層來製作網頁，或許常會聽到所謂的絕對位置和相對位置。其實它們都是 CSS 中 <code>position</code> 的設定值，透過設定 <code>position</code> ，便能讓我們隨意移動元素的位置。</p>
 <p>不過它們之間到底有什麼不同呢？本文做個簡單的說明。</p>
-<a id="more"></a>
-
-<h2 id="參數說明"><a href="#參數說明" class="headerlink" title="參數說明"></a>參數說明</h2><p>首先我把其中的關係整理成表：</p>
-<table border="1" class="info-table" summary="CSS 排版觀念 position 參數說明">
-<caption>
-CSS 排版觀念 position 參數說明
-</caption>
-<tr>
-<th>position 參數
-/ 參數說明</th>
-<th>absolute</th>
-<th>relative</th>
-<th>static(預設值)</th>
-<th>fixed</th>
-</tr>
-<tr>
-<th>中文意義</th>
-<td>絕對位置</td>
-<td>相對位置</td>
-<td>靜態位置</td>
-<td>固定位置</td>
-</tr>
-<tr class="alt">
-<th>畫面位置參考基準</th>
-<td>父元素內容區邊界</td>
-<td>原本應該在的位置</td>
-<td>不變</td>
-<td>不指定：原本應該在的位置
-指定：視窗最大可視範圍邊界 (或框架邊界) </td>
-</tr>
-<tr>
-<th>移動參考基準</th>
-<td>文件</td>
-<td>文件</td>
-<td>文件</td>
-<td>視窗最大可視範圍</td>
-</tr>
-<tr class="alt">
-<th>可改變顯示位置</th>
-<td>是</td>
-<td>是</td>
-<td>否</td>
-<td>是</td>
-</tr>
-<tr>
-<th>可調整大小</th>
-<td>是</td>
-<td>display 為 block ：是
-display 為 inline ：否 </td>
-<td>display 為 block ：是
-display 為 inline ：否</td>
-<td>是</td>
-</tr>
-<tr class="alt">
-<th>從顯示流程中去除</th>
-<td>是</td>
-<td>否</td>
-<td>否</td>
-<td>是</td>
-</tr>
-</table>
-
+<!-- raw HTML omitted -->
+<h2 id="參數說明">參數說明<a href="#參數說明" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>首先我把其中的關係整理成表：</p>
+<!-- raw HTML omitted -->
 <p>當我們對元素的 <code>position</code> 屬性，指定了 <code>absolute</code> 、 <code>relative</code> 或 <code>fixed</code> 後，這個元素就可以移動了。我們可以用 <code>top</code>, <code>left</code>, <code>right</code>, <code>bottom</code> 這四種屬性來指定元素要呈現的位置。</p>
 <p>註：由於 IE 不支援 <code>position: fixed</code> ，使得固定位置這個好用的技巧一直不受大家的重視。但在這裡我還是提一下。你可以使用 FireFox 來感受一下固定位置的強大威力，或是等待新版的 IE 支援。</p>
 <p>接下來我們來解釋上面的表列裡，每個參數說明的意義。</p>
-<h2 id="畫面位置參考基準"><a href="#畫面位置參考基準" class="headerlink" title="畫面位置參考基準"></a>畫面位置參考基準</h2><p>以絕對位置 (<code>position: absolute</code>) 而言，故名思義，它是以父元素的邊界為絕對起點。例如如果我們設定 <code>top: 50px</code> ，那麼這個元素就會在距離父元素內容區上邊界 50px 的地方呈現，如下圖：</p>
+<h2 id="畫面位置參考基準">畫面位置參考基準<a href="#畫面位置參考基準" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>以絕對位置 (<code>position: absolute</code>) 而言，故名思義，它是以父元素的邊界為絕對起點。例如如果我們設定 <code>top: 50px</code> ，那麼這個元素就會在距離父元素內容區上邊界 50px 的地方呈現，如下圖：</p>
 <p><img src="/resources/css_position/absolute_1.png" alt="position: absolute"></p>
-<p><strong>補充：</strong>如果父元素的 <code>position</code> 不是 <code>absolute</code> 或 <code>relative</code> 時，那麼元素的位置就會再對應到父元素的上層元素；如果其親代元素的 <code>position</code> 都沒有設定 <code>absolute</code> 或 <code>relative</code> 時，就以視窗最大可視範圍邊界為基準。</p>
+<p>__補充：__如果父元素的 <code>position</code> 不是 <code>absolute</code> 或 <code>relative</code> 時，那麼元素的位置就會再對應到父元素的上層元素；如果其親代元素的 <code>position</code> 都沒有設定 <code>absolute</code> 或 <code>relative</code> 時，就以視窗最大可視範圍邊界為基準。</p>
 <p>而以相關位置 (<code>position: relative</code>) 而言，其意義就是相對於原本的位置。例如我們指定 top: 50px 時，那麼這個元素就會從原本應該呈現的位置往下移動 50px 。如下圖，紅色虛線部份就是未設定 position: relative 前，元素原該應該在的位置：</p>
 <p><img src="/resources/css_position/relative_1.png" alt="position: relative"></p>
 <p>而固定位置 (position: fixed) 指的就是固定在視窗最大可視範圍上，如果不指定位置 (top, left, right, bottom) 時，那元素就會固定在原本的位置；而指定位置後，就會以視窗最大可視範圍的邊界為絕對基準點。如果頁面內容超過視窗最大可視範圍大小時，那麼不論我們如何捲動頁面，元素都會固定在視窗最大可視範圍上我們所指定的位置。</p>
-<h2 id="移動參考基準"><a href="#移動參考基準" class="headerlink" title="移動參考基準"></a>移動參考基準</h2><p>當頁面可以捲動的時候， <code>absolute</code> 、 <code>relative</code> 、 <code>static</code> 都會跟著移動。只有 <code>fixed</code> 會固定在視窗最大可視範圍上，不會跟著移動。</p>
-<h2 id="可改變顯示位置"><a href="#可改變顯示位置" class="headerlink" title="可改變顯示位置"></a>可改變顯示位置</h2><p>就是我們可以透過指定元素的 <code>top</code> 、 <code>left</code> 、 <code>right</code> 、 <code>bottom</code> 四個屬性，使元素改變顯示位置。如果元素是 <code>position: static</code> 時，會自動忽略所設定的 <code>top</code> 、 <code>left</code> 、 <code>right</code> 、 <code>bottom</code> 。</p>
-<h2 id="可調整大小"><a href="#可調整大小" class="headerlink" title="可調整大小"></a>可調整大小</h2><p>我們可以透過 <code>width</code> 、 <code>height</code> 來調整元素內容區的大小，不過當 <code>position</code> 是 <code>relative</code> 或是 <code>static</code> 時，元素的 <code>display</code> 屬性必須為 <code>block</code> 才可調整其大小。</p>
-<h2 id="從顯示流程中去除"><a href="#從顯示流程中去除" class="headerlink" title="從顯示流程中去除"></a>從顯示流程中去除</h2><p>顯示流程的意義就是頁面上的每一個元素的呈現，換句話說，就是該元素會出現的位置，及其佔用的空間等等。</p>
+<h2 id="移動參考基準">移動參考基準<a href="#移動參考基準" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>當頁面可以捲動的時候， <code>absolute</code> 、 <code>relative</code> 、 <code>static</code> 都會跟著移動。只有 <code>fixed</code> 會固定在視窗最大可視範圍上，不會跟著移動。</p>
+<h2 id="可改變顯示位置">可改變顯示位置<a href="#可改變顯示位置" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>就是我們可以透過指定元素的 <code>top</code> 、 <code>left</code> 、 <code>right</code> 、 <code>bottom</code> 四個屬性，使元素改變顯示位置。如果元素是 <code>position: static</code> 時，會自動忽略所設定的 <code>top</code> 、 <code>left</code> 、 <code>right</code> 、 <code>bottom</code> 。</p>
+<h2 id="可調整大小">可調整大小<a href="#可調整大小" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我們可以透過 <code>width</code> 、 <code>height</code> 來調整元素內容區的大小，不過當 <code>position</code> 是 <code>relative</code> 或是 <code>static</code> 時，元素的 <code>display</code> 屬性必須為 <code>block</code> 才可調整其大小。</p>
+<h2 id="從顯示流程中去除">從顯示流程中去除<a href="#從顯示流程中去除" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>顯示流程的意義就是頁面上的每一個元素的呈現，換句話說，就是該元素會出現的位置，及其佔用的空間等等。</p>
 <p>我們可以將原來的頁面想成是一個圖層，每個元素都是一個一個緊接在前一個元素後面。如下圖，在尚未指定 <code>position</code> 時，粉紫色區塊會緊接在淺藍色區塊後。</p>
 <p><img src="/resources/css_position/layer1.png" alt="從顯示流程中去除_1"></p>
 <p>請注意，我在這裡提到的圖層，指的是瀏覽器去解譯 HTML 後，將元素呈現出來的圖層，而非一般我們所認為，以絕對位置呈現的圖層；你可以把它想像成是 Photoshop 裡的圖層。</p>
 <p>當我們指定淺藍色區塊的 <code>position</code> 屬性為 <code>absolute</code> 或 <code>fixed</code> 後，淺藍色區塊就會跑到另一個圖層；而粉紫色區塊因為淺藍色區塊已經從原圖層的顯示流程中去除了，所以它就自動往上跑。如下圖，紅色虛線就是粉紫色區塊原本的位置。</p>
 <p><img src="/resources/css_position/layer2.png" alt="從顯示流程中去除_2"></p>
 <p>而元素如果指定為 <code>relative</code> 時，雖然也能移動，但原本的頁面圖層還是會保留該元素所佔有的空間。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>或許你在看完這篇文章之後，還是無法很清楚地了解 <code>position</code> 屬性的運作方式。建議你打開你的瀏覽器 (最好是用 Firefox) ，再用你慣用的 HTML 編輯器去試試它們之間的差異。然後回來看看這篇文章，你也許就能明白我的意思。</p>
-<p><strong>補充：</strong>如果頁面在框架裡時 (<code>frame</code> 或 <code>iframe</code>) ，所有參照視窗最大可視範圍邊界的元素就會改為參照框架邊界。</p>
-<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>以下這個範例，你可以看到設定 position 前及設定 position 後的關係：</p>
-<iframe width="80%" height="300" src="/resources/css_position/position_test.htm"></iframe>
-</div><div class="tags"><a href="/tags/CSS/">CSS</a></div><div class="post-nav"><a class="pre" href="/css-box-model/">CSS 排版觀念：Box Model</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<h2 id="後記">後記<a href="#後記" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>或許你在看完這篇文章之後，還是無法很清楚地了解 <code>position</code> 屬性的運作方式。建議你打開你的瀏覽器 (最好是用 Firefox) ，再用你慣用的 HTML 編輯器去試試它們之間的差異。然後回來看看這篇文章，你也許就能明白我的意思。</p>
+<p>__補充：__如果頁面在框架裡時 (<code>frame</code> 或 <code>iframe</code>) ，所有參照視窗最大可視範圍邊界的元素就會改為參照框架邊界。</p>
+<h2 id="範例">範例<a href="#範例" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>以下這個範例，你可以看到設定 position 前及設定 position 後的關係：</p>
+<!-- raw HTML omitted -->
+
+			</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/css">CSS</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2005-04-29 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/css-box-model/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>CSS 排版觀念：Box Model</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

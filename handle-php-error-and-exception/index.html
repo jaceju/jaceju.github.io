@@ -1,38 +1,294 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>如何在 PHP 中平順地處理 Error 及 Exception ？ | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="如何在 PHP 中平順地處理 Error 及 Exception ？"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="如何在 PHP 中平順地處理 Error 及 Exception ？"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">如何在 PHP 中平順地處理 Error 及 Exception ？</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">如何在 PHP 中平順地處理 Error 及 Exception ？</h1><div class="post-meta">Apr 23, 2010</div><div class="post-content"><p>在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="如何在 PHP 中平順地處理 Error 及 Exception ？">
+<meta itemprop="description" content="在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。 而在 PHP5 之後，">
+<meta itemprop="datePublished" content="2010-04-23T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2010-04-23T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1307">
+
+
+
+<meta itemprop="keywords" content="PHP,Web 開發," /><meta property="og:title" content="如何在 PHP 中平順地處理 Error 及 Exception ？" />
+<meta property="og:description" content="在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。 而在 PHP5 之後，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/handle-php-error-and-exception/" />
+<meta property="article:published_time" content="2010-04-23T00:00:00+08:00" />
+<meta property="article:modified_time" content="2010-04-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何在 PHP 中平順地處理 Error 及 Exception ？"/>
+<meta name="twitter:description" content="在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。 而在 PHP5 之後，"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>如何在 PHP 中平順地處理 Error 及 Exception ？</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 23, 2010</span></div>
+				<h1>如何在 PHP 中平順地處理 Error 及 Exception ？</h1>
+			</header>
+			<div class="content">
+				<p>在開發 PHP 的時候，最麻煩的事情之一就是處理錯誤。一個好的程式除了要將錯誤訊息呈現給使用者知道之外，也要讓該結束的部份正常結束才行。</p>
 <p>而在 PHP5 之後，除了以往的 Error Handling 之外，還多了 Exception Handling ，使得程式變得更難去處理錯誤；所以大多數的開發者只能雙手一攤，讓這些錯誤訊息大剌剌地出現在使用者面前。</p>
 <p>有沒有什麼好方法可以讓我們好好控制 Error 和 Exception 呢？</p>
-<a id="more"></a>
+<!-- raw HTML omitted -->
+<h2 id="傳統的做法">傳統的做法<a href="#傳統的做法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在很多書籍和網路範例裡，當程式出錯時就是讓程序直接死掉，最常見的就是資料庫連線：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$link = mysql_connect(&#39;localhost&#39;, &#39;mysql_user&#39;, &#39;mysql_password&#39;);
 
-<h2 id="傳統的做法"><a href="#傳統的做法" class="headerlink" title="傳統的做法"></a>傳統的做法</h2><p>在很多書籍和網路範例裡，當程式出錯時就是讓程序直接死掉，最常見的就是資料庫連線：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$link = mysql_connect(<span class="string">'localhost'</span>, <span class="string">'mysql_user'</span>, <span class="string">'mysql_password'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!$link) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'Could not connect: '</span> . mysql_error());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'Connected successfully'</span>;</span><br><span class="line">mysql_close($link);</span><br></pre></td></tr></table></figure>
+if (!$link) {
+    die(&#39;Could not connect: &#39; . mysql_error());
+}
 
-<p>或是在送出導向 header 後，就直接 exit ：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">header(<span class="string">"Location: http://www.example.com/"</span>); <span class="comment">/* Redirect browser */</span></span><br><span class="line"><span class="comment">/* Make sure that code below does not get executed when we redirect. */</span></span><br><span class="line"><span class="keyword">exit</span>;</span><br></pre></td></tr></table></figure>
+echo &#39;Connected successfully&#39;;
+mysql_close($link);
+</code></pre></div><p>或是在送出導向 header 後，就直接 exit ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">header(&#34;Location: http://www.example.com/&#34;); /* Redirect browser */
+/* Make sure that code below does not get executed when we redirect. */
+exit;
+</code></pre></div><p>這些都不是好做法，因為有些流量較大的網站裡可能有多個資料庫連線，或是檔案的 handler 仍在開啟中；如果直接讓程序死亡或離開的話，就沒辦法將這些已經開啟的資源給正常關閉掉，進而造成系統的不穩定。</p>
+<h2 id="exception-的處理">Exception 的處理<a href="#exception-的處理" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>PHP5 中，有個 <a href="http://www.php.net/manual/en/function.set-exception-handler.php"><code>set_exception_handler</code></a> 這個函式，它可以幫我們處理 Exception ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">function exception_handler($exception)
+{
+    echo &#34;Uncaught exception: &#34; , $exception-&gt;getMessage(), &#34;\n&#34;;
+}
 
-<p>這些都不是好做法，因為有些流量較大的網站裡可能有多個資料庫連線，或是檔案的 handler 仍在開啟中；如果直接讓程序死亡或離開的話，就沒辦法將這些已經開啟的資源給正常關閉掉，進而造成系統的不穩定。</p>
-<h2 id="Exception-的處理"><a href="#Exception-的處理" class="headerlink" title="Exception 的處理"></a>Exception 的處理</h2><p>PHP5 中，有個 <a href="http://www.php.net/manual/en/function.set-exception-handler.php" target="_blank" rel="noopener"><code>set_exception_handler</code></a> 這個函式，它可以幫我們處理 Exception ：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exception_handler</span><span class="params">($exception)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Uncaught exception: "</span> , $exception-&gt;getMessage(), <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">set_exception_handler(<span class="string">'exception_handler'</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'Uncaught Exception'</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Not Executed\n"</span>;</span><br></pre></td></tr></table></figure>
+set_exception_handler(&#39;exception_handler&#39;);
+throw new Exception(&#39;Uncaught Exception&#39;);
+echo &#34;Not Executed\n&#34;;
+</code></pre></div><p>不過我個人認為用 <a href="http://www.php.net/manual/en/language.exceptions.php"><code>try...catch</code></a> 會讓我們在程式流程上的彈性更大：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">function inverse($x)
+{
+    if (!$x) {
+        throw new Exception(&#39;Division by zero.&#39;);
+    }
+    else return 1/$x;
+}
 
-<p>不過我個人認為用 <a href="http://www.php.net/manual/en/language.exceptions.php" target="_blank" rel="noopener"><code>try...catch</code></a> 會讓我們在程式流程上的彈性更大：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inverse</span><span class="params">($x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!$x) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'Division by zero.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span>/$x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> inverse(<span class="number">5</span>) . <span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">echo</span> inverse(<span class="number">0</span>) . <span class="string">"\n"</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'Caught exception: '</span>,  $e-&gt;getMessage(), <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Continue execution</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'Hello World'</span>;</span><br></pre></td></tr></table></figure>
+try {
+    echo inverse(5) . &#34;\n&#34;;
+    echo inverse(0) . &#34;\n&#34;;
+} catch (Exception $e) {
+    echo &#39;Caught exception: &#39;,  $e-&gt;getMessage(), &#34;\n&#34;;
+}
 
-<p>而在我研究過 Zend Framework 的做法後，發現它在處理 Exception 上更加聰明。 Zend Framework 在 Controller 中引入一個 Response 物件，所有對瀏覽器的輸出都要經過它 (例如 Header 、 Content Body 等等) ；而這個 Reponse 物件也同時控管著 Exception 是否要被輸出到瀏覽器端，讓程式開發者能有更大的空間處理 Exception 。</p>
+// Continue execution
+echo &#39;Hello World&#39;;
+</code></pre></div><p>而在我研究過 Zend Framework 的做法後，發現它在處理 Exception 上更加聰明。 Zend Framework 在 Controller 中引入一個 Response 物件，所有對瀏覽器的輸出都要經過它 (例如 Header 、 Content Body 等等) ；而這個 Reponse 物件也同時控管著 Exception 是否要被輸出到瀏覽器端，讓程式開發者能有更大的空間處理 Exception 。</p>
 <p>以下我簡單把 Zend Framework 在 Response 物件中處理 Exception 的概念整理成一個自製的 <code>Response</code> 類別：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Response</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $_exceptions = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $_renderExceptions = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setException</span><span class="params">(Exception $e)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_exceptions[] = $e;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getExceptions</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;_exceptions;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">isException</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;_exceptions);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">renderExceptions</span><span class="params">($flag = null)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> !== $flag) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;_renderExceptions = $flag ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;_renderExceptions;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sendResponse</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Header sending...\n"</span>;</span><br><span class="line">        $exception = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;isException() &amp;amp;&amp;amp; <span class="keyword">$this</span>-&gt;renderExceptions()) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;getExceptions() <span class="keyword">as</span> $e) &#123;</span><br><span class="line">                $exception .= $e-&gt;getMessage() . <span class="string">"\n"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">echo</span> $exception;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Body sending...\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class Response
+{
+    private $_exceptions = array();
 
-<p>主要的概念很簡單，就是 Response 物件先把 Exception 先收集起來，然後再視狀況如何處理，例如：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$response = <span class="keyword">new</span> Response();</span><br><span class="line">$response-&gt;renderExceptions(<span class="keyword">true</span>); <span class="comment">// 讓 Exception 呈現出來</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 這裡處理我們真正要執行的動作</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'TEST'</span>); <span class="comment">// 丟出一個測試用的例外</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</span><br><span class="line">    $response-&gt;setException($e); <span class="comment">// 收集例外</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($response-&gt;isException()) &#123;</span><br><span class="line">    <span class="comment">// 可以在這裡記錄 Exception</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$response-&gt;sendResponse(); <span class="comment">// 顯示所有結果 (包含 Header, Exception, Body 等)</span></span><br></pre></td></tr></table></figure>
+    private $_renderExceptions = false;
 
-<p>透過了 Response 物件來管理 Exception ，就可以不必因為 Exception 而中斷我們的程式碼。</p>
-<h2 id="PHP-Error-的處理"><a href="#PHP-Error-的處理" class="headerlink" title="PHP Error 的處理"></a>PHP Error 的處理</h2><p>雖然 Exception 可以用 <code>try...catch</code> 控制程式流程，但 PHP Error 卻不行。</p>
-<p>因為一般處理 PHP Error 的方法是透過 <a href="http://www.php.net/manual/en/function.set-error-handler.php" target="_blank" rel="noopener">set_error_handler</a>，而當執行完自訂的 Error Handler 後，我們卻只能選擇繼續執行下一行程式碼或將程式中斷離開，不然就是要利用全域變數來設定錯誤旗標以達到控制的目的。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$error = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exceptionErrorHandler</span><span class="params">($errno, $errstr, $errfile, $errline)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> $error;</span><br><span class="line">    $error = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">echo</span> $errstr, <span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">set_error_handler(<span class="string">"exceptionErrorHandler"</span>);</span><br><span class="line">strpos();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!$error) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Do normal process here.\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"end.\n"</span>;</span><br></pre></td></tr></table></figure>
+    public function setException(Exception $e)
+    {
+        $this-&gt;_exceptions[] = $e;
+    }
 
-<p>不過 PHP5 也幫我們想好了，我們可以在 Error Handler 裡丟出 <a href="http://www.php.net/manual/en/class.errorexception.php" target="_blank" rel="noopener">ErrorException</a> ，就可以配合前面提到的 Response 物件做到更平順的 Exception 處理：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exceptionErrorHandler</span><span class="params">($errno, $errstr, $errfile, $errline )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> ErrorException($errstr, <span class="number">0</span>, $errno, $errfile, $errline);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">set_error_handler(<span class="string">"exceptionErrorHandler"</span>);</span><br><span class="line">$response = <span class="keyword">new</span> Response();</span><br><span class="line">$response-&gt;renderExceptions(<span class="keyword">true</span>); <span class="comment">// 讓 Exception 呈現出來</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 這裡處理我們真正要執行的動作</span></span><br><span class="line">    trigger_error(<span class="string">'TEST'</span>, E_USER_ERROR); <span class="comment">// 改用 trigger_error 來丟出測試用錯誤</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</span><br><span class="line">    $response-&gt;setException($e); <span class="comment">// 收集例外</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($response-&gt;isException()) &#123;</span><br><span class="line">    <span class="comment">// 可以在這裡記錄 Exception</span></span><br><span class="line">&#125;</span><br><span class="line">$response-&gt;sendResponse(); <span class="comment">// 顯示所有結果 (包含 Header, Exception, Body 等)</span></span><br></pre></td></tr></table></figure>
+    public function getExceptions()
+    {
+        return $this-&gt;_exceptions;
+    }
 
-<p>這邊最棒的是 Error Handler 丟出 <code>ErrorException</code> 後， <code>try...catch</code> 就會發生作用，而不再像 <code>set_error_handler</code> 這樣又返回中斷的地方繼續執行，一切就像行雲流水般那麼自然。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>一個運作良好的系統必須要對錯誤的發生有最大的掌控權，而不是放任它讓系統墜毀在五里霧之中。</p>
+    public function isException()
+    {
+        return !empty($this-&gt;_exceptions);
+    }
+
+    public function renderExceptions($flag = null)
+    {
+        if (null !== $flag) {
+            $this-&gt;_renderExceptions = $flag ? true : false;
+        }
+        return $this-&gt;_renderExceptions;
+    }
+
+    public function sendResponse()
+    {
+        echo &#34;Header sending...\n&#34;;
+        $exception = &#39;&#39;;
+        if ($this-&gt;isException() <span class="ni">&amp;amp;&amp;amp;</span> $this-&gt;renderExceptions()) {
+            foreach ($this-&gt;getExceptions() as $e) {
+                $exception .= $e-&gt;getMessage() . &#34;\n&#34;;
+            }
+            echo $exception;
+        }
+        echo &#34;Body sending...\n&#34;;
+    }
+}
+</code></pre></div><p>主要的概念很簡單，就是 Response 物件先把 Exception 先收集起來，然後再視狀況如何處理，例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$response = new Response();
+$response-&gt;renderExceptions(true); // 讓 Exception 呈現出來
+
+try {
+    // 這裡處理我們真正要執行的動作
+    throw new Exception(&#39;TEST&#39;); // 丟出一個測試用的例外
+} catch (Exception $e) {
+    $response-&gt;setException($e); // 收集例外
+}
+
+if ($response-&gt;isException()) {
+    // 可以在這裡記錄 Exception
+}
+
+$response-&gt;sendResponse(); // 顯示所有結果 (包含 Header, Exception, Body 等)
+</code></pre></div><p>透過了 Response 物件來管理 Exception ，就可以不必因為 Exception 而中斷我們的程式碼。</p>
+<h2 id="php-error-的處理">PHP Error 的處理<a href="#php-error-的處理" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>雖然 Exception 可以用 <code>try...catch</code> 控制程式流程，但 PHP Error 卻不行。</p>
+<p>因為一般處理 PHP Error 的方法是透過 <a href="http://www.php.net/manual/en/function.set-error-handler.php">set_error_handler</a>，而當執行完自訂的 Error Handler 後，我們卻只能選擇繼續執行下一行程式碼或將程式中斷離開，不然就是要利用全域變數來設定錯誤旗標以達到控制的目的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$error = false;
+
+function exceptionErrorHandler($errno, $errstr, $errfile, $errline)
+{
+    global $error;
+    $error = true;
+    echo $errstr, &#34;\n&#34;;
+    return true;
+}
+
+set_error_handler(&#34;exceptionErrorHandler&#34;);
+strpos();
+
+if (!$error) {
+    echo &#34;Do normal process here.\n&#34;;
+}
+echo &#34;end.\n&#34;;
+</code></pre></div><p>不過 PHP5 也幫我們想好了，我們可以在 Error Handler 裡丟出 <a href="http://www.php.net/manual/en/class.errorexception.php">ErrorException</a> ，就可以配合前面提到的 Response 物件做到更平順的 Exception 處理：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">function exceptionErrorHandler($errno, $errstr, $errfile, $errline )
+{
+    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+}
+
+set_error_handler(&#34;exceptionErrorHandler&#34;);
+$response = new Response();
+$response-&gt;renderExceptions(true); // 讓 Exception 呈現出來
+
+try {
+    // 這裡處理我們真正要執行的動作
+    trigger_error(&#39;TEST&#39;, E_USER_ERROR); // 改用 trigger_error 來丟出測試用錯誤
+} catch (Exception $e) {
+    $response-&gt;setException($e); // 收集例外
+}
+
+if ($response-&gt;isException()) {
+    // 可以在這裡記錄 Exception
+}
+$response-&gt;sendResponse(); // 顯示所有結果 (包含 Header, Exception, Body 等)
+</code></pre></div><p>這邊最棒的是 Error Handler 丟出 <code>ErrorException</code> 後， <code>try...catch</code> 就會發生作用，而不再像 <code>set_error_handler</code> 這樣又返回中斷的地方繼續執行，一切就像行雲流水般那麼自然。</p>
+<h2 id="結論">結論<a href="#結論" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>一個運作良好的系統必須要對錯誤的發生有最大的掌控權，而不是放任它讓系統墜毀在五里霧之中。</p>
 <p>雖然前面提到的處理方式也許不是最佳的，但希望透過這樣的介紹，讓大家能夠思考自己的程式應該如何去處理錯誤這件事。</p>
 <p>就寫到這裡吧，收工~</p>
-</div><div class="tags"><a href="/tags/PHP/">PHP</a><a href="/tags/Web-開發/">Web 開發</a></div><div class="post-nav"><a class="pre" href="/about-testing/">關於測試這件事</a><a class="next" href="/why-engineer-or-designer-are-always-work-overtime-in-taiwan/">為什麼台灣的工程師 / 設計師常常加班？</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/familiar-patterns/">[Web] 常見設計模式介紹</a></li>
+	
+	<li><a href="/head-first-phpunit/">PHPUnit 實務入門簡介</a></li>
+	
+	<li><a href="/refactor-multiple-arguments-function/">[五分鐘教室] 重構多參數函式</a></li>
+	
+	<li><a href="/mysql-character-set/">[五分鐘教室] MySQL 4.1&#43; 編碼快速入門</a></li>
+	
+	<li><a href="/php-include-path/">[五分鐘教室] PHP 檔案引入路徑問題</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span><span class="tag"><a href="https://jaceju.net/tags/web-%E9%96%8B%E7%99%BC">Web 開發</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2010-04-23 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/about-testing/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>關於測試這件事</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/why-engineer-or-designer-are-always-work-overtime-in-taiwan/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>為什麼台灣的工程師 / 設計師常常加班？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

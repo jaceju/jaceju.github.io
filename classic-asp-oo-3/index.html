@@ -1,37 +1,353 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>ASP 物件設計手法 (3) - 進階技巧 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="ASP 物件設計手法 (3) - 進階技巧"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="ASP 物件設計手法 (3) - 進階技巧"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ASP 物件設計手法 (3) - 進階技巧</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">ASP 物件設計手法 (3) - 進階技巧</h1><div class="post-meta">Dec 6, 2005</div><div class="post-content"><p>接下來的技巧會比較複雜一點，不過如果能夠善用的話，就會是一項很好用的武器。我在較大型的專案裡用過這樣的方式，它提供了我在開發程式不一樣的角度。至少我不必再寫一些複雜的判斷式，減少錯誤的發生。當然錯誤還是會有，但這是個人思考邏輯的問題，和物件導向開發方式關係不大。</p>
-<a id="more"></a>
+<!DOCTYPE html>
+<html lang="zh-TW">
 
-<h2 id="集合體"><a href="#集合體" class="headerlink" title="集合體"></a>集合體</h2><p>設計購物車時，我常用集合體的方式來完成。一個購物車基本型如下：</p>
-<figure class="highlight plain"><figcaption><span>/inc/class/Shopping/Cart.asp</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; 購物車</span><br><span class="line">Class Shopping_Cart</span><br><span class="line">    Private List</span><br><span class="line"></span><br><span class="line">    Private Fields</span><br><span class="line"></span><br><span class="line">    &apos; 物件初始化</span><br><span class="line">    Private Sub Class_Initialize()</span><br><span class="line">        Set List = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">        Set Fields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">        Fields.Add &quot;Amount&quot;, 0</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    &apos; 加入商品</span><br><span class="line">    Public Sub AddProduct(oProduct)</span><br><span class="line">        List.Add List.Count, oProduct</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    &apos; 更新購物車</span><br><span class="line">    Public Sub Update()</span><br><span class="line">        Dim oProduct</span><br><span class="line">        Fields(&quot;Amount&quot;) = 0</span><br><span class="line">        For Each oProduct In List.Items</span><br><span class="line">            oProduct.Refresh</span><br><span class="line">            Fields(&quot;Amount&quot;) = Fields(&quot;Amount&quot;) + oProduct.GetField(&quot;SubTotal&quot;)</span><br><span class="line">        Next</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    &apos; 取得總金額</span><br><span class="line">    Public Function GetAmount()</span><br><span class="line">        GetAmount = Fields(&quot;Amount&quot;)</span><br><span class="line">    End Function</span><br><span class="line"></span><br><span class="line">    &apos; 物件結束</span><br><span class="line">    Private Sub Class_Terminate()</span><br><span class="line">        Set List = Nothing</span><br><span class="line">        Set Fields = Nothing</span><br><span class="line">    End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="ASP 物件設計手法 (3) - 進階技巧">
+<meta itemprop="description" content="接下來的技巧會比較複雜一點，不過如果能夠善用的話，就會是一項很好用的武器。我在較大型的專案裡用過這樣的方式，它提供了我在開發程式不一樣的角度">
+<meta itemprop="datePublished" content="2005-12-06T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2005-12-06T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1387">
 
-<p>我利用了 Dictionary 物件來幫我維護每項商品物件，也用到了註冊機制。集合體的類型還有很多種，以上是較基本的操作方式。</p>
+
+
+<meta itemprop="keywords" content="ASP," /><meta property="og:title" content="ASP 物件設計手法 (3) - 進階技巧" />
+<meta property="og:description" content="接下來的技巧會比較複雜一點，不過如果能夠善用的話，就會是一項很好用的武器。我在較大型的專案裡用過這樣的方式，它提供了我在開發程式不一樣的角度" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/classic-asp-oo-3/" />
+<meta property="article:published_time" content="2005-12-06T00:00:00+08:00" />
+<meta property="article:modified_time" content="2005-12-06T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ASP 物件設計手法 (3) - 進階技巧"/>
+<meta name="twitter:description" content="接下來的技巧會比較複雜一點，不過如果能夠善用的話，就會是一項很好用的武器。我在較大型的專案裡用過這樣的方式，它提供了我在開發程式不一樣的角度"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>ASP 物件設計手法 (3) - 進階技巧</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 6, 2005</span></div>
+				<h1>ASP 物件設計手法 (3) - 進階技巧</h1>
+			</header>
+			<div class="content">
+				<p>接下來的技巧會比較複雜一點，不過如果能夠善用的話，就會是一項很好用的武器。我在較大型的專案裡用過這樣的方式，它提供了我在開發程式不一樣的角度。至少我不必再寫一些複雜的判斷式，減少錯誤的發生。當然錯誤還是會有，但這是個人思考邏輯的問題，和物件導向開發方式關係不大。</p>
+<!-- raw HTML omitted -->
+<h2 id="集合體">集合體<a href="#集合體" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>設計購物車時，我常用集合體的方式來完成。一個購物車基本型如下：</p>
+<pre><code class="language-aspx-vb" data-lang="aspx-vb">&lt;%
+' 購物車
+Class Shopping_Cart
+    Private List
+
+    Private Fields
+
+    ' 物件初始化
+    Private Sub Class_Initialize()
+        Set List = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+        Set Fields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+        Fields.Add &quot;Amount&quot;, 0
+    End Sub
+
+    ' 加入商品
+    Public Sub AddProduct(oProduct)
+        List.Add List.Count, oProduct
+    End Sub
+
+    ' 更新購物車
+    Public Sub Update()
+        Dim oProduct
+        Fields(&quot;Amount&quot;) = 0
+        For Each oProduct In List.Items
+            oProduct.Refresh
+            Fields(&quot;Amount&quot;) = Fields(&quot;Amount&quot;) + oProduct.GetField(&quot;SubTotal&quot;)
+        Next
+    End Sub
+
+    ' 取得總金額
+    Public Function GetAmount()
+        GetAmount = Fields(&quot;Amount&quot;)
+    End Function
+
+    ' 物件結束
+    Private Sub Class_Terminate()
+        Set List = Nothing
+        Set Fields = Nothing
+    End Sub
+End Class
+%&gt;
+
+</code></pre><p>我利用了 Dictionary 物件來幫我維護每項商品物件，也用到了註冊機制。集合體的類型還有很多種，以上是較基本的操作方式。</p>
 <p>商品的部份很簡單，就是基本的設定屬性及取得屬性。為了方便說明，我沒有把商品名稱或其他商品屬性放進去。</p>
-<figure class="highlight plain"><figcaption><span>/inc/class/Shopping/Product.asp</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; 商品</span><br><span class="line">Class Shopping_Product</span><br><span class="line">    Private Fields</span><br><span class="line"></span><br><span class="line">    Private Sub Class_Initialize()</span><br><span class="line">        Set Fields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">        Fields.Add &quot;Price&quot;, 0</span><br><span class="line">        Fields.Add &quot;Quantity&quot;, 0</span><br><span class="line">        Fields.Add &quot;SubTotal&quot;, 0</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Private Sub Class_Terminate()</span><br><span class="line">        Set Fields = Nothing</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Public Sub SetField(sName, vValue)</span><br><span class="line">        If Fields.Exists(sName) Then</span><br><span class="line">            Fields(sName) = vValue</span><br><span class="line">        End If</span><br><span class="line">    End Sub</span><br><span class="line"></span><br><span class="line">    Public Function GetField(sName)</span><br><span class="line">        GetField = Null</span><br><span class="line">        If Fields.Exists(sName) Then</span><br><span class="line">            GetField = Fields(sName)</span><br><span class="line">        End If</span><br><span class="line">    End Function</span><br><span class="line"></span><br><span class="line">    Public Sub Refresh()</span><br><span class="line">        Fields(&quot;SubTotal&quot;) = Fields(&quot;Price&quot;) * Fields(&quot;Quantity&quot;)</span><br><span class="line">    End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-aspx-vb" data-lang="aspx-vb">&lt;%
+' 商品
+Class Shopping_Product
+    Private Fields
 
-<p>以下是一個簡單的測試：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- #include virtual=&quot;/inc/class/Shopping/Cart.asp&quot; --&gt;</span><br><span class="line">&lt;!-- #include virtual=&quot;/inc/class/Shopping/Product.asp&quot; --&gt;</span><br><span class="line">&lt;%</span><br><span class="line">Dim oCart : Set oCart = New Shopping_Cart</span><br><span class="line">Dim oP1 : Set oP1 = New Shopping_Product</span><br><span class="line">Dim oP2 : Set oP2 = New Shopping_Product</span><br><span class="line">Dim oP3 : Set oP3 = New Shopping_Product</span><br><span class="line">oP1.SetField &quot;Price&quot;, 100</span><br><span class="line">oP1.SetField &quot;Quantity&quot;, 1</span><br><span class="line">oP2.SetField &quot;Price&quot;, 120</span><br><span class="line">oP2.SetField &quot;Quantity&quot;, 2</span><br><span class="line">oP3.SetField &quot;Price&quot;, 150</span><br><span class="line">oP3.SetField &quot;Quantity&quot;, 1</span><br><span class="line">oCart.AddProduct oP1</span><br><span class="line">oCart.AddProduct oP2</span><br><span class="line">oCart.AddProduct oP3</span><br><span class="line">oCart.Update</span><br><span class="line">Response.Write oCart.GetAmount</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+    Private Sub Class_Initialize()
+        Set Fields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+        Fields.Add &quot;Price&quot;, 0
+        Fields.Add &quot;Quantity&quot;, 0
+        Fields.Add &quot;SubTotal&quot;, 0
+    End Sub
 
-<h2 id="序列化及反序列化"><a href="#序列化及反序列化" class="headerlink" title="序列化及反序列化"></a>序列化及反序列化</h2><p>這裡說的序列化其實不是真的序列化，只是我找不到好的名詞來說明。之前提過利用 Class 關鍵字所產生出來的物件是不能存在 Session 中的，因此我會利用 Dictionary 這種用 Server.CreateObject 所產生出來的物件來存放物件資訊。</p>
+    Private Sub Class_Terminate()
+        Set Fields = Nothing
+    End Sub
+
+    Public Sub SetField(sName, vValue)
+        If Fields.Exists(sName) Then
+            Fields(sName) = vValue
+        End If
+    End Sub
+
+    Public Function GetField(sName)
+        GetField = Null
+        If Fields.Exists(sName) Then
+            GetField = Fields(sName)
+        End If
+    End Function
+
+    Public Sub Refresh()
+        Fields(&quot;SubTotal&quot;) = Fields(&quot;Price&quot;) * Fields(&quot;Quantity&quot;)
+    End Sub
+End Class
+%&gt;
+
+</code></pre><p>以下是一個簡單的測試：</p>
+<pre><code>&lt;!-- #include virtual=&quot;/inc/class/Shopping/Cart.asp&quot; --&gt;
+&lt;!-- #include virtual=&quot;/inc/class/Shopping/Product.asp&quot; --&gt;
+&lt;%
+Dim oCart : Set oCart = New Shopping_Cart
+Dim oP1 : Set oP1 = New Shopping_Product
+Dim oP2 : Set oP2 = New Shopping_Product
+Dim oP3 : Set oP3 = New Shopping_Product
+oP1.SetField &quot;Price&quot;, 100
+oP1.SetField &quot;Quantity&quot;, 1
+oP2.SetField &quot;Price&quot;, 120
+oP2.SetField &quot;Quantity&quot;, 2
+oP3.SetField &quot;Price&quot;, 150
+oP3.SetField &quot;Quantity&quot;, 1
+oCart.AddProduct oP1
+oCart.AddProduct oP2
+oCart.AddProduct oP3
+oCart.Update
+Response.Write oCart.GetAmount
+%&gt;
+
+</code></pre><h2 id="序列化及反序列化">序列化及反序列化<a href="#序列化及反序列化" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>這裡說的序列化其實不是真的序列化，只是我找不到好的名詞來說明。之前提過利用 Class 關鍵字所產生出來的物件是不能存在 Session 中的，因此我會利用 Dictionary 這種用 Server.CreateObject 所產生出來的物件來存放物件資訊。</p>
 <p>以上面的購物車為例，如果我想要把商品資料存入 Session ，不能把 Cart 直接存入 Session 中，這樣會使得放在 List 屬性中的商品資訊消失；這時候就要改用 Dictionary 物件來儲存。</p>
 <p>商品的序列化動作比較簡單，就是將 Fields 屬性傳回即可；而反序列化時，則是把取出的 Fields 屬性指定回去：</p>
-<figure class="highlight plain"><figcaption><span>/inc/class/Shopping/Product.asp</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; 商品</span><br><span class="line">Class Shopping_Product</span><br><span class="line">    Private Fields</span><br><span class="line"></span><br><span class="line">    &apos; ... 略 ...</span><br><span class="line"></span><br><span class="line">    Public Function Serialize()</span><br><span class="line">        Set Serialize = Fields</span><br><span class="line">    End Function</span><br><span class="line"></span><br><span class="line">    Public Function Unserialize(oFields)</span><br><span class="line">        Set Fields = oFields</span><br><span class="line">    End Function</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-aspx-vb" data-lang="aspx-vb">&lt;%
+' 商品
+Class Shopping_Product
+    Private Fields
 
-<p>至於購物車的序列化比較複雜一點，首先要將每個商品的序列化存到一個 Dictionary 物件 (oItems)，再把這個 Dictionary 物件 (oItems) 放到 Cart 的序列化物件 (oFields) 中，最後回傳 Cart 的序列化物件；反序列化則正好相反。不過反序列化要先產生一個商品物件 (oProduct) ，再把商品的序列化物件 (oItem) 指定給該商品物件。 </p>
-<figure class="highlight plain"><figcaption><span>/inc/class/Shopping/Cart.asp</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; 購物車</span><br><span class="line">Class Shopping_Cart</span><br><span class="line">    Private List</span><br><span class="line"></span><br><span class="line">    Private Fields</span><br><span class="line"></span><br><span class="line">    &apos; ... 略 ....</span><br><span class="line"></span><br><span class="line">    Public Function Serialize()</span><br><span class="line">        Dim oFields : Set oFields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">        Dim oItems : Set oItems = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">        Dim oProduct</span><br><span class="line">        &lt;strong&gt;For Each oProduct In List.Items&lt;/strong&gt;</span><br><span class="line">        &lt;strong&gt;oItems.Add oItems.Count, oProduct.Serialize&lt;/strong&gt;</span><br><span class="line">        &lt;strong&gt;Next&lt;/strong&gt;</span><br><span class="line">        &lt;strong&gt;oFields.Add &quot;Items&quot;, oItems&lt;/strong&gt;</span><br><span class="line">        oFields.Add &quot;Amount&quot;, Fields(&quot;Amount&quot;)</span><br><span class="line">        Set Serialize = oFields</span><br><span class="line">        Set oItems = Nothing</span><br><span class="line">        Set oFields = Nothing</span><br><span class="line">    End Function</span><br><span class="line"></span><br><span class="line">    Public Sub Unserialize(oSerializedFields)</span><br><span class="line">        If oSerializedFields Is Nothing Then Exit Sub</span><br><span class="line">        &lt;strong&gt;Set List = Server.CreateObject(&quot;Scripting.Dictionary&quot;)&lt;/strong&gt;</span><br><span class="line">        Dim oItem</span><br><span class="line">        Dim oProduct</span><br><span class="line">        For Each oItem In oSerializedFields(&quot;Items&quot;).Items</span><br><span class="line">            &lt;strong&gt;Set oProduct = New Shopping_Product&lt;/strong&gt;</span><br><span class="line">            &lt;strong&gt;oProduct.Unserialize oItem&lt;/strong&gt;</span><br><span class="line">        List.Add List.Count, oProduct</span><br><span class="line">        Next</span><br><span class="line">        Fields(&quot;Amount&quot;) = oSerializedFields(&quot;Amount&quot;)</span><br><span class="line">    End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+    ' ... 略 ...
 
-<p>用法如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- #include virtual=&quot;/inc/class/Shopping/Cart.asp&quot; --&gt;</span><br><span class="line">&lt;!-- #include virtual=&quot;/inc/class/Shopping/Product.asp&quot; --&gt;</span><br><span class="line">&lt;%</span><br><span class="line">Dim oCart : Set oCart = New Shopping_Cart</span><br><span class="line">Dim oP1 : Set oP1 = New Shopping_Product</span><br><span class="line">Dim oP2 : Set oP2 = New Shopping_Product</span><br><span class="line">Dim oP3 : Set oP3 = New Shopping_Product</span><br><span class="line">oP1.SetField &quot;Price&quot;, 100</span><br><span class="line">oP1.SetField &quot;Quantity&quot;, 1</span><br><span class="line">oP2.SetField &quot;Price&quot;, 120</span><br><span class="line">oP2.SetField &quot;Quantity&quot;, 2</span><br><span class="line">oP3.SetField &quot;Price&quot;, 150</span><br><span class="line">oP3.SetField &quot;Quantity&quot;, 1</span><br><span class="line">oCart.AddProduct oP1</span><br><span class="line">oCart.AddProduct oP2</span><br><span class="line">oCart.AddProduct oP3</span><br><span class="line">oCart.Update</span><br><span class="line">Set Session(&quot;Cart&quot;) = oCart.Serialize</span><br><span class="line">Dim oNewCart : Set oNewCart = New Shopping_Cart</span><br><span class="line">oNewCart.Unserialize Session(&quot;Cart&quot;)</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+    Public Function Serialize()
+        Set Serialize = Fields
+    End Function
 
-<h2 id="巢狀-Dictionary-物件"><a href="#巢狀-Dictionary-物件" class="headerlink" title="巢狀 Dictionary 物件"></a>巢狀 Dictionary 物件</h2><p>這是另一種集合體和序列化的變形，通常是用在把資料庫中的資料轉換成 Dictionary 物件上。主要原理是在迴圈中建立一個 Dictionary 物件 (oItem) ，然後在設定好內容後，把它指定給最外層的 Dictionary 物件 (oItems) 。 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">Dim oItems : Set oItems = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">Dim oItem</span><br><span class="line">Dim oField</span><br><span class="line">While Not oTempRS.EOF</span><br><span class="line">    Set oItem = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">    &apos; 將所有欄位放到 oItem 中</span><br><span class="line">    For Each oField In oTempRS.Fields</span><br><span class="line">        oItem.Add oField.Name, oField.Value</span><br><span class="line">    Next</span><br><span class="line">    oItems.Add oItems.Count oItem</span><br><span class="line">    Set oItem = Nothing</span><br><span class="line">Wend</span><br><span class="line">Response.Write oItems(0)(&quot;Attr1&quot;) &amp;amp; vbCrLf</span><br><span class="line">Response.Write oItems(0)(&quot;Attr2&quot;) &amp;amp; vbCrLf</span><br><span class="line">Response.Write oItems(1)(&quot;Attr1&quot;) &amp;amp; vbCrLf</span><br><span class="line">Response.Write oItems(1)(&quot;Attr2&quot;) &amp;amp; vbCrLf</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+    Public Function Unserialize(oFields)
+        Set Fields = oFields
+    End Function
+End Class
+%&gt;
 
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>雖然 ASP (VBScript) 在物件導向上的機制不如 ASP (JScript) 來得先進，但是以上的技巧還是能夠解決多數的問題。這些技巧都是我在開發專案時所得到的心得，如果有更多有趣的方法，也歡迎大家分享。</p>
-<h2 id="相關文章"><a href="#相關文章" class="headerlink" title="相關文章"></a>相關文章</h2><ul>
-<li><a href="http://www.jaceju.net/blog/archives/51/" target="_blank" rel="noopener">ASP 物件導向 (1) - 基礎</a></li>
-<li><a href="http://www.jaceju.net/blog/archives/52/" target="_blank" rel="noopener">ASP 物件導向 (2) - 初級技巧</a></li>
-<li><a href="http://www.jaceju.net/blog/archives/54/" target="_blank" rel="noopener">ASP 物件導向 (3) - 進階技巧</a></li>
-<li><a href="http://www.jaceju.net/blog/archives/57/" target="_blank" rel="noopener">ASP 物件導向 (4) - 動態載入類別</a></li>
-<li><a href="http://www.jaceju.net/blog/archives/59/" target="_blank" rel="noopener">ASP 物件導向 (5) - Me 關鍵字</a></li>
-<li><a href="http://www.jaceju.net/blog/archives/76/" target="_blank" rel="noopener">ASP 物件導向 (6) - 單元測試</a></li>
+</code></pre><p>至於購物車的序列化比較複雜一點，首先要將每個商品的序列化存到一個 Dictionary 物件 (oItems)，再把這個 Dictionary 物件 (oItems) 放到 Cart 的序列化物件 (oFields) 中，最後回傳 Cart 的序列化物件；反序列化則正好相反。不過反序列化要先產生一個商品物件 (oProduct) ，再把商品的序列化物件 (oItem) 指定給該商品物件。</p>
+<pre><code class="language-aspx-vb" data-lang="aspx-vb">&lt;%
+' 購物車
+Class Shopping_Cart
+    Private List
+
+    Private Fields
+
+    ' ... 略 ....
+
+    Public Function Serialize()
+        Dim oFields : Set oFields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+        Dim oItems : Set oItems = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+        Dim oProduct
+        &lt;strong&gt;For Each oProduct In List.Items&lt;/strong&gt;
+        &lt;strong&gt;oItems.Add oItems.Count, oProduct.Serialize&lt;/strong&gt;
+        &lt;strong&gt;Next&lt;/strong&gt;
+        &lt;strong&gt;oFields.Add &quot;Items&quot;, oItems&lt;/strong&gt;
+        oFields.Add &quot;Amount&quot;, Fields(&quot;Amount&quot;)
+        Set Serialize = oFields
+        Set oItems = Nothing
+        Set oFields = Nothing
+    End Function
+
+    Public Sub Unserialize(oSerializedFields)
+        If oSerializedFields Is Nothing Then Exit Sub
+        &lt;strong&gt;Set List = Server.CreateObject(&quot;Scripting.Dictionary&quot;)&lt;/strong&gt;
+        Dim oItem
+        Dim oProduct
+        For Each oItem In oSerializedFields(&quot;Items&quot;).Items
+            &lt;strong&gt;Set oProduct = New Shopping_Product&lt;/strong&gt;
+            &lt;strong&gt;oProduct.Unserialize oItem&lt;/strong&gt;
+        List.Add List.Count, oProduct
+        Next
+        Fields(&quot;Amount&quot;) = oSerializedFields(&quot;Amount&quot;)
+    End Sub
+End Class
+%&gt;
+
+</code></pre><p>用法如下：</p>
+<pre><code>&lt;!-- #include virtual=&quot;/inc/class/Shopping/Cart.asp&quot; --&gt;
+&lt;!-- #include virtual=&quot;/inc/class/Shopping/Product.asp&quot; --&gt;
+&lt;%
+Dim oCart : Set oCart = New Shopping_Cart
+Dim oP1 : Set oP1 = New Shopping_Product
+Dim oP2 : Set oP2 = New Shopping_Product
+Dim oP3 : Set oP3 = New Shopping_Product
+oP1.SetField &quot;Price&quot;, 100
+oP1.SetField &quot;Quantity&quot;, 1
+oP2.SetField &quot;Price&quot;, 120
+oP2.SetField &quot;Quantity&quot;, 2
+oP3.SetField &quot;Price&quot;, 150
+oP3.SetField &quot;Quantity&quot;, 1
+oCart.AddProduct oP1
+oCart.AddProduct oP2
+oCart.AddProduct oP3
+oCart.Update
+Set Session(&quot;Cart&quot;) = oCart.Serialize
+Dim oNewCart : Set oNewCart = New Shopping_Cart
+oNewCart.Unserialize Session(&quot;Cart&quot;)
+%&gt;
+
+</code></pre><h2 id="巢狀-dictionary-物件">巢狀 Dictionary 物件<a href="#巢狀-dictionary-物件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>這是另一種集合體和序列化的變形，通常是用在把資料庫中的資料轉換成 Dictionary 物件上。主要原理是在迴圈中建立一個 Dictionary 物件 (oItem) ，然後在設定好內容後，把它指定給最外層的 Dictionary 物件 (oItems) 。</p>
+<pre><code>&lt;%
+Dim oItems : Set oItems = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+Dim oItem
+Dim oField
+While Not oTempRS.EOF
+    Set oItem = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+    ' 將所有欄位放到 oItem 中
+    For Each oField In oTempRS.Fields
+        oItem.Add oField.Name, oField.Value
+    Next
+    oItems.Add oItems.Count oItem
+    Set oItem = Nothing
+Wend
+Response.Write oItems(0)(&quot;Attr1&quot;) &amp;amp; vbCrLf
+Response.Write oItems(0)(&quot;Attr2&quot;) &amp;amp; vbCrLf
+Response.Write oItems(1)(&quot;Attr1&quot;) &amp;amp; vbCrLf
+Response.Write oItems(1)(&quot;Attr2&quot;) &amp;amp; vbCrLf
+%&gt;
+
+</code></pre><h2 id="總結">總結<a href="#總結" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>雖然 ASP (VBScript) 在物件導向上的機制不如 ASP (JScript) 來得先進，但是以上的技巧還是能夠解決多數的問題。這些技巧都是我在開發專案時所得到的心得，如果有更多有趣的方法，也歡迎大家分享。</p>
+<h2 id="相關文章">相關文章<a href="#相關文章" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li><a href="http://www.jaceju.net/blog/archives/51/">ASP 物件導向 (1) - 基礎</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/52/">ASP 物件導向 (2) - 初級技巧</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/54/">ASP 物件導向 (3) - 進階技巧</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/57/">ASP 物件導向 (4) - 動態載入類別</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/59/">ASP 物件導向 (5) - Me 關鍵字</a></li>
+<li><a href="http://www.jaceju.net/blog/archives/76/">ASP 物件導向 (6) - 單元測試</a></li>
 </ul>
-</div><div class="tags"><a href="/tags/ASP/">ASP</a></div><div class="post-nav"><a class="pre" href="/classic-asp-oo-2/">ASP 物件設計手法 (2) - 初級技巧</a><a class="next" href="/classic-asp-oo-1/">ASP 物件設計手法 (1) - 基礎</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/classic-asp-oo-1/">ASP 物件設計手法 (1) - 基礎</a></li>
+	
+	<li><a href="/classic-asp-oo-2/">ASP 物件設計手法 (2) - 初級技巧</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/asp">ASP</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2005-12-06 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/classic-asp-oo-2/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>ASP 物件設計手法 (2) - 初級技巧</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/write-php-function-with-callback/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>撰寫可以接受 callback 虛擬型態參數的函式</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

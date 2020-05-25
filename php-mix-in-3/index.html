@@ -1,104 +1,465 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>我也來實作 PHP mix-in 的概念 - Part 3 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="我也來實作 PHP mix-in 的概念 - Part 3"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="我也來實作 PHP mix-in 的概念 - Part 3"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">我也來實作 PHP mix-in 的概念 - Part 3</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">我也來實作 PHP mix-in 的概念 - Part 3</h1><div class="post-meta">Mar 27, 2007</div><div class="post-content"><h2 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h2><p>石頭成老大把他心目中的 mix-in <a href="http://blog.roodo.com/rocksaying/archives/2884871.html" target="_blank" rel="noopener">目標</a>做出來了，他主要的實作有以下兩個重點：</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="我也來實作 PHP mix-in 的概念 - Part 3">
+<meta itemprop="description" content="說明 石頭成老大把他心目中的 mix-in 目標做出來了，他主要的實作有以下兩個重點： 物件實體生成後彼此做 mix-in 是不相干的。 類別方法在動態委派後要能遵守繼承原則">
+<meta itemprop="datePublished" content="2007-03-27T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2007-03-27T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="3214">
+
+
+
+<meta itemprop="keywords" content="PHP," /><meta property="og:title" content="我也來實作 PHP mix-in 的概念 - Part 3" />
+<meta property="og:description" content="說明 石頭成老大把他心目中的 mix-in 目標做出來了，他主要的實作有以下兩個重點： 物件實體生成後彼此做 mix-in 是不相干的。 類別方法在動態委派後要能遵守繼承原則" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/php-mix-in-3/" />
+<meta property="article:published_time" content="2007-03-27T00:00:00+08:00" />
+<meta property="article:modified_time" content="2007-03-27T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我也來實作 PHP mix-in 的概念 - Part 3"/>
+<meta name="twitter:description" content="說明 石頭成老大把他心目中的 mix-in 目標做出來了，他主要的實作有以下兩個重點： 物件實體生成後彼此做 mix-in 是不相干的。 類別方法在動態委派後要能遵守繼承原則"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>我也來實作 PHP mix-in 的概念 - Part 3</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 27, 2007</span></div>
+				<h1>我也來實作 PHP mix-in 的概念 - Part 3</h1>
+			</header>
+			<div class="content">
+				<h2 id="說明">說明<a href="#說明" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>石頭成老大把他心目中的 mix-in <a href="http://blog.roodo.com/rocksaying/archives/2884871.html">目標</a>做出來了，他主要的實作有以下兩個重點：</p>
 <ul>
 <li>物件實體生成後彼此做 mix-in 是不相干的。</li>
 <li>類別方法在動態委派後要能遵守繼承原則，也就是說子承父、父不承子。</li>
 </ul>
-<p>另外他也提到要儲存方法是一件困難的事情，因為 PHP 有三種函式的呼叫方法：一般函數、類別靜態方法、實例方法。而我在 <a href="http://blog.roodo.com/jaceju/archives/2853761.html" target="_blank" rel="noopener">Part 2</a> 裡的概念實作則是用 <a href="http://blog.roodo.com/jaceju/archives/409709.html" target="_blank" rel="noopener">callback</a> 虛擬型態來儲存，不過<a href="http://blog.roodo.com/jaceju/archives/2853761.html" title="前一版" target="_blank" rel="noopener"></a>卻忘了把一般函式給放進去。</p>
+<p>另外他也提到要儲存方法是一件困難的事情，因為 PHP 有三種函式的呼叫方法：一般函數、類別靜態方法、實例方法。而我在 <a href="http://blog.roodo.com/jaceju/archives/2853761.html">Part 2</a> 裡的概念實作則是用 <a href="http://blog.roodo.com/jaceju/archives/409709.html">callback</a> 虛擬型態來儲存，不過<!-- raw HTML omitted --><!-- raw HTML omitted -->卻忘了把一般函式給放進去。</p>
 <p>不過 Part 2 的實作已經實現了第一個目標，所以在這次 Part 3 的實作裡，我除了決定把一般函式也納入 mix-in 的實作裡，而且還要達成石頭成老大說的第二個目標。</p>
-<a id="more"></a>
-
+<!-- raw HTML omitted -->
 <p>另外我自己也加入了以下實作重點：</p>
-<li>所有動作都要在 Prototype 類別裡處理掉，不能夠讓子類別除了自己的工作外，還得實作不必要的部份。 (石頭成老大抱歉啦~我是覺得 <span><span class="vars">$methods</span> <span>不應該在子類別再次定義。)</span></span></li>
-<li><span><span>Prototype&nbsp; 所延伸的子類別，不能覆蓋 Prototype 類別裡的任何方法，以避免功能出錯。</span></span></li>
-<li><span>使用的方法要夠簡單，儘量不要讓使用者感到困惑。</span></li>
-
-
+<!-- raw HTML omitted -->
 <p>經過一番努力，我終於試出來了；先來看看成果，後面我才來一一分析。</p>
-<h2 id="可以-mix-in-方法的測試類別"><a href="#可以-mix-in-方法的測試類別" class="headerlink" title="可以 mix-in 方法的測試類別"></a>可以 mix-in 方法的測試類別</h2><p>首先我定義一個繼承自 Prototype 的類別稱為 ParentClass ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 繼承自 Prototype 的類別</span><br><span class="line">class ParentClass extends Prototype</span><br><span class="line">&#123;</span><br><span class="line">    public function method7($param)</span><br><span class="line">    &#123;</span><br><span class="line">        echo get_class($this), &apos;::method7&apos;;</span><br><span class="line">        echo &quot;(&quot;, $param, &quot;)\n&quot;;</span><br><span class="line">        echo &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="可以-mix-in-方法的測試類別">可以 mix-in 方法的測試類別<a href="#可以-mix-in-方法的測試類別" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>首先我定義一個繼承自 Prototype 的類別稱為 ParentClass ：</p>
+<pre><code>// 繼承自 Prototype 的類別
+class ParentClass extends Prototype
+{
+    public function method7($param)
+    {
+        echo get_class($this), '::method7';
+        echo &quot;(&quot;, $param, &quot;)\n&quot;;
+        echo &quot;\n&quot;;
+    }
+}
 
-<p>註：可以 mix-in 的抽象類別我還是稱為 Prototype ，它必須被其他類別繼承，而無法獨自生成實體。</p>
+</code></pre><p>註：可以 mix-in 的抽象類別我還是稱為 Prototype ，它必須被其他類別繼承，而無法獨自生成實體。</p>
 <p>為了要實現石頭成老大的第一個目標，我再新增三個類別如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 測試用的 Prototype 子類別 1</span><br><span class="line">class ChildClass1 extends ParentClass</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line">// 測試用的 Prototype 子類別 2</span><br><span class="line">class ChildClass2 extends ParentClass</span><br><span class="line">&#123;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">    parent::__construct();</span><br><span class="line">    echo &quot;I&apos;m &quot; . __CLASS__ . &apos;!!&apos;, &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 測試用的 Prototype 子類別 3</span><br><span class="line">class ChildClass3 extends ChildClass1</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>// 測試用的 Prototype 子類別 1
+class ChildClass1 extends ParentClass
+{
+}
+// 測試用的 Prototype 子類別 2
+class ChildClass2 extends ParentClass
+{
+    public function __construct()
+    {
+    parent::__construct();
+    echo &quot;I'm &quot; . __CLASS__ . '!!', &quot;\n&quot;;
+    }
+}
+// 測試用的 Prototype 子類別 3
+class ChildClass3 extends ChildClass1
+{
+}
 
-<p>這裡 ChildClass1 和 ChildClass2 都繼承自 ParentClass ，而 ChildClass3 則繼承自 ChildClass1 ，而且它們也都是 Prototype 的子類別。</p>
-<h2 id="可用來做-mix-in-的-Callback-函式"><a href="#可用來做-mix-in-的-Callback-函式" class="headerlink" title="可用來做 mix-in 的 Callback 函式"></a>可用來做 mix-in 的 Callback 函式</h2><p>接下來我要準備可以當成 callback 的函式與類別，這裡分成一般函式、類別函式及 MethodObject 物件。</p>
+</code></pre><p>這裡 ChildClass1 和 ChildClass2 都繼承自 ParentClass ，而 ChildClass3 則繼承自 ChildClass1 ，而且它們也都是 Prototype 的子類別。</p>
+<h2 id="可用來做-mix-in-的-callback-函式">可用來做 mix-in 的 Callback 函式<a href="#可用來做-mix-in-的-callback-函式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>接下來我要準備可以當成 callback 的函式與類別，這裡分成一般函式、類別函式及 MethodObject 物件。</p>
 <p>不過上次的 MethodObject 類別名稱我覺得還是不太好，這次我改用 Callback 這個名稱，但實際上它的功能還是一樣：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// mix-in 方法的抽象類別</span><br><span class="line">abstract class Callback</span><br><span class="line">&#123;</span><br><span class="line">    protected $object;</span><br><span class="line">    public function __construct($object = NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;object = $object;</span><br><span class="line">    &#125;</span><br><span class="line">    abstract function run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>// mix-in 方法的抽象類別
+abstract class Callback
+{
+    protected $object;
+    public function __construct($object = NULL)
+    {
+        $this-&gt;object = $object;
+    }
+    abstract function run();
+}
 
-<p>不過抽象類別是無法產生實體的，所以和前一版相同，我用一個 TestMethod 類別來繼承 Callback ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 方法類別</span><br><span class="line">class TestMethod extends Callback</span><br><span class="line">&#123;</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        $n = func_num_args();</span><br><span class="line">        echo __METHOD__;</span><br><span class="line">        echo &apos;(&apos;, (1 == $n) ? func_get_arg(0) : &apos;&apos;, &quot;)\n&quot;;</span><br><span class="line">        echo &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>不過抽象類別是無法產生實體的，所以和前一版相同，我用一個 TestMethod 類別來繼承 Callback ：</p>
+<pre><code>// 方法類別
+class TestMethod extends Callback
+{
+    public function run()
+    {
+        $n = func_num_args();
+        echo __METHOD__;
+        echo '(', (1 == $n) ? func_get_arg(0) : '', &quot;)\n&quot;;
+        echo &quot;\n&quot;;
+    }
+}
 
-<p>然後是一個普通的類別 Util ，並提供了兩個公開方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 一般類別</span><br><span class="line">class Util</span><br><span class="line">&#123;</span><br><span class="line">    public function method1($param)</span><br><span class="line">    &#123;</span><br><span class="line">        echo __METHOD__;</span><br><span class="line">        echo &quot;(&quot;, $param, &quot;)\n&quot;;</span><br><span class="line">        echo &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    public function method2($param)</span><br><span class="line">    &#123;</span><br><span class="line">        echo __METHOD__;</span><br><span class="line">        echo &quot;(&quot;, $param, &quot;)\n&quot;;</span><br><span class="line">        echo &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>然後是一個普通的類別 Util ，並提供了兩個公開方法：</p>
+<pre><code>// 一般類別
+class Util
+{
+    public function method1($param)
+    {
+        echo __METHOD__;
+        echo &quot;(&quot;, $param, &quot;)\n&quot;;
+        echo &quot;\n&quot;;
+    }
+    public function method2($param)
+    {
+        echo __METHOD__;
+        echo &quot;(&quot;, $param, &quot;)\n&quot;;
+        echo &quot;\n&quot;;
+    }
+}
 
-<p>最後是兩個函式 normalFunc1 及 normalFunc2 ，它們就是一般的自訂函式而已：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 一般函式</span><br><span class="line">function normalFunc1($param)</span><br><span class="line">&#123;</span><br><span class="line">    echo &apos;normalFunc1(&apos; . $param, &quot;)\n&quot;;</span><br><span class="line">    echo &quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">function normalFunc2($param, $object = NULL)</span><br><span class="line">&#123;</span><br><span class="line">    echo &apos;normalFunc2(&apos; . $param, &quot;)\n&quot;;</span><br><span class="line">    var_export($object);</span><br><span class="line">    echo &quot;\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>最後是兩個函式 normalFunc1 及 normalFunc2 ，它們就是一般的自訂函式而已：</p>
+<pre><code>// 一般函式
+function normalFunc1($param)
+{
+    echo 'normalFunc1(' . $param, &quot;)\n&quot;;
+    echo &quot;\n&quot;;
+}
+function normalFunc2($param, $object = NULL)
+{
+    echo 'normalFunc2(' . $param, &quot;)\n&quot;;
+    var_export($object);
+    echo &quot;\n&quot;;
+}
 
-<h2 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a>測試結果</h2><p>現在重頭戲來了，我先把需要的 callback 變數準備好：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 測試用的程式碼</span><br><span class="line">$a = new Util();</span><br><span class="line">$callback1 = array (&apos;Util&apos;, &apos;method1&apos;);</span><br><span class="line">$callback2 = array ($a, &apos;method2&apos;);</span><br><span class="line">$callback3 = &apos;TestMethod&apos;;</span><br><span class="line">$callback4 = array (&apos;TestMethod&apos;, &apos;run&apos;);</span><br><span class="line">$callback5 = &apos;normalFunc1&apos;;</span><br><span class="line">$callback6 = &apos;normalFunc2&apos;;</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="測試結果">測試結果<a href="#測試結果" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>現在重頭戲來了，我先把需要的 callback 變數準備好：</p>
+<pre><code>// 測試用的程式碼
+$a = new Util();
+$callback1 = array ('Util', 'method1');
+$callback2 = array ($a, 'method2');
+$callback3 = 'TestMethod';
+$callback4 = array ('TestMethod', 'run');
+$callback5 = 'normalFunc1';
+$callback6 = 'normalFunc2';
 
-<p>這裡分成 $callback1 到 $callback6 ，其中 $callback3 和 $callback4 其實是一樣的，只不過寫法不同而已。</p>
+</code></pre><p>這裡分成 $callback1 到 $callback6 ，其中 $callback3 和 $callback4 其實是一樣的，只不過寫法不同而已。</p>
 <p>先來看看石頭成老大要的第二個目標，在我這裡是怎麼做的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Prototype::delegate(&apos;ParentClass::method4&apos;, $callback4);</span><br><span class="line">Prototype::delegate(&apos;ChildClass1::method5&apos;, $callback5);</span><br></pre></td></tr></table></figure>
+<pre><code>Prototype::delegate('ParentClass::method4', $callback4);
+Prototype::delegate('ChildClass1::method5', $callback5);
 
-<p>和石頭成老大的作法不同，我在 Prototype 定義了一個靜態的 delegate 函式，然後用上面的方法來指定靜態的 mix-in 。本來我想是直接用 <strong>ParentClass::delegate(‘method4’, $callback)</strong> 這種方式來完成，不過 <strong>PHP 並沒有辦法在繼承下來的靜態函式裡取得該類別的類別名稱</strong>，所以這裡我想還是透過 Prototype 來完成，而這也符合我自己的第一個實作重點。</p>
-<p>這裡要注意一點，那就是這時我已經將 $callback4 混入 ParentClass ，此時 ParentClass 除了自己的 <strong>method7</strong> 方法外，還會有 <strong>method4</strong> 方法共兩個方法。而 $callback5 則是混入 ChildClass1 ，又因為 ChildClass1 繼承自 ParentClass ，所以 ChildClass1 就會有三個方法： <strong>method4</strong> 、 <strong>method5</strong> 、 <strong>method7</strong> 。</p>
+</code></pre><p>和石頭成老大的作法不同，我在 Prototype 定義了一個靜態的 delegate 函式，然後用上面的方法來指定靜態的 mix-in 。本來我想是直接用 <!-- raw HTML omitted -->ParentClass::delegate(&lsquo;method4&rsquo;, $callback)<!-- raw HTML omitted --> 這種方式來完成，不過 <!-- raw HTML omitted -->PHP 並沒有辦法在繼承下來的靜態函式裡取得該類別的類別名稱<!-- raw HTML omitted -->，所以這裡我想還是透過 Prototype 來完成，而這也符合我自己的第一個實作重點。</p>
+<p>這裡要注意一點，那就是這時我已經將 $callback4 混入 ParentClass ，此時 ParentClass 除了自己的 <!-- raw HTML omitted -->method7<!-- raw HTML omitted --> 方法外，還會有 <!-- raw HTML omitted -->method4<!-- raw HTML omitted --> 方法共兩個方法。而 $callback5 則是混入 ChildClass1 ，又因為 ChildClass1 繼承自 ParentClass ，所以 ChildClass1 就會有三個方法： <!-- raw HTML omitted -->method4<!-- raw HTML omitted --> 、 <!-- raw HTML omitted -->method5<!-- raw HTML omitted --> 、 <!-- raw HTML omitted -->method7<!-- raw HTML omitted --> 。</p>
 <p>接下來我先把 ParentClass 和 ChildClass 的實體產生出來，分別是 $parent1 和 $child1 。然後我再一次把 $callback6 混入 ParentClass ，接著再建立 $parent2 、 $child2 與 $child3 等三個分別為 ParentClass 、 ChildClass2 和 ChildClass3 類別的實體。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$parent1 = new ParentClass;</span><br><span class="line">$child1 = new ChildClass1;</span><br><span class="line">Prototype::delegate(&apos;ParentClass::method6&apos;, $callback6);</span><br><span class="line">$parent2 = new ParentClass();</span><br><span class="line">$child2 = new ChildClass2();</span><br><span class="line">$child3 = new ChildClass3();</span><br></pre></td></tr></table></figure>
+<pre><code>$parent1 = new ParentClass;
+$child1 = new ChildClass1;
+Prototype::delegate('ParentClass::method6', $callback6);
+$parent2 = new ParentClass();
+$child2 = new ChildClass2();
+$child3 = new ChildClass3();
 
-<p>猜猜看，這時 $parent1 這個物件實體能夠呼叫 method6 這個方法嗎？如果不行，那 $parent2 呢？而 $child2 和 $child3 裡混入的方法又有哪些呢？</p>
+</code></pre><p>猜猜看，這時 $parent1 這個物件實體能夠呼叫 method6 這個方法嗎？如果不行，那 $parent2 呢？而 $child2 和 $child3 裡混入的方法又有哪些呢？</p>
 <p>在我的想法裡，因為 method6 的混成是在 $parent1 產生之後，所以 $parent1 並沒有辦法呼叫 method6 (符合石頭成老大的要求) ；不過 $parent2 就可以了，因為它是在混成 method6 以後才建立的。</p>
-<p>另外 $child2 因為繼承自 ParentClass ，而且還是在 method6 混入後才建立的，所以它就會有 <strong>method4</strong> 、 <strong>method6</strong> 和 <strong>method7</strong> 三個方法可用。再看 $child3 ，因為它繼承了 ChildClass1 ，所以就會有 <strong>method4</strong> 、 <strong>method5</strong> 、 <strong>method6</strong> 與 <strong>method7</strong> 。</p>
+<p>另外 $child2 因為繼承自 ParentClass ，而且還是在 method6 混入後才建立的，所以它就會有 <!-- raw HTML omitted -->method4<!-- raw HTML omitted --> 、 <!-- raw HTML omitted -->method6<!-- raw HTML omitted --> 和 <!-- raw HTML omitted -->method7<!-- raw HTML omitted --> 三個方法可用。再看 $child3 ，因為它繼承了 ChildClass1 ，所以就會有 <!-- raw HTML omitted -->method4<!-- raw HTML omitted --> 、 <!-- raw HTML omitted -->method5<!-- raw HTML omitted --> 、 <!-- raw HTML omitted -->method6<!-- raw HTML omitted --> 與 <!-- raw HTML omitted -->method7<!-- raw HTML omitted --> 。</p>
 <p>搞混了嗎？我想應該還不至於，現在我再把第一版的 mix-in 方式加進來：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$parent1-&gt;method1 = $callback1;</span><br><span class="line">$parent1-&gt;method2 = $callback2;</span><br><span class="line">$parent1-&gt;method3 = $callback3;</span><br></pre></td></tr></table></figure>
+<pre><code>$parent1-&gt;method1 = $callback1;
+$parent1-&gt;method2 = $callback2;
+$parent1-&gt;method3 = $callback3;
 
-<p>注意這裡 $callback1 、 $callback2 和 $callback3 是直接混入 $parent1 這個物件實體，所以 $parent2 、 $child1 、 $child2 與 $child3 是沒辦法呼叫 method1 、 method2 及 method3 的 (石頭成老大的第一個目標) 。</p>
+</code></pre><p>注意這裡 $callback1 、 $callback2 和 $callback3 是直接混入 $parent1 這個物件實體，所以 $parent2 、 $child1 、 $child2 與 $child3 是沒辦法呼叫 method1 、 method2 及 method3 的 (石頭成老大的第一個目標) 。</p>
 <p>好了，現在來試試呼叫 $parent1 的方法；猜猜看哪些方法是能運作的？</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    $parent1-&gt;method1(&apos;param1&apos;);</span><br><span class="line">    $parent1-&gt;method2(&apos;param2&apos;);</span><br><span class="line">    $parent1-&gt;method3(&apos;param3&apos;);</span><br><span class="line">    $parent1-&gt;method4(&apos;param4&apos;);</span><br><span class="line">    $parent1-&gt;method5(&apos;param5&apos;);</span><br><span class="line">    $parent1-&gt;method6(&apos;param6&apos;);</span><br><span class="line">    $parent1-&gt;method7(&apos;param7&apos;);</span><br><span class="line">&#125; catch (Exception $e) &#123;</span><br><span class="line">    echo $e, &quot;\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>try
+{
+    $parent1-&gt;method1('param1');
+    $parent1-&gt;method2('param2');
+    $parent1-&gt;method3('param3');
+    $parent1-&gt;method4('param4');
+    $parent1-&gt;method5('param5');
+    $parent1-&gt;method6('param6');
+    $parent1-&gt;method7('param7');
+} catch (Exception $e) {
+    echo $e, &quot;\n&quot;;
+}
 
-<p>只有 method1 、 method2 、 method3 、method4 及 method7 才能運作，猜對了嗎？</p>
+</code></pre><p>只有 method1 、 method2 、 method3 、method4 及 method7 才能運作，猜對了嗎？</p>
 <p>註：這裡的 try 寫法其實有點不太對，因為在呼叫 method5 而出現 Exception 後就會跳出 try 區塊了。我是利用註解讓它繼續往下做，下面的範例也是相同，這裡請大家別太在意。</p>
 <p>同樣的方法再來試試 $parent2 、 $child1 、 $child2 及 $child3：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    $parent2-&gt;method1(&apos;param1&apos;); // Exception!!</span><br><span class="line">    $parent2-&gt;method2(&apos;param2&apos;); // Exception!!</span><br><span class="line">    $parent2-&gt;method3(&apos;param3&apos;); // Exception!!</span><br><span class="line">    $parent2-&gt;method4(&apos;param4&apos;); // Work!!</span><br><span class="line">    $parent2-&gt;method5(&apos;param5&apos;); // Exception!!</span><br><span class="line">    $parent2-&gt;method6(&apos;param6&apos;); // Work!!</span><br><span class="line">    $parent2-&gt;method7(&apos;param7&apos;); // Work!!</span><br><span class="line">&#125; catch (Exception $e) &#123;</span><br><span class="line">    echo $e, &quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    $child1-&gt;method1(&apos;param1&apos;); // Exception!!</span><br><span class="line">    $child1-&gt;method2(&apos;param2&apos;); // Exception!!</span><br><span class="line">    $child1-&gt;method3(&apos;param3&apos;); // Exception!!</span><br><span class="line">    $child1-&gt;method4(&apos;param4&apos;); // Work!!</span><br><span class="line">    $child1-&gt;method5(&apos;param5&apos;); // Work!!</span><br><span class="line">    $child1-&gt;method6(&apos;param6&apos;); // Exception!!</span><br><span class="line">    $child1-&gt;method7(&apos;param7&apos;); // Work!!</span><br><span class="line">&#125; catch (Exception $e) &#123;</span><br><span class="line">    echo $e, &quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    $child2-&gt;method1(&apos;param1&apos;); // Exception!!</span><br><span class="line">    $child2-&gt;method2(&apos;param2&apos;); // Exception!!</span><br><span class="line">    $child2-&gt;method3(&apos;param3&apos;); // Exception!!</span><br><span class="line">    $child2-&gt;method4(&apos;param4&apos;); // Work!!</span><br><span class="line">    $child2-&gt;method5(&apos;param5&apos;); // Exception!!</span><br><span class="line">    $child2-&gt;method6(&apos;param6&apos;); // Work!!</span><br><span class="line">    $child2-&gt;method7(&apos;param7&apos;); // Work!!</span><br><span class="line">&#125; catch (Exception $e) &#123;</span><br><span class="line">    echo $e, &quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    $child3-&gt;method1(&apos;param1&apos;); // Exception!!</span><br><span class="line">    $child3-&gt;method2(&apos;param2&apos;); // Exception!!</span><br><span class="line">    $child3-&gt;method3(&apos;param3&apos;); // Exception!!</span><br><span class="line">    $child3-&gt;method4(&apos;param4&apos;); // Work!!</span><br><span class="line">    $child3-&gt;method5(&apos;param5&apos;); // Work!!</span><br><span class="line">    $child3-&gt;method6(&apos;param6&apos;); // Work!!</span><br><span class="line">    $child3-&gt;method7(&apos;param7&apos;); // Work!!</span><br><span class="line">&#125; catch (Exception $e) &#123;</span><br><span class="line">    echo $e, &quot;\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>try
+{
+    $parent2-&gt;method1('param1'); // Exception!!
+    $parent2-&gt;method2('param2'); // Exception!!
+    $parent2-&gt;method3('param3'); // Exception!!
+    $parent2-&gt;method4('param4'); // Work!!
+    $parent2-&gt;method5('param5'); // Exception!!
+    $parent2-&gt;method6('param6'); // Work!!
+    $parent2-&gt;method7('param7'); // Work!!
+} catch (Exception $e) {
+    echo $e, &quot;\n&quot;;
+}
+try
+{
+    $child1-&gt;method1('param1'); // Exception!!
+    $child1-&gt;method2('param2'); // Exception!!
+    $child1-&gt;method3('param3'); // Exception!!
+    $child1-&gt;method4('param4'); // Work!!
+    $child1-&gt;method5('param5'); // Work!!
+    $child1-&gt;method6('param6'); // Exception!!
+    $child1-&gt;method7('param7'); // Work!!
+} catch (Exception $e) {
+    echo $e, &quot;\n&quot;;
+}
+try
+{
+    $child2-&gt;method1('param1'); // Exception!!
+    $child2-&gt;method2('param2'); // Exception!!
+    $child2-&gt;method3('param3'); // Exception!!
+    $child2-&gt;method4('param4'); // Work!!
+    $child2-&gt;method5('param5'); // Exception!!
+    $child2-&gt;method6('param6'); // Work!!
+    $child2-&gt;method7('param7'); // Work!!
+} catch (Exception $e) {
+    echo $e, &quot;\n&quot;;
+}
+try
+{
+    $child3-&gt;method1('param1'); // Exception!!
+    $child3-&gt;method2('param2'); // Exception!!
+    $child3-&gt;method3('param3'); // Exception!!
+    $child3-&gt;method4('param4'); // Work!!
+    $child3-&gt;method5('param5'); // Work!!
+    $child3-&gt;method6('param6'); // Work!!
+    $child3-&gt;method7('param7'); // Work!!
+} catch (Exception $e) {
+    echo $e, &quot;\n&quot;;
+}
 
-<p>運作方式就如同上面註解所示。</p>
+</code></pre><p>運作方式就如同上面註解所示。</p>
 <p>這樣一來，所有的測試結果都符合石頭成老大的目標以及我自己所要求的重點。要注意的事項我也不再多提了，請自行參考石頭成老大的文章，以及我前面的說明。</p>
 <p>另外或許大家會注意到，為什麼我都是利用物件來呼叫 mix-in 方法，而不是使用靜態呼叫。這是因為 PHP 也沒提供靜態的 __call 魔術方法，所以這裡並沒辦法用 ParentClass::method1() 這樣的語法，這是此法美中不足的地方。</p>
-<h2 id="主角-Prototye-類別"><a href="#主角-Prototye-類別" class="headerlink" title="主角 Prototye 類別"></a>主角 Prototye 類別</h2><p>最後來看看我是如何實作 Prototype 類別的，這裡我提出幾個重點：</p>
+<h2 id="主角-prototye-類別">主角 Prototye 類別<a href="#主角-prototye-類別" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>最後來看看我是如何實作 Prototype 類別的，這裡我提出幾個重點：</p>
 <ul>
 <li>因為類別方法和實體方法是不同的，所以我將它們分開存放；等到物件生成時，再將它們依照繼承關係合併在一起。</li>
 <li>執行時期， Prototype 類別的 __call 魔術方法只執行實體方法。</li>
 </ul>
 <p>先看看 Prototype 的屬性成員宣告：</p>
 <p>註：從以下程式開始到文章的最後，除了說明文字外的程式區塊都是屬於 Prototype 類別的程式碼範圍。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 可接受 mix-in 物件的抽象類別</span><br><span class="line">abstract class Prototype</span><br><span class="line">&#123;</span><br><span class="line">    const PROTOTYPE_METHOD = 0;</span><br><span class="line">    const INSTANCE_METHOD = 1;</span><br><span class="line">    const CALLBACK_LENGTH = 2;</span><br><span class="line">    public static $class_methods = array ();</span><br><span class="line">    public $instance_methods = array ();</span><br></pre></td></tr></table></figure>
+<pre><code>// 可接受 mix-in 物件的抽象類別
+abstract class Prototype
+{
+    const PROTOTYPE_METHOD = 0;
+    const INSTANCE_METHOD = 1;
+    const CALLBACK_LENGTH = 2;
+    public static $class_methods = array ();
+    public $instance_methods = array ();
 
-<p>這裡我定義了兩個存放 mix-in 方法的 陣列， $class_method 用以存放類別 mix-in 方法，而 $instance_methods 則是存放該實體的 mix-in 方法，這個和石頭成老大的想法相似；另外 PROTOTYPE_METHOD 和 INSTANCE_METHOD 則是用來表示該 mix-in 方法是屬於類別方法還是實體方法，後面的 setCallback 方法會用到。</p>
+</code></pre><p>這裡我定義了兩個存放 mix-in 方法的 陣列， $class_method 用以存放類別 mix-in 方法，而 $instance_methods 則是存放該實體的 mix-in 方法，這個和石頭成老大的想法相似；另外 PROTOTYPE_METHOD 和 INSTANCE_METHOD 則是用來表示該 mix-in 方法是屬於類別方法還是實體方法，後面的 setCallback 方法會用到。</p>
 <p>先看 Prototype 的 delegate 方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public final function delegate($name, $callback)</span><br><span class="line">&#123;</span><br><span class="line">    $class_name = &apos;&apos;;</span><br><span class="line">    $method_name = &apos;&apos;;</span><br><span class="line">    $delegate = explode(&apos;::&apos;, $name);</span><br><span class="line">    if (Prototype::CALLBACK_LENGTH == count($delegate)) &#123;</span><br><span class="line">        list($class_name, $method_name) = $delegate;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        throw new Exception(&apos;Syntax error!!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    $class_name = strtolower($class_name);</span><br><span class="line">    if (!class_exists($class_name)) &#123;</span><br><span class="line">        throw new Exception(&quot;Class $class_name not exists!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    if (!is_subclass_of($class_name, __CLASS__)) &#123;</span><br><span class="line">        throw new Exception(&quot;Class $class_name not subclass of &quot; . __CLASS__ . &quot;!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    self::setCallback($class_name, $method_name, $callback, Prototype::PROTOTYPE_METHOD);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>    public final function delegate($name, $callback)
+    {
+        $class_name = '';
+        $method_name = '';
+        $delegate = explode('::', $name);
+        if (Prototype::CALLBACK_LENGTH == count($delegate)) {
+            list($class_name, $method_name) = $delegate;
+        } else {
+            throw new Exception('Syntax error!!');
+        }
+        $class_name = strtolower($class_name);
+        if (!class_exists($class_name)) {
+            throw new Exception(&quot;Class $class_name not exists!!&quot;);
+        }
+        if (!is_subclass_of($class_name, __CLASS__)) {
+            throw new Exception(&quot;Class $class_name not subclass of &quot; . __CLASS__ . &quot;!!&quot;);
+        }
+        self::setCallback($class_name, $method_name, $callback, Prototype::PROTOTYPE_METHOD);
+    }
 
-<p>delegate 要做的事情很簡單，就是將 callback 虛擬型態變數放到 $class_methods 中對應的類別裡；換句話說，我在 $class_methods 裡會把繼承自 Prototype 的類別都用一個陣列來存放。另外我也希望 delegate 方法是不能被子類別所推翻的，所以我使用 final 關鍵字來宣告它。</p>
+</code></pre><p>delegate 要做的事情很簡單，就是將 callback 虛擬型態變數放到 $class_methods 中對應的類別裡；換句話說，我在 $class_methods 裡會把繼承自 Prototype 的類別都用一個陣列來存放。另外我也希望 delegate 方法是不能被子類別所推翻的，所以我使用 final 關鍵字來宣告它。</p>
 <p>而存放的 setCallback 方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final function setCallback($class_name, $method_name, $callback, $method_type)</span><br><span class="line">&#123;</span><br><span class="line">    if (is_array($callback)) &#123;</span><br><span class="line">        if (is_object($callback[0])</span><br><span class="line">                || (is_string($callback[0])</span><br><span class="line">                &amp;amp;&amp;amp; class_exists($callback[0]))) &#123;</span><br><span class="line">            $callback = array ($callback[0], $callback[1]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (is_callable($callback) ||</span><br><span class="line">            (class_exists($callback) &amp;amp;&amp;amp; is_subclass_of($callback, &apos;Callback&apos;))) &#123;</span><br><span class="line">        if (Prototype::PROTOTYPE_METHOD == $method_type) &#123;</span><br><span class="line">            self::$class_methods[$class_name]($method_name) = $callback;</span><br><span class="line">        &#125; elseif (Prototype::INSTANCE_METHOD == $method_type) &#123;</span><br><span class="line">            $this-&gt;instance_methods[$method_name] = $callback;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>    private final function setCallback($class_name, $method_name, $callback, $method_type)
+    {
+        if (is_array($callback)) {
+            if (is_object($callback[0])
+                    || (is_string($callback[0])
+                    &amp;amp;&amp;amp; class_exists($callback[0]))) {
+                $callback = array ($callback[0], $callback[1]);
+            }
+        }
+        if (is_callable($callback) ||
+                (class_exists($callback) &amp;amp;&amp;amp; is_subclass_of($callback, 'Callback'))) {
+            if (Prototype::PROTOTYPE_METHOD == $method_type) {
+                self::$class_methods[$class_name]($method_name) = $callback;
+            } elseif (Prototype::INSTANCE_METHOD == $method_type) {
+                $this-&gt;instance_methods[$method_name] = $callback;
+            }
+        }
+    }
 
-<p>因為 setCallback 只在 Prototype 裡被使用，所以宣告成 private final 。 setCallback 方法會依照指定的類型，把 callback 放在對應的 method 陣列裡。另外我還在石頭成老大那邊也學會 is_callable 函式的用法 (發現自己以前好蠢) ， 這樣看起來程式就比之前自己判斷 callback 型態來得簡單多了。</p>
-<p>然後是 Prototype 類別的重點，因為石頭成老大的程式給我一個啟發，利用 for 迴圈我可以<strong>推展出目前類別的繼承關係，進而把所有父類別的類別 mix-in 方法全部合併到目前物件實體裡的 mix-in 方法陣列中</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public function __construct()</span><br><span class="line">&#123;</span><br><span class="line">    $current_class = strtolower(get_class($this));</span><br><span class="line">    $this-&gt;instance_methods = array ();</span><br><span class="line">    for ($class_name = $current_class;</span><br><span class="line">            $parent_name = strtolower(get_parent_class($class_name));</span><br><span class="line">            $class_name = $parent_name) &#123;</span><br><span class="line">        if (isset(self::$class_methods[$class_name])) &#123;</span><br><span class="line">            $this-&gt;instance_methods = array_merge(</span><br><span class="line">            $this-&gt;instance_methods,</span><br><span class="line">            self::$class_methods[$class_name]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>因為 setCallback 只在 Prototype 裡被使用，所以宣告成 private final 。 setCallback 方法會依照指定的類型，把 callback 放在對應的 method 陣列裡。另外我還在石頭成老大那邊也學會 is_callable 函式的用法 (發現自己以前好蠢) ， 這樣看起來程式就比之前自己判斷 callback 型態來得簡單多了。</p>
+<p>然後是 Prototype 類別的重點，因為石頭成老大的程式給我一個啟發，利用 for 迴圈我可以<!-- raw HTML omitted -->推展出目前類別的繼承關係，進而把所有父類別的類別 mix-in 方法全部合併到目前物件實體裡的 mix-in 方法陣列中<!-- raw HTML omitted -->。</p>
+<pre><code>    public function __construct()
+    {
+        $current_class = strtolower(get_class($this));
+        $this-&gt;instance_methods = array ();
+        for ($class_name = $current_class;
+                $parent_name = strtolower(get_parent_class($class_name));
+                $class_name = $parent_name) {
+            if (isset(self::$class_methods[$class_name])) {
+                $this-&gt;instance_methods = array_merge(
+                $this-&gt;instance_methods,
+                self::$class_methods[$class_name]);
+            }
+        }
+    }
 
-<p>這裡 get_parent_class 函式會幫我們把指定類別的上一層父類別找出來；知道這個方式後，再仔細看看 for 迴圈裡的寫法，就會發現石頭成老大真的很神 (這是從他的程式裡偷來的 XD ) 。</p>
+</code></pre><p>這裡 get_parent_class 函式會幫我們把指定類別的上一層父類別找出來；知道這個方式後，再仔細看看 for 迴圈裡的寫法，就會發現石頭成老大真的很神 (這是從他的程式裡偷來的 XD ) 。</p>
 <p>相對之下， __set 魔術方法就很簡單了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final function __set($method_name, $callback)</span><br><span class="line">&#123;</span><br><span class="line">    $class_name = strtolower(get_class($this));</span><br><span class="line">    self::setCallback($class_name, $method_name, $callback, Prototype::INSTANCE_METHOD);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>    private final function __set($method_name, $callback)
+    {
+        $class_name = strtolower(get_class($this));
+        self::setCallback($class_name, $method_name, $callback, Prototype::INSTANCE_METHOD);
+    }
 
-<p>這裡就是取得目前類別的名稱，然後再交由 setCallback 去處理。</p>
+</code></pre><p>這裡就是取得目前類別的名稱，然後再交由 setCallback 去處理。</p>
 <p>接下來是 __call 魔術方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final function __call($callback, $args)</span><br><span class="line">&#123;</span><br><span class="line">    if (isset($this-&gt;instance_methods[$callback])) &#123;</span><br><span class="line">        $callback = $this-&gt;instance_methods[$callback];</span><br><span class="line">        $this-&gt;executeCallback($callback, $args);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    throw new Exception(get_class($this) . &quot;::$callback is not exists!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>    private final function __call($callback, $args)
+    {
+        if (isset($this-&gt;instance_methods[$callback])) {
+            $callback = $this-&gt;instance_methods[$callback];
+            $this-&gt;executeCallback($callback, $args);
+            return;
+        }
+        throw new Exception(get_class($this) . &quot;::$callback is not exists!&quot;);
+    }
 
-<p>它也非常簡單，就是找出對應的實體 mix-in 方法，並交由 executeCallback 方法來執行。</p>
+</code></pre><p>它也非常簡單，就是找出對應的實體 mix-in 方法，並交由 executeCallback 方法來執行。</p>
 <p>最後是 executeCallback 方法，也是仿照 setCallback 的方式，只不過它是執行 callback 。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    private final function executeCallback($callback, $args)</span><br><span class="line">    &#123;</span><br><span class="line">        $args[] = $this;</span><br><span class="line">        if (is_callable($callback)) &#123;</span><br><span class="line">            call_user_func_array($callback, $args);</span><br><span class="line">        &#125; elseif (class_exists($callback)</span><br><span class="line">                &amp;amp;&amp;amp; is_subclass_of($callback, &apos;Callback&apos;)) &#123;</span><br><span class="line">            $method_object = new $callback($this);</span><br><span class="line">            call_user_func_array(array ($method_object, &apos;run&apos;), $args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; // End of Prototype</span><br></pre></td></tr></table></figure>
+<pre><code>    private final function executeCallback($callback, $args)
+    {
+        $args[] = $this;
+        if (is_callable($callback)) {
+            call_user_func_array($callback, $args);
+        } elseif (class_exists($callback)
+                &amp;amp;&amp;amp; is_subclass_of($callback, 'Callback')) {
+            $method_object = new $callback($this);
+            call_user_func_array(array ($method_object, 'run'), $args);
+        }
+    }
+} // End of Prototype
 
-<p>特別注意一點，我把 Prototype 物件實體放在 $args 的最後一個，這樣如果像 normalFunc2 這樣的函式被混入的話，就可以存取到這些物件實體了。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>雖然我覺得這些方法有時候會令人迷惑，不過其實它也有好用的一面。這裡我也向石頭成老大學習到很多特別的技巧，也讓我自己對靜態變數與實體變數之間有更深的瞭解。</p>
+</code></pre><p>特別注意一點，我把 Prototype 物件實體放在 $args 的最後一個，這樣如果像 normalFunc2 這樣的函式被混入的話，就可以存取到這些物件實體了。</p>
+<h2 id="後記">後記<a href="#後記" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>雖然我覺得這些方法有時候會令人迷惑，不過其實它也有好用的一面。這裡我也向石頭成老大學習到很多特別的技巧，也讓我自己對靜態變數與實體變數之間有更深的瞭解。</p>
 <p>PHP 也許不像 Ruby 的語法那樣地富有變化性，不過我想只要應用得當， PHP 還是能夠發展出屬於自己的特性的。</p>
-</div><div class="tags"><a href="/tags/PHP/">PHP</a></div><div class="post-nav"><a class="pre" href="/the-end-of-php4/">PHP4 的盡頭</a><a class="next" href="/good-books/">好書推薦</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/php-mix-in-2/">我也來實作 PHP mix-in 的概念 - Part 2</a></li>
+	
+	<li><a href="/php-mix-in/">我也來實作 PHP mix-in 的概念</a></li>
+	
+	<li><a href="/prototype-based-php/">PHP 裡的 Prototype-based 開發手法</a></li>
+	
+	<li><a href="/os-php-unit/">[好文] Check your PHP code at every level with unit tests</a></li>
+	
+	<li><a href="/fluent-interface/">很有趣的 Fluent Interface</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2007-03-27 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/the-end-of-php4/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>PHP4 的盡頭</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/good-books/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>好書推薦</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

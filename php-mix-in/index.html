@@ -1,9 +1,226 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>我也來實作 PHP mix-in 的概念 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="我也來實作 PHP mix-in 的概念"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="我也來實作 PHP mix-in 的概念"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">我也來實作 PHP mix-in 的概念</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">我也來實作 PHP mix-in 的概念</h1><div class="post-meta">Mar 10, 2007</div><div class="post-content"><p>之前提過一篇 <a href="http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/" target="_blank" rel="noopener">Prototype-based programming in PHP</a> ，後來在<a href="http://blog.roodo.com/rocksaying" target="_blank" rel="noopener">石頭閒語</a>那裡也看到 <a href="http://blog.roodo.com/rocksaying/archives/2817003.html" target="_blank" rel="noopener">PHP 實踐 mix-in 概念之可行性</a>，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限制就像石頭成所說的，所以我也不多提了。還是等 PHP7 的規格出來，看它會不會<a href="http://javaworld.com.tw/roller/page/ingramchen?entry=2007_1_1_WhyAddClosureInJava7" target="_blank" rel="noopener">支援 closure</a> 好了  (要跟隨 Java 7 嗎？ XD) 。</p>
-<p>註： PHP 6 可能會實現的東西請參考 <a href="http://www.corephp.co.uk/archives/19-Prepare-for-PHP-6.html" target="_blank" rel="noopener">Prepare for PHP 6</a> 。</p>
-<a id="more"></a>
+<!DOCTYPE html>
+<html lang="zh-TW">
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="我也來實作 PHP mix-in 的概念">
+<meta itemprop="description" content="之前提過一篇 Prototype-based programming in PHP ，後來在石頭閒語那裡也看到 PHP 實踐 mix-in 概念之可行性，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限">
+<meta itemprop="datePublished" content="2007-03-10T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2007-03-10T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="425">
+
+
+
+<meta itemprop="keywords" content="PHP," /><meta property="og:title" content="我也來實作 PHP mix-in 的概念" />
+<meta property="og:description" content="之前提過一篇 Prototype-based programming in PHP ，後來在石頭閒語那裡也看到 PHP 實踐 mix-in 概念之可行性，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/php-mix-in/" />
+<meta property="article:published_time" content="2007-03-10T00:00:00+08:00" />
+<meta property="article:modified_time" content="2007-03-10T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我也來實作 PHP mix-in 的概念"/>
+<meta name="twitter:description" content="之前提過一篇 Prototype-based programming in PHP ，後來在石頭閒語那裡也看到 PHP 實踐 mix-in 概念之可行性，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>我也來實作 PHP mix-in 的概念</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 10, 2007</span></div>
+				<h1>我也來實作 PHP mix-in 的概念</h1>
+			</header>
+			<div class="content">
+				<p>之前提過一篇 <a href="http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/">Prototype-based programming in PHP</a> ，後來在<a href="http://blog.roodo.com/rocksaying">石頭閒語</a>那裡也看到 <a href="http://blog.roodo.com/rocksaying/archives/2817003.html">PHP 實踐 mix-in 概念之可行性</a>，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限制就像石頭成所說的，所以我也不多提了。還是等 PHP7 的規格出來，看它會不會<a href="http://javaworld.com.tw/roller/page/ingramchen?entry=2007_1_1_WhyAddClosureInJava7">支援 closure</a> 好了  (要跟隨 Java 7 嗎？ XD) 。</p>
+<p>註： PHP 6 可能會實現的東西請參考 <a href="http://www.corephp.co.uk/archives/19-Prepare-for-PHP-6.html">Prepare for PHP 6</a> 。</p>
+<!-- raw HTML omitted -->
 <p>程式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * 實作 mix-in 概念</span><br><span class="line"> *</span><br><span class="line"> * 參考</span><br><span class="line"> * http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/</span><br><span class="line"> * http://blog.roodo.com/rocksaying/archives/2817003.html</span><br><span class="line"> **/</span><br><span class="line">// 可接受 mix-in 物件的抽象類別</span><br><span class="line">abstract class Prototype</span><br><span class="line">&#123;</span><br><span class="line">    private function __set($name, $value)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;$name = $value;</span><br><span class="line">    &#125;</span><br><span class="line">    private function __call($method, $args)</span><br><span class="line">    &#123;</span><br><span class="line">        if (class_exists($this-&gt;$method)) &#123;</span><br><span class="line">            $method_object = new $this-&gt;$method($this);</span><br><span class="line">            call_user_func_array(array ($method_object, &apos;doWork&apos;), $args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// mix-in 方法的抽象類別</span><br><span class="line">abstract class MethodObject</span><br><span class="line">&#123;</span><br><span class="line">    protected $object;</span><br><span class="line">    public function __construct($object = NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;object = $object;</span><br><span class="line">    &#125;</span><br><span class="line">    abstract function doWork();</span><br><span class="line">&#125;</span><br><span class="line">// 測試用的 Person 類別</span><br><span class="line">class Person extends Prototype</span><br><span class="line">&#123;</span><br><span class="line">    private $name;</span><br><span class="line">    public function __construct($name)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;name = $name;</span><br><span class="line">    &#125;</span><br><span class="line">    public function getName()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;name;</span><br><span class="line">    &#125;</span><br><span class="line">    public function __toString()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 測試用的 Car 類別</span><br><span class="line">class Car extends Prototype</span><br><span class="line">&#123;</span><br><span class="line">    private $owner;</span><br><span class="line">    public function setOwner(Person $person)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;owner = $person;</span><br><span class="line">    &#125;</span><br><span class="line">    public function __toString()</span><br><span class="line">    &#123;</span><br><span class="line">        return &apos;This is &apos; . $this-&gt;owner-&gt;getName() . &apos;\&apos;s car.&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 測試用的 PrintString 類別</span><br><span class="line">class PrintString extends MethodObject</span><br><span class="line">&#123;</span><br><span class="line">    public function doWork()</span><br><span class="line">    &#123;</span><br><span class="line">        $n = func_num_args();</span><br><span class="line">        echo $this-&gt;object, (1 == $n) ? func_get_arg(0) : &apos;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 測試用的程式碼</span><br><span class="line">$me = new Person(&apos;Jace&apos;);</span><br><span class="line">$me-&gt;printName = &apos;PrintString&apos;;</span><br><span class="line">$me-&gt;printName(&apos; Say: &apos;);</span><br><span class="line">$my_car = new Car;</span><br><span class="line">$my_car-&gt;setOwner($me);</span><br><span class="line">$my_car-&gt;printCarName = &apos;PrintString&apos;;</span><br><span class="line">$my_car-&gt;printCarName();</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;?php
+/**
+ * 實作 mix-in 概念
+ *
+ * 參考
+ * http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/
+ * http://blog.roodo.com/rocksaying/archives/2817003.html
+ **/
+// 可接受 mix-in 物件的抽象類別
+abstract class Prototype
+{
+    private function __set($name, $value)
+    {
+        $this-&gt;$name = $value;
+    }
+    private function __call($method, $args)
+    {
+        if (class_exists($this-&gt;$method)) {
+            $method_object = new $this-&gt;$method($this);
+            call_user_func_array(array ($method_object, 'doWork'), $args);
+        }
+    }
+}
+// mix-in 方法的抽象類別
+abstract class MethodObject
+{
+    protected $object;
+    public function __construct($object = NULL)
+    {
+        $this-&gt;object = $object;
+    }
+    abstract function doWork();
+}
+// 測試用的 Person 類別
+class Person extends Prototype
+{
+    private $name;
+    public function __construct($name)
+    {
+        $this-&gt;name = $name;
+    }
+    public function getName()
+    {
+        return $this-&gt;name;
+    }
+    public function __toString()
+    {
+        return $this-&gt;name;
+    }
+}
+// 測試用的 Car 類別
+class Car extends Prototype
+{
+    private $owner;
+    public function setOwner(Person $person)
+    {
+        $this-&gt;owner = $person;
+    }
+    public function __toString()
+    {
+        return 'This is ' . $this-&gt;owner-&gt;getName() . '\'s car.';
+    }
+}
+// 測試用的 PrintString 類別
+class PrintString extends MethodObject
+{
+    public function doWork()
+    {
+        $n = func_num_args();
+        echo $this-&gt;object, (1 == $n) ? func_get_arg(0) : '';
+    }
+}
+// 測試用的程式碼
+$me = new Person('Jace');
+$me-&gt;printName = 'PrintString';
+$me-&gt;printName(' Say: ');
+$my_car = new Car;
+$my_car-&gt;setOwner($me);
+$my_car-&gt;printCarName = 'PrintString';
+$my_car-&gt;printCarName();
 
-<p>有沒有用我也不清楚，我的實務經驗太少，沒辦法想到它的用途。不過反正只是寫好玩的，也許能激發別人的靈感也說不一定。</p>
-</div><div class="tags"><a href="/tags/PHP/">PHP</a></div><div class="post-nav"><a class="pre" href="/php-mix-in-2/">我也來實作 PHP mix-in 的概念 - Part 2</a><a class="next" href="/prototype-based-php/">PHP 裡的 Prototype-based 開發手法</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+</code></pre><p>有沒有用我也不清楚，我的實務經驗太少，沒辦法想到它的用途。不過反正只是寫好玩的，也許能激發別人的靈感也說不一定。</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/prototype-based-php/">PHP 裡的 Prototype-based 開發手法</a></li>
+	
+	<li><a href="/os-php-unit/">[好文] Check your PHP code at every level with unit tests</a></li>
+	
+	<li><a href="/fluent-interface/">很有趣的 Fluent Interface</a></li>
+	
+	<li><a href="/php-debuging-with-xdebug/">用 Xdebug 來找出 PHP 程式錯誤</a></li>
+	
+	<li><a href="/write-php-function-with-callback/">撰寫可以接受 callback 虛擬型態參數的函式</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2007-03-10 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/php-mix-in-2/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>我也來實作 PHP mix-in 的概念 - Part 2</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/prototype-based-php/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>PHP 裡的 Prototype-based 開發手法</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

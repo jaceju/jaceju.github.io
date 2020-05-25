@@ -1,36 +1,182 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>網站架構與部署策略筆記 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="網站架構與部署策略筆記"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="網站架構與部署策略筆記"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">網站架構與部署策略筆記</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">網站架構與部署策略筆記</h1><div class="post-meta">Mar 23, 2013</div><div class="post-content"><p>這陣子為了公司的網站搞得自己焦頭爛額，其實自己很清楚在系統這個方面的涉獵並不深，但既然接了這個任務就得想辦法做好。</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="網站架構與部署策略筆記">
+<meta itemprop="description" content="這陣子為了公司的網站搞得自己焦頭爛額，其實自己很清楚在系統這個方面的涉獵並不深，但既然接了這個任務就得想辦法做好。 不過也因為不夠熟悉，讓系統">
+<meta itemprop="datePublished" content="2013-03-23T03:26:00&#43;08:00" />
+<meta itemprop="dateModified" content="2013-03-23T03:26:00&#43;08:00" />
+<meta itemprop="wordCount" content="1490">
+
+
+
+<meta itemprop="keywords" content="Web 開發,伺服器安裝與設定," /><meta property="og:title" content="網站架構與部署策略筆記" />
+<meta property="og:description" content="這陣子為了公司的網站搞得自己焦頭爛額，其實自己很清楚在系統這個方面的涉獵並不深，但既然接了這個任務就得想辦法做好。 不過也因為不夠熟悉，讓系統" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/website-deploy-note/" />
+<meta property="article:published_time" content="2013-03-23T03:26:00+08:00" />
+<meta property="article:modified_time" content="2013-03-23T03:26:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="網站架構與部署策略筆記"/>
+<meta name="twitter:description" content="這陣子為了公司的網站搞得自己焦頭爛額，其實自己很清楚在系統這個方面的涉獵並不深，但既然接了這個任務就得想辦法做好。 不過也因為不夠熟悉，讓系統"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>網站架構與部署策略筆記</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 23, 2013</span></div>
+				<h1>網站架構與部署策略筆記</h1>
+			</header>
+			<div class="content">
+				<p>這陣子為了公司的網站搞得自己焦頭爛額，其實自己很清楚在系統這個方面的涉獵並不深，但既然接了這個任務就得想辦法做好。</p>
 <p>不過也因為不夠熟悉，讓系統出了很多問題。因此公司就請了我的好友 John 和他的師父來給我們一些系統層面的建議。這份筆記是主要是記錄我從他們口中所得到的心得，當然詳細的資訊還是需要花時間去研究與實作。而裡面有一些名詞是我沒有聽過的，所以可能記錯。</p>
 <p>以下就是我個人覺得比較關鍵的部份：</p>
-<a id="more"></a>
-
-<h2 id="Virtual-Machine"><a href="#Virtual-Machine" class="headerlink" title="Virtual Machine"></a>Virtual Machine</h2><p>機器一來時，別急著在上面建立相關的 Web 服務或資料庫系統。</p>
+<!-- raw HTML omitted -->
+<h2 id="virtual-machine">Virtual Machine<a href="#virtual-machine" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>機器一來時，別急著在上面建立相關的 Web 服務或資料庫系統。</p>
 <p>其實一台實體主機上面可以跑多個虛擬機器 (Virtual Machine, VM)  只要視機器等級切出適當的 VM 數量，這樣我們就能有效建立出一個多節點的系統。</p>
 <p>另外 VM 也非常容易管理，像是安裝好第一個基本的 VM 系統後就隨時可以複製出新的 VM ，或是在某個 VM 爛掉時刪除它；這樣的方式就可以大大減少部署機器所花費的心力。</p>
 <p>剛開始可以先使用 VMware vSphere 的免費版本，它有 Windows 版本的管理 UI 介面。</p>
 <ul>
-<li><a href="http://www.tenlong.com.tw/items/986868921X?item_id=437567" target="_blank" rel="noopener">VMware vSphere 5 企業建置教戰手扎</a></li>
+<li><a href="http://www.tenlong.com.tw/items/986868921X?item_id=437567">VMware vSphere 5 企業建置教戰手扎</a></li>
 </ul>
-<h2 id="將-Log-紀錄獨立存放"><a href="#將-Log-紀錄獨立存放" class="headerlink" title="將 Log 紀錄獨立存放"></a>將 Log 紀錄獨立存放</h2><p>Log 檔的處理也是一個很大的學問，比較好的方法是建立一台 syslogd 伺服器，然後把 log 都往這邊丟。這台伺服器等級不需要太好，但磁碟空間一定要夠大。</p>
+<h2 id="將-log-紀錄獨立存放">將 Log 紀錄獨立存放<a href="#將-log-紀錄獨立存放" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Log 檔的處理也是一個很大的學問，比較好的方法是建立一台 syslogd 伺服器，然後把 log 都往這邊丟。這台伺服器等級不需要太好，但磁碟空間一定要夠大。</p>
 <p>用 syslogd 的一個好處是，它是射後不理的，我們的服務只要向它丟 Log 即可，就算它掛了也不會影響我們的所有服務。</p>
 <p>另外可以寫一個 Watch Dog 來分析 Log 中的惡意連結，當出現關鍵字的 Pattern 時，就記錄下這個 IP ，再利用 script 將這個 IP 發送到各節點上，將它擋下！</p>
 <ul>
-<li><a href="http://www.oreillynet.com/pub/a/sysadmin/2006/10/12/httpd-syslog.html" target="_blank" rel="noopener">Sending Apache httpd Logs to Syslog</a></li>
-<li><a href="http://www.weithenn.org/cgi-bin/wiki.pl?Syslog-%E6%9E%B6%E8%A8%AD_Log_%E4%BC%BA%E6%9C%8D%E5%99%A8" target="_blank" rel="noopener">Syslog-架設 Log 伺服器</a></li>
+<li><a href="http://www.oreillynet.com/pub/a/sysadmin/2006/10/12/httpd-syslog.html">Sending Apache httpd Logs to Syslog</a></li>
+<li><a href="http://www.weithenn.org/cgi-bin/wiki.pl?Syslog-%E6%9E%B6%E8%A8%AD_Log_%E4%BC%BA%E6%9C%8D%E5%99%A8">Syslog-架設 Log 伺服器</a></li>
 </ul>
-<h2 id="高併發要求"><a href="#高併發要求" class="headerlink" title="高併發要求"></a>高併發要求</h2><p>靜態內容網站一定要使用 Reverse Proxy ，它可以提高網站的吞吐量。而網站是動態內容的話，就一定要想辦法讓它分散到各節點上。</p>
+<h2 id="高併發要求">高併發要求<a href="#高併發要求" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>靜態內容網站一定要使用 Reverse Proxy ，它可以提高網站的吞吐量。而網站是動態內容的話，就一定要想辦法讓它分散到各節點上。</p>
 <p>而一般大流量網站通常不會有防火牆，而是用機海來應付。因為防火牆在大流量的狀況下，反而容易掛點。</p>
-<h2 id="系統擴展"><a href="#系統擴展" class="headerlink" title="系統擴展"></a>系統擴展</h2><p>服務與資料庫一定要考慮到橫向擴充，在任何時候都可以將一台機器加入或移除，而不影響到整體運作。</p>
+<h2 id="系統擴展">系統擴展<a href="#系統擴展" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>服務與資料庫一定要考慮到橫向擴充，在任何時候都可以將一台機器加入或移除，而不影響到整體運作。</p>
 <p>以前的架構是一台 Master 對多台 Slave ，而 Master 掛掉後就由所有的 Slave 推舉出新的 Master ，但這樣一來就不知道誰是 Master 了。</p>
 <p>改良的做法是環狀結構，讓每一台機器都是下一台機器的 Master ，同時也是上一台機器的 Slave 。這樣如果其中一台掛點，系統就會主動再將這個環重新連結。</p>
-<h2 id="兩層式的程式部署"><a href="#兩層式的程式部署" class="headerlink" title="兩層式的程式部署"></a>兩層式的程式部署</h2><p>程式的部署需要自動化，而兩層式部署是比較簡單的方式，一層為 testing ，一層為 release 。</p>
+<h2 id="兩層式的程式部署">兩層式的程式部署<a href="#兩層式的程式部署" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>程式的部署需要自動化，而兩層式部署是比較簡單的方式，一層為 testing ，一層為 release 。</p>
 <p>方法是在版本控制系統裡面將程式分成 testing 及 release 兩個分支， testing 分支是目前最新的程式碼，而 release 分支則是最穩定的程式碼。</p>
 <p>在 testing 環境裡的程式碼必須都是可以執行無誤的，不可以有未完成的功能。當 testing 環境做完壓力測試後，管理者就可以程式碼放到 release 分支中。而所有的 production 都會主動查看 release 分支，當有新版本時就會自動更新。</p>
 <p>不過兩層式部署還是有風險在，所以通常還會有 release candidate 版本的分支。有些大公司甚至做到了 16 層，也就是說所有的功能都必須經過 16 道檢驗才能上線。</p>
-<h2 id="壓力測試"><a href="#壓力測試" class="headerlink" title="壓力測試"></a>壓力測試</h2><p>利用 Switch 的 port mirroring 功能，將線上流量複製到準備要上線的機器，看它是否能撐住。通常這樣的壓力測試要跑三天至一週，確保系統的穩定性。</p>
+<h2 id="壓力測試">壓力測試<a href="#壓力測試" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>利用 Switch 的 port mirroring 功能，將線上流量複製到準備要上線的機器，看它是否能撐住。通常這樣的壓力測試要跑三天至一週，確保系統的穩定性。</p>
 <p>甚至也可以再讓多個 port 做 mirroring ，利用兩倍以上的流量來測試。這樣的目的主要是找出該機器的極限，也同時瞭解需要多少機器才能撐住預估的流量。</p>
-<h2 id="不影響運作的系統更新"><a href="#不影響運作的系統更新" class="headerlink" title="不影響運作的系統更新"></a>不影響運作的系統更新</h2><p>系統在更新程式前，會先把自己從 Load Balance 裡移下來，等確定沒問題後自動上線。</p>
+<h2 id="不影響運作的系統更新">不影響運作的系統更新<a href="#不影響運作的系統更新" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>系統在更新程式前，會先把自己從 Load Balance 裡移下來，等確定沒問題後自動上線。</p>
 <p>在資料庫系統方面，有些 Plugin 可以做到當 Slave 機器加入服務，與 Master 做同步資料的時候，先將自己隱藏起來，等到同步完成後，再讓服務啟動並上線。</p>
-<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>據 John 的師父說，他們已經做到將這些行為完全自動化，並且只要在 Dashboard 上就可以看到所有服務的狀態；甚至後來還以紅綠燈配合聲音來做警示，聽完後我下巴都掉了。</p>
+<h2 id="心得">心得<a href="#心得" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>據 John 的師父說，他們已經做到將這些行為完全自動化，並且只要在 Dashboard 上就可以看到所有服務的狀態；甚至後來還以紅綠燈配合聲音來做警示，聽完後我下巴都掉了。</p>
 <p>事實上在人力有限，卻要管理幾十台機器的狀況下，這樣的做法才是身為一個技術人員應該去做的。</p>
 <p>再次感謝 John 和他師父，讓我學到不少有關系統管理方面的知識。</p>
-</div><div class="tags"><a href="/tags/Web-開發/">Web 開發</a><a href="/tags/伺服器安裝與設定/">伺服器安裝與設定</a></div><div class="post-nav"><a class="pre" href="/unittest-in-laravel-package-development/">開發 Laravel 套件時的單元測試</a><a class="next" href="/webdev-history/">網站技術發展史</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/webdev-history/">網站技術發展史</a></li>
+	
+	<li><a href="/handle-php-error-and-exception/">如何在 PHP 中平順地處理 Error 及 Exception ？</a></li>
+	
+	<li><a href="/familiar-patterns/">[Web] 常見設計模式介紹</a></li>
+	
+	<li><a href="/mysql-character-set/">[五分鐘教室] MySQL 4.1&#43; 編碼快速入門</a></li>
+	
+	<li><a href="/about-framework/">談框架</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/web-%E9%96%8B%E7%99%BC">Web 開發</a></span><span class="tag"><a href="https://jaceju.net/tags/%E4%BC%BA%E6%9C%8D%E5%99%A8%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A">伺服器安裝與設定</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2013-03-23 03:26 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/unittest-in-laravel-package-development/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>開發 Laravel 套件時的單元測試</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/webdev-history/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>網站技術發展史</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

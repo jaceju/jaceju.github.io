@@ -1,93 +1,320 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>理解 Dependency Injection 實作原理 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="理解 Dependency Injection 實作原理"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="理解 Dependency Injection 實作原理"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">理解 Dependency Injection 實作原理</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">理解 Dependency Injection 實作原理</h1><div class="post-meta">Jul 27, 2014</div><div class="post-content"><p>現代較新的 Web Framework 都強調自己有 Dependency Injection (以下簡稱 DI ) 的特色，只是很多人對它的運作原理還是一知半解。</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="理解 Dependency Injection 實作原理">
+<meta itemprop="description" content="現代較新的 Web Framework 都強調自己有 Dependency Injection (以下簡稱 DI ) 的特色，只是很多人對它的運作原理還是一知半解。 所以接下來我將用一個簡單的範例，來為各位介紹在 PHP 中">
+<meta itemprop="datePublished" content="2014-07-27T17:45:50&#43;08:00" />
+<meta itemprop="dateModified" content="2014-07-27T17:45:50&#43;08:00" />
+<meta itemprop="wordCount" content="3379">
+
+
+
+<meta itemprop="keywords" content="PHP," /><meta property="og:title" content="理解 Dependency Injection 實作原理" />
+<meta property="og:description" content="現代較新的 Web Framework 都強調自己有 Dependency Injection (以下簡稱 DI ) 的特色，只是很多人對它的運作原理還是一知半解。 所以接下來我將用一個簡單的範例，來為各位介紹在 PHP 中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/php-di-container/" />
+<meta property="article:published_time" content="2014-07-27T17:45:50+08:00" />
+<meta property="article:modified_time" content="2014-07-27T17:45:50+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="理解 Dependency Injection 實作原理"/>
+<meta name="twitter:description" content="現代較新的 Web Framework 都強調自己有 Dependency Injection (以下簡稱 DI ) 的特色，只是很多人對它的運作原理還是一知半解。 所以接下來我將用一個簡單的範例，來為各位介紹在 PHP 中"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>理解 Dependency Injection 實作原理</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 27, 2014</span></div>
+				<h1>理解 Dependency Injection 實作原理</h1>
+			</header>
+			<div class="content">
+				<p>現代較新的 Web Framework 都強調自己有 Dependency Injection (以下簡稱 DI ) 的特色，只是很多人對它的運作原理還是一知半解。</p>
 <p>所以接下來我將用一個簡單的範例，來為各位介紹在 PHP 中如何實現簡易的 DI 。</p>
-<a id="more"></a>
-
-<h2 id="基本範例"><a href="#基本範例" class="headerlink" title="基本範例"></a>基本範例</h2><p>這是一個應用程式的範例，它只包含了登入處理程序。在這個範例中， <code>App</code> 類別的建構式參考了新的 <code>Auth</code> 與 <code>Session</code> 的物件實體，並在 <code>App::login()</code> 中使用。</p>
+<!-- raw HTML omitted -->
+<h2 id="基本範例">基本範例<a href="#基本範例" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>這是一個應用程式的範例，它只包含了登入處理程序。在這個範例中， <code>App</code> 類別的建構式參考了新的 <code>Auth</code> 與 <code>Session</code> 的物件實體，並在 <code>App::login()</code> 中使用。</p>
 <p>註：請特別注意，為了呈現重點，我忽略掉很多程式碼，同時也沒有進行良好的架構設計；所以請不要把這個範例用在你的程式中，或是對為什麼我沒有進行錯誤處理，以及為什麼要採用奇怪的設計提出質疑。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $auth = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">protected</span> $session = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($dsn, $username, $password)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;auth = <span class="keyword">new</span> Auth($dsn, $username, $password);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;session = <span class="keyword">new</span> Session();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">($username, $password)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;auth-&gt;check($username, $password)) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;session-&gt;set(<span class="string">'username'</span>, $username);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class App
+{
+    protected $auth = null;
+    protected $session = null;
 
-<p>而 <code>Auth</code> 類別是從資料庫驗證使用者身份，這裡我僅用簡單的描述來呈現效果。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Auth</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($dsn, $user, $pass)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Connecting to '$dsn' with '$user'/'$pass'...\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">($username, $password)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Checking username, password from database...\n"</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    public function __construct($dsn, $username, $password)
+    {
+        $this-&gt;auth = new Auth($dsn, $username, $password);
+        $this-&gt;session = new Session();
+    }
 
-<p><code>Session</code> 類別也是概念性的實作：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Session</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">set</span><span class="params">($name, $value)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Set session variable '$name' to '$value'."</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    public function login($username, $password)
+    {
+        if ($this-&gt;auth-&gt;check($username, $password)) {
+            $this-&gt;session-&gt;set(&#39;username&#39;, $username);
+            return true;
+        }
+        return false;
+    }
+}
+</code></pre></div><p>而 <code>Auth</code> 類別是從資料庫驗證使用者身份，這裡我僅用簡單的描述來呈現效果。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class Auth
+{
+    public function __construct($dsn, $user, $pass)
+    {
+        echo &#34;Connecting to &#39;$dsn&#39; with &#39;$user&#39;/&#39;$pass&#39;...\n&#34;;
+    }
 
-<p>最後我們讓程式動起來， client 程式如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$app = <span class="keyword">new</span> App(<span class="string">'mysql://localhost'</span>, <span class="string">'username'</span>, <span class="string">'password'</span>);</span><br><span class="line">$username = <span class="string">'jaceju'</span>;</span><br><span class="line"><span class="keyword">if</span> ($app-&gt;login($username, <span class="string">'password'</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"$username just signed in.\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>註：這裡的 client 程式指的是實際操作這些物件實體的程式。</p>
+    public function check($username, $password)
+    {
+        echo &#34;Checking username, password from database...\n&#34;;
+        return true;
+    }
+}
+</code></pre></div><p><code>Session</code> 類別也是概念性的實作：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class Session
+{
+    public function set($name, $value)
+    {
+        echo &#34;Set session variable &#39;$name&#39; to &#39;$value&#39;.&#34;;
+    }
+}
+</code></pre></div><p>最後我們讓程式動起來， client 程式如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$app = new App(&#39;mysql://localhost&#39;, &#39;username&#39;, &#39;password&#39;);
+$username = &#39;jaceju&#39;;
+if ($app-&gt;login($username, &#39;password&#39;)) {
+    echo &#34;$username just signed in.\n&#34;;
+}
+</code></pre></div><p>註：這裡的 client 程式指的是實際操作這些物件實體的程式。</p>
 <p>各位可以先試著想想這個程式在可擴充性上有什麼問題？例如我想把身份認證方式換成第三方服務的機制，或是改用其他媒介來存放 session 內容等。</p>
 <p>還有如果想在沒有資料庫連線、或是沒有 HTTP session 的環境下對 <code>App::login()</code> 方法的邏輯進行隔離測試，各位會怎麼做呢？</p>
-<h2 id="解除依賴關係"><a href="#解除依賴關係" class="headerlink" title="解除依賴關係"></a>解除依賴關係</h2><p>上面的範例因為 <code>App</code> 類別已經依賴了 <code>Auth</code> 類別和 <code>Session</code> 類別，而這兩個類別都有實作跟系統環境有關的程式邏輯，這麼一來就會讓 <code>App</code> 類別難以進行底層機制的切換或是隔離測試。所以接下來我們要做的，就是把它們的依賴關係解除。</p>
+<h2 id="解除依賴關係">解除依賴關係<a href="#解除依賴關係" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>上面的範例因為 <code>App</code> 類別已經依賴了 <code>Auth</code> 類別和 <code>Session</code> 類別，而這兩個類別都有實作跟系統環境有關的程式邏輯，這麼一來就會讓 <code>App</code> 類別難以進行底層機制的切換或是隔離測試。所以接下來我們要做的，就是把它們的依賴關係解除。</p>
 <p>修改後的 <code>App</code> 類別如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $auth = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">protected</span> $session = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Auth $auth, Session $session)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;auth = $auth;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;session = $session;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$auth = <span class="keyword">new</span> Auth(<span class="string">'mysql://localhost'</span>, <span class="string">'username'</span>, <span class="string">'password'</span>);</span><br><span class="line">$session = <span class="keyword">new</span> Session();</span><br><span class="line">$app = <span class="keyword">new</span> App($auth, $session);</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class App
+{
+    protected $auth = null;
+    protected $session = null;
 
-<p>首先我們在 <code>App</code> 類別的建構式 <code>__construct</code> 原本的資料庫設定參數移除，並將原來直接以 <code>new</code> 關鍵字所產生的物件實體，改用方法參數的方式來注入。而使用 <code>new</code> 關鍵字產生物件實體的程式碼，就移到 <code>App</code> 類別外。</p>
+    public function __construct(Auth $auth, Session $session)
+    {
+        $this-&gt;auth = $auth;
+        $this-&gt;session = $session;
+    }
+}
+
+$auth = new Auth(&#39;mysql://localhost&#39;, &#39;username&#39;, &#39;password&#39;);
+$session = new Session();
+$app = new App($auth, $session);
+</code></pre></div><p>首先我們在 <code>App</code> 類別的建構式 <code>__construct</code> 原本的資料庫設定參數移除，並將原來直接以 <code>new</code> 關鍵字所產生的物件實體，改用方法參數的方式來注入。而使用 <code>new</code> 關鍵字產生物件實體的程式碼，就移到 <code>App</code> 類別外。</p>
 <p>這種「將依賴的類別改用方法參數來注入」的作法，就是我們說的「依賴注入 (Dependency Injection) 」。</p>
 <p>常見依賴注入的方式有兩種： Constructor Injection 及 Setter Injection 。它們的實作形式並沒有什麼不同，差別只在於是不是類別建構式而已。</p>
 <p>不過 Constructor Injection 必須在建立物件實體時就進行注入，而 Setter Injection 則是可以在物件實體建立後才透過 setter 函式來進行注入。而這裡為了方便解說，我採用的是 Constructor Injection 。</p>
-<h2 id="依賴抽象介面"><a href="#依賴抽象介面" class="headerlink" title="依賴抽象介面"></a>依賴抽象介面</h2><p>好了，現在的問題是 <code>Auth</code> 類別的實作還是依賴在資料庫上，所以我們也要讓 <code>Auth</code> 類別跟資料庫之間解除依賴關係，讓它成為一個抽象介面。</p>
+<h2 id="依賴抽象介面">依賴抽象介面<a href="#依賴抽象介面" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>好了，現在的問題是 <code>Auth</code> 類別的實作還是依賴在資料庫上，所以我們也要讓 <code>Auth</code> 類別跟資料庫之間解除依賴關係，讓它成為一個抽象介面。</p>
 <p>這裡的抽象介面是指觀念上的意義，而非語言層級上的抽象類別 (Abstract Class) 或介面 (Interface) 。至於在實作上該用抽象類別還是介面，在這個範例裡並沒有差別，大家可以自行判斷；這裡我用介面 (Interface) ，因為我僅需要 <code>Auth::check()</code> 這個介面方法的定義而已。</p>
 <p>這一步首先我把原來的 <code>Auth</code> 類別重新命名為 <code>DbAuth</code> 類別：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DbAuth</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($dsn, $user, $pass)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Connecting to '$dsn' with '$user'/'$pass'...\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">($username, $password)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Checking username, password from database...\n"</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class DbAuth
+{
+    public function __construct($dsn, $user, $pass)
+    {
+        echo &#34;Connecting to &#39;$dsn&#39; with &#39;$user&#39;/&#39;$pass&#39;...\n&#34;;
+    }
 
-<p>接著建立一個 <code>Auth</code> 介面，它包含了 <code>Auth::check()</code> 方法的定義：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Auth</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">($username, $password)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    public function check($username, $password)
+    {
+        echo &#34;Checking username, password from database...\n&#34;;
+        return true;
+    }
+}
+</code></pre></div><p>接著建立一個 <code>Auth</code> 介面，它包含了 <code>Auth::check()</code> 方法的定義：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">interface Auth
+{
+    public function check($username, $password);
+}
+</code></pre></div><p>然後讓 <code>DbAuth</code> 類別實作 <code>Auth</code> 介面：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class DbAuth implements Auth
+{
+    // ...
+}
+</code></pre></div><p>最後把原來初始化 <code>Auth</code> 類別的物件實體的程式碼，改為初始化 <code>DbAuth</code> 的物件實體。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$auth = new DbAuth(&#39;mysql://localhost&#39;, &#39;username&#39;, &#39;password&#39;);
+$session = new Session();
+$app = new App($auth, $session);
+</code></pre></div><p>透過 <code>Auth</code> 介面的幫助，我們已經讓 <code>App</code> 類別與實際的資料庫操作類別分離開來了。現在只要是實作 <code>Auth</code> 介面的類別，都可以被 <code>App</code> 類別所接受，例如我們可能會改用 HTTP 認證來取代資料庫認證：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class HttpAuth implements Auth
+{
+    public function check($username, $password)
+    {
+        echo &#34;Checking username, password from HTTP Authentication...\n&#34;;
+        return true;
+    }
+}
 
-<p>然後讓 <code>DbAuth</code> 類別實作 <code>Auth</code> 介面：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DbAuth</span> <span class="keyword">implements</span> <span class="title">Auth</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最後把原來初始化 <code>Auth</code> 類別的物件實體的程式碼，改為初始化 <code>DbAuth</code> 的物件實體。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$auth = <span class="keyword">new</span> DbAuth(<span class="string">'mysql://localhost'</span>, <span class="string">'username'</span>, <span class="string">'password'</span>);</span><br><span class="line">$session = <span class="keyword">new</span> Session();</span><br><span class="line">$app = <span class="keyword">new</span> App($auth, $session);</span><br></pre></td></tr></table></figure>
-
-<p>透過 <code>Auth</code> 介面的幫助，我們已經讓 <code>App</code> 類別與實際的資料庫操作類別分離開來了。現在只要是實作 <code>Auth</code> 介面的類別，都可以被 <code>App</code> 類別所接受，例如我們可能會改用 HTTP 認證來取代資料庫認證：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpAuth</span> <span class="keyword">implements</span> <span class="title">Auth</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">($username, $password)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Checking username, password from HTTP Authentication...\n"</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$auth = <span class="keyword">new</span> HttpAuth();</span><br><span class="line">$session = <span class="keyword">new</span> Session();</span><br><span class="line">$app = <span class="keyword">new</span> App($auth, $session);</span><br></pre></td></tr></table></figure>
-
-<p>當然其他類型的認證方式也可以透過建立新的類別來使用，而不會影響到 <code>App</code> 類別的內部實作。</p>
-<h2 id="DI-容器"><a href="#DI-容器" class="headerlink" title="DI 容器"></a>DI 容器</h2><p>現在又有個問題， client 程式還是依賴於 <code>DbAuth</code> 類別或是 <code>HttpAuth</code> 類別；通常這種狀況在需要編譯型的語言 (例如 Java ) 中，程式一旦編譯完成佈署出去後，就很難再進行修改。</p>
+$auth = new HttpAuth();
+$session = new Session();
+$app = new App($auth, $session);
+</code></pre></div><p>當然其他類型的認證方式也可以透過建立新的類別來使用，而不會影響到 <code>App</code> 類別的內部實作。</p>
+<h2 id="di-容器">DI 容器<a href="#di-容器" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>現在又有個問題， client 程式還是依賴於 <code>DbAuth</code> 類別或是 <code>HttpAuth</code> 類別；通常這種狀況在需要編譯型的語言 (例如 Java ) 中，程式一旦編譯完成佈署出去後，就很難再進行修改。</p>
 <p>如果我們可以改用設定的方式來告訴程式，在不同的狀況下對應不同的類別，然後讓程式自行判斷環境來產生需要的物件實體，這樣就可以解開 client 程式對實作類別的依賴關係。</p>
 <p>這裡要引入一個技術，稱為 DI 容器 (Dependency Injection Container) 。 DI 容器主要的作用在於幫我們解決產生物件實體時，應該參考哪一個類別。我們先來看看用法：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">Container::register(<span class="string">'Auth'</span>, <span class="string">'DbAuth'</span>, [<span class="string">'mysql://localhost'</span>, <span class="string">'username'</span>, <span class="string">'password'</span>]);</span><br><span class="line"></span><br><span class="line">$auth = Container::get(<span class="string">'Auth'</span>);</span><br><span class="line">$session = <span class="keyword">new</span> Session();</span><br><span class="line">$app = <span class="keyword">new</span> App($auth, $session);</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">Container::register(&#39;Auth&#39;, &#39;DbAuth&#39;, [&#39;mysql://localhost&#39;, &#39;username&#39;, &#39;password&#39;]);
 
-<p>首先我們在 DI 容器中先以 <code>Container::register()</code> 方法來註冊 <code>Auth</code> 這個別名實際上要對應哪個類別，以及建立物件實體時會用到的初始化參數。要注意，這裡的別名並不是指真正的類別或介面，但我們可以用相同的名稱以避免認知上的問題。</p>
+$auth = Container::get(&#39;Auth&#39;);
+$session = new Session();
+$app = new App($auth, $session);
+</code></pre></div><p>首先我們在 DI 容器中先以 <code>Container::register()</code> 方法來註冊 <code>Auth</code> 這個別名實際上要對應哪個類別，以及建立物件實體時會用到的初始化參數。要注意，這裡的別名並不是指真正的類別或介面，但我們可以用相同的名稱以避免認知上的問題。</p>
 <p>然後我們用 <code>Container::get()</code> 方法取得別名所對應類別的物件實體，上面例子裡的 <code>$auth</code> 就是 <code>DbAuth</code> 類別的物件實體。</p>
 <p>這麼一來，我們就可以把註冊的程式碼移出 client 程式之外，並將註冊參數改用設定檔引入，順利解開 client 程式對實作類別的依賴。</p>
-<h2 id="DI-容器原理"><a href="#DI-容器原理" class="headerlink" title="DI 容器原理"></a>DI 容器原理</h2><p>那麼 DI 容器的原理是怎麼運作的呢？首先在 <code>Container::register()</code> 方法註冊的部份，它其實只是把參數記到 <code>$map</code> 這個類別靜態屬性裡。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> $map = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">($name, $class, $args = null)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span>::$map[$name] = [$class, $args];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="di-容器原理">DI 容器原理<a href="#di-容器原理" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>那麼 DI 容器的原理是怎麼運作的呢？首先在 <code>Container::register()</code> 方法註冊的部份，它其實只是把參數記到 <code>$map</code> 這個類別靜態屬性裡。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class Container
+{
+    protected static $map = [];
 
-<p>重點在 <code>Container::get()</code> 方法，它透過 <code>$name</code> 別名，把 <code>$map</code> 屬性中對應的類別名稱和初始化參數取出；接著判斷類別是不是存在，如果存在的話就建立對應的物件實體。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">list</span>($class, $args) = <span class="keyword">isset</span>(<span class="keyword">static</span>::$map[$name]) ?</span><br><span class="line">                              <span class="keyword">static</span>::$map[$name] :</span><br><span class="line">                              [$name, <span class="keyword">null</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (class_exists($class, <span class="keyword">true</span>)) &#123;</span><br><span class="line">            $reflectionClass = <span class="keyword">new</span> ReflectionClass($class);</span><br><span class="line">            <span class="keyword">return</span> !<span class="keyword">empty</span>($args) ?</span><br><span class="line">                   $reflectionClass-&gt;newInstanceArgs($args) :</span><br><span class="line">                   <span class="keyword">new</span> $class();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    public static function register($name, $class, $args = null)
+    {
+        static::$map[$name] = [$class, $args];
+    }
 
-<p>比較特別的是，如果初始化參數不是空值 (<code>null</code>) 時，則必須透過 <code>ReflectionClass::newInstanceArgs()</code> 方法來建立物件實體。 <code>ReflectionClass</code> 類別可以映射出指定類別的內部結構，並提供方法來操作這個結構； Reflection 是現代語言常見的機制， PHP 在這方面也提供了完整的 API 供開發者使用，請參考： <a href="http://php.net/manual/en/book.reflection.php" target="_blank" rel="noopener">PHP: Reflection</a> 。</p>
+    // ...
+}
+</code></pre></div><p>重點在 <code>Container::get()</code> 方法，它透過 <code>$name</code> 別名，把 <code>$map</code> 屬性中對應的類別名稱和初始化參數取出；接著判斷類別是不是存在，如果存在的話就建立對應的物件實體。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class Container
+{
+    // ...
+
+    public static function get($name)
+    {
+        list($class, $args) = isset(static::$map[$name]) ?
+                              static::$map[$name] :
+                              [$name, null];
+
+        if (class_exists($class, true)) {
+            $reflectionClass = new ReflectionClass($class);
+            return !empty($args) ?
+                   $reflectionClass-&gt;newInstanceArgs($args) :
+                   new $class();
+        }
+
+        return null;
+    }
+}
+</code></pre></div><p>比較特別的是，如果初始化參數不是空值 (<code>null</code>) 時，則必須透過 <code>ReflectionClass::newInstanceArgs()</code> 方法來建立物件實體。 <code>ReflectionClass</code> 類別可以映射出指定類別的內部結構，並提供方法來操作這個結構； Reflection 是現代語言常見的機制， PHP 在這方面也提供了完整的 API 供開發者使用，請參考： <a href="http://php.net/manual/en/book.reflection.php">PHP: Reflection</a> 。</p>
 <p><code>Container::get()</code> 方法也可以在沒有註冊的狀況下，直接把別名當成類別名稱，然後協助我們初始化對應的物件實體；例如：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$session = Container::get(<span class="string">'Session'</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="手動注入"><a href="#手動注入" class="headerlink" title="手動注入"></a>手動注入</h2><p>現在我們的 client 程式已經修改成以下的樣子：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$auth = Container::get(<span class="string">'Auth'</span>);</span><br><span class="line">$session = Container::get(<span class="string">'Session'</span>);</span><br><span class="line">$app = <span class="keyword">new</span> App($auth, $session);</span><br></pre></td></tr></table></figure>
-
-<p>不過當初始化參數較多的狀況下，重複寫好幾次 <code>Container::get()</code> 看起來也是挺囉嗦的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$session = Container::get(&#39;Session&#39;);
+</code></pre></div><h2 id="手動注入">手動注入<a href="#手動注入" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>現在我們的 client 程式已經修改成以下的樣子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$auth = Container::get(&#39;Auth&#39;);
+$session = Container::get(&#39;Session&#39;);
+$app = new App($auth, $session);
+</code></pre></div><p>不過當初始化參數較多的狀況下，重複寫好幾次 <code>Container::get()</code> 看起來也是挺囉嗦的。</p>
 <p>接下來我們實作一個 <code>Container::inject()</code> 方法，提供開發者可以一次注入所有依賴物件實體：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$app = Container::inject(<span class="string">'Auth'</span>, <span class="string">'Session'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($auth, $session)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> App($auth, $session);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$app = Container::inject(&#39;Auth&#39;, &#39;Session&#39;, function ($auth, $session) {
+    return new App($auth, $session);
+});
+</code></pre></div><p>這裡我們讓 <code>Container::inject()</code> 接受不定個數的參數，除了最後一個參數必須是 callback 型態外，其他都是要傳遞給 <code>Container::get()</code> 的參數。 <code>Container::inject()</code> 的實作方式如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class Container
+{
+    // ...
 
-<p>這裡我們讓 <code>Container::inject()</code> 接受不定個數的參數，除了最後一個參數必須是 callback 型態外，其他都是要傳遞給 <code>Container::get()</code> 的參數。 <code>Container::inject()</code> 的實作方式如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">inject</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $args = func_get_args();</span><br><span class="line">        $callback = array_pop($args);</span><br><span class="line">        $injectArgs = [];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> ($args <span class="keyword">as</span> $name) &#123;</span><br><span class="line">            $injectArgs[] = Container::get($name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> call_user_func_array($callback, $injectArgs);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+    public static function inject()
+    {
+        $args = func_get_args();
+        $callback = array_pop($args);
+        $injectArgs = [];
 
-<p>在參數個數不定的狀況下，可以用 <code>func_get_args()</code> 函式來取得所有參數；而 <code>array_pop()</code> 可以取出最後一個參數值做為 callback 。剩下的參數就透過 <code>Container::get()</code> 來取得物件實體，最後再透過 <code>call_user_func_array()</code> 函式將處理好的參數傳遞給 callback 執行。</p>
-<h2 id="自動解決所有依賴注入"><a href="#自動解決所有依賴注入" class="headerlink" title="自動解決所有依賴注入"></a>自動解決所有依賴注入</h2><p>在我們的範例裡， <code>Container</code> 類別如果可以提供一個方法，自動為我們解決所有 <code>App</code> 類別依賴問題，那麼程式就可以更乾淨些。</p>
-<p>要做到這點，我們就必須知道要注入的方法所需要參數的類型；而在 PHP 中的 <a href="http://php.net/manual/en/language.oop5.typehinting.php" target="_blank" rel="noopener">Type Hinting</a> ，就可以告訴我們參數所對應的變數類型或類別。</p>
+        foreach ($args as $name) {
+            $injectArgs[] = Container::get($name);
+        }
+
+        return call_user_func_array($callback, $injectArgs);
+    }
+</code></pre></div><p>在參數個數不定的狀況下，可以用 <code>func_get_args()</code> 函式來取得所有參數；而 <code>array_pop()</code> 可以取出最後一個參數值做為 callback 。剩下的參數就透過 <code>Container::get()</code> 來取得物件實體，最後再透過 <code>call_user_func_array()</code> 函式將處理好的參數傳遞給 callback 執行。</p>
+<h2 id="自動解決所有依賴注入">自動解決所有依賴注入<a href="#自動解決所有依賴注入" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在我們的範例裡， <code>Container</code> 類別如果可以提供一個方法，自動為我們解決所有 <code>App</code> 類別依賴問題，那麼程式就可以更乾淨些。</p>
+<p>要做到這點，我們就必須知道要注入的方法所需要參數的類型；而在 PHP 中的 <a href="http://php.net/manual/en/language.oop5.typehinting.php">Type Hinting</a> ，就可以告訴我們參數所對應的變數類型或類別。</p>
 <p>回到 <code>App::__construct()</code> 建構子上，我們看到 <code>$auth</code> 與 <code>$session</code> 兩個參數的 type hint 分別對應到 <code>Auth</code> 與 <code>Session</code> 這兩個類別，剛好就可以用來當做我們做自動依賴注入的條件。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Auth $auth, Session $session)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class App
+{
+    public function __construct(Auth $auth, Session $session)
+    {
+    }
+}
+</code></pre></div><p>接著我們為 <code>Container</code> 類別提供一個 <code>resolve()</code> 方法，它可以接受一個類別名稱用來建立物件實體，而不需要再使用 <code>new</code> 關鍵字。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$app = Container::resolve(&#39;App&#39;);
+</code></pre></div><p>我們希望 <code>Container::resolve()</code> 方法會自動產生參數所對應的物件，解決這個類別建構子所需要的依賴關係。它的實作如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class Container
+{
+    // ...
 
-<p>接著我們為 <code>Container</code> 類別提供一個 <code>resolve()</code> 方法，它可以接受一個類別名稱用來建立物件實體，而不需要再使用 <code>new</code> 關鍵字。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$app = Container::resolve(<span class="string">'App'</span>);</span><br></pre></td></tr></table></figure>
+    public static function resolve($name)
+    {
+        if (!class_exists($name, true)) {
+            return null;
+        }
 
-<p>我們希望 <code>Container::resolve()</code> 方法會自動產生參數所對應的物件，解決這個類別建構子所需要的依賴關係。它的實作如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">resolve</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!class_exists($name, <span class="keyword">true</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $reflectionClass = <span class="keyword">new</span> ReflectionClass($name);</span><br><span class="line">        $reflectionConstructor = $reflectionClass-&gt;getConstructor();</span><br><span class="line">        $reflectionParams = $reflectionConstructor-&gt;getParameters();</span><br><span class="line"></span><br><span class="line">        $args = [];</span><br><span class="line">        <span class="keyword">foreach</span> ($reflectionParams <span class="keyword">as</span> $param) &#123;</span><br><span class="line">            $class = $param-&gt;getClass()-&gt;getName();</span><br><span class="line">            $args[] = <span class="keyword">static</span>::get($class);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> !<span class="keyword">empty</span>($args) ?</span><br><span class="line">               $reflectionClass-&gt;newInstanceArgs($args) :</span><br><span class="line">               <span class="keyword">new</span> $class();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        $reflectionClass = new ReflectionClass($name);
+        $reflectionConstructor = $reflectionClass-&gt;getConstructor();
+        $reflectionParams = $reflectionConstructor-&gt;getParameters();
 
-<p><code>Container::resolve()</code> 方法與 <code>Container::get()</code> 方法的原理類似，但較特別的是它使用了 <code>ReflectionClass::getConstructor()</code> 方法來取得類別建構子的 <code>ReflectionMethod</code> 實體；接著再用 <code>ReflectionMethod::getParameters()</code> 取出參數的 <code>ReflectionParameter</code> 物件集合 (陣列) 。</p>
+        $args = [];
+        foreach ($reflectionParams as $param) {
+            $class = $param-&gt;getClass()-&gt;getName();
+            $args[] = static::get($class);
+        }
+
+        return !empty($args) ?
+               $reflectionClass-&gt;newInstanceArgs($args) :
+               new $class();
+    }
+}
+</code></pre></div><p><code>Container::resolve()</code> 方法與 <code>Container::get()</code> 方法的原理類似，但較特別的是它使用了 <code>ReflectionClass::getConstructor()</code> 方法來取得類別建構子的 <code>ReflectionMethod</code> 實體；接著再用 <code>ReflectionMethod::getParameters()</code> 取出參數的 <code>ReflectionParameter</code> 物件集合 (陣列) 。</p>
 <p>而後我們就可以在迴圈中一一透過 <code>ReflectionParameter::getClass()</code> 方法與 <code>ReflectionClass::getName()</code> 方法來取得 type hint 所指向的類別或介面名稱。當有了參數所對應的類別或介面名稱後，就可以用 <code>Container::get()</code> 方法來取得參數的物件實體。</p>
 <p>最後把這些物件帶回建構子的參數裡，並初始化我們所需要的物件實體，就完成了 <code>App</code> 類別的自動依賴注入。</p>
-<h2 id="深入思考"><a href="#深入思考" class="headerlink" title="深入思考"></a>深入思考</h2><p>再強調一次，這裡的範例只是為了介紹 DI 容器的原理，並不能真正用在實務上。因為一個完整的 DI 容器還要考慮以下的問題：</p>
+<h2 id="深入思考">深入思考<a href="#深入思考" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>再強調一次，這裡的範例只是為了介紹 DI 容器的原理，並不能真正用在實務上。因為一個完整的 DI 容器還要考慮以下的問題：</p>
 <ul>
 <li>類別不存在時的處理。</li>
 <li>與其他非類別的參數整合。</li>
@@ -97,10 +324,77 @@
 <li>可以透過原始碼上的 DocBlock 註解來註明依賴關係。</li>
 </ul>
 <p>目前已經有很多 DI Framework 幫我們處理好這些事情了，建議大家如果真的需要在專案中使用 DI 時，應該採用這些 Framework 。</p>
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>如果專案並不會有太多變化性，那麼依賴注入對我們來說就不是那麼重要。但是如果希望程式對特定類別的依賴性降低，只針對抽象介面實作，那麼依賴注入就有其必要性。</p>
+<h2 id="總結">總結<a href="#總結" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>如果專案並不會有太多變化性，那麼依賴注入對我們來說就不是那麼重要。但是如果希望程式對特定類別的依賴性降低，只針對抽象介面實作，那麼依賴注入就有其必要性。</p>
 <p>在 PHP 上的 DI 容器的基本實作原理也不複雜，透過 Reflection 機制就可以看到類別內部的結構，讓我們對它的建構子注入我們想要的參數值。</p>
 <p>DI 容器要考量的部份也不少，但這些功能都已經有 Framework 實作，我們應該在專案中使用它們而儘可能不要自行開發。</p>
 <p>希望透過以上的介紹，可以讓大家對 Framework 的依賴注入機制有基本的認知。</p>
-<p>註：上述程式碼都可以在 <a href="https://github.com/jaceju/php-di-container-examples" target="_blank" rel="noopener">php-di-container-examples
+<p>註：上述程式碼都可以在 <a href="https://github.com/jaceju/php-di-container-examples">php-di-container-examples
 </a> 找到。</p>
-</div><div class="tags"><a href="/tags/PHP/">PHP</a></div><div class="post-nav"><a class="pre" href="/skilltree-tdd/">自動測試與 TDD 實務開發 - 上課心得 (上)</a><a class="next" href="/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/summary-of-common-php-mistakes/">整理一些常見的 PHP 錯誤</a></li>
+	
+	<li><a href="/create-css-sprites-with-imagick/">用 Imagick 建立 CSS Sprites</a></li>
+	
+	<li><a href="/php-refactor-to-pattern-in-action/">實戰 PHP 重構與模式</a></li>
+	
+	<li><a href="/passing-php-object/">[PHP] 簡易的物件傳遞方法</a></li>
+	
+	<li><a href="/the-design-of-shopping-cart/">購物車程式架構簡介</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2014-07-27 17:45 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/skilltree-tdd/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>自動測試與 TDD 實務開發 - 上課心得 (上)</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/summary-of-common-php-mistakes/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>整理一些常見的 PHP 錯誤</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

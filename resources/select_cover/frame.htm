@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>解決下拉式選單覆蓋圖層的問題 - 測試範例</title>
+<style type="text/css">
+<!--
+#container {
+	position: relative;
+	left: 50%;
+	margin-left: -250px;
+	width: 500px;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+function showDiv(sDivID, bState) {
+	var oDiv = document.getElementById(sDivID);
+	/*@cc_on
+	@if (@_jscript_version >= 5)
+    try {
+		var oIframe = document.getElementById('HelpFrame');
+		oIframe.scrolling = 'no';
+	}
+	catch (e) {
+		var oIframe = document.createElement('iframe');
+		var oParent = oDiv.parentNode;
+		oIframe.id = 'HelpFrame';
+		oParent.appendChild(oIframe);
+	}
+    oIframe.frameborder = 0;
+    oIframe.style.position = 'absolute';
+    oIframe.style.top = 0;
+    oIframe.style.left = 0;
+    oIframe.style.display = 'none';
+	@end @*/
+    if (bState) {
+        oDiv.style.display = 'block';
+        /*@cc_on
+        @if (@_jscript_version >= 5)
+        oIframe.style.top = oDiv.style.top;
+        oIframe.style.left = oDiv.style.left;
+        oIframe.style.zIndex = oDiv.style.zIndex - 1;
+        oIframe.style.width = parseInt(oDiv.offsetWidth);
+        oIframe.style.height = parseInt(oDiv.offsetHeight);
+        oIframe.style.display = 'block';
+        @end @*/
+    }
+    else {
+        /*@cc_on
+        @if (@_jscript_version >= 5)
+        oIframe.style.display = 'none';
+        @end @*/
+        oDiv.style.display = 'none';
+    }
+}
+//-->
+</script>
+</head>
+<body>
+<div id="container">
+<form action="">
+<select>
+<option>A Select Box is Born ....</option>
+</select>
+</form>
+<br />
+<br />
+<a href="#" onclick="showDiv('PopupDiv', true); return false;">Click to show DIV.</a> <br />
+<br />
+<a href="#" onclick="showDiv('PopupDiv', false); return false;">Click to hide DIV.</a>
+<div id="PopupDiv" style="position:absolute; top:10px; left:50px; height: 40px; padding:4px; display:none; background-color:#000000; color:#ffffff; z-index:100;"> .... and a DIV can cover it up<br />
+  through the help of an IFRAME. </div>
+</div>
+</body>
+</html>

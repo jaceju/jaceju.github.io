@@ -1,47 +1,296 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>PHPUnit 實務入門簡介 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="PHPUnit 實務入門簡介"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="PHPUnit 實務入門簡介"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">PHPUnit 實務入門簡介</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">PHPUnit 實務入門簡介</h1><div class="post-meta">Mar 16, 2010</div><div class="post-content"><p>註：本文所提及的觀念與技巧已經不適用在目前的 PHPUnit ，這裡只是為了記錄自己學習過的心得。</p>
-<p>這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素的…還好先前在製作購物車時，已經把單元測試放到架構裡，因此後面就只要專心應付演算法邏輯就好了。</p>
-<p>雖然這樣的規劃聽起來不錯，但單元測試這件事說到底我的實務經驗還是太少，在這次的專案項目裡，才讓我真正有了較為深入的體會。</p>
-<a id="more"></a>
+<!DOCTYPE html>
+<html lang="zh-TW">
 
-<h2 id="先對要測試的事情有一個概觀"><a href="#先對要測試的事情有一個概觀" class="headerlink" title="先對要測試的事情有一個概觀"></a>先對要測試的事情有一個概觀</h2><p>其實測試一開始真的很難下手，主要是因為我們不知道我們要測些什麼東西。因此，我們需要對需要測試的東西有個概觀。</p>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="PHPUnit 實務入門簡介">
+<meta itemprop="description" content="註：本文所提及的觀念與技巧已經不適用在目前的 PHPUnit ，這裡只是為了記錄自己學習過的心得。 這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素">
+<meta itemprop="datePublished" content="2010-03-16T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2010-03-16T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1910">
+
+
+
+<meta itemprop="keywords" content="PHP,測試," /><meta property="og:title" content="PHPUnit 實務入門簡介" />
+<meta property="og:description" content="註：本文所提及的觀念與技巧已經不適用在目前的 PHPUnit ，這裡只是為了記錄自己學習過的心得。 這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/head-first-phpunit/" />
+<meta property="article:published_time" content="2010-03-16T00:00:00+08:00" />
+<meta property="article:modified_time" content="2010-03-16T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PHPUnit 實務入門簡介"/>
+<meta name="twitter:description" content="註：本文所提及的觀念與技巧已經不適用在目前的 PHPUnit ，這裡只是為了記錄自己學習過的心得。 這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>PHPUnit 實務入門簡介</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 16, 2010</span></div>
+				<h1>PHPUnit 實務入門簡介</h1>
+			</header>
+			<div class="content">
+				<p>註：本文所提及的觀念與技巧已經不適用在目前的 PHPUnit ，這裡只是為了記錄自己學習過的心得。</p>
+<p>這幾天在寫折價券攤提到商品的數學演算法邏輯，搞得我七葷八素的&hellip;還好先前在製作購物車時，已經把單元測試放到架構裡，因此後面就只要專心應付演算法邏輯就好了。</p>
+<p>雖然這樣的規劃聽起來不錯，但單元測試這件事說到底我的實務經驗還是太少，在這次的專案項目裡，才讓我真正有了較為深入的體會。</p>
+<!-- raw HTML omitted -->
+<h2 id="先對要測試的事情有一個概觀">先對要測試的事情有一個概觀<a href="#先對要測試的事情有一個概觀" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>其實測試一開始真的很難下手，主要是因為我們不知道我們要測些什麼東西。因此，我們需要對需要測試的東西有個概觀。</p>
 <p>就以這次的例子來說吧，我要測試的東西就是「折價券攤提的演算法邏輯」，那它裡面重要的東西是什麼？</p>
 <p>在跟客戶討論，我們得知折價券面額要分攤到的商品上時有一定的規則；這時我們就要先在紙上作業，用簡單的例子跟客戶確認清楚規則。</p>
 <p><a href="/resources/phpunit/draft.jpg"><img src="/resources/phpunit/draft.jpg" alt="草圖"></a></p>
 <p>確認了方向之後，因為我之前已經測試架構準備好了，所以接下來就只要針對要測試的部份撰寫程式碼即可。但如果一開始還沒有準備好測試架構的話，這裡給大家幾個建置環境的簡易流程：</p>
 <ul>
-<li><p>在專案裡開個 <code>tests</code> 資料夾，這裡就是放置測試案例的地方。</p>
+<li>
+<p>在專案裡開個 <code>tests</code> 資料夾，這裡就是放置測試案例的地方。</p>
 </li>
-<li><p>準備一個 <code>init.php</code> ，目的是用來設置 <code>include_path</code> 及 <code>autoload</code> 機制。</p>
+<li>
+<p>準備一個 <code>init.php</code> ，目的是用來設置 <code>include_path</code> 及 <code>autoload</code> 機制。</p>
 </li>
-<li><p>按照 PHPUnit 官方的建議，建立一個 AllTests.php 的 Test Suite 。</p>
+<li>
+<p>按照 PHPUnit 官方的建議，建立一個 AllTests.php 的 Test Suite 。</p>
 </li>
 </ul>
 <p>註：這裡我就不列出程式碼了，讓大家自己試試看。</p>
 <p>然後每次測試就用以下指令即可：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&gt; phpunit AllTests.php</span><br></pre></td></tr></table></figure>
-
-<p>之後我會以「跑測試」來表示執行這個指令。</p>
-<h2 id="描繪程式的輪廓"><a href="#描繪程式的輪廓" class="headerlink" title="描繪程式的輪廓"></a>描繪程式的輪廓</h2><p>接下來我們就要把整個系統的測試架構定義出來，不過這時候其實我們還沒開始寫程式，只是把流程和相關的方法先定義出來。</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&gt; phpunit AllTests.php
+</code></pre></div><p>之後我會以「跑測試」來表示執行這個指令。</p>
+<h2 id="描繪程式的輪廓">描繪程式的輪廓<a href="#描繪程式的輪廓" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>接下來我們就要把整個系統的測試架構定義出來，不過這時候其實我們還沒開始寫程式，只是把流程和相關的方法先定義出來。</p>
 <p>這裡的方法很簡單，就是先透過註解和方法介面來描述整個流程，而不是先寫細部的程式碼。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shop_Cart_Plugin_Coupon</span> <span class="keyword">extends</span> <span class="title">Shop_Cart_Plugin</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ... 略 ...</span></span><br><span class="line">    <span class="comment">// 演算法計算後的結果</span></span><br><span class="line">    <span class="keyword">protected</span> $_sharedCouponData = <span class="keyword">array</span>();</span><br><span class="line">    <span class="comment">// 取得演算法計算後的結果，也可供測試來驗證</span></span><br><span class="line">    <span class="keyword">public</span> functino getSharedCouponData()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;_sharedCouponData;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 主要的執行方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">doCheckout</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_getCouponData(); <span class="comment">// 取得</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;_getProductData(); <span class="comment">// 取得商品資料</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;_initData(); <span class="comment">// 初始化要攤提的資料</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;_shareCouponToProduct(); <span class="comment">// 開始攤提</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ... 略 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">class Shop_Cart_Plugin_Coupon extends Shop_Cart_Plugin
+{
+    // ... 略 ...
+    // 演算法計算後的結果
+    protected $_sharedCouponData = array();
+    // 取得演算法計算後的結果，也可供測試來驗證
+    public functino getSharedCouponData()
+    {
+        return $this-&gt;_sharedCouponData;
+    }
+    // 主要的執行方法
+    public function doCheckout()
+    {
+        $this-&gt;_getCouponData(); // 取得
+        $this-&gt;_getProductData(); // 取得商品資料
+        $this-&gt;_initData(); // 初始化要攤提的資料
+        $this-&gt;_shareCouponToProduct(); // 開始攤提
+    }
+    // ... 略 ...
+}
 
-<p>當然這些都是大概的輪廓，因為可能在我們寫好測試執行時，會再額外加入新的方法及介面。</p>
+</code></pre></div><p>當然這些都是大概的輪廓，因為可能在我們寫好測試執行時，會再額外加入新的方法及介面。</p>
 <p>還有一個要先定義好的是測試用的比對數據格式，它對我們稍後要測試的程式寫法會有影響。</p>
-<h2 id="寫第一個測試"><a href="#寫第一個測試" class="headerlink" title="寫第一個測試"></a>寫第一個測試</h2><p>到這裡，我們就可以開始寫第一個測試，而接下來的程式碼，都是先以這個測試可以成功為目的。而這個測試要怎麼寫呢？就是把一開始我們在紙上作業的數字拿進來套用。</p>
+<h2 id="寫第一個測試">寫第一個測試<a href="#寫第一個測試" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>到這裡，我們就可以開始寫第一個測試，而接下來的程式碼，都是先以這個測試可以成功為目的。而這個測試要怎麼寫呢？就是把一開始我們在紙上作業的數字拿進來套用。</p>
 <p>當然這裡我的 <code>setUp</code> 和 <code>tearDown</code> 也已經在之前準備測試架構時寫好了，它們會讓我們每次的測試數據都能夠獨立。我們關心的就是第一個測試案例：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shop_Cart_Plugin_CouponTest</span> <span class="keyword">extends</span> <span class="title">PHPUnit_Framework_TestCase</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ... 略 ...</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setUp</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// ... 略 ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">tearDown</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// ... 略 ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testDoCheckout</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_plugin-&gt;setValue(<span class="keyword">array</span>(</span><br><span class="line">           <span class="number">1</span> =&gt; <span class="number">1</span>, <span class="comment">// C1, ProductCoupon for P1, $100</span></span><br><span class="line">           <span class="number">2</span> =&gt; <span class="number">2</span>, <span class="comment">// C2, ProductCoupon for P1, P2, $100</span></span><br><span class="line">        ));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;_cart-&gt;addItems(<span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'P1'</span> =&gt; <span class="number">1</span>, <span class="comment">// $200</span></span><br><span class="line">            <span class="string">'P2'</span> =&gt; <span class="number">1</span>, <span class="comment">// $300</span></span><br><span class="line">        ))-&gt;refresh();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertEquals(<span class="number">300</span>, <span class="keyword">$this</span>-&gt;_cart-&gt;getTotal());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;_plugin-&gt;doCheckout();</span><br><span class="line"></span><br><span class="line">        $resultDataList = <span class="keyword">$this</span>-&gt;_plugin-&gt;getSelectedOrderCouponDataList();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertEquals(<span class="number">-100</span>, $resultDataList[<span class="string">'P1-C1'</span>](<span class="string">'discountPrice'</span>));</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertEquals(<span class="number">-25</span>,  $resultDataList[<span class="string">'P1-C2'</span>](<span class="string">'discountPrice'</span>));</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertEquals(<span class="number">-75</span>,  $resultDataList[<span class="string">'P2-C2'</span>](<span class="string">'discountPrice'</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Shop_Cart_Plugin_CouponTest</span> <span class="k">extends</span> <span class="nx">PHPUnit_Framework_TestCase</span>
+<span class="p">{</span>
+    <span class="c1">// ... 略 ...
+</span><span class="c1"></span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// ... 略 ...
+</span><span class="c1"></span>    <span class="p">}</span>
 
-<p>這裡因為我們在上一步就定義好比對用的數據，所以測試時就是用這個輸出的數據來與我們預期的數字相比較。</p>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">tearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// ... 略 ...
+</span><span class="c1"></span>    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">testDoCheckout</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_plugin</span><span class="o">-&gt;</span><span class="na">setValue</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+           <span class="mi">1</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// C1, ProductCoupon for P1, $100
+</span><span class="c1"></span>           <span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="c1">// C2, ProductCoupon for P1, P2, $100
+</span><span class="c1"></span>        <span class="p">));</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_cart</span><span class="o">-&gt;</span><span class="na">addItems</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;P1&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// $200
+</span><span class="c1"></span>            <span class="s1">&#39;P2&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// $300
+</span><span class="c1"></span>        <span class="p">))</span><span class="o">-&gt;</span><span class="na">refresh</span><span class="p">();</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_cart</span><span class="o">-&gt;</span><span class="na">getTotal</span><span class="p">());</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_plugin</span><span class="o">-&gt;</span><span class="na">doCheckout</span><span class="p">();</span>
+
+        <span class="nv">$resultDataList</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_plugin</span><span class="o">-&gt;</span><span class="na">getSelectedOrderCouponDataList</span><span class="p">();</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="nv">$resultDataList</span><span class="p">[</span><span class="s1">&#39;P1-C1&#39;</span><span class="p">](</span><span class="s1">&#39;discountPrice&#39;</span><span class="p">));</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span>  <span class="nv">$resultDataList</span><span class="p">[</span><span class="s1">&#39;P1-C2&#39;</span><span class="p">](</span><span class="s1">&#39;discountPrice&#39;</span><span class="p">));</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="o">-</span><span class="mi">75</span><span class="p">,</span>  <span class="nv">$resultDataList</span><span class="p">[</span><span class="s1">&#39;P2-C2&#39;</span><span class="p">](</span><span class="s1">&#39;discountPrice&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>這裡因為我們在上一步就定義好比對用的數據，所以測試時就是用這個輸出的數據來與我們預期的數字相比較。</p>
 <p>接下來就先跑跑測試，看看這個 TestCase 有沒有執行錯誤的地方 (例如物件沒有正確初始化或是變數名稱誤寫等等) ；當然如果沒有出現預期值是正常的，因為我們根本還沒有寫計算公式。</p>
-<h2 id="繼續完成演算法"><a href="#繼續完成演算法" class="headerlink" title="繼續完成演算法"></a>繼續完成演算法</h2><p>現在回到 <code>Shop_Cart_Plugin_Coupon</code> ，我們就要把剛剛那些只有骨頭的方法開始添血添肉，這裡就請大家自行發擇。</p>
+<h2 id="繼續完成演算法">繼續完成演算法<a href="#繼續完成演算法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>現在回到 <code>Shop_Cart_Plugin_Coupon</code> ，我們就要把剛剛那些只有骨頭的方法開始添血添肉，這裡就請大家自行發擇。</p>
 <p>接著只要你覺得程式差不多了，就先跑一下測試，看看是不是符合測試的預期結果。</p>
 <p>當你完成第一個測試時，程式的就差不多完成百分之五十啦，到這裡別忘了先把程式 commit 到版本控制系統裡。</p>
-<h2 id="加入新測試並修改程式"><a href="#加入新測試並修改程式" class="headerlink" title="加入新測試並修改程式"></a>加入新測試並修改程式</h2><p>完成第一個測試時，當然不是沒事了，我們要針對不同的狀況再加入其他的測試數據。</p>
+<h2 id="加入新測試並修改程式">加入新測試並修改程式<a href="#加入新測試並修改程式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>完成第一個測試時，當然不是沒事了，我們要針對不同的狀況再加入其他的測試數據。</p>
 <p>這裡我們就可以開始考慮把第一個測試以 PHPUnit 提供的 Data Provider 改寫，讓我們不必重複過多的程式碼。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shop_Cart_Plugin_CouponTest</span> <span class="keyword">extends</span> <span class="title">PHPUnit_Framework_TestCase</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ... 略 ...</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setUp</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// ... 略 ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">tearDown</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// ... 略 ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dataProvider</span> provider</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testDoCheckout</span><span class="params">($selectedCouponIdList, $productSkuNumberList, $total, $discountDataList)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_plugin-&gt;setValue($selectedCouponIdList);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_cart-&gt;addItems($productSkuNumberList)-&gt;refresh();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertEquals($total, <span class="keyword">$this</span>-&gt;_cart-&gt;getTotal());</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_plugin-&gt;doCheckout();</span><br><span class="line">        $resultDataList = <span class="keyword">$this</span>-&gt;_plugin-&gt;getSharedCouponData();</span><br><span class="line">        <span class="keyword">foreach</span> ($discountDataList <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">        	<span class="keyword">$this</span>-&gt;assertEquals($value, $resultDataList[$key](<span class="string">'discountPrice'</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">provider</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">array</span>( <span class="comment">// 第一個測試</span></span><br><span class="line">            <span class="keyword">array</span>(<span class="keyword">array</span>(</span><br><span class="line">                <span class="number">1</span> =&gt; <span class="number">1</span>, <span class="comment">// C1, ProductCoupon for P1, $100</span></span><br><span class="line">                <span class="number">2</span> =&gt; <span class="number">2</span>, <span class="comment">// C2, ProductCoupon for P1, P2, $100</span></span><br><span class="line">            ), <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'P1'</span> =&gt; <span class="number">1</span>, <span class="comment">// $200</span></span><br><span class="line">                <span class="string">'P2'</span> =&gt; <span class="number">1</span>, <span class="comment">// $300</span></span><br><span class="line">            ), <span class="number">300</span>, <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'P1-C1'</span> =&gt; <span class="number">-100</span>,</span><br><span class="line">                <span class="string">'P1-C2'</span> =&gt; <span class="number">-25</span>,</span><br><span class="line">                <span class="string">'P2-C2'</span> =&gt; <span class="number">-75</span>,</span><br><span class="line">            )),</span><br><span class="line">            <span class="keyword">array</span>( <span class="comment">// 第二個測試</span></span><br><span class="line">                <span class="comment">// ... 略 ...</span></span><br><span class="line">            ),</span><br><span class="line">            <span class="comment">// ... 略 ...</span></span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Shop_Cart_Plugin_CouponTest</span> <span class="k">extends</span> <span class="nx">PHPUnit_Framework_TestCase</span>
+<span class="p">{</span>
+    <span class="c1">// ... 略 ...
+</span><span class="c1"></span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// ... 略 ...
+</span><span class="c1"></span>    <span class="p">}</span>
 
-<p>而加入新測試之後，就可以跑跑測試，看看我們剛寫好的演算法是否正確動作？通常這時候才真正是考驗的開始。因為這時候前面寫好的程式碼可能只對第一個測試正常，接下來的測試也許就會出錯了。</p>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">tearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// ... 略 ...
+</span><span class="c1"></span>    <span class="p">}</span>
+
+    <span class="sd">/**
+</span><span class="sd">     * @dataProvider provider
+</span><span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">testDoCheckout</span><span class="p">(</span><span class="nv">$selectedCouponIdList</span><span class="p">,</span> <span class="nv">$productSkuNumberList</span><span class="p">,</span> <span class="nv">$total</span><span class="p">,</span> <span class="nv">$discountDataList</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_plugin</span><span class="o">-&gt;</span><span class="na">setValue</span><span class="p">(</span><span class="nv">$selectedCouponIdList</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_cart</span><span class="o">-&gt;</span><span class="na">addItems</span><span class="p">(</span><span class="nv">$productSkuNumberList</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">refresh</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nv">$total</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_cart</span><span class="o">-&gt;</span><span class="na">getTotal</span><span class="p">());</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_plugin</span><span class="o">-&gt;</span><span class="na">doCheckout</span><span class="p">();</span>
+        <span class="nv">$resultDataList</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_plugin</span><span class="o">-&gt;</span><span class="na">getSharedCouponData</span><span class="p">();</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$discountDataList</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+        	<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$resultDataList</span><span class="p">[</span><span class="nv">$key</span><span class="p">](</span><span class="s1">&#39;discountPrice&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">provider</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">array</span><span class="p">(</span> <span class="c1">// 第一個測試
+</span><span class="c1"></span>            <span class="k">array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+                <span class="mi">1</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// C1, ProductCoupon for P1, $100
+</span><span class="c1"></span>                <span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="c1">// C2, ProductCoupon for P1, P2, $100
+</span><span class="c1"></span>            <span class="p">),</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;P1&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// $200
+</span><span class="c1"></span>                <span class="s1">&#39;P2&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// $300
+</span><span class="c1"></span>            <span class="p">),</span> <span class="mi">300</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;P1-C1&#39;</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span>
+                <span class="s1">&#39;P1-C2&#39;</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span>
+                <span class="s1">&#39;P2-C2&#39;</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">75</span><span class="p">,</span>
+            <span class="p">)),</span>
+            <span class="k">array</span><span class="p">(</span> <span class="c1">// 第二個測試
+</span><span class="c1"></span>                <span class="c1">// ... 略 ...
+</span><span class="c1"></span>            <span class="p">),</span>
+            <span class="c1">// ... 略 ...
+</span><span class="c1"></span>        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div><p>而加入新測試之後，就可以跑跑測試，看看我們剛寫好的演算法是否正確動作？通常這時候才真正是考驗的開始。因為這時候前面寫好的程式碼可能只對第一個測試正常，接下來的測試也許就會出錯了。</p>
 <p>所以我們就會需要修改或重構程式碼，讓後面的測試也能正常執行。當然改過的程式也要讓第一個測試正常運作，才是正確的修改。</p>
 <p>當然演算法寫好後，就要真正上到 Web 畫面去測試。至此，你會發現你花在寫測試上的心力都有了回報，因為通常如果你已經定義好介面，而這次的修改只是改寫一個小類別的話，那麼就會發現程式會非常順利地運作了。</p>
-<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>每次寫購物車時，最麻煩的就是測試時要開啟購物車網頁，把一個一個的商品加進來，再加入不同的折價券條件。而有單元測試之後，我就可以省去一大堆開啟網頁，點選連結的功夫，專心地撰寫計算邏輯，只能說單元測試真的個超級便利的工具呀。</p>
-</div><div class="tags"><a href="/tags/測試/">測試</a><a href="/tags/PHP/">PHP</a></div><div class="post-nav"><a class="pre" href="/why-engineer-or-designer-are-always-work-overtime-in-taiwan/">為什麼台灣的工程師 / 設計師常常加班？</a><a class="next" href="/familiar-patterns/">[Web] 常見設計模式介紹</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<h2 id="心得">心得<a href="#心得" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>每次寫購物車時，最麻煩的就是測試時要開啟購物車網頁，把一個一個的商品加進來，再加入不同的折價券條件。而有單元測試之後，我就可以省去一大堆開啟網頁，點選連結的功夫，專心地撰寫計算邏輯，只能說單元測試真的個超級便利的工具呀。</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/familiar-patterns/">[Web] 常見設計模式介紹</a></li>
+	
+	<li><a href="/refactor-multiple-arguments-function/">[五分鐘教室] 重構多參數函式</a></li>
+	
+	<li><a href="/php-include-path/">[五分鐘教室] PHP 檔案引入路徑問題</a></li>
+	
+	<li><a href="/php-static/">[PHP] 瞭解 static 關鍵字</a></li>
+	
+	<li><a href="/php-aop/">[PHP] 在 PHP5 中實作 AOP 的概念</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span><span class="tag"><a href="https://jaceju.net/tags/%E6%B8%AC%E8%A9%A6">測試</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2010-03-16 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/why-engineer-or-designer-are-always-work-overtime-in-taiwan/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>為什麼台灣的工程師 / 設計師常常加班？</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/familiar-patterns/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>[Web] 常見設計模式介紹</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

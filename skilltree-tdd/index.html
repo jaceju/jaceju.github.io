@@ -1,23 +1,160 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>自動測試與 TDD 實務開發 - 上課心得 (上) | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="自動測試與 TDD 實務開發 - 上課心得 (上)"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="自動測試與 TDD 實務開發 - 上課心得 (上)"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">自動測試與 TDD 實務開發 - 上課心得 (上)</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">自動測試與 TDD 實務開發 - 上課心得 (上)</h1><div class="post-meta">May 17, 2015</div><div class="post-content"><p>測試一直以來是很多開發者心中的痛，當被老闆問到：「你的程式碼是否都測試過了？」你是否能摸著自己的良心，並且拿出證據來說自己真的做過測試讓所有功能都符合需求了？我相信絕大多數的開發者這時一定都是面有難色，因為其實你不但騙了老闆，還騙了你自己。</p>
-<p>從我自己開始研究測試後，其實一直覺得自己還是沒有真正把測試當成是開發的一部份，更別說坊間很多程式書籍和教學課程能把這兩者真真實實地融合在一起，傳授給廣大的開發人員。</p>
-<p>這次正好有機會去聽 Joey (91 哥) 在 <a href="http://skilltree.my/" target="_blank" rel="noopener">SkillTree</a> 開的 <a href="http://skilltree.my/events/ebg" target="_blank" rel="noopener">TDD 課程</a>，我心想這實在是太棒了！ Joey 是業界在 TDD 領域相當有研究，而且也已經在實務上經過千錘百鍊的高手，如果能親眼見到他是如何把測試融入開發中的話，一定能大大提升自己的經驗值！</p>
-<p>不過課程中精采的部份太多了，恕我無法一一介紹；而且我也不覺得我能在這篇心得中，表達出講師在實務面的深厚功力。以下就讓我來為大家介紹這個課程為什麼值得你去聽的心得。</p>
-<a id="more"></a>
+<!DOCTYPE html>
+<html lang="zh-TW">
 
-<h2 id="絕對有料的課程內容"><a href="#絕對有料的課程內容" class="headerlink" title="絕對有料的課程內容"></a>絕對有料的課程內容</h2><p>我個人很喜歡這個課程一開始就把整個學習地圖展開來，讓學員知道接下來幾週裡會由淺入深地學到哪些技巧，例如本週 (第一週) 是單元測試的基礎。雖然說是基礎，但卻是最關鍵的一環！因為講師會將所有至今你對測試的錯誤認知重新洗掉，注入最正確的觀念！</p>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="自動測試與 TDD 實務開發 - 上課心得 (上)">
+<meta itemprop="description" content="測試一直以來是很多開發者心中的痛，當被老闆問到：「你的程式碼是否都測試過了？」你是否能摸著自己的良心，並且拿出證據來說自己真的做過測試讓所有">
+<meta itemprop="datePublished" content="2015-05-17T10:07:11&#43;08:00" />
+<meta itemprop="dateModified" content="2015-05-17T10:07:11&#43;08:00" />
+<meta itemprop="wordCount" content="2195">
+
+
+
+<meta itemprop="keywords" content="TDD,測試," /><meta property="og:title" content="自動測試與 TDD 實務開發 - 上課心得 (上)" />
+<meta property="og:description" content="測試一直以來是很多開發者心中的痛，當被老闆問到：「你的程式碼是否都測試過了？」你是否能摸著自己的良心，並且拿出證據來說自己真的做過測試讓所有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/skilltree-tdd/" />
+<meta property="article:published_time" content="2015-05-17T10:07:11+08:00" />
+<meta property="article:modified_time" content="2015-05-17T10:07:11+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自動測試與 TDD 實務開發 - 上課心得 (上)"/>
+<meta name="twitter:description" content="測試一直以來是很多開發者心中的痛，當被老闆問到：「你的程式碼是否都測試過了？」你是否能摸著自己的良心，並且拿出證據來說自己真的做過測試讓所有"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>自動測試與 TDD 實務開發 - 上課心得 (上)</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 17, 2015</span></div>
+				<h1>自動測試與 TDD 實務開發 - 上課心得 (上)</h1>
+			</header>
+			<div class="content">
+				<p>測試一直以來是很多開發者心中的痛，當被老闆問到：「你的程式碼是否都測試過了？」你是否能摸著自己的良心，並且拿出證據來說自己真的做過測試讓所有功能都符合需求了？我相信絕大多數的開發者這時一定都是面有難色，因為其實你不但騙了老闆，還騙了你自己。</p>
+<p>從我自己開始研究測試後，其實一直覺得自己還是沒有真正把測試當成是開發的一部份，更別說坊間很多程式書籍和教學課程能把這兩者真真實實地融合在一起，傳授給廣大的開發人員。</p>
+<p>這次正好有機會去聽 Joey (91 哥) 在 <a href="http://skilltree.my/">SkillTree</a> 開的 <a href="http://skilltree.my/events/ebg">TDD 課程</a>，我心想這實在是太棒了！ Joey 是業界在 TDD 領域相當有研究，而且也已經在實務上經過千錘百鍊的高手，如果能親眼見到他是如何把測試融入開發中的話，一定能大大提升自己的經驗值！</p>
+<p>不過課程中精采的部份太多了，恕我無法一一介紹；而且我也不覺得我能在這篇心得中，表達出講師在實務面的深厚功力。以下就讓我來為大家介紹這個課程為什麼值得你去聽的心得。</p>
+<!-- raw HTML omitted -->
+<h2 id="絕對有料的課程內容">絕對有料的課程內容<a href="#絕對有料的課程內容" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我個人很喜歡這個課程一開始就把整個學習地圖展開來，讓學員知道接下來幾週裡會由淺入深地學到哪些技巧，例如本週 (第一週) 是單元測試的基礎。雖然說是基礎，但卻是最關鍵的一環！因為講師會將所有至今你對測試的錯誤認知重新洗掉，注入最正確的觀念！</p>
 <p>而接下來講師就舉出了幾個血淋淋的真實案例，告訴你為什麼測試是重要的。測試不是用來應付流程的工具，而是紥紥實實讓你對自己的程式碼能更有信心的魔法。你不見得能在一開始就體會測試的重要性，但你一定會在出大包時懊悔：如果當時有測試就好了 (曾經待過 EC 產業的我感同身受) 。</p>
 <p>講師也三不五時會讓學員用回答問題的方式，讓學員重新審視對剛剛所教授的內容是否有真的瞭解，講師也會適時地再補充。講師也會針對同學的發問，來分享自己在實務上遇到的問題。</p>
-<h2 id="一定能懂的教學方式"><a href="#一定能懂的教學方式" class="headerlink" title="一定能懂的教學方式"></a>一定能懂的教學方式</h2><p>有趣的是，這次課程講師是用 C# 教學，但在 PHP 中打滾的我卻對範例沒有絲毫的疏離感。因為講師舉的例子相當生活化，而且寫出來的程式碼非常平易近人，只要有寫過程式的人一定都能看懂。</p>
+<h2 id="一定能懂的教學方式">一定能懂的教學方式<a href="#一定能懂的教學方式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>有趣的是，這次課程講師是用 C# 教學，但在 PHP 中打滾的我卻對範例沒有絲毫的疏離感。因為講師舉的例子相當生活化，而且寫出來的程式碼非常平易近人，只要有寫過程式的人一定都能看懂。</p>
 <p>課程中包含了讓學員動手的實戰練習，每個範例都是從實務中淬鍊出來的，像是如何測試亂數？如何測試只會在特定日期啟用的功能等等；而且範例經過縝密的安排，能循序漸進地讓學員瞭解如何在測試中套用課程中講授的原則。你會很驚訝原來這些我們以為難測試的問題，其實在測試中解決的方式竟然是這麼簡單。</p>
 <p>當然對不會寫 C# 的我來說，原本以為沒辦法用 IDE 實際演練會是件憾事；但這些實例設計之精巧，卻能夠讓我用 PHP 來重新代入；所謂一法通萬法通，測試的觀念本來就不限程式語言，這樣讓人興奮的實戰訓練，會讓人有手停不下來的感覺。</p>
-<h2 id="教你怎麼快速建立測試又能寫出好測試"><a href="#教你怎麼快速建立測試又能寫出好測試" class="headerlink" title="教你怎麼快速建立測試又能寫出好測試"></a>教你怎麼快速建立測試又能寫出好測試</h2><p>我們都知道開發應該針對需求，然而測試也是。但我們卻容易想得太多，導致我們做了太多無謂的工作。在課程中，講師會告訴你如何讓測試去配合需求，而不是為了測試而測試。搭配測試的原則，我們就不會再認為測試是多出來的工，而應該是開發的一部份。</p>
+<h2 id="教你怎麼快速建立測試又能寫出好測試">教你怎麼快速建立測試又能寫出好測試<a href="#教你怎麼快速建立測試又能寫出好測試" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我們都知道開發應該針對需求，然而測試也是。但我們卻容易想得太多，導致我們做了太多無謂的工作。在課程中，講師會告訴你如何讓測試去配合需求，而不是為了測試而測試。搭配測試的原則，我們就不會再認為測試是多出來的工，而應該是開發的一部份。</p>
 <p>例如關注點分離、 FIRST 、 3A 這類的測試原則，都是寫測試時所應該遵守的，但很少人知道要怎麼去應用。然而透過這個課程的範例教學，你會發現這麼多名詞和原則，竟能從中得到驗證！因為它們其實都是從實務所演化出來的，只是我們一直以教條式的方法來學習它們；當真正看到這些原則是這麼輕鬆地被講師透過實例展現出來時，那種震憾是文字難以描述的。</p>
 <p>當然我們在實際撰寫測試碼時，還是很容易覺得它是件麻煩事，這時候測試工具就非常重要了。一個好的測試框架會影響你撰寫測試的意願，如果這工具沒辦法很容易又很簡潔地寫出符合意圖的測試，那麼也就不能怪其他同事質疑寫測試是不是有幫助了。</p>
 <p>而號稱地表最強 IDE 之一的 Visual Studio 在這方面當然不會落於人後，簡單幾個指令和操作，測試骨架就立刻出現。再搭配第三方的測試工具，輕輕鬆鬆地就在這些骨架加血添肉，轉眼間測試就完成了。寫測試這件事從此融入整套開發流程裡，怎麼可能讓人不興奮呢？</p>
-<h2 id="實務上面臨的問題"><a href="#實務上面臨的問題" class="headerlink" title="實務上面臨的問題"></a>實務上面臨的問題</h2><p>Demo (SkillTree 主辦人) 在課餘時間聊到：「即便寫測試變得容易，而我們也開始把它變成自己的習慣，但你還是一定會碰到同事有這樣的質疑：『這程式碼就是正確的呀！為什麼還需要測試？』」我想一定有想在團隊裡導入測試的朋友常會遇到這種狀況，在這個課程中也可以讓你學到用什麼方法可以處理這樣的質疑。</p>
+<h2 id="實務上面臨的問題">實務上面臨的問題<a href="#實務上面臨的問題" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Demo (SkillTree 主辦人) 在課餘時間聊到：「即便寫測試變得容易，而我們也開始把它變成自己的習慣，但你還是一定會碰到同事有這樣的質疑：『這程式碼就是正確的呀！為什麼還需要測試？』」我想一定有想在團隊裡導入測試的朋友常會遇到這種狀況，在這個課程中也可以讓你學到用什麼方法可以處理這樣的質疑。</p>
 <p>在導入測試時時，最重要的就是讓同事對測試有信心；當寫測試變得很容易時，你所要做的，就是怎麼讓同事也能體會寫測試能為他帶來什麼效益。這方面講師也會提出他的實務經驗供我們參考，而且不論是技巧上和人性上，都是相當值得參考的建議。</p>
 <p>最後還有一個可能會面臨到的，就是測試對程式碼的涵蓋率。講師的回答其實讓我非常驚訝 (容我賣個關子) ，這其實讓我對「測試對團隊的影響力」這件事大大地改觀。雖然我自己也在某個部份應用上了類似的觀念，但我以為這只是影響了我自己，沒想到這確實是一種對人性的實務作法，不禁讓我對它更有信心；我相信透過這些小小的改變，就有機會讓整個團隊變得更有勇氣去面對測試這件事情。</p>
-<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>上完第一週的課程，我腦海裡一直迴響著：『你必須對你的測試有信心，測試才能讓你對你的程式有信心。』</p>
+<h2 id="小結">小結<a href="#小結" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>上完第一週的課程，我腦海裡一直迴響著：『你必須對你的測試有信心，測試才能讓你對你的程式有信心。』</p>
 <p>測試應該要做什麼？怎麼寫有效的測試？怎麼快速地寫測試？怎麼讓同事一起來寫測試？原本以為自己已經可以回答這些問題，卻在這個課程中讓我的觀念整個大洗牌，也開始讓我心中已經消逝很久的熱血又漸漸沸騰起來。</p>
 <p>再次感謝講師 Joey 和 SkillTree 的 Demo 舉辦這麼實用且精采的課程，我越來越期待接下來幾週的內容了。</p>
-</div><div class="tags"><a href="/tags/測試/">測試</a><a href="/tags/TDD/">TDD</a></div><div class="post-nav"><a class="pre" href="/skilltree-tdd-2/">自動測試與 TDD 實務開發 - 上課心得 (中)</a><a class="next" href="/php-di-container/">理解 Dependency Injection 實作原理</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/unittest-in-laravel-package-development/">開發 Laravel 套件時的單元測試</a></li>
+	
+	<li><a href="/head-first-phpunit/">PHPUnit 實務入門簡介</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/tdd">TDD</a></span><span class="tag"><a href="https://jaceju.net/tags/%E6%B8%AC%E8%A9%A6">測試</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-05-17 10:07 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/skilltree-tdd-2/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>自動測試與 TDD 實務開發 - 上課心得 (中)</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/php-di-container/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>理解 Dependency Injection 實作原理</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

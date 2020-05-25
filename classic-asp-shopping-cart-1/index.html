@@ -1,70 +1,312 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>ASP 購物車三部曲(1) | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="ASP 購物車三部曲(1)"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="ASP 購物車三部曲(1)"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ASP 購物車三部曲(1)</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">ASP 購物車三部曲(1)</h1><div class="post-meta">Apr 23, 2006</div><div class="post-content"><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>物件導向是一種思維，這點我深信不疑。但是在我寫了 ASP 物件設計手法系列文章後，我才發現自己其實深陷在語言的泥淖裡。 </p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="ASP 購物車三部曲(1)">
+<meta itemprop="description" content="簡介 物件導向是一種思維，這點我深信不疑。但是在我寫了 ASP 物件設計手法系列文章後，我才發現自己其實深陷在語言的泥淖裡。 我想這裡也許該用一些真正的">
+<meta itemprop="datePublished" content="2006-04-23T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2006-04-23T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="6514">
+
+
+
+<meta itemprop="keywords" content="ASP," /><meta property="og:title" content="ASP 購物車三部曲(1)" />
+<meta property="og:description" content="簡介 物件導向是一種思維，這點我深信不疑。但是在我寫了 ASP 物件設計手法系列文章後，我才發現自己其實深陷在語言的泥淖裡。 我想這裡也許該用一些真正的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/classic-asp-shopping-cart-1/" />
+<meta property="article:published_time" content="2006-04-23T00:00:00+08:00" />
+<meta property="article:modified_time" content="2006-04-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ASP 購物車三部曲(1)"/>
+<meta name="twitter:description" content="簡介 物件導向是一種思維，這點我深信不疑。但是在我寫了 ASP 物件設計手法系列文章後，我才發現自己其實深陷在語言的泥淖裡。 我想這裡也許該用一些真正的"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>ASP 購物車三部曲(1)</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 23, 2006</span></div>
+				<h1>ASP 購物車三部曲(1)</h1>
+			</header>
+			<div class="content">
+				<h2 id="簡介">簡介<a href="#簡介" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>物件導向是一種思維，這點我深信不疑。但是在我寫了 ASP 物件設計手法系列文章後，我才發現自己其實深陷在語言的泥淖裡。</p>
 <p>我想這裡也許該用一些真正的實例來表達我的想法了，也就是我想告訴大家，我心目中的物件導向思維到底是什麼？</p>
 <p>前面幾篇的 ASP 物件設計手法或許看起來很神妙，但那只不過是 ASP 原本就有的一些東西。在別的物件導向語言裡，這些手法可能就像呼吸一樣稀鬆平常。所以如果你懂的是別種開發平台 (例如 PHP 、 ASP.NET 或 JSP ) 也沒關係，瞭解物件導向思維的意義後，你大可去發揮那個平台的長處。</p>
 <p>當然不一定非得 ASP 不可，我已經不會再去證明 ASP 能不能辦到什麼。只不過我想會寫 Web 網站程式的人大部份應該都懂 ASP ，而且也為了延續之前的主題，所以這裡就繼續用 ASP 了。</p>
 <p>註：這裡的 ASP 採用的當然是 VBScript ，你想用 JScript 來做我也不反對。</p>
 <p>我將利用一個簡化的購物車程式，來介紹一些我設計購物車程式時的概念，其中會包括先前介紹的 ASP 物件設計手法以及設計模式的應用。</p>
 <p>廢話不多說，往下看吧。</p>
-<a id="more"></a>
-
-<h2 id="購物車"><a href="#購物車" class="headerlink" title="購物車"></a>購物車</h2><p>開發過稍具規模專案的程式設計師們，我想大部份都寫過購物車程式吧。購物車創造了多少台灣經濟奇蹟我是不清楚，但是至少它一直是網站開發的重要課題之一。</p>
+<!-- raw HTML omitted -->
+<h2 id="購物車">購物車<a href="#購物車" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>開發過稍具規模專案的程式設計師們，我想大部份都寫過購物車程式吧。購物車創造了多少台灣經濟奇蹟我是不清楚，但是至少它一直是網站開發的重要課題之一。</p>
 <p>其實購物車的本意很簡單，也就是在使用者瀏覽網站的過程裡，將他所選擇的商品資訊放到記憶體或資料庫中，最後再提供一個畫面顯示他買過哪些東西。</p>
 <p>註：也許有人會說購物車應該還有金流物流等機制，不過這裡我想就先略過不提了。我們先把焦點放在最單純的購物車機制上，將基礎打好後再往下繼續。</p>
-<h3 id="加入購物車"><a href="#加入購物車" class="headerlink" title="加入購物車"></a>加入購物車</h3><p>在物件導向的思維裡，我們習慣把購物車視成一個物件，而商品當然也是一個一個的物件，這其實和現實生活沒什麼兩樣。把喜歡的商品放到購物車裡，這種動作再自然也不過。當然在程式的世界裡，我們很少會去完整模擬出購物車和商品的樣子 (是誰說網站購物車要有輪子的？) 我們只會把購物車所要具備的功能實作出來而已。</p>
+<h3 id="加入購物車">加入購物車<a href="#加入購物車" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在物件導向的思維裡，我們習慣把購物車視成一個物件，而商品當然也是一個一個的物件，這其實和現實生活沒什麼兩樣。把喜歡的商品放到購物車裡，這種動作再自然也不過。當然在程式的世界裡，我們很少會去完整模擬出購物車和商品的樣子 (是誰說網站購物車要有輪子的？) 我們只會把購物車所要具備的功能實作出來而已。</p>
 <p>想像一下，你可能會把三包科學麵、兩瓶可樂還有一盒巧克力放到你的購物車裡。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Set oCart = New Shopping_Cart</span><br><span class="line">oCart.AddCartItem &quot;科學麵&quot;, 3</span><br><span class="line">oCart.AddCartItem &quot;瓶裝可樂&quot;, 2</span><br><span class="line">oCart.AddCartItem &quot;盒裝巧克力&quot;, 1</span><br></pre></td></tr></table></figure>
+<pre><code>Set oCart = New Shopping_Cart
+oCart.AddCartItem &quot;科學麵&quot;, 3
+oCart.AddCartItem &quot;瓶裝可樂&quot;, 2
+oCart.AddCartItem &quot;盒裝巧克力&quot;, 1
 
-<p>在 AddCartItem 中，第一個參數表示商品代碼 (只是這裡我用商品名稱) ，後面則是購買數量。</p>
+</code></pre><p>在 AddCartItem 中，第一個參數表示商品代碼 (只是這裡我用商品名稱) ，後面則是購買數量。</p>
 <p>但是，在較大規模的網站上通常不會那麼簡單地採用這種設計。怎麼說呢？想想看，網站可能會有促銷活動，有些商品可能會有打折。總之你的客戶絕對不會這麼輕易把你晾在那邊，這時我們也許得先「預構」一下。</p>
 <p>註：如果你不瞭「預構」那也沒關係，這無損客戶對你極盡壓榨之能事。</p>
 <p>雖然我們不想過度設計，預先放入過多未來不確定的功能，但是基本應付變化的能力總是要有的。我在加入購物車時，多了一個商品種類的參數：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Set oCart = New Shopping_Cart</span><br><span class="line">oCart.AddCartItem &quot;科學麵&quot;, 3, &quot;Normal&quot;</span><br><span class="line">oCart.AddCartItem &quot;瓶裝可樂&quot;, 2, &quot;Normal&quot;</span><br><span class="line">oCart.AddCartItem &quot;盒裝巧克力&quot;, 1, &quot;Normal&quot;</span><br></pre></td></tr></table></figure>
+<pre><code>Set oCart = New Shopping_Cart
+oCart.AddCartItem &quot;科學麵&quot;, 3, &quot;Normal&quot;
+oCart.AddCartItem &quot;瓶裝可樂&quot;, 2, &quot;Normal&quot;
+oCart.AddCartItem &quot;盒裝巧克力&quot;, 1, &quot;Normal&quot;
 
-<p>我為什麼要多出這個參數呢？其用意是什麼？商品種類是很有用的參數，因為有時候他可以告訴購物車，這是一個活動商品還是一般商品。</p>
+</code></pre><p>我為什麼要多出這個參數呢？其用意是什麼？商品種類是很有用的參數，因為有時候他可以告訴購物車，這是一個活動商品還是一般商品。</p>
 <p>我知道你想問為什麼我知道會有這些變化，老實說，我一開始的時候也不知道。其實這些都是經由客戶的需求以及過往的經驗去整理出來的；如果客戶擺明未來有一陣子不可能會有這些東西，那就不值得你現在就把它們加上去。</p>
 <p>現在看起來是能夠應付變化了，可是這樣好嗎？ AddCartItem 看起來參數太多了！</p>
 <p>註：其實我也說不上來這種設計好不好，在我某個專案的第一版 (還存活著) 就是這麼做的。事實上我也許可以重構它，不過那時候我並沒有足夠的單元測試知識支援我做這種事情，所以我放棄了 (但至少維護起來沒那麼困難就是了) 。</p>
 <p>這裡我們換個方式好了，我不打算讓 AddCartItem 想太多，畢竟如果以後有新的參數時， AddCartItem 的介面就很難改動，造成往後需要更多動作來處理。我乾脆直接讓 AddCartItem 接受一個購買項目物件好了，雖然在 ASP (VBScript) 裡實現起來有點難看，但在其他環境中我想可以很漂亮地完成。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Set oCart = New Shopping_Cart</span><br><span class="line">Set oP1 = New Shopping_CartItem : oP1.Init &quot;科學麵&quot;, 3, &quot;Normal&quot;</span><br><span class="line">Set oP2 = New Shopping_CartItem : oP2.Init &quot;瓶裝可樂&quot;, 2, &quot;Normal&quot;</span><br><span class="line">Set oP3 = New Shopping_CartItem : oP3.Init &quot;盒裝巧克力&quot;, 1, &quot;Normal&quot;</span><br><span class="line">oCart.AddCartItem oP1</span><br><span class="line">oCart.AddCartItem oP2</span><br><span class="line">oCart.AddCartItem oP3</span><br><span class="line">Set oP1 = Nothing</span><br><span class="line">Set oP2 = Nothing</span><br><span class="line">Set oP3 = Nothing</span><br></pre></td></tr></table></figure>
+<pre><code>Set oCart = New Shopping_Cart
+Set oP1 = New Shopping_CartItem : oP1.Init &quot;科學麵&quot;, 3, &quot;Normal&quot;
+Set oP2 = New Shopping_CartItem : oP2.Init &quot;瓶裝可樂&quot;, 2, &quot;Normal&quot;
+Set oP3 = New Shopping_CartItem : oP3.Init &quot;盒裝巧克力&quot;, 1, &quot;Normal&quot;
+oCart.AddCartItem oP1
+oCart.AddCartItem oP2
+oCart.AddCartItem oP3
+Set oP1 = Nothing
+Set oP2 = Nothing
+Set oP3 = Nothing
 
-<p>其實我的想法應該是如此：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">oCart.AddCartItem(New Shopping_CartItem(&quot;科學麵&quot;, 3, &quot;Normal&quot;))</span><br><span class="line">oCart.AddCartItem(New Shopping_CartItem(&quot;瓶裝可樂&quot;, 2, &quot;Normal&quot;))</span><br><span class="line">oCart.AddCartItem(New Shopping_CartItem(&quot;盒裝巧克力&quot;, 1, &quot;Normal&quot;))</span><br></pre></td></tr></table></figure>
+</code></pre><p>其實我的想法應該是如此：</p>
+<pre><code>oCart.AddCartItem(New Shopping_CartItem(&quot;科學麵&quot;, 3, &quot;Normal&quot;))
+oCart.AddCartItem(New Shopping_CartItem(&quot;瓶裝可樂&quot;, 2, &quot;Normal&quot;))
+oCart.AddCartItem(New Shopping_CartItem(&quot;盒裝巧克力&quot;, 1, &quot;Normal&quot;))
 
-<p>當然這個程式是不能用的，因為 ASP (VBScript) 的建構式沒辦法傳參數進去，而且也不公開，所以就忘了它吧。</p>
-<h3 id="更新購物車與取得總金額"><a href="#更新購物車與取得總金額" class="headerlink" title="更新購物車與取得總金額"></a>更新購物車與取得總金額</h3><p>在將商品加入購物車時，我們並不會立刻去計算購物車的總金額，而是等到需要時再重新計算整個購物車內的購買項目所包含的價錢。</p>
+</code></pre><p>當然這個程式是不能用的，因為 ASP (VBScript) 的建構式沒辦法傳參數進去，而且也不公開，所以就忘了它吧。</p>
+<h3 id="更新購物車與取得總金額">更新購物車與取得總金額<a href="#更新購物車與取得總金額" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在將商品加入購物車時，我們並不會立刻去計算購物車的總金額，而是等到需要時再重新計算整個購物車內的購買項目所包含的價錢。</p>
 <p>所以我在上面的測試程式的最後加上更新購物車的流程。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Set oCart = New Shopping_Cart</span><br><span class="line">Set oP1 = New Shopping_CartItem : oP1.Init &quot;科學麵&quot;, 3, &quot;Normal&quot;</span><br><span class="line">Set oP2 = New Shopping_CartItem : oP2.Init &quot;瓶裝可樂&quot;, 2, &quot;Normal&quot;</span><br><span class="line">Set oP3 = New Shopping_CartItem : oP3.Init &quot;盒裝巧克力&quot;, 1, &quot;Normal&quot;</span><br><span class="line">oCart.AddCartItem oP1</span><br><span class="line">oCart.AddCartItem oP2</span><br><span class="line">oCart.AddCartItem oP3</span><br><span class="line">Set oP1 = Nothing</span><br><span class="line">Set oP2 = Nothing</span><br><span class="line">Set oP3 = Nothing</span><br><span class="line">oCart.Update</span><br><span class="line">Response.Write oCart.GetAmount</span><br></pre></td></tr></table></figure>
+<pre><code>Set oCart = New Shopping_Cart
+Set oP1 = New Shopping_CartItem : oP1.Init &quot;科學麵&quot;, 3, &quot;Normal&quot;
+Set oP2 = New Shopping_CartItem : oP2.Init &quot;瓶裝可樂&quot;, 2, &quot;Normal&quot;
+Set oP3 = New Shopping_CartItem : oP3.Init &quot;盒裝巧克力&quot;, 1, &quot;Normal&quot;
+oCart.AddCartItem oP1
+oCart.AddCartItem oP2
+oCart.AddCartItem oP3
+Set oP1 = Nothing
+Set oP2 = Nothing
+Set oP3 = Nothing
+oCart.Update
+Response.Write oCart.GetAmount
 
-<p>註：其實除了更新整個購物車以外，應該還要能單獨更新某個指定的商品或是清空購物車，不過我想這個就留給你自己去思考吧。</p>
-<h3 id="寫出程式"><a href="#寫出程式" class="headerlink" title="寫出程式"></a>寫出程式</h3><p>現在，我們就可以整理出 Shopping_Cart 類別應該要有什麼主要的功能：</p>
+</code></pre><p>註：其實除了更新整個購物車以外，應該還要能單獨更新某個指定的商品或是清空購物車，不過我想這個就留給你自己去思考吧。</p>
+<h3 id="寫出程式">寫出程式<a href="#寫出程式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>現在，我們就可以整理出 Shopping_Cart 類別應該要有什麼主要的功能：</p>
 <ul>
 <li>加入商品 (AddCartItem)</li>
 <li>更新購物車 (Update)</li>
-<li>取得總金額 (GetAmount) </li>
+<li>取得總金額 (GetAmount)</li>
 </ul>
 <p>當然，在購物車內部我們應要會需要一個集合物件，用來存放購買項目，而 Dictionary 物件就是最適合的了。至於其他的功能是為了能讓測試能夠正常執行，我們暫時略過不提。</p>
 <p>整個購物車的程式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; /class/Shopping/Cart.asp</span><br><span class="line">&apos; 購物車</span><br><span class="line">Class Shopping_Cart</span><br><span class="line">Private CartItemList</span><br><span class="line">Private Fields</span><br><span class="line">&apos; 物件初始化</span><br><span class="line">Private Sub Class_Initialize()</span><br><span class="line">&apos; 我們建立了一個存放購買項目的 Dictionary 物件</span><br><span class="line">&apos; 以及一個存放購物車資訊的 Dictionary 物件</span><br><span class="line">Set CartItemList = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">Set Fields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">Fields.Add &quot;Amount&quot;, 0</span><br><span class="line">End Sub</span><br><span class="line">&apos; 加入商品</span><br><span class="line">Public Sub AddCartItem(oCartItem)</span><br><span class="line">&apos; 我們把商品名稱當做索引鍵，實際上則會比較複雜</span><br><span class="line">Dim sKey : sKey = oCartItem.GetField(&quot;Name&quot;)</span><br><span class="line">&apos; 先判斷有沒有相同的商品存在</span><br><span class="line">If Not CartItemList.Exists(sKey) Then</span><br><span class="line">CartItemList.Add sKey, oCartItem</span><br><span class="line">&apos; 已經存在就更改數量</span><br><span class="line">Else</span><br><span class="line">Dim oExistedCartItem</span><br><span class="line">Set oExistedCartItem = CartItemList(sKey)</span><br><span class="line">oExistedCartItem.SetField &quot;Quantity&quot;, _</span><br><span class="line">oExistedCartItem.GetField(&quot;Quantity&quot;) + _</span><br><span class="line">oCartItem.GetField(&quot;Quantity&quot;)</span><br><span class="line">End If</span><br><span class="line">End Sub</span><br><span class="line">&apos; 取得所有商品</span><br><span class="line">Public Function Items()</span><br><span class="line">Items = CartItemList.Items</span><br><span class="line">End Function</span><br><span class="line">&apos; 判斷是否存在某個商品</span><br><span class="line">Public Function Exists(sKey)</span><br><span class="line">Exists = CartItemList.Exists(sKey)</span><br><span class="line">End Function</span><br><span class="line">&apos; 更新購物車</span><br><span class="line">Public Sub Update()</span><br><span class="line">Dim oCartItem</span><br><span class="line">Fields(&quot;Amount&quot;) = 0</span><br><span class="line">For Each oCartItem In CartItemList.Items</span><br><span class="line">oCartItem.Refresh</span><br><span class="line">Fields(&quot;Amount&quot;) = Fields(&quot;Amount&quot;) + oCartItem.GetField(&quot;SubTotal&quot;)</span><br><span class="line">Next</span><br><span class="line">End Sub</span><br><span class="line">&apos; 取得總金額</span><br><span class="line">Public Function GetAmount()</span><br><span class="line">GetAmount = Fields(&quot;Amount&quot;)</span><br><span class="line">End Function</span><br><span class="line">&apos; 物件結束</span><br><span class="line">Private Sub Class_Terminate()</span><br><span class="line">Set CartItemList = Nothing</span><br><span class="line">Set Fields = Nothing</span><br><span class="line">End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;%
+' /class/Shopping/Cart.asp
+' 購物車
+Class Shopping_Cart
+Private CartItemList
+Private Fields
+' 物件初始化
+Private Sub Class_Initialize()
+' 我們建立了一個存放購買項目的 Dictionary 物件
+' 以及一個存放購物車資訊的 Dictionary 物件
+Set CartItemList = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+Set Fields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+Fields.Add &quot;Amount&quot;, 0
+End Sub
+' 加入商品
+Public Sub AddCartItem(oCartItem)
+' 我們把商品名稱當做索引鍵，實際上則會比較複雜
+Dim sKey : sKey = oCartItem.GetField(&quot;Name&quot;)
+' 先判斷有沒有相同的商品存在
+If Not CartItemList.Exists(sKey) Then
+CartItemList.Add sKey, oCartItem
+' 已經存在就更改數量
+Else
+Dim oExistedCartItem
+Set oExistedCartItem = CartItemList(sKey)
+oExistedCartItem.SetField &quot;Quantity&quot;, _
+oExistedCartItem.GetField(&quot;Quantity&quot;) + _
+oCartItem.GetField(&quot;Quantity&quot;)
+End If
+End Sub
+' 取得所有商品
+Public Function Items()
+Items = CartItemList.Items
+End Function
+' 判斷是否存在某個商品
+Public Function Exists(sKey)
+Exists = CartItemList.Exists(sKey)
+End Function
+' 更新購物車
+Public Sub Update()
+Dim oCartItem
+Fields(&quot;Amount&quot;) = 0
+For Each oCartItem In CartItemList.Items
+oCartItem.Refresh
+Fields(&quot;Amount&quot;) = Fields(&quot;Amount&quot;) + oCartItem.GetField(&quot;SubTotal&quot;)
+Next
+End Sub
+' 取得總金額
+Public Function GetAmount()
+GetAmount = Fields(&quot;Amount&quot;)
+End Function
+' 物件結束
+Private Sub Class_Terminate()
+Set CartItemList = Nothing
+Set Fields = Nothing
+End Sub
+End Class
+%&gt;
 
-<p>如你所見，目前它只是個簡單的購物車，後面我們再來談談它會如何因應變化。</p>
-<h2 id="購買項目"><a href="#購買項目" class="headerlink" title="購買項目"></a>購買項目</h2><p>購買項目 (CartItem) 和商品 (Product) 是不一樣的概念，商品不會知道自己會屬於什麼活動，也不會知道購買數量的資訊。而購買項目主要是記錄消費者買了些什麼，並買了多少。</p>
+</code></pre><p>如你所見，目前它只是個簡單的購物車，後面我們再來談談它會如何因應變化。</p>
+<h2 id="購買項目">購買項目<a href="#購買項目" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>購買項目 (CartItem) 和商品 (Product) 是不一樣的概念，商品不會知道自己會屬於什麼活動，也不會知道購買數量的資訊。而購買項目主要是記錄消費者買了些什麼，並買了多少。</p>
 <p>由於我們已經寫好了購物車類別，所以我們也能夠很清楚購買項目應該要提供什麼資訊給購物車。包括：</p>
 <ul>
 <li>初始化商品資料 (Init)</li>
 <li>取得指定欄位 (GetField)</li>
-<li>更新購買項目的小計金額 (Refresh) </li>
+<li>更新購買項目的小計金額 (Refresh)</li>
 </ul>
 <p>購買項目的程式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; /class/Shopping/CartItem.asp</span><br><span class="line">Class Shopping_CartItem</span><br><span class="line">Private Fields</span><br><span class="line">Private Sub Class_Initialize()</span><br><span class="line">Set Fields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">Fields.Add &quot;Price&quot;, 0</span><br><span class="line">Fields.Add &quot;Quantity&quot;, 0</span><br><span class="line">Fields.Add &quot;SubTotal&quot;, 0</span><br><span class="line">Fields.Add &quot;EventType&quot;, &quot;&quot;</span><br><span class="line">Fields.Add &quot;EventID&quot;, 0</span><br><span class="line">End Sub</span><br><span class="line">Private Sub Class_Terminate()</span><br><span class="line">Set Fields = Nothing</span><br><span class="line">End Sub</span><br><span class="line">Private Sub SetField(sName, vValue)</span><br><span class="line">If Fields.Exists(sName) Then</span><br><span class="line">Fields(sName) = vValue</span><br><span class="line">End If</span><br><span class="line">End Sub</span><br><span class="line">&apos; 初始化商品資料</span><br><span class="line">Public Sub Init(sName, iQuantity, sEventType)</span><br><span class="line">Dim iPrice</span><br><span class="line">Dim oProduct</span><br><span class="line">Set oProduct = GetObject(&quot;Shopping_MockProduct&quot;)</span><br><span class="line">oProduct.Init sName</span><br><span class="line">&apos; 從資料庫取得資料</span><br><span class="line">If oProduct.Exists Then</span><br><span class="line">iPrice = oProduct.GetPrice</span><br><span class="line">SetField &quot;Price&quot;, iPrice</span><br><span class="line">SetField &quot;Quantity&quot;, iQuantity</span><br><span class="line">SetField &quot;SubTotal&quot;, iPrice * iQuantity</span><br><span class="line">SetField &quot;EventType&quot;, sEventType</span><br><span class="line">SetField &quot;EventID&quot;, iEventID</span><br><span class="line">End If</span><br><span class="line">End Sub</span><br><span class="line">&apos; 取得指定欄位資料</span><br><span class="line">Public Function GetField(sName)</span><br><span class="line">GetField = Null</span><br><span class="line">If Fields.Exists(sName) Then</span><br><span class="line">GetField = Fields(sName)</span><br><span class="line">End If</span><br><span class="line">End Function</span><br><span class="line">&apos; 更新購買項目內容</span><br><span class="line">Public Sub Refresh()</span><br><span class="line">Fields(&quot;SubTotal&quot;) = Fields(&quot;Price&quot;) * Fields(&quot;Quantity&quot;)</span><br><span class="line">End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;%
+' /class/Shopping/CartItem.asp
+Class Shopping_CartItem
+Private Fields
+Private Sub Class_Initialize()
+Set Fields = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+Fields.Add &quot;Price&quot;, 0
+Fields.Add &quot;Quantity&quot;, 0
+Fields.Add &quot;SubTotal&quot;, 0
+Fields.Add &quot;EventType&quot;, &quot;&quot;
+Fields.Add &quot;EventID&quot;, 0
+End Sub
+Private Sub Class_Terminate()
+Set Fields = Nothing
+End Sub
+Private Sub SetField(sName, vValue)
+If Fields.Exists(sName) Then
+Fields(sName) = vValue
+End If
+End Sub
+' 初始化商品資料
+Public Sub Init(sName, iQuantity, sEventType)
+Dim iPrice
+Dim oProduct
+Set oProduct = GetObject(&quot;Shopping_MockProduct&quot;)
+oProduct.Init sName
+' 從資料庫取得資料
+If oProduct.Exists Then
+iPrice = oProduct.GetPrice
+SetField &quot;Price&quot;, iPrice
+SetField &quot;Quantity&quot;, iQuantity
+SetField &quot;SubTotal&quot;, iPrice * iQuantity
+SetField &quot;EventType&quot;, sEventType
+SetField &quot;EventID&quot;, iEventID
+End If
+End Sub
+' 取得指定欄位資料
+Public Function GetField(sName)
+GetField = Null
+If Fields.Exists(sName) Then
+GetField = Fields(sName)
+End If
+End Function
+' 更新購買項目內容
+Public Sub Refresh()
+Fields(&quot;SubTotal&quot;) = Fields(&quot;Price&quot;) * Fields(&quot;Quantity&quot;)
+End Sub
+End Class
+%&gt;
 
-<p>一般在購買項目初始化時，會從資料庫去取得商品的資料，不過這裡我為了簡化程式，就沒有實際去連結資料庫，而是把資料寫死 (<a href="http://en.wikipedia.org/wiki/Hard_code" target="_blank" rel="noopener">hard-code</a>) 在模擬用的商品類別裡。如果到時候真的要連結資料庫時，我只要抽換掉這個假的商品類別，換上會真正抓取資料庫的商品類別即可。</p>
+</code></pre><p>一般在購買項目初始化時，會從資料庫去取得商品的資料，不過這裡我為了簡化程式，就沒有實際去連結資料庫，而是把資料寫死 (<a href="http://en.wikipedia.org/wiki/Hard_code">hard-code</a>) 在模擬用的商品類別裡。如果到時候真的要連結資料庫時，我只要抽換掉這個假的商品類別，換上會真正抓取資料庫的商品類別即可。</p>
 <p>至於模擬用的商品類別 (MockProduct) 程式碼如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; /class/Shopping/MockProduct.asp</span><br><span class="line">Class Shopping_MockProduct</span><br><span class="line">Private ProductData</span><br><span class="line">Private Name</span><br><span class="line">&apos; 物件啟動</span><br><span class="line">Private Sub Class_Initialize()</span><br><span class="line">Set ProductData = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">ProductData.Add &quot;科學麵&quot;, 6</span><br><span class="line">ProductData.Add &quot;瓶裝可樂&quot;, 20</span><br><span class="line">ProductData.Add &quot;盒裝巧克力&quot;, 100</span><br><span class="line">Name = &quot;&quot;</span><br><span class="line">End Sub</span><br><span class="line">&apos; 物件結束</span><br><span class="line">Private Sub Class_Terminate()</span><br><span class="line">Set ProductData = Nothing</span><br><span class="line">End Sub</span><br><span class="line">&apos; 商品初始化</span><br><span class="line">Public Sub Init(sName)</span><br><span class="line">Name = sName</span><br><span class="line">End Sub</span><br><span class="line">&apos; 商品是否存在</span><br><span class="line">Public Function Exists()</span><br><span class="line">Exists = ProductData.Exists(Name)</span><br><span class="line">End Function</span><br><span class="line">&apos; 取得價錢</span><br><span class="line">Public Function GetPrice()</span><br><span class="line">GetPrice = ProductData(Name)</span><br><span class="line">End Function</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;%
+' /class/Shopping/MockProduct.asp
+Class Shopping_MockProduct
+Private ProductData
+Private Name
+' 物件啟動
+Private Sub Class_Initialize()
+Set ProductData = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+ProductData.Add &quot;科學麵&quot;, 6
+ProductData.Add &quot;瓶裝可樂&quot;, 20
+ProductData.Add &quot;盒裝巧克力&quot;, 100
+Name = &quot;&quot;
+End Sub
+' 物件結束
+Private Sub Class_Terminate()
+Set ProductData = Nothing
+End Sub
+' 商品初始化
+Public Sub Init(sName)
+Name = sName
+End Sub
+' 商品是否存在
+Public Function Exists()
+Exists = ProductData.Exists(Name)
+End Function
+' 取得價錢
+Public Function GetPrice()
+GetPrice = ProductData(Name)
+End Function
+End Class
+%&gt;
 
-<p>註：為了簡化程式篇幅，我拿掉了許多防呆程式碼。</p>
+</code></pre><p>註：為了簡化程式篇幅，我拿掉了許多防呆程式碼。</p>
 <p>現在整個程式的架構如下 (我簡略掉一些通用的函式及屬性) ：</p>
 <p><img src="/resources/ooasp_cart/images/ooasp_cart_1_1.png" alt="原始購物車架構"></p>
-<h2 id="新的購物模式"><a href="#新的購物模式" class="headerlink" title="新的購物模式"></a>新的購物模式</h2><p>該來的還是會來，客戶總是不會讓我們過好日子的。我們接到了兩個新的需求，折扣活動與贈品活動。規格簡述如下：</p>
+<h2 id="新的購物模式">新的購物模式<a href="#新的購物模式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>該來的還是會來，客戶總是不會讓我們過好日子的。我們接到了兩個新的需求，折扣活動與贈品活動。規格簡述如下：</p>
 <ul>
 <li>折扣活動：有部份商品可以有折扣，但是不能修改現有的商品資料，而是要在加入購物車時將金額自動抵扣掉。</li>
 <li>贈品活動：如果消費者買了某個指定商品，那麼購物車要自動幫他加入附屬在這個商品下的贈品。</li>
@@ -76,61 +318,237 @@
 <li>贈品活動：當我們買了一瓶可樂後，購物車會自動幫我們加上一包科學麵。</li>
 </ul>
 <p>在贈品活動的部份，我希望贈品的價格是 0 ，所以在我 Shopping_MockProduct 類別初始化時加入了一個價格為 0 的「科學麵(贈品)」：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &apos; 物件啟動</span><br><span class="line">Private Sub Class_Initialize()</span><br><span class="line">Set ProductData = Server.CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line">ProductData.Add &quot;科學麵&quot;, 6</span><br><span class="line">ProductData.Add &quot;科學麵(贈品)&quot;, 0</span><br><span class="line">ProductData.Add &quot;瓶裝可樂&quot;, 20</span><br><span class="line">ProductData.Add &quot;盒裝巧克力&quot;, 100</span><br><span class="line">Name = &quot;&quot;</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+<pre><code>  ' 物件啟動
+Private Sub Class_Initialize()
+Set ProductData = Server.CreateObject(&quot;Scripting.Dictionary&quot;)
+ProductData.Add &quot;科學麵&quot;, 6
+ProductData.Add &quot;科學麵(贈品)&quot;, 0
+ProductData.Add &quot;瓶裝可樂&quot;, 20
+ProductData.Add &quot;盒裝巧克力&quot;, 100
+Name = &quot;&quot;
+End Sub
 
-<p>其實我希望除了這兩個活動以外，我的購物車能夠應付其他類型的活動，因此我在 AddCartItem 呼叫了一個函式，用來檢查商品所屬的活動，也就是說我把檢查的動作從 AddCartItem 中獨立出來：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &apos; 加入商品</span><br><span class="line">Public Sub AddCartItem(oCartItem)</span><br><span class="line">&apos; 我們把商品名稱當做索引鍵，實際上則會比較複雜</span><br><span class="line">Dim sKey : sKey = oCartItem.GetField(&quot;Name&quot;)</span><br><span class="line">&apos; 先判斷有沒有相同的商品存在</span><br><span class="line">If Not CartItemList.Exists(sKey) Then</span><br><span class="line">CartItemList.Add sKey, oCartItem</span><br><span class="line">&apos; 檢查商品是否屬於某個活動</span><br><span class="line">CheckCartItemForEvent oCartItem</span><br><span class="line">&apos; 已經存在就更改數量</span><br><span class="line">Else</span><br><span class="line">Dim oExistedCartItem</span><br><span class="line">Set oExistedCartItem = CartItemList(sKey)</span><br><span class="line">oExistedCartItem.SetField &quot;Quantity&quot;, _</span><br><span class="line">oExistedCartItem.GetField(&quot;Quantity&quot;) + _</span><br><span class="line">oCartItem.GetField(&quot;Quantity&quot;)</span><br><span class="line">End If</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+</code></pre><p>其實我希望除了這兩個活動以外，我的購物車能夠應付其他類型的活動，因此我在 AddCartItem 呼叫了一個函式，用來檢查商品所屬的活動，也就是說我把檢查的動作從 AddCartItem 中獨立出來：</p>
+<pre><code>  ' 加入商品
+Public Sub AddCartItem(oCartItem)
+' 我們把商品名稱當做索引鍵，實際上則會比較複雜
+Dim sKey : sKey = oCartItem.GetField(&quot;Name&quot;)
+' 先判斷有沒有相同的商品存在
+If Not CartItemList.Exists(sKey) Then
+CartItemList.Add sKey, oCartItem
+' 檢查商品是否屬於某個活動
+CheckCartItemForEvent oCartItem
+' 已經存在就更改數量
+Else
+Dim oExistedCartItem
+Set oExistedCartItem = CartItemList(sKey)
+oExistedCartItem.SetField &quot;Quantity&quot;, _
+oExistedCartItem.GetField(&quot;Quantity&quot;) + _
+oCartItem.GetField(&quot;Quantity&quot;)
+End If
+End Sub
 
-<p>CheckCartItemForEvent 函式主要會判斷商品的活動型態，以處理對應的動作，其程式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &apos; 檢查是否為某個活動的商品</span><br><span class="line">Private Sub CheckCartItemForEvent(oCartItem)</span><br><span class="line">Select Case oCartItem.GetField(&quot;EventType&quot;)</span><br><span class="line">&apos; 折扣活動</span><br><span class="line">Case &quot;Discount&quot;</span><br><span class="line">oCartItem.SetField &quot;Price&quot;, oCartItem.GetField(&quot;Price&quot;) * 0.9</span><br><span class="line">oCartItem.Refresh</span><br><span class="line">&apos; 贈品活動</span><br><span class="line">Case &quot;Gift&quot;</span><br><span class="line">If &quot;瓶裝可樂&quot; = oCartItem.GetField(&quot;Name&quot;) Then</span><br><span class="line">Dim oGiftCartItem</span><br><span class="line">Set oGiftCartItem = GetObject(&quot;Shopping_CartItem&quot;)</span><br><span class="line">oGiftCartItem.Init &quot;科學麵(贈品)&quot;, 1, &quot;Normal&quot;</span><br><span class="line">AddCartItem oGiftCartItem</span><br><span class="line">End If</span><br><span class="line">&apos; 一般商品，什麼也不用作</span><br><span class="line">Case Else</span><br><span class="line">End Select</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+</code></pre><p>CheckCartItemForEvent 函式主要會判斷商品的活動型態，以處理對應的動作，其程式如下：</p>
+<pre><code>  ' 檢查是否為某個活動的商品
+Private Sub CheckCartItemForEvent(oCartItem)
+Select Case oCartItem.GetField(&quot;EventType&quot;)
+' 折扣活動
+Case &quot;Discount&quot;
+oCartItem.SetField &quot;Price&quot;, oCartItem.GetField(&quot;Price&quot;) * 0.9
+oCartItem.Refresh
+' 贈品活動
+Case &quot;Gift&quot;
+If &quot;瓶裝可樂&quot; = oCartItem.GetField(&quot;Name&quot;) Then
+Dim oGiftCartItem
+Set oGiftCartItem = GetObject(&quot;Shopping_CartItem&quot;)
+oGiftCartItem.Init &quot;科學麵(贈品)&quot;, 1, &quot;Normal&quot;
+AddCartItem oGiftCartItem
+End If
+' 一般商品，什麼也不用作
+Case Else
+End Select
+End Sub
 
-<p>因為 CheckCartItemForEvent 不會被外部呼叫，所以我用 Private 來指定它的存取權限。</p>
-<h2 id="Strategy-模式"><a href="#Strategy-模式" class="headerlink" title="Strategy 模式"></a>Strategy 模式</h2><p>雖然現在 CheckCartItemForEvent 函式看起來還不是很龐大，不過既然已經有三個不同的活動了 (一般商品也可歸屬為一種活動)，當然還會可能有第四個或第五個。可想而知未來 CheckCartItemForEvent 會逐漸變得落落長，超出我們所能理解的範圍。 </p>
+</code></pre><p>因為 CheckCartItemForEvent 不會被外部呼叫，所以我用 Private 來指定它的存取權限。</p>
+<h2 id="strategy-模式">Strategy 模式<a href="#strategy-模式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>雖然現在 CheckCartItemForEvent 函式看起來還不是很龐大，不過既然已經有三個不同的活動了 (一般商品也可歸屬為一種活動)，當然還會可能有第四個或第五個。可想而知未來 CheckCartItemForEvent 會逐漸變得落落長，超出我們所能理解的範圍。</p>
 <p>如果我們能把活動機制獨立在購物車外是不是比較好呢？這樣也能使得購物車不再背負過多的商業邏輯，在開發上也能靈活許多。</p>
 <p>首先我定義一個虛假的活動類別好了，我們要在概念上繼承它 (就是 Duck Typing 啦) ，這個類別的定義如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">Class Event</span><br><span class="line">&apos; 處理購買項目</span><br><span class="line">Public Sub Check(oCartItem, oCart)</span><br><span class="line">End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;%
+Class Event
+' 處理購買項目
+Public Sub Check(oCartItem, oCart)
+End Sub
+End Class
+%&gt;
 
-<p>在 Event 虛擬類別中，我們提供了一個 Check 函式，用來檢查即將要加入的商品 oCartItem 。不過為什麼還需要一個 oCart 參數呢？這是因為某些活動可能會需要購物車內的其他商品，所以我們就把購物車物件傳進來讓 Event 自行應用，稍後我們就能看到實際的例子。 </p>
+</code></pre><p>在 Event 虛擬類別中，我們提供了一個 Check 函式，用來檢查即將要加入的商品 oCartItem 。不過為什麼還需要一個 oCart 參數呢？這是因為某些活動可能會需要購物車內的其他商品，所以我們就把購物車物件傳進來讓 Event 自行應用，稍後我們就能看到實際的例子。</p>
 <p>接著我建立一個處理一般商品的活動類別 Event_Normal，然而這個物件其實什麼也不做：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; /class/Event/Normal.asp</span><br><span class="line">Class Event_Normal &apos; Extends Event</span><br><span class="line">&apos; 處理購買項目</span><br><span class="line">Public Sub Check(oCartItem, oCart)</span><br><span class="line">End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;%
+' /class/Event/Normal.asp
+Class Event_Normal ' Extends Event
+' 處理購買項目
+Public Sub Check(oCartItem, oCart)
+End Sub
+End Class
+%&gt;
 
-<p>當然我們還有兩種活動類別，先看看 Discount 好了，它比較簡單：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; /class/Event/Discount.asp</span><br><span class="line">Class Event_Discount &apos; Extends Event</span><br><span class="line">&apos; 處理購買項目</span><br><span class="line">Public Sub Check(oCartItem, oCart)</span><br><span class="line">oCartItem.SetField &quot;Price&quot;, oCartItem.GetField(&quot;Price&quot;) * 0.9</span><br><span class="line">oCartItem.Refresh</span><br><span class="line">End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>當然我們還有兩種活動類別，先看看 Discount 好了，它比較簡單：</p>
+<pre><code>&lt;%
+' /class/Event/Discount.asp
+Class Event_Discount ' Extends Event
+' 處理購買項目
+Public Sub Check(oCartItem, oCart)
+oCartItem.SetField &quot;Price&quot;, oCartItem.GetField(&quot;Price&quot;) * 0.9
+oCartItem.Refresh
+End Sub
+End Class
+%&gt;
 
-<p>你可以看到我用了一個很簡單的做法：把原來的值乘以 0.9 後，再將它設回 oCartItem 的單價裡。</p>
-<p>註：注意！ ASP 的物件是以傳參考的方式來傳遞的，所以這邊只要一更新，就會直接反應回購物車內所對應的 CartItem 物件。 </p>
+</code></pre><p>你可以看到我用了一個很簡單的做法：把原來的值乘以 0.9 後，再將它設回 oCartItem 的單價裡。</p>
+<p>註：注意！ ASP 的物件是以傳參考的方式來傳遞的，所以這邊只要一更新，就會直接反應回購物車內所對應的 CartItem 物件。</p>
 <p>剩下的 Gift 類別就比較複雜了，剛剛定義的 oCart 現在就派上用場了。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos; /class/Event/Gift.asp</span><br><span class="line">Class Event_Gift &apos; Extends Event</span><br><span class="line">&apos; 處理購買項目</span><br><span class="line">Public Sub Check(oCartItem, oCart)</span><br><span class="line">If &quot;瓶裝可樂&quot; = oCartItem.GetField(&quot;Name&quot;) Then</span><br><span class="line">Dim oGiftCartItem</span><br><span class="line">Set oGiftCartItem = GetObject(&quot;Shopping_CartItem&quot;) : oGiftCartItem.Init &quot;科學麵(贈品)&quot;, 1, &quot;Normal&quot;</span><br><span class="line">oCart.AddCartItem oGiftCartItem</span><br><span class="line">End If</span><br><span class="line">End Sub</span><br><span class="line">End Class</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;%
+' /class/Event/Gift.asp
+Class Event_Gift ' Extends Event
+' 處理購買項目
+Public Sub Check(oCartItem, oCart)
+If &quot;瓶裝可樂&quot; = oCartItem.GetField(&quot;Name&quot;) Then
+Dim oGiftCartItem
+Set oGiftCartItem = GetObject(&quot;Shopping_CartItem&quot;) : oGiftCartItem.Init &quot;科學麵(贈品)&quot;, 1, &quot;Normal&quot;
+oCart.AddCartItem oGiftCartItem
+End If
+End Sub
+End Class
+%&gt;
 
-<p>當 Event_Gift 發現 oCartItem 的 Name 是「瓶裝可樂」時，就會建立一個「科學麵(贈品)」的 CartItem 物件， 並利用 oCart 的 AddCartItem 把這個贈品再加上去。</p>
+</code></pre><p>當 Event_Gift 發現 oCartItem 的 Name 是「瓶裝可樂」時，就會建立一個「科學麵(贈品)」的 CartItem 物件， 並利用 oCart 的 AddCartItem 把這個贈品再加上去。</p>
 <p>好，現在三種活動類別都已經定義好了，我們就來看看怎麼用吧。</p>
 <p>我把原來的 CheckCartItemForEvent 改成以下的形式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &apos; 檢查是否為某個活動的商品</span><br><span class="line">Private Sub CheckCartItemForEvent(oCartItem)</span><br><span class="line">Dim oEvent</span><br><span class="line">Select Case oCartItem.GetField(&quot;EventType&quot;)</span><br><span class="line">&apos; 折扣活動</span><br><span class="line">Case &quot;Discount&quot;</span><br><span class="line">        Set oEvent = GetObject(&quot;Event_Discount&quot;)</span><br><span class="line">&apos; 贈品活動</span><br><span class="line">Case &quot;Gift&quot;</span><br><span class="line">        Set oEvent = GetObject(&quot;Event_Gift&quot;)</span><br><span class="line">&apos; 一般商品</span><br><span class="line">Case Else</span><br><span class="line">        Set oEvent = GetObject(&quot;Event_Normal&quot;)</span><br><span class="line">End Select</span><br><span class="line">    oEvent.Check oCartItem, Me</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+<pre><code>  ' 檢查是否為某個活動的商品
+Private Sub CheckCartItemForEvent(oCartItem)
+Dim oEvent
+Select Case oCartItem.GetField(&quot;EventType&quot;)
+' 折扣活動
+Case &quot;Discount&quot;
+        Set oEvent = GetObject(&quot;Event_Discount&quot;)
+' 贈品活動
+Case &quot;Gift&quot;
+        Set oEvent = GetObject(&quot;Event_Gift&quot;)
+' 一般商品
+Case Else
+        Set oEvent = GetObject(&quot;Event_Normal&quot;)
+End Select
+    oEvent.Check oCartItem, Me
+End Sub
 
-<p>發現什麼沒有？我們竟然可以用同樣的 Check 函式來檢查商品！這就是所謂的 Strategy 模式！</p>
-<p> Strategy 模式主要的概念就是可抽換的策略，也就是在程式執行的階段裡，我們能用同一種操作方式 (如上面的 Check 函式) 來對資料進行不同的運算條件，而這些運算邏輯則定義在不同的策略類別裡，就像上面的 Event_xxx 類別。</p>
+</code></pre><p>發現什麼沒有？我們竟然可以用同樣的 Check 函式來檢查商品！這就是所謂的 Strategy 模式！</p>
+<p>Strategy 模式主要的概念就是可抽換的策略，也就是在程式執行的階段裡，我們能用同一種操作方式 (如上面的 Check 函式) 來對資料進行不同的運算條件，而這些運算邏輯則定義在不同的策略類別裡，就像上面的 Event_xxx 類別。</p>
 <p>在完整支援物件導向技術的語言中，這些策略類別應該是繼承自一個抽象類別或介面 (就是我們上面提到的虛擬 Event 類別) ，而 Event 的 Check 函式就是需要被實作的了。就因為 Event 類別所衍生的類別在實作上是不同的，所以我們才能用同一個 Check 函式來對應到不同的活動條件。</p>
 <p>註：話說回來， ASP (VBScript) 既然沒有繼承，所以只要是有實作相同函式介面的類別所產生的實體，都有可能被拿來當做是策略物件。這點是 ASP (VBScript) 自由卻也是不合物件導向語言規範的地方。</p>
 <p>另外注意一點，就是 Me 關鍵字的應用。我利用 Me 關鍵字把 CheckCartItemForEvent 所在這個物件 (也就是 Shopping_Cart 的實體) ，傳遞給 Event_xxx 物件，這樣這些 Event_xxx 物件就是利用 oCart 參數來存取目前的購物車內容。這種方式稱為 delegate (委託) ， Shopping_Cart 物件拜託 Event 物件做一些事情，所以要把自己 (Me) 託付給它。這在委託者缺少某些功能，而需要外部物件協助時非常有用。</p>
 <p>和前面一樣，我簡單地把加入活動類別的架構圖描繪如下：</p>
 <p><img src="/resources/ooasp_cart/images/ooasp_cart_1_2.png" alt="新的購物車架構"></p>
-<h2 id="Factory-Method-模式"><a href="#Factory-Method-模式" class="headerlink" title="Factory Method 模式"></a>Factory Method 模式</h2><p>在上面的程式裡，我們還是在 CheckCartItemForEvent 函式中參雜了 Select Case 敘述，這使得我們到時候要新增活動時，還是得回來加上新的活動類別建構程式。有沒有什麼方法可以避免這些動作呢？或是直接拿掉 Select Case 敘述呢？</p>
+<h2 id="factory-method-模式">Factory Method 模式<a href="#factory-method-模式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在上面的程式裡，我們還是在 CheckCartItemForEvent 函式中參雜了 Select Case 敘述，這使得我們到時候要新增活動時，還是得回來加上新的活動類別建構程式。有沒有什麼方法可以避免這些動作呢？或是直接拿掉 Select Case 敘述呢？</p>
 <p>我相信大家也看出一些端倪了。我所用的類別代號 Normal 、 Gift 及 Discount ，其實就對應到 Event 的實作類別名稱。這表示我們能夠利用類別代號來產生我們所需要的物件，但是怎麼做呢？</p>
 <p>從上面的程式裡，我們可以看到 GetObject 需要一個類別名稱來當做引數。這個引數剛好是用 Event_ 加上類別代碼，所以我們就能夠利用這點來下手。</p>
-<p>我把剛剛的 Select Case 換成以下粗體的部份： </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos; 檢查是否為某個活動的商品</span><br><span class="line">Private Sub CheckCartItemForEvent(oCartItem)</span><br><span class="line">Dim oEvent</span><br><span class="line">Set oEvent = CreateEvent(oCartItem.GetField(&quot;EventType&quot;))</span><br><span class="line">oEvent.Check oCartItem, Me</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+<p>我把剛剛的 Select Case 換成以下粗體的部份：</p>
+<pre><code>' 檢查是否為某個活動的商品
+Private Sub CheckCartItemForEvent(oCartItem)
+Dim oEvent
+Set oEvent = CreateEvent(oCartItem.GetField(&quot;EventType&quot;))
+oEvent.Check oCartItem, Me
+End Sub
 
-<p>現在我們就要思考 CreateEvent 函式要丟出什麼東西，以下是我的實作：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos; 取得活動商品</span><br><span class="line">Private Function CreateEvent(sEventType)</span><br><span class="line">Set CreateEvent = Nothing</span><br><span class="line">On Error Resume Next</span><br><span class="line">Set CreateEvent = GetObject(&quot;Event_&quot; &amp;amp; sEventType)</span><br><span class="line">If CreateEvent Is Nothing Then</span><br><span class="line">  Set CreateEvent = GetObject(&quot;Event_Normal&quot;)</span><br><span class="line">End If</span><br><span class="line">On Error Goto 0</span><br><span class="line">End Function</span><br></pre></td></tr></table></figure>
+</code></pre><p>現在我們就要思考 CreateEvent 函式要丟出什麼東西，以下是我的實作：</p>
+<pre><code>' 取得活動商品
+Private Function CreateEvent(sEventType)
+Set CreateEvent = Nothing
+On Error Resume Next
+Set CreateEvent = GetObject(&quot;Event_&quot; &amp;amp; sEventType)
+If CreateEvent Is Nothing Then
+  Set CreateEvent = GetObject(&quot;Event_Normal&quot;)
+End If
+On Error Goto 0
+End Function
 
-<p>你可以看到我用之前介紹過的 Factory Method 手法來完成建構活動物件的過程，利用錯誤延遲機制讓不存在的活動類別一律視為一般商品來處理，避免掉一些不必要的麻煩。</p>
-<p>Factory Method 最大的好處就是能夠隱藏物件建構的過程，讓呼叫它的程式能夠保持簡單及一致性。它可以把建構物件的複雜邏輯封裝在別的類別裡面，使得我們能夠重複使用這個類別來產生我們所要的東西，也就是能更簡單地把建構物件自動化。不過在這裡，你會發現到我並沒有再做出一個類別來放置 Factory Method ，為什麼呢？ </p>
+</code></pre><p>你可以看到我用之前介紹過的 Factory Method 手法來完成建構活動物件的過程，利用錯誤延遲機制讓不存在的活動類別一律視為一般商品來處理，避免掉一些不必要的麻煩。</p>
+<p>Factory Method 最大的好處就是能夠隱藏物件建構的過程，讓呼叫它的程式能夠保持簡單及一致性。它可以把建構物件的複雜邏輯封裝在別的類別裡面，使得我們能夠重複使用這個類別來產生我們所要的東西，也就是能更簡單地把建構物件自動化。不過在這裡，你會發現到我並沒有再做出一個類別來放置 Factory Method ，為什麼呢？</p>
 <p>這要歸功於能把字串當做程式敘述的 Execute (ExecuteGlobal) 指令；在其他不支援此特性的語言裡，類似 Select Case 的敘述在 Factory Method 中通常是不可避免的；然而在 ASP (VBScript 、 JavaScript) 或 PHP 等語言平台中， Factory Method 因為這些語言支援把字串變成程式指令的特性，所以在實作上就變得更有彈性。</p>
 <p>註：把字串當做程式敘述這種方式通常會有安全性上的議題出現，所以寫程式時要特別小心。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>回頭思考看看，現在如果又有一個新的活動，我們已經不必再更改 Shopping_Cart 類別裡面的程式；只要新增一個 Event_xxx 類別，實作該活動的規則，就能讓購物車處理這些活動商品，這樣的彈性就是物件導向思維所帶來的好處。</p>
+<h2 id="結論">結論<a href="#結論" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>回頭思考看看，現在如果又有一個新的活動，我們已經不必再更改 Shopping_Cart 類別裡面的程式；只要新增一個 Event_xxx 類別，實作該活動的規則，就能讓購物車處理這些活動商品，這樣的彈性就是物件導向思維所帶來的好處。</p>
 <p>也許你會想，這我用函式也能做到呀！其實也沒錯。不過這裡我要強調一件事，不管你用什麼方式開發，只要這些程式在你交接後還可能存活時，最後一定要考慮到程式的延展性。我採用物件導向思維及開發手法是為了更容易表達我對這個系統的概念，而且也讓整個系統就在物件交互作用之下，完成了許多看似複雜的工作。</p>
 <p>另外我建議把這些開發的概念撰寫成文件，讓後續維護的人員能夠進入狀況，就像這篇文章一樣。他們不一定能夠清楚為什麼要採用這樣的方式，所以透過類似這篇文章的說明，他們就能一步一步瞭解開發者所建立的系統輪廓。</p>
 <p>我希望透過我的介紹，能夠讓我的伙伴瞭解物件導向是怎麼一回事。而它到底是不是真的必須依賴語言？還是協助我們把心目中的系統架構描繪出來的一種設計手法？我想這邊就留給大家去思考，畢竟我不是大師，這種問題我無法解答；我能夠做的就是把這些概念實際轉換成程式碼，讓系統能夠順利運作而已。</p>
-<h2 id="範例程式下載"><a href="#範例程式下載" class="headerlink" title="範例程式下載"></a>範例程式下載</h2><p>範例程式不是個可用的購物車，它只包含了部份的商業邏輯而已，所以想要直接拿它來改寫的朋友可能會失望。不過裡面我用到了 ASPUnit ，有興趣學習如何撰寫單元測試的朋友可以參考看看。另外裡面包含了上面每個步驟所介紹的購物車原始程式，你可以參考壓縮檔案的 README.txt 來得知如何執行它們。 </p>
+<h2 id="範例程式下載">範例程式下載<a href="#範例程式下載" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>範例程式不是個可用的購物車，它只包含了部份的商業邏輯而已，所以想要直接拿它來改寫的朋友可能會失望。不過裡面我用到了 ASPUnit ，有興趣學習如何撰寫單元測試的朋友可以參考看看。另外裡面包含了上面每個步驟所介紹的購物車原始程式，你可以參考壓縮檔案的 README.txt 來得知如何執行它們。</p>
 <p><a href="/resources/ooasp_cart/source/ooasp_01_src.rar">下載</a></p>
-</div><div class="tags"><a href="/tags/ASP/">ASP</a></div><div class="post-nav"><a class="pre" href="/suggestions-for-web-development/">[心得] 網頁程式開發建議</a><a class="next" href="/fluent-interface/">很有趣的 Fluent Interface</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/classic-asp-unit-testing/">ASP 物件設計手法 (6) - 單元測試</a></li>
+	
+	<li><a href="/classic-asp-oo-5/">ASP 物件設計手法 (5) - Me 關鍵字</a></li>
+	
+	<li><a href="/classic-asp-oo-4/">ASP 物件設計手法 (4) - 動態載入類別</a></li>
+	
+	<li><a href="/classic-asp-oo-1/">ASP 物件設計手法 (1) - 基礎</a></li>
+	
+	<li><a href="/classic-asp-oo-2/">ASP 物件設計手法 (2) - 初級技巧</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/asp">ASP</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2006-04-23 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/suggestions-for-web-development/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>[心得] 網頁程式開發建議</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/fluent-interface/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>很有趣的 Fluent Interface</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

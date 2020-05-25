@@ -1,21 +1,167 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>將測試融入開發，讓程式擁有品質 | 網站製作學習誌</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="將測試融入開發，讓程式擁有品質"><meta name="twitter:description" content="記錄在開發網站時所學的一切"><meta name="og:title" content="將測試融入開發，讓程式擁有品質"><meta name="og:site_name" content="網站製作學習誌"><meta name="og:description" content="記錄在開發網站時所學的一切"><meta name="og:type" content="article"><meta name="og:image" content></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">將測試融入開發，讓程式擁有品質</h1><a id="logo" href="/.">網站製作學習誌</a><p class="description">記錄在開發網站時所學的一切</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">將測試融入開發，讓程式擁有品質</h1><div class="post-meta">Jun 12, 2010</div><div class="post-content"><p>很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#709478">
+	<meta name="msapplication-TileColor" content="#709478">
+<meta itemprop="name" content="將測試融入開發，讓程式擁有品質">
+<meta itemprop="description" content="很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。 因此，">
+<meta itemprop="datePublished" content="2010-06-12T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2010-06-12T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1214">
+
+
+
+<meta itemprop="keywords" content="PHP,心得感想,程式開發," /><meta property="og:title" content="將測試融入開發，讓程式擁有品質" />
+<meta property="og:description" content="很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。 因此，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaceju.net/my-first-tdd/" />
+<meta property="article:published_time" content="2010-06-12T00:00:00+08:00" />
+<meta property="article:modified_time" content="2010-06-12T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="將測試融入開發，讓程式擁有品質"/>
+<meta name="twitter:description" content="很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。 因此，"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>將測試融入開發，讓程式擁有品質</title>
+	<link rel="stylesheet" href="https://jaceju.net/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://jaceju.net/css/my.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://jaceju.net">網站製作學習誌</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://jaceju.net/posts/">Posts</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/jaceju" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/jaceju" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://jaceju.net/posts/">Posts</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 12, 2010</span></div>
+				<h1>將測試融入開發，讓程式擁有品質</h1>
+			</header>
+			<div class="content">
+				<p>很多書上和網路的文章都提到了很 TDD 的做法，不過老實說我並沒有實際參與這些大師的 TDD 過程，其實很難把他們的方法百分之分地應用到自己的專案裡。</p>
 <p>因此，凡事還是要自己動手做過才會明白，所以我就趁著在開發新的 Library 時，真正地去落實測試與重構。</p>
 <p>以下就是我大致的心得，供大家參考。</p>
-<a id="more"></a>
-
-<h2 id="我的測試驅動開發流程"><a href="#我的測試驅動開發流程" class="headerlink" title="我的測試驅動開發流程"></a>我的測試驅動開發流程</h2><h3 id="第一步：準備好工具"><a href="#第一步：準備好工具" class="headerlink" title="第一步：準備好工具"></a>第一步：準備好工具</h3><p><a href="http://www.jaceju.net/blog/archives/1152" target="_blank" rel="noopener">之前提過的 NetBeans 所提供的 PHPUnit 整合</a>，就是個很不錯的自動化測試工具。</p>
+<!-- raw HTML omitted -->
+<h2 id="我的測試驅動開發流程">我的測試驅動開發流程<a href="#我的測試驅動開發流程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="第一步準備好工具">第一步：準備好工具<a href="#第一步準備好工具" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><a href="http://www.jaceju.net/blog/archives/1152">之前提過的 NetBeans 所提供的 PHPUnit 整合</a>，就是個很不錯的自動化測試工具。</p>
 <p>在寫類別時，按下 Ctrl + F6 就會自動執行這個類別的測試 (當然前提是要已經先建立好測試類別) ；而如果是在撰寫測試類別時，可以按下 Shift + F6 ，這樣 NetBeans 就會自動執行測試類別了。這兩個快速鍵如果記住的話，會有助於我們加快做測試的動作。</p>
-<h3 id="第二步：草圖階段"><a href="#第二步：草圖階段" class="headerlink" title="第二步：草圖階段"></a>第二步：草圖階段</h3><p>和設計階段的 UML 圖不一樣，這個階段算是撰寫程式碼了，所以要先想好你的程式要怎麼動，然後用畫個簡單的流程圖將它記下來。然後在圖塊上標明你會用到什麼資料，越詳細越好。</p>
+<h3 id="第二步草圖階段">第二步：草圖階段<a href="#第二步草圖階段" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>和設計階段的 UML 圖不一樣，這個階段算是撰寫程式碼了，所以要先想好你的程式要怎麼動，然後用畫個簡單的流程圖將它記下來。然後在圖塊上標明你會用到什麼資料，越詳細越好。</p>
 <p>而流程圖不一定要是圖，也可以是步驟的表列，總之能表現出程式的意圖即可。至於畫在哪裡都可以，像我就習慣使用最單純的紙和筆。而草圖也不需要畫得多好看，除非你想向正妹展示你的繪圖天份。</p>
-<h3 id="第三步：撰寫測試"><a href="#第三步：撰寫測試" class="headerlink" title="第三步：撰寫測試"></a>第三步：撰寫測試</h3><p>在草圖畫好後，就可以用測試去呈現它。測試的寫法先不用寫得太好，把概念呈現出來就可以了。這個動作主要的目的是讓我們對要測試的類別有個大致的輪廓，讓寫出來的程式碼不致於發散到我們無法掌控的地步。</p>
-<h3 id="第四步：撰寫程式"><a href="#第四步：撰寫程式" class="headerlink" title="第四步：撰寫程式"></a>第四步：撰寫程式</h3><p>寫好第一個測試後，就可以開始寫程式去符合測試了。在這個過程中，最好能找個人一起討論，也就是所謂的 Pair Programming 。找正妹一起 Pair Programming 是會增加興奮度，但不會讓你的程式寫得更好。</p>
+<h3 id="第三步撰寫測試">第三步：撰寫測試<a href="#第三步撰寫測試" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在草圖畫好後，就可以用測試去呈現它。測試的寫法先不用寫得太好，把概念呈現出來就可以了。這個動作主要的目的是讓我們對要測試的類別有個大致的輪廓，讓寫出來的程式碼不致於發散到我們無法掌控的地步。</p>
+<h3 id="第四步撰寫程式">第四步：撰寫程式<a href="#第四步撰寫程式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>寫好第一個測試後，就可以開始寫程式去符合測試了。在這個過程中，最好能找個人一起討論，也就是所謂的 Pair Programming 。找正妹一起 Pair Programming 是會增加興奮度，但不會讓你的程式寫得更好。</p>
 <p>另外，程式碼以快速產出為主，除了遵守 Coding Style 外，邏輯上並不用寫得多漂亮；因為如果有正妹在旁邊一起寫程式時，你的腦袋一定不會百分之百運轉，所以等等再重構就好。</p>
-<h3 id="第五步：停下思考"><a href="#第五步：停下思考" class="headerlink" title="第五步：停下思考"></a>第五步：停下思考</h3><p>當程式碼在可以符合測試後，就停下來想想這樣的設計是不是符合原先的想法。</p>
+<h3 id="第五步停下思考">第五步：停下思考<a href="#第五步停下思考" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>當程式碼在可以符合測試後，就停下來想想這樣的設計是不是符合原先的想法。</p>
 <p>不符合的話，就再重來，因為我們只前進了一小步，所以不必擔心花太多時間，畢竟找出不良的設計也是一種進展。符合的話，就再往下走；也就是撰寫下一個測試，然後再撰寫程式符合它。</p>
-<h3 id="第六步：重構"><a href="#第六步：重構" class="headerlink" title="第六步：重構"></a>第六步：重構</h3><p>完成一小階段後，就馬上回頭重構我們的程式碼，這時有測試當靠山，就不用怕出問題。</p>
+<h3 id="第六步重構">第六步：重構<a href="#第六步重構" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>完成一小階段後，就馬上回頭重構我們的程式碼，這時有測試當靠山，就不用怕出問題。</p>
 <p>而當程式碼重構完後，看就再回頭看看測試碼，如果有需要的話就重構它；因為測試本身也是程式，一定也會有壞味道。例如我們可以用 PHPUnit 的 @dataProvider 機制，去重構要驗證不同資料集但流程卻重複的測試；或是用 Template Method 去重構大部份流程相同，只有少部份流程有差異的測試。</p>
 <p>而重構測試碼的時候，我們的程式碼就可以做為測試的測試，用來驗證重構後的測試。</p>
 <p>完成這個步驟後，就可以繼續進行下一個小階段了。</p>
-<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>真正將 TDD 落實到平常的開發後，我發現這樣的方式會幫助我的思考清晰，考試都一百分 (因為我沒正妹在旁邊一起 Pair Programming …) 。而且另一個好處就是不論是一開始的撰寫或是事後的重構，我都可以精簡我的程式碼。</p>
+<h2 id="心得">心得<a href="#心得" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>真正將 TDD 落實到平常的開發後，我發現這樣的方式會幫助我的思考清晰，考試都一百分 (因為我沒正妹在旁邊一起 Pair Programming &hellip;) 。而且另一個好處就是不論是一開始的撰寫或是事後的重構，我都可以精簡我的程式碼。</p>
 <p>不過我並無法保證 TDD 一定適合你，因為每個人的開發習慣不一定相同，不過還是推薦大家試試吧。</p>
-</div><div class="tags"><a href="/tags/PHP/">PHP</a><a href="/tags/心得感想/">心得感想</a><a href="/tags/程式開發/">程式開發</a></div><div class="post-nav"><a class="pre" href="/software-engineer-in-taiwan/">台灣的軟體工程師</a><a class="next" href="/gearman/">Gearman 心得</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://jaceju.net"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/測試/" style="font-size: 15px;">測試</a> <a href="/tags/Selenium/" style="font-size: 15px;">Selenium</a> <a href="/tags/TDD/" style="font-size: 15px;">TDD</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/心得感想/" style="font-size: 15px;">心得感想</a> <a href="/tags/Laravel/" style="font-size: 15px;">Laravel</a> <a href="/tags/程式開發/" style="font-size: 15px;">程式開發</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/ASP/" style="font-size: 15px;">ASP</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Web-開發/" style="font-size: 15px;">Web 開發</a> <a href="/tags/好書推薦/" style="font-size: 15px;">好書推薦</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/設計模式/" style="font-size: 15px;">設計模式</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Refactoring/" style="font-size: 15px;">Refactoring</a> <a href="/tags/伺服器安裝與設定/" style="font-size: 15px;">伺服器安裝與設定</a> <a href="/tags/讀書心得/" style="font-size: 15px;">讀書心得</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/my-2019/">我的 2019 年</a></li><li class="post-list-item"><a class="post-list-link" href="/all-about-php-traversing/">關於 PHP Traversing 的這檔事</a></li><li class="post-list-item"><a class="post-list-link" href="/review-reengineering-legacy-software/">《遺留系統重建實戰》導讀與心得</a></li><li class="post-list-item"><a class="post-list-link" href="/integrate-vue-cli-into-laravel/">在 Laravel 專案中整合 Vue CLI</a></li><li class="post-list-item"><a class="post-list-link" href="/how-i-built-my-side-project/">我如何從需求出發到完成一個專案</a></li><li class="post-list-item"><a class="post-list-link" href="/function-name-must-be-a-string-in-laravel-testing/">Laravel 執行測試時出現 Function name must be a string</a></li><li class="post-list-item"><a class="post-list-link" href="/what-is-essential-to-frontend-engineers/">身為前端工程師，對你來說，你認為最重要的是什麼？</a></li><li class="post-list-item"><a class="post-list-link" href="/my-2018/">我的 2018 年</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel-advance/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇</a></li><li class="post-list-item"><a class="post-list-link" href="/behat-in-laravel/">在 Laravel 中使用 Behat 來加強測試的可讀性 - 基礎篇</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">網站製作學習誌.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/gearman/">Gearman 心得</a></li>
+	
+	<li><a href="/about-learning/">關於學習技術這件事</a></li>
+	
+	<li><a href="/about-testing/">關於測試這件事</a></li>
+	
+	<li><a href="/handle-php-error-and-exception/">如何在 PHP 中平順地處理 Error 及 Exception ？</a></li>
+	
+	<li><a href="/why-engineer-or-designer-are-always-work-overtime-in-taiwan/">為什麼台灣的工程師 / 設計師常常加班？</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://jaceju.net/tags/php">PHP</a></span><span class="tag"><a href="https://jaceju.net/tags/%E5%BF%83%E5%BE%97%E6%84%9F%E6%83%B3">心得感想</a></span><span class="tag"><a href="https://jaceju.net/tags/%E7%A8%8B%E5%BC%8F%E9%96%8B%E7%99%BC">程式開發</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2010-06-12 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://jaceju.net/software-engineer-in-taiwan/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>台灣的軟體工程師</span>
+			</a>
+			<a class="prev-post" href="https://jaceju.net/gearman/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Gearman 心得</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://jaceju.net">Jace Ju</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://jaceju.net/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://jaceju.net/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-450710-8', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
