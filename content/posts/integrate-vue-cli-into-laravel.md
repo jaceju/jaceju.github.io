@@ -1,9 +1,9 @@
 ---
-title: 在 Laravel 專案中整合 Vue CLI
+title: '在 Laravel 專案中整合 Vue CLI'
 tags:
   - Laravel
   - Vue
-date: 2019-02-12 14:27:08 +08:00
+date: 2019-02-12T14:27:08+08:00
 ---
 
 

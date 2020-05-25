@@ -1,9 +1,9 @@
 ---
 title: '[jQuery] 自製 jQuery Plugin - Part 2'
-date: 2008-05-16 00:00:00 +08:00
-
-
-tags: ["JavaScript", "jQuery"]
+date: 2008-05-16T00:00:00+08:00
+tags:
+  - JavaScript
+  - jQuery
 ---
 
 在 [Part 1](http://www.jaceju.net/blog/archives/336) 我們看到如何建立一個 jQuery Plugin 的雛形，也讓它能夠做一些簡單的動作了。只是這個 Plugin 似乎沒什麼太大的用途，所以接下來我們就來寫個真正能用的東西。

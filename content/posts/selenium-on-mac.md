@@ -1,7 +1,9 @@
 ---
-title: 在 Mac OS X 上搭建 Selenium 測試環境
-date: 2015-06-03 10:21:45 +08:00
-tags: ["Selenium", "測試"]
+title: '在 Mac OS X 上搭建 Selenium 測試環境'
+date: 2015-06-03T10:21:45+08:00
+tags:
+  - Selenium
+  - 測試
 ---
 
 在開發網站的過程中，因為需要測試介面以模擬使用者的操作，最理想的工具就是 [Selenium](http://www.seleniumhq.org/) 了。

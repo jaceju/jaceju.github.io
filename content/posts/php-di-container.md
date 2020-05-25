@@ -1,7 +1,8 @@
 ---
-title: "理解 Dependency Injection 實作原理"
-date: 2014-07-27 17:45:50 +08:00
-tags: ["PHP"]
+title: '理解 Dependency Injection 實作原理'
+date: 2014-07-27T17:45:50+08:00
+tags:
+  - PHP
 ---
 
 現代較新的 Web Framework 都強調自己有 Dependency Injection (以下簡稱 DI ) 的特色，只是很多人對它的運作原理還是一知半解。

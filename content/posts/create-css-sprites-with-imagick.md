@@ -1,7 +1,8 @@
 ---
-title: "用 Imagick 建立 CSS Sprites"
-date: 2012-06-11 12:01:00 +08:00
-tags: [ PHP]
+title: '用 Imagick 建立 CSS Sprites'
+date: 2012-06-11T12:01:00+08:00
+tags:
+  - PHP
 ---
 這是工作筆記，介紹如何用 Imagick 製作出 CSS Sprites 。
 

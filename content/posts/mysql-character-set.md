@@ -1,7 +1,9 @@
 ---
 title: '[五分鐘教室] MySQL 4.1+ 編碼快速入門'
-date: 2009-12-12 00:00:00 +08:00
-tags: ["MySQL", "Web 開發"]
+date: 2009-12-12T00:00:00+08:00
+tags:
+  - MySQL
+  - 'Web 開發'
 ---
 
 很久以前，我寫過一篇「[MySQL 中文編碼徹底研究](http://www.jaceju.net/blog/archives/116)」，簡單介紹了如何將 MySQL 4.0 轉換到 MySQL 4.1 時要注意的部份。

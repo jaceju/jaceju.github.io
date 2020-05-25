@@ -1,7 +1,9 @@
 ---
-title: "開發 Laravel 套件時的單元測試"
-date: 2013-12-12 22:51:00 +08:00
-tags: [Laravel, "測試"]
+title: '開發 Laravel 套件時的單元測試'
+date: 2013-12-12T22:51:00+08:00
+tags:
+  - Laravel
+  - 測試
 ---
 
 在官方手上的[有關開發 Laravel 4 套件的章節](http://laravel.com/docs/packages)，內容其實寫得滿詳盡了。只是它缺少了有關單元測試的說明，以下我將介紹一些自己的做法和經驗。

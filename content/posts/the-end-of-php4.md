@@ -1,7 +1,8 @@
 ---
 title: 'PHP4 的盡頭'
-date: 2007-07-13 00:00:00 +08:00
-tags: ["PHP"]
+date: 2007-07-13T00:00:00+08:00
+tags:
+  - PHP
 ---
 
 [PHP 官方](http://www.php.net)宣佈停止對 PHP4 的支援了，原文如下：

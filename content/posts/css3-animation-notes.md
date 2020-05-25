@@ -1,8 +1,8 @@
 ---
-title: "CSS3 動畫基礎"
-date: 2014-06-03 10:28:36 +08:00
-
-tags: [ CSS]
+title: 'CSS3 動畫基礎'
+date: 2014-06-03T10:28:36+08:00
+tags:
+  - CSS
 ---
 註：本文為作者發表於 OpenFoundry 之 [CSS3 動畫基礎](http://www.openfoundry.org/en/tech-column/9233-css3-animation)一文的備份。
 

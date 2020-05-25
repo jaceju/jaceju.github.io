@@ -2,7 +2,7 @@
 title: 《遺留系統重建實戰》導讀與心得
 tags:
   - 讀書心得
-date: 2019-03-06 12:31:33 +08:00
+date: 2019-03-06T12:31:33+08:00
 ---
 
 ![遺留系統重建實戰](https://cf-assets2.tenlong.com.tw/products/images/000/111/651/original/51PgSbJUUNL.jpg?1525598072)

@@ -1,7 +1,8 @@
 ---
 title: '很有趣的 Fluent Interface'
-date: 2006-03-07 00:00:00 +08:00
-tags: ["PHP"]
+date: 2006-03-07T00:00:00+08:00
+tags:
+  - PHP
 ---
 
 在研究 [Zend Framework Preview](http://framework.zend.com/) 的文件時，發現了一個很有趣的 PHP 寫法：

@@ -1,9 +1,10 @@
 ---
 title: 'PHP 裡的 Prototype-based 開發手法'
-date: 2006-11-10 00:00:00 +08:00
-tags: ["PHP"]
+date: 2006-11-10T00:00:00+08:00
+tags:
+  - PHP
 categories:
-    - PHP
+  - PHP
 ---
 
 上次介紹了一篇 [Bring some Ruby/Prototype flavour in your PHP array](http://hasin.wordpress.com/2006/10/17/bring-some-rubyprototype-flavour-in-your-php-array/)  ，這次有個類似的。

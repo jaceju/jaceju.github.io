@@ -1,7 +1,8 @@
 ---
 title: 如何才有資格稱為資深工程師
-date: 2016-12-24 00:22:01 +08:00
-tags: ["心得感想"]
+date: 2016-12-24T00:22:01+08:00
+tags:
+  - 心得感想
 ---
 
 <blockquote class="twitter-tweet" data-lang="zh-tw"><p lang="zh" dir="ltr">資深工程師的潛標準如果是有沒有雞雞跟表定從業年資，不是好好檢視過往提出的軟體設計建議、code review 內容，甚至是 coding performance 跟工作倫理表現的話，那無法服人應該不令人意外吧。</p>&mdash; Ravi Wu (@ravilwwu) <a href="https://twitter.com/ravilwwu/status/811714789168644097">2016年12月21日</a></blockquote>

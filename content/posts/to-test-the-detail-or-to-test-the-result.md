@@ -1,7 +1,9 @@
 ---
 title: 測試該驗證結果還是該驗證細節
-date: 2017-03-18 23:29:11 +08:00
-tags: ["測試", "TDD"]
+date: 2017-03-18T23:29:11+08:00
+tags:
+  - 測試
+  - TDD
 ---
 
 ![](/resources/to-test-the-detail-or-to-test-the-result/to-test-the-detail-or-to-test-the-result.png)

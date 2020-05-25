@@ -1,7 +1,8 @@
 ---
-title: 理解 composer.json 的 replace
-date: 2018-11-02 12:30:00 +08:00
-tags: ["PHP"]
+title: '理解 composer.json 的 replace'
+date: 2018-11-02T12:30:00+08:00
+tags:
+  - PHP
 ---
 
 通常你在 composer.json 裡很少會用到 `replace` 這個 schema 屬性 ，不過在以下情境它就很有用了。

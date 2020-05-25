@@ -1,7 +1,9 @@
 ---
-title: "Laravel 5.1 Events Broadcasting 實務練習"
-date: 2015-07-26 00:38:37 +08:00
-tags: ["Laravel", "PHP"]
+title: 'Laravel 5.1 Events Broadcasting 實務練習'
+date: 2015-07-26T00:38:37+08:00
+tags:
+  - Laravel
+  - PHP
 ---
 
 Laravel 5.1 提供了一個非常棒的 Events Broadcasting 特色，它能讓開發者建立一個 RealTime Web App 。作者 Taylor 也錄製了一個 Events Broadcasting 的[教學影片](https://laracasts.com/lessons/broadcasting-events-in-laravel-5-1)，讓開發者可以更快瞭解這個新功能。

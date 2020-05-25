@@ -1,9 +1,9 @@
 ---
-title: Laravel 執行測試時出現 Function name must be a string
+title: 'Laravel 執行測試時出現 Function name must be a string'
 tags:
   - Laravel
   - 測試
-date: 2019-01-28 12:26:42 +08:00
+date: 2019-01-28T12:26:42+08:00
 ---
 
 

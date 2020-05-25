@@ -1,7 +1,9 @@
 ---
-title: 在 PHPUnit 中測試需要 closure 的函式
-date: 2015-11-09 19:11:39 +08:00
-tags: ["PHP","測試"]
+title: '在 PHPUnit 中測試需要 closure 的函式'
+date: 2015-11-09T19:11:39+08:00
+tags:
+  - PHP
+  - 測試
 ---
 
 不知道你有沒有在開發 PHP 程式的過程中，測試過需要使用 anonymous function 或 closure 的函式或類別方法？我在開發自己的函式庫時，就遇到了需要測試 closure 是否被正確調用的問題。

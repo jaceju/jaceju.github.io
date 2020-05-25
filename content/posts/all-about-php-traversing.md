@@ -1,8 +1,8 @@
 ---
-title: 關於 PHP Traversing 的這檔事
+title: '關於 PHP Traversing 的這檔事'
 tags:
   - CSS
-date: 2019-12-24 10:37:59 +08:00
+date: 2019-12-24T10:37:59+08:00
 ---
 
 `foreach` 大概是 PHP 程式中最常見的語法結構之後，本文將會介紹 `foreach` 的一些觀念，以及幾個跟它相關的 PHP 7 特色。

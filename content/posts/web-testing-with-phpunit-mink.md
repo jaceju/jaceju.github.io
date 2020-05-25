@@ -1,7 +1,10 @@
 ---
-title: 利用 PHPUnit 與 Mink 來做 Web 測試
-date: 2015-10-27 18:36:05 +08:00
-tags: ["Web 開發", "Selenium", "測試"]
+title: '利用 PHPUnit 與 Mink 來做 Web 測試'
+date: 2015-10-27T18:36:05+08:00
+tags:
+  - 'Web 開發'
+  - Selenium
+  - 測試
 ---
 
 如果你面對的是以前舊有的 PHP 程式，是時候負起一些責任了。

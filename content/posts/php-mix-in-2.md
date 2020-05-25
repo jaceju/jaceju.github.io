@@ -1,7 +1,8 @@
 ---
 title: '我也來實作 PHP mix-in 的概念 - Part 2'
-date: 2007-03-14 00:00:00 +08:00
-tags: ["PHP"]
+date: 2007-03-14T00:00:00+08:00
+tags:
+  - PHP
 ---
 
 [石頭成](http://blog.roodo.com/rocksaying)老大說他要為他的 [mix-in](http://blog.roodo.com/rocksaying/archives/2817003.html) 實作 part 2 ，我也想到了一些好玩的東西。記得很久之前我寫過一篇「 [PHP 的 callback 虛擬型態](http://www.jaceju.net/blog/archives/32)」，這次就把它用在這裡。

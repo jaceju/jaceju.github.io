@@ -1,7 +1,8 @@
 ---
-title: 在 Laravel 上用 MailCatcher 發送測試信件
-date: 2015-07-29 15:22:29 +08:00
-tags: ["Laravel"]
+title: '在 Laravel 上用 MailCatcher 發送測試信件'
+date: 2015-07-29T15:22:29+08:00
+tags:
+  - Laravel
 ---
 
 雖然 Laravel 在寄送測試信件上提供了 [Mailgun](http://www.mailgun.com/) 這個服務的串接方式，不過如果能夠在 Homestead 就可以直接測試是更棒的選擇；而 [MailCatcher](http://mailcatcher.me/) 剛好就提供這樣的功能，它能啟動一個 SMTP 模擬服務，並且讓我們透過 Web 介面來查看信件是否有被發送出來。

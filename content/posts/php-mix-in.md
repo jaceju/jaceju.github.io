@@ -1,7 +1,8 @@
 ---
 title: '我也來實作 PHP mix-in 的概念'
-date: 2007-03-10 00:00:00 +08:00
-tags: ["PHP"]
+date: 2007-03-10T00:00:00+08:00
+tags:
+  - PHP
 ---
 
 之前提過一篇 [Prototype-based programming in PHP](http://personal.schmalls.com/2006/11/06/prototype-based-programming-in-php/) ，後來在[石頭閒語](http://blog.roodo.com/rocksaying)那裡也看到 [PHP 實踐 mix-in 概念之可行性](http://blog.roodo.com/rocksaying/archives/2817003.html)，我自己也手癢寫了一個。不過我是把 function 當成是一個 MethodObject ，有點 delegate 味道。然而大部份限制就像石頭成所說的，所以我也不多提了。還是等 PHP7 的規格出來，看它會不會[支援 closure](http://javaworld.com.tw/roller/page/ingramchen?entry=2007_1_1_WhyAddClosureInJava7) 好了  (要跟隨 Java 7 嗎？ XD) 。

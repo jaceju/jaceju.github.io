@@ -1,8 +1,8 @@
 ---
-title: "ScrollSpy 簡介"
-date: 2014-02-21 11:16:00 +08:00
-
-tags: [ JavaScript]
+title: 'ScrollSpy 簡介'
+date: 2014-02-21T11:16:00+08:00
+tags:
+  - JavaScript
 ---
 
 在 Single Page Design 中，我們常會把落落長的頁面分成幾個區塊，然後在上方或側邊選單中以這些區塊的標題來做為選單項目。

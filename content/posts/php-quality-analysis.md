@@ -1,7 +1,8 @@
 ---
-title: 分析 PHP 程式碼品質
-date: 2017-01-11 18:29:49 +08:00
-tags: ["PHP"]
+title: '分析 PHP 程式碼品質'
+date: 2017-01-11T18:29:49+08:00
+tags:
+  - PHP
 ---
 
 前兩天 Laravel 老爸 Taylor 分享了他對幾個知名的 framework 所做的[程式碼品質分析](https://medium.com/@taylorotwell/measuring-code-complexity-64356da605f9#.i9ah5inwx)，引起了社群很大的[討論](https://www.facebook.com/groups/laravel.tw/permalink/1200376173364763/)。

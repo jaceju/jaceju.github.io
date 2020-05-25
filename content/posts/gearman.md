@@ -1,7 +1,8 @@
 ---
 title: 'Gearman 心得'
-date: 2010-06-07 00:00:00 +08:00
-tags: ["PHP"]
+date: 2010-06-07T00:00:00+08:00
+tags:
+  - PHP
 ---
 
 前幾天， Glenn 與 Mark 分享了 Gearman 的觀念與實作，以下就是我簡單的筆記與心得。

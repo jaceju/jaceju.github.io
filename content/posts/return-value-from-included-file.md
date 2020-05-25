@@ -1,7 +1,8 @@
 ---
 title: '[PHP] PHP 密技： include 與 require'
-date: 2008-02-22 00:00:00 +08:00
-tags: ["PHP"]
+date: 2008-02-22T00:00:00+08:00
+tags:
+  - PHP
 ---
 
 ## 可以接受回傳資料？

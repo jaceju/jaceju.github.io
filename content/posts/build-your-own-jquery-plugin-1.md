@@ -1,9 +1,9 @@
 ---
 title: '[jQuery] 自製 jQuery Plugin - Part 1'
-date: 2008-05-13 00:00:00 +08:00
-
-
-tags: ["JavaScript", "jQuery"]
+date: 2008-05-13T00:00:00+08:00
+tags:
+  - JavaScript
+  - jQuery
 ---
 
 有時候寫 jQuery 時，常會發現一些簡單的效果可以重複利用。只是每次用 Copy &amp; Paste 大法似乎不是件好事，有沒有什麼方法可以讓我們把這些效果用到其他地方呢？

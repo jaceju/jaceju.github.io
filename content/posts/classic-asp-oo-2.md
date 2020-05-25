@@ -1,9 +1,8 @@
 ---
 title: 'ASP 物件設計手法 (2) - 初級技巧'
-date: 2005-12-06 00:00:00 +08:00
-
-
-tags: ["ASP"]
+date: 2005-12-06T00:00:00+08:00
+tags:
+  - ASP
 ---
 
 Design Patterns 是我近來研究的課題之一，我在後來的 ASP 專案裡，為了解決一些問題而導入了部份的 Design Patterns 觀念。或許有人會認為 ASP (VBScript) 沒辦法使用正統的 Design Patterns ，不過我注重的是 Design Patterns 的觀念所帶來的解題方式，而不是 Design Patterns 的形。

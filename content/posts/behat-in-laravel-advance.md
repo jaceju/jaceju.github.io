@@ -1,9 +1,9 @@
 ---
-title: 在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇
+title: '在 Laravel 中使用 Behat 來加強測試的可讀性 - 進階篇'
 tags:
   - 測試
   - Laravel
-date: 2018-11-09 18:38:53 +08:00
+date: 2018-11-09T18:38:53+08:00
 ---
 
 

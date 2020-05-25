@@ -1,7 +1,8 @@
 ---
 title: '[PHP] 交換兩個變數 (不使用 tmp 變數) 程式寫法'
-date: 2007-11-23 00:00:00 +08:00
-tags: ["PHP"]
+date: 2007-11-23T00:00:00+08:00
+tags:
+  - PHP
 ---
 
 在宗董的 Blog 看到這篇：[交換兩個變數 (不使用 tmp 變數) 程式寫法](http://plog.longwin.com.tw/programming/2007/11/23/variable_swap_programming_2007)，本來想留言，不過宗董的 Blog 系統似乎有問題。

@@ -1,7 +1,9 @@
 ---
-title: 邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例
-date: 2015-10-05 12:53:48 +08:00
-tags: ["Refactoring", "Laravel"]
+title: '邁向 PHP 重構之路 - 以 Laravel 程式碼片段為例'
+date: 2015-10-05T12:53:48+08:00
+tags:
+  - Refactoring
+  - Laravel
 ---
 
 來上 TDD 課的學員問到一個 Laravel 程式碼重構的問題，這裡簡單地做分享。未來如果有好的實戰範例，這系列就會延續下去。

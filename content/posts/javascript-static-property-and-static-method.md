@@ -1,7 +1,8 @@
 ---
 title: 'JavaScript 的靜態變數與靜態方法'
-date: 2006-02-06 00:00:00 +08:00
-tags: ["JavaScript"]
+date: 2006-02-06T00:00:00+08:00
+tags:
+  - JavaScript
 ---
 
 之前提到 JavaScript 撰寫物件時的寫法：

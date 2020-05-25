@@ -1,7 +1,9 @@
 ---
-title: Laravel 5.1 正式釋出
-date: 2015-06-10 00:34:37 +08:00
-tags: ["Laravel", "PHP"]
+title: 'Laravel 5.1 正式釋出'
+date: 2015-06-10T00:34:37+08:00
+tags:
+  - Laravel
+  - PHP
 ---
 
 經過了幾個月的等待， Laravel 5.1 終於在美國時間 6/9 [正式釋出](https://laravel-news.com/2015/06/laravel-5-1-released/)了。同時 Laracasts 也推出了一系列的 [Laravel 5.1 新功能介紹](https://laracasts.com/series/whats-new-in-laravel-5-1)，絕對是每位 Artisan 必看的影片。

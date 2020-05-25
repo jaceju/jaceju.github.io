@@ -1,7 +1,8 @@
 ---
 title: 'Linux 上的 Port Foward 的問題'
-date: 2007-09-13 00:00:00 +08:00
-tags: ["Linux"]
+date: 2007-09-13T00:00:00+08:00
+tags:
+  - Linux
 ---
 
 ## 問題
