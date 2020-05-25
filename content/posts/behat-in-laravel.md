@@ -448,7 +448,7 @@ vendor/bin/behat --append-snippets
       | id | name | email            |
       | 1  | User | user@example.com |
 
---- Failed scenarios:
+Failed scenarios:
 
     features/users-api.feature:5
 
