@@ -1,0 +1,397 @@
+---
+title: '[PHP] 在 PHP5 中實作 AOP 的概念'
+date: 2008-04-14 00:00:00 +08:00
+tags: ["PHP"]
+---
+
+這篇積在我電腦裡很久了，一直沒公開...這次趁著要幫我的 Library 加料，順便拿出來分享一下心得。
+
+<!-- more -->
+
+## 什麼是 AOP
+
+AOP 全名為 Aspect-Oriented Programming ，基本的觀念可以參考良葛格的 AOP 入門：
+
+- [從代理機制初探 AOP](http://caterpillar.onlyfun.net/Gossip/SpringGossip/FromProxyToAOP.html)
+- [動態代理](http://caterpillar.onlyfun.net/Gossip/SpringGossip/DynamicProxy.html)
+- [AOP 觀念與術語](http://caterpillar.onlyfun.net/Gossip/SpringGossip/AOPConcept.html)
+
+
+這裡我簡單提一下 AOP 的基本想法：
+
+假設當我們呼叫物件的某些方法 (或是**業務流程**) 之後，會想要把相關的資訊記錄到 log 檔裡，我們也許會這樣寫：
+
+```php
+<?php
+/**
+ * Test
+ */
+class Test
+{
+    /**
+     * 某個方法
+     */
+    public function doSomething()
+    {
+        // 建立 Log 物件
+        $logger = new Log();
+        // 寫入前置 Log
+        $logger->save('before do something.');
+        // 主要的動作
+        // ...
+        // 寫入 Log
+        $logger->save('before do something.');
+    }
+}
+
+```
+
+可是如果今天這個記錄 log 的這個動作只是臨時的，或是在未來可能會需要再加入不同的動作時 (例如寄信) ，難道我們還要在原有方法的程式碼裡修修改改嗎？有沒有什麼方式能協助我們動態地把記錄的動作插在原有動作之後呢？
+
+AOP 就是從這個角度所延伸出來的一種觀念，它能協助我們在不侵入原有類別程式碼的狀況下，動態地為類別方法新增額外的權責；簡單來說， AOP 主要的目的就是<strong>切入類別原有方法執行之前或之後，並安插我們想要執行的動作</strong>。
+
+註： IT 界似乎很喜歡發明深奧的名詞來詮釋一個簡單的概念，然後像我這樣不學無術的開發者就常被唬得一楞一楞的。
+
+## AOP 和 Decorator
+
+先介紹幾篇實作 AOP 的文章：
+
+* [AOP for jQuery](http://racklin.blogspot.com/2007/08/aop-for-jquery.html)
+* [Aspect Oriented Programming in PHP as a contrast to other languages.](http://blog.jonnay.net/archives/637-Aspect-Oriented-Programming-in-PHP-as-a-contrast-to-other-languages..html)
+* [Bunny Aspects](http://wiki.jonnay.net/bunny/bunnyaspectsphp)
+* [More on Aspect Oriented PHP](http://jaxn.org/article/2004/10/16/more-on-aspect-oriented-php/)
+* [在PHP里利用魔术方法实现准AOP](http://hi.baidu.com/thinkinginlamp/blog/item/864a0ef46d93b86eddc474f3.html)
+* [AOP在PHP中的实现方式](http://sushener.spaces.live.com/blog/cns!BB54050A5CFAFCDD!546.entry)
+* [Class: AOP Library for PHP](http://www.phpclasses.org/browse/package/2633.html)
+
+
+其實一開始我以為 AOP 和 Decorator 模式在 PHP 上的實作方式是差不多的，不過實際上還有是些許的差別。
+
+一般在 Decorator 模式中，具體類別和 Wrapper 類別都會有個共同的祖先，亦即一個抽象類別或介面，因此所產生出來的物件對 Client 程式來說，其抽象型態可以說是一樣的。
+
+但是在 AOP in PHP 中，我們必須透過一個代理類別來切入原有的類別方法裡，雖然這個代理類別也能夠提供原有類別中的所有方法，但是實際上它卻已經失去了與原有類別所擁有的抽象型態了。
+
+## 用 PHP 實作 AOP
+
+首先我們來看看還沒有切入任何事件的目標類別：
+
+```php
+<?php
+/**
+ * Test class
+ *
+ */
+class TestClass
+{
+    /**
+     * Method 1
+     *
+     * @param string $message
+     */
+    public function method1($message)
+    {
+        echo "\n", __METHOD__, ":\n", $message, "\n";
+    }
+    /**
+     * Method 2
+     *
+     * @return int
+     */
+    public function method2()
+    {
+        echo "\n", __METHOD__, ":\n";
+        return rand(1, 10);
+    }
+    /**
+     * Method 3
+     *
+     * @throws Exception
+     */
+    public function method3()
+    {
+        echo "\n", __METHOD__, ":\n";
+        throw new Exception('Test Exception.');
+    }
+}
+
+```
+
+這個類別提供了三個方法，其中 method1 和 method2 只是簡單的顯示資料而已，而 method3 則會丟出一個異常。
+
+另外我們需要一個 Log 類別：
+
+```php
+<?php
+/**
+ * Log
+ *
+ */
+class Log
+{
+    /**
+     * log message
+     *
+     * @param string $message
+     */
+    public function save($message)
+    {
+        echo $message, "\n";
+    }
+}
+
+```
+
+這個 Log 類別只提供一個 save() 方法，以顯示 log 訊息。
+
+現在我們要完成的目標如下：
+
+* 在 method1 執行前呼叫 Log::save() 。
+
+* 在 method2 執行後呼叫 Log::save() 。
+
+* 在 method3 發生異常時呼叫 Log::save() 。
+
+這裡我用很簡單的方式來做，那就是直接使用一個 Aspect 類別：
+
+```php
+<?php
+/**
+ * Aspect
+ *
+ */
+class Aspect
+{
+    /**
+     * Name of target class
+     *
+     * @var string
+     */
+    private $_className = null;
+    /**
+     * Target object
+     *
+     * @var object
+     */
+    private $_target = null;
+    /**
+     * Event callback
+     *
+     * @var array
+     */
+    private $_eventCallbacks = array();
+    /**
+     * Add object
+     *
+     * @param object $target
+     * @return Aspect
+     */
+    public static function addObject($target)
+    {
+        return new Aspect($target);
+    }
+    /**
+     * Contructor
+     *
+     * @param object $target
+     */
+    public function __construct($target)
+    {
+        if (is_object($target)) {
+            $this->_target = $target;
+            $this->_className = get_class($this->_target);
+        }
+    }
+    /**
+     * Register event
+     *
+     * @param string $eventName
+     * @param string $methodName
+     * @param callback $callback
+     */
+    private function _registerEvent($eventName, $methodName, $callback, $args)
+    {
+        if (!isset($this->_eventCallbacks[$methodName])) {
+            $this->_eventCallbacks[$methodName] = array();
+        }
+        if (!is_callable(array($this->_target, $methodName))) {
+            throw new Exception(get_class($this->_target) . '::' . $methodName . ' is not exists.');
+        }
+        if (is_callable($callback)) {
+            $this->_eventCallbacks[$methodName]($eventName) = array($callback, $args);
+        } else {
+            $callbackName = Aspect::getCallbackName($callback);
+            throw new Exception($callbackName . ' is not callable.');
+        }
+    }
+    /**
+     * Register 'before' handler
+     *
+     * @param string $methodName
+     * @param callback $callback
+     */
+    public function before($methodName, $callback, $args = array())
+    {
+        $this->_registerEvent('before', $methodName, $callback, (array) $args);
+    }
+    /**
+     * Register 'after' handler
+     *
+     * @param string $methodName
+     * @param callback $callback
+     */
+    public function after($methodName, $callback, $args = array())
+    {
+        $this->_registerEvent('after', $methodName, $callback, (array) $args);
+    }
+    /**
+     * Register 'on catch exception' handler
+     *
+     * @param string $methodName
+     * @param callback $callback
+     */
+    public function onCatchException($methodName, $callback, $args = array())
+    {
+        $this->_registerEvent('onCatchException', $methodName, $callback, (array) $args);
+    }
+    /**
+     * Trigger event
+     *
+     * @param string $eventName
+     */
+    private function _trigger($eventName, $methodName, $target)
+    {
+        if (isset($this->_eventCallbacks[$methodName]($eventName))) {
+            list($callback, $args) = $this->_eventCallbacks[$methodName]($eventName);
+            $args[] = $target;
+            call_user_func_array($callback, $args);
+        }
+    }
+    /**
+     * Execute method
+     *
+     * @param string $methodName
+     * @param array $args
+     * @return mixed
+     */
+    public function __call($methodName, $args)
+    {
+        if (is_callable(array($this->_target, $methodName))) {
+            try {
+                $this->_trigger('before', $methodName, $this->_target);
+                $result = call_user_func_array(array($this->_target, $methodName), $args);
+                $this->_trigger('after', $methodName, $this->_target);
+                return $result ? $result : null;
+            } catch (Exception $e) {
+                $this->_trigger('onCatchException', $methodName, $e);
+                throw $e;
+            }
+        } else {
+            throw new Exception("Call to undefined method {$this->_className}::$methodName.");
+        }
+    }
+    /**
+     * Get name of callback
+     *
+     * @param callback $callback
+     * @return string
+     */
+    public static function getCallbackName($callback)
+    {
+        $className  = '';
+        $methodName = '';
+        if (is_array($callback) &amp;&amp; 2 == count($callback)) {
+            if (is_object($callback[0])) {
+                $className = get_class($callback[0]);
+            } else {
+                $className = (string) $callback[0];
+            }
+            $methodName = (string) $callback[1];
+        } elseif (is_string($callback)) {
+            $methodName = $callback;
+        }
+        return $className . (($className) ? '::' : '') . $methodName;
+    }
+}
+
+```
+
+這個類別有點小長，簡單說明如下：
+
+* 我們利用 Aspect::addObject() 方法來指定要被切入的物件； addObject() 方法會回傳一個透明的 Aspect 物件。
+
+* 利用 before 、 after 和 onCatchException 三個方法來指定切入的時機，它們會呼叫 _registerEvent() 方法來註冊要執行的回呼函式 (callback) 。
+
+* 執行原來被切入物件的方法，這時會觸動 Aspect 的 __call() 方法，並在指定的切入時機呼叫 _trigger() 方法來執行我們所切入的回呼函式。
+
+先來看看還沒有使用 AOP 前，我們對 TestClass 類別的測試：
+
+```php
+<?php
+require_once 'TestClass.php';
+$test = new TestClass();
+/* @var $test TestClass */
+echo "=======\n";
+$test->method1('abc');
+echo "=======\n";
+echo $test->method2(), "\n";
+echo "=======\n";
+$test->method3();
+echo "=======\n";
+/* 執行結果：
+=======
+TestClass::method1:
+abc
+=======
+TestClass::method2:
+2
+=======
+TestClass::method3:
+Exception: Test Exception. in TestClass.php on line 38
+*/
+
+```
+
+接下來我們利用 Aspect 類別來對 TestClass 物件的三個方法切入 Log::save() ：
+
+```php
+<?php
+require_once 'Aspect.php';
+require_once 'TestClass.php';
+require_once 'Log.php';
+$test = Aspect::addObject(new TestClass());
+$logger = new Log();
+$test->before('method1', array($logger, 'save'), 'Log saved (method1).');
+$test->after('method2', array($logger, 'save'), 'Log saved (method2).');
+$test->onCatchException('method3', array($logger, 'save'), 'Log saved (method3).');
+/* @var $test TestClass */
+echo "=======\n";
+$test->method1('abc');
+echo "=======\n";
+echo $test->method2(), "\n";
+echo "=======\n";
+$test->method3();
+echo "=======\n";
+/* 執行結果：
+=======
+Log saved (method1).
+TestClass::method1:
+abc
+=======
+TestClass::method2:
+Log saved (method2).
+8
+=======
+TestClass::method3:
+Log saved (method3).
+Exception: Test Exception. in TestClass.php on line 38
+*/
+
+```
+
+## 結論
+
+我們可以從範例看到， AOP 能幫我們在某類別的方法中插入一些額外的動作，同時又能不破壞原有類別的程式碼。而它與 Decorator 最大的不同是， Decorator 必須用很多小類別來完成相同的動作，但是 AOP 則透過 PHP 的動態特性解決了這個問題。
+
+當然 AOP 也不是萬靈丹，像在本文的實作裡它就不能接觸目標類別的非公開屬性。而之前也跟 [Mark](http://blog.markplace.net/) 聊了一下，其實 AOP 偏向於程式的整體設計，所以這裡的範例尚不能用於實戰之中，僅僅只是我個人一個概念的實作而已。
+
+供大家參考看看吧。也歡迎一起討論~
