@@ -6,8 +6,308 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>zh-TW</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 26 Dec 2019 16:59:15 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 08 Sep 2020 12:13:15 +0800</lastBuildDate>
 		<atom:link href="https://jaceju.net/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>用 Livewire 在 Laravel 應用裡實現無痛的前後端溝通</title>
+			<link>https://jaceju.net/laravel-livewire/</link>
+			<pubDate>Tue, 08 Sep 2020 12:13:15 +0800</pubDate>
+			
+			<guid>https://jaceju.net/laravel-livewire/</guid>
+			<description>&lt;h2 id=&#34;緣起&#34;&gt;緣起&lt;/h2&gt;
+&lt;p&gt;如果今天給網站開發者一個最簡單的題目：「如何在不重整頁面的情況下，讓前端介面可以取得後端資料的狀態？」我相信幾乎所有開發者都能實作出來，畢竟這個機制算是現代網站開發的基礎。&lt;/p&gt;
+&lt;p&gt;這個題目的答案從概念上來說，就是很簡單的三個步驟：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;後端送出 HTML 給瀏覽器來呈現網頁。&lt;/li&gt;
+&lt;li&gt;在頁面上用 AJAX 向後端 API 發起請求。&lt;/li&gt;
+&lt;li&gt;在接收到 AJAX 的結果後，將結果呈現到對應的位置上。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;當然不僅是取得結果，同樣的方式也可以用在把前端的資料送往後端的業務處理邏輯上。&lt;/p&gt;
+&lt;p&gt;只不過這背後有很多麻煩事要處理，像是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;後端要建立對應前端操作的 API ，並且要顧及安全性 (例如防範 CSRF ) 。&lt;/li&gt;
+&lt;li&gt;前端要透過 XHR 發起要求，並處理 API 各種狀態的結果。&lt;/li&gt;
+&lt;li&gt;需要學習如何操作前端 DOM 元素，讓後端資訊可以綁在元素上或是透過元素的事件來取得元素上的資訊。&lt;/li&gt;
+&lt;li&gt;前端要維護介面狀態，在重新整理頁面後要能後端資料狀態同步。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;諸如此類的基礎工夫還不少，雖然現代化的前後端框架或工具都幫我們處理掉了，但實戰上要把它們兜起來還是要花掉不少時間。&lt;/p&gt;
+&lt;p&gt;有沒有什麼更好的方法，可以讓開發者可以做更少的事，而達到同樣的效果呢？&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<h2 id="緣起">緣起</h2>
+<p>如果今天給網站開發者一個最簡單的題目：「如何在不重整頁面的情況下，讓前端介面可以取得後端資料的狀態？」我相信幾乎所有開發者都能實作出來，畢竟這個機制算是現代網站開發的基礎。</p>
+<p>這個題目的答案從概念上來說，就是很簡單的三個步驟：</p>
+<ul>
+<li>後端送出 HTML 給瀏覽器來呈現網頁。</li>
+<li>在頁面上用 AJAX 向後端 API 發起請求。</li>
+<li>在接收到 AJAX 的結果後，將結果呈現到對應的位置上。</li>
+</ul>
+<p>當然不僅是取得結果，同樣的方式也可以用在把前端的資料送往後端的業務處理邏輯上。</p>
+<p>只不過這背後有很多麻煩事要處理，像是：</p>
+<ul>
+<li>後端要建立對應前端操作的 API ，並且要顧及安全性 (例如防範 CSRF ) 。</li>
+<li>前端要透過 XHR 發起要求，並處理 API 各種狀態的結果。</li>
+<li>需要學習如何操作前端 DOM 元素，讓後端資訊可以綁在元素上或是透過元素的事件來取得元素上的資訊。</li>
+<li>前端要維護介面狀態，在重新整理頁面後要能後端資料狀態同步。</li>
+</ul>
+<p>諸如此類的基礎工夫還不少，雖然現代化的前後端框架或工具都幫我們處理掉了，但實戰上要把它們兜起來還是要花掉不少時間。</p>
+<p>有沒有什麼更好的方法，可以讓開發者可以做更少的事，而達到同樣的效果呢？</p>
+<p><a href="https://laravel-livewire.com/">Livewire</a> 就是在這個概念下所產生的套件，目的就是為了減少開發者在前後端溝通時要花費的工夫。</p>
+<p>這個套件很早我就在 <a href="https://laravel-news.com/laravel-livewire-1-0-0">Laravel News</a> 裡知道了，只是一直都沒有動力去試試。不過當 Laravel 官方釋出了 <a href="https://github.com/laravel/jetstream">Laravel Jetstream</a> 這個非常棒的服務平台骨架產生器時，我在研究的時候發現安裝 Jetsteam 的過程中，可以選擇 Livewire 或是 <a href="https://inertiajs.com/">Inertia.js</a> 。</p>
+
+<div class="note">
+<p>註： Inertia.js 的概念跟 Livewire 概念很像，也是主打不需要自行建立後端 API (但業務邏輯的撰寫還是必要的) ；不過它是從 SPA (Single Page Application) 的角度出發，著重在前端的開發上。在 IThome 鐵人賽上有<a href="https://ithelp.ithome.com.tw/users/20113602/ironman/3322">系列文</a>可以參考。</p>
+
+</div>
+
+<p>既然官方套件也開始用了，表示 Livewire 不會是曇花一現的技術；因此我就想好好地看看它是怎麼運作的，讓官方選擇它來當做套件的底層機制。</p>
+<p>而要瞭解一個工具，最好的方法就是從實作開始。接著我會以官方文件的教學為主，簡單地分析 Livewire 的運作方式。</p>
+<h2 id="初探-livewire">初探 Livewire</h2>
+<p>由於 Livewire 是依附在 Laravel 應用程式上的機級，所以我們需要在本機建立一個 Laravel 應用程式。</p>
+<p>首先我們安裝 Laravel Installer 或是將它升級至 4.0 ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ composer global require laravel/installer
+</code></pre></div><p>接著建立並啟動一個 Laravel 的應用程式服務，這裡我用 Valet (Mac only) 來建立站台，其它環境請自行研究。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ laravel new livewire-demo --dev <span class="c1"># 註： --dev 會安裝開發版本的 Laravel 骨架 (目前是 8.0)</span>
+$ <span class="nb">cd</span> livewire-demo
+$ valet link <span class="o">&amp;&amp;</span> valet secure
+</code></pre></div><p>有了一個乾淨的 Laravel 應用程式環境，我們就可以來試玩一下 Livewire 了。</p>
+<p>先安裝 livewire 套件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ composer require livewire/livewire
+</code></pre></div><p>我們看一下新增了什麼 routes ：</p>
+<pre><code>$ php artisan route:list -c
++----------+----------------------------------+------------------------------------------------------+
+| Method   | URI                              | Action                                               |
++----------+----------------------------------+------------------------------------------------------+
+| ...      | ...                              | ...                                                  |
+| GET|HEAD | livewire/livewire.js             | Livewire\Controllers\LivewireJavaScriptAssets@source |
+| GET|HEAD | livewire/livewire.js.map         | Livewire\Controllers\LivewireJavaScriptAssets@maps   |
+| POST     | livewire/message/{name}          | Livewire\Controllers\HttpConnectionHandler           |
+| GET|HEAD | livewire/preview-file/{filename} | Livewire\Controllers\FilePreviewHandler@handle       |
+| POST     | livewire/upload-file             | Livewire\Controllers\FileUploadHandler@handle        |
++----------+----------------------------------+------------------------------------------------------+
+</code></pre><p>可以看到它提供了前端 assets 、供前端溝通用的訊息 API 、上傳檔案與檔案預覽的 API 。</p>
+<p>不過這些 API 原則上知道就好，在實際開發時因為 Livewire 已經幫我們封裝這些 API 的操作，所以基本上不會看到它們。</p>
+<p>然後我們要在 blade template (這裡為 <code>resources/views/welcome.blade.php</code> ) 上加入 Livewire 提供的 tag <code>&lt;livewire:styles /&gt;</code> 與 <code>&lt;livewire:scripts /&gt;</code> ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Laravel Livewire Demo<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Styles --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">livewire:styles</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">livewire:scripts</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<div class="note">
+<p>註： Tag 是 Laravel 7 之後才支援的寫法，如果是 Laravel 6 以前的版本，必須用 <code>@livewireStyles</code> 及 <code>@livewireScripts</code> 。</p>
+
+</div>
+
+<p>接著打開頁面原始碼，我們可以看到 styles 和 scripts 分別被代換成以下 HTML ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+    <span class="o">[</span><span class="nt">wire</span><span class="err">\</span><span class="p">:</span><span class="nd">loading</span><span class="o">],</span> <span class="o">[</span><span class="nt">wire</span><span class="err">\</span><span class="p">:</span><span class="nd">loading</span><span class="err">\</span><span class="p">.</span><span class="nc">delay</span><span class="o">]</span> <span class="p">{</span>
+        <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">[</span><span class="nt">wire</span><span class="err">\</span><span class="p">:</span><span class="nd">offline</span><span class="o">]</span> <span class="p">{</span>
+        <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">[</span><span class="nt">wire</span><span class="err">\</span><span class="p">:</span><span class="nd">dirty</span><span class="o">]</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="nt">textarea</span><span class="o">)</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="nt">input</span><span class="o">)</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="nt">select</span><span class="o">)</span> <span class="p">{</span>
+        <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+...
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/livewire/livewire.js?id=d3352e4f7c3be3e22a1f&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="p">&gt;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">livewire</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">&#39;Livewire: It looks like Livewire\&#39;s @livewireScripts JavaScript assets have already been loaded. Make sure you aren\&#39;t loading them twice.&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="nb">window</span><span class="p">.</span><span class="nx">livewire</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Livewire</span><span class="p">();</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">Livewire</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">livewire</span><span class="p">;</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">livewire_app_url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">livewire_token</span> <span class="o">=</span> <span class="s1">&#39;syJQNxWSjopRJLvEKlImImypOHrzRLq7MJgArStk&#39;</span><span class="p">;</span>
+
+    <span class="cm">/* Make Alpine wait until Livewire is finished rendering to do its thing. */</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">deferLoadingAlpine</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;livewire:load&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">callback</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;DOMContentLoaded&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">livewire</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p>大致上就是 CSS 用來隱藏載入中或離線等狀態的 Livewire 元件，而 JS 除了定義跟後端溝通的連線資訊外，也用來監聽頁面上所有 Livewire 元件的事件；至於細節就不多解釋了，相信大家應該都看得懂。</p>
+<p>接著來看看<a href="(https://laravel-livewire.com/docs/quickstart)">官方提供的例子</a>，這裡我們要新增一個手動計數器。</p>
+<p>首先用以下指令來建立計數器的元件與樣版：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ php artisan make:livewire counter
+ COMPONENT CREATED  🤙
+
+CLASS: app/Http/Livewire/Counter.php
+VIEW:  resources/views/livewire/counter.blade.php
+</code></pre></div><p><code>app/Http/Livewire/Counter.php</code> 的內容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Http\Livewire</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Livewire\Component</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Counter</span> <span class="k">extends</span> <span class="nx">Component</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;livewire.counter&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>注意這裡的 <code>Livewire Component</code> 跟 Laravel 7 之後的 <a href="https://laravel.com/docs/7.x/blade#components">Blade Components</a> 的實作是不一樣的，雖然它們的用法基本上很像，但還是別搞混了。</p>
+<p>再來看 <code>resources/views/livewire/counter.blade.php</code> ，它目前只有一個 <code>div</code> 標籤對：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    {{-- 一句隨機挑選的俚語 --}}
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>現在我們要讓這個計數器動起來了，第一步是在 <code>Counter</code> 類別補上計數器的暫存狀態與行為邏輯：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...
+</span><span class="c1"></span>
+<span class="k">class</span> <span class="nc">Counter</span> <span class="k">extends</span> <span class="nx">Component</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">increment</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">decrement</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">count</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>下一步是修改 <code>counter.blade.php</code> 的內容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;text-align: center&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">wire:click</span><span class="o">=</span><span class="s">&#34;increment&#34;</span><span class="p">&gt;</span>+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ $count }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">wire:click</span><span class="o">=</span><span class="s">&#34;decrement&#34;</span><span class="p">&gt;</span>-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>你會發現我們用 <code>wire:click</code> 去綁定後端 <code>Counter</code> 類別的 <code>increment</code> 和 <code>decrement</code> 這兩個方法，這就是 Livewire 主打的核心功能。</p>
+<p>現在我們要來使用這個計數器元件了。修改 <code>resources/views/welcome.blade.php</code> ，在 <code>&lt;body&gt;</code> 後加入 <code>&lt;livewire:counter /&gt;</code> 這個 tag ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">...
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">livewire:counter</span> <span class="p">/&gt;</span>
+
+...
+</code></pre></div><p>接著重整瀏覽器頁面，你應該會看到以下畫面：</p>
+<p><img src="https://www.dropbox.com/s/7epb4gm4216zuk9/counter.png?dl=1" alt=""></p>
+<p>再看看頁面原始檔，你會發現 <code>counter.blade.php</code> 的 <code>div</code> 標籤多了一些屬性：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">wire:id</span><span class="o">=</span><span class="s">&#34;VhVG7h01POBNuWMvpaVx&#34;</span>
+     <span class="na">wire:initial-data</span><span class="o">=</span><span class="s">&#34;{&amp;quot;fingerprint&amp;quot;:{&amp;quot;id&amp;quot;:&amp;quot;VhVG7h01POBNuWMvpaVx&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;counter&amp;quot;,&amp;quot;locale&amp;quot;:&amp;quot;en&amp;quot;},&amp;quot;effects&amp;quot;:{&amp;quot;listeners&amp;quot;:[],&amp;quot;path&amp;quot;:&amp;quot;https:\/\/livewire-demo.test&amp;quot;},&amp;quot;serverMemo&amp;quot;:{&amp;quot;children&amp;quot;:[],&amp;quot;errors&amp;quot;:[],&amp;quot;htmlHash&amp;quot;:&amp;quot;31258d01&amp;quot;,&amp;quot;data&amp;quot;:{&amp;quot;count&amp;quot;:0},&amp;quot;checksum&amp;quot;:&amp;quot;2ed61de3befc848b43c1cb84eb3bf9f2a65cae1586c1631bc4d49efa284ab3ac&amp;quot;}}&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;text-align: center&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">wire:click</span><span class="o">=</span><span class="s">&#34;increment&#34;</span><span class="p">&gt;</span>+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>0<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">wire:click</span><span class="o">=</span><span class="s">&#34;decrement&#34;</span><span class="p">&gt;</span>-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p><code>wire:id</code> 是元件的唯一識別，假設頁面有多個計數器， <code>wire:id</code> 能讓 Livewire 知道目前我們操作的是哪一個計數器。</p>
+<p>再把屬性 <code>wire:initial-data</code> 裡的 <code>&amp;quot;</code> 替換成 <code>&quot;</code> 後再排版一下就可以得到：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;fingerprint&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;VhVG7h01POBNuWMvpaVx&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;counter&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;locale&#34;</span><span class="p">:</span> <span class="s2">&#34;en&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;effects&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;listeners&#34;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;https://livewire-demo.test&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;serverMemo&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;children&#34;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&#34;errors&#34;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&#34;htmlHash&#34;</span><span class="p">:</span> <span class="s2">&#34;31258d01&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;count&#34;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;checksum&#34;</span><span class="p">:</span> <span class="s2">&#34;2ed61de3befc848b43c1cb84eb3bf9f2a65cae1586c1631bc4d49efa284ab3ac&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>這就是 Livewire 用來讓前端可以跟後端溝通的資訊，而且其中也加上一些防止修改的措施，畢竟「<strong>不要相信用戶端來的所有資訊</strong>」是後端開發的重要觀念之一。</p>
+<p>接下來打開瀏覽器的除錯工具，觀察跟 XHR 有關的網路連線。然後按一下頁面上的按鈕 <code>+</code> 來讓數字發生變化，這時候我們就會看到 Livewire 觸發了一個 XHR 的連線，它打到以下這個 API ：</p>
+<pre><code>[POST] https://livewire-demo.test/livewire/message/counter
+</code></pre><p>這就是我們上面看到那個指向 <code>livewire/message/{name}</code> 的 Laravel route 。</p>
+<p>而它的 request payload 長這樣：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;fingerprint&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;VhVG7h01POBNuWMvpaVx&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;counter&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;locale&#34;</span><span class="p">:</span> <span class="s2">&#34;en&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;serverMemo&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;children&#34;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&#34;errors&#34;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&#34;htmlHash&#34;</span><span class="p">:</span> <span class="s2">&#34;31258d01&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;count&#34;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;checksum&#34;</span><span class="p">:</span> <span class="s2">&#34;2ed61de3befc848b43c1cb84eb3bf9f2a65cae1586c1631bc4d49efa284ab3ac&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;updates&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;callMethod&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;payload&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;increment&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">[]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div><p>可以發現到它丟了一個 <code>increment</code> 方法名稱給後端。也就是說 Livewire 並不是在前端進行運算，而是透過 XHR 傳遞方法名稱來要求後端的計數器元件對 <code>count</code> 值進行計算。</p>
+<p>要特別注意，這時候 Livewire 是用<strong>前端的 <code>count</code> 值</strong>加上要呼叫的方法 <code>increment</code> 給後端的運算邏輯，來讓 <code>count</code> 值加一；如果不搭配存儲機制的話 (例如 Session / DB 等) ，後端並不會記住目前的計數器的 <code>count</code> 值，所以重新整理頁面後它就會還原回元件的初始值。</p>
+<p>最後來看看回應的內容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;effects&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;html&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;div wire:id=\&#34;VhVG7h01POBNuWMvpaVx\&#34; style=\&#34;text-align: center\&#34;&gt;\n    &lt;button wire:click=\&#34;increment\&#34;&gt;+&lt;/button&gt;\n    &lt;h1&gt;1&lt;/h1&gt;\n    &lt;button wire:click=\&#34;decrement\&#34;&gt;-&lt;/button&gt;\n&lt;/div&gt;\n&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;dirty&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&#34;count&#34;</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;serverMemo&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;htmlHash&#34;</span><span class="p">:</span> <span class="s2">&#34;fbf6038e&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;count&#34;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;checksum&#34;</span><span class="p">:</span> <span class="s2">&#34;6685b4e7d45f9c4db431e5c267eed759eae1c950096ced91feccfc94cd109411&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>在計數器的運算完成後，就會將 blade 樣版套用新變數結果後所產生的 HTML 內容回傳，並取代掉目前元件的 HTML 。</p>
+<p>至此，大致上可以瞭解 Livewire 的運作流程其實跟我們平常做的事沒什麼差別，只不過 Livewire 封裝了背後的細節，使其更為自動化，讓開發者可以更專注在自己的業務邏輯上。當然如果大家對細節有興趣的話，可以參考官方文件或原始檔。</p>
+<h2 id="優缺點分析">優缺點分析</h2>
+<p>雖然還沒玩得很深，不過大致上可以想到 Livewire 有以下的優點：</p>
+<ul>
+<li>簡單的情境幾乎不需要寫 JavaScript 。</li>
+<li>元件的狀態由後端管理，前端的工變少，適合對前端不那麼熟悉的後端開發者。</li>
+</ul>
+<p>只是就我的經驗來判斷，它也可能有以下的缺點：</p>
+<ul>
+<li>一些跟後端邏輯無關的複雜前端 UI 或機制，可能還是需要藉助其它 UI 框架或套件來協助。</li>
+<li>複雜的 UI 元件切法和後端元件的搭配可能要花點時間理解。</li>
+<li>因為前後端的界線變得模糊，會容易讓新手搞混前後端的運作機制。</li>
+</ul>
+<p>當然這也只是我淺嘗後的印象，也許再深入一點之後，可能又會有不同的見解。</p>
+<h2 id="結論">結論</h2>
+<p>不得不說 Livewire 真的是一個可以節省開發者不少力氣的有趣工具；當然它所應用的概念我想也不是新的，只不過對於傳統 Laravel 開發者來說，確實可能一下子難以接受。現階段如果要導入 Livewire ，我建議從比較功能比較簡單，情境沒有那麼複雜的新專案開始，去熟悉它的運作方式和缺點。</p>
+<p>本文只是非常簡單地介紹了 Livewire 的概念和用法，我知道各位心中對它還有很多疑問，這些你都可以試著從官方文件和 issue 中找答案。至於更進一步的應用方式，當然就是推薦 Laravel 官方釋出的 <a href="https://github.com/laravel/jetstream">Laravel Jetstream</a> 。</p>
+<h2 id="參考">參考</h2>
+<ul>
+<li><a href="https://laravel-livewire.com/docs/quickstart">Laravel Livewire::Quickstart</a></li>
+<li><a href="https://medium.com/@avnshrathod/laravel-livewire-installation-and-demo-dfaf930f5f64">Laravel livewire installation and demo</a></li>
+<li><a href="https://laravelarticle.com/laravel-livewire-crud-tutorial">Laravel Livewire CRUD tutorial</a></li>
+</ul>]]></content>
+		</item>
 		
 		<item>
 			<title>我的 2019 年</title>
@@ -11272,7 +11572,7 @@ End Class
 			<guid>https://jaceju.net/classic-asp-oo-5/</guid>
 			<description>一直以來我都以為 Me 這個關鍵字只能在 VB 上用，沒想到這兩天我用了 Me 當類別屬性時發生錯誤，這讓我得重新檢視它是不是個 VBScript 的預設關鍵字。 我找過 MSDN 的 Scripting ，</description>
 			<content type="html"><![CDATA[<p>一直以來我都以為 Me 這個關鍵字只能在 VB 上用，沒想到這兩天我用了 Me 當類別屬性時發生錯誤，這讓我得重新檢視它是不是個 VBScript 的預設關鍵字。</p>
-<p>我找過 <a href="http://msdn.microsoft.com/library/">MSDN</a> 的 <a href="http://msdn.microsoft.com/library/en-us/dnanchor/html/Scriptinga.asp">Scripting</a> ，裡面並沒有提到 Me 這個關鍵字，反而是在 VB 6.0 裡找到這個關鍵字的<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbenlr98/html/vakeyme.asp">說明</a>。真是神「 Me 」 呀！它在 VB 中的主要用途一為指向類別自己，二為指向 Form 物件。不過 ASP 中應該是沒有 Form 物件可參考 (這裡我保留這樣的想法，也許將來又發現自己錯了) ，所以對我來說這個關鍵字就是用在 Class 上的。</p>
+<p>我找過 <a href="http://msdn.microsoft.com/library/">MSDN</a> 的 <a href="http://msdn.microsoft.com/library/en-us/dnanchor/html/Scriptinga.asp">Scripting</a> ，裡面並沒有提到 Me 這個關鍵字，反而是在 VB 6.0 裡找到這個關鍵字的<a href="http://msdn.microsoft.com/library/default.asp?url=https://jaceju.net/library/en-us/vbenlr98/html/vakeyme.asp">說明</a>。真是神「 Me 」 呀！它在 VB 中的主要用途一為指向類別自己，二為指向 Form 物件。不過 ASP 中應該是沒有 Form 物件可參考 (這裡我保留這樣的想法，也許將來又發現自己錯了) ，所以對我來說這個關鍵字就是用在 Class 上的。</p>
 <!-- raw HTML omitted -->
 <h2 id="me-關鍵字的用法">Me 關鍵字的用法</h2>
 <p>我寫了一個小程式來測試 Me 關鍵字，其實也沒有很複雜，用法和 JavaScript 的 this 關鍵字很像。</p>
@@ -11383,7 +11683,7 @@ Public Function Include(sFileName)
 End Function
 %&gt;
 
-</code></pre><p>其中 &ldquo;%&gt;&rdquo; 是為了避開 ASP 解譯程式上的錯誤。主要的概念就是利用 <a href="http://msdn.microsoft.com/library/en-us/script56/html/vsstmExecuteGlobal.asp">ExecuteGlobal</a> 來執行 ASP 檔案中的 &lt;% 及 %&gt; 兩個符號間的內容，如果使用 <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/script56/html/vsstmExecute.asp">Execute</a> 的話，會發生找不到 Class 的錯誤。</p>
+</code></pre><p>其中 &ldquo;%&gt;&rdquo; 是為了避開 ASP 解譯程式上的錯誤。主要的概念就是利用 <a href="http://msdn.microsoft.com/library/en-us/script56/html/vsstmExecuteGlobal.asp">ExecuteGlobal</a> 來執行 ASP 檔案中的 &lt;% 及 %&gt; 兩個符號間的內容，如果使用 <a href="http://msdn.microsoft.com/library/default.asp?url=https://jaceju.net/library/en-us/script56/html/vsstmExecute.asp">Execute</a> 的話，會發生找不到 Class 的錯誤。</p>
 <h2 id="建立物件">建立物件</h2>
 <p>還記得前面所介紹的類別命名規則和工廠方法嗎？這裡就派上用場了。</p>
 <pre><code>GetObject.asp
@@ -12806,7 +13106,7 @@ index3: {$array2[sec2].index3}
 <!-- raw HTML omitted -->
 <p>Box Model 的意思是說，每一個元素我們都可視它為一個 Box 。一個 Box 由以下屬性組成： <code>margin</code> 、 <code>padding</code> 、 <code>border</code> 、 <code>content</code> 。</p>
 <p>註： <code>content</code> 非真的可用的 CSS 屬性，這裡只是為了方便說明。</p>
-<p>而一個 Box 的實際寬度 (高度) 是由 <code>padding</code> + <code>border</code> + <code>width</code> (<code>height</code>) 所組成，如下圖 (取自 <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnie60/html/cssenhancements.asp">MSDN</a>)：</p>
+<p>而一個 Box 的實際寬度 (高度) 是由 <code>padding</code> + <code>border</code> + <code>width</code> (<code>height</code>) 所組成，如下圖 (取自 <a href="http://msdn.microsoft.com/library/default.asp?url=https://jaceju.net/library/en-us/dnie60/html/cssenhancements.asp">MSDN</a>)：</p>
 <p><img src="/resources/css_boxmodel/boxdim.gif" alt="IE Box Model"></p>
 <p>所以一般我們指定的 <code>width</code> 和 <code>height</code> 是 content 的寬和高，而沒有包含 <code>border</code> 和 <code>padding</code> 。換句話說，一個元素真正佔用的視覺空間，應該是 content + <code>padding</code> + <code>border</code> ，這是標準的 CSS 規範。</p>
 <p>不過在 IE5/5.5 時代，一個元素的寬高則包含了 content + padding + border 。這個錯誤的實作，造成現今許多 CSS 排版上的困擾，但是也不是沒不是沒有辦法解決。 <a href="http://tantek.com/CSS/Examples/boxmodelhack.html">Box Model Hack</a> 提供了解決之道，重點在於利用 IE5/5.5 對 CSS 解讀上的 Bug ，讓我們所希望之元素正確的寬高能正確地在 IE5/5.5 顯示出來。</p>

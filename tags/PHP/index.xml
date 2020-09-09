@@ -7,10 +7,36 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 02 Nov 2018 12:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2020 12:13:15 +0800</lastBuildDate>
     
 	<atom:link href="https://jaceju.net/tags/php/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Livewire 在 Laravel 應用裡實現無痛的前後端溝通</title>
+      <link>https://jaceju.net/laravel-livewire/</link>
+      <pubDate>Tue, 08 Sep 2020 12:13:15 +0800</pubDate>
+      
+      <guid>https://jaceju.net/laravel-livewire/</guid>
+      <description>&lt;h2 id=&#34;緣起&#34;&gt;緣起&lt;/h2&gt;
+&lt;p&gt;如果今天給網站開發者一個最簡單的題目：「如何在不重整頁面的情況下，讓前端介面可以取得後端資料的狀態？」我相信幾乎所有開發者都能實作出來，畢竟這個機制算是現代網站開發的基礎。&lt;/p&gt;
+&lt;p&gt;這個題目的答案從概念上來說，就是很簡單的三個步驟：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;後端送出 HTML 給瀏覽器來呈現網頁。&lt;/li&gt;
+&lt;li&gt;在頁面上用 AJAX 向後端 API 發起請求。&lt;/li&gt;
+&lt;li&gt;在接收到 AJAX 的結果後，將結果呈現到對應的位置上。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;當然不僅是取得結果，同樣的方式也可以用在把前端的資料送往後端的業務處理邏輯上。&lt;/p&gt;
+&lt;p&gt;只不過這背後有很多麻煩事要處理，像是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;後端要建立對應前端操作的 API ，並且要顧及安全性 (例如防範 CSRF ) 。&lt;/li&gt;
+&lt;li&gt;前端要透過 XHR 發起要求，並處理 API 各種狀態的結果。&lt;/li&gt;
+&lt;li&gt;需要學習如何操作前端 DOM 元素，讓後端資訊可以綁在元素上或是透過元素的事件來取得元素上的資訊。&lt;/li&gt;
+&lt;li&gt;前端要維護介面狀態，在重新整理頁面後要能後端資料狀態同步。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;諸如此類的基礎工夫還不少，雖然現代化的前後端框架或工具都幫我們處理掉了，但實戰上要把它們兜起來還是要花掉不少時間。&lt;/p&gt;
+&lt;p&gt;有沒有什麼更好的方法，可以讓開發者可以做更少的事，而達到同樣的效果呢？&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>理解 composer.json 的 replace</title>
@@ -91,15 +117,6 @@
       
       <guid>https://jaceju.net/php-refactor-to-pattern-in-action/</guid>
       <description>重構對一般開發者來說，實在是一件吃力不討好的事情，更別說想要把程式以模式來重構了。 在這次的讀書會報告裡，我首次挑戰這樣的題目，為大家介紹如何</description>
-    </item>
-    
-    <item>
-      <title>[PHP] 簡易的物件傳遞方法</title>
-      <link>https://jaceju.net/passing-php-object/</link>
-      <pubDate>Thu, 03 Feb 2011 00:00:00 +0800</pubDate>
-      
-      <guid>https://jaceju.net/passing-php-object/</guid>
-      <description>在 PHP 中，傳遞物件是很容易的事；我們只需要將物件的狀態封裝起來後，以字串的方式傳遞給另一端的程式還原執行即可。物件的傳遞用途很多，例如我們在 Gearman</description>
     </item>
     
   </channel>
